@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>St_Pierre_de_Frugie — Châteaux de France</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Georgia, 'Times New Roman', serif; background: #f5f0e8; color: #2c1810; }
+a { color: #8b4513; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Header */
+header { background: linear-gradient(135deg, #2c1810 0%, #5c3317 100%);
+         color: #f5e6c8; padding: 20px 30px; display:flex; align-items:center; gap:20px; }
+header h1 { font-size: 1.8em; letter-spacing: 1px; }
+header p  { font-size: 0.9em; color: #d4a96a; margin-top:4px; }
+
+/* Navigation */
+nav { background: #3d1f0d; padding: 10px 30px; display:flex; gap:20px; flex-wrap:wrap; }
+nav a { color: #d4a96a; font-size: 0.9em; }
+nav a:hover { color: #fff; }
+
+/* Container */
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+/* Search bar */
+.search-bar { background: #fff; border: 1px solid #c8a96a; border-radius: 8px;
+              padding: 20px; margin: 20px 0; display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+.search-bar input, .search-bar select {
+    padding: 8px 12px; border: 1px solid #c8a96a; border-radius: 4px;
+    font-size: 0.95em; background: #fffdf8; }
+.search-bar input[type=text] { flex: 1; min-width: 200px; }
+.search-bar button { padding: 8px 20px; background: #8b4513; color: #fff;
+                     border: none; border-radius: 4px; cursor: pointer; font-size: 0.95em; }
+.search-bar button:hover { background: #6b3410; }
+#result-count { color: #888; font-size: 0.85em; }
+
+/* Grid châteaux */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; margin-top: 16px; }
+.card { background: #fff; border: 1px solid #d4b896; border-radius: 8px;
+        overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,.1);
+        transition: transform .2s, box-shadow .2s; }
+.card:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,.15); }
+.card img { width: 100%; height: 180px; object-fit: cover; background: #e8dcc8; }
+.card-img-placeholder { width:100%; height:180px; background:#e8dcc8;
+    display:flex; align-items:center; justify-content:center; color:#a08060; font-size:2em; }
+.card-body { padding: 14px; }
+.card-body h3 { font-size: 1em; margin-bottom: 4px; color: #2c1810; }
+.card-body .meta { font-size: 0.78em; color: #888; margin-bottom: 6px; }
+.card-body .type-badge { display:inline-block; background:#f0e0c0; color:#7a4010;
+    border-radius: 3px; padding: 2px 7px; font-size: 0.75em; }
+
+/* Fiche détail */
+.fiche { background: #fff; border: 1px solid #d4b896; border-radius: 8px;
+         padding: 30px; margin: 20px 0; }
+.fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
+            padding-bottom: 10px; margin-bottom: 20px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+@media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
+.fiche-info table { width:100%; border-collapse: collapse; }
+.fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
+.fiche-info td:first-child { font-weight: bold; color: #7a4010; width: 130px; }
+.fiche-text { margin-top: 20px; }
+.fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
+.fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
+.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
+.photos img { max-height:240px; max-width:340px; border-radius:4px;
+              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+
+/* Lightbox */
+#lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
+            z-index:999; align-items:center; justify-content:center; }
+#lightbox.open { display:flex; }
+#lightbox img { max-width:90vw; max-height:90vh; border-radius:6px; }
+#lightbox-close { position:absolute; top:16px; right:24px; color:#fff;
+                  font-size:2em; cursor:pointer; line-height:1; }
+
+/* Département index */
+.dept-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap:14px; margin-top:16px; }
+.dept-card { background:#fff; border:1px solid #d4b896; border-radius:6px;
+             padding:14px 18px; display:flex; flex-direction:column; gap:4px; }
+.dept-card .num { font-size:1.4em; font-weight:bold; color:#8b4513; }
+.dept-card .name { font-size:0.9em; }
+.dept-card .count { font-size:0.78em; color:#888; }
+
+footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
+         border-top: 1px solid #d4b896; margin-top: 30px; }
+.back-link { display:inline-block; margin-bottom:16px; color:#8b4513; }
+.back-link:before { content: "← "; }
+
+/* Pagination */
+.pagination { display:flex; gap:8px; margin-top:20px; flex-wrap:wrap; align-items:center; }
+.pagination button { padding:6px 14px; border:1px solid #c8a96a; background:#fff;
+                     border-radius:4px; cursor:pointer; font-size:0.85em; }
+.pagination button.active { background:#8b4513; color:#fff; border-color:#8b4513; }
+.pagination button:hover:not(.active) { background:#f5e6c8; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>🏰 Châteaux de France</h1>
+    <p>Recensement Jean-Claude Truffet</p>
+  </div>
+</header>
+<nav>
+  <a href="../index.html">Accueil</a>
+  <a href="../dept/dept_24.html">Dordogne</a>
+</nav>
+<div class="container">
+  <a href="../dept/dept_24.html" class="back-link">Retour au département 24 — Dordogne</a>
+  <div class="fiche">
+    <h2>St_Pierre_de_Frugie</h2>
+    <div class="fiche-grid">
+      <div class="fiche-info">
+        <table>
+          <tr><td>Département</td><td>24 — Dordogne</td></tr>
+          <tr><td>Canton</td><td>Jumilhac le Grand</td></tr>
+          <tr><td>Commune</td><td>St-Pierre de Frugie</td></tr>
+          <tr><td>Type d'édifice</td><td>Château</td></tr>
+          <tr><td>Période d'origine</td><td>XVI-XVIII</td></tr>
+          <tr><td>Coordonnées GPS</td><td>45° 34' 23,7" Nord et 0° 59' 43,8" Est . Firbeix grav 5 - 6                             Montcigoux  GPS : 45° 36' 22" Nord et 1° 00' 05" Est Vieillecour grav 1 à 4</td></tr>
+        </table>
+      </div>
+      <div>
+        <div class="photos"><img src="../image/image_24/24_St_Pierre_Frugie_1.jpg" alt="St_Pierre_de_Frugie" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_24/24_St_Pierre_Frugie_2.jpg" alt="St_Pierre_de_Frugie" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_24/24_St_Pierre_Frugie_3.jpg" alt="St_Pierre_de_Frugie" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_24/24_St_Pierre_Frugie_4.jpg" alt="St_Pierre_de_Frugie" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_24/24_St_Pierre_Frugie_5.jpg" alt="St_Pierre_de_Frugie" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_24/24_St_Pierre_Frugie_6.jpg" alt="St_Pierre_de_Frugie" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_24/24_St_Pierre_Frugie_7.jpg" alt="St_Pierre_de_Frugie" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_24/24_St_Pierre_Frugie_8.jpg" alt="St_Pierre_de_Frugie" onclick="openLightbox(this.src)" loading="lazy">
+</div>
+      </div>
+    </div>
+    <div class="fiche-text">
+      <h4>Histoire</h4><p>Trois châteaux à Saint-Pierre de Frugie et à cinq kilomètres au nord-ouest le château de Firbeix du XVIIIe siècle, le manoir de Coupiat du XVIIe siècle.
+<br>Manoir de Goursolas du XVIIe et XVIIIe siècles.  Outre ces trois inscrit  je n'ai pas d'info .                       FRUGIE, le château de Frugie se situe au nord-est, en Périgord vert. Le 18 avril 1672, Hélie d'Arlot de Frugie, chevalier, seigneur de Frugie, de Cumond et autres lieux y décède. À l'origine, il se présentait sous la forme d'un quadrilatère dont les côtés nord-ouest et sud-est ont disparu. Au début du XXIe siècle, deux lignes de bâtiments subsistent : au sud-ouest, le logis encadré de deux tours massives rectangulaires, le tout couronné de mâchicoulis vers l'extérieur ; au nord-est des ruines recouvertes de lierre et précédées d'une douve sèche avec, côté intérieur, les restes d'une chapelle. Il est inscrit au titre des M.H. depuis le 21 mars 1968 pour ses façades et sa toiture. Le château actuel, bâti aux XVe et XVIe siècles, succède à un manoir fortifié médiéval ravagé lors des conflits avec les anglais. L'entrée du logis sud est ornée d'un portail Louis XIII que précédait auparavant un pont-levis supprimé lors du comblement des douves.
+<br>MONTCIGOUX, du château du XIIe siècle ne subsiste aujourd'hui qu'une tour ronde partiellement arasée à laquelle est juxtaposée une chartreuse du XVIIe siècle.  Berceau des Rolle, seigneurs du lieu dés 1540, Vers 1750, ils durent abattre lancien manoir du XIIIe siècle,  Ils bâtirent à la place lactuelle chartreuse. La terre et le château furent acquis vers 1826 par Pierre Paignon de Fontaubert (1772-1857) et son épouse Sophie Louise de Brie de Lageyrat (1788-1834). La bâtisse a été remaniée au début du XXe siècle par les Henry de Lamoignerie, ses nouveaux acquéreurs. Elle a été rachetée dans les années 1970 par une famille qui la possède toujours aujourdhui.</p>
+      <h4>Architecture</h4><p>VIEILLECOUR, se situe en Périgord vert, deux kilomètres au nord-est du bourg de Saint-Pierre-de-Frugie, bâti au XIIe siècle. Il se présente sous la forme d'un quadrilatère incomplet bordé de douves sèches sur deux côtés. L'enceinte, ponctuée de cinq tours rondes et d'une tour carrée, a conservé ses mâchicoulis. Il est inscrit au titre des M.H. depuis le 4 octobre 1946. Après avoir été grièvement blessé au siège de Châlus, Richard Cur de Lion, y aurait trouvé refuge en 1199, six jours avant de mourir. En 1372, lors de la guerre de cent ans, Bertrand Du Guesclin y installe sa garnison pour plusieurs semaines, après avoir repris Saint-Pierre-de-Frugie aux anglais. Le château, remanié du XVe au XVIIe siècle, se transforme en château d'agrément, perdant ainsi sa fonction défensive. En 1576, Jehan de Maulmont le vend à François de Laige, avant que le domaine passe successivement à Louis de Stuard de Caussade en 1598, à Jean du Glenest en 1650, puis à Jean Mosnier de Planeau en 1665. Le château est plus tard acquis par Marie Sohier (1885-1963), déjà propriétaire du château de La Meynardie, à La Coquille. Petite-fille du préfet Adrien Sohier (1815-1911), Marie Sohier était l'épouse de Marcel Rolland de Ravel (1882-1968), officier d'infanterie et maire de Saint-Pierre-de-Frugie. Au cours de la seconde moitié du XXe siècle, il a été la propriété de l'architecte Armand Lejeune (1918-2006).</p>
+      <h4>Habitants / Familles</h4><p>Famille d'Hélie d'Arlot de Frugie   Montcigoux famille de  Pierre Paignon de Fontaubert                           Vieillecour  famille de Jehan de Maulmont
+<br>        "</p>
+      <h4>Divers</h4><p>A  St-Pierre de Frugie;  Frugie grav 7-8,  GPS : 45° 34' 23,7" Nord et 0° 59' 43,8" Est . Firbeix grav 5 - 6                             Montcigoux  GPS : 45° 36' 22" Nord et 1° 00' 05" Est Vieillecour grav 1 à 4</p>
+    </div>
+  </div>
+</div>
+<footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
+<div id="lightbox" onclick="closeLightbox()">
+  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+<script>
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+</script>
+</body>
+</html>

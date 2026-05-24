@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beaulon — Châteaux de France</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Georgia, 'Times New Roman', serif; background: #f5f0e8; color: #2c1810; }
+a { color: #8b4513; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Header */
+header { background: linear-gradient(135deg, #2c1810 0%, #5c3317 100%);
+         color: #f5e6c8; padding: 20px 30px; display:flex; align-items:center; gap:20px; }
+header h1 { font-size: 1.8em; letter-spacing: 1px; }
+header p  { font-size: 0.9em; color: #d4a96a; margin-top:4px; }
+
+/* Navigation */
+nav { background: #3d1f0d; padding: 10px 30px; display:flex; gap:20px; flex-wrap:wrap; }
+nav a { color: #d4a96a; font-size: 0.9em; }
+nav a:hover { color: #fff; }
+
+/* Container */
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+/* Search bar */
+.search-bar { background: #fff; border: 1px solid #c8a96a; border-radius: 8px;
+              padding: 20px; margin: 20px 0; display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+.search-bar input, .search-bar select {
+    padding: 8px 12px; border: 1px solid #c8a96a; border-radius: 4px;
+    font-size: 0.95em; background: #fffdf8; }
+.search-bar input[type=text] { flex: 1; min-width: 200px; }
+.search-bar button { padding: 8px 20px; background: #8b4513; color: #fff;
+                     border: none; border-radius: 4px; cursor: pointer; font-size: 0.95em; }
+.search-bar button:hover { background: #6b3410; }
+#result-count { color: #888; font-size: 0.85em; }
+
+/* Grid châteaux */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; margin-top: 16px; }
+.card { background: #fff; border: 1px solid #d4b896; border-radius: 8px;
+        overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,.1);
+        transition: transform .2s, box-shadow .2s; }
+.card:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,.15); }
+.card img { width: 100%; height: 180px; object-fit: cover; background: #e8dcc8; }
+.card-img-placeholder { width:100%; height:180px; background:#e8dcc8;
+    display:flex; align-items:center; justify-content:center; color:#a08060; font-size:2em; }
+.card-body { padding: 14px; }
+.card-body h3 { font-size: 1em; margin-bottom: 4px; color: #2c1810; }
+.card-body .meta { font-size: 0.78em; color: #888; margin-bottom: 6px; }
+.card-body .type-badge { display:inline-block; background:#f0e0c0; color:#7a4010;
+    border-radius: 3px; padding: 2px 7px; font-size: 0.75em; }
+
+/* Fiche détail */
+.fiche { background: #fff; border: 1px solid #d4b896; border-radius: 8px;
+         padding: 30px; margin: 20px 0; }
+.fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
+            padding-bottom: 10px; margin-bottom: 20px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+@media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
+.fiche-info table { width:100%; border-collapse: collapse; }
+.fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
+.fiche-info td:first-child { font-weight: bold; color: #7a4010; width: 130px; }
+.fiche-text { margin-top: 20px; }
+.fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
+.fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
+.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
+.photos img { max-height:240px; max-width:340px; border-radius:4px;
+              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+
+/* Lightbox */
+#lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
+            z-index:999; align-items:center; justify-content:center; }
+#lightbox.open { display:flex; }
+#lightbox img { max-width:90vw; max-height:90vh; border-radius:6px; }
+#lightbox-close { position:absolute; top:16px; right:24px; color:#fff;
+                  font-size:2em; cursor:pointer; line-height:1; }
+
+/* Département index */
+.dept-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap:14px; margin-top:16px; }
+.dept-card { background:#fff; border:1px solid #d4b896; border-radius:6px;
+             padding:14px 18px; display:flex; flex-direction:column; gap:4px; }
+.dept-card .num { font-size:1.4em; font-weight:bold; color:#8b4513; }
+.dept-card .name { font-size:0.9em; }
+.dept-card .count { font-size:0.78em; color:#888; }
+
+footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
+         border-top: 1px solid #d4b896; margin-top: 30px; }
+.back-link { display:inline-block; margin-bottom:16px; color:#8b4513; }
+.back-link:before { content: "← "; }
+
+/* Pagination */
+.pagination { display:flex; gap:8px; margin-top:20px; flex-wrap:wrap; align-items:center; }
+.pagination button { padding:6px 14px; border:1px solid #c8a96a; background:#fff;
+                     border-radius:4px; cursor:pointer; font-size:0.85em; }
+.pagination button.active { background:#8b4513; color:#fff; border-color:#8b4513; }
+.pagination button:hover:not(.active) { background:#f5e6c8; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>🏰 Châteaux de France</h1>
+    <p>Recensement Jean-Claude Truffet</p>
+  </div>
+</header>
+<nav>
+  <a href="../index.html">Accueil</a>
+  <a href="../dept/dept_03.html">Allier</a>
+</nav>
+<div class="container">
+  <a href="../dept/dept_03.html" class="back-link">Retour au département 03 — Allier</a>
+  <div class="fiche">
+    <h2>Beaulon</h2>
+    <div class="fiche-grid">
+      <div class="fiche-info">
+        <table>
+          <tr><td>Département</td><td>03 — Allier</td></tr>
+          <tr><td>Canton</td><td>Chevagnes</td></tr>
+          <tr><td>Commune</td><td>Beaulon</td></tr>
+          <tr><td>Type d'édifice</td><td>Château</td></tr>
+          <tr><td>Période d'origine</td><td>XV-XIX</td></tr>
+          
+        </table>
+      </div>
+      <div>
+        <div class="photos"><img src="../image/image_03/03_Beaulon_1.jpg" alt="Beaulon" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_03/03_Beaulon_2.jpg" alt="Beaulon" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_03/03_Beaulon_3.jpg" alt="Beaulon" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_03/03_Beaulon_4.jpg" alt="Beaulon" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_03/03_Beaulon_5.jpg" alt="Beaulon" onclick="openLightbox(this.src)" loading="lazy">
+</div>
+      </div>
+    </div>
+    <div class="fiche-text">
+      <h4>Histoire</h4><p>Plusieurs châteaux à Beaulon, château de Treffoux du XVIII-XIXe siècle (article dans Beaulon II),  de Chezelles du XVIe siècle( Idem article dans Beaulon II). de Hautmoucheron du XVIIe siècle  et de Meuble du XIIIe siècle.  
+<br>BEAULON, c'est vers 1480 que la famille de Vinsons fait construire le château qui prendra le nom de Beaulon en 1510, lorsque la seigneurie de Saint-Dizant est acquise par la famille de Beaulon. Au début du XVIIe siècle, monseigneur de Nesmond, évêque de Bayeux et conseiller de Louis XIV, devient par héritage le seigneur de Beaulon (La famille de Nesmond en sera propriétaire jusqu'en 1712) et le droit de haute justice est donné à la seigneurie en 1635. Il fut au XVIIe siècle, la résidence d'été des évêques de Bordeaux.  Par la suite, par alliance, le château de Beaulon sera, après la famille de Nesmond, la propriété des familles de Bigot, de Brémond d'Ars, de la Porte. En 1965, le château de Beaulon devient la propriété de Christian Thomas.                                   MEUBLE doit aussi son nom à ses anciens propriétaires; les Charbonnier qui occupaient des postes importants à la cour des Ducs de Bourbon. Marie Litaudon, auteur de plusieurs ouvrages sur l'histoire régionale y vécut. Château du Marquis de Monspey aujourd'hui hôtel restaurant                                Il est mentionné dans un acte de vente de 1267 par lequel Isabelle de Bourbon, veuve de Geoffroy de Blacfossés, vendit à Guillaume de Maizières diverses terres dont le Meuble. Au siècle suivant, une famille que l'on retrouve jusque vers 1556 avec Jean du Meuble, écuyer, prit le nom du fief.  C'est en 1366 que l'on rencontre Claire, dame de Dompierre et Chazelles et de la terre du Meuble. En 1367 dame Marguerite du Meuble  fait aveu pour la "motte, fossés et hôtel du Meuble". En 1603 et pendant une  bonne partie du XVIIe siècle, les seigneurs du Meuble furent les Lanty. Le dernier seigneur, nommé Paperel de Vitry, émigra à la Révolution et le château fut confisqué  le 22 floréal an II. Au XIVe, vendu suite à un partage.</p>
+      <h4>Architecture</h4><p>Beaulon du XVIIIe siècle,   caractéristique du goût de l'époque restauration, mêlant en parti architecture Renaissance et façades de style Louis XVI. Le château est formé d'un corps de logis aux extrémités duquel font retour deux ailes symétriques. A chacun des angles du quadrilatère s'élève une tour circulaire coiffée d'une poivrière,  le corps de logis du XIVe siècle  est surmonté d'une haute toiture d'ardoise munie de rampants à crochets. La façade nord est très intéressante car elle présente deux lucarnes de style très différent. Celle de gauche est un témoignage médiéval d'inspiration florale alors que celle de droite est de style Renaissance, flamboyante à colonnes torses. Cette dissymétrie architecturale n'enlève rien au charme de cette bâtisse qui témoigne de ses cinq siècles d'existence. L'escalier du XVIe siècle remplace sans doute une tour d'escalier polygonale  à l'italienne, s'il a été rénové, a toujours fait partie de la tour originale qui est toujours présente aujourd'hui. Le pigeonnier, une tour cylindrique datée de 1740, présente un toit conique recouvert de tuiles plates de terre cuite et percé de lucarnes à frontons de pierre.                  Meuble, est le seul château qui ai gardé son aspect médiéval  qui fut construit en 1466.</p>
+      <h4>Habitants / Familles</h4><p>Famille de Beaulon                   Famille du Marquis de Monspey"</p>
+      <h4>Divers</h4><p>Château d Beaulon,  de Hautmoucheron et Meuble.</p>
+    </div>
+  </div>
+</div>
+<footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
+<div id="lightbox" onclick="closeLightbox()">
+  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+<script>
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+</script>
+</body>
+</html>

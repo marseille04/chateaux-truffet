@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thil_Chenoves — Châteaux de France</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Georgia, 'Times New Roman', serif; background: #f5f0e8; color: #2c1810; }
+a { color: #8b4513; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Header */
+header { background: linear-gradient(135deg, #2c1810 0%, #5c3317 100%);
+         color: #f5e6c8; padding: 20px 30px; display:flex; align-items:center; gap:20px; }
+header h1 { font-size: 1.8em; letter-spacing: 1px; }
+header p  { font-size: 0.9em; color: #d4a96a; margin-top:4px; }
+
+/* Navigation */
+nav { background: #3d1f0d; padding: 10px 30px; display:flex; gap:20px; flex-wrap:wrap; }
+nav a { color: #d4a96a; font-size: 0.9em; }
+nav a:hover { color: #fff; }
+
+/* Container */
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+/* Search bar */
+.search-bar { background: #fff; border: 1px solid #c8a96a; border-radius: 8px;
+              padding: 20px; margin: 20px 0; display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+.search-bar input, .search-bar select {
+    padding: 8px 12px; border: 1px solid #c8a96a; border-radius: 4px;
+    font-size: 0.95em; background: #fffdf8; }
+.search-bar input[type=text] { flex: 1; min-width: 200px; }
+.search-bar button { padding: 8px 20px; background: #8b4513; color: #fff;
+                     border: none; border-radius: 4px; cursor: pointer; font-size: 0.95em; }
+.search-bar button:hover { background: #6b3410; }
+#result-count { color: #888; font-size: 0.85em; }
+
+/* Grid châteaux */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; margin-top: 16px; }
+.card { background: #fff; border: 1px solid #d4b896; border-radius: 8px;
+        overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,.1);
+        transition: transform .2s, box-shadow .2s; }
+.card:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,.15); }
+.card img { width: 100%; height: 180px; object-fit: cover; background: #e8dcc8; }
+.card-img-placeholder { width:100%; height:180px; background:#e8dcc8;
+    display:flex; align-items:center; justify-content:center; color:#a08060; font-size:2em; }
+.card-body { padding: 14px; }
+.card-body h3 { font-size: 1em; margin-bottom: 4px; color: #2c1810; }
+.card-body .meta { font-size: 0.78em; color: #888; margin-bottom: 6px; }
+.card-body .type-badge { display:inline-block; background:#f0e0c0; color:#7a4010;
+    border-radius: 3px; padding: 2px 7px; font-size: 0.75em; }
+
+/* Fiche détail */
+.fiche { background: #fff; border: 1px solid #d4b896; border-radius: 8px;
+         padding: 30px; margin: 20px 0; }
+.fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
+            padding-bottom: 10px; margin-bottom: 20px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+@media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
+.fiche-info table { width:100%; border-collapse: collapse; }
+.fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
+.fiche-info td:first-child { font-weight: bold; color: #7a4010; width: 130px; }
+.fiche-text { margin-top: 20px; }
+.fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
+.fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
+.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
+.photos img { max-height:240px; max-width:340px; border-radius:4px;
+              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+
+/* Lightbox */
+#lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
+            z-index:999; align-items:center; justify-content:center; }
+#lightbox.open { display:flex; }
+#lightbox img { max-width:90vw; max-height:90vh; border-radius:6px; }
+#lightbox-close { position:absolute; top:16px; right:24px; color:#fff;
+                  font-size:2em; cursor:pointer; line-height:1; }
+
+/* Département index */
+.dept-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap:14px; margin-top:16px; }
+.dept-card { background:#fff; border:1px solid #d4b896; border-radius:6px;
+             padding:14px 18px; display:flex; flex-direction:column; gap:4px; }
+.dept-card .num { font-size:1.4em; font-weight:bold; color:#8b4513; }
+.dept-card .name { font-size:0.9em; }
+.dept-card .count { font-size:0.78em; color:#888; }
+
+footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
+         border-top: 1px solid #d4b896; margin-top: 30px; }
+.back-link { display:inline-block; margin-bottom:16px; color:#8b4513; }
+.back-link:before { content: "← "; }
+
+/* Pagination */
+.pagination { display:flex; gap:8px; margin-top:20px; flex-wrap:wrap; align-items:center; }
+.pagination button { padding:6px 14px; border:1px solid #c8a96a; background:#fff;
+                     border-radius:4px; cursor:pointer; font-size:0.85em; }
+.pagination button.active { background:#8b4513; color:#fff; border-color:#8b4513; }
+.pagination button:hover:not(.active) { background:#f5e6c8; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>🏰 Châteaux de France</h1>
+    <p>Recensement Jean-Claude Truffet</p>
+  </div>
+</header>
+<nav>
+  <a href="../index.html">Accueil</a>
+  <a href="../dept/dept_71.html">Saône-et-Loire</a>
+</nav>
+<div class="container">
+  <a href="../dept/dept_71.html" class="back-link">Retour au département 71 — Saône-et-Loire</a>
+  <div class="fiche">
+    <h2>Thil_Chenoves</h2>
+    <div class="fiche-grid">
+      <div class="fiche-info">
+        <table>
+          <tr><td>Département</td><td>71 — Saône-et-Loire</td></tr>
+          <tr><td>Canton</td><td>Buxy</td></tr>
+          <tr><td>Commune</td><td>Chenoves</td></tr>
+          <tr><td>Type d'édifice</td><td>Château</td></tr>
+          <tr><td>Période d'origine</td><td>XVI</td></tr>
+          
+        </table>
+      </div>
+      <div>
+        <div class="photos"><img src="../image/image_71/71_Thil_Chenoves_1.jpg" alt="Thil_Chenoves" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_71/71_Thil_Chenoves_2.jpg" alt="Thil_Chenoves" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_71/71_Thil_Chenoves_3.jpg" alt="Thil_Chenoves" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_71/71_Thil_Chenoves_4.jpg" alt="Thil_Chenoves" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_71/71_Thil_Chenoves_5.jpg" alt="Thil_Chenoves" onclick="openLightbox(this.src)" loading="lazy">
+</div>
+      </div>
+    </div>
+    <div class="fiche-text">
+      <h4>Histoire</h4><p>THIL, les du Tartre, seigneurs du lieu vers 1300, y bâtissent une maison forte.  Charles VIII, de passage en Bourgogne en 1491 et se rendant en Italie, maintient, par lettres patentes, les du Tartre dans leurs fonctions. 
+<br>La maison forte en  1575 est très endommagée lors du passage des  Saxons. En 1593  Moïse de Rymon, seigneur de La Courtine succède aux du Tartre. 
+<br>A la mort du précédent, en 1622 ses héritiers se disputent le bien qui finit par échoir à Antoine Mercier, capitaine du château de Montcenis, avant 1661 Antoine achève la transformation du château, sans doute ébauchée par Moïse de Rymon. 
+<br>Après une période confuse, en 1741 le domaine est acquis par Jacques Perrin de Cypierre, dont les descendants vont bâtir une cave voûtée, une chapelle et la terrasse sud, cette famille compte, parmi ses membres, des intendants de la généralité d'Orléans. 
+<br>Le château est vendu à J-B. Dumont de Sermaise en 1787, en 1793  le bien est saisi sur le précédent et divisé en plusieurs lots et à partir de 1845  après avoir été laissé à l'abandon, le château est peu à peu remembré.  Passe  en 1875 au  baron Max Bernard de La Vernette Saint-Maurice qui rachète le château et en confie la restauration à l'architecte chalonnais Changarnier Philibert Bernard de La Vernette, fils du précédent, en  1907 acquit des parcelles de terres pour y aménager un parc. En 1947 le précédent, sans héritier, cède la propriété aux Surs Dominicaines missionnaires des campagnes  et en 1973  fondation de lassociation Accueil et Partage.</p>
+      <h4>Architecture</h4><p>THIL à Chenoves. En 1875, le château consistait en un bâtiment de plan rectangulaire comportant un étage de comble éclairé par des lucarnes à ailerons à frontons cintrés, sous un toit à croupes, les angles nord-ouest et sud-ouest étaient flanqués de tours circulaires coiffées de toits coniques très bas. À l'est de ce corps de logis, des bâtiments hétéroclites entouraient une cour, parmi lesquels on distinguait, à l'angle nord-est, la base d'une tour, une petite tour occupait sans doute l'angle sud-est du quadrilatère.
+<br>La restauration en a fait une construction de plan carré cantonnée de tours rondes, celles-ci sont couvertes de toitures coniques très aiguës, et les logis, de hauts toits brisés en ardoise, à la base desquels on a remonté, sur une corniche en brique, en  changeant la répartition, les lucarnes du XVIIe siècle, un avant-corps de trois travées se détache au centre de la façade sud, les tours occidentales ont conservé leurs petites baies rectangulaires et des archères.</p>
+      <h4>Habitants / Familles</h4><p>Famille Moïse de Rymon
+<br>        "</p>
+      <h4>Divers</h4><p>Château de Thil,de Bouthières et de valottes</p>
+    </div>
+  </div>
+</div>
+<footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
+<div id="lightbox" onclick="closeLightbox()">
+  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+<script>
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+</script>
+</body>
+</html>

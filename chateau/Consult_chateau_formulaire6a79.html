@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Morlaix — Châteaux de France</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Georgia, 'Times New Roman', serif; background: #f5f0e8; color: #2c1810; }
+a { color: #8b4513; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Header */
+header { background: linear-gradient(135deg, #2c1810 0%, #5c3317 100%);
+         color: #f5e6c8; padding: 20px 30px; display:flex; align-items:center; gap:20px; }
+header h1 { font-size: 1.8em; letter-spacing: 1px; }
+header p  { font-size: 0.9em; color: #d4a96a; margin-top:4px; }
+
+/* Navigation */
+nav { background: #3d1f0d; padding: 10px 30px; display:flex; gap:20px; flex-wrap:wrap; }
+nav a { color: #d4a96a; font-size: 0.9em; }
+nav a:hover { color: #fff; }
+
+/* Container */
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+/* Search bar */
+.search-bar { background: #fff; border: 1px solid #c8a96a; border-radius: 8px;
+              padding: 20px; margin: 20px 0; display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+.search-bar input, .search-bar select {
+    padding: 8px 12px; border: 1px solid #c8a96a; border-radius: 4px;
+    font-size: 0.95em; background: #fffdf8; }
+.search-bar input[type=text] { flex: 1; min-width: 200px; }
+.search-bar button { padding: 8px 20px; background: #8b4513; color: #fff;
+                     border: none; border-radius: 4px; cursor: pointer; font-size: 0.95em; }
+.search-bar button:hover { background: #6b3410; }
+#result-count { color: #888; font-size: 0.85em; }
+
+/* Grid châteaux */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; margin-top: 16px; }
+.card { background: #fff; border: 1px solid #d4b896; border-radius: 8px;
+        overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,.1);
+        transition: transform .2s, box-shadow .2s; }
+.card:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,.15); }
+.card img { width: 100%; height: 180px; object-fit: cover; background: #e8dcc8; }
+.card-img-placeholder { width:100%; height:180px; background:#e8dcc8;
+    display:flex; align-items:center; justify-content:center; color:#a08060; font-size:2em; }
+.card-body { padding: 14px; }
+.card-body h3 { font-size: 1em; margin-bottom: 4px; color: #2c1810; }
+.card-body .meta { font-size: 0.78em; color: #888; margin-bottom: 6px; }
+.card-body .type-badge { display:inline-block; background:#f0e0c0; color:#7a4010;
+    border-radius: 3px; padding: 2px 7px; font-size: 0.75em; }
+
+/* Fiche détail */
+.fiche { background: #fff; border: 1px solid #d4b896; border-radius: 8px;
+         padding: 30px; margin: 20px 0; }
+.fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
+            padding-bottom: 10px; margin-bottom: 20px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+@media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
+.fiche-info table { width:100%; border-collapse: collapse; }
+.fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
+.fiche-info td:first-child { font-weight: bold; color: #7a4010; width: 130px; }
+.fiche-text { margin-top: 20px; }
+.fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
+.fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
+.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
+.photos img { max-height:240px; max-width:340px; border-radius:4px;
+              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+
+/* Lightbox */
+#lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
+            z-index:999; align-items:center; justify-content:center; }
+#lightbox.open { display:flex; }
+#lightbox img { max-width:90vw; max-height:90vh; border-radius:6px; }
+#lightbox-close { position:absolute; top:16px; right:24px; color:#fff;
+                  font-size:2em; cursor:pointer; line-height:1; }
+
+/* Département index */
+.dept-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap:14px; margin-top:16px; }
+.dept-card { background:#fff; border:1px solid #d4b896; border-radius:6px;
+             padding:14px 18px; display:flex; flex-direction:column; gap:4px; }
+.dept-card .num { font-size:1.4em; font-weight:bold; color:#8b4513; }
+.dept-card .name { font-size:0.9em; }
+.dept-card .count { font-size:0.78em; color:#888; }
+
+footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
+         border-top: 1px solid #d4b896; margin-top: 30px; }
+.back-link { display:inline-block; margin-bottom:16px; color:#8b4513; }
+.back-link:before { content: "← "; }
+
+/* Pagination */
+.pagination { display:flex; gap:8px; margin-top:20px; flex-wrap:wrap; align-items:center; }
+.pagination button { padding:6px 14px; border:1px solid #c8a96a; background:#fff;
+                     border-radius:4px; cursor:pointer; font-size:0.85em; }
+.pagination button.active { background:#8b4513; color:#fff; border-color:#8b4513; }
+.pagination button:hover:not(.active) { background:#f5e6c8; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>🏰 Châteaux de France</h1>
+    <p>Recensement Jean-Claude Truffet</p>
+  </div>
+</header>
+<nav>
+  <a href="../index.html">Accueil</a>
+  <a href="../dept/dept_29.html">Finistère</a>
+</nav>
+<div class="container">
+  <a href="../dept/dept_29.html" class="back-link">Retour au département 29 — Finistère</a>
+  <div class="fiche">
+    <h2>Morlaix</h2>
+    <div class="fiche-grid">
+      <div class="fiche-info">
+        <table>
+          <tr><td>Département</td><td>29 — Finistère</td></tr>
+          <tr><td>Canton</td><td>Morlaix</td></tr>
+          <tr><td>Commune</td><td>Morlaix</td></tr>
+          <tr><td>Type d'édifice</td><td>Château</td></tr>
+          <tr><td>Période d'origine</td><td>XVI-XIX</td></tr>
+          <tr><td>Coordonnées GPS</td><td>48° 36' 07" Nord, 3° 50' 39" Ouest</td></tr>
+        </table>
+      </div>
+      <div>
+        <div class="photos"><img src="../image/image_29/29_Morlaix_1.jpg" alt="Morlaix" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_29/29_Morlaix_2.jpg" alt="Morlaix" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_29/29_Morlaix_3.jpg" alt="Morlaix" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_29/29_Morlaix_4.jpg" alt="Morlaix" onclick="openLightbox(this.src)" loading="lazy">
+</div>
+      </div>
+    </div>
+    <div class="fiche-text">
+      <h4>Histoire</h4><p>Quatre châteaux à Morlaix de Napoléon, Keroriouval, Keriocr'iou et Keranroux                                                                                                                    NAPOLEON III  Morlaix, château du XIXe siècle, propriété privée, ne se visite pas, visible de l'extérieur, pas d'historique.                                                                                                                                  KERORIOUVAL  Édifice construit au cours du XIXe siècle,  agrandi par l'adjonction d'une tour d'angle couverte en pavillon à la fin du siècle. Le château appartient à M. A. de Montluc de la Rivière au début du XXe siècle. Bâtiment de plan rectangulaire.                                                                    KEROCH' IOU   Château construit en 1898 sur le site d'un ancien manoir aujourd'hui ruiné. La propriété est vendue en 1893 par Paul de Champagny au baron Alphonse Cazin d'Honincthun qui confie les travaux du nouvel édifice à un architecte de Saint-Brieuc. Bâtiment néo-XVIIe de plan massé; le corps de logis est flanqué de plusieurs pavillons surélevés. Elévation de moellon avec soubassement, encadrements de baies, bandeaux horizontaux, chaînes d'angle, corniche en pierre de taille. Lucarnes surmontées d'un fronton semi-circulaire orné d'une coquille. : les façades et les toitures y compris le portail d'entrée : classement par arrêté du 26 novembre 1979.</p>
+      <h4>Architecture</h4><p>KERANROUX  La Seigneurie de Keranroux, connue depuis 1301, a été cédée au XVIIIe par la famille du Parc à Madame de la Fruglaye, née Sophie de Caradeuc, fille de Louis René de Caradeuc de la Chalotais, procureur général du Parlement de Bretagne. L'ancien manoir fut remplacé en 1773 par le château actuel, qui devint la résidence de la famille de la Fruglaye. Le bâtiment, de plan rectangulaire et d'ordonnance classique, occupait le centre d'un domaine composé d'un jardin entouré d'un parc. L'ensemble a subi aux XIXe et XXe siècles des modifications, toiture du château, sculpture de son fronton, reconstruction des communs, d'une maison de style Directoire dans le bas du parc et d'une ferme modèle à l'autre extrémité du domaine. Ces ajouts importants n'altèrent cependant pas la perception que l'on a du domaine. .Éléments protégés MH : les façades et les toitures, la suite des pièces du rez-de-chaussée, le vestibule et son escalier, les façades et les toitures de la chapelle, des communs, de la maison du régisseur et de la ferme de Roz-ar- Prat, le colombier et la fontaine, le jardin avec ses terrasses, les ruines de la chapelle médiévale : inscription par arrêté du 19 novembre 1992.</p>
+      <h4>Habitants / Familles</h4><p>Nec'Hoat; Famille La Barre de Nanteuil                Keroriouval;  M. A. de Montluc de la Rivière    Kerioch'Iou ; Famille de  Paul de Champagny       Keranroux; famille du Parc
+<br>        
+<br>        
+<br>        
+<br>        
+<br>        
+<br>        
+<br>        
+<br>        "</p>
+      <h4>Divers</h4><p>Quatre châteaux à Morlaix grav 1 de Napoléon, de Nec'Hoat  grav-3-4-5, Kéroriouval, de Keroch'iou grav 2-3  et de Kéranroux_6-7                                                                           Keroch'iou  GPS : 48° 36' 07" Nord, 3° 50' 39" Ouest</p>
+    </div>
+  </div>
+</div>
+<footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
+<div id="lightbox" onclick="closeLightbox()">
+  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+<script>
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+</script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barly_Varlemont — Châteaux de France</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Georgia, 'Times New Roman', serif; background: #f5f0e8; color: #2c1810; }
+a { color: #8b4513; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Header */
+header { background: linear-gradient(135deg, #2c1810 0%, #5c3317 100%);
+         color: #f5e6c8; padding: 20px 30px; display:flex; align-items:center; gap:20px; }
+header h1 { font-size: 1.8em; letter-spacing: 1px; }
+header p  { font-size: 0.9em; color: #d4a96a; margin-top:4px; }
+
+/* Navigation */
+nav { background: #3d1f0d; padding: 10px 30px; display:flex; gap:20px; flex-wrap:wrap; }
+nav a { color: #d4a96a; font-size: 0.9em; }
+nav a:hover { color: #fff; }
+
+/* Container */
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+/* Search bar */
+.search-bar { background: #fff; border: 1px solid #c8a96a; border-radius: 8px;
+              padding: 20px; margin: 20px 0; display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+.search-bar input, .search-bar select {
+    padding: 8px 12px; border: 1px solid #c8a96a; border-radius: 4px;
+    font-size: 0.95em; background: #fffdf8; }
+.search-bar input[type=text] { flex: 1; min-width: 200px; }
+.search-bar button { padding: 8px 20px; background: #8b4513; color: #fff;
+                     border: none; border-radius: 4px; cursor: pointer; font-size: 0.95em; }
+.search-bar button:hover { background: #6b3410; }
+#result-count { color: #888; font-size: 0.85em; }
+
+/* Grid châteaux */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; margin-top: 16px; }
+.card { background: #fff; border: 1px solid #d4b896; border-radius: 8px;
+        overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,.1);
+        transition: transform .2s, box-shadow .2s; }
+.card:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,.15); }
+.card img { width: 100%; height: 180px; object-fit: cover; background: #e8dcc8; }
+.card-img-placeholder { width:100%; height:180px; background:#e8dcc8;
+    display:flex; align-items:center; justify-content:center; color:#a08060; font-size:2em; }
+.card-body { padding: 14px; }
+.card-body h3 { font-size: 1em; margin-bottom: 4px; color: #2c1810; }
+.card-body .meta { font-size: 0.78em; color: #888; margin-bottom: 6px; }
+.card-body .type-badge { display:inline-block; background:#f0e0c0; color:#7a4010;
+    border-radius: 3px; padding: 2px 7px; font-size: 0.75em; }
+
+/* Fiche détail */
+.fiche { background: #fff; border: 1px solid #d4b896; border-radius: 8px;
+         padding: 30px; margin: 20px 0; }
+.fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
+            padding-bottom: 10px; margin-bottom: 20px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+@media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
+.fiche-info table { width:100%; border-collapse: collapse; }
+.fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
+.fiche-info td:first-child { font-weight: bold; color: #7a4010; width: 130px; }
+.fiche-text { margin-top: 20px; }
+.fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
+.fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
+.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
+.photos img { max-height:240px; max-width:340px; border-radius:4px;
+              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+
+/* Lightbox */
+#lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
+            z-index:999; align-items:center; justify-content:center; }
+#lightbox.open { display:flex; }
+#lightbox img { max-width:90vw; max-height:90vh; border-radius:6px; }
+#lightbox-close { position:absolute; top:16px; right:24px; color:#fff;
+                  font-size:2em; cursor:pointer; line-height:1; }
+
+/* Département index */
+.dept-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap:14px; margin-top:16px; }
+.dept-card { background:#fff; border:1px solid #d4b896; border-radius:6px;
+             padding:14px 18px; display:flex; flex-direction:column; gap:4px; }
+.dept-card .num { font-size:1.4em; font-weight:bold; color:#8b4513; }
+.dept-card .name { font-size:0.9em; }
+.dept-card .count { font-size:0.78em; color:#888; }
+
+footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
+         border-top: 1px solid #d4b896; margin-top: 30px; }
+.back-link { display:inline-block; margin-bottom:16px; color:#8b4513; }
+.back-link:before { content: "← "; }
+
+/* Pagination */
+.pagination { display:flex; gap:8px; margin-top:20px; flex-wrap:wrap; align-items:center; }
+.pagination button { padding:6px 14px; border:1px solid #c8a96a; background:#fff;
+                     border-radius:4px; cursor:pointer; font-size:0.85em; }
+.pagination button.active { background:#8b4513; color:#fff; border-color:#8b4513; }
+.pagination button:hover:not(.active) { background:#f5e6c8; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>🏰 Châteaux de France</h1>
+    <p>Recensement Jean-Claude Truffet</p>
+  </div>
+</header>
+<nav>
+  <a href="../index.html">Accueil</a>
+  <a href="../dept/dept_62.html">Pas-de-Calais</a>
+</nav>
+<div class="container">
+  <a href="../dept/dept_62.html" class="back-link">Retour au département 62 — Pas-de-Calais</a>
+  <div class="fiche">
+    <h2>Barly_Varlemont</h2>
+    <div class="fiche-grid">
+      <div class="fiche-info">
+        <table>
+          <tr><td>Département</td><td>62 — Pas-de-Calais</td></tr>
+          <tr><td>Canton</td><td>Avesnes-le-Comte</td></tr>
+          <tr><td>Commune</td><td>Barly</td></tr>
+          <tr><td>Type d'édifice</td><td>château</td></tr>
+          <tr><td>Période d'origine</td><td>XVIII</td></tr>
+          <tr><td>Coordonnées GPS</td><td>50° 14' 59' Nord, 2° 33' 3" Est</td></tr>
+        </table>
+      </div>
+      <div>
+        <div class="photos"><img src="../image/image_62/62_Barly_Varlimont_1.jpg" alt="Barly_Varlemont" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_62/62_Barly_Varlimont_2.jpg" alt="Barly_Varlemont" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_62/62_Barly_Varlimont_3.jpg" alt="Barly_Varlemont" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_62/62_Barly_Varlimont_4.jpg" alt="Barly_Varlemont" onclick="openLightbox(this.src)" loading="lazy">
+</div>
+      </div>
+    </div>
+    <div class="fiche-text">
+      <h4>Histoire</h4><p>BARLY, débutée vers 1780  à l'initiative de Vindicien Antoine Blin et de son épouse, Marie Pétronille de Beauvoir de Séricourt.  Les Blin, également appelés Blin de Barly, sont une famille de fermiers et laboureurs aisés, qui n'ont jamais été anoblis. La seigneurie de Barly fut vendue, en 1698, par Claude de Richardot, Prince de Steenhuyse, à Marguerite Le Maistre, veuve d'Antoine Blin, bourgeois d'Arras, seigneur de Wanquetin. Les 3 fils du couple, Jean-Marie Blin, capitaine d'infanterie, hérita de Barly. Il décéda en 1775 dans sa "maison seigneuriale" à Barly. Son fils Vindicien Antoine Blin de Barly, capitaine au régiment de Rohan, épousa Barbe Louise Hulot en 1739. Veuf, il se remaria avec Marie Pétronille de Beauvoir de Séricourt, avec laquelle il entama la construction du château de Barly actuel. Le couple décéda, en 1786, avant l'achèvement des travaux. Jean Vindicien Blin de Varlemont de Barly, fils de Vindicien Antoine et de Barbe Louise Hulot lui succède alors. Capitaine au régiment des dragons de la Reine, Jean Vindicien épouse en 1782 Catherine Dagon de la Conterie. Élu premier maire du village en 1790, il n'est inquiété au cours de la Révolution que pendant la Terreur. Il se trouva assigné à résidence au château. Ayant divorcé, en 1794, il loua le château de Barly lors des étés de 1812 à 1818, à l'Evêque d'Arras. Après la mort de Jean Vindicien en 1832, son fils et unique héritier, Achille Pierre Blin de Varlemont, revendit le château de Barly, en 1837, à Blanche des Escotais, Veuve du Comte Adrien Eugène Léonard de Tramecourt. La Comtesse de Tramecourt décéda, en 1879 : Barly fut légué à son neveu le Marquis du Luart. Inoccupé, le château de Barly est parfois loué durant l'été. Arthur Duhem, vice-président de la chambre de commerce de Lille, racheta Barly, le 8/07/1914.</p>
+      <h4>Architecture</h4><p>BARLY;  Après la guerre, la famille Duhem reprend possession des lieux, et Arthur Duhem décéda, à Barly, en 1930. En 1937, ses enfants vendirent le château à Robert Bouttemy, agriculteur du village. Pendant la seconde guerre mondiale, Barly est occupé par des unités allemandes. A la fin 1960, monseigneur Jean Lestocquoy, président de la commission départementale des M.H. du Pas-de-Calais, attire l'attention publique, sur les menaces qui pèsent sur le château de Barly, alors en bien mauvais état. Suite de cette mobilisation, le Colonel Jacques d'Antin de Vaillac l'acheta, en 1970. Le 2/03/1971, la totalité des bâtiments et des décors intérieurs de Barly ont été classés. Les travaux de restauration débutèrent. Bernard Dragesco et Didier Cramoisan rachetèrent le château de Barly, en Juin 2001.  La construction du corps principal devait être terminée en 1784, quand commencèrent les aménagements intérieurs. Ceux-ci furent achevés autour de 1794. Fruit du goût et de la volonté de la famille Blin de Barly, cet ensemble de pur style Louis XVI est de très grande qualité architecturale et a survécu dans un état dauthenticité absolument exceptionnel, si rare en France, fruit du goût et de la volonté de la famille Blin de Barly, mérite dêtre souligné.<br>Éléments protégés MH : le château et ses dépendances (la chapelle, les communs et le portail d'entrée) : classement par arrêté du 2 mars 1971.</p>
+      <h4>Habitants / Familles</h4><p>Famille de Vindicien Antoine Blin"</p>
+      <h4>Divers</h4><p>Château de Varlimont à Barly            GPS : 50° 14' 59' Nord, 2° 33' 3" Est</p>
+    </div>
+  </div>
+</div>
+<footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
+<div id="lightbox" onclick="closeLightbox()">
+  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+<script>
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+</script>
+</body>
+</html>

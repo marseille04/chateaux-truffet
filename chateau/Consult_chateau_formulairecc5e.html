@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rivière — Châteaux de France</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Georgia, 'Times New Roman', serif; background: #f5f0e8; color: #2c1810; }
+a { color: #8b4513; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Header */
+header { background: linear-gradient(135deg, #2c1810 0%, #5c3317 100%);
+         color: #f5e6c8; padding: 20px 30px; display:flex; align-items:center; gap:20px; }
+header h1 { font-size: 1.8em; letter-spacing: 1px; }
+header p  { font-size: 0.9em; color: #d4a96a; margin-top:4px; }
+
+/* Navigation */
+nav { background: #3d1f0d; padding: 10px 30px; display:flex; gap:20px; flex-wrap:wrap; }
+nav a { color: #d4a96a; font-size: 0.9em; }
+nav a:hover { color: #fff; }
+
+/* Container */
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+/* Search bar */
+.search-bar { background: #fff; border: 1px solid #c8a96a; border-radius: 8px;
+              padding: 20px; margin: 20px 0; display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+.search-bar input, .search-bar select {
+    padding: 8px 12px; border: 1px solid #c8a96a; border-radius: 4px;
+    font-size: 0.95em; background: #fffdf8; }
+.search-bar input[type=text] { flex: 1; min-width: 200px; }
+.search-bar button { padding: 8px 20px; background: #8b4513; color: #fff;
+                     border: none; border-radius: 4px; cursor: pointer; font-size: 0.95em; }
+.search-bar button:hover { background: #6b3410; }
+#result-count { color: #888; font-size: 0.85em; }
+
+/* Grid châteaux */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; margin-top: 16px; }
+.card { background: #fff; border: 1px solid #d4b896; border-radius: 8px;
+        overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,.1);
+        transition: transform .2s, box-shadow .2s; }
+.card:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,.15); }
+.card img { width: 100%; height: 180px; object-fit: cover; background: #e8dcc8; }
+.card-img-placeholder { width:100%; height:180px; background:#e8dcc8;
+    display:flex; align-items:center; justify-content:center; color:#a08060; font-size:2em; }
+.card-body { padding: 14px; }
+.card-body h3 { font-size: 1em; margin-bottom: 4px; color: #2c1810; }
+.card-body .meta { font-size: 0.78em; color: #888; margin-bottom: 6px; }
+.card-body .type-badge { display:inline-block; background:#f0e0c0; color:#7a4010;
+    border-radius: 3px; padding: 2px 7px; font-size: 0.75em; }
+
+/* Fiche détail */
+.fiche { background: #fff; border: 1px solid #d4b896; border-radius: 8px;
+         padding: 30px; margin: 20px 0; }
+.fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
+            padding-bottom: 10px; margin-bottom: 20px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+@media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
+.fiche-info table { width:100%; border-collapse: collapse; }
+.fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
+.fiche-info td:first-child { font-weight: bold; color: #7a4010; width: 130px; }
+.fiche-text { margin-top: 20px; }
+.fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
+.fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
+.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
+.photos img { max-height:240px; max-width:340px; border-radius:4px;
+              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+
+/* Lightbox */
+#lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
+            z-index:999; align-items:center; justify-content:center; }
+#lightbox.open { display:flex; }
+#lightbox img { max-width:90vw; max-height:90vh; border-radius:6px; }
+#lightbox-close { position:absolute; top:16px; right:24px; color:#fff;
+                  font-size:2em; cursor:pointer; line-height:1; }
+
+/* Département index */
+.dept-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap:14px; margin-top:16px; }
+.dept-card { background:#fff; border:1px solid #d4b896; border-radius:6px;
+             padding:14px 18px; display:flex; flex-direction:column; gap:4px; }
+.dept-card .num { font-size:1.4em; font-weight:bold; color:#8b4513; }
+.dept-card .name { font-size:0.9em; }
+.dept-card .count { font-size:0.78em; color:#888; }
+
+footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
+         border-top: 1px solid #d4b896; margin-top: 30px; }
+.back-link { display:inline-block; margin-bottom:16px; color:#8b4513; }
+.back-link:before { content: "← "; }
+
+/* Pagination */
+.pagination { display:flex; gap:8px; margin-top:20px; flex-wrap:wrap; align-items:center; }
+.pagination button { padding:6px 14px; border:1px solid #c8a96a; background:#fff;
+                     border-radius:4px; cursor:pointer; font-size:0.85em; }
+.pagination button.active { background:#8b4513; color:#fff; border-color:#8b4513; }
+.pagination button:hover:not(.active) { background:#f5e6c8; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>🏰 Châteaux de France</h1>
+    <p>Recensement Jean-Claude Truffet</p>
+  </div>
+</header>
+<nav>
+  <a href="../index.html">Accueil</a>
+  <a href="../dept/dept_62.html">Pas-de-Calais</a>
+</nav>
+<div class="container">
+  <a href="../dept/dept_62.html" class="back-link">Retour au département 62 — Pas-de-Calais</a>
+  <div class="fiche">
+    <h2>Rivière</h2>
+    <div class="fiche-grid">
+      <div class="fiche-info">
+        <table>
+          <tr><td>Département</td><td>62 — Pas-de-Calais</td></tr>
+          <tr><td>Canton</td><td>Arras</td></tr>
+          <tr><td>Commune</td><td>Rivière</td></tr>
+          <tr><td>Type d'édifice</td><td>Châteaux</td></tr>
+          <tr><td>Période d'origine</td><td>XIV-XVII</td></tr>
+          
+        </table>
+      </div>
+      <div>
+        <div class="photos"><img src="../image/image_62/62_Rivi%c3%a8re_62_1.jpg" alt="Rivière" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_62/62_Rivi%c3%a8re_62_2.jpg" alt="Rivière" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_62/62_Rivi%c3%a8re_62_3.jpg" alt="Rivière" onclick="openLightbox(this.src)" loading="lazy">
+<img src="../image/image_62/62_Rivi%c3%a8re_62_4.jpg" alt="Rivière" onclick="openLightbox(this.src)" loading="lazy">
+</div>
+      </div>
+    </div>
+    <div class="fiche-text">
+      <h4>Histoire</h4><p>Trois châteaux dans cet article, Bretencourt, Beaumetz-les-loges et Grosville. BRETENCOURT L'origine du hameau de Brétencourt est due à une ancienne forteresse construite sur les bords du Crinchon. Dès le XIe siècle, il est fait mention de Simon de Brétrancourt. Sous Philippe Auguste, le domaine passe au chevalier Wagon d'Arras dont le fils, en 1250, cède une portion de dîme pour aider à la construction d'une chapelle dédiée à St-Eloi. On trouve dans une requête adressée au magistrat d'Arras, datée de 1393, que le domaine appartient alors à Pierre de Saint-Pol. Sa fille apporte ce fief en dot à Herlin de Warluzel. Cette dernière famille conservera le domaine jusqu'àu XVIIe siècle, avant qu'il ne soit vendu à Philippe-François de Briois. Le château est flanqué d'une tourelle, seul vestige de l'ancien château-fort que l'on voit sur une miniature de 1605. Il fut partiellement démoli vers 1820 et remplacé par une simple demeure.                                                                                     A quelques K.M. au nord ouest, le château de BEAUMETZ LES LOGES  La seigneurie de Beaumetz appartenait, au XVIIIe siècle, à la famille Briois, durant 3 générations. La famille Briois fit construire, de 1760 à 1770, un nouveau château en pierre, composé d'un corps de logis central long de 7 travées, surmonté d'un haut comble à la Française, cantonné par 2 ailes longues, chacune de 3 travées et surmontées d'un comble mansardé. L'aspect de cet édifice, aujourd'hui, disparu, est connu par des cartes postales anciennes. Le château de Beaumetz fut transmit, par la famille Briois, au XVIIIe siècle, par alliances, aux familles Girod de Resnes, puis de Guillebon. À peu prés épargné par les combats de la première guerre mondiale, ce château brûla, accidentellement, en 1934. En 1936, il fut remplacé par un autre château, en brique et pierre, surmonté de combles entièrement mansardé.</p>
+      <h4>Architecture</h4><p>GROSVILLE  sur les caves d'un bâtiment construit en 1690 par son oncle François de la Charité, seigneur de Grosville, cette gentilhommière par le maître d'uvre André Merville de Maruil qui travaillait aux constructions d'Arras. La propriété fut acquise, en 1773 par Alphonse-Norbert Harduin, échevin d'Arras. Elle resta dans cette famille jusqu'en 1975, date de son achat par la famille de Diesbach. De longues prairies remontant en pente douce la rive gauche du Crinchon: telle est, maintenant que les obus de la guerre 1914-1918 ont ravagé les quatre rangées d'ormes, la perspective offerte aux habitants de la demeure. Ils découvrent l'édifice dans l'encadrement d'un portail monumental en pierre dont le fronton triangulaire surbaissé est orné de rinceaux entourant un cartouche bûché. De part et d'autre de ce portail, un haut mur caché par des arbres taillés. A droite et à gauche de la cour, les communs. Dans le fond, le château, composé d'un corps principal et de deux ailes en retour, au rez-de-chaussée et un étage. Le raccord biaisé des bâtiments, la saillie de l'avant-corps central, couronné d'un fronton triangulaire, le décrochement des annexes donnent vie à cet agréable ensemble. La belle impression d'unité qui s'en dégage est à peine atténuée par la coloration différente des matériaux utilisés, on a employé la brique pour les communs et qu'on l'a associée à la pierre pour le corps principal. Au-dessus de la porte, un fronton triangulaire portait les armoiries de la famille Lhoste.<br>Éléments protégés MH : les açades et les toitures du château ainsi que celles des communs (y compris le pigeonnier) ; le portail d'entrée : inscription par arrêté du 25 avril 1975.</p>
+      <h4>Habitants / Familles</h4><p>Bretencourt; Famille de Herlin de Warluzel.       Beaumetz ;  Famille Briois,                                  Grosville;  Alphonse-Norbert Harduin"</p>
+      <h4>Divers</h4><p>Trois châteaux dans cet article de Rivière; Bretencourt, Beaumetz les loges grav-4 et Grosville grav 1-2-3                                                Rivière   gps 50° 14' 00? nord, 2° 41' 25? est</p>
+    </div>
+  </div>
+</div>
+<footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
+<div id="lightbox" onclick="closeLightbox()">
+  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+<script>
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+</script>
+</body>
+</html>
