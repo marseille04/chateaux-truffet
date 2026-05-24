@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Villemonteix_Orgnat — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,62 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_23.html">Creuse</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_23.html">Creuse</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_23.html" class="back-link">Retour au département 23 — Creuse</a>
-  <div class="fiche">
-    <h2>Villemonteix_Orgnat</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>23 — Creuse</td></tr>
-          <tr><td>Canton</td><td>Gouzon</td></tr>
-          <tr><td>Commune</td><td>Saint-Pardoux-les Cards</td></tr>
-          <tr><td>Type d'édifice</td><td>Forteresse</td></tr>
-          <tr><td>Période d'origine</td><td>XV</td></tr>
-          <tr><td>Coordonnées GPS</td><td>46° 06' 29" Nord et 2° 08' 35" Est                                               Orgnat2.14105467,46.1265062 Grav de 6 à 9</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_23/23_Villemonteix_Orgnat_1.jpg" alt="Villemonteix_Orgnat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_23/23_Villemonteix_Orgnat_2.jpg" alt="Villemonteix_Orgnat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_23/23_Villemonteix_Orgnat_3.jpg" alt="Villemonteix_Orgnat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_23/23_Villemonteix_Orgnat_4.jpg" alt="Villemonteix_Orgnat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_23/23_Villemonteix_Orgnat_5.jpg" alt="Villemonteix_Orgnat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_23/23_Villemonteix_Orgnat_6.jpg" alt="Villemonteix_Orgnat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_23/23_Villemonteix_Orgnat_7.jpg" alt="Villemonteix_Orgnat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_23/23_Villemonteix_Orgnat_8.jpg" alt="Villemonteix_Orgnat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_23/23_Villemonteix_Orgnat_9.jpg" alt="Villemonteix_Orgnat" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_23.html">Retour au département 23 — Creuse</a>
+<div class="fiche">
+<h2>Villemonteix_Orgnat</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Villemonteix_Orgnat" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_23/23_Villemonteix_Orgnat_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Villemonteix_Orgnat" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_23/23_Villemonteix_Orgnat_1.jpg"/><img alt="Villemonteix_Orgnat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_23/23_Villemonteix_Orgnat_2.jpg"/><img alt="Villemonteix_Orgnat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_23/23_Villemonteix_Orgnat_3.jpg"/><img alt="Villemonteix_Orgnat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_23/23_Villemonteix_Orgnat_4.jpg"/><img alt="Villemonteix_Orgnat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_23/23_Villemonteix_Orgnat_5.jpg"/><img alt="Villemonteix_Orgnat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_23/23_Villemonteix_Orgnat_6.jpg"/><img alt="Villemonteix_Orgnat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_23/23_Villemonteix_Orgnat_7.jpg"/><img alt="Villemonteix_Orgnat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_23/23_Villemonteix_Orgnat_8.jpg"/><img alt="Villemonteix_Orgnat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_23/23_Villemonteix_Orgnat_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>23 — Creuse</td></tr>
+<tr><td>Canton</td><td>Gouzon</td></tr>
+<tr><td>Commune</td><td>Saint-Pardoux-les Cards</td></tr>
+<tr><td>Type d'édifice</td><td>Forteresse</td></tr>
+<tr><td>Période d'origine</td><td>XV</td></tr>
+<tr><td>Coordonnées GPS</td><td>46° 06' 29" Nord et 2° 08' 35" Est                                               Orgnat2.14105467,46.1265062 Grav de 6 à 9</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>VILLEMONTEIX, bâti à Saint-Pardoux-les-Cards et non à Chénérailles, date du XVe siècle,  la seigneurie  relevait des comtes de la  Marche, était au XVe siècle en possession de la famille Du Bois qui entreprenne après la guerre de cent ans la reconstruction du château sur les bases d'un édifice du XIIIe siècle, au XVIIe siècle le domaine passe par alliance  à la famille de Rièges. Le château verra naître René-Joseph du Peyroux (1763-1835)  futur général et baron  d'Empire, fils   d'Amable-Antoine du Peyroux et de Marie-Thérèse  des Rièges. A la Révolution  le domaine appartient au marquis de Biencourt puis échout en 1803 à Charles de la Barre vicomte de Bridiers et acquis en 1888 par madame Aubert veuve du notaire de Boussac, il fut un temps après  à la famille de Sallendrouze possesseur d'une manufacture d'Aubusson puis abandonné jusqu'en 1982. Acquis par Pierre Lajoix  qui s'attache à le remettre en état.  A l'intérieur, se trouvent de belles tapisseries d'Aubusson et des Flandres qui datent du XVIe siècle au XVIIIe siècle, du mobilier et des porcelaines de Sèvres également du XVIIIe siècle. Un accueil agréable est assuré par ses propriétaires.  inscrit aux M.H. en 1932, 1946 et 2010.
-<br>ORGNAT  a deux Km au nord le château d'Orgnat Il y a peu de renseignements sur ce château. Il est peu visible de lextérieur et semble en travaux. Georges Sarre a eu des ancêtres qui ont travaillé dans ce château.</p>
-      <h4>Architecture</h4><p>VILLEMONTEIX, archétype de la fin du Moyen-âge avec son donjon central, entouré de douves son chemin de ronde et ses tours en poivrières,  est à la fois puissant et élégant grâce aux discrets aménagements extérieurs du XVIIIe siècle, aux gargouilles sculptées, au pigeonnier. Et au goût de ses actuels propriétaires qui ont redonné vie au château après une période d'abandon, comportant un corps de logis rectangulaire flanqué de tours rondes aux angles de sa façade ouest et, sur la façade opposée, une tour d'escalier carrée. Deux des angles sont couronnés d'échauguettes en encorbellement. Un chemin de ronde domine les murailles et de petites ouvertures en accolade décorent l'intervalle des corbeaux supportant des mâchicoulis. Dans la cour, un puits hexagonal à panneaux assemblés, présente une décoration de quadrilobes.  Une douzaine de pièces sont présentes sur les 4 niveaux du château. Il abrite  un exceptionnel Pleyel double de Béatrice de Camondo et une riche collection de tapisseries des XVIe, XVIIe et XVIIIe siècles, d'Aubusson, Felletin, Flandres, Beauvais et Gobelins On peut y admirer entre autres des tapisseries d'Aubusson dont les modèles sont de Isaac Moillo.                                                                             ORGNAT, forteresse avec un corps de logis à trois niveaux et attiques plus lucarnes sur combles, ce corps est encastré entre tours à mâchicoulis et donjon, et prolongement sur les extrémités de bâtiments en corps de logis à deux niveaux et à l'opposé de dépendances  à un niveau.</p>
-      <h4>Habitants / Familles</h4><p>Famille Du Bois
-<br>        "</p>
-      <h4>Divers</h4><p>Villemonteix GPS : 46° 06' 29" Nord et 2° 08' 35" Est                                               Orgnat2.14105467,46.1265062 Grav de 6 à 9</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>VILLEMONTEIX, bâti à Saint-Pardoux-les-Cards et non à Chénérailles, date du XVe siècle,  la seigneurie  relevait des comtes de la  Marche, était au XVe siècle en possession de la famille Du Bois qui entreprenne après la guerre de cent ans la reconstruction du château sur les bases d'un édifice du XIIIe siècle, au XVIIe siècle le domaine passe par alliance  à la famille de Rièges. Le château verra naître René-Joseph du Peyroux (1763-1835)  futur général et baron  d'Empire, fils   d'Amable-Antoine du Peyroux et de Marie-Thérèse  des Rièges. A la Révolution  le domaine appartient au marquis de Biencourt puis échout en 1803 à Charles de la Barre vicomte de Bridiers et acquis en 1888 par madame Aubert veuve du notaire de Boussac, il fut un temps après  à la famille de Sallendrouze possesseur d'une manufacture d'Aubusson puis abandonné jusqu'en 1982. Acquis par Pierre Lajoix  qui s'attache à le remettre en état.  A l'intérieur, se trouvent de belles tapisseries d'Aubusson et des Flandres qui datent du XVIe siècle au XVIIIe siècle, du mobilier et des porcelaines de Sèvres également du XVIIIe siècle. Un accueil agréable est assuré par ses propriétaires.  inscrit aux M.H. en 1932, 1946 et 2010.
+<br/>ORGNAT  a deux Km au nord le château d'Orgnat Il y a peu de renseignements sur ce château. Il est peu visible de lextérieur et semble en travaux. Georges Sarre a eu des ancêtres qui ont travaillé dans ce château.</p>
+<h4>Architecture</h4><p>VILLEMONTEIX, archétype de la fin du Moyen-âge avec son donjon central, entouré de douves son chemin de ronde et ses tours en poivrières,  est à la fois puissant et élégant grâce aux discrets aménagements extérieurs du XVIIIe siècle, aux gargouilles sculptées, au pigeonnier. Et au goût de ses actuels propriétaires qui ont redonné vie au château après une période d'abandon, comportant un corps de logis rectangulaire flanqué de tours rondes aux angles de sa façade ouest et, sur la façade opposée, une tour d'escalier carrée. Deux des angles sont couronnés d'échauguettes en encorbellement. Un chemin de ronde domine les murailles et de petites ouvertures en accolade décorent l'intervalle des corbeaux supportant des mâchicoulis. Dans la cour, un puits hexagonal à panneaux assemblés, présente une décoration de quadrilobes.  Une douzaine de pièces sont présentes sur les 4 niveaux du château. Il abrite  un exceptionnel Pleyel double de Béatrice de Camondo et une riche collection de tapisseries des XVIe, XVIIe et XVIIIe siècles, d'Aubusson, Felletin, Flandres, Beauvais et Gobelins On peut y admirer entre autres des tapisseries d'Aubusson dont les modèles sont de Isaac Moillo.                                                                             ORGNAT, forteresse avec un corps de logis à trois niveaux et attiques plus lucarnes sur combles, ce corps est encastré entre tours à mâchicoulis et donjon, et prolongement sur les extrémités de bâtiments en corps de logis à deux niveaux et à l'opposé de dépendances  à un niveau.</p>
+<h4>Habitants / Familles</h4><p>Famille Du Bois
+<br/>        "</p>
+<h4>Divers</h4><p>Villemonteix GPS : 46° 06' 29" Nord et 2° 08' 35" Est                                               Orgnat2.14105467,46.1265062 Grav de 6 à 9</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

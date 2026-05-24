@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Cheix — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,64 +113,62 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_63.html">Puy-de-Dôme</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_63.html">Puy-de-Dôme</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_63.html" class="back-link">Retour au département 63 — Puy-de-Dôme</a>
-  <div class="fiche">
-    <h2>Cheix</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>63 — Puy-de-Dôme</td></tr>
-          <tr><td>Canton</td><td>Billom</td></tr>
-          <tr><td>Commune</td><td>Neuville</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIII-XIV</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_63/63_Cheix_1.jpg" alt="Cheix" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Cheix_2.jpg" alt="Cheix" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Cheix_3.jpg" alt="Cheix" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Cheix_4.jpg" alt="Cheix" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Cheix_5.jpg" alt="Cheix" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Cheix_6.jpg" alt="Cheix" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Cheix_7.jpg" alt="Cheix" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Cheix_8.jpg" alt="Cheix" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_63.html">Retour au département 63 — Puy-de-Dôme</a>
+<div class="fiche">
+<h2>Cheix</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Cheix" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_63/63_Cheix_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Cheix" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Cheix_1.jpg"/><img alt="Cheix" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Cheix_2.jpg"/><img alt="Cheix" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Cheix_3.jpg"/><img alt="Cheix" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Cheix_4.jpg"/><img alt="Cheix" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Cheix_5.jpg"/><img alt="Cheix" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Cheix_6.jpg"/><img alt="Cheix" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Cheix_7.jpg"/><img alt="Cheix" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Cheix_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>63 — Puy-de-Dôme</td></tr>
+<tr><td>Canton</td><td>Billom</td></tr>
+<tr><td>Commune</td><td>Neuville</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIII-XIV</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>CHEIX, Guillaume Rastier est seigneur du Cheix en 1303. Le château passe à Pierre de Mascon, seigneur du Cheix et de Neuville, dont la famille du même nom en fut propriétaire pendant cinq siècles. Le dernier des Mascon, François Balthazar, se marie  en 1774 à Marie-Anne de La Saigne de Saint-Georges. Ils ont pour fille unique Elisabeth de Mascon qui épouse en 1790 son voisin Joseph Benoït de Pierre, marquis dAulteribe, seigneur de la Chassaigne, décédée sans prospérité en 1842. Puis le château passe à Louis Dessaigne, décédé au Cheix en 1913. Passe à Joseph Dessaigne en Août 1944, suite au décès de sa mère, née Marie Thialler en juillet 1944. Il est vendu à Henri Rabet et Madame née Marie-Camille Pintrand qui le laisse à labandon. Il est acheté pour les terres en 1962 par la famille Dauzat, agriculteurs,  vendu à Michel Pancracio le 26 janvier 1970. Vendu en quasi-ruine à la famille Cornut-Gentille le 23 novembre 1974 qui, durant vingt cinq ans, jusquà la mort de monsieur Jean-Jacques Cornut Gentille, le restaurèrent . Enfin, il est vendu le 17 août 2004 à monsieur Pierre Chassaigne, président fondateur du groupe immobilier Mercure France et madame née France Sauzier, son épouse, qui oeuvrent avec autant de passion que leurs prédécesseurs pour terminer loeuvre gigantesque de ces derniers.
-<br>MOULINS, un bâtiment existe aux Moulins dans le dernier quart du XVIe siècle, mais aucun vestige de cette époque ne semble avoir été conservé, le bâtiment actuel date probablement de la 1ère moitié du XIXe siècle, après cette date, passe de la famille Théallier à la famille de Chamerlat qui le transforme, dans la deuxième moitié  du XIXe siècle.
-<br>PERCHE  En 1440, Urbain d'Oradour est seigneur de Bêthel et La Perche. Son fils puîné, Bertrand d'Oradour, est la tige des seigneurs de La Perche et de Mezel. En 1526 et 1550, Jean d'Oradour, écuyer, est seigneur de La Perche, Mezel et Janilhat. En 1686 le fief est toujours aux Oradour. Avant 1699,  Jacques de Lobière du Bouchet est seigneur.  Après 1726, Blaise de Bournat et en 1771, Anne de Bournat sont dits seigneurs de La Perche.</p>
-      <h4>Architecture</h4><p>Château de Cheix  construit au XIIIe siècle, importants réa ménagements au XVIIe siècle, il est à l'état de ruine dans la 2e moitié du XXe  siècle,  mais a  conservé son  organisation générale, quatre corps de bâtiments  assemblés autour d'une cour rectangulaire et  flanqués à chaque angle par une tour ronde, le tout sans doute entouré d'eau,  le corps de bâtiment à l'est, en particulier, a été entièrement reconstruit; utilisation pour la restauration de remplois provenant de Clermont Ferrand et des environs, encadrements d'ouvertures en andésite, la ferme du château du Cheix au sud, de l'autre côté de l'allée d'entrée, date peut-être du XVIIe siècle,  à la Révolution, les quatre tours sont considérées comme signe de la féodalité à abattre, mais elles ne seront pas détruites, c'est peut être à  partir de cette époque que le château est laissé à l'abandon.                                         
-<br>Château du Moulins ajout en particulier des trois petites tourelles d'angle et de l'étage de comble, construction des écuries et  du bâtiment agricole attenant, à l'est du bâtiment principal, et aménagement  d'une chapelle dans  l'angle sud-est du logis, après 1834 également, mais à une date indéterminée, il s'agit vraisemblablement de dépendances agricoles, au sud et au nord  du château, et d'un premier logis de ferme qui était accolé à la ferme actuelle située au nord du château.                                   Le château de La Perche est situé face à l'église, enceinte quadrangulaire à flanquements cylindriques d'angle, il en  reste deux accolés à un logis de deux niveaux, les cheminées sont adossées aux pignons. Chambres d'hôtes  Sylvia Van-der-Tol.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Guillaume Rastier                                                  
-<br>Famille Théallier                                                                                 Famille de Bertrand d'Oradour
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Cheix, du Moulins et de la Perche</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>CHEIX, Guillaume Rastier est seigneur du Cheix en 1303. Le château passe à Pierre de Mascon, seigneur du Cheix et de Neuville, dont la famille du même nom en fut propriétaire pendant cinq siècles. Le dernier des Mascon, François Balthazar, se marie  en 1774 à Marie-Anne de La Saigne de Saint-Georges. Ils ont pour fille unique Elisabeth de Mascon qui épouse en 1790 son voisin Joseph Benoït de Pierre, marquis dAulteribe, seigneur de la Chassaigne, décédée sans prospérité en 1842. Puis le château passe à Louis Dessaigne, décédé au Cheix en 1913. Passe à Joseph Dessaigne en Août 1944, suite au décès de sa mère, née Marie Thialler en juillet 1944. Il est vendu à Henri Rabet et Madame née Marie-Camille Pintrand qui le laisse à labandon. Il est acheté pour les terres en 1962 par la famille Dauzat, agriculteurs,  vendu à Michel Pancracio le 26 janvier 1970. Vendu en quasi-ruine à la famille Cornut-Gentille le 23 novembre 1974 qui, durant vingt cinq ans, jusquà la mort de monsieur Jean-Jacques Cornut Gentille, le restaurèrent . Enfin, il est vendu le 17 août 2004 à monsieur Pierre Chassaigne, président fondateur du groupe immobilier Mercure France et madame née France Sauzier, son épouse, qui oeuvrent avec autant de passion que leurs prédécesseurs pour terminer loeuvre gigantesque de ces derniers.
+<br/>MOULINS, un bâtiment existe aux Moulins dans le dernier quart du XVIe siècle, mais aucun vestige de cette époque ne semble avoir été conservé, le bâtiment actuel date probablement de la 1ère moitié du XIXe siècle, après cette date, passe de la famille Théallier à la famille de Chamerlat qui le transforme, dans la deuxième moitié  du XIXe siècle.
+<br/>PERCHE  En 1440, Urbain d'Oradour est seigneur de Bêthel et La Perche. Son fils puîné, Bertrand d'Oradour, est la tige des seigneurs de La Perche et de Mezel. En 1526 et 1550, Jean d'Oradour, écuyer, est seigneur de La Perche, Mezel et Janilhat. En 1686 le fief est toujours aux Oradour. Avant 1699,  Jacques de Lobière du Bouchet est seigneur.  Après 1726, Blaise de Bournat et en 1771, Anne de Bournat sont dits seigneurs de La Perche.</p>
+<h4>Architecture</h4><p>Château de Cheix  construit au XIIIe siècle, importants réa ménagements au XVIIe siècle, il est à l'état de ruine dans la 2e moitié du XXe  siècle,  mais a  conservé son  organisation générale, quatre corps de bâtiments  assemblés autour d'une cour rectangulaire et  flanqués à chaque angle par une tour ronde, le tout sans doute entouré d'eau,  le corps de bâtiment à l'est, en particulier, a été entièrement reconstruit; utilisation pour la restauration de remplois provenant de Clermont Ferrand et des environs, encadrements d'ouvertures en andésite, la ferme du château du Cheix au sud, de l'autre côté de l'allée d'entrée, date peut-être du XVIIe siècle,  à la Révolution, les quatre tours sont considérées comme signe de la féodalité à abattre, mais elles ne seront pas détruites, c'est peut être à  partir de cette époque que le château est laissé à l'abandon.                                         
+<br/>Château du Moulins ajout en particulier des trois petites tourelles d'angle et de l'étage de comble, construction des écuries et  du bâtiment agricole attenant, à l'est du bâtiment principal, et aménagement  d'une chapelle dans  l'angle sud-est du logis, après 1834 également, mais à une date indéterminée, il s'agit vraisemblablement de dépendances agricoles, au sud et au nord  du château, et d'un premier logis de ferme qui était accolé à la ferme actuelle située au nord du château.                                   Le château de La Perche est situé face à l'église, enceinte quadrangulaire à flanquements cylindriques d'angle, il en  reste deux accolés à un logis de deux niveaux, les cheminées sont adossées aux pignons. Chambres d'hôtes  Sylvia Van-der-Tol.</p>
+<h4>Habitants / Familles</h4><p>Famille de Guillaume Rastier                                                  
+<br/>Famille Théallier                                                                                 Famille de Bertrand d'Oradour
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Cheix, du Moulins et de la Perche</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

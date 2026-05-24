@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Arlempdes — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,61 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_43.html">Haute-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_43.html">Haute-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_43.html" class="back-link">Retour au département 43 — Haute-Loire</a>
-  <div class="fiche">
-    <h2>Arlempdes</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>43 — Haute-Loire</td></tr>
-          <tr><td>Canton</td><td>Pradelles</td></tr>
-          <tr><td>Commune</td><td>Arlempdes</td></tr>
-          <tr><td>Type d'édifice</td><td>Vestiges</td></tr>
-          <tr><td>Période d'origine</td><td>XII-XV</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_43/43_Arlempdes_1.jpg" alt="Arlempdes" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Arlempdes_2.jpg" alt="Arlempdes" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Arlempdes_3.jpg" alt="Arlempdes" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Arlempdes_4.jpg" alt="Arlempdes" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Arlempdes_5.jpg" alt="Arlempdes" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Arlempdes_6.jpg" alt="Arlempdes" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Arlempdes_7.jpg" alt="Arlempdes" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Arlempdes_8.jpg" alt="Arlempdes" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Arlempdes_9.jpg" alt="Arlempdes" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_43.html">Retour au département 43 — Haute-Loire</a>
+<div class="fiche">
+<h2>Arlempdes</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Arlempdes" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_43/43_Arlempdes_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Arlempdes" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Arlempdes_1.jpg"/><img alt="Arlempdes" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Arlempdes_2.jpg"/><img alt="Arlempdes" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Arlempdes_3.jpg"/><img alt="Arlempdes" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Arlempdes_4.jpg"/><img alt="Arlempdes" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Arlempdes_5.jpg"/><img alt="Arlempdes" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Arlempdes_6.jpg"/><img alt="Arlempdes" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Arlempdes_7.jpg"/><img alt="Arlempdes" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Arlempdes_8.jpg"/><img alt="Arlempdes" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Arlempdes_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>43 — Haute-Loire</td></tr>
+<tr><td>Canton</td><td>Pradelles</td></tr>
+<tr><td>Commune</td><td>Arlempdes</td></tr>
+<tr><td>Type d'édifice</td><td>Vestiges</td></tr>
+<tr><td>Période d'origine</td><td>XII-XV</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>ARLEMPDES,  fief des sires de Montlaur qui gardèrent la forteresse  plus de deux siècles. Passa au Montlaur de Poitiers en 1429, par Charles III de Poitiers-Valentinois qui épousa la fille du baron de Maubec, devenu baron dArlempdes par son alliance avec Anne de Montlaur de la maison dArlempdes, y vécut et transforma le château, renforcements des défenses. Sa petite fille, Diane de Poitiers, dame dArlempdes, qui influença avec tant de charme le roi Henri II.  En 1538, un siècle plus tard, le calme dArlempdes est troublé par les guerres de religion, pris par Antoine de la Garde. Le château tombe entre les mains du fameux capitaine huguenot Antoine de Chambenas seigneur du Bouchet, toute la région fût saccagée, meurtre et le pillage. Le baron de Saint-Vidal, chef des ligueurs, marcha sur Arlempdes pour délivrer le pays mais loccupant était solidement établi dans cette forteresse naturelle. Finalement, le cadet de Chambenas tomba sous lépée dun soldat et les catholiques, avec la duchesse de Bouillon, dame de la baronnie dArlempdes, reprirent possession du domaine. Après Diane de Poitiers le château se transmet par descendance aux de Brézé puis aux la Marck et  cest en 1596, qu'Henri de la Tour dAuvergne, vicomte de Turenne, maréchal de France, devenu baron dArlempdes, puis en 1720 passe à la famille Laval, à la famille de Goys alliés aux d'Arlempdes assure ensuite la garde du château,  achat de la seigneurie  par Pierre de Serres, aux Beauvoir celui-ci revient à plusieurs familles qui le laissent peu à peu à l'abandon, en 1963 les descendants des Goys rachètent le domaine crée une communauté du Prado de Lyon pour entreprendre des travaux de consolidations.</p>
-      <h4>Architecture</h4><p>Arlempdes, château fort féodal du XII au XVe siècle, surplombant la Loire, il ne reste que des vestiges, cité en 1267.  En 1450, les Poitiers firent restaurer et reconstruire le  château. En 1585,  lors des guerres de Religion, le château fut pillé. La chapelle, seul vestige du château primitif,  date du XIIe siècle, double enceinte,  les soubassements du XIIIe siècle et le reste des constructions et fortifications Est du XVe siècle et du XVIe siècle. à l'exception de la chapelle  et du bâtiment près de celle-ci. Le sud-est,  à pic sur la Loire, n'est pas fortifié. Les autres côtés sont défendus par des murs flanqués de tours. Au sud-ouest se développe un chemin de ronde. Au nord et au nord-est se trouvait des murailles. Ces côtés sont flanqués de six tours rondes  et d'une tour carrée.   La partie nord comprend l'entrée et des bâtiments dont il ne subsiste que le rez de chaussée voûté d'un corps de  bâtiment et la chapelle. Le château est divisé en deux par une muraille médiane avec grosse tour ronde. La partie sud forme une grande esplanade.</p>
-      <h4>Habitants / Familles</h4><p>Diane de Poitiers
-<br>        "</p>
-      <h4>Divers</h4><p>Vestiges du château d'Arlempdes ert porte de la ville</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>ARLEMPDES,  fief des sires de Montlaur qui gardèrent la forteresse  plus de deux siècles. Passa au Montlaur de Poitiers en 1429, par Charles III de Poitiers-Valentinois qui épousa la fille du baron de Maubec, devenu baron dArlempdes par son alliance avec Anne de Montlaur de la maison dArlempdes, y vécut et transforma le château, renforcements des défenses. Sa petite fille, Diane de Poitiers, dame dArlempdes, qui influença avec tant de charme le roi Henri II.  En 1538, un siècle plus tard, le calme dArlempdes est troublé par les guerres de religion, pris par Antoine de la Garde. Le château tombe entre les mains du fameux capitaine huguenot Antoine de Chambenas seigneur du Bouchet, toute la région fût saccagée, meurtre et le pillage. Le baron de Saint-Vidal, chef des ligueurs, marcha sur Arlempdes pour délivrer le pays mais loccupant était solidement établi dans cette forteresse naturelle. Finalement, le cadet de Chambenas tomba sous lépée dun soldat et les catholiques, avec la duchesse de Bouillon, dame de la baronnie dArlempdes, reprirent possession du domaine. Après Diane de Poitiers le château se transmet par descendance aux de Brézé puis aux la Marck et  cest en 1596, qu'Henri de la Tour dAuvergne, vicomte de Turenne, maréchal de France, devenu baron dArlempdes, puis en 1720 passe à la famille Laval, à la famille de Goys alliés aux d'Arlempdes assure ensuite la garde du château,  achat de la seigneurie  par Pierre de Serres, aux Beauvoir celui-ci revient à plusieurs familles qui le laissent peu à peu à l'abandon, en 1963 les descendants des Goys rachètent le domaine crée une communauté du Prado de Lyon pour entreprendre des travaux de consolidations.</p>
+<h4>Architecture</h4><p>Arlempdes, château fort féodal du XII au XVe siècle, surplombant la Loire, il ne reste que des vestiges, cité en 1267.  En 1450, les Poitiers firent restaurer et reconstruire le  château. En 1585,  lors des guerres de Religion, le château fut pillé. La chapelle, seul vestige du château primitif,  date du XIIe siècle, double enceinte,  les soubassements du XIIIe siècle et le reste des constructions et fortifications Est du XVe siècle et du XVIe siècle. à l'exception de la chapelle  et du bâtiment près de celle-ci. Le sud-est,  à pic sur la Loire, n'est pas fortifié. Les autres côtés sont défendus par des murs flanqués de tours. Au sud-ouest se développe un chemin de ronde. Au nord et au nord-est se trouvait des murailles. Ces côtés sont flanqués de six tours rondes  et d'une tour carrée.   La partie nord comprend l'entrée et des bâtiments dont il ne subsiste que le rez de chaussée voûté d'un corps de  bâtiment et la chapelle. Le château est divisé en deux par une muraille médiane avec grosse tour ronde. La partie sud forme une grande esplanade.</p>
+<h4>Habitants / Familles</h4><p>Diane de Poitiers
+<br/>        "</p>
+<h4>Divers</h4><p>Vestiges du château d'Arlempdes ert porte de la ville</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

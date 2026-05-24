@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>La_Loupe — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,55 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_28.html">Eure-et-Loir</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_28.html">Eure-et-Loir</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_28.html" class="back-link">Retour au département 28 — Eure-et-Loir</a>
-  <div class="fiche">
-    <h2>La_Loupe</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>28 — Eure-et-Loir</td></tr>
-          <tr><td>Canton</td><td>Nogent-le-Rotrou</td></tr>
-          <tr><td>Commune</td><td>La-Loupe</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVI</td></tr>
-          <tr><td>Coordonnées GPS</td><td>48° 28' 8,97" Nord,1° 0' 54,61" Est</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_28/28_La_Loupe_1.jpg" alt="La_Loupe" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_28/28_La_Loupe_2.jpg" alt="La_Loupe" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_28/28_La_Loupe_3.jpg" alt="La_Loupe" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_28.html">Retour au département 28 — Eure-et-Loir</a>
+<div class="fiche">
+<h2>La_Loupe</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="La_Loupe" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_28/28_La_Loupe_1.jpg"/><div class="hero-count" id="hero-count">1 / 3</div></div><div class="photo-strip"><img alt="La_Loupe" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_28/28_La_Loupe_1.jpg"/><img alt="La_Loupe" class="" loading="lazy" onclick="setHero(this)" src="../image/image_28/28_La_Loupe_2.jpg"/><img alt="La_Loupe" class="" loading="lazy" onclick="setHero(this)" src="../image/image_28/28_La_Loupe_3.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>28 — Eure-et-Loir</td></tr>
+<tr><td>Canton</td><td>Nogent-le-Rotrou</td></tr>
+<tr><td>Commune</td><td>La-Loupe</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVI</td></tr>
+<tr><td>Coordonnées GPS</td><td>48° 28' 8,97" Nord,1° 0' 54,61" Est</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>La LOUPE, a appartenu aux comtes de Blois, puis aux comtes de Sancerre, en 1152 décès de Thibault le Grand du comte de Chartres qui possédait le château,  et enfin à la Famille de Melun.  des Préaux et de la Rivière Simon III de Melun vendit, en 1383, le domaine, à Renaud II d'Angennes qui le transmit à son fils; Jean Ier d'Angennes. Madeleine d'Angennes apporta le Domaine en dot à son mari, le maréchal-duc de La Ferté-Senneterre  En 1665, le maréchal de La Ferté Senneterre  fit construire le château actuel sur des plans de Vauban.  Le marquis de La Ferté-Sénectère émigra hors de France, pour sauver sa vie et sa famille.   En 1670, Charles d'Angennes vendit la seigneurie de Maintenon à Françoise d'Aubigné, veuve Scarron, qui épousa plus tard Louis XIV. La famille de La Ferté Saint Nectaire resta en possession de La Loupe jusqu'en 1790. Le domaine leur fut confisqué durant la Révolution et le marquis de La Ferté émigra.</p>
-      <h4>Architecture</h4><p>LA LOUPE, du château, il reste un grand corps de logis dont la façade du côté ville est austère ; côté parc, un corps en avancée s'orne à chaque étage de deux niches encadrant la grande baie. Le 1er juin 1811, l'Empereur Napoléon 1er et l'Impératrice Marie-Louise furent reçus à La Loupe, ce qui occasionna une dépense à laquelle durent contribuer les communes les plus riches de l'arrondissement. La commune a racheté le château et le parc, et La Loupe coule aujourd'hui des jours paisibles. Puis au XVe siècle, les Anglais détruisirent le manoir féodal. En 1574, Le Seigneur d'Angennes organisa des travaux importants pour faire agrandir et embellir le château de la Loupe, où le château de la Loupe sera confisqué.  La Loupe fut alors érigée en canton. Amputé de plusieurs de ses bâtiments, il ne reste aujourd'hui qu'un grand corps de logis occupe un terre-plein ceint de douves maçonnée.  l'édifice élevé sur deux niveaux, il est percé sur chacune de ses façades principale de hautes fenêtres rectangulaires, un avant corps , coiffé d'un fronton triangulaire occupe le centre  de la composition. Sur la façade côté parc des niches qui abritaient  des statues aujourd'hui disparues sont disposées de part et d'autres de la travée centrale. La Commune de La Loupe a racheté le château de la Loupe et son parc, en 1949 et, en est devenu propriétaire.</p>
-      <h4>Habitants / Familles</h4><p>Maréchal-Duc de La Ferté-Senneterre 
-<br>        "</p>
-      <h4>Divers</h4><p>La_Loupe        GPS : 48° 28' 8,97" Nord,1° 0' 54,61" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>La LOUPE, a appartenu aux comtes de Blois, puis aux comtes de Sancerre, en 1152 décès de Thibault le Grand du comte de Chartres qui possédait le château,  et enfin à la Famille de Melun.  des Préaux et de la Rivière Simon III de Melun vendit, en 1383, le domaine, à Renaud II d'Angennes qui le transmit à son fils; Jean Ier d'Angennes. Madeleine d'Angennes apporta le Domaine en dot à son mari, le maréchal-duc de La Ferté-Senneterre  En 1665, le maréchal de La Ferté Senneterre  fit construire le château actuel sur des plans de Vauban.  Le marquis de La Ferté-Sénectère émigra hors de France, pour sauver sa vie et sa famille.   En 1670, Charles d'Angennes vendit la seigneurie de Maintenon à Françoise d'Aubigné, veuve Scarron, qui épousa plus tard Louis XIV. La famille de La Ferté Saint Nectaire resta en possession de La Loupe jusqu'en 1790. Le domaine leur fut confisqué durant la Révolution et le marquis de La Ferté émigra.</p>
+<h4>Architecture</h4><p>LA LOUPE, du château, il reste un grand corps de logis dont la façade du côté ville est austère ; côté parc, un corps en avancée s'orne à chaque étage de deux niches encadrant la grande baie. Le 1er juin 1811, l'Empereur Napoléon 1er et l'Impératrice Marie-Louise furent reçus à La Loupe, ce qui occasionna une dépense à laquelle durent contribuer les communes les plus riches de l'arrondissement. La commune a racheté le château et le parc, et La Loupe coule aujourd'hui des jours paisibles. Puis au XVe siècle, les Anglais détruisirent le manoir féodal. En 1574, Le Seigneur d'Angennes organisa des travaux importants pour faire agrandir et embellir le château de la Loupe, où le château de la Loupe sera confisqué.  La Loupe fut alors érigée en canton. Amputé de plusieurs de ses bâtiments, il ne reste aujourd'hui qu'un grand corps de logis occupe un terre-plein ceint de douves maçonnée.  l'édifice élevé sur deux niveaux, il est percé sur chacune de ses façades principale de hautes fenêtres rectangulaires, un avant corps , coiffé d'un fronton triangulaire occupe le centre  de la composition. Sur la façade côté parc des niches qui abritaient  des statues aujourd'hui disparues sont disposées de part et d'autres de la travée centrale. La Commune de La Loupe a racheté le château de la Loupe et son parc, en 1949 et, en est devenu propriétaire.</p>
+<h4>Habitants / Familles</h4><p>Maréchal-Duc de La Ferté-Senneterre 
+<br/>        "</p>
+<h4>Divers</h4><p>La_Loupe        GPS : 48° 28' 8,97" Nord,1° 0' 54,61" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

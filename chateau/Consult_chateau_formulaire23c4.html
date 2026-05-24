@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Nortkerque — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_62.html">Pas-de-Calais</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_62.html">Pas-de-Calais</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_62.html" class="back-link">Retour au département 62 — Pas-de-Calais</a>
-  <div class="fiche">
-    <h2>Nortkerque</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>62 — Pas-de-Calais</td></tr>
-          <tr><td>Canton</td><td>Marck</td></tr>
-          <tr><td>Commune</td><td>Nortkerque</td></tr>
-          <tr><td>Type d'édifice</td><td>Châteaux</td></tr>
-          <tr><td>Période d'origine</td><td>XVII-XVIII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>50° 52' 33" Nord, 2° 01' 33" Est                                                                  Cocove  GPS : 50° 50' 07" Nord, 2° 03' 50" Est</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_62/62_Nortkerque_1.jpg" alt="Nortkerque" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Nortkerque_2.jpg" alt="Nortkerque" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Nortkerque_3.jpg" alt="Nortkerque" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Nortkerque_4.jpg" alt="Nortkerque" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Nortkerque_5.jpg" alt="Nortkerque" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Nortkerque_6.jpg" alt="Nortkerque" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Nortkerque_7.jpg" alt="Nortkerque" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_62.html">Retour au département 62 — Pas-de-Calais</a>
+<div class="fiche">
+<h2>Nortkerque</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Nortkerque" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_62/62_Nortkerque_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Nortkerque" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Nortkerque_1.jpg"/><img alt="Nortkerque" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Nortkerque_2.jpg"/><img alt="Nortkerque" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Nortkerque_3.jpg"/><img alt="Nortkerque" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Nortkerque_4.jpg"/><img alt="Nortkerque" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Nortkerque_5.jpg"/><img alt="Nortkerque" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Nortkerque_6.jpg"/><img alt="Nortkerque" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Nortkerque_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>62 — Pas-de-Calais</td></tr>
+<tr><td>Canton</td><td>Marck</td></tr>
+<tr><td>Commune</td><td>Nortkerque</td></tr>
+<tr><td>Type d'édifice</td><td>Châteaux</td></tr>
+<tr><td>Période d'origine</td><td>XVII-XVIII</td></tr>
+<tr><td>Coordonnées GPS</td><td>50° 52' 33" Nord, 2° 01' 33" Est                                                                  Cocove  GPS : 50° 50' 07" Nord, 2° 03' 50" Est</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Trois châteaux dans cet article de Nortkerque; Cocoves, et la Palme.   NORTKERQUE, le château a été construit sur les vestiges du château fort à la fin du XVIIe siècle. La seigneurie est restée propriété de la famille Dauchel entre le IXe siècle et 1837 par le biais dune transmission, par les femmes et à la famille dArtois depuis cette époque. César Dauchel (1752 - 1837) a été Page de la Grande Ecurie en 1766, il était garde du corps de Louis XVI. Après la Révolution, ce noble qui pratiquait les mathématiques, fût le premier maire de la commune. Sous lEmpire, il fut lun des trois députés du Pas-de-Calais. Il simpliqua également activement au sein de linstitution des wateringues...                                                                        COCOVES à Recques sur Hem, cette superbe batisse, de plus pur style du XVIIIe siècle, a été achevée en 1741 par Becquet de Cocove. Mais la place date du Xe siècle et était alors occupée par les seigneurs locaux du moment. Après la Révolution, le château devint la propriété des d'Artois et resta jusqu'à la fin du XIXe. Durant l'épisode Napoléoniène du camp de Boulogne, le maréchal Ney y organisa de fastueuses soirées. Par la suite, Cocove passa aux mains de la famille du comte de Coetlogon qui ajoutera l'exploitation d'une distillerie, quelques batiments existent encore à ce jour. Si le château fut miraculeusement épargné durant la guerre de 1939-1945, il n'en fut pas de même pour les batiments de la distillerie. Après le décès du comte de Coetlogon, le chateau restera peu de temps encore dans la famille. Il sera vendu à un industriel de la région qui en fit sa résidence secondaire jusqu'en 1987. Après cette date il sera racheté et transformé en hôtel restaurant.</p>
-      <h4>Architecture</h4><p>La PALME  Dauchel Philippe Antoine Joseph César(1752-1837) était vicomte de la Palme, garde du corps du roi de france Louis XVI, et devint député du Pas-de-Calais. C'est un château construit sur les vestiges d'un ancien château fort, bâti à la fin du XVIIe siècle. La seigneurie est restée la propriété de la famille Dauchel, du IXe siècle à 1837, par le biais des femmes, Après la Révolution de 1789, ce noble qui pratiquait les mathématiques, fût le premier maire de la commune. Sous lEmpire, il fut lun des 3 députés du Pas-de-Calais. Il simpliqua activement aussi au sein de lInstitution des Wateringues. Il existe un autre château sur la commune à découvrir : Le château de la comtesse de Valois. Il remonte au XVIIIe siècle. Les Dauchel achèveront son établissement en améliorant de façon considérable l'exploitation du domaine agricole qui se poursuivra au cours du XIXe siècle. A partir de 1885, le parc s'organisera sur une parcelle carrée, constituant un bel arboretum inspiré des propriétés anglaises. Des massifs d'arbres voisinent avec des ormes à feuilles larges, simulant ainsi la continuation du parc vers la campagne. Cette gentilhommière a toujours appartenu à la famille Dauchet de la Palme.  Éléments protégés MH : les façades et les toitures du château, de sa serre, de sa grange et de ses communs ; le parc en totalité : inscription par arrêté du 30 décembre 2010.</p>
-      <h4>Habitants / Familles</h4><p>Nortkerque, palme; famille Dauchel                             Cocove; famille du comte de Coetlogon                                            la Palme"</p>
-      <h4>Divers</h4><p>Trois châteaux dans cet article de Nortkerque grav-1-7; Cocoves grav-3_4, et la Palme grav-2-5-6.                                         Palme GPS : 50° 52' 33" Nord, 2° 01' 33" Est                                                                  Cocove  GPS : 50° 50' 07" Nord, 2° 03' 50" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Trois châteaux dans cet article de Nortkerque; Cocoves, et la Palme.   NORTKERQUE, le château a été construit sur les vestiges du château fort à la fin du XVIIe siècle. La seigneurie est restée propriété de la famille Dauchel entre le IXe siècle et 1837 par le biais dune transmission, par les femmes et à la famille dArtois depuis cette époque. César Dauchel (1752 - 1837) a été Page de la Grande Ecurie en 1766, il était garde du corps de Louis XVI. Après la Révolution, ce noble qui pratiquait les mathématiques, fût le premier maire de la commune. Sous lEmpire, il fut lun des trois députés du Pas-de-Calais. Il simpliqua également activement au sein de linstitution des wateringues...                                                                        COCOVES à Recques sur Hem, cette superbe batisse, de plus pur style du XVIIIe siècle, a été achevée en 1741 par Becquet de Cocove. Mais la place date du Xe siècle et était alors occupée par les seigneurs locaux du moment. Après la Révolution, le château devint la propriété des d'Artois et resta jusqu'à la fin du XIXe. Durant l'épisode Napoléoniène du camp de Boulogne, le maréchal Ney y organisa de fastueuses soirées. Par la suite, Cocove passa aux mains de la famille du comte de Coetlogon qui ajoutera l'exploitation d'une distillerie, quelques batiments existent encore à ce jour. Si le château fut miraculeusement épargné durant la guerre de 1939-1945, il n'en fut pas de même pour les batiments de la distillerie. Après le décès du comte de Coetlogon, le chateau restera peu de temps encore dans la famille. Il sera vendu à un industriel de la région qui en fit sa résidence secondaire jusqu'en 1987. Après cette date il sera racheté et transformé en hôtel restaurant.</p>
+<h4>Architecture</h4><p>La PALME  Dauchel Philippe Antoine Joseph César(1752-1837) était vicomte de la Palme, garde du corps du roi de france Louis XVI, et devint député du Pas-de-Calais. C'est un château construit sur les vestiges d'un ancien château fort, bâti à la fin du XVIIe siècle. La seigneurie est restée la propriété de la famille Dauchel, du IXe siècle à 1837, par le biais des femmes, Après la Révolution de 1789, ce noble qui pratiquait les mathématiques, fût le premier maire de la commune. Sous lEmpire, il fut lun des 3 députés du Pas-de-Calais. Il simpliqua activement aussi au sein de lInstitution des Wateringues. Il existe un autre château sur la commune à découvrir : Le château de la comtesse de Valois. Il remonte au XVIIIe siècle. Les Dauchel achèveront son établissement en améliorant de façon considérable l'exploitation du domaine agricole qui se poursuivra au cours du XIXe siècle. A partir de 1885, le parc s'organisera sur une parcelle carrée, constituant un bel arboretum inspiré des propriétés anglaises. Des massifs d'arbres voisinent avec des ormes à feuilles larges, simulant ainsi la continuation du parc vers la campagne. Cette gentilhommière a toujours appartenu à la famille Dauchet de la Palme.  Éléments protégés MH : les façades et les toitures du château, de sa serre, de sa grange et de ses communs ; le parc en totalité : inscription par arrêté du 30 décembre 2010.</p>
+<h4>Habitants / Familles</h4><p>Nortkerque, palme; famille Dauchel                             Cocove; famille du comte de Coetlogon                                            la Palme"</p>
+<h4>Divers</h4><p>Trois châteaux dans cet article de Nortkerque grav-1-7; Cocoves grav-3_4, et la Palme grav-2-5-6.                                         Palme GPS : 50° 52' 33" Nord, 2° 01' 33" Est                                                                  Cocove  GPS : 50° 50' 07" Nord, 2° 03' 50" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

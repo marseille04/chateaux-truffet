@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Vouneuil_Vienne — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,61 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_86.html">Vienne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_86.html">Vienne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_86.html" class="back-link">Retour au département 86 — Vienne</a>
-  <div class="fiche">
-    <h2>Vouneuil_Vienne</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>86 — Vienne</td></tr>
-          <tr><td>Canton</td><td>Chauvigny</td></tr>
-          <tr><td>Commune</td><td>Vouneuil sur vienne</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_86/86_Vouneuil_Vienne_1.jpg" alt="Vouneuil_Vienne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Vouneuil_Vienne_2.jpg" alt="Vouneuil_Vienne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Vouneuil_Vienne_3.jpg" alt="Vouneuil_Vienne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Vouneuil_Vienne_4.jpg" alt="Vouneuil_Vienne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Vouneuil_Vienne_5.jpg" alt="Vouneuil_Vienne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Vouneuil_Vienne_6.jpg" alt="Vouneuil_Vienne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Vouneuil_Vienne_7.jpg" alt="Vouneuil_Vienne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Vouneuil_Vienne_8.jpg" alt="Vouneuil_Vienne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Vouneuil_Vienne_9.jpg" alt="Vouneuil_Vienne" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_86.html">Retour au département 86 — Vienne</a>
+<div class="fiche">
+<h2>Vouneuil_Vienne</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Vouneuil_Vienne" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_86/86_Vouneuil_Vienne_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Vouneuil_Vienne" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Vouneuil_Vienne_1.jpg"/><img alt="Vouneuil_Vienne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Vouneuil_Vienne_2.jpg"/><img alt="Vouneuil_Vienne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Vouneuil_Vienne_3.jpg"/><img alt="Vouneuil_Vienne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Vouneuil_Vienne_4.jpg"/><img alt="Vouneuil_Vienne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Vouneuil_Vienne_5.jpg"/><img alt="Vouneuil_Vienne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Vouneuil_Vienne_6.jpg"/><img alt="Vouneuil_Vienne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Vouneuil_Vienne_7.jpg"/><img alt="Vouneuil_Vienne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Vouneuil_Vienne_8.jpg"/><img alt="Vouneuil_Vienne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Vouneuil_Vienne_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>86 — Vienne</td></tr>
+<tr><td>Canton</td><td>Chauvigny</td></tr>
+<tr><td>Commune</td><td>Vouneuil sur vienne</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>CHITRE Pendant la Révolution, le pillage et un incendie en firent une ruine, les habitants du voisinage se mirent à exploiter, comme dans une carrière, les belles pierres des tours et des murailles, Chitré aurait fini par disparaître, si sa bonne étoile ne lavait fait tomber entre les mains dEdmond Treuile en 1855. Cest son fils, Raoul, qui entreprit sa restauration à partir de 1878, en respectant le style Renaissance.                                                                      CHITRE, en 1372 le fort de Chitré fut attribué par Pierre de Vieux Bourg à un de ses lieutenants, Jean de Kerlouet, qui mourut quatre ans plus tard au cours du siège de Niort. En 1378 il en fut dépossédé suite à son refus dapprouver la confiscation du duché de Bretagne par le roi de France. En six ans, Chitré changea  5 fois de propriétaire pour aboutir, en 1378, entre les mains de Pierre de Vieux Bourg qui le céda la même année à Guy Turpin de Crissé. Cette famille le conserva pendant près de cinq cents ans. Endommagé durant la guerre de Cent-ans, Chitré fut reconstruit, vers le milieu du XIVe par Charles Tiercelin de la Roche du Maine. Au début du XVIe siècle, la fille ainée de Jacques Turpin épouse Charles Tiercelin de la Roche du Maine, un des grands capitaines de François 1er.</p>
-      <h4>Architecture</h4><p>DU-FOU,  Yvon du Fou, gouverneur du Poitou, capitaine de Louis XI.  Le roi en récompense, le fit épouser Anne Mourraut, fille du maire de Poitiers, héritière de la seigneurie de lArmenteresse. Le Roi fit reconstruire une place forte qui portera le nom de sa famille "Fou".  François-Gabriel-Thibaud de La Brousse, Marquis de Verteillac, Baron de la Tour-Blanche, époux de Charlotte-Jeanne-Félicité-Elisabeth. Au XVIIe siècle, il appartient à la famille Appelvoisin de la Roche du Maine. Charles Tiercelin dAppelvoisin de la Roche du Maine possède déjà le château de Chitré mais il préfère le quitter pour celui du Fou  y mourut le 26 octobre 1854. Cette famille posséda Le Fou jusquà la Révolution, le dernier représentant ayant été guillotiné en 1793. En 1853 la propriété est vendue au comte de Campagne. Aujourdhui en partie reconstruit, cest une demeure où loge un descendant du comte de Campagne.  Installé sur une plate-forme cernée de profondes douves sèches, accessible par un haut châtelet implanté latéralement, cantonné de grosses tours rondes. Au XVIIIe siècle, le chemin de ronde sur mâchicoulis fut supprimé, les toitures abaissées, les percements régularisés, la courtine sud abattue, ouvrant ainsi la forteresse sur le paysage. Il a souffert d'un bombardement durant la seconde guerre mondiale mais a été restauré depuis. Du château du Fou il reste les douves, les vestiges de la poterne d'entrée avec ses deux tours et la tourelle d'escalier avec sa voûte.Les parties les plus curieuses de ce château sont l'escalier d'honneur, les anciennes cuisines, les sous-sols avec des voûtes dont les nervures viennent finir sur des têtes d'hommes aux oreilles de chiens.</p>
-      <h4>Habitants / Familles</h4><p>Chitré; Famille de Guy Turpin de Crissé                                         Du-Fou famille Appelvoisin de la Roche du Maine
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Chitré grav 7-à-8 .                                                    Château du Fou grav de 1 à 6                                                         46° 43' 12" nord, 0° 30' 34" est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>CHITRE Pendant la Révolution, le pillage et un incendie en firent une ruine, les habitants du voisinage se mirent à exploiter, comme dans une carrière, les belles pierres des tours et des murailles, Chitré aurait fini par disparaître, si sa bonne étoile ne lavait fait tomber entre les mains dEdmond Treuile en 1855. Cest son fils, Raoul, qui entreprit sa restauration à partir de 1878, en respectant le style Renaissance.                                                                      CHITRE, en 1372 le fort de Chitré fut attribué par Pierre de Vieux Bourg à un de ses lieutenants, Jean de Kerlouet, qui mourut quatre ans plus tard au cours du siège de Niort. En 1378 il en fut dépossédé suite à son refus dapprouver la confiscation du duché de Bretagne par le roi de France. En six ans, Chitré changea  5 fois de propriétaire pour aboutir, en 1378, entre les mains de Pierre de Vieux Bourg qui le céda la même année à Guy Turpin de Crissé. Cette famille le conserva pendant près de cinq cents ans. Endommagé durant la guerre de Cent-ans, Chitré fut reconstruit, vers le milieu du XIVe par Charles Tiercelin de la Roche du Maine. Au début du XVIe siècle, la fille ainée de Jacques Turpin épouse Charles Tiercelin de la Roche du Maine, un des grands capitaines de François 1er.</p>
+<h4>Architecture</h4><p>DU-FOU,  Yvon du Fou, gouverneur du Poitou, capitaine de Louis XI.  Le roi en récompense, le fit épouser Anne Mourraut, fille du maire de Poitiers, héritière de la seigneurie de lArmenteresse. Le Roi fit reconstruire une place forte qui portera le nom de sa famille "Fou".  François-Gabriel-Thibaud de La Brousse, Marquis de Verteillac, Baron de la Tour-Blanche, époux de Charlotte-Jeanne-Félicité-Elisabeth. Au XVIIe siècle, il appartient à la famille Appelvoisin de la Roche du Maine. Charles Tiercelin dAppelvoisin de la Roche du Maine possède déjà le château de Chitré mais il préfère le quitter pour celui du Fou  y mourut le 26 octobre 1854. Cette famille posséda Le Fou jusquà la Révolution, le dernier représentant ayant été guillotiné en 1793. En 1853 la propriété est vendue au comte de Campagne. Aujourdhui en partie reconstruit, cest une demeure où loge un descendant du comte de Campagne.  Installé sur une plate-forme cernée de profondes douves sèches, accessible par un haut châtelet implanté latéralement, cantonné de grosses tours rondes. Au XVIIIe siècle, le chemin de ronde sur mâchicoulis fut supprimé, les toitures abaissées, les percements régularisés, la courtine sud abattue, ouvrant ainsi la forteresse sur le paysage. Il a souffert d'un bombardement durant la seconde guerre mondiale mais a été restauré depuis. Du château du Fou il reste les douves, les vestiges de la poterne d'entrée avec ses deux tours et la tourelle d'escalier avec sa voûte.Les parties les plus curieuses de ce château sont l'escalier d'honneur, les anciennes cuisines, les sous-sols avec des voûtes dont les nervures viennent finir sur des têtes d'hommes aux oreilles de chiens.</p>
+<h4>Habitants / Familles</h4><p>Chitré; Famille de Guy Turpin de Crissé                                         Du-Fou famille Appelvoisin de la Roche du Maine
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Chitré grav 7-à-8 .                                                    Château du Fou grav de 1 à 6                                                         46° 43' 12" nord, 0° 30' 34" est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Locqueran — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,56 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_29.html">Finistère</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_29.html">Finistère</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_29.html" class="back-link">Retour au département 29 — Finistère</a>
-  <div class="fiche">
-    <h2>Locqueran</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>29 — Finistère</td></tr>
-          <tr><td>Canton</td><td>Douarnenez</td></tr>
-          <tr><td>Commune</td><td>Plouhinec</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_29/29_Locqueran_1.jpg" alt="Locqueran" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Locqueran_2.jpg" alt="Locqueran" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Locqueran_3.jpg" alt="Locqueran" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Locqueran_4.jpg" alt="Locqueran" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_29.html">Retour au département 29 — Finistère</a>
+<div class="fiche">
+<h2>Locqueran</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Locqueran" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_29/29_Locqueran_1.jpg"/><div class="hero-count" id="hero-count">1 / 4</div></div><div class="photo-strip"><img alt="Locqueran" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Locqueran_1.jpg"/><img alt="Locqueran" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Locqueran_2.jpg"/><img alt="Locqueran" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Locqueran_3.jpg"/><img alt="Locqueran" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Locqueran_4.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>29 — Finistère</td></tr>
+<tr><td>Canton</td><td>Douarnenez</td></tr>
+<tr><td>Commune</td><td>Plouhinec</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>LOCQUERAN, château construit vers 1870 par la famille de l'Ecluse. Décor intérieur de style Art Nouveau au début du 20e siècle. Le site est classé en 1922. L'édifice abrite un lycée dans les années 1950 puis un institut médico-éducatif avant d'être transformé en hôtel de voyageurs à la fin du XXe siècle. La construction du château de Locquéran a débuté à la fin de lannée 1879, commandé par Amédée de l'Ecluse, récent acquéreur des terres du manoir de Locquéran. Cet industriel audiernais, maire de cette même commune et propriétaire de lusine de produits chimiques du Stum et de la future conserverie de Poulgoazec, souhaitait bâtir un château du même style que celui de son frère, Emile, situé à Keristum sur la rive droite du Goyen. Hormis la maison du jardinier qui fut bâtie en même temps que le château, les autres annexes. ne furent construites quà partir des années 1890. Le domaine et son château, théâtre de grandes réceptions mondaines, resta dans la famille de l'Ecluse moins dune quarantaine dannées et fut vendu en 1914. Par la suite, le château deviendra une annexe de lhospice dAudierne, après le départ des allemands qui sy étaient installés pendant la seconde guerre mondiale.</p>
-      <h4>Architecture</h4><p>LOCQUERAN  Audierne Plouhinec, ce château du XIXe siècle se situe au coeur d'un parc de 3 hectares sur la côte d'Audierne, avec une vue imprenable sur le port et la rivière Goven et à 1 km du port et des commerces. Situé au bord de la mer, à 20 km au sud de la Pointe du Raz,  perché sur le promontoire de la pointe de Paouen avec vue sur larrière port dAudierne, le château de Locquéran est un grand bâtiment dinspiration Renaissance comportant 105 ouvertures. Édifice de plan massé très profond et dissymétrique composé d'un corps central formant un pavillon à l'est, encadré de deux corps latéraux polygonaux ; deux tours d'escalier postérieures. Élévation de maçonnerie enduit avec encadrements de baies, chaînes d'angle, bandeaux, corniche et lucarnes en pierre de taille de granite. Toit brisé percé de lucarnes à volutes. linstruction publique ouvre un « centre dapprentissage féminin » au château où furent donnés pendant une dizaine dannées des cours de travaux ménagers et de couture. La construction, en 1968, du collège de Locquéran saccompagnera de la destruction des écuries. Le château, alors toujours propriété de lhospice dAudierne, accueillera encore quelques temps un centre daide aux jeunes handicapés puis sera vendu et transformé en une résidence hôtelière.</p>
-      <h4>Habitants / Familles</h4><p>Amédée de Lécluse
-<br>        "</p>
-      <h4>Divers</h4><p>A Plouhinec le château de Locquéran</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>LOCQUERAN, château construit vers 1870 par la famille de l'Ecluse. Décor intérieur de style Art Nouveau au début du 20e siècle. Le site est classé en 1922. L'édifice abrite un lycée dans les années 1950 puis un institut médico-éducatif avant d'être transformé en hôtel de voyageurs à la fin du XXe siècle. La construction du château de Locquéran a débuté à la fin de lannée 1879, commandé par Amédée de l'Ecluse, récent acquéreur des terres du manoir de Locquéran. Cet industriel audiernais, maire de cette même commune et propriétaire de lusine de produits chimiques du Stum et de la future conserverie de Poulgoazec, souhaitait bâtir un château du même style que celui de son frère, Emile, situé à Keristum sur la rive droite du Goyen. Hormis la maison du jardinier qui fut bâtie en même temps que le château, les autres annexes. ne furent construites quà partir des années 1890. Le domaine et son château, théâtre de grandes réceptions mondaines, resta dans la famille de l'Ecluse moins dune quarantaine dannées et fut vendu en 1914. Par la suite, le château deviendra une annexe de lhospice dAudierne, après le départ des allemands qui sy étaient installés pendant la seconde guerre mondiale.</p>
+<h4>Architecture</h4><p>LOCQUERAN  Audierne Plouhinec, ce château du XIXe siècle se situe au coeur d'un parc de 3 hectares sur la côte d'Audierne, avec une vue imprenable sur le port et la rivière Goven et à 1 km du port et des commerces. Situé au bord de la mer, à 20 km au sud de la Pointe du Raz,  perché sur le promontoire de la pointe de Paouen avec vue sur larrière port dAudierne, le château de Locquéran est un grand bâtiment dinspiration Renaissance comportant 105 ouvertures. Édifice de plan massé très profond et dissymétrique composé d'un corps central formant un pavillon à l'est, encadré de deux corps latéraux polygonaux ; deux tours d'escalier postérieures. Élévation de maçonnerie enduit avec encadrements de baies, chaînes d'angle, bandeaux, corniche et lucarnes en pierre de taille de granite. Toit brisé percé de lucarnes à volutes. linstruction publique ouvre un « centre dapprentissage féminin » au château où furent donnés pendant une dizaine dannées des cours de travaux ménagers et de couture. La construction, en 1968, du collège de Locquéran saccompagnera de la destruction des écuries. Le château, alors toujours propriété de lhospice dAudierne, accueillera encore quelques temps un centre daide aux jeunes handicapés puis sera vendu et transformé en une résidence hôtelière.</p>
+<h4>Habitants / Familles</h4><p>Amédée de Lécluse
+<br/>        "</p>
+<h4>Divers</h4><p>A Plouhinec le château de Locquéran</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

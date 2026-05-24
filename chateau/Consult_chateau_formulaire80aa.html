@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Ergué_Gabéric — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,57 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_29.html">Finistère</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_29.html">Finistère</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_29.html" class="back-link">Retour au département 29 — Finistère</a>
-  <div class="fiche">
-    <h2>Ergué_Gabéric</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>29 — Finistère</td></tr>
-          <tr><td>Canton</td><td>Fouesnant</td></tr>
-          <tr><td>Commune</td><td>Ergué-Gabéric</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>47° 59' 49" Nord, 4° 01' 15" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_29/29_Ergu%c3%a9_Gab%c3%a9ric_1.jpg" alt="Ergué_Gabéric" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Ergu%c3%a9_Gab%c3%a9ric_2.jpg" alt="Ergué_Gabéric" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Ergu%c3%a9_Gab%c3%a9ric_3.jpg" alt="Ergué_Gabéric" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Ergu%c3%a9_Gab%c3%a9ric_4.jpg" alt="Ergué_Gabéric" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_29.html">Retour au département 29 — Finistère</a>
+<div class="fiche">
+<h2>Ergué_Gabéric</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Ergué_Gabéric" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_29/29_Ergu%c3%a9_Gab%c3%a9ric_1.jpg"/><div class="hero-count" id="hero-count">1 / 4</div></div><div class="photo-strip"><img alt="Ergué_Gabéric" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Ergu%c3%a9_Gab%c3%a9ric_1.jpg"/><img alt="Ergué_Gabéric" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Ergu%c3%a9_Gab%c3%a9ric_2.jpg"/><img alt="Ergué_Gabéric" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Ergu%c3%a9_Gab%c3%a9ric_3.jpg"/><img alt="Ergué_Gabéric" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Ergu%c3%a9_Gab%c3%a9ric_4.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>29 — Finistère</td></tr>
+<tr><td>Canton</td><td>Fouesnant</td></tr>
+<tr><td>Commune</td><td>Ergué-Gabéric</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIII</td></tr>
+<tr><td>Coordonnées GPS</td><td>47° 59' 49" Nord, 4° 01' 15" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux châteaux à Ergué-Gabéric; Lezergué et Pannarum.   LEZERGUE, le château a été bâti à lemplacement dun ancien manoir occupé par les familles Cabellic au XIIIe siècle et Coatanezre au XVe siècle, puis par Guy Autret, seigneur de Missirien vers 1630 et la famille La Marche au XVIIIe siècle. Le manoir a vu naître en 1729 le dernier évêque de Léon, Mgr François de la Marche, il est surnommé dans le diocèse "Eskop ar patates", pour y avoir répandu, en période de pénurie de vivres, la culture de la pomme de terre. Le château présente une façade en granit à deux étages, flanquée de deux pavillons couronnés par des frontons circulaires portant des écussons. A l'intérieur, escalier à deux voûtes plates. Certaines pièces laissent penser que l'édifice n'a jamais été achevé (absence d'enduits et de peintures, boiseries non traitées).
-<br>Éléments protégés MH : le château en totalité : inscription par arrêté du 9 décembre 1929.</p>
-      <h4>Architecture</h4><p>PANNARUM, en 1585, le Manoir de Pennarun appartenait à la Famille Tourtenoutre, en alliance avec Jérôme de Toutenoutre, époux de Gilette Le Louët. Le Manoir de Pennarun date du XVIII siècle dans son état actuel, mais un manoir antérieur fut construit en 1661 comme en témoigne un linteau gravé situé au-dessus de la porte d'entrée. Une légende, Le trésor de Pennarun, le concerne : « Au Bourg donc, on parlait encore du seigneur de Pennarun, lequel avait mauvaise réputation. Le seigneur  son nom s'était perdu dans la nuit des temps mais son souvenir était resté vivace. S'agissait-il d'un seigneur en particulier, d'une lignée de seigneurs. On ne le savait plus. C'était " le " Seigneur de Pennarun. On disait qu'il était méchant, qu'il avait opprimé les paysans, qu'il pendait à Lenhesq ceux qui ne lui plaisaient pas. Il était si mauvais que la Justice Divine se devait de lui réserver un châtiment exemplaire ! Et c'est ainsi que l'on racontait toujours, vers 1950, que le seigneur de Pennarun était condamné à réapparaître, tous les ans, sous un chêne de l'ale Goz où il remuait éternellement l'or de son trésor enfoui. Cela, le dimanche des Rameaux, pendant la lecture particulièrement longue de l'Évangile de la Passion du Christ selon St Matthieu. La personne qui le trouverait et accepterait son or, le délivrerait de sa malédiction mais perdrait aussitôt son âme ! En ce temps-là, manquer la messe du dimanche était considéré comme un péché mortel.</p>
-      <h4>Habitants / Familles</h4><p>Lazergue; Famille de  Guy Autret,                            Pannarum; Famille Tourtenoutre
-<br>        "</p>
-      <h4>Divers</h4><p>Deux châteaux à Ergué-Gabéric; Lezergué grav 1-2 et Pannarum grav 3-4.                                                       Panarum GPS : 47° 59' 49" Nord, 4° 01' 15" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux châteaux à Ergué-Gabéric; Lezergué et Pannarum.   LEZERGUE, le château a été bâti à lemplacement dun ancien manoir occupé par les familles Cabellic au XIIIe siècle et Coatanezre au XVe siècle, puis par Guy Autret, seigneur de Missirien vers 1630 et la famille La Marche au XVIIIe siècle. Le manoir a vu naître en 1729 le dernier évêque de Léon, Mgr François de la Marche, il est surnommé dans le diocèse "Eskop ar patates", pour y avoir répandu, en période de pénurie de vivres, la culture de la pomme de terre. Le château présente une façade en granit à deux étages, flanquée de deux pavillons couronnés par des frontons circulaires portant des écussons. A l'intérieur, escalier à deux voûtes plates. Certaines pièces laissent penser que l'édifice n'a jamais été achevé (absence d'enduits et de peintures, boiseries non traitées).
+<br/>Éléments protégés MH : le château en totalité : inscription par arrêté du 9 décembre 1929.</p>
+<h4>Architecture</h4><p>PANNARUM, en 1585, le Manoir de Pennarun appartenait à la Famille Tourtenoutre, en alliance avec Jérôme de Toutenoutre, époux de Gilette Le Louët. Le Manoir de Pennarun date du XVIII siècle dans son état actuel, mais un manoir antérieur fut construit en 1661 comme en témoigne un linteau gravé situé au-dessus de la porte d'entrée. Une légende, Le trésor de Pennarun, le concerne : « Au Bourg donc, on parlait encore du seigneur de Pennarun, lequel avait mauvaise réputation. Le seigneur  son nom s'était perdu dans la nuit des temps mais son souvenir était resté vivace. S'agissait-il d'un seigneur en particulier, d'une lignée de seigneurs. On ne le savait plus. C'était " le " Seigneur de Pennarun. On disait qu'il était méchant, qu'il avait opprimé les paysans, qu'il pendait à Lenhesq ceux qui ne lui plaisaient pas. Il était si mauvais que la Justice Divine se devait de lui réserver un châtiment exemplaire ! Et c'est ainsi que l'on racontait toujours, vers 1950, que le seigneur de Pennarun était condamné à réapparaître, tous les ans, sous un chêne de l'ale Goz où il remuait éternellement l'or de son trésor enfoui. Cela, le dimanche des Rameaux, pendant la lecture particulièrement longue de l'Évangile de la Passion du Christ selon St Matthieu. La personne qui le trouverait et accepterait son or, le délivrerait de sa malédiction mais perdrait aussitôt son âme ! En ce temps-là, manquer la messe du dimanche était considéré comme un péché mortel.</p>
+<h4>Habitants / Familles</h4><p>Lazergue; Famille de  Guy Autret,                            Pannarum; Famille Tourtenoutre
+<br/>        "</p>
+<h4>Divers</h4><p>Deux châteaux à Ergué-Gabéric; Lezergué grav 1-2 et Pannarum grav 3-4.                                                       Panarum GPS : 47° 59' 49" Nord, 4° 01' 15" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

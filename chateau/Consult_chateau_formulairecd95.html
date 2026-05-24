@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Orbigny_Indre — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_37.html">Indre-et-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_37.html">Indre-et-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_37.html" class="back-link">Retour au département 37 — Indre-et-Loire</a>
-  <div class="fiche">
-    <h2>Orbigny_Indre</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
-          <tr><td>Canton</td><td>Loches</td></tr>
-          <tr><td>Commune</td><td>Orbigny</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVI-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_37/37_Orbigny_Indre_1.jpg" alt="Orbigny_Indre" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Orbigny_Indre_2.jpg" alt="Orbigny_Indre" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Orbigny_Indre_3.jpg" alt="Orbigny_Indre" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Orbigny_Indre_4.jpg" alt="Orbigny_Indre" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Orbigny_Indre_5.jpg" alt="Orbigny_Indre" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Orbigny_Indre_6.jpg" alt="Orbigny_Indre" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_37.html">Retour au département 37 — Indre-et-Loire</a>
+<div class="fiche">
+<h2>Orbigny_Indre</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Orbigny_Indre" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_37/37_Orbigny_Indre_1.jpg"/><div class="hero-count" id="hero-count">1 / 6</div></div><div class="photo-strip"><img alt="Orbigny_Indre" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Orbigny_Indre_1.jpg"/><img alt="Orbigny_Indre" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Orbigny_Indre_2.jpg"/><img alt="Orbigny_Indre" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Orbigny_Indre_3.jpg"/><img alt="Orbigny_Indre" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Orbigny_Indre_4.jpg"/><img alt="Orbigny_Indre" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Orbigny_Indre_5.jpg"/><img alt="Orbigny_Indre" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Orbigny_Indre_6.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
+<tr><td>Canton</td><td>Loches</td></tr>
+<tr><td>Commune</td><td>Orbigny</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVI-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux châteaux à Orbigny dont; Mousseau et l'Estang. MOUSSEAU,  il a été construit de 1876 à 1880. C'est un château de style néo-Louis XIII. Le château du Mousseau est écrit le Monceau sur la carte de Cassini. Lors de la Seconde Guerre Mondiale, le marquis Lecoz, emmené par Georges Dubosq, un aventurier repris de justice qui se faisait appeler « capitaine Lecoz », s'installa au château du Mousseau, dès les premiers jours de septembre 1944. De là, il mena plusieurs opérations de véritable Résistance mais aussi de pillage, des demeures environnantes, organisant des exécutions sommaires jusqu'au début du mois d'octobre où ce maquis, devenu trop encombrant, est prié de quitter la région pour rejoindre l'armée du général de Lattre de Tassigny, vers la Haute-Saône et le Territoire de Belfort. Depuis, le château de Mousseau est la propriété de la famille de Lauriston. Le château du Mousseau a été bâti sur un ancien fief de Montrichard. L'édifice est complété par un ensemble de communs. Au dernier étage, se trouve une chapelle qui a été aménagée. Le château du Mousseau est composé de pierres de taille et de briques. Son propriétaire actuel est Law de Lauriston-Boubers.</p>
-      <h4>Architecture</h4><p>L'ESTANG, date du XVe au XVIe siècle pour son premier propriétaire Jeanne d'Argy en 1470. Son nom a changé souvent au cours des siècle :  Les Étangs  apparaît en 1880, et c'est l'orthographe « l'Estang » qui est retenue au XVIIe siècle. C'est une grande pièce d'eau qui donne son nom au château.  Il sera fortement remanié un siècle plus tard. Après avoir été assailli par les anglais, pendant la Guerre de Cent Ans, le château manque d'être pris d'assaut par les habitants de Loches qui manquent de grain et croient en trouver à l'Estang. Il sera ensuite envahit, en 1590. De là, ils vont rançonner les propriétés avoisinantes. Ils seront délogés par le corps d'armée basé à Loches. Le château de l'Estang fut restauré à plusieurs reprises, au XVIIIe siècle, puis de 1890 à 1964, d'après les plans de l'architecte des bâtiments historiques Achille Lafargue. Une cheminée provenant du château de l'Isle Savary à Clion, dans l'Indre, y est installée, en 1959.  Du XVe siècle subsiste  un donjon circulaire à mâchicoulis. Le logis, flanqué de tours et de tourelles, date du XVIe siècle. Les deux ailes en retour d'équerre sont des rajouts réalisés au XVIIIe siècle. Il appartient depuis 1678 à la famille de Lestang. A la suite du décès de son oncle, Hubert Jahan de Lestang, en 1973, Béatrice Benoît du Rey a en charge la propriété qu'elle exploite avec Emmanuel, son mari.</p>
-      <h4>Habitants / Familles</h4><p>Mousseau; famille de Lauriston                                                  L'Estang; famille de Lestang
-<br>        "</p>
-      <h4>Divers</h4><p>à Orbigny dont; Mousseau et l'Estang  grav 2-3-4-5-6                               47° 05' 24" nord, 0° 43' 28" Est. Mousseau: 47° 12' 40" Nord, 1° 13' 27" Est  grav-1</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux châteaux à Orbigny dont; Mousseau et l'Estang. MOUSSEAU,  il a été construit de 1876 à 1880. C'est un château de style néo-Louis XIII. Le château du Mousseau est écrit le Monceau sur la carte de Cassini. Lors de la Seconde Guerre Mondiale, le marquis Lecoz, emmené par Georges Dubosq, un aventurier repris de justice qui se faisait appeler « capitaine Lecoz », s'installa au château du Mousseau, dès les premiers jours de septembre 1944. De là, il mena plusieurs opérations de véritable Résistance mais aussi de pillage, des demeures environnantes, organisant des exécutions sommaires jusqu'au début du mois d'octobre où ce maquis, devenu trop encombrant, est prié de quitter la région pour rejoindre l'armée du général de Lattre de Tassigny, vers la Haute-Saône et le Territoire de Belfort. Depuis, le château de Mousseau est la propriété de la famille de Lauriston. Le château du Mousseau a été bâti sur un ancien fief de Montrichard. L'édifice est complété par un ensemble de communs. Au dernier étage, se trouve une chapelle qui a été aménagée. Le château du Mousseau est composé de pierres de taille et de briques. Son propriétaire actuel est Law de Lauriston-Boubers.</p>
+<h4>Architecture</h4><p>L'ESTANG, date du XVe au XVIe siècle pour son premier propriétaire Jeanne d'Argy en 1470. Son nom a changé souvent au cours des siècle :  Les Étangs  apparaît en 1880, et c'est l'orthographe « l'Estang » qui est retenue au XVIIe siècle. C'est une grande pièce d'eau qui donne son nom au château.  Il sera fortement remanié un siècle plus tard. Après avoir été assailli par les anglais, pendant la Guerre de Cent Ans, le château manque d'être pris d'assaut par les habitants de Loches qui manquent de grain et croient en trouver à l'Estang. Il sera ensuite envahit, en 1590. De là, ils vont rançonner les propriétés avoisinantes. Ils seront délogés par le corps d'armée basé à Loches. Le château de l'Estang fut restauré à plusieurs reprises, au XVIIIe siècle, puis de 1890 à 1964, d'après les plans de l'architecte des bâtiments historiques Achille Lafargue. Une cheminée provenant du château de l'Isle Savary à Clion, dans l'Indre, y est installée, en 1959.  Du XVe siècle subsiste  un donjon circulaire à mâchicoulis. Le logis, flanqué de tours et de tourelles, date du XVIe siècle. Les deux ailes en retour d'équerre sont des rajouts réalisés au XVIIIe siècle. Il appartient depuis 1678 à la famille de Lestang. A la suite du décès de son oncle, Hubert Jahan de Lestang, en 1973, Béatrice Benoît du Rey a en charge la propriété qu'elle exploite avec Emmanuel, son mari.</p>
+<h4>Habitants / Familles</h4><p>Mousseau; famille de Lauriston                                                  L'Estang; famille de Lestang
+<br/>        "</p>
+<h4>Divers</h4><p>à Orbigny dont; Mousseau et l'Estang  grav 2-3-4-5-6                               47° 05' 24" nord, 0° 43' 28" Est. Mousseau: 47° 12' 40" Nord, 1° 13' 27" Est  grav-1</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

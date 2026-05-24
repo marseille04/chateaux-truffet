@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>St_Didier_sur_Arroux — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,67 +113,65 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_71.html">Saône-et-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_71.html">Saône-et-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_71.html" class="back-link">Retour au département 71 — Saône-et-Loire</a>
-  <div class="fiche">
-    <h2>St_Didier_sur_Arroux</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>71 — Saône-et-Loire</td></tr>
-          <tr><td>Canton</td><td>St-Leger-sous-Beuvray</td></tr>
-          <tr><td>Commune</td><td>St-Didier-sur-Arroux</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_71/71_St_Didier_sur_Arroux_1.jpg" alt="St_Didier_sur_Arroux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_St_Didier_sur_Arroux_2.jpg" alt="St_Didier_sur_Arroux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_St_Didier_sur_Arroux_3.jpg" alt="St_Didier_sur_Arroux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_St_Didier_sur_Arroux_4.jpg" alt="St_Didier_sur_Arroux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_St_Didier_sur_Arroux_5.jpg" alt="St_Didier_sur_Arroux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_St_Didier_sur_Arroux_6.jpg" alt="St_Didier_sur_Arroux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_St_Didier_sur_Arroux_7.jpg" alt="St_Didier_sur_Arroux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_St_Didier_sur_Arroux_8.jpg" alt="St_Didier_sur_Arroux" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_71.html">Retour au département 71 — Saône-et-Loire</a>
+<div class="fiche">
+<h2>St_Didier_sur_Arroux</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="St_Didier_sur_Arroux" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_71/71_St_Didier_sur_Arroux_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="St_Didier_sur_Arroux" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_St_Didier_sur_Arroux_1.jpg"/><img alt="St_Didier_sur_Arroux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_St_Didier_sur_Arroux_2.jpg"/><img alt="St_Didier_sur_Arroux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_St_Didier_sur_Arroux_3.jpg"/><img alt="St_Didier_sur_Arroux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_St_Didier_sur_Arroux_4.jpg"/><img alt="St_Didier_sur_Arroux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_St_Didier_sur_Arroux_5.jpg"/><img alt="St_Didier_sur_Arroux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_St_Didier_sur_Arroux_6.jpg"/><img alt="St_Didier_sur_Arroux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_St_Didier_sur_Arroux_7.jpg"/><img alt="St_Didier_sur_Arroux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_St_Didier_sur_Arroux_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>71 — Saône-et-Loire</td></tr>
+<tr><td>Canton</td><td>St-Leger-sous-Beuvray</td></tr>
+<tr><td>Commune</td><td>St-Didier-sur-Arroux</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>ST-DIDIER sur ARROUX, Chevannes-d'Azon, une famille de ce nom y possédait au XVe siècle. Hugues de Chevannes, chevalier, reprit de fief à La Roche-Milay, en 1444, Jean son fils renouvela ce devoir en 1495, cette seigneurie entra dans la famille de Berger de Charency. Jean de Marry, chevalier fit hommage pour Chevannes, en 1555 et Jeanne de Digoine, veuve de Jean de Barvaud, en 1579, moulin à eau avec roue en fer sur La Braconne.
-<br>Charancy ou Charency. Le fief, formait autrefois, une seigneurie en toute justice, dans la mouvance de l'évêché d'Autun. Hervé de Donzy, comte de Nevers, dont elle relevait en arrière-fief, à cause de la châtellenie de Luzy, en fit aveu, à l'évêque Gauthier Ier, en 1209. Elle comprenait le bourg de Saint-Didier, où se rendaient les exploits de sa haute justice. Jean de Charency, seigneur du lieu pris part au siège de Château-Chinon, et laissa ce fief à Huguenin, son fils aîné, qui en jouissait en 1449. Le fief passa ensuite à la famille de Berger d'Autun, qui en prenait le nom.. René de Berger en était seigneur en 1706. Cette terre entra plus tard, dans la maison André dont une branche en portait aussi le nom.  Pierre André de Charency est connu pour ses bonnes uvres, il fonda en 1768, douze lits à l'hôpital d'Autun, sa ville natale. Ce seigneur avait abandonné sa terre de Charancy, pour l'acquit de ses legs divers, mais son frère André de La Collonge, chevalier de Saint-Louis, en fit retrait au moyen d'une somme de cent mille livres. Elle appartenait au XIXe siècle siècle à la maison de Martenne.</p>
-      <h4>Architecture</h4><p>St-Didier sur Arroux; plusieurs châteaux; Charancy ou Charency.
-<br>C'est le premier nom du bourg, situé à environ 1 kilomètre du bourg actuel, et ou se dresse la carcasse du château de Charency, qui était flanqué de deux pavillons et de deux tours, on y voit une chapelle gothique qui renfermait une belle statue de Saint-Gabriel patron des lieux. Demetry , avec une villa appartenant à Saint-Didier, évêque d'Auxerre. Un chemin dont subsistent quelques vestiges, Elle était, au Xe siècle siècle, une seigneurie dépendante de l'Abbaye de Saint-Martin d'Autun.   Ce hameau était jadis alternatif de Saint-Nizier-sur-Arroux.                                           
-<br>Le château de Gissy, qui donnait droit à une partie des dîmes de la paroisse. Jean de La Vallade de Trufin, en était le seigneur en 1720, et son fils en 1737. Cette seigneurie passa ensuite à la maison de Busseul.
-<br>Jouleaux;   A l'ouest de Démétry, on y voit un petit château avec une tour ronde, datant de la fin du XVe siècle, début XVIe siècle, 
-<br>Patigny,  appartenait en 1716, à Martin-Elie de Cercey, seigneur de Jeu et de Chaumigny, duquel il passa à François de La Vallade de Trufin qui en jouissait encore en 1736.
-<br>La Ranche, dans l'ancien temps, alternatif avec Poil, Orsa et Patigny, étaient des fiefs en toute justice dans la mouvance de La Roche-Milay. La Ranche et Poil, appartenaient aux XVIIe siècle et au XVIIIe siècle siècles, à la maison de Méru, de Thil Rondeaux Gué sur l'Arroux entre Démétry et Rondeaux.
-<br>Varillon; château. La paroisse dépendait jadis de l'archiprêtre de Luzy, elle existait déjà au IXe siècle siècle chef-lieu d'une contrée de perception au XIXe siècle siècle , le seigneur de Gissy et le marquis de Montjeu.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Georges-Lazare Berger de Charency
-<br>        "</p>
-      <h4>Divers</h4><p>Château de St-Didier sur Arroux et de Charency</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>ST-DIDIER sur ARROUX, Chevannes-d'Azon, une famille de ce nom y possédait au XVe siècle. Hugues de Chevannes, chevalier, reprit de fief à La Roche-Milay, en 1444, Jean son fils renouvela ce devoir en 1495, cette seigneurie entra dans la famille de Berger de Charency. Jean de Marry, chevalier fit hommage pour Chevannes, en 1555 et Jeanne de Digoine, veuve de Jean de Barvaud, en 1579, moulin à eau avec roue en fer sur La Braconne.
+<br/>Charancy ou Charency. Le fief, formait autrefois, une seigneurie en toute justice, dans la mouvance de l'évêché d'Autun. Hervé de Donzy, comte de Nevers, dont elle relevait en arrière-fief, à cause de la châtellenie de Luzy, en fit aveu, à l'évêque Gauthier Ier, en 1209. Elle comprenait le bourg de Saint-Didier, où se rendaient les exploits de sa haute justice. Jean de Charency, seigneur du lieu pris part au siège de Château-Chinon, et laissa ce fief à Huguenin, son fils aîné, qui en jouissait en 1449. Le fief passa ensuite à la famille de Berger d'Autun, qui en prenait le nom.. René de Berger en était seigneur en 1706. Cette terre entra plus tard, dans la maison André dont une branche en portait aussi le nom.  Pierre André de Charency est connu pour ses bonnes uvres, il fonda en 1768, douze lits à l'hôpital d'Autun, sa ville natale. Ce seigneur avait abandonné sa terre de Charancy, pour l'acquit de ses legs divers, mais son frère André de La Collonge, chevalier de Saint-Louis, en fit retrait au moyen d'une somme de cent mille livres. Elle appartenait au XIXe siècle siècle à la maison de Martenne.</p>
+<h4>Architecture</h4><p>St-Didier sur Arroux; plusieurs châteaux; Charancy ou Charency.
+<br/>C'est le premier nom du bourg, situé à environ 1 kilomètre du bourg actuel, et ou se dresse la carcasse du château de Charency, qui était flanqué de deux pavillons et de deux tours, on y voit une chapelle gothique qui renfermait une belle statue de Saint-Gabriel patron des lieux. Demetry , avec une villa appartenant à Saint-Didier, évêque d'Auxerre. Un chemin dont subsistent quelques vestiges, Elle était, au Xe siècle siècle, une seigneurie dépendante de l'Abbaye de Saint-Martin d'Autun.   Ce hameau était jadis alternatif de Saint-Nizier-sur-Arroux.                                           
+<br/>Le château de Gissy, qui donnait droit à une partie des dîmes de la paroisse. Jean de La Vallade de Trufin, en était le seigneur en 1720, et son fils en 1737. Cette seigneurie passa ensuite à la maison de Busseul.
+<br/>Jouleaux;   A l'ouest de Démétry, on y voit un petit château avec une tour ronde, datant de la fin du XVe siècle, début XVIe siècle, 
+<br/>Patigny,  appartenait en 1716, à Martin-Elie de Cercey, seigneur de Jeu et de Chaumigny, duquel il passa à François de La Vallade de Trufin qui en jouissait encore en 1736.
+<br/>La Ranche, dans l'ancien temps, alternatif avec Poil, Orsa et Patigny, étaient des fiefs en toute justice dans la mouvance de La Roche-Milay. La Ranche et Poil, appartenaient aux XVIIe siècle et au XVIIIe siècle siècles, à la maison de Méru, de Thil Rondeaux Gué sur l'Arroux entre Démétry et Rondeaux.
+<br/>Varillon; château. La paroisse dépendait jadis de l'archiprêtre de Luzy, elle existait déjà au IXe siècle siècle chef-lieu d'une contrée de perception au XIXe siècle siècle , le seigneur de Gissy et le marquis de Montjeu.</p>
+<h4>Habitants / Familles</h4><p>Famille de Georges-Lazare Berger de Charency
+<br/>        "</p>
+<h4>Divers</h4><p>Château de St-Didier sur Arroux et de Charency</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

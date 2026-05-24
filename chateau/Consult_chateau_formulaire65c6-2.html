@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Florac — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,60 +113,57 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_48.html">Lozère</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_48.html">Lozère</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_48.html" class="back-link">Retour au département 48 — Lozère</a>
-  <div class="fiche">
-    <h2>Florac</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>48 — Lozère</td></tr>
-          <tr><td>Canton</td><td>Florac</td></tr>
-          <tr><td>Commune</td><td>Florac</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV_XVI-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_48/48_Florac_1.jpg" alt="Florac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_48/48_Florac_2.jpg" alt="Florac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_48/48_Florac_3.jpg" alt="Florac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_48/48_Florac_4.jpg" alt="Florac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_48/48_Florac_5.jpg" alt="Florac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_48/48_Florac_6.jpg" alt="Florac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_48/48_Florac_7.jpg" alt="Florac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_48/48_Florac_8.jpg" alt="Florac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_48/48_Florac_9.jpg" alt="Florac" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_48.html">Retour au département 48 — Lozère</a>
+<div class="fiche">
+<h2>Florac</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Florac" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_48/48_Florac_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Florac" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_48/48_Florac_1.jpg"/><img alt="Florac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_48/48_Florac_2.jpg"/><img alt="Florac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_48/48_Florac_3.jpg"/><img alt="Florac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_48/48_Florac_4.jpg"/><img alt="Florac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_48/48_Florac_5.jpg"/><img alt="Florac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_48/48_Florac_6.jpg"/><img alt="Florac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_48/48_Florac_7.jpg"/><img alt="Florac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_48/48_Florac_8.jpg"/><img alt="Florac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_48/48_Florac_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>48 — Lozère</td></tr>
+<tr><td>Canton</td><td>Florac</td></tr>
+<tr><td>Commune</td><td>Florac</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV_XVI-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Florac; quatre châteaux, celui de Florac, de Gralhon, Azinières et Montvaillant à la salle Prunet, et maison forte à  Sainte-Croix Vallée Française.     FLORAC, La baronnie s'étendait sur le Méjan et les Cévennes et possédait sur le  Tarn  les deux châteaux de Castelbouc et de Montbrun, qui appartenait au XIIIe siècle à la famille dAnduze la petite fille de Raymond,  Isabelle mariée à Pons de Montlaur  affranchissait en 1291 les serfs de Florac a subi de nombreux avatars et occupé plusieurs fonctions. Les barons de Florac étaient de la famille des seigneurs d'Anduze et avaient donc l'un de leur château principal en  ce lieu depuis le XIIIe siècle. En 1664, Scipion de Grimoard de Beauvoir, comte de Roure, marquis de Grizac achetait cette baronnie. En 1810, il sera vendu à l'État qui l'utilisera, et le transformera, comme prison, il en garde encore quelques vestiges (barreaux aux fenêtres, portes de cellules, etc...) Depuis 1976, le château est devenu le siège du Parc National des Cévennes qui l'a restauré.   GRALHON, aujourd'hui centre équestre  entre Florac et le Causse Méjean, dans la ferme équestre de Gralhon. Christina vous accueille en chambres d'hôtes pour un séjour nature au coeur du Parc National des Cévennes.                           MONTVAILLANT à la Salle Prunet,  ancien fief  relevant de l'évêque de Mende. Jean II de Belcastel, seigneur; recueille la succession paternelle et épouse, le 4 janvier 1553, sa cousine Jeanne de Belcastel de la Pradelle, fille de Jean I. Passera à la famille de Paul Vignolles, lieutenant et duc de Rohan, restera dans la famille de Belcastel  jusqu'à  la Révolution.                   Azinières et Sainte-Croix pas d'information historique.</p>
-      <h4>Architecture</h4><p>Florac; La période la plus mouvementée correspond à celle des guerres de Religions ou catholiques et protestants se disputent la ville et le château. L'actuel château a été reconstruit en 1652, sur un mamelon de tuf et roche, sur le site du château féodal où siégeait l'une  des huit baronnies du Gévaudan.  Au moment de la Révolution Française, alors que plusieurs châteaux de la région sont détruits (principalement  les possessions des évêques de Mende) celui de Florac servira de grenier à sel.  Corps de logis rectangulaire à trois niveaux, à cinq travées,   toitures en croupes flanqué de deux tours rondes en façade à toitures pointus            Montvaillant, du XVe siècle de plan rectangulaire à quatre niveaux, et quatre travées, chemin de rondes crénelés avec échauguettes sur angles  et avancée saillante sur angle gauche, tour carrée crénelée aujourd'hui disparu. Rajout au XIXe siècle créneaux et échauguettes circulaires ornant le rebord des toits, endommagé par la Révolution. Azinières Ste-Croix, corps de logis en L à deux niveaux, toitures en croupes, flanqué d'une tour ronde sur un angle à toit arasés                                   Gralhon, quadrilatère à deux niveaux  flanqué de tours carrées aux angles de trois niveaux.</p>
-      <h4>Habitants / Familles</h4><p>Famille dAnduze                        Famille de Paul Vignolles"</p>
-      <h4>Divers</h4><p>Le château de Montvaillant, d'Azinières, de Gralhon et celui de Florac.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Florac; quatre châteaux, celui de Florac, de Gralhon, Azinières et Montvaillant à la salle Prunet, et maison forte à  Sainte-Croix Vallée Française.     FLORAC, La baronnie s'étendait sur le Méjan et les Cévennes et possédait sur le  Tarn  les deux châteaux de Castelbouc et de Montbrun, qui appartenait au XIIIe siècle à la famille dAnduze la petite fille de Raymond,  Isabelle mariée à Pons de Montlaur  affranchissait en 1291 les serfs de Florac a subi de nombreux avatars et occupé plusieurs fonctions. Les barons de Florac étaient de la famille des seigneurs d'Anduze et avaient donc l'un de leur château principal en  ce lieu depuis le XIIIe siècle. En 1664, Scipion de Grimoard de Beauvoir, comte de Roure, marquis de Grizac achetait cette baronnie. En 1810, il sera vendu à l'État qui l'utilisera, et le transformera, comme prison, il en garde encore quelques vestiges (barreaux aux fenêtres, portes de cellules, etc...) Depuis 1976, le château est devenu le siège du Parc National des Cévennes qui l'a restauré.   GRALHON, aujourd'hui centre équestre  entre Florac et le Causse Méjean, dans la ferme équestre de Gralhon. Christina vous accueille en chambres d'hôtes pour un séjour nature au coeur du Parc National des Cévennes.                           MONTVAILLANT à la Salle Prunet,  ancien fief  relevant de l'évêque de Mende. Jean II de Belcastel, seigneur; recueille la succession paternelle et épouse, le 4 janvier 1553, sa cousine Jeanne de Belcastel de la Pradelle, fille de Jean I. Passera à la famille de Paul Vignolles, lieutenant et duc de Rohan, restera dans la famille de Belcastel  jusqu'à  la Révolution.                   Azinières et Sainte-Croix pas d'information historique.</p>
+<h4>Architecture</h4><p>Florac; La période la plus mouvementée correspond à celle des guerres de Religions ou catholiques et protestants se disputent la ville et le château. L'actuel château a été reconstruit en 1652, sur un mamelon de tuf et roche, sur le site du château féodal où siégeait l'une  des huit baronnies du Gévaudan.  Au moment de la Révolution Française, alors que plusieurs châteaux de la région sont détruits (principalement  les possessions des évêques de Mende) celui de Florac servira de grenier à sel.  Corps de logis rectangulaire à trois niveaux, à cinq travées,   toitures en croupes flanqué de deux tours rondes en façade à toitures pointus            Montvaillant, du XVe siècle de plan rectangulaire à quatre niveaux, et quatre travées, chemin de rondes crénelés avec échauguettes sur angles  et avancée saillante sur angle gauche, tour carrée crénelée aujourd'hui disparu. Rajout au XIXe siècle créneaux et échauguettes circulaires ornant le rebord des toits, endommagé par la Révolution. Azinières Ste-Croix, corps de logis en L à deux niveaux, toitures en croupes, flanqué d'une tour ronde sur un angle à toit arasés                                   Gralhon, quadrilatère à deux niveaux  flanqué de tours carrées aux angles de trois niveaux.</p>
+<h4>Habitants / Familles</h4><p>Famille dAnduze                        Famille de Paul Vignolles"</p>
+<h4>Divers</h4><p>Le château de Montvaillant, d'Azinières, de Gralhon et celui de Florac.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

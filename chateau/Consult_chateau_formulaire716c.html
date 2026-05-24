@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Grand_Prainville — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,55 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_28.html">Eure-et-Loir</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_28.html">Eure-et-Loir</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_28.html" class="back-link">Retour au département 28 — Eure-et-Loir</a>
-  <div class="fiche">
-    <h2>Grand_Prainville</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>28 — Eure-et-Loir</td></tr>
-          <tr><td>Canton</td><td>Nogent-le-Rotrou</td></tr>
-          <tr><td>Commune</td><td>St-Jean_Pierre Fixte</td></tr>
-          <tr><td>Type d'édifice</td><td>Manoir</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_28/28_Grand_Prainville_1.jpg" alt="Grand_Prainville" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_28/28_Grand_Prainville_2.jpg" alt="Grand_Prainville" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_28/28_Grand_Prainville_3.jpg" alt="Grand_Prainville" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_28.html">Retour au département 28 — Eure-et-Loir</a>
+<div class="fiche">
+<h2>Grand_Prainville</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Grand_Prainville" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_28/28_Grand_Prainville_1.jpg"/><div class="hero-count" id="hero-count">1 / 3</div></div><div class="photo-strip"><img alt="Grand_Prainville" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_28/28_Grand_Prainville_1.jpg"/><img alt="Grand_Prainville" class="" loading="lazy" onclick="setHero(this)" src="../image/image_28/28_Grand_Prainville_2.jpg"/><img alt="Grand_Prainville" class="" loading="lazy" onclick="setHero(this)" src="../image/image_28/28_Grand_Prainville_3.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>28 — Eure-et-Loir</td></tr>
+<tr><td>Canton</td><td>Nogent-le-Rotrou</td></tr>
+<tr><td>Commune</td><td>St-Jean_Pierre Fixte</td></tr>
+<tr><td>Type d'édifice</td><td>Manoir</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>GRAND-PRAINVILLE,   la seigneurie du Grand-Prainville dépendait de la châtellenie de Montdoucet. Daprès Philippe Siguret, le manoir a été construit vers 1485 pour Patrice de Boisguyon, écuyer, fils cadet de Philippe de Boisguyon, seigneur de Montdoucet. De cette époque remonte le logis seigneurial, ainsi que la tour descalier hors-uvre. Les Boisguyon restent seigneurs de Prainville jusquen 1751, date du rachat de la seigneurie par Louis François de Savary, ancien capitaine des carabiniers, chevalier  de lordre de Saint-Jean de Jérusalem. En 1811, date du premier plan cadastral, le Grand-Prainville compte quatre bâtiments : le logis manorial et la ferme. Lensemble appartient à des propriétaires successifs qui baillent à la ferme à des locataires successifs, jusquà ce que Louis Pelletier, propriétaire cultivateur, lacquière en 1862, exploite et habite la ferme. En 1907, le baron Henri Jean Guillier de Souancé se porte acquéreur du Grand Prainville. Il fait construire la ferme de Prainville en 1911. Jusquà la veille de la première Guerre Mondiale, il fait détruire lancien bâtiment principal de la ferme et reconstruire  les deux dépendances quil transforme en grange pour le bâtiment sud et maison du jardinier, écurie et sellerie. Il fait construire une aile en retour déquerre au sud-ouest du logis manorial, et restaurer la façade principale du manoir : restitution des baies à meneau et à traverse, création de trois lucarnes complétant les trois travées douvertures. Lensemble reçoit un décor inspiré du registre néo-gothique : sculptures danimaux fantastiques ornant les crossettes des rampants, et fleurons couronnant les pignons découverts.</p>
-      <h4>Architecture</h4><p>GRAND-PRAINVILLE , lensemble comprend trois bâtiments : le logis manorial, placé à lest de lensemble, possède deux ailes. Laile principale sélève sur deux niveaux habitables : rez-de-chaussée surélevé  et étage carré. Orientée à lest, sa façade principale est flanquée dune tour descalier hors-uvre contenant un escalier à vis en pierre de taille calcaire, desservant les quatre niveaux délévation. Laccès se fait via cette tour, par la porte en anse de panier de style gothique flamboyant. Le rez-de-chaussée surélevé contient probablement une salle de réception et la cuisine, létage des chambres. Les pièces sont éclairées par des fenêtres à meneau et à traverse formant trois travées douvertures complétées en partie supérieure par des lucarnes à pignon découvert, rampants et crossettes . En retour déquerre au sud-ouest, se trouve un premier corps de bâtiment à étage. A langle des deux ailes est placée une tour carrée demi-hors-uvre, contenant un escalier. Dans le prolongement du premier corps de bâtiment se trouve un second corps en rez-de-chaussée. Si les chaînages dangle et les rampants sculptés sont en pierre de taille calcaire, les encadrements douvertures sont en brique avec linteau en bois. En alignement au sud de ce dernier, se situe la grange. Les murs sont en moellon de calcaire et de silex couvert dun enduit plein. Les encadrements douvertures sont en pierre de taille calcaire, à lexception du bâtiment nord-ouest . Les toits à longs pans, en flèche polygonale (tour hors-uvre octogonale), en pavillon sont couverts en tuiles plates.</p>
-      <h4>Habitants / Familles</h4><p>Famille de  Patrice de Boisguyon
-<br>        "</p>
-      <h4>Divers</h4><p>Grand_Prainville</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>GRAND-PRAINVILLE,   la seigneurie du Grand-Prainville dépendait de la châtellenie de Montdoucet. Daprès Philippe Siguret, le manoir a été construit vers 1485 pour Patrice de Boisguyon, écuyer, fils cadet de Philippe de Boisguyon, seigneur de Montdoucet. De cette époque remonte le logis seigneurial, ainsi que la tour descalier hors-uvre. Les Boisguyon restent seigneurs de Prainville jusquen 1751, date du rachat de la seigneurie par Louis François de Savary, ancien capitaine des carabiniers, chevalier  de lordre de Saint-Jean de Jérusalem. En 1811, date du premier plan cadastral, le Grand-Prainville compte quatre bâtiments : le logis manorial et la ferme. Lensemble appartient à des propriétaires successifs qui baillent à la ferme à des locataires successifs, jusquà ce que Louis Pelletier, propriétaire cultivateur, lacquière en 1862, exploite et habite la ferme. En 1907, le baron Henri Jean Guillier de Souancé se porte acquéreur du Grand Prainville. Il fait construire la ferme de Prainville en 1911. Jusquà la veille de la première Guerre Mondiale, il fait détruire lancien bâtiment principal de la ferme et reconstruire  les deux dépendances quil transforme en grange pour le bâtiment sud et maison du jardinier, écurie et sellerie. Il fait construire une aile en retour déquerre au sud-ouest du logis manorial, et restaurer la façade principale du manoir : restitution des baies à meneau et à traverse, création de trois lucarnes complétant les trois travées douvertures. Lensemble reçoit un décor inspiré du registre néo-gothique : sculptures danimaux fantastiques ornant les crossettes des rampants, et fleurons couronnant les pignons découverts.</p>
+<h4>Architecture</h4><p>GRAND-PRAINVILLE , lensemble comprend trois bâtiments : le logis manorial, placé à lest de lensemble, possède deux ailes. Laile principale sélève sur deux niveaux habitables : rez-de-chaussée surélevé  et étage carré. Orientée à lest, sa façade principale est flanquée dune tour descalier hors-uvre contenant un escalier à vis en pierre de taille calcaire, desservant les quatre niveaux délévation. Laccès se fait via cette tour, par la porte en anse de panier de style gothique flamboyant. Le rez-de-chaussée surélevé contient probablement une salle de réception et la cuisine, létage des chambres. Les pièces sont éclairées par des fenêtres à meneau et à traverse formant trois travées douvertures complétées en partie supérieure par des lucarnes à pignon découvert, rampants et crossettes . En retour déquerre au sud-ouest, se trouve un premier corps de bâtiment à étage. A langle des deux ailes est placée une tour carrée demi-hors-uvre, contenant un escalier. Dans le prolongement du premier corps de bâtiment se trouve un second corps en rez-de-chaussée. Si les chaînages dangle et les rampants sculptés sont en pierre de taille calcaire, les encadrements douvertures sont en brique avec linteau en bois. En alignement au sud de ce dernier, se situe la grange. Les murs sont en moellon de calcaire et de silex couvert dun enduit plein. Les encadrements douvertures sont en pierre de taille calcaire, à lexception du bâtiment nord-ouest . Les toits à longs pans, en flèche polygonale (tour hors-uvre octogonale), en pavillon sont couverts en tuiles plates.</p>
+<h4>Habitants / Familles</h4><p>Famille de  Patrice de Boisguyon
+<br/>        "</p>
+<h4>Divers</h4><p>Grand_Prainville</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

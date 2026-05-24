@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Evreux — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_27.html">Eure</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_27.html">Eure</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_27.html" class="back-link">Retour au département 27 — Eure</a>
-  <div class="fiche">
-    <h2>Evreux</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>27 — Eure</td></tr>
-          <tr><td>Canton</td><td>Evreux</td></tr>
-          <tr><td>Commune</td><td>Evreux</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVIII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>49° 01' 37" Nord, 1° 09' 05" Est                                                                                     Palais  grav-2-3   GPS : 49° 01' 26" Nord, 1° 09' 03" Est                                Navare Grav-5    GPS : 49° 01' 06" Nord, 1° 07' 29" Est                                     Trangis   grav-4   GPS : 49° 03' 31" Nord, 1° 08' 56" Est</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_27/27_Evreux_1.jpg" alt="Evreux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_27/27_Evreux_2.jpg" alt="Evreux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_27/27_Evreux_3.jpg" alt="Evreux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_27/27_Evreux_4.jpg" alt="Evreux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_27/27_Evreux_5.jpg" alt="Evreux" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_27.html">Retour au département 27 — Eure</a>
+<div class="fiche">
+<h2>Evreux</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Evreux" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_27/27_Evreux_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Evreux" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_27/27_Evreux_1.jpg"/><img alt="Evreux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_27/27_Evreux_2.jpg"/><img alt="Evreux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_27/27_Evreux_3.jpg"/><img alt="Evreux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_27/27_Evreux_4.jpg"/><img alt="Evreux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_27/27_Evreux_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>27 — Eure</td></tr>
+<tr><td>Canton</td><td>Evreux</td></tr>
+<tr><td>Commune</td><td>Evreux</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVIII</td></tr>
+<tr><td>Coordonnées GPS</td><td>49° 01' 37" Nord, 1° 09' 05" Est                                                                                     Palais  grav-2-3   GPS : 49° 01' 26" Nord, 1° 09' 03" Est                                Navare Grav-5    GPS : 49° 01' 06" Nord, 1° 07' 29" Est                                     Trangis   grav-4   GPS : 49° 03' 31" Nord, 1° 08' 56" Est</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>EVREUX, Hôtel de Ville, la construction  date de la fin du XIXe siècle, à l'emplacement de l'ancien château des comtes d'Évreux. C'est grâce au legs d'Olivier Delhomme (1794-1874), conseiller municipal, de 1830 à 1870, que l'édifice a été érigé entre 1889 et 1895 par les architectes Thierry Ladrange et Georges Gossart. Le plafond de la salle des mariages a été décoré par Charles Denet.  Notre mairie correspond bien aux goûts artistiques de la période économique florissante de la fin du XIXe siècle, avec lintroduction du vitrail civil dans les bâtiments publics, de style néo-classique, la volonté des architectes était de faire de l'Hôtel de Ville d'Evreux, un véritable palais dédié à la République.
-<br>NAVARE, le bâtiment date du XVIIIe siècle. C'est plus une gentilhommière entourée d'un beau parc, qui fut agrandie, au cours du XIXe siècle, qualifiée de château. Le petit château de Navarre a été inscrit aux M.H. depuis le 3/10/2018, il est durant l'été 2019, en cours de démolition pour réaliser un parking, à l'initiative de son propriétaire.                                                        TRANGIS, il fut construit, avant 1750, sur les restes d'une construction du XVIIe siècle, par Le Cousturier de Pithienville, lieutenant criminel du Présidial. Il passa le 13/06/1750 dans les mains du duc de Bouillon, Godefroy de la Tour d'Auvergne, comte d'Evreux et propriétaire du château de Navarre. Il devint ensuite la propriété, avant la Révolution, de Michel Le Cousturier de Courcy. Il est acquis en 1861 par Ferdinand Goldschmidt, banquier, membre d'une des principales familles de la haute finance européenne au XIXe siècle.</p>
-      <h4>Architecture</h4><p>EVREUX, le palais Episcopal d'Evreux ou château des Evêques. Sa construction date du XVe au XVIIIe siècle. Cet ancien évêché et ses dépendances ont été transformés en Musée. La Mairie en est devenue propriétaire. Le Palais épiscopal d'Evreux est classé aux M.H. depuis 1907.  Installé au pied de la cathédrale  dans un ancien palais médiéval classé M.H, le musée dArt, histoire et archéologie vous offre une expérience de visite unique. Ce bâtiment à la silhouette singulière abrite le musée depuis les années 1960. Ses différentes façades témoignent de lart de bâtir à travers les âges. Construit à proximité immédiate de la cathédrale pour accueillir les évêques dÉvreux à la fin du Moyen Age, lédifice na cessé dêtre modifié jusquau 20e siècle. À lintérieur de cet ancien palais, au fil de ses quatre niveaux, vous découvrirez les salles historiques décorées de cheminées monumentales, lescalier à vis qui vous mènera au chemin de ronde vous plongeant dans un cadre totalement immersif.                                                                                                                          TRANGIS, le château de Trangis resta, plus d'un siècle, parmi ses descendants. En 1981, son arrière petit fils Guillaume Guindey, haut fonctionnaire, membre de l'Institut, le revendit à la ville d'Évreux. Le parc du château de Trangis constitue aujourd'hui un espace vert ouvert aux visiteurs, avec un parcours d'accrobranches. Le Parc du Château de Trangis est accessible au Public depuis 1981.</p>
-      <h4>Habitants / Familles</h4><p>Evreux; Olivier Delhomme                                                                Trangis Guillaume Guindey,
-<br>        "</p>
-      <h4>Divers</h4><p>Evreux  Hotel de ville  grav 1-     GPS : 49° 01' 37" Nord, 1° 09' 05" Est                                                                                     Palais  grav-2-3   GPS : 49° 01' 26" Nord, 1° 09' 03" Est                                Navare Grav-5    GPS : 49° 01' 06" Nord, 1° 07' 29" Est                                     Trangis   grav-4   GPS : 49° 03' 31" Nord, 1° 08' 56" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>EVREUX, Hôtel de Ville, la construction  date de la fin du XIXe siècle, à l'emplacement de l'ancien château des comtes d'Évreux. C'est grâce au legs d'Olivier Delhomme (1794-1874), conseiller municipal, de 1830 à 1870, que l'édifice a été érigé entre 1889 et 1895 par les architectes Thierry Ladrange et Georges Gossart. Le plafond de la salle des mariages a été décoré par Charles Denet.  Notre mairie correspond bien aux goûts artistiques de la période économique florissante de la fin du XIXe siècle, avec lintroduction du vitrail civil dans les bâtiments publics, de style néo-classique, la volonté des architectes était de faire de l'Hôtel de Ville d'Evreux, un véritable palais dédié à la République.
+<br/>NAVARE, le bâtiment date du XVIIIe siècle. C'est plus une gentilhommière entourée d'un beau parc, qui fut agrandie, au cours du XIXe siècle, qualifiée de château. Le petit château de Navarre a été inscrit aux M.H. depuis le 3/10/2018, il est durant l'été 2019, en cours de démolition pour réaliser un parking, à l'initiative de son propriétaire.                                                        TRANGIS, il fut construit, avant 1750, sur les restes d'une construction du XVIIe siècle, par Le Cousturier de Pithienville, lieutenant criminel du Présidial. Il passa le 13/06/1750 dans les mains du duc de Bouillon, Godefroy de la Tour d'Auvergne, comte d'Evreux et propriétaire du château de Navarre. Il devint ensuite la propriété, avant la Révolution, de Michel Le Cousturier de Courcy. Il est acquis en 1861 par Ferdinand Goldschmidt, banquier, membre d'une des principales familles de la haute finance européenne au XIXe siècle.</p>
+<h4>Architecture</h4><p>EVREUX, le palais Episcopal d'Evreux ou château des Evêques. Sa construction date du XVe au XVIIIe siècle. Cet ancien évêché et ses dépendances ont été transformés en Musée. La Mairie en est devenue propriétaire. Le Palais épiscopal d'Evreux est classé aux M.H. depuis 1907.  Installé au pied de la cathédrale  dans un ancien palais médiéval classé M.H, le musée dArt, histoire et archéologie vous offre une expérience de visite unique. Ce bâtiment à la silhouette singulière abrite le musée depuis les années 1960. Ses différentes façades témoignent de lart de bâtir à travers les âges. Construit à proximité immédiate de la cathédrale pour accueillir les évêques dÉvreux à la fin du Moyen Age, lédifice na cessé dêtre modifié jusquau 20e siècle. À lintérieur de cet ancien palais, au fil de ses quatre niveaux, vous découvrirez les salles historiques décorées de cheminées monumentales, lescalier à vis qui vous mènera au chemin de ronde vous plongeant dans un cadre totalement immersif.                                                                                                                          TRANGIS, le château de Trangis resta, plus d'un siècle, parmi ses descendants. En 1981, son arrière petit fils Guillaume Guindey, haut fonctionnaire, membre de l'Institut, le revendit à la ville d'Évreux. Le parc du château de Trangis constitue aujourd'hui un espace vert ouvert aux visiteurs, avec un parcours d'accrobranches. Le Parc du Château de Trangis est accessible au Public depuis 1981.</p>
+<h4>Habitants / Familles</h4><p>Evreux; Olivier Delhomme                                                                Trangis Guillaume Guindey,
+<br/>        "</p>
+<h4>Divers</h4><p>Evreux  Hotel de ville  grav 1-     GPS : 49° 01' 37" Nord, 1° 09' 05" Est                                                                                     Palais  grav-2-3   GPS : 49° 01' 26" Nord, 1° 09' 03" Est                                Navare Grav-5    GPS : 49° 01' 06" Nord, 1° 07' 29" Est                                     Trangis   grav-4   GPS : 49° 03' 31" Nord, 1° 08' 56" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

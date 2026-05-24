@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Bernardières — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,64 +113,63 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_24.html">Dordogne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_24.html">Dordogne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_24.html" class="back-link">Retour au département 24 — Dordogne</a>
-  <div class="fiche">
-    <h2>Bernardières</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>24 — Dordogne</td></tr>
-          <tr><td>Canton</td><td>Mareuil</td></tr>
-          <tr><td>Commune</td><td>Champeaux et la chapelle-Pommier</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>45° 28' 37" Nord, 0° 33' 53" Est.                                                                          Puycheny grav 6-7-8.</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_24/24_Bernardi%c3%a8res_1.jpg" alt="Bernardières" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Bernardi%c3%a8res_2.jpg" alt="Bernardières" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Bernardi%c3%a8res_3.jpg" alt="Bernardières" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Bernardi%c3%a8res_4.jpg" alt="Bernardières" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Bernardi%c3%a8res_5.jpg" alt="Bernardières" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Bernardi%c3%a8res_6.jpg" alt="Bernardières" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Bernardi%c3%a8res_7.jpg" alt="Bernardières" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Bernardi%c3%a8res_8.jpg" alt="Bernardières" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_24.html">Retour au département 24 — Dordogne</a>
+<div class="fiche">
+<h2>Bernardières</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Bernardières" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_24/24_Bernardi%c3%a8res_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Bernardières" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Bernardi%c3%a8res_1.jpg"/><img alt="Bernardières" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Bernardi%c3%a8res_2.jpg"/><img alt="Bernardières" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Bernardi%c3%a8res_3.jpg"/><img alt="Bernardières" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Bernardi%c3%a8res_4.jpg"/><img alt="Bernardières" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Bernardi%c3%a8res_5.jpg"/><img alt="Bernardières" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Bernardi%c3%a8res_6.jpg"/><img alt="Bernardières" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Bernardi%c3%a8res_7.jpg"/><img alt="Bernardières" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Bernardi%c3%a8res_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>24 — Dordogne</td></tr>
+<tr><td>Canton</td><td>Mareuil</td></tr>
+<tr><td>Commune</td><td>Champeaux et la chapelle-Pommier</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVII</td></tr>
+<tr><td>Coordonnées GPS</td><td>45° 28' 37" Nord, 0° 33' 53" Est.                                                                          Puycheny grav 6-7-8.</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Château des Bernardières du XIIe et XVIIe siècles, inscrit en grande partie (corps de logis central, murs d'enceinte, portail Henri II, tour du XIIIe siècle, donjon et terrasses) au titre des M.H. depuis le 24 juin 1948, puis en totalité le 6 octobre 2016
-<br>PUYCHENY du XVe siècle, le territoire Champeaux-et-la-Chapelle-Pommier constitue le fief des Bernardières au XIIIe siècle avant de devenir une châtellenie au XIVe siècle. Le château de  Puycheny est situé à l'est du bourg au milieu des bois, c'est l'ancienne  demeure des Barry, des Fontenay et des Marcillaud de Goursac. 
-<br>BERNARDIERES, sa construction date du XIIe au XVIIe siècle.  Lédifice juxtapose des parties de lépoque féodale à celles de la fin du XVIIe siècle. Châtellenie dès 1253, ses tours abritent au temps de Louis XII  Antoine dAuthon, dit Barberousse, bey dAlger et amiral de la flotte turque. Cette demeure seigneuriale simprègne de lhistoire locale des maîtres de forges du Haut Périgord puisquon y a fabriqué quantité de munitions pour la marine du roi. Le château des Bernardières, anciennement fortifié, fut la maison d'un maître de forge.   En septembre 1377, Bertrand du Guesclin chasse les  anglais après qu'il y eut mis le feu au château et brûlé les prisonniers. Mais le château fut relevé au XVIIe siècle. Selon la légende, l'un de ses propriétaires, Antoine d'Authon plus connu sous le nom de Khayr-al-Din,  alias "Barberousse II", serait devenu un pirate sillonnant la Méditerranée. Après sa conversion à l'Islam, il aurait fini pacha à Alger où il serait mort en 1546. L'auteur de cette légende serait en fait M. Brantôme, dont le grand-père avait acquis le château.</p>
-      <h4>Architecture</h4><p>BERNARDIERES, plus tard, les comtes d'Aydie  l'agrandissent  et construisent les terrasses. De plan quadrangulaire, ce  mêle des éléments allant du XIIIe au XVIIe siècle. La partie médiévale se compose de tours carrées ou circulaires épaulant des logis dissymétriques. Un donjon ruiné en forme de losange, du XIVe siècle, haut de huit mètres, présente la particularité d'être bâti à même le rocher, sans fondation. La construction du XVIIe siècle est constituée d'un vaste logis, agrémenté d'une terrasse à balustrade classique,  une tour ronde à mâchicoulis défendant la porte et le pont-levis. On peut y admirer des boulets de pierre, un puits de 33 mètres de profondeur, un pont en escalier enjambant la Nizonne ainsi que des jardins à la française. Le château des Bernardières est ouvert au public et se visite. 
-<br> PUYCHENY, cet ancien repaire noble édifié au XVe siècle est une construction très retouchée. Le corps de logis s'encadre entre des échauguettes et des tours circulaires ; une tour polygonale enferme l'escalier. Créneaux et mâchicoulis datent d'une restauration moderne.</p>
-      <h4>Habitants / Familles</h4><p>Bernardières Famille d'Antoine d'Authon               Puycheny Famille des  Marcillaud de Goursac. 
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>A Champeaux et la chapelle-Pommier; la Bernardières    grav 1 à5, GPS : 45° 28' 37" Nord, 0° 33' 53" Est.                                                                          Puycheny grav 6-7-8.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Château des Bernardières du XIIe et XVIIe siècles, inscrit en grande partie (corps de logis central, murs d'enceinte, portail Henri II, tour du XIIIe siècle, donjon et terrasses) au titre des M.H. depuis le 24 juin 1948, puis en totalité le 6 octobre 2016
+<br/>PUYCHENY du XVe siècle, le territoire Champeaux-et-la-Chapelle-Pommier constitue le fief des Bernardières au XIIIe siècle avant de devenir une châtellenie au XIVe siècle. Le château de  Puycheny est situé à l'est du bourg au milieu des bois, c'est l'ancienne  demeure des Barry, des Fontenay et des Marcillaud de Goursac. 
+<br/>BERNARDIERES, sa construction date du XIIe au XVIIe siècle.  Lédifice juxtapose des parties de lépoque féodale à celles de la fin du XVIIe siècle. Châtellenie dès 1253, ses tours abritent au temps de Louis XII  Antoine dAuthon, dit Barberousse, bey dAlger et amiral de la flotte turque. Cette demeure seigneuriale simprègne de lhistoire locale des maîtres de forges du Haut Périgord puisquon y a fabriqué quantité de munitions pour la marine du roi. Le château des Bernardières, anciennement fortifié, fut la maison d'un maître de forge.   En septembre 1377, Bertrand du Guesclin chasse les  anglais après qu'il y eut mis le feu au château et brûlé les prisonniers. Mais le château fut relevé au XVIIe siècle. Selon la légende, l'un de ses propriétaires, Antoine d'Authon plus connu sous le nom de Khayr-al-Din,  alias "Barberousse II", serait devenu un pirate sillonnant la Méditerranée. Après sa conversion à l'Islam, il aurait fini pacha à Alger où il serait mort en 1546. L'auteur de cette légende serait en fait M. Brantôme, dont le grand-père avait acquis le château.</p>
+<h4>Architecture</h4><p>BERNARDIERES, plus tard, les comtes d'Aydie  l'agrandissent  et construisent les terrasses. De plan quadrangulaire, ce  mêle des éléments allant du XIIIe au XVIIe siècle. La partie médiévale se compose de tours carrées ou circulaires épaulant des logis dissymétriques. Un donjon ruiné en forme de losange, du XIVe siècle, haut de huit mètres, présente la particularité d'être bâti à même le rocher, sans fondation. La construction du XVIIe siècle est constituée d'un vaste logis, agrémenté d'une terrasse à balustrade classique,  une tour ronde à mâchicoulis défendant la porte et le pont-levis. On peut y admirer des boulets de pierre, un puits de 33 mètres de profondeur, un pont en escalier enjambant la Nizonne ainsi que des jardins à la française. Le château des Bernardières est ouvert au public et se visite. 
+<br/> PUYCHENY, cet ancien repaire noble édifié au XVe siècle est une construction très retouchée. Le corps de logis s'encadre entre des échauguettes et des tours circulaires ; une tour polygonale enferme l'escalier. Créneaux et mâchicoulis datent d'une restauration moderne.</p>
+<h4>Habitants / Familles</h4><p>Bernardières Famille d'Antoine d'Authon               Puycheny Famille des  Marcillaud de Goursac. 
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>A Champeaux et la chapelle-Pommier; la Bernardières    grav 1 à5, GPS : 45° 28' 37" Nord, 0° 33' 53" Est.                                                                          Puycheny grav 6-7-8.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

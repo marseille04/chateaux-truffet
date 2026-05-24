@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Cibioux_Surin — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,57 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_86.html">Vienne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_86.html">Vienne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_86.html" class="back-link">Retour au département 86 — Vienne</a>
-  <div class="fiche">
-    <h2>Cibioux_Surin</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>86 — Vienne</td></tr>
-          <tr><td>Canton</td><td>Civray</td></tr>
-          <tr><td>Commune</td><td>Surin</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVI</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_86/86_Cibioux_Surin_1.jpg" alt="Cibioux_Surin" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Cibioux_Surin_2.jpg" alt="Cibioux_Surin" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Cibioux_Surin_3.jpg" alt="Cibioux_Surin" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Cibioux_Surin_4.jpg" alt="Cibioux_Surin" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Cibioux_Surin_5.jpg" alt="Cibioux_Surin" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_86.html">Retour au département 86 — Vienne</a>
+<div class="fiche">
+<h2>Cibioux_Surin</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Cibioux_Surin" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_86/86_Cibioux_Surin_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Cibioux_Surin" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Cibioux_Surin_1.jpg"/><img alt="Cibioux_Surin" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Cibioux_Surin_2.jpg"/><img alt="Cibioux_Surin" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Cibioux_Surin_3.jpg"/><img alt="Cibioux_Surin" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Cibioux_Surin_4.jpg"/><img alt="Cibioux_Surin" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Cibioux_Surin_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>86 — Vienne</td></tr>
+<tr><td>Canton</td><td>Civray</td></tr>
+<tr><td>Commune</td><td>Surin</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVI</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux châteaux à Surin, celui de Cibioux et de la Faugerie. CIBIOUX,  certains noms retiennent l'attention : Thomas Suyreau, médecin ordinaire du Roi Louis XI, Boisseguin, gouverneur de Poitiers sous la Ligue, Jean de Reclus, maître d'hôtel de Louis XIV, Isaac de La Cropte, comte de Sainte Abre, à qui revient la construction d'une terrasse en 1787. Durement éprouvé au siècle dernier, laissé à l'abandon, l'édifice a connu une histoire périlleuse pour son intégrité. En fait, par une sorte d'état de grâce, il n'a pas été dénaturé. Le château de Cibioux fut dévasté lors de la Révolution française. Il cessera d'être habité à partir de 1945. Depuis 1979, a fait l'objet de plusieurs campagnes de restauration. La terrasse, la toiture, le mur de soutènement et la balustrade sont inscrits aux M.H. depuis 1983.  C'est devenu aujourd'hui un gite et chambres d'hôtes.                                                                       FAUGERIE, également nommé La Faugeraie, le lieu est mentionné vers l'an 1000 dans le cartulaire de Saint Cyprien et son existence sera de nombreuses fois évoquée aux XVIe, XVIIe et XVIIIe siècles.</p>
-      <h4>Architecture</h4><p>CIBIOUX, bâti à Surin.le caractère défensif de ce château des XVe, XVIe et XVIIe siècles, avec mâchicoulis et tours féodales, s'estompe au fur et à mesure de la visite, pour devenir une demeure où il fait bon vivre, il est de style Médiéval, avec ses tours, une enceinte médiévale, une chapelle et une belle terrasse dallée du XVIIIe siècle, une porte ogivale, des fenêtres ornées de sculptures Renaissance donnent sur une belle terrasse à balustres du XVIIIe siècle. Héritier d'un premier hôtel noble que la guerre de cent ans a réduit à néant, il doit son visage, à la fois austère et séduisant, et aux campagnes de construction qui s'y sont succédé. Il présente un fort caractère défensif avec ses mâchicoulis et ses tours féodales. Des fenêtres ornées de sculptures de style Renaissance donnent sur une belle terrasse à balustres du XVIIIe siècle. Il transforma la toiture du corps principal à la Mansart.                                                                                    FAUGERIE,  le château de la Faugerie présente deux tours circulaires encadrant l'une des façades d'un corps de logis rectangulaire, une autre, hexagonale et contenant un escalier, flanquant l'autre façade. Sa construction pourrait remonter au XIVe siècle. Le bâtiment est recouvert d'une toiture d'ardoise à deux pans, les tours étant toutes trois dotées de hautes poivrières d'ardoise également. Le logis est prolongé par un long bâtiment de dépendance se terminant par un pavillon pourvu d'un toit en croupe et flanqué d'une tour circulaire à poivrière dans un angle. Les deux sont couverts d'ardoises et de tuiles plates.</p>
-      <h4>Habitants / Familles</h4><p>Cibioux;  Isaac de La Cropte,                                                    Faugrerie; seigneurs locaux
-<br>        "</p>
-      <h4>Divers</h4><p>à Surin : 46° 04' 44" Nord, 0° 22' 19" Est , celui de Cibioux grav 1 à 4 et de la Faugerie grav-5.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux châteaux à Surin, celui de Cibioux et de la Faugerie. CIBIOUX,  certains noms retiennent l'attention : Thomas Suyreau, médecin ordinaire du Roi Louis XI, Boisseguin, gouverneur de Poitiers sous la Ligue, Jean de Reclus, maître d'hôtel de Louis XIV, Isaac de La Cropte, comte de Sainte Abre, à qui revient la construction d'une terrasse en 1787. Durement éprouvé au siècle dernier, laissé à l'abandon, l'édifice a connu une histoire périlleuse pour son intégrité. En fait, par une sorte d'état de grâce, il n'a pas été dénaturé. Le château de Cibioux fut dévasté lors de la Révolution française. Il cessera d'être habité à partir de 1945. Depuis 1979, a fait l'objet de plusieurs campagnes de restauration. La terrasse, la toiture, le mur de soutènement et la balustrade sont inscrits aux M.H. depuis 1983.  C'est devenu aujourd'hui un gite et chambres d'hôtes.                                                                       FAUGERIE, également nommé La Faugeraie, le lieu est mentionné vers l'an 1000 dans le cartulaire de Saint Cyprien et son existence sera de nombreuses fois évoquée aux XVIe, XVIIe et XVIIIe siècles.</p>
+<h4>Architecture</h4><p>CIBIOUX, bâti à Surin.le caractère défensif de ce château des XVe, XVIe et XVIIe siècles, avec mâchicoulis et tours féodales, s'estompe au fur et à mesure de la visite, pour devenir une demeure où il fait bon vivre, il est de style Médiéval, avec ses tours, une enceinte médiévale, une chapelle et une belle terrasse dallée du XVIIIe siècle, une porte ogivale, des fenêtres ornées de sculptures Renaissance donnent sur une belle terrasse à balustres du XVIIIe siècle. Héritier d'un premier hôtel noble que la guerre de cent ans a réduit à néant, il doit son visage, à la fois austère et séduisant, et aux campagnes de construction qui s'y sont succédé. Il présente un fort caractère défensif avec ses mâchicoulis et ses tours féodales. Des fenêtres ornées de sculptures de style Renaissance donnent sur une belle terrasse à balustres du XVIIIe siècle. Il transforma la toiture du corps principal à la Mansart.                                                                                    FAUGERIE,  le château de la Faugerie présente deux tours circulaires encadrant l'une des façades d'un corps de logis rectangulaire, une autre, hexagonale et contenant un escalier, flanquant l'autre façade. Sa construction pourrait remonter au XIVe siècle. Le bâtiment est recouvert d'une toiture d'ardoise à deux pans, les tours étant toutes trois dotées de hautes poivrières d'ardoise également. Le logis est prolongé par un long bâtiment de dépendance se terminant par un pavillon pourvu d'un toit en croupe et flanqué d'une tour circulaire à poivrière dans un angle. Les deux sont couverts d'ardoises et de tuiles plates.</p>
+<h4>Habitants / Familles</h4><p>Cibioux;  Isaac de La Cropte,                                                    Faugrerie; seigneurs locaux
+<br/>        "</p>
+<h4>Divers</h4><p>à Surin : 46° 04' 44" Nord, 0° 22' 19" Est , celui de Cibioux grav 1 à 4 et de la Faugerie grav-5.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

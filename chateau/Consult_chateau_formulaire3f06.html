@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Quimper_II — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,57 +113,61 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_29.html">Finistère</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_29.html">Finistère</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_29.html" class="back-link">Retour au département 29 — Finistère</a>
-  <div class="fiche">
-    <h2>Quimper_II</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>29 — Finistère</td></tr>
-          <tr><td>Canton</td><td>Quimper</td></tr>
-          <tr><td>Commune</td><td>Quimper</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI-XIX</td></tr>
-          <tr><td>Coordonnées GPS</td><td>47° 59' 40" Nord, 4° 06' 10" Ouest                                                                               Toulven -5                                                                               GPS : 47° 59' 48" Nord, 4° 05' 47" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_29/29_Quimper_II_1.jpg" alt="Quimper_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Quimper_II_2.jpg" alt="Quimper_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Quimper_II_3.jpg" alt="Quimper_II" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_29.html">Retour au département 29 — Finistère</a>
+<div class="fiche">
+<h2>Quimper_II</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Quimper_II" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_29/29_Quimper_II_1.jpg"/><div class="hero-count" id="hero-count">1 / 3</div></div><div class="photo-strip"><img alt="Quimper_II" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Quimper_II_1.jpg"/><img alt="Quimper_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Quimper_II_2.jpg"/><img alt="Quimper_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Quimper_II_3.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>29 — Finistère</td></tr>
+<tr><td>Canton</td><td>Quimper</td></tr>
+<tr><td>Commune</td><td>Quimper</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI-XIX</td></tr>
+<tr><td>Coordonnées GPS</td><td>47° 59' 40" Nord, 4° 06' 10" Ouest                                                                               Toulven -5                                                                               GPS : 47° 59' 48" Nord, 4° 05' 47" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>QUIMPER,  il est de type château. Il abrite, depuis 1909, les services de la Préfecture. L'édifice se situe dans le centre-ville de Quimper, au bord de l'Odet, la construction de l'édifice est décidée, par le Conseil Général du département du Finistère, en 1904 et effectuée, sous la direction de l'architecte départemental Adolphe Vally, de 1906 à 1909. La résidence du préfet du Finistère se situe, quant à elle, Rue Sainte-Catherine, dans une maison conventuelle de l'ancien hôpital Sainte-Catherine (reconstruit vers 1675-1685), premier hôtel de préfecture (1800-1861), sur les vestiges duquel se dresse l'actuelle préfecture. L'armature de l'édifice est entièrement en béton armé, mais soigneusement masquée par un style architectural néo-Renaissance, inspiré des châteaux érigés sous le règne de Louis XII. La configuration du terrain a quelque peu obligé l'architecte à décentrer l'entrée principale, traitée comme une tour d'angle. La deuxième porte d'entrée, côté quais de l'Odet, est encadrée par deux couples de sonneurs, en costume traditionnel. L'Hôtel de la Préfecture du Finistère est un bâtiment bâti.                 TOULVEN    Édifice construit dans la deuxième moitié du XIXe siècle dans le style néo-gothique. Il appartient à Monsieur Malherbe de la Bouexière au début du XXe siècle. Château de plan rectangulaire comportant un pavillon central cantonné de quatre tours circulaires couvertes en poivrière ; le décor de style néo-gothique se concentre sur l'axe du bâtiment (balustrade, accolade, fronton à gâble surmontant les lucarnes).</p>
-      <h4>Architecture</h4><p>PALAIS de ROHAN, propriété du département, le musée est installé dans l'ancien Palais des Evêques de Quimper construit du XVIe siècle au XIXe siècle. Il comprend, selon un plan en équerre, deux ailes encadrant la magnifique tour d'escalier, au riche décor Renaissance, élevée en 1507 par l'Evêque Claude de Rohan. Entre celle-ci et la cathédrale, l'aile longeant la rue du Roi Gradlon (1647), est percée d'un porche par lequel s'effectue l'entrée dans la cour du musée. L'aile bordant l'Odet, élevée au XVIIIe siècle (1776) a été remaniée en 1860. Cloître dans le goût néo-gothique. Cloître néo-gothique (vers 1850). Cette tour descalier est la partie la plus ancienne du bâtiment (1507). Le faste flamboyant du décor extérieur des fenêtres et de la cheminée contraste avec la sobriété de lespace intérieur de lescalier. Seuls les paliers sont mis en valeur par des arcatures gothiques. Lescalier hélicoïdal sachève par un somptueux plafond sculpté, en « palmier », lun des éléments décoratifs les plus importants du Palais. Lensemble est soutenu, au centre, par une colonne torsadée ornée du symbole héraldique des Rohan et de lhermine de Bretagne. Le décor du pourtour présente une grande diversité (rinceaux, feuillages, nombreux animaux réels ou imaginaires, personnages énigmatiques). Ce palier permet daccéder, grâce à un petit escalier à vis, à deux pièces hautes qui servaient, aux XVIIe et XVIIIe siècles, de salles des archives. Ces appartements furent aménagés à la fin du XVIIIe siècle, dans laile sud du Palais, qui datait du XVIe siècle. La façade, au-dessus de lOdet, repose sur des arcades percées dans les remparts de la ville. À lintérieur, le premier et principal étage est le plus richement décoré. Il sorganise en une enfilade de pièces lambrissées. Cet ensemble constituait, dès 1776, la suite principale du Palais et devait accueillir les appartements de lévêque.</p>
-      <h4>Habitants / Familles</h4><p>Quimper ; 'Evêque Claude de Rohan                                 Toulven; Monsieur Malherbe de la Bouexière 
-<br>        
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Prefecture grav-1      des Indes Grav-2   Kinkiz grav-4                      GPS : 47° 59' 40" Nord, 4° 06' 10" Ouest                                                                               Toulven -5                                                                               GPS : 47° 59' 48" Nord, 4° 05' 47" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>QUIMPER,  il est de type château. Il abrite, depuis 1909, les services de la Préfecture. L'édifice se situe dans le centre-ville de Quimper, au bord de l'Odet, la construction de l'édifice est décidée, par le Conseil Général du département du Finistère, en 1904 et effectuée, sous la direction de l'architecte départemental Adolphe Vally, de 1906 à 1909. La résidence du préfet du Finistère se situe, quant à elle, Rue Sainte-Catherine, dans une maison conventuelle de l'ancien hôpital Sainte-Catherine (reconstruit vers 1675-1685), premier hôtel de préfecture (1800-1861), sur les vestiges duquel se dresse l'actuelle préfecture. L'armature de l'édifice est entièrement en béton armé, mais soigneusement masquée par un style architectural néo-Renaissance, inspiré des châteaux érigés sous le règne de Louis XII. La configuration du terrain a quelque peu obligé l'architecte à décentrer l'entrée principale, traitée comme une tour d'angle. La deuxième porte d'entrée, côté quais de l'Odet, est encadrée par deux couples de sonneurs, en costume traditionnel. L'Hôtel de la Préfecture du Finistère est un bâtiment bâti.                 TOULVEN    Édifice construit dans la deuxième moitié du XIXe siècle dans le style néo-gothique. Il appartient à Monsieur Malherbe de la Bouexière au début du XXe siècle. Château de plan rectangulaire comportant un pavillon central cantonné de quatre tours circulaires couvertes en poivrière ; le décor de style néo-gothique se concentre sur l'axe du bâtiment (balustrade, accolade, fronton à gâble surmontant les lucarnes).</p>
+<h4>Architecture</h4><p>PALAIS de ROHAN, propriété du département, le musée est installé dans l'ancien Palais des Evêques de Quimper construit du XVIe siècle au XIXe siècle. Il comprend, selon un plan en équerre, deux ailes encadrant la magnifique tour d'escalier, au riche décor Renaissance, élevée en 1507 par l'Evêque Claude de Rohan. Entre celle-ci et la cathédrale, l'aile longeant la rue du Roi Gradlon (1647), est percée d'un porche par lequel s'effectue l'entrée dans la cour du musée. L'aile bordant l'Odet, élevée au XVIIIe siècle (1776) a été remaniée en 1860. Cloître dans le goût néo-gothique. Cloître néo-gothique (vers 1850). Cette tour descalier est la partie la plus ancienne du bâtiment (1507). Le faste flamboyant du décor extérieur des fenêtres et de la cheminée contraste avec la sobriété de lespace intérieur de lescalier. Seuls les paliers sont mis en valeur par des arcatures gothiques. Lescalier hélicoïdal sachève par un somptueux plafond sculpté, en « palmier », lun des éléments décoratifs les plus importants du Palais. Lensemble est soutenu, au centre, par une colonne torsadée ornée du symbole héraldique des Rohan et de lhermine de Bretagne. Le décor du pourtour présente une grande diversité (rinceaux, feuillages, nombreux animaux réels ou imaginaires, personnages énigmatiques). Ce palier permet daccéder, grâce à un petit escalier à vis, à deux pièces hautes qui servaient, aux XVIIe et XVIIIe siècles, de salles des archives. Ces appartements furent aménagés à la fin du XVIIIe siècle, dans laile sud du Palais, qui datait du XVIe siècle. La façade, au-dessus de lOdet, repose sur des arcades percées dans les remparts de la ville. À lintérieur, le premier et principal étage est le plus richement décoré. Il sorganise en une enfilade de pièces lambrissées. Cet ensemble constituait, dès 1776, la suite principale du Palais et devait accueillir les appartements de lévêque.</p>
+<h4>Habitants / Familles</h4><p>Quimper ; 'Evêque Claude de Rohan                                 Toulven; Monsieur Malherbe de la Bouexière 
+<br/>
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Prefecture grav-1      des Indes Grav-2   Kinkiz grav-4                      GPS : 47° 59' 40" Nord, 4° 06' 10" Ouest                                                                               Toulven -5                                                                               GPS : 47° 59' 48" Nord, 4° 05' 47" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

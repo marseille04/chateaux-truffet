@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Toulon_Allier — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,59 +113,57 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_03.html">Allier</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_03.html">Allier</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_03.html" class="back-link">Retour au département 03 — Allier</a>
-  <div class="fiche">
-    <h2>Toulon_Allier</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>03 — Allier</td></tr>
-          <tr><td>Canton</td><td>Moulins</td></tr>
-          <tr><td>Commune</td><td>Toulon-sur-Allier</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVIII-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_03/03_Toulon_Allier_1.jpg" alt="Toulon_Allier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Toulon_Allier_2.jpg" alt="Toulon_Allier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Toulon_Allier_3.jpg" alt="Toulon_Allier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Toulon_Allier_4.jpg" alt="Toulon_Allier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Toulon_Allier_5.jpg" alt="Toulon_Allier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Toulon_Allier_6.jpg" alt="Toulon_Allier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Toulon_Allier_7.jpg" alt="Toulon_Allier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Toulon_Allier_8.jpg" alt="Toulon_Allier" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_03.html">Retour au département 03 — Allier</a>
+<div class="fiche">
+<h2>Toulon_Allier</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Toulon_Allier" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_03/03_Toulon_Allier_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Toulon_Allier" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Toulon_Allier_1.jpg"/><img alt="Toulon_Allier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Toulon_Allier_2.jpg"/><img alt="Toulon_Allier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Toulon_Allier_3.jpg"/><img alt="Toulon_Allier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Toulon_Allier_4.jpg"/><img alt="Toulon_Allier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Toulon_Allier_5.jpg"/><img alt="Toulon_Allier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Toulon_Allier_6.jpg"/><img alt="Toulon_Allier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Toulon_Allier_7.jpg"/><img alt="Toulon_Allier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Toulon_Allier_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>03 — Allier</td></tr>
+<tr><td>Canton</td><td>Moulins</td></tr>
+<tr><td>Commune</td><td>Toulon-sur-Allier</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVIII-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Trois châteaux à Toulon sur Allier, le Colombier du XIXe siècle,  de la Forêt du XVIIIe siècle  et de Montchenin du XVIIIe siècle.                                COLOMBIER, le premier propriétaire connu est  en 1657 François Febvrier, seigneur de la Motte du Colombier.                 La FORET, fief  avant  le XVe siècle, époque à laquelle elle fut érigée en seigneurie pour  Jean de la Goutte, déjà  seigneur de l'Ecluse à Neuilly-le-Réal. Ce fut le 14 septembre 1474 qu'il obtint, l'autorisation  d'y édifier une maison forte. En 1642, Jacques Roques, écuyer, sieur de la Forêt, était également des Modières et de Fourchault.  En 1767  J.B. Moreau,  épousa  Elisabeth Moreau, fille de feu Antoine. Dans les années 1770, le seigneur de La Forêt   était Benjamin Michel Priolo, directeur des fermes du roi à Moulins qui fit reconstruire le château. Son propriétaire émigre, la terre de La Forêt fut confisquée en avril  1794, puis vendue comme bien national.                              MONTCHENIN,  en 1462 château de  Pierre Gouat.  En 1594, elle appartient à Jehan de Garnault qui le vend à  Yves Brinon, conseiller du roi. En 1618 elle appartenait à J. B. Brinon, sieur de  Montchenin, conseiller du Roi. En 1628  vendu à Charles de Mure, sieur de Montchenin. En 1652, la seigneurie  vendue ensuite à Jean Talon,  habité  que par des fermiers, Pierre Huart en 1681, Pierre Meilheurat, homme  d'affaires  de monsieur de La Tour, en 1723. L'initiateur du nouveau château fut maître François Louis Rabouine, seigneur, receveur général des fermes du  Roy, mourut   sans enfants, il fit donation à un de ses neveux, noble François Pierre Le Brun, d'une famille parisienne, régisseur  des domaines. Il mourut en son château le 6 avril 1784, laissant une fille Elisabeth, qui avait épousé le 30 mai 1780 maître Hubert Collot, avocat, d'ou Catherine qui épouse Mayeul Chabot, fils de Gilbert Bon magistrat  et de Marie Catherine Bonnand de Montaret, seigneur du château de Fromenteau à Toulon sur Allier. Au début du XVIIIe siècle, Montchenin rentre dans le patrimoine de Jean-Baptiste des Gallois de La Tour, qui fut premier président du parlement d'Aix-en-Provence. Aujourd'hui Montchenin est toujours dans leurs descendances.</p>
-      <h4>Architecture</h4><p>Colombier, château du XIXe siècle d'inspiration médiévale, avec parc, allée et pièce d'eau. Disposés dans un joli parc, les bâtiments ont remplacé une première demeure de style Louis XVI. De plan en équerre  où le corps du logis, de style néo-gothique, est accosté de deux belles tours à mâchicoulis, l'une carrée, complétée par des créneaux et  une guette, l'autre ronde, surmontée d'un haut toit conique, sur la partie arrière  est installé un haut  pavillon du XIXe siècle.                                  Fôret,  au sud du village, on trouve un logis en U, en briques bicolores. La Fôret ne parait pas avoir été un fief avant   le XVe siècle. Le  château était doté d'une chapelle, pavillon carré à clocheton.                                Montchenin,  est une gentilhommière à haut toit construite sous le règne de Louis XV, selon le principe des Folies du XVIIIe siècle, côté est, le château est inséré dans une cour fermée par des communs datant des XVIe et XVIIIe siècles, où se situe une magnifique grange à colombages construite sous limpulsion dHenri IV. Côté ouest, la façade d'un très pur style Louis XV donne sur un ancien parc à la Française, conçu en terrasse par un élève de Le Nôtre. Des tours typiquement bourbonnaises font ceinture au parc qui se prolonge par une belle allée de platanes, dotée de communs, et à l'avant une enceinte à trois tours rondes, fut construit à la veille de la Révolution, mais il succédait à un château sur motte encore repérable.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Jacques Roques               Famille de Charles de Mure"</p>
-      <h4>Divers</h4><p>Château du Colombier, de la Forêt, de Montchenin, de fromenteau, de la Vermillière, et de Boulaize à Toulon sdur Allier</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Trois châteaux à Toulon sur Allier, le Colombier du XIXe siècle,  de la Forêt du XVIIIe siècle  et de Montchenin du XVIIIe siècle.                                COLOMBIER, le premier propriétaire connu est  en 1657 François Febvrier, seigneur de la Motte du Colombier.                 La FORET, fief  avant  le XVe siècle, époque à laquelle elle fut érigée en seigneurie pour  Jean de la Goutte, déjà  seigneur de l'Ecluse à Neuilly-le-Réal. Ce fut le 14 septembre 1474 qu'il obtint, l'autorisation  d'y édifier une maison forte. En 1642, Jacques Roques, écuyer, sieur de la Forêt, était également des Modières et de Fourchault.  En 1767  J.B. Moreau,  épousa  Elisabeth Moreau, fille de feu Antoine. Dans les années 1770, le seigneur de La Forêt   était Benjamin Michel Priolo, directeur des fermes du roi à Moulins qui fit reconstruire le château. Son propriétaire émigre, la terre de La Forêt fut confisquée en avril  1794, puis vendue comme bien national.                              MONTCHENIN,  en 1462 château de  Pierre Gouat.  En 1594, elle appartient à Jehan de Garnault qui le vend à  Yves Brinon, conseiller du roi. En 1618 elle appartenait à J. B. Brinon, sieur de  Montchenin, conseiller du Roi. En 1628  vendu à Charles de Mure, sieur de Montchenin. En 1652, la seigneurie  vendue ensuite à Jean Talon,  habité  que par des fermiers, Pierre Huart en 1681, Pierre Meilheurat, homme  d'affaires  de monsieur de La Tour, en 1723. L'initiateur du nouveau château fut maître François Louis Rabouine, seigneur, receveur général des fermes du  Roy, mourut   sans enfants, il fit donation à un de ses neveux, noble François Pierre Le Brun, d'une famille parisienne, régisseur  des domaines. Il mourut en son château le 6 avril 1784, laissant une fille Elisabeth, qui avait épousé le 30 mai 1780 maître Hubert Collot, avocat, d'ou Catherine qui épouse Mayeul Chabot, fils de Gilbert Bon magistrat  et de Marie Catherine Bonnand de Montaret, seigneur du château de Fromenteau à Toulon sur Allier. Au début du XVIIIe siècle, Montchenin rentre dans le patrimoine de Jean-Baptiste des Gallois de La Tour, qui fut premier président du parlement d'Aix-en-Provence. Aujourd'hui Montchenin est toujours dans leurs descendances.</p>
+<h4>Architecture</h4><p>Colombier, château du XIXe siècle d'inspiration médiévale, avec parc, allée et pièce d'eau. Disposés dans un joli parc, les bâtiments ont remplacé une première demeure de style Louis XVI. De plan en équerre  où le corps du logis, de style néo-gothique, est accosté de deux belles tours à mâchicoulis, l'une carrée, complétée par des créneaux et  une guette, l'autre ronde, surmontée d'un haut toit conique, sur la partie arrière  est installé un haut  pavillon du XIXe siècle.                                  Fôret,  au sud du village, on trouve un logis en U, en briques bicolores. La Fôret ne parait pas avoir été un fief avant   le XVe siècle. Le  château était doté d'une chapelle, pavillon carré à clocheton.                                Montchenin,  est une gentilhommière à haut toit construite sous le règne de Louis XV, selon le principe des Folies du XVIIIe siècle, côté est, le château est inséré dans une cour fermée par des communs datant des XVIe et XVIIIe siècles, où se situe une magnifique grange à colombages construite sous limpulsion dHenri IV. Côté ouest, la façade d'un très pur style Louis XV donne sur un ancien parc à la Française, conçu en terrasse par un élève de Le Nôtre. Des tours typiquement bourbonnaises font ceinture au parc qui se prolonge par une belle allée de platanes, dotée de communs, et à l'avant une enceinte à trois tours rondes, fut construit à la veille de la Révolution, mais il succédait à un château sur motte encore repérable.</p>
+<h4>Habitants / Familles</h4><p>Famille de Jacques Roques               Famille de Charles de Mure"</p>
+<h4>Divers</h4><p>Château du Colombier, de la Forêt, de Montchenin, de fromenteau, de la Vermillière, et de Boulaize à Toulon sdur Allier</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

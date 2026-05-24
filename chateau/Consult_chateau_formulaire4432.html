@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Haye — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,60 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_35.html">Ille-et-Vilaine</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_35.html">Ille-et-Vilaine</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_35.html" class="back-link">Retour au département 35 — Ille-et-Vilaine</a>
-  <div class="fiche">
-    <h2>Haye</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>35 — Ille-et-Vilaine</td></tr>
-          <tr><td>Canton</td><td>Val-Couesnon</td></tr>
-          <tr><td>Commune</td><td>St-Hilaire des Landes</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIV-XVII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>48° 20' 42" Nord, 1° 20' 55" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_35/35_Haye_1.jpg" alt="Haye" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Haye_2.jpg" alt="Haye" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Haye_3.jpg" alt="Haye" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Haye_4.jpg" alt="Haye" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Haye_5.jpg" alt="Haye" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Haye_6.jpg" alt="Haye" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Haye_7.jpg" alt="Haye" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Haye_8.jpg" alt="Haye" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_35.html">Retour au département 35 — Ille-et-Vilaine</a>
+<div class="fiche">
+<h2>Haye</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Haye" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_35/35_Haye_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Haye" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Haye_1.jpg"/><img alt="Haye" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Haye_2.jpg"/><img alt="Haye" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Haye_3.jpg"/><img alt="Haye" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Haye_4.jpg"/><img alt="Haye" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Haye_5.jpg"/><img alt="Haye" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Haye_6.jpg"/><img alt="Haye" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Haye_7.jpg"/><img alt="Haye" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Haye_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>35 — Ille-et-Vilaine</td></tr>
+<tr><td>Canton</td><td>Val-Couesnon</td></tr>
+<tr><td>Commune</td><td>St-Hilaire des Landes</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIV-XVII</td></tr>
+<tr><td>Coordonnées GPS</td><td>48° 20' 42" Nord, 1° 20' 55" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>La HAYE, près du château une enceinte fortifiée, Le nom même de "la Haye"  La seigneurie de la Haye Saint-Hilaire est une des plus anciennes connues dans le pays de Fougères. Les premiers seigneurs apparurent dans les textes au XIIe siècle et la seigneurie est restée dans les mains de la même famille, par filiation directe, jusqu'à aujourd'hui.  en 1163 à Guillaume de la Haye fit don à l'abbaye de Rillé de tous les droits, Jean de la Haye   épousa Marguerite de lignières un fils qui épousa Marie Cassin . Au XVIe siècle Léon II de la Haye  un fils René. Cette seigneurie possédait des fiefs à Saint-Hilaire, mais également dans les paroisses voisines : Saint-Marc-le-Blanc, Saint-Sauveur-des-Landes, Saint-Etienne-en-Coglès, Saint-Ouen-les-Alleux ou La Chapelle Saint-Aubert.  Anne de la Haye  décède en 1699  et Louise de Canabert sa femme, laisse le domaine à son fils Basile rend aveu pour la seigneurie  en 1700, s'éteint sans postérité, laissant le domaine à un neveu Christophe qui épouse Bénigne de la Motte-Morel la vielle de la Révolution, le domaine est au mains de Louis François de la Haye ce dernier émigre les biens vendu, au retour il parvient à racheter une partie du domaine et meurt à Rennes en 1800 passa à ses deux fils  Louis et Charles-Edouard prendront par dans la chouannerie. Le château est resté depuis ses origines la propriété de la famille La Haye Saint-Hilaire. En 2019, les héritiers du comte Lionel de La Haye Saint-Hilaire, décédé en mars 2016, mettent le château en vente.</p>
-      <h4>Architecture</h4><p>La HAYE, fut érigée en châtellenie en 1593 et 1619, avec droit de haute justice au bourg de Saint-Hilaire. La famille de la Haye Saint-Hilaire donna cinq gouverneurs de Fougères dont l'un d'eux, René (1568-1593), donna son nom à la tour d'entrée sud du château de Fougères. L'actuel château   est composé d'éléments de diverses époques, allant du XIVe siècle au XVIIe siècle. De l'époque médiévale, il reste la structure globale du site, avec la cour carrée bordée de douves, une ancienne porte fortifiée et la tour de guet située en son centre. Ces éléments sont les vestiges conservés après les travaux entrepris par Henri de Saint-Hilaire au début du XVIIe siècle dans le but d'agrandir et de fortifier sa demeure, mais ces nouvelles fortifications furent interdites par le roi en 1619. Henri mourut en 1622, après avoir modifié l'ancien donjon, implanté au sud-ouest de la cour, mais sans avoir terminé son projet initial. De cette première phase de travaux, il subsiste la partie Est du logis ainsi que la partie centrale. Le logis dans la continuité fut construit dans la deuxième moitié du XVIIe siècle. Autour d'une cour carrée, le château comprend un logis principal (au sud-est), un pavillon, des communs (à l'ouest) et une chapelle dédiée à la Sainte-Famille (dans langle nord-est). Une tour ronde datant du XIIIe siècle se trouve au milieu de la cour.  Lensemble est entouré de douves ; un pont et un portail marque lentrée principale de l'ensemble.</p>
-      <h4>Habitants / Familles</h4><p>famille de la Haye Saint-Hilaire
-<br>        "</p>
-      <h4>Divers</h4><p>St-Thurial, Haye-Chapeau grav-1       Haye                                                                       GPS : 48° 20' 42" Nord, 1° 20' 55" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>La HAYE, près du château une enceinte fortifiée, Le nom même de "la Haye"  La seigneurie de la Haye Saint-Hilaire est une des plus anciennes connues dans le pays de Fougères. Les premiers seigneurs apparurent dans les textes au XIIe siècle et la seigneurie est restée dans les mains de la même famille, par filiation directe, jusqu'à aujourd'hui.  en 1163 à Guillaume de la Haye fit don à l'abbaye de Rillé de tous les droits, Jean de la Haye   épousa Marguerite de lignières un fils qui épousa Marie Cassin . Au XVIe siècle Léon II de la Haye  un fils René. Cette seigneurie possédait des fiefs à Saint-Hilaire, mais également dans les paroisses voisines : Saint-Marc-le-Blanc, Saint-Sauveur-des-Landes, Saint-Etienne-en-Coglès, Saint-Ouen-les-Alleux ou La Chapelle Saint-Aubert.  Anne de la Haye  décède en 1699  et Louise de Canabert sa femme, laisse le domaine à son fils Basile rend aveu pour la seigneurie  en 1700, s'éteint sans postérité, laissant le domaine à un neveu Christophe qui épouse Bénigne de la Motte-Morel la vielle de la Révolution, le domaine est au mains de Louis François de la Haye ce dernier émigre les biens vendu, au retour il parvient à racheter une partie du domaine et meurt à Rennes en 1800 passa à ses deux fils  Louis et Charles-Edouard prendront par dans la chouannerie. Le château est resté depuis ses origines la propriété de la famille La Haye Saint-Hilaire. En 2019, les héritiers du comte Lionel de La Haye Saint-Hilaire, décédé en mars 2016, mettent le château en vente.</p>
+<h4>Architecture</h4><p>La HAYE, fut érigée en châtellenie en 1593 et 1619, avec droit de haute justice au bourg de Saint-Hilaire. La famille de la Haye Saint-Hilaire donna cinq gouverneurs de Fougères dont l'un d'eux, René (1568-1593), donna son nom à la tour d'entrée sud du château de Fougères. L'actuel château   est composé d'éléments de diverses époques, allant du XIVe siècle au XVIIe siècle. De l'époque médiévale, il reste la structure globale du site, avec la cour carrée bordée de douves, une ancienne porte fortifiée et la tour de guet située en son centre. Ces éléments sont les vestiges conservés après les travaux entrepris par Henri de Saint-Hilaire au début du XVIIe siècle dans le but d'agrandir et de fortifier sa demeure, mais ces nouvelles fortifications furent interdites par le roi en 1619. Henri mourut en 1622, après avoir modifié l'ancien donjon, implanté au sud-ouest de la cour, mais sans avoir terminé son projet initial. De cette première phase de travaux, il subsiste la partie Est du logis ainsi que la partie centrale. Le logis dans la continuité fut construit dans la deuxième moitié du XVIIe siècle. Autour d'une cour carrée, le château comprend un logis principal (au sud-est), un pavillon, des communs (à l'ouest) et une chapelle dédiée à la Sainte-Famille (dans langle nord-est). Une tour ronde datant du XIIIe siècle se trouve au milieu de la cour.  Lensemble est entouré de douves ; un pont et un portail marque lentrée principale de l'ensemble.</p>
+<h4>Habitants / Familles</h4><p>famille de la Haye Saint-Hilaire
+<br/>        "</p>
+<h4>Divers</h4><p>St-Thurial, Haye-Chapeau grav-1       Haye                                                                       GPS : 48° 20' 42" Nord, 1° 20' 55" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

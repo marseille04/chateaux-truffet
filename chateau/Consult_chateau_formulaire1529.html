@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Rocles — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,56 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_03.html">Allier</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_03.html">Allier</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_03.html" class="back-link">Retour au département 03 — Allier</a>
-  <div class="fiche">
-    <h2>Rocles</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>03 — Allier</td></tr>
-          <tr><td>Canton</td><td>Montet</td></tr>
-          <tr><td>Commune</td><td>Rocles</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_03/03_Rocles_1.jpg" alt="Rocles" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Rocles_2.jpg" alt="Rocles" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Rocles_3.jpg" alt="Rocles" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Rocles_4.jpg" alt="Rocles" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_03.html">Retour au département 03 — Allier</a>
+<div class="fiche">
+<h2>Rocles</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Rocles" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_03/03_Rocles_1.jpg"/><div class="hero-count" id="hero-count">1 / 4</div></div><div class="photo-strip"><img alt="Rocles" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Rocles_1.jpg"/><img alt="Rocles" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Rocles_2.jpg"/><img alt="Rocles" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Rocles_3.jpg"/><img alt="Rocles" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Rocles_4.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>03 — Allier</td></tr>
+<tr><td>Canton</td><td>Montet</td></tr>
+<tr><td>Commune</td><td>Rocles</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Trois  châteaux à Rocles, de la Busserie du XVIIe siècle, de Franchesse et de la Lande du XVe avec douves.           LANDE  du  XIVe siècle, dépendait de la châtellenie de Murat. Jean Béraud, écuyer, seigneur de Givry, fils d'un autre Jean Béraud, damoiseau, qui rend aveu en 1357 et 1367 pour différents fiefs du Bourbonnais, comprend dans ses dénombrements  Marguerite de Neuville. La Lande appartenait en 1484 à Jean de Givry écuyer. Il passa par alliance dans la maison de la Souche.  En décembre 1538, Anne de la Souche, épouse Jean d'Aubigny. Vers 1645-1650, Jacques de Dreuille était qualifié de seigneur de La Lande. En 1754, La Lande relevait toujours de la châtellenie de Murat et fut apportée par mariage aux vicomtes de Lichy. En 1775, François fils de Gilbert de Dreuille écuyer, en rendit hommage, en même temps que de la seigneurie de Franchesse, dans la châtellenie de Murat. François-Senneterre de Dreuille, écuyer, époux de Perrette de La Barre, était reconnu comme seigneur de La Lande. 
-<br>BUSSERIE,  la Busserie appartient à la famille Thonier, depuis qu'un  de leurs ancêtres, Gilbert Thonier, maître clerc de La châtellenie de Murat et  fermier de la seigneurerie du Montet en fit l'acquisition en 1595.            FRANCHESSE, le dénombrement des fiefs de 1503 fait mention de deux aveux à la duchesse de Boubon, concernant Franchesse, dans la châtellenie de Murat. D'une part, Etienne Loyau, seigneur de Franchesse. D'autre part, Jehan de Franchesse, écuyer, et son frère, messire  Gilbert de Franchesse, ce qui est  peu probable.  Au cours du XVIIe siècle, le château de Franchesse appartenait aux de Breuil, dans le bourg proche de Cressanges, avant la période révolutionnaire, on distingue deux seigneuries, celle de la Condemine dont subsiste encore le château et celle qui avait pour siège le château de Saragousse où ont résidé la famille Saint-Aubin, puis la famille de Chabannes et enfin celle de Villaine.</p>
-      <h4>Architecture</h4><p>Lande, du  XVe siècle,  donjon couronné d'un chemin de ronde en pans de bois sur encorbellement, la Lande apparaît comme un élément intéressant d'une série de châteaux médiévaux bourbonnais du XVe siècle. Présence de douves et d'une tour plus ancienne aux dispositifs de défense.  On dit que la Lande aurait été une ancienne commanderie de Templiers et il est possible que, sous Louis XI, elle ait pu servir de prison d'état. De par son aspect, ses douves (aujourd'hui asséchées), son chemin de ronde, l'épaisseur de ses murs et son architecture puissante et austère, cette construction féodale prend assurément l'allure d'une maison forte. Mais, la particularité du donjon  tient à la présence d'une galerie de bois en croix de Saint-André qui le couronne, reposant sur une série de corbeaux et rappelant l'existence d'anciens hourds. (Le corbeau de l'angle ouest est chargé d'un écu aux armes des Bourbons). Le toit en pavillon accuse une forte pente.           Busserie Gentilhommière à deux niveaux  flanquée aux extrémités d'une tour ronde et d'une tour carrée,  du premier château, il ne reste que l'appellation et un pigeonnier de plan carré, surmonté d'un lanternon. La demeure actuelle a pris l'allure d'une gentilhommière quadrangulaire, ou des communs du XIXe siècle servent à l'exploitation rurale. Franchesse,  est aujourd'hui une belle maison forte qui a perdu son allure de château, bien qu'elle en  garde l'appellation. La population de cette époque était regroupé soit en communautés paysannes, soit en familles traditionnelles. Au XIXe et XXe siècle fut extrait du sous-sol de cette commune le charbon, la dernière mine devant être exploitée jusqu'en 2001.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Jean de Givry               Famille Thonier"</p>
-      <h4>Divers</h4><p>Château  des Landes , de Busserie et de Franchesse à Rocles</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Trois  châteaux à Rocles, de la Busserie du XVIIe siècle, de Franchesse et de la Lande du XVe avec douves.           LANDE  du  XIVe siècle, dépendait de la châtellenie de Murat. Jean Béraud, écuyer, seigneur de Givry, fils d'un autre Jean Béraud, damoiseau, qui rend aveu en 1357 et 1367 pour différents fiefs du Bourbonnais, comprend dans ses dénombrements  Marguerite de Neuville. La Lande appartenait en 1484 à Jean de Givry écuyer. Il passa par alliance dans la maison de la Souche.  En décembre 1538, Anne de la Souche, épouse Jean d'Aubigny. Vers 1645-1650, Jacques de Dreuille était qualifié de seigneur de La Lande. En 1754, La Lande relevait toujours de la châtellenie de Murat et fut apportée par mariage aux vicomtes de Lichy. En 1775, François fils de Gilbert de Dreuille écuyer, en rendit hommage, en même temps que de la seigneurie de Franchesse, dans la châtellenie de Murat. François-Senneterre de Dreuille, écuyer, époux de Perrette de La Barre, était reconnu comme seigneur de La Lande. 
+<br/>BUSSERIE,  la Busserie appartient à la famille Thonier, depuis qu'un  de leurs ancêtres, Gilbert Thonier, maître clerc de La châtellenie de Murat et  fermier de la seigneurerie du Montet en fit l'acquisition en 1595.            FRANCHESSE, le dénombrement des fiefs de 1503 fait mention de deux aveux à la duchesse de Boubon, concernant Franchesse, dans la châtellenie de Murat. D'une part, Etienne Loyau, seigneur de Franchesse. D'autre part, Jehan de Franchesse, écuyer, et son frère, messire  Gilbert de Franchesse, ce qui est  peu probable.  Au cours du XVIIe siècle, le château de Franchesse appartenait aux de Breuil, dans le bourg proche de Cressanges, avant la période révolutionnaire, on distingue deux seigneuries, celle de la Condemine dont subsiste encore le château et celle qui avait pour siège le château de Saragousse où ont résidé la famille Saint-Aubin, puis la famille de Chabannes et enfin celle de Villaine.</p>
+<h4>Architecture</h4><p>Lande, du  XVe siècle,  donjon couronné d'un chemin de ronde en pans de bois sur encorbellement, la Lande apparaît comme un élément intéressant d'une série de châteaux médiévaux bourbonnais du XVe siècle. Présence de douves et d'une tour plus ancienne aux dispositifs de défense.  On dit que la Lande aurait été une ancienne commanderie de Templiers et il est possible que, sous Louis XI, elle ait pu servir de prison d'état. De par son aspect, ses douves (aujourd'hui asséchées), son chemin de ronde, l'épaisseur de ses murs et son architecture puissante et austère, cette construction féodale prend assurément l'allure d'une maison forte. Mais, la particularité du donjon  tient à la présence d'une galerie de bois en croix de Saint-André qui le couronne, reposant sur une série de corbeaux et rappelant l'existence d'anciens hourds. (Le corbeau de l'angle ouest est chargé d'un écu aux armes des Bourbons). Le toit en pavillon accuse une forte pente.           Busserie Gentilhommière à deux niveaux  flanquée aux extrémités d'une tour ronde et d'une tour carrée,  du premier château, il ne reste que l'appellation et un pigeonnier de plan carré, surmonté d'un lanternon. La demeure actuelle a pris l'allure d'une gentilhommière quadrangulaire, ou des communs du XIXe siècle servent à l'exploitation rurale. Franchesse,  est aujourd'hui une belle maison forte qui a perdu son allure de château, bien qu'elle en  garde l'appellation. La population de cette époque était regroupé soit en communautés paysannes, soit en familles traditionnelles. Au XIXe et XXe siècle fut extrait du sous-sol de cette commune le charbon, la dernière mine devant être exploitée jusqu'en 2001.</p>
+<h4>Habitants / Familles</h4><p>Famille de Jean de Givry               Famille Thonier"</p>
+<h4>Divers</h4><p>Château  des Landes , de Busserie et de Franchesse à Rocles</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

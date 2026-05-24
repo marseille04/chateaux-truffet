@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Verdelles — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_72.html">Sarthe</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_72.html">Sarthe</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_72.html" class="back-link">Retour au département 72 — Sarthe</a>
-  <div class="fiche">
-    <h2>Verdelles</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>72 — Sarthe</td></tr>
-          <tr><td>Canton</td><td>Loué</td></tr>
-          <tr><td>Commune</td><td>Poillé sur Vègre,</td></tr>
-          <tr><td>Type d'édifice</td><td>Forteresse</td></tr>
-          <tr><td>Période d'origine</td><td>XV-</td></tr>
-          <tr><td>Coordonnées GPS</td><td>47° 54' 01" Nord, 0° 14' 50" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_72/72_Verdelles_1.jpg" alt="Verdelles" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Verdelles_2.jpg" alt="Verdelles" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Verdelles_3.jpg" alt="Verdelles" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Verdelles_4.jpg" alt="Verdelles" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Verdelles_5.jpg" alt="Verdelles" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_72.html">Retour au département 72 — Sarthe</a>
+<div class="fiche">
+<h2>Verdelles</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Verdelles" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_72/72_Verdelles_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Verdelles" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Verdelles_1.jpg"/><img alt="Verdelles" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Verdelles_2.jpg"/><img alt="Verdelles" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Verdelles_3.jpg"/><img alt="Verdelles" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Verdelles_4.jpg"/><img alt="Verdelles" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Verdelles_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>72 — Sarthe</td></tr>
+<tr><td>Canton</td><td>Loué</td></tr>
+<tr><td>Commune</td><td>Poillé sur Vègre,</td></tr>
+<tr><td>Type d'édifice</td><td>Forteresse</td></tr>
+<tr><td>Période d'origine</td><td>XV-</td></tr>
+<tr><td>Coordonnées GPS</td><td>47° 54' 01" Nord, 0° 14' 50" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>VERDELLES, château bâti à la fin du XVe siècle, achevé en 1490.Il appartenait à la famille Le Clerc de Juigné. Il lui sera confisqué à la Révolution.  En 1494, Colas Le Clerc de Juigné "faisant état de preuves exhibées et enregistrées, il lui est permis de faire les dits édifices comme bon lui semblerait". Jacques Le Clerc de Juigné épouse Juliette de Machecoul en 1659 et en 1664, leur fils Samuel naît à Verdelles. Vers 1680, les Juigné abandonnent leur demeure de Verdelles pour le château de Juigné. Alors, Verdelles restera délaissé et mal entretenu, servant épisodiquement à abriter des fermiers. L'édifice est vendu comme bien national à Mr de La Guérinière en 1792. Il passe entre diverses mains, soit par héritage, soit par achat. Il devient propriété de la famille Coutard, jusqu'en 1976 où il est racheté par Yves Chamberland qui entreprend sa restauration.  Propriété de monsieur Coutard.
-<br>Éléments protégés MH : le château de Verdelles en totalité : classement par arrêté du 26 juin 1922.</p>
-      <h4>Architecture</h4><p>VERDELLES, la construction du château de Verdelles date de 1490 à 1494.   Il lui sera confisqué à la Révolution Il est construit en brique et pierre, de plan rectangulaire, cantonné de quatre tourelles d'angles deux rectangulaires et deux polygonales. Les deux tours carrées servaient à la défense, elles ont conservé leur chemin de ronde à mâchicoulis et créneaux. A l'intérieur, toutes les cheminées à médaillons sont conservées  Dès 1976, des travaux importants pour la restauration du château seront entrepris. Le logis est flanqué de 4 tours carrées, toutes différentes. Le fruit de ces importantes restaurations sera récompensé, en 2003, par l'obtention du Prix des Vieilles Maisons Françaises. Au cur de la Vallée de la Vègre, le château de Verdelles est un M.H. insolite. Le Domaine de dix hectares a été reboisé depuis de 8000 arbres. Bien que privé, il est ouvert au Public et se visite. Les visites du château sont organisées par lAssociation du Patrimoine dAsnières-sur-Vègre. Le château propose des chambres dhôtes et vous accueille pour louer ses salles pour vos réceptions.</p>
-      <h4>Habitants / Familles</h4><p>Famille Le Clerc de Juigné.
-<br>        "</p>
-      <h4>Divers</h4><p>Verdelles GPS : 47° 54' 01" Nord, 0° 14' 50" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>VERDELLES, château bâti à la fin du XVe siècle, achevé en 1490.Il appartenait à la famille Le Clerc de Juigné. Il lui sera confisqué à la Révolution.  En 1494, Colas Le Clerc de Juigné "faisant état de preuves exhibées et enregistrées, il lui est permis de faire les dits édifices comme bon lui semblerait". Jacques Le Clerc de Juigné épouse Juliette de Machecoul en 1659 et en 1664, leur fils Samuel naît à Verdelles. Vers 1680, les Juigné abandonnent leur demeure de Verdelles pour le château de Juigné. Alors, Verdelles restera délaissé et mal entretenu, servant épisodiquement à abriter des fermiers. L'édifice est vendu comme bien national à Mr de La Guérinière en 1792. Il passe entre diverses mains, soit par héritage, soit par achat. Il devient propriété de la famille Coutard, jusqu'en 1976 où il est racheté par Yves Chamberland qui entreprend sa restauration.  Propriété de monsieur Coutard.
+<br/>Éléments protégés MH : le château de Verdelles en totalité : classement par arrêté du 26 juin 1922.</p>
+<h4>Architecture</h4><p>VERDELLES, la construction du château de Verdelles date de 1490 à 1494.   Il lui sera confisqué à la Révolution Il est construit en brique et pierre, de plan rectangulaire, cantonné de quatre tourelles d'angles deux rectangulaires et deux polygonales. Les deux tours carrées servaient à la défense, elles ont conservé leur chemin de ronde à mâchicoulis et créneaux. A l'intérieur, toutes les cheminées à médaillons sont conservées  Dès 1976, des travaux importants pour la restauration du château seront entrepris. Le logis est flanqué de 4 tours carrées, toutes différentes. Le fruit de ces importantes restaurations sera récompensé, en 2003, par l'obtention du Prix des Vieilles Maisons Françaises. Au cur de la Vallée de la Vègre, le château de Verdelles est un M.H. insolite. Le Domaine de dix hectares a été reboisé depuis de 8000 arbres. Bien que privé, il est ouvert au Public et se visite. Les visites du château sont organisées par lAssociation du Patrimoine dAsnières-sur-Vègre. Le château propose des chambres dhôtes et vous accueille pour louer ses salles pour vos réceptions.</p>
+<h4>Habitants / Familles</h4><p>Famille Le Clerc de Juigné.
+<br/>        "</p>
+<h4>Divers</h4><p>Verdelles GPS : 47° 54' 01" Nord, 0° 14' 50" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

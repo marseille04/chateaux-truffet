@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Champcevinel — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,60 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_24.html">Dordogne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_24.html">Dordogne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_24.html" class="back-link">Retour au département 24 — Dordogne</a>
-  <div class="fiche">
-    <h2>Champcevinel</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>24 — Dordogne</td></tr>
-          <tr><td>Canton</td><td>Périgueux</td></tr>
-          <tr><td>Commune</td><td>Champcevinel</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>45° 12' 49" Nord, 0° 42' 47" Est      Champcevinel grav 6-7   GPS : 45° 12' 56" Nord, 0° 43' 38" Est                                                                    Kéruel grav-8 GPS : 45° 12' 23" Nord, 0° 39' 58" Est. Vigneras grav-5.</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_24/24_Champcevinel_1.jpg" alt="Champcevinel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Champcevinel_2.jpg" alt="Champcevinel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Champcevinel_3.jpg" alt="Champcevinel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Champcevinel_4.jpg" alt="Champcevinel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Champcevinel_5.jpg" alt="Champcevinel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Champcevinel_6.jpg" alt="Champcevinel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Champcevinel_7.jpg" alt="Champcevinel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Champcevinel_8.jpg" alt="Champcevinel" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_24.html">Retour au département 24 — Dordogne</a>
+<div class="fiche">
+<h2>Champcevinel</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Champcevinel" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_24/24_Champcevinel_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Champcevinel" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Champcevinel_1.jpg"/><img alt="Champcevinel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Champcevinel_2.jpg"/><img alt="Champcevinel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Champcevinel_3.jpg"/><img alt="Champcevinel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Champcevinel_4.jpg"/><img alt="Champcevinel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Champcevinel_5.jpg"/><img alt="Champcevinel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Champcevinel_6.jpg"/><img alt="Champcevinel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Champcevinel_7.jpg"/><img alt="Champcevinel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Champcevinel_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>24 — Dordogne</td></tr>
+<tr><td>Canton</td><td>Périgueux</td></tr>
+<tr><td>Commune</td><td>Champcevinel</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVII</td></tr>
+<tr><td>Coordonnées GPS</td><td>45° 12' 49" Nord, 0° 42' 47" Est      Champcevinel grav 6-7   GPS : 45° 12' 56" Nord, 0° 43' 38" Est                                                                    Kéruel grav-8 GPS : 45° 12' 23" Nord, 0° 39' 58" Est. Vigneras grav-5.</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Le château de Borie-Petit du XVe siècle abrite aujourd'hui un centre équestre: . Castel Kéruel. Vigneras date du XVIIIe siècle.                            BORIE-PETIT: cet ancien fief est situé à Champcevinel à proximité du centre équestre. A l'origine, une borie, sorte de métairie entouré d'une terre riche. En 1533, un riche bourgeois de Périgueux, Pierre de Petit, achète cette  Borie aux chanoines; puis par le mariage de Claire de Petit avec Pierre de Crémoux, le domaine entre dans cette  maison anoblie par le Roi fin du XVIe siècle. Les Crémoux transforment le domaine en repaire noble. Au XVIIe siècle,  Trois générations de Crémoux vont se succéder: Félix de Crémoux polytechnicien, vicomte, officier d'artillerie, entreprend la transformation totale de Borie-Petit à la fin du XVIIIe siècle. "Il double le corps de logis, lui accole deux grosses tours, celles de la cour actuelle, et deux petites tours dîtes "poivrières" sur la face ouest. Ainsi Borie-Petit gardera son aspect, seule une petite chapelle sépulcrale sera bâtie au sud du château." Après 300 ans d'appartenance aux de Crémoux, par le mariage de Marie de Crémoux avec Ulrich d'Abzac marquis de la Douze, Borie-Petit passe dans cette maison noble. Puis c'est la maison de Chasteigner qui, par le mariage de Jeanne d'Abzac avec le baron André de Chasteigner, qui devient propriétaire trois générations suivront.      CHAMPCEVINEL Actuellement, c'est la veuve du colonel de Cavalerie, François de Chasteigner, née de Saint-Sernin qui est propriétaire du château Champchinel  situé tout au Nord de Champcevinel, un ancien repaire noble, construit au XVIIe siècle, appartenait aux Laroche-Aymon dont les deux filles, Antoinette et Catherine, furent élevées à Saint-Cyr. Le château de VIGNERAS a été merveilleusement restauré.</p>
-      <h4>Architecture</h4><p>BORIE-PETIT, l'édifice était à l'origine une borie appartenant à la seigneurie de Champcevinel, au chapitre de la cathédrale de Périgueux. Le château est entouré d'une enceinte, les angles sont renforcés à l'est d'échauguettes carrées, coiffées en pyramide, posées en saillie sur des mâchicoulis. Des trous de tirs sont ménagés dans leurs parois. Au centre du mur Est, un châtelet défend l'entrée de la cour. Un porche, à côté duquel se trouve un corps de garde, supporte à l'étage une pièce construite en encorbellement sur des mâchicoulis. Passé ce porche, voûté de briques à chaînages de pierre, se trouve le corps de logis principal, restauré au XIXe siècle. Rectangulaire, il est flanqué à l'est de deux grosses tours circulaires, à mâchicoulis, talutées et coiffées en poivrières, et à l'ouest agrafé de deux échauguettes modernes. Vers l'ouest, au milieu de la prairie, se trouve un colombier circulaire, daté de 1661.                                           VIGNERAS de plan rectangulaire oblong à deux niveaux flanqué au centre  d'un pavillon légèrement saillant avec fronton triangulaire</p>
-      <h4>Habitants / Familles</h4><p>Borie-Petit  Félix de Crémoux                                 Champcevinel  Laroche-Aymon
-<br>        "</p>
-      <h4>Divers</h4><p>A Champcevinel château de Borie-Petit  grav 1 à 4 GPS : 45° 12' 49" Nord, 0° 42' 47" Est      Champcevinel grav 6-7   GPS : 45° 12' 56" Nord, 0° 43' 38" Est                                                                    Kéruel grav-8 GPS : 45° 12' 23" Nord, 0° 39' 58" Est. Vigneras grav-5.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Le château de Borie-Petit du XVe siècle abrite aujourd'hui un centre équestre: . Castel Kéruel. Vigneras date du XVIIIe siècle.                            BORIE-PETIT: cet ancien fief est situé à Champcevinel à proximité du centre équestre. A l'origine, une borie, sorte de métairie entouré d'une terre riche. En 1533, un riche bourgeois de Périgueux, Pierre de Petit, achète cette  Borie aux chanoines; puis par le mariage de Claire de Petit avec Pierre de Crémoux, le domaine entre dans cette  maison anoblie par le Roi fin du XVIe siècle. Les Crémoux transforment le domaine en repaire noble. Au XVIIe siècle,  Trois générations de Crémoux vont se succéder: Félix de Crémoux polytechnicien, vicomte, officier d'artillerie, entreprend la transformation totale de Borie-Petit à la fin du XVIIIe siècle. "Il double le corps de logis, lui accole deux grosses tours, celles de la cour actuelle, et deux petites tours dîtes "poivrières" sur la face ouest. Ainsi Borie-Petit gardera son aspect, seule une petite chapelle sépulcrale sera bâtie au sud du château." Après 300 ans d'appartenance aux de Crémoux, par le mariage de Marie de Crémoux avec Ulrich d'Abzac marquis de la Douze, Borie-Petit passe dans cette maison noble. Puis c'est la maison de Chasteigner qui, par le mariage de Jeanne d'Abzac avec le baron André de Chasteigner, qui devient propriétaire trois générations suivront.      CHAMPCEVINEL Actuellement, c'est la veuve du colonel de Cavalerie, François de Chasteigner, née de Saint-Sernin qui est propriétaire du château Champchinel  situé tout au Nord de Champcevinel, un ancien repaire noble, construit au XVIIe siècle, appartenait aux Laroche-Aymon dont les deux filles, Antoinette et Catherine, furent élevées à Saint-Cyr. Le château de VIGNERAS a été merveilleusement restauré.</p>
+<h4>Architecture</h4><p>BORIE-PETIT, l'édifice était à l'origine une borie appartenant à la seigneurie de Champcevinel, au chapitre de la cathédrale de Périgueux. Le château est entouré d'une enceinte, les angles sont renforcés à l'est d'échauguettes carrées, coiffées en pyramide, posées en saillie sur des mâchicoulis. Des trous de tirs sont ménagés dans leurs parois. Au centre du mur Est, un châtelet défend l'entrée de la cour. Un porche, à côté duquel se trouve un corps de garde, supporte à l'étage une pièce construite en encorbellement sur des mâchicoulis. Passé ce porche, voûté de briques à chaînages de pierre, se trouve le corps de logis principal, restauré au XIXe siècle. Rectangulaire, il est flanqué à l'est de deux grosses tours circulaires, à mâchicoulis, talutées et coiffées en poivrières, et à l'ouest agrafé de deux échauguettes modernes. Vers l'ouest, au milieu de la prairie, se trouve un colombier circulaire, daté de 1661.                                           VIGNERAS de plan rectangulaire oblong à deux niveaux flanqué au centre  d'un pavillon légèrement saillant avec fronton triangulaire</p>
+<h4>Habitants / Familles</h4><p>Borie-Petit  Félix de Crémoux                                 Champcevinel  Laroche-Aymon
+<br/>        "</p>
+<h4>Divers</h4><p>A Champcevinel château de Borie-Petit  grav 1 à 4 GPS : 45° 12' 49" Nord, 0° 42' 47" Est      Champcevinel grav 6-7   GPS : 45° 12' 56" Nord, 0° 43' 38" Est                                                                    Kéruel grav-8 GPS : 45° 12' 23" Nord, 0° 39' 58" Est. Vigneras grav-5.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

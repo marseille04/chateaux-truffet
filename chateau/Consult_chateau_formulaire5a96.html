@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Coulmiers — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,56 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_45.html">Loiret</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_45.html">Loiret</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_45.html" class="back-link">Retour au département 45 — Loiret</a>
-  <div class="fiche">
-    <h2>Coulmiers</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>45 — Loiret</td></tr>
-          <tr><td>Canton</td><td>Meung-sur-Loire</td></tr>
-          <tr><td>Commune</td><td>Coulmiers</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVIII-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_45/45_Coulmiers_1.jpg" alt="Coulmiers" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Coulmiers_2.jpg" alt="Coulmiers" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Coulmiers_3.jpg" alt="Coulmiers" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_45.html">Retour au département 45 — Loiret</a>
+<div class="fiche">
+<h2>Coulmiers</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Coulmiers" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_45/45_Coulmiers_1.jpg"/><div class="hero-count" id="hero-count">1 / 3</div></div><div class="photo-strip"><img alt="Coulmiers" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Coulmiers_1.jpg"/><img alt="Coulmiers" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Coulmiers_2.jpg"/><img alt="Coulmiers" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Coulmiers_3.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>45 — Loiret</td></tr>
+<tr><td>Canton</td><td>Meung-sur-Loire</td></tr>
+<tr><td>Commune</td><td>Coulmiers</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVIII-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux châteaux dans cet article ; Coulmiers et de Luz. COULMIERS, situé au milieu de son parc, le château du bourg de Coulmiers appartenait à l'origine à Claude Martin d'Ormoy, conseiller du roi et président de l'élection de Pithiviers. À sa mort, au début de l'année 1789, ses héritiers vendirent la terre et le château en juillet 1789, à René Claude Maximilien Capitan, écuyer, conseiller du roi, premier avocat au bureau des Finances de la généralité d'Orléans, et juge magistrat au bailliage, siège présidial du châtelet d'Orléans. Au-dessus d'une porte d'entrée, les armoiries de Claude Martin d'Ormoy furent mutilées à la Révolution. Le château a l'aspect d'une belle demeure de campagne du XIXe siècle, avec un corps de logis central coiffé d'une haute toiture et flanqué à gauche, d'un pavillon surmonté d'un toit à la Mansart et d'un autre pavillon plus modeste. De l'ancien château subsiste une cave et une glacière. L'histoire du pays a conservé des souvenirs sanglants de la guerre de 1870. En effet, le 9 novembre 1870, les troupes bavaroises y avaient installé leur artillerie et furent délogées par les troupes du général d'Aurelles de Paladines. La propriété appartenait à cette époque à la famille de Villebonne.</p>
-      <h4>Architecture</h4><p>LUZ , le château date de l'année 1848, remplaçant ainsi l'ancien château, démoli en 1843, dont seule la cave existe encore. C'est une sobre construction classique avec un corps central à un étage et cinq ouvertures, flanqué de deux pavillons à deux étages qui dominent le corps de bâtiment central. Une chapelle privative fut construite en 1842 à proximité du château. Le parc assure à l'ensemble un environnement champêtre. L'un des propriétaires, Pierre de Lafons, fervent huguenot et compagnon d'Henri de Navarre, devint contrôleur de la maison du roi de Navarre et plus tard secrétaire d'Henri IV. En 1870, le château de Lutz s'est trouvé au cur des batailles. Le 9 novembre, le général d'Aurelles  de Paladines, commandant en chef de la première armée de la Loire, après avoir remporté la victoire de Coulmiers, établit à Lutz son quartier général et fut reçu par le comte de Courcy, qui était maire de Coulmiers. Une plaque apposée sur la façade du château en témoigne.</p>
-      <h4>Habitants / Familles</h4><p>Coulmiers: Claude Martin d'Ormoy                                                     Luz ; Pierre de Lafons
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Deux châteaux à Coulmiers dont  Coulmiers grav-1  et de Luz grav-2-3.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux châteaux dans cet article ; Coulmiers et de Luz. COULMIERS, situé au milieu de son parc, le château du bourg de Coulmiers appartenait à l'origine à Claude Martin d'Ormoy, conseiller du roi et président de l'élection de Pithiviers. À sa mort, au début de l'année 1789, ses héritiers vendirent la terre et le château en juillet 1789, à René Claude Maximilien Capitan, écuyer, conseiller du roi, premier avocat au bureau des Finances de la généralité d'Orléans, et juge magistrat au bailliage, siège présidial du châtelet d'Orléans. Au-dessus d'une porte d'entrée, les armoiries de Claude Martin d'Ormoy furent mutilées à la Révolution. Le château a l'aspect d'une belle demeure de campagne du XIXe siècle, avec un corps de logis central coiffé d'une haute toiture et flanqué à gauche, d'un pavillon surmonté d'un toit à la Mansart et d'un autre pavillon plus modeste. De l'ancien château subsiste une cave et une glacière. L'histoire du pays a conservé des souvenirs sanglants de la guerre de 1870. En effet, le 9 novembre 1870, les troupes bavaroises y avaient installé leur artillerie et furent délogées par les troupes du général d'Aurelles de Paladines. La propriété appartenait à cette époque à la famille de Villebonne.</p>
+<h4>Architecture</h4><p>LUZ , le château date de l'année 1848, remplaçant ainsi l'ancien château, démoli en 1843, dont seule la cave existe encore. C'est une sobre construction classique avec un corps central à un étage et cinq ouvertures, flanqué de deux pavillons à deux étages qui dominent le corps de bâtiment central. Une chapelle privative fut construite en 1842 à proximité du château. Le parc assure à l'ensemble un environnement champêtre. L'un des propriétaires, Pierre de Lafons, fervent huguenot et compagnon d'Henri de Navarre, devint contrôleur de la maison du roi de Navarre et plus tard secrétaire d'Henri IV. En 1870, le château de Lutz s'est trouvé au cur des batailles. Le 9 novembre, le général d'Aurelles  de Paladines, commandant en chef de la première armée de la Loire, après avoir remporté la victoire de Coulmiers, établit à Lutz son quartier général et fut reçu par le comte de Courcy, qui était maire de Coulmiers. Une plaque apposée sur la façade du château en témoigne.</p>
+<h4>Habitants / Familles</h4><p>Coulmiers: Claude Martin d'Ormoy                                                     Luz ; Pierre de Lafons
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Deux châteaux à Coulmiers dont  Coulmiers grav-1  et de Luz grav-2-3.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

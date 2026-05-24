@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>ST_Sauveur_Lendelin — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,57 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_50.html">Manche</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_50.html">Manche</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_50.html" class="back-link">Retour au département 50 — Manche</a>
-  <div class="fiche">
-    <h2>ST_Sauveur_Lendelin</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>50 — Manche</td></tr>
-          <tr><td>Canton</td><td>Agon-Coutainville</td></tr>
-          <tr><td>Commune</td><td>ST-Sauveur Lendelin</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI-XVII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>49° 7' 15,81" Nord, 1° 20' 1,6" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_50/50_St_Sauveur_Lendelin_1.jpg" alt="ST_Sauveur_Lendelin" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_St_Sauveur_Lendelin_2.jpg" alt="ST_Sauveur_Lendelin" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_St_Sauveur_Lendelin_3.jpg" alt="ST_Sauveur_Lendelin" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_St_Sauveur_Lendelin_4.jpg" alt="ST_Sauveur_Lendelin" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_50.html">Retour au département 50 — Manche</a>
+<div class="fiche">
+<h2>ST_Sauveur_Lendelin</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="ST_Sauveur_Lendelin" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_50/50_St_Sauveur_Lendelin_1.jpg"/><div class="hero-count" id="hero-count">1 / 4</div></div><div class="photo-strip"><img alt="ST_Sauveur_Lendelin" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_St_Sauveur_Lendelin_1.jpg"/><img alt="ST_Sauveur_Lendelin" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_St_Sauveur_Lendelin_2.jpg"/><img alt="ST_Sauveur_Lendelin" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_St_Sauveur_Lendelin_3.jpg"/><img alt="ST_Sauveur_Lendelin" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_St_Sauveur_Lendelin_4.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>50 — Manche</td></tr>
+<tr><td>Canton</td><td>Agon-Coutainville</td></tr>
+<tr><td>Commune</td><td>ST-Sauveur Lendelin</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI-XVII</td></tr>
+<tr><td>Coordonnées GPS</td><td>49° 7' 15,81" Nord, 1° 20' 1,6" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux châteaux dans cet article, le Grand-Taute et Moncuit.      GRAND TAUTE  a été construit à la fin du XVIe siècle par Jean le Coq, officier de justice. Le bâtiment est édifié en schiste grossièrement appareillé. Il comprend un corps de logis rectangulaire avec deux tours d'escaliers, l'une à l'extrême gauche et l'autre à la partie gauche de la façade arrière. Le bâtiment a subit des modification au cours des siècles notamment la création de deux fenêtres modernes à droite au rez-de-chaussée et à l'étage. En façade, on remarque le chevauchement des niveaux : la partie de droite comprend deux niveaux, et celle de gauche trois. Un système défensif protégeait la demeure contre toute intrusion ennemie, (grilles protégeant les soupiraux, trous de fusils, mâchicoulis intérieurs). Les premiers occupants du manoir appartenaient à la famille Petiot. Un Simon Le Petiot, Vicomte de bailliage, subit une sévère réprimande en 1359, car il avait été reçu chevauchant de concert avec une troupe anglaise. Aux XVIIIe et XIXe siècles succédèrent aux Lecoq, les familles Le Breton de Beaucoudray, Tardif de Vauclair et Verdun de la Crenne.
-<br>Éléments protégés MH : les façades et les toitures ainsi que le plafond et la cheminée de la grande salle du rez-de-chaussée ; la façade et la toiture ainsi que le mécanisme du pressoir : inscription par arrêté du 11 août 1975. Le logis ; le pressoir ; la boulangerie ; les écuries et la grange ; la pièce d'eau et les douves qui la prolongent ; l'assiette de l'ancien jardin : inscription par arrêté du 4 juin 1993.</p>
-      <h4>Architecture</h4><p>GRAND TAUTE, construction du manoir du Grand Taute date du XVIe siècle. C'est un manoir du XVIe siècle avec un pressoir ancien, non daté, qui abrite un tour à pommes en granit et une presse à longue étreinte. Les façades et toitures, le plafond et la cheminée de la grande salle du rez-de-chaussée, la façade et toiture ainsi que le mécanisme du pressoir, sont inscrits aux M.H. depuis le 11/08/1975.                                                                                       A cinq K.M. à l'Est à Montcuit le château de MONTCUIT Ce manoir a été construit au XVIe et XVIIe siècle. Les documents mentionnent l'existence du jardin d'agrément dès 1639. Un premier parterre, le jardin d'agrément proprement dit, se développe face à l'élévation postérieure de la maison. La douve Est, plus large, devait faire office de vivier. Un petit pont donne accès au petit parterre servant d'espace de transition entre le grand parterre et l'ancien potager. Un mur en exèdre, percé en son centre par un escalier à sept émarchements, délimite le petit parterre du vaste potager placé en terrasse. Une terrasse plantée de tilleuls permet la promenade à l'est du potager. Le jardin de Montcuit se situe dans la tradition des jardins réguliers en terrasse, très caractéristiques du XVIIe siècle. Montcuit possède en outre un réseau hydraulique important. Son Jardin d'agrément, son jardin potager, son installation hydraulique, ses douves, son verger, l'orangerie, l'allée datent du XVIIe siècle sont inscrits aux M.H. depuis le 28/03/2008.</p>
-      <h4>Habitants / Familles</h4><p>Gd-Taute;  famille Petiot Montcuit
-<br>        "</p>
-      <h4>Divers</h4><p>Deux châteaux dans cet article , le grand-Taute grav 1-2-3 et Moncuit  grav-4.   Montcuit GPS : 49° 7' 15,81" Nord, 1° 20' 1,6" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux châteaux dans cet article, le Grand-Taute et Moncuit.      GRAND TAUTE  a été construit à la fin du XVIe siècle par Jean le Coq, officier de justice. Le bâtiment est édifié en schiste grossièrement appareillé. Il comprend un corps de logis rectangulaire avec deux tours d'escaliers, l'une à l'extrême gauche et l'autre à la partie gauche de la façade arrière. Le bâtiment a subit des modification au cours des siècles notamment la création de deux fenêtres modernes à droite au rez-de-chaussée et à l'étage. En façade, on remarque le chevauchement des niveaux : la partie de droite comprend deux niveaux, et celle de gauche trois. Un système défensif protégeait la demeure contre toute intrusion ennemie, (grilles protégeant les soupiraux, trous de fusils, mâchicoulis intérieurs). Les premiers occupants du manoir appartenaient à la famille Petiot. Un Simon Le Petiot, Vicomte de bailliage, subit une sévère réprimande en 1359, car il avait été reçu chevauchant de concert avec une troupe anglaise. Aux XVIIIe et XIXe siècles succédèrent aux Lecoq, les familles Le Breton de Beaucoudray, Tardif de Vauclair et Verdun de la Crenne.
+<br/>Éléments protégés MH : les façades et les toitures ainsi que le plafond et la cheminée de la grande salle du rez-de-chaussée ; la façade et la toiture ainsi que le mécanisme du pressoir : inscription par arrêté du 11 août 1975. Le logis ; le pressoir ; la boulangerie ; les écuries et la grange ; la pièce d'eau et les douves qui la prolongent ; l'assiette de l'ancien jardin : inscription par arrêté du 4 juin 1993.</p>
+<h4>Architecture</h4><p>GRAND TAUTE, construction du manoir du Grand Taute date du XVIe siècle. C'est un manoir du XVIe siècle avec un pressoir ancien, non daté, qui abrite un tour à pommes en granit et une presse à longue étreinte. Les façades et toitures, le plafond et la cheminée de la grande salle du rez-de-chaussée, la façade et toiture ainsi que le mécanisme du pressoir, sont inscrits aux M.H. depuis le 11/08/1975.                                                                                       A cinq K.M. à l'Est à Montcuit le château de MONTCUIT Ce manoir a été construit au XVIe et XVIIe siècle. Les documents mentionnent l'existence du jardin d'agrément dès 1639. Un premier parterre, le jardin d'agrément proprement dit, se développe face à l'élévation postérieure de la maison. La douve Est, plus large, devait faire office de vivier. Un petit pont donne accès au petit parterre servant d'espace de transition entre le grand parterre et l'ancien potager. Un mur en exèdre, percé en son centre par un escalier à sept émarchements, délimite le petit parterre du vaste potager placé en terrasse. Une terrasse plantée de tilleuls permet la promenade à l'est du potager. Le jardin de Montcuit se situe dans la tradition des jardins réguliers en terrasse, très caractéristiques du XVIIe siècle. Montcuit possède en outre un réseau hydraulique important. Son Jardin d'agrément, son jardin potager, son installation hydraulique, ses douves, son verger, l'orangerie, l'allée datent du XVIIe siècle sont inscrits aux M.H. depuis le 28/03/2008.</p>
+<h4>Habitants / Familles</h4><p>Gd-Taute;  famille Petiot Montcuit
+<br/>        "</p>
+<h4>Divers</h4><p>Deux châteaux dans cet article , le grand-Taute grav 1-2-3 et Moncuit  grav-4.   Montcuit GPS : 49° 7' 15,81" Nord, 1° 20' 1,6" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

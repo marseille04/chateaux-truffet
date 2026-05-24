@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Castillon — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,57 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_40.html">Landes</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_40.html">Landes</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_40.html" class="back-link">Retour au département 40 — Landes</a>
-  <div class="fiche">
-    <h2>Castillon</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>40 — Landes</td></tr>
-          <tr><td>Canton</td><td>Tartas</td></tr>
-          <tr><td>Commune</td><td>Arrengosse</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_40/40_Castillon_1.jpg" alt="Castillon" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_40/40_Castillon_2.jpg" alt="Castillon" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_40/40_Castillon_3.jpg" alt="Castillon" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_40/40_Castillon_4.jpg" alt="Castillon" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_40/40_Castillon_5.jpg" alt="Castillon" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_40.html">Retour au département 40 — Landes</a>
+<div class="fiche">
+<h2>Castillon</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Castillon" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_40/40_Castillon_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Castillon" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_40/40_Castillon_1.jpg"/><img alt="Castillon" class="" loading="lazy" onclick="setHero(this)" src="../image/image_40/40_Castillon_2.jpg"/><img alt="Castillon" class="" loading="lazy" onclick="setHero(this)" src="../image/image_40/40_Castillon_3.jpg"/><img alt="Castillon" class="" loading="lazy" onclick="setHero(this)" src="../image/image_40/40_Castillon_4.jpg"/><img alt="Castillon" class="" loading="lazy" onclick="setHero(this)" src="../image/image_40/40_Castillon_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>40 — Landes</td></tr>
+<tr><td>Canton</td><td>Tartas</td></tr>
+<tr><td>Commune</td><td>Arrengosse</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>CASTILLON, en 1541 Robin de Banquet cède la maison forte de Castillon à Paulin de Mongrand.  Au début du XVIIe siécle la propriété est acquise  et  construit un château en 1625  par Jean Bertrand  de Baffoigne seigneur de Castillon, avec laide de larchitecte Gratien de Lerme. La porte principale de lédifice indique la date de 1625. Jean Bertrand  de Baffoigne a une fille Jeanne et un fils Jean-Charles  qui meurt en 1667 . Le château passe à Jeanne qui épousa en 1645 Bernard vicomte de Poudenx, la fille de Henri de Poudenx fils de Bernard Jeanne hérite à la mort de son père  en 1739.   Durant les guerres de religion, Castillon subit dailleurs de nombreuses attaques.  Un autre Henri de Poudenx gouverneur de Saint-Jean-Pied-de-Port et lieutenant général de l'armée du roi épouse en 1790 Josephine Anne Cocar, ils eurent trois enfants dont Henriette Emilie qui reçoit en dot le château de Castillon à l'occasion de son mariage  en 1813 avec Pierre d'Ismert général et baron d'Empire,   veuve en 1826 cède le domaine en 1840 à Jean Larroque, une nouvelle vente est passé au baron Gérard petit neveu du peintre,  toutefois, il ne mérite plus cette appellation aujourdhui, la famille Lastours, actuel  propriétaire, a restauré lédifice ainsi que les jardins à la française. Le château de Castillon a reçu l'écrivain Théophile Gautier, en visite dans la region. Depuis le 9 décembre 1918, lédifice est inscrit à linventaire des M.H.</p>
-      <h4>Architecture</h4><p>CASTILLON, sa construction a commencé au XVIIe siècle et s'est achevé à la fin du XIXe siècle. Important quadrilatère avec ses communs, Il est de style Louis XIII. La partie occidentale, appelée « l'aile neuve », sera construite au XIXe siècle, sous les consignes du baron Gérard, connus pour être d'éminents frondeurs. Le château de Castillon fait partie des plus beaux des Landes par la majesté et la noblesse de son allure. Il comporte d'élégantes lucarnes, de belles toitures, une imposante façade, ainsi que de très beaux Jardins à la Française, dessinés par le paysagiste André.  Lédifice présente un corps de logis de plan rectangulaire  de deux niveaux flanqué de deux pavillons latéraux comptant trois niveaux faisant saillie sur la façade sud, le décor de la façade principale dont les quatre travées sont terminées par des lucarnes coiffées de frontons semi-circulaires sommé d'une boule, la porte d'entrée encadrées de pilastres portant une cartouche surmonté d'un casque et flanqué de cornes d'abondance, double cordon séparant les étages, les toits en croupes couvert de tuiles.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Jean Bertrand  de Baffoigne
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Castillon à Arrengosse   44° 00' 21" Nord 0° 47' 47" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>CASTILLON, en 1541 Robin de Banquet cède la maison forte de Castillon à Paulin de Mongrand.  Au début du XVIIe siécle la propriété est acquise  et  construit un château en 1625  par Jean Bertrand  de Baffoigne seigneur de Castillon, avec laide de larchitecte Gratien de Lerme. La porte principale de lédifice indique la date de 1625. Jean Bertrand  de Baffoigne a une fille Jeanne et un fils Jean-Charles  qui meurt en 1667 . Le château passe à Jeanne qui épousa en 1645 Bernard vicomte de Poudenx, la fille de Henri de Poudenx fils de Bernard Jeanne hérite à la mort de son père  en 1739.   Durant les guerres de religion, Castillon subit dailleurs de nombreuses attaques.  Un autre Henri de Poudenx gouverneur de Saint-Jean-Pied-de-Port et lieutenant général de l'armée du roi épouse en 1790 Josephine Anne Cocar, ils eurent trois enfants dont Henriette Emilie qui reçoit en dot le château de Castillon à l'occasion de son mariage  en 1813 avec Pierre d'Ismert général et baron d'Empire,   veuve en 1826 cède le domaine en 1840 à Jean Larroque, une nouvelle vente est passé au baron Gérard petit neveu du peintre,  toutefois, il ne mérite plus cette appellation aujourdhui, la famille Lastours, actuel  propriétaire, a restauré lédifice ainsi que les jardins à la française. Le château de Castillon a reçu l'écrivain Théophile Gautier, en visite dans la region. Depuis le 9 décembre 1918, lédifice est inscrit à linventaire des M.H.</p>
+<h4>Architecture</h4><p>CASTILLON, sa construction a commencé au XVIIe siècle et s'est achevé à la fin du XIXe siècle. Important quadrilatère avec ses communs, Il est de style Louis XIII. La partie occidentale, appelée « l'aile neuve », sera construite au XIXe siècle, sous les consignes du baron Gérard, connus pour être d'éminents frondeurs. Le château de Castillon fait partie des plus beaux des Landes par la majesté et la noblesse de son allure. Il comporte d'élégantes lucarnes, de belles toitures, une imposante façade, ainsi que de très beaux Jardins à la Française, dessinés par le paysagiste André.  Lédifice présente un corps de logis de plan rectangulaire  de deux niveaux flanqué de deux pavillons latéraux comptant trois niveaux faisant saillie sur la façade sud, le décor de la façade principale dont les quatre travées sont terminées par des lucarnes coiffées de frontons semi-circulaires sommé d'une boule, la porte d'entrée encadrées de pilastres portant une cartouche surmonté d'un casque et flanqué de cornes d'abondance, double cordon séparant les étages, les toits en croupes couvert de tuiles.</p>
+<h4>Habitants / Familles</h4><p>Famille de Jean Bertrand  de Baffoigne
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Castillon à Arrengosse   44° 00' 21" Nord 0° 47' 47" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

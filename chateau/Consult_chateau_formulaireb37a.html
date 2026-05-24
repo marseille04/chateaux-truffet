@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Castres_Hotel — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,59 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_81.html">Tarn</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_81.html">Tarn</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_81.html" class="back-link">Retour au département 81 — Tarn</a>
-  <div class="fiche">
-    <h2>Castres_Hotel</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>81 — Tarn</td></tr>
-          <tr><td>Canton</td><td>Castres</td></tr>
-          <tr><td>Commune</td><td>Castres</td></tr>
-          <tr><td>Type d'édifice</td><td>Hôtel</td></tr>
-          <tr><td>Période d'origine</td><td>XVI-XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_81/81_Castres_Hotel_1.jpg" alt="Castres_Hotel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_81/81_Castres_Hotel_2.jpg" alt="Castres_Hotel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_81/81_Castres_Hotel_3.jpg" alt="Castres_Hotel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_81/81_Castres_Hotel_4.jpg" alt="Castres_Hotel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_81/81_Castres_Hotel_5.jpg" alt="Castres_Hotel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_81/81_Castres_Hotel_6.jpg" alt="Castres_Hotel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_81/81_Castres_Hotel_7.jpg" alt="Castres_Hotel" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_81.html">Retour au département 81 — Tarn</a>
+<div class="fiche">
+<h2>Castres_Hotel</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Castres_Hotel" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_81/81_Castres_Hotel_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Castres_Hotel" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Castres_Hotel_1.jpg"/><img alt="Castres_Hotel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Castres_Hotel_2.jpg"/><img alt="Castres_Hotel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Castres_Hotel_3.jpg"/><img alt="Castres_Hotel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Castres_Hotel_4.jpg"/><img alt="Castres_Hotel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Castres_Hotel_5.jpg"/><img alt="Castres_Hotel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Castres_Hotel_6.jpg"/><img alt="Castres_Hotel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Castres_Hotel_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>81 — Tarn</td></tr>
+<tr><td>Canton</td><td>Castres</td></tr>
+<tr><td>Commune</td><td>Castres</td></tr>
+<tr><td>Type d'édifice</td><td>Hôtel</td></tr>
+<tr><td>Période d'origine</td><td>XVI-XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>La ville possède quelques hôtels particuliers du XVIe et XVIIe siècles, dont l'hôtel de Nayrac, datant de la Renaissance dit de Oulès.                                                                                         L'hôtel de VIVIES a été construit par monseigneur de Rozel, avocat à la chambre de l'Édit. Ce premier élément affiche le rang du propriétaire. Il est surmonté par un panneau sculpté qui portait les armes de la famille. En entrant, le visiteur était accueilli par une croisée centrale  ouvrant sur un balcon à balustre. La porte d'entrée de l'hôtel, décalée dans l'angle à gauche, est précédée par un perron : la cour se devait de ménager la plus grande disponibilité aux cavaliers et véhicules hippomobiles. L'escalier, noyau de l'édifice.                                                                                                              Hôtel de PONCET  Bâti au XVIIe siècle, cet hôtel a appartenu au grand-père maternel du maréchal Jean-Louis de Ligonnier. Né à Castres en 1680, ce dernier s'expatrie en 1697 à la suite de la révocation de l'édit de Nantes en 1685. Il mène toute sa carrière dans l'armée anglaise et termine feld-maréchal. Il meurt en 1770, comblé d'honneurs, aux côtés des rois et hommes célèbres d'Angleterre.                                                                                Hôtel Jean LEROY, l'emblème du pouvoir Lorsque Castres devint le siège de la Chambre de l'Édit en 1595, elle attira de nombreuses personnalités nommées par le Roi ou représentant tel parti. Leur autorité se devait d'être incontestée et leur demeure devait être représentative de ce pouvoir.  Cette inscription latine, au-dessus de la porte d'entrée de l'hôtel Jean Leroy, a deux traductions possibles. L'une édifiante : «Le ciel et non la terre». L'autre, plus libertine, au sens du XVIIe siècle « Pas seulement le ciel».                                                                                                                                                  Hôtel Jean OULES dit de Nayrac Sous Henri IV, l'installation du Tribunal de la Chambre de l'Édit et l'arrivée de nombreux magistrats ainsi que le développement économique de cette époque permirent la construction de quelques-uns des édifices majeurs de la ville. L'hôtel Oulès C'est le sieur Oulès, déjà propriétaire d'une très belle maison à l'angle des rues Sabaterie et Camille-Rabaud, qui décida d'acquérir trois lots mitoyens de maisons qui s'élevaient sur la rue droite de Frédéric-Thomas vers 1635.</p>
-      <h4>Architecture</h4><p>Hôtel Jean Oulès dit de Nayrac Sous Henri IV, l'installation du Tribunal de la Chambre de l'Édit,  Le dessin, les proportions et l'emplacement des baies à croisillons de la porte d'honneur et la tourelle à encorbellement rythment harmonieusement la façade des trois ailes. Les percements sont encadrés de pierre et de tableaux en brique apparente. L'oculus du portail est utilisé comme point de fuite  est donc traité suivant un style très dépouillé, plus issu de l'influence de l'architecture Louis XIII, dans l'esprit de l'architecture toulousaine  en alliant très largement brique et pierre. La partie sud constituait laile des appartements avec une cour intérieure et un puits alors que dans la partie nord se trouvait la boutique.                 VIVIES  La construction classique de l'hôtel s'ordonne autour de la cour d'entrée ouverte sur la rue par un grand portail.  Un très bel escalier droit dessert tous les étages et se retrouve au centre de l'édifice. Chaque porte est finement soulignée par des moulures discrètes. Cette cage d'escalier est une véritable tour carrée sur laquelle viennent se harper perpendiculairement les ailes. Ce principe a permis qu'une loggia soit aménagée dans le dernier étage, elle fut remaniée ultérieurement mais a gardé sa précieuse balustrade à galerie ouverte. Un escalier aménagé dans un angle. Une tourelle à encorbellement, traitée en briques dans le style de la Renaissance dit Toulousaine, protège le petit escalier et donne à la façade du midi une allure particulière. Les façades sont ajourées de baies à croisillons dont les pilastres latéraux sont terminés par un chapiteau.                                                                                                                         Hôtel Leroy, édifié au début du XVIIe siècle, cet hôtel frappe par sa tourelle d'angle en encorbellement et à cul-de-lampe fait en briques, et dont les fenêtres à meneaux ont un encadrement en pierre. Cet appareillage de briques et pierres montre à la fois l'inspiration de l'architecture toulousaine et du XVIIe siècle. Une devise à double sens L'hôtel conserve sur la rue une porte à fronton à rouleaux encadrant une devise caractéristique de cette période.</p>
-      <h4>Habitants / Familles</h4><p>Viviès; Monseigneur de Rozel                                        Poncet;maréchal Jean-Louis de Ligonnier                                  Leroy; Jean Leroy                                                                     Oulés;Jean Oulés
-<br>        "</p>
-      <h4>Divers</h4><p>Divers châteaux-Hôtels dans Castres</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>La ville possède quelques hôtels particuliers du XVIe et XVIIe siècles, dont l'hôtel de Nayrac, datant de la Renaissance dit de Oulès.                                                                                         L'hôtel de VIVIES a été construit par monseigneur de Rozel, avocat à la chambre de l'Édit. Ce premier élément affiche le rang du propriétaire. Il est surmonté par un panneau sculpté qui portait les armes de la famille. En entrant, le visiteur était accueilli par une croisée centrale  ouvrant sur un balcon à balustre. La porte d'entrée de l'hôtel, décalée dans l'angle à gauche, est précédée par un perron : la cour se devait de ménager la plus grande disponibilité aux cavaliers et véhicules hippomobiles. L'escalier, noyau de l'édifice.                                                                                                              Hôtel de PONCET  Bâti au XVIIe siècle, cet hôtel a appartenu au grand-père maternel du maréchal Jean-Louis de Ligonnier. Né à Castres en 1680, ce dernier s'expatrie en 1697 à la suite de la révocation de l'édit de Nantes en 1685. Il mène toute sa carrière dans l'armée anglaise et termine feld-maréchal. Il meurt en 1770, comblé d'honneurs, aux côtés des rois et hommes célèbres d'Angleterre.                                                                                Hôtel Jean LEROY, l'emblème du pouvoir Lorsque Castres devint le siège de la Chambre de l'Édit en 1595, elle attira de nombreuses personnalités nommées par le Roi ou représentant tel parti. Leur autorité se devait d'être incontestée et leur demeure devait être représentative de ce pouvoir.  Cette inscription latine, au-dessus de la porte d'entrée de l'hôtel Jean Leroy, a deux traductions possibles. L'une édifiante : «Le ciel et non la terre». L'autre, plus libertine, au sens du XVIIe siècle « Pas seulement le ciel».                                                                                                                                                  Hôtel Jean OULES dit de Nayrac Sous Henri IV, l'installation du Tribunal de la Chambre de l'Édit et l'arrivée de nombreux magistrats ainsi que le développement économique de cette époque permirent la construction de quelques-uns des édifices majeurs de la ville. L'hôtel Oulès C'est le sieur Oulès, déjà propriétaire d'une très belle maison à l'angle des rues Sabaterie et Camille-Rabaud, qui décida d'acquérir trois lots mitoyens de maisons qui s'élevaient sur la rue droite de Frédéric-Thomas vers 1635.</p>
+<h4>Architecture</h4><p>Hôtel Jean Oulès dit de Nayrac Sous Henri IV, l'installation du Tribunal de la Chambre de l'Édit,  Le dessin, les proportions et l'emplacement des baies à croisillons de la porte d'honneur et la tourelle à encorbellement rythment harmonieusement la façade des trois ailes. Les percements sont encadrés de pierre et de tableaux en brique apparente. L'oculus du portail est utilisé comme point de fuite  est donc traité suivant un style très dépouillé, plus issu de l'influence de l'architecture Louis XIII, dans l'esprit de l'architecture toulousaine  en alliant très largement brique et pierre. La partie sud constituait laile des appartements avec une cour intérieure et un puits alors que dans la partie nord se trouvait la boutique.                 VIVIES  La construction classique de l'hôtel s'ordonne autour de la cour d'entrée ouverte sur la rue par un grand portail.  Un très bel escalier droit dessert tous les étages et se retrouve au centre de l'édifice. Chaque porte est finement soulignée par des moulures discrètes. Cette cage d'escalier est une véritable tour carrée sur laquelle viennent se harper perpendiculairement les ailes. Ce principe a permis qu'une loggia soit aménagée dans le dernier étage, elle fut remaniée ultérieurement mais a gardé sa précieuse balustrade à galerie ouverte. Un escalier aménagé dans un angle. Une tourelle à encorbellement, traitée en briques dans le style de la Renaissance dit Toulousaine, protège le petit escalier et donne à la façade du midi une allure particulière. Les façades sont ajourées de baies à croisillons dont les pilastres latéraux sont terminés par un chapiteau.                                                                                                                         Hôtel Leroy, édifié au début du XVIIe siècle, cet hôtel frappe par sa tourelle d'angle en encorbellement et à cul-de-lampe fait en briques, et dont les fenêtres à meneaux ont un encadrement en pierre. Cet appareillage de briques et pierres montre à la fois l'inspiration de l'architecture toulousaine et du XVIIe siècle. Une devise à double sens L'hôtel conserve sur la rue une porte à fronton à rouleaux encadrant une devise caractéristique de cette période.</p>
+<h4>Habitants / Familles</h4><p>Viviès; Monseigneur de Rozel                                        Poncet;maréchal Jean-Louis de Ligonnier                                  Leroy; Jean Leroy                                                                     Oulés;Jean Oulés
+<br/>        "</p>
+<h4>Divers</h4><p>Divers châteaux-Hôtels dans Castres</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Réveillon_Gers — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,61 +113,63 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_32.html">Gers</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_32.html">Gers</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_32.html" class="back-link">Retour au département 32 — Gers</a>
-  <div class="fiche">
-    <h2>Réveillon_Gers</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>32 — Gers</td></tr>
-          <tr><td>Canton</td><td>Auch</td></tr>
-          <tr><td>Commune</td><td>Mirepoix</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_32/32_Reveillon_Gers_1.jpg" alt="Réveillon_Gers" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Reveillon_Gers_2.jpg" alt="Réveillon_Gers" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Reveillon_Gers_3.jpg" alt="Réveillon_Gers" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Reveillon_Gers_4.jpg" alt="Réveillon_Gers" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Reveillon_Gers_5.jpg" alt="Réveillon_Gers" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_32.html">Retour au département 32 — Gers</a>
+<div class="fiche">
+<h2>Réveillon_Gers</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Réveillon_Gers" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_32/32_Reveillon_Gers_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Réveillon_Gers" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Reveillon_Gers_1.jpg"/><img alt="Réveillon_Gers" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Reveillon_Gers_2.jpg"/><img alt="Réveillon_Gers" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Reveillon_Gers_3.jpg"/><img alt="Réveillon_Gers" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Reveillon_Gers_4.jpg"/><img alt="Réveillon_Gers" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Reveillon_Gers_5.jpg"/></div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>32 — Gers</td></tr>
+<tr><td>Canton</td><td>Auch</td></tr>
+<tr><td>Commune</td><td>Mirepoix</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>REVEILLON, fut construit entre 1607 et 1617 par Claude dAncienville, seigneur de Réveillon, à la place dun château médiéval du XIIIe siècle, ruiné par les guerres de cent ans et de religions.  Jean Galland de 1642  à 1672 . En 1663 Jean Galland fait planter lallée de Retourneloup.   En 1719, le château passe aux mains de René-Louis Le Voyer de Paulmy, marquis dArgenson, qui sera ministre des affaires étrangères de Louis XV. Celui-ci entreprit de grosses transformations architecturales à Réveillon. Il changea tout dabord la forme du toit quil éclaira par des lucarnes. Il transforma également les fenêtres.  Le château fut acquis par Jules-Robert de Cotte, architecte du roi Louis XV.  Sa petite-fille revendit le domaine en 1809 au général Haber. Les Haber Colle en furent propriétaires jusquen 1947. Au tournant des XIXe et XXe siècles, le château était la résidence dété de  Madeleine Lemaire, surnommée par Anatole France « limpératrice des Roses ». Madeleine qui tenait un salon littéraire réputé à Paris, recevait tout ce que cette époque comptait dartistes, écrivains et intellectuels. Le jeune Marcel Proust fréquenta le salon parisien de madame Lemaire. Celle-ci se lia damitié avec ce jeune écrivain, lencouragea à lécriture et linvita en 1894 et 1895 à Réveillon. Il y entreprit lécriture de son premier roman dessai « Les Plaisirs et les jours »  dans lequel il décrit les marronniers du jardin à la française de la propriété de son hôte. Madeleine Lemaire illustra de gravures cette première uvre.</p>
-      <h4>Architecture</h4><p>Le château, de style Louis XIII, se compose dun corps en fond de cour, de deux ailes au nord et au sud, qui se terminent par une tour à chaque  angles. Les douves semi-sèches sont drainées par un fossé captant les eaux de la fontaine Saint-Fiacre.
-<br>Réveillon fut construit pour être une résidence de campagne. Il changea très régulièrement de propriétaires tout au long des XVIIe et XVIIIe siècles. Si la composition générale du château est celle de larchitecture de la première moitié du XVIIe siècle, le décor intérieur est de style Louis XIV. Réveillon fut le quartier général dun haut fait darmes le 13 juin 1940. Le 58 ème régiment dartillerie commandé par le colonel Rousset, perdit la moitié de ses hommes en interdisant vingt quatre heures le franchissement du Grand Morin à une division Panzer en marche vers Paris. Au siècle dernier, le château fut laissé presque quatre vingts ans sans entretien. Depuis 1992 les propriétaires actuels ont entamés une restauration denvergure destinée à rendre son lustre dantan au château.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Claude dAncienville
-<br>        
-<br>        
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Réveillon à Mirepoix</p>
-    </div>
-  </div>
+
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>REVEILLON, fut construit entre 1607 et 1617 par Claude dAncienville, seigneur de Réveillon, à la place dun château médiéval du XIIIe siècle, ruiné par les guerres de cent ans et de religions.  Jean Galland de 1642  à 1672 . En 1663 Jean Galland fait planter lallée de Retourneloup.   En 1719, le château passe aux mains de René-Louis Le Voyer de Paulmy, marquis dArgenson, qui sera ministre des affaires étrangères de Louis XV. Celui-ci entreprit de grosses transformations architecturales à Réveillon. Il changea tout dabord la forme du toit quil éclaira par des lucarnes. Il transforma également les fenêtres.  Le château fut acquis par Jules-Robert de Cotte, architecte du roi Louis XV.  Sa petite-fille revendit le domaine en 1809 au général Haber. Les Haber Colle en furent propriétaires jusquen 1947. Au tournant des XIXe et XXe siècles, le château était la résidence dété de  Madeleine Lemaire, surnommée par Anatole France « limpératrice des Roses ». Madeleine qui tenait un salon littéraire réputé à Paris, recevait tout ce que cette époque comptait dartistes, écrivains et intellectuels. Le jeune Marcel Proust fréquenta le salon parisien de madame Lemaire. Celle-ci se lia damitié avec ce jeune écrivain, lencouragea à lécriture et linvita en 1894 et 1895 à Réveillon. Il y entreprit lécriture de son premier roman dessai « Les Plaisirs et les jours »  dans lequel il décrit les marronniers du jardin à la française de la propriété de son hôte. Madeleine Lemaire illustra de gravures cette première uvre.</p>
+<h4>Architecture</h4><p>Le château, de style Louis XIII, se compose dun corps en fond de cour, de deux ailes au nord et au sud, qui se terminent par une tour à chaque  angles. Les douves semi-sèches sont drainées par un fossé captant les eaux de la fontaine Saint-Fiacre.
+<br/>Réveillon fut construit pour être une résidence de campagne. Il changea très régulièrement de propriétaires tout au long des XVIIe et XVIIIe siècles. Si la composition générale du château est celle de larchitecture de la première moitié du XVIIe siècle, le décor intérieur est de style Louis XIV. Réveillon fut le quartier général dun haut fait darmes le 13 juin 1940. Le 58 ème régiment dartillerie commandé par le colonel Rousset, perdit la moitié de ses hommes en interdisant vingt quatre heures le franchissement du Grand Morin à une division Panzer en marche vers Paris. Au siècle dernier, le château fut laissé presque quatre vingts ans sans entretien. Depuis 1992 les propriétaires actuels ont entamés une restauration denvergure destinée à rendre son lustre dantan au château.</p>
+<h4>Habitants / Familles</h4><p>Famille de Claude dAncienville
+<br/>
+<br/>
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Réveillon à Mirepoix</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

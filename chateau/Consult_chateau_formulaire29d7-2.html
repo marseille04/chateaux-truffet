@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Marcillat_Combraille — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,60 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_03.html">Allier</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_03.html">Allier</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_03.html" class="back-link">Retour au département 03 — Allier</a>
-  <div class="fiche">
-    <h2>Marcillat_Combraille</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>03 — Allier</td></tr>
-          <tr><td>Canton</td><td>Marcillat-en-Combraille</td></tr>
-          <tr><td>Commune</td><td>Marcillat-en-Combraille</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_03/03_Marcillat_Combraille_1.jpg" alt="Marcillat_Combraille" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Marcillat_Combraille_2.jpg" alt="Marcillat_Combraille" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Marcillat_Combraille_3.jpg" alt="Marcillat_Combraille" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Marcillat_Combraille_4.jpg" alt="Marcillat_Combraille" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Marcillat_Combraille_5.jpg" alt="Marcillat_Combraille" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Marcillat_Combraille_6.jpg" alt="Marcillat_Combraille" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_03.html">Retour au département 03 — Allier</a>
+<div class="fiche">
+<h2>Marcillat_Combraille</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Marcillat_Combraille" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_03/03_Marcillat_Combraille_1.jpg"/><div class="hero-count" id="hero-count">1 / 6</div></div><div class="photo-strip"><img alt="Marcillat_Combraille" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Marcillat_Combraille_1.jpg"/><img alt="Marcillat_Combraille" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Marcillat_Combraille_2.jpg"/><img alt="Marcillat_Combraille" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Marcillat_Combraille_3.jpg"/><img alt="Marcillat_Combraille" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Marcillat_Combraille_4.jpg"/><img alt="Marcillat_Combraille" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Marcillat_Combraille_5.jpg"/><img alt="Marcillat_Combraille" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Marcillat_Combraille_6.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>03 — Allier</td></tr>
+<tr><td>Canton</td><td>Marcillat-en-Combraille</td></tr>
+<tr><td>Commune</td><td>Marcillat-en-Combraille</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Trois châteaux à Marcillat, de Ludaix du XVIIe siècle, Courtioux du XIXe siècle et Marcillat du XIII-XVe siècle donjon et hôtel de ville.
-<br>MARCILLAT, à l'origine, le siège primitif de la seigneurie de Marcillat était le château St-Georges. En 1503, le fief de Marcillat est détenu en coseigneurie par Michel de Rochedragon, écuyer, et Jacques de Rochedragon, écuyer. Tous  deux seigneurs en partie de Marcillat, reconnaissent tenir en fief de la duchesse de Bourbon la terre, justice et  seigneurie de Marcillat et autres.   En 1398, Pierre de Ruppedagulpho,  alias Malbert, est seigneur de Marcillat. Il avait épousé damoiselle  Marguerite de Montluçon. Vers 1456, la seigneurie fut partagée entre les frères Bidaud  et Chatard de Rocheragon , actuelle mairie, sur la partie haute du bourg, le donjon a conservé des fenêtres en accolade et moulures du XVe siècle.
-<br>COURTIOUX, plus manoir que château,  fût construit en 1885 en plein cur de Marcillat en Combraille par André Regnard, déjà propriétaire du domaine de Charagiet. André Regnard était conseiller darrondissement et adjoint au maire de Marcillat. Aujourd'hui hôtel restaurant.  LUDAIX,  en 1258, le seigneur du Ludaix est un Guillaume de Rochedragon de Biollet. En 1350, cette terre appartenait aux héritiers de Guillaume du Mont, dont un Jean de Laval, seigneur du Ludaix, qui était originaire du lieu dit Lavaud à Château sur Cher. Vers 1615, le château du Ludaix appartient à Antoine de Montagnac. Aujourd'hui hôtel Restaurant.</p>
-      <h4>Architecture</h4><p>Marcillat, cette vieille forteresse était construite sur une esplanade circulaire protégée au nord et au levant par une forte déclivité au-dessus de la Tartasse, et au midi et au couchant  par des fossés encore en eau. On connaît mal cependant l'aspect de la forteresse des Rochedragon, car en 1456, un nouveau château remplaça le fort médiéval. Le bâtiment actuel date des années 1820 et n'a gardé que peu de souvenirs des constructions antérieures  sauf peut-être la vieille tour croulante et les fossés en eau. Aménagée au XVe siècle, la forteresse du Bourg couronnait le point culminant du plateau. Elle comprenait une partie ancienne du XIIIe siècle, et un donjon carré du XVe siècle  sur la partie haute du bourg, le donjon a conservé des fenêtres en accolade et des moulures du XVe siècle. Elle était munie de trois ponts levis sur fossés qui donnaient accès à la grande salle d'accueil dite des Chevaliers.                      Courtioux,  fût construit en 1885 en plein cur de Marcillat en Combraille. 
-<br>Ludaix,  au bourg, Le Ludeix ou Ludès est un château moderne, à tours rondes à campanile et tours carrées à mâchicoulis, construit au début du XIXe siècle à l'emplacement  d'une gentilhommière du XVe siècle, qui avait elle-même remplacé une construction plus ancienne.  Ce château du XVIIe siècle à conservé son donjon médiéval.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Pierre de Ruppedagulpho        Famille d'André Regnard                 Famille d'Antoine de Montagnac"</p>
-      <h4>Divers</h4><p>Château de Marcillat, de Courtioux et de Ludaix à Marcillat en Combraille</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Trois châteaux à Marcillat, de Ludaix du XVIIe siècle, Courtioux du XIXe siècle et Marcillat du XIII-XVe siècle donjon et hôtel de ville.
+<br/>MARCILLAT, à l'origine, le siège primitif de la seigneurie de Marcillat était le château St-Georges. En 1503, le fief de Marcillat est détenu en coseigneurie par Michel de Rochedragon, écuyer, et Jacques de Rochedragon, écuyer. Tous  deux seigneurs en partie de Marcillat, reconnaissent tenir en fief de la duchesse de Bourbon la terre, justice et  seigneurie de Marcillat et autres.   En 1398, Pierre de Ruppedagulpho,  alias Malbert, est seigneur de Marcillat. Il avait épousé damoiselle  Marguerite de Montluçon. Vers 1456, la seigneurie fut partagée entre les frères Bidaud  et Chatard de Rocheragon , actuelle mairie, sur la partie haute du bourg, le donjon a conservé des fenêtres en accolade et moulures du XVe siècle.
+<br/>COURTIOUX, plus manoir que château,  fût construit en 1885 en plein cur de Marcillat en Combraille par André Regnard, déjà propriétaire du domaine de Charagiet. André Regnard était conseiller darrondissement et adjoint au maire de Marcillat. Aujourd'hui hôtel restaurant.  LUDAIX,  en 1258, le seigneur du Ludaix est un Guillaume de Rochedragon de Biollet. En 1350, cette terre appartenait aux héritiers de Guillaume du Mont, dont un Jean de Laval, seigneur du Ludaix, qui était originaire du lieu dit Lavaud à Château sur Cher. Vers 1615, le château du Ludaix appartient à Antoine de Montagnac. Aujourd'hui hôtel Restaurant.</p>
+<h4>Architecture</h4><p>Marcillat, cette vieille forteresse était construite sur une esplanade circulaire protégée au nord et au levant par une forte déclivité au-dessus de la Tartasse, et au midi et au couchant  par des fossés encore en eau. On connaît mal cependant l'aspect de la forteresse des Rochedragon, car en 1456, un nouveau château remplaça le fort médiéval. Le bâtiment actuel date des années 1820 et n'a gardé que peu de souvenirs des constructions antérieures  sauf peut-être la vieille tour croulante et les fossés en eau. Aménagée au XVe siècle, la forteresse du Bourg couronnait le point culminant du plateau. Elle comprenait une partie ancienne du XIIIe siècle, et un donjon carré du XVe siècle  sur la partie haute du bourg, le donjon a conservé des fenêtres en accolade et des moulures du XVe siècle. Elle était munie de trois ponts levis sur fossés qui donnaient accès à la grande salle d'accueil dite des Chevaliers.                      Courtioux,  fût construit en 1885 en plein cur de Marcillat en Combraille. 
+<br/>Ludaix,  au bourg, Le Ludeix ou Ludès est un château moderne, à tours rondes à campanile et tours carrées à mâchicoulis, construit au début du XIXe siècle à l'emplacement  d'une gentilhommière du XVe siècle, qui avait elle-même remplacé une construction plus ancienne.  Ce château du XVIIe siècle à conservé son donjon médiéval.</p>
+<h4>Habitants / Familles</h4><p>Famille de Pierre de Ruppedagulpho        Famille d'André Regnard                 Famille d'Antoine de Montagnac"</p>
+<h4>Divers</h4><p>Château de Marcillat, de Courtioux et de Ludaix à Marcillat en Combraille</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Bergerac — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,65 +113,63 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_24.html">Dordogne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_24.html">Dordogne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_24.html" class="back-link">Retour au département 24 — Dordogne</a>
-  <div class="fiche">
-    <h2>Bergerac</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>24 — Dordogne</td></tr>
-          <tr><td>Canton</td><td>Bergerac</td></tr>
-          <tr><td>Commune</td><td>Bergerac</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>44° 51' 07" Nord, 0° 28' 59" Est                           Mounet-Sully grav 7-8 GPS : 44° 52' 12" Nord et 0° 27' 25" Est                                                                      ROC  GPS : 44° 54' 26" Nord et 1° 07' 05" Est    Mouleydier Merles grav 5-6.    Péraréde grav 9</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_24/24_Bergerac_1.jpg" alt="Bergerac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Bergerac_2.jpg" alt="Bergerac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Bergerac_3.jpg" alt="Bergerac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Bergerac_4.jpg" alt="Bergerac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Bergerac_5.jpg" alt="Bergerac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Bergerac_6.jpg" alt="Bergerac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Bergerac_7.jpg" alt="Bergerac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Bergerac_8.jpg" alt="Bergerac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Bergerac_9.jpg" alt="Bergerac" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_24.html">Retour au département 24 — Dordogne</a>
+<div class="fiche">
+<h2>Bergerac</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Bergerac" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_24/24_Bergerac_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Bergerac" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Bergerac_1.jpg"/><img alt="Bergerac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Bergerac_2.jpg"/><img alt="Bergerac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Bergerac_3.jpg"/><img alt="Bergerac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Bergerac_4.jpg"/><img alt="Bergerac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Bergerac_5.jpg"/><img alt="Bergerac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Bergerac_6.jpg"/><img alt="Bergerac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Bergerac_7.jpg"/><img alt="Bergerac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Bergerac_8.jpg"/><img alt="Bergerac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Bergerac_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>24 — Dordogne</td></tr>
+<tr><td>Canton</td><td>Bergerac</td></tr>
+<tr><td>Commune</td><td>Bergerac</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII</td></tr>
+<tr><td>Coordonnées GPS</td><td>44° 51' 07" Nord, 0° 28' 59" Est                           Mounet-Sully grav 7-8 GPS : 44° 52' 12" Nord et 0° 27' 25" Est                                                                      ROC  GPS : 44° 54' 26" Nord et 1° 07' 05" Est    Mouleydier Merles grav 5-6.    Péraréde grav 9</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>LESPINASSAT, Jean Simon de Sorbier de Jaure, sgr de Lespinassat 1728-1797.  Jean Sarrain dit le vicomte de Durfort-Clermont de Durfort-Boissières, sgr de Pile et de  Bergerac à lâge de 34 ans , inhumé le 3 octobre 1775 , officier au régiment de Chartres-cavalerie, fils de Joseph dit le comte de Clermont-Pile de Dufort-Boissières, sgr de Pile et  F Madeleine de Turenne d'Aynac.  il sagit du destin dAnne de Sorbier de Jaure; Fille du seigneur de Lespinassat.
-<br>MOUNET-SULLY du XVIe, XVIIIe et XIXe siècle. Il porte le nom de son plus illustre propriétaire, le tragédien bergeracois Jean-Sully Mounet  né à Bergerac en 1841. Entièrement meublé, il présente un théâtre, plafonds, boiseries et cheminées. La partie du XIXe siècle, conçue par Mounet-Sully, porte la patte de lartiste, notamment par la présence du « théâtre », où il aimait travailler quand il résidait à Bergerac. Limmense Sarah Bernhardt y a même séjourné, tout comme le "gratin" artistique de cette époque.   La famille de Laurent Peslerbe a acquis le château en 1981                    
-<br>PEYRAREDE, au cur historique de Bergerac, le musée du tabac est installé dans la maison Peyrarède. Bien que cet hôtel particulier soit également connue sous le nom de « château Henri IV », la venue du souverain en ce lieu reste hypothétique. Par contre, le Roi Louis XIII qui, dit-on, se plaît à Bergerac, y loge du 13 au 17 juillet 1621. Il est venu pour y apaiser les troubles dus aux guerres de religion.                  MERLES  est un château bâti au XVIIe siècle  à Mouleydier,  Il est devenu un hôtel 4 étoiles, restaurant gastronomique et golf proche de Bergerac. L'ancienne « maison noble des Merles », mentionnée en 1677, a été remplacée par le château ou la  chartreuse , bâti dans la première moitié du XVIIIe siècle. L'édifice fut la propriété du général d'Empire Jean Zacharie Mesclop qui y décèda en 1844.  Le château  se dresse  comme une pièce montée datant du XVIIIe.</p>
-      <h4>Architecture</h4><p>LESPINASSAT   date des XVIIe, XVIIIe et XIXe siècles. La gentilhommière a remplacé l'ancienne maison forte. Du XVII au XIXe siècle. Façades et toitures du château, y compris celles des deux pavillons d'entrée ; terrasse nord ; fossé entourant l'ensemble, y compris les trois ponts d'accès: construite dans sa majeure partie au XVIIe siècle, elle fut augmentée au XVIIIe d'une galerie, créant en vis à vis du parc, une façade monumentale dont le point fort est un escalier en fer à cheval avec une rampe en fer forgé menant à un avant-corps à fronton. Des pavillons furents construits de chaque côté des entrées Est et Ouest, amorçant ainsi les limites d'une terrasse entourée de douves sèches franchies par un pont. Inscription par arrêté du 22 novembre 1989  PEYRAREDE  en 1950 création du musée par la direction des musées de France. En 1982  installation du musée à la Maison Peyrarède, hôtel du XVIIe siècle, fleuron du patrimoine architectural bergeracois. En 1983 inauguration du nouveau musée doté dun laboratoire de photographie et de restauration ainsi que dun secrétariat administratif. 
-<br>  MOUNET-SULLY  La première construction date du XVIe siècle. Il sagissait alors dune ferme, comme on en trouvait beaucoup dans les environs. Cest au XVIIIe siècle que la famille Mounet-Sully fait construire une autre aile du château.                                          La Rebière d'Or, maison de maître du XVIIe siècle  chambres d'hôtes. corps de logis rectangulaire à deux niveaux flanqué d'un pavillon carré.</p>
-      <h4>Habitants / Familles</h4><p>Lespinasat; Jean simon de Sorbier de Jaure                                                                                 Jean-Sully Mounet
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>A Bergerac le château de Lespinassat grav 2-3-4 GPS : 44° 51' 07" Nord, 0° 28' 59" Est                           Mounet-Sully grav 7-8 GPS : 44° 52' 12" Nord et 0° 27' 25" Est                                                                      ROC  GPS : 44° 54' 26" Nord et 1° 07' 05" Est    Mouleydier Merles grav 5-6.    Péraréde grav 9</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>LESPINASSAT, Jean Simon de Sorbier de Jaure, sgr de Lespinassat 1728-1797.  Jean Sarrain dit le vicomte de Durfort-Clermont de Durfort-Boissières, sgr de Pile et de  Bergerac à lâge de 34 ans , inhumé le 3 octobre 1775 , officier au régiment de Chartres-cavalerie, fils de Joseph dit le comte de Clermont-Pile de Dufort-Boissières, sgr de Pile et  F Madeleine de Turenne d'Aynac.  il sagit du destin dAnne de Sorbier de Jaure; Fille du seigneur de Lespinassat.
+<br/>MOUNET-SULLY du XVIe, XVIIIe et XIXe siècle. Il porte le nom de son plus illustre propriétaire, le tragédien bergeracois Jean-Sully Mounet  né à Bergerac en 1841. Entièrement meublé, il présente un théâtre, plafonds, boiseries et cheminées. La partie du XIXe siècle, conçue par Mounet-Sully, porte la patte de lartiste, notamment par la présence du « théâtre », où il aimait travailler quand il résidait à Bergerac. Limmense Sarah Bernhardt y a même séjourné, tout comme le "gratin" artistique de cette époque.   La famille de Laurent Peslerbe a acquis le château en 1981                    
+<br/>PEYRAREDE, au cur historique de Bergerac, le musée du tabac est installé dans la maison Peyrarède. Bien que cet hôtel particulier soit également connue sous le nom de « château Henri IV », la venue du souverain en ce lieu reste hypothétique. Par contre, le Roi Louis XIII qui, dit-on, se plaît à Bergerac, y loge du 13 au 17 juillet 1621. Il est venu pour y apaiser les troubles dus aux guerres de religion.                  MERLES  est un château bâti au XVIIe siècle  à Mouleydier,  Il est devenu un hôtel 4 étoiles, restaurant gastronomique et golf proche de Bergerac. L'ancienne « maison noble des Merles », mentionnée en 1677, a été remplacée par le château ou la  chartreuse , bâti dans la première moitié du XVIIIe siècle. L'édifice fut la propriété du général d'Empire Jean Zacharie Mesclop qui y décèda en 1844.  Le château  se dresse  comme une pièce montée datant du XVIIIe.</p>
+<h4>Architecture</h4><p>LESPINASSAT   date des XVIIe, XVIIIe et XIXe siècles. La gentilhommière a remplacé l'ancienne maison forte. Du XVII au XIXe siècle. Façades et toitures du château, y compris celles des deux pavillons d'entrée ; terrasse nord ; fossé entourant l'ensemble, y compris les trois ponts d'accès: construite dans sa majeure partie au XVIIe siècle, elle fut augmentée au XVIIIe d'une galerie, créant en vis à vis du parc, une façade monumentale dont le point fort est un escalier en fer à cheval avec une rampe en fer forgé menant à un avant-corps à fronton. Des pavillons furents construits de chaque côté des entrées Est et Ouest, amorçant ainsi les limites d'une terrasse entourée de douves sèches franchies par un pont. Inscription par arrêté du 22 novembre 1989  PEYRAREDE  en 1950 création du musée par la direction des musées de France. En 1982  installation du musée à la Maison Peyrarède, hôtel du XVIIe siècle, fleuron du patrimoine architectural bergeracois. En 1983 inauguration du nouveau musée doté dun laboratoire de photographie et de restauration ainsi que dun secrétariat administratif. 
+<br/>  MOUNET-SULLY  La première construction date du XVIe siècle. Il sagissait alors dune ferme, comme on en trouvait beaucoup dans les environs. Cest au XVIIIe siècle que la famille Mounet-Sully fait construire une autre aile du château.                                          La Rebière d'Or, maison de maître du XVIIe siècle  chambres d'hôtes. corps de logis rectangulaire à deux niveaux flanqué d'un pavillon carré.</p>
+<h4>Habitants / Familles</h4><p>Lespinasat; Jean simon de Sorbier de Jaure                                                                                 Jean-Sully Mounet
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>A Bergerac le château de Lespinassat grav 2-3-4 GPS : 44° 51' 07" Nord, 0° 28' 59" Est                           Mounet-Sully grav 7-8 GPS : 44° 52' 12" Nord et 0° 27' 25" Est                                                                      ROC  GPS : 44° 54' 26" Nord et 1° 07' 05" Est    Mouleydier Merles grav 5-6.    Péraréde grav 9</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

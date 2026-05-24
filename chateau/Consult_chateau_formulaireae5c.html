@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Nyons — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,62 +113,62 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_26.html">Drôme</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_26.html">Drôme</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_26.html" class="back-link">Retour au département 26 — Drôme</a>
-  <div class="fiche">
-    <h2>Nyons</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>26 — Drôme</td></tr>
-          <tr><td>Canton</td><td>Nyons</td></tr>
-          <tr><td>Commune</td><td>Nyons</td></tr>
-          <tr><td>Type d'édifice</td><td>Patrimoine</td></tr>
-          <tr><td>Période d'origine</td><td>X</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_26/26_Nyons_1.jpg" alt="Nyons" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_26/26_Nyons_2.jpg" alt="Nyons" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_26/26_Nyons_3.jpg" alt="Nyons" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_26/26_Nyons_4.jpg" alt="Nyons" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_26/26_Nyons_5.jpg" alt="Nyons" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_26/26_Nyons_6.jpg" alt="Nyons" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_26.html">Retour au département 26 — Drôme</a>
+<div class="fiche">
+<h2>Nyons</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Nyons" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_26/26_Nyons_1.jpg"/><div class="hero-count" id="hero-count">1 / 6</div></div><div class="photo-strip"><img alt="Nyons" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_26/26_Nyons_1.jpg"/><img alt="Nyons" class="" loading="lazy" onclick="setHero(this)" src="../image/image_26/26_Nyons_2.jpg"/><img alt="Nyons" class="" loading="lazy" onclick="setHero(this)" src="../image/image_26/26_Nyons_3.jpg"/><img alt="Nyons" class="" loading="lazy" onclick="setHero(this)" src="../image/image_26/26_Nyons_4.jpg"/><img alt="Nyons" class="" loading="lazy" onclick="setHero(this)" src="../image/image_26/26_Nyons_5.jpg"/><img alt="Nyons" class="" loading="lazy" onclick="setHero(this)" src="../image/image_26/26_Nyons_6.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>26 — Drôme</td></tr>
+<tr><td>Canton</td><td>Nyons</td></tr>
+<tr><td>Commune</td><td>Nyons</td></tr>
+<tr><td>Type d'édifice</td><td>Patrimoine</td></tr>
+<tr><td>Période d'origine</td><td>X</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Nyons: Lorsque mourut Béranger  en 1032, à cette époque trois puissantes familles dans la région, les Barons de Mévouillon pour la vallée de l'Ouvèze et la région du Buis, les Barons de Montauban de la Haute Vallée de l'Aygues et en trois l'Abbaye de Saint-Cesaire:
-<br>En 1206 Dragonnet de Montauban intervient pour la défense de Nyons (décède en 1278).  Au traité de 1262 Nyons devient la capitale  des Baronnies. Il y avait un château féodal  à l'extrémité méridionale, un massif donjon qui prit plus tard le nom de "Tour Randonne". Dragonnet II seigneur de Montauban épousa la fille  du Baron de Mévouillon, leur fils Roselin de Lunel prit le pouvoir à la mort du père mais en 1294 il décéda. Son héritier Hugues de Adhémar de Lombers qui en 1302 vendit la Baronnie au dauphins Humbert Ier  qui fit construire le château-Dalphinal et le village fortifié existé déjà, et donna en apanage à son fils Guy qui prit le titre de baron de Montauban en 1314 et à sa mort à son frère Jean II .
-<br>La châtellenie fut confié à divers Vassaux, Jean Louvel, Tanneguy Duchâtel, Jean Baptiste de Macedoine, César de Canteline, puis Louis XI qui supprima la cour Delphinale et rattacha Nyons au vice Bailly de Bais. Les guerres de religion se déclenchèrent en 1572 jusqu'en 1578 où  Richelieu fit démanteler le château . En 1595 René de la Tour Gouvernet racheta Nyons où il fit construire la citadelle sur les hauteurs en 1604 mais les conflits continuèrent jusqu'en 1633, Louis XIII fit démolir l'ensemble Château citadelle et remparts, l'épidémie de la peste en 1630 n'arrangeat pas les choses, un gouverneur fut nommé Pierre III de la Tour du Pin Gouvernet lieutenant des armées royales qui mourut en 1692, puis  à cette époque se créa une municipalité qui bénéficie de tous les droits seigneuriaux  qui durera jusqu'à la révolution. à cette date le château était habité par les seigneurs Duclaux.
-<br>CHANTEYRIE; château du XIIIe siècle remanié au cours des ans jusqu'au XVIIIe siècle,il a appartenu à la famille de Bruyère, famille de militaire dont plusieurs membres ont de haut faits d'armes à leur actif. Des de Bruyère, passa aux Corréard Dupuy la Marne est à la famille de Vernejoul. aujourd'hui orienté vers la viticulture.</p>
-      <h4>Architecture</h4><p>Du premier château Féodal dit  "châteauvieux" construit sur le sommet au XIe siècle il ne reste plus que la tour Randonne, tour de 8 mètres de côté 10 mètres de haut et des murs de 2 mètres d'épaisseur, une citadelle fut construite sur le plateau du Guard au XIVe siècle ainsi qu'un château Dalphinale construit au XIIIe siècle, de l'ensemble il reste deux tours circulaires et la tour centrale de cette Maison forte, deux tours dans les remparts, portes et passages voûtés. Le tout fut vendu à la ville, mais en 1852 Monsieur Francou curé de Nyons racheta pour éviter le pillage des pierres fut revendu au Consorts Roussa  Barnouin qui géra tous les biens. Madame Chardon-Dratz commença à partir de 1962 une restauration partielle, la partie restaurée a pris le nom de Château-vieux qui comprend l'ancienne tour sarrasine et quatre tours asymétriques.</p>
-      <h4>Habitants / Familles</h4><p>Famille Beranger
-<br>Famille Duclaux"</p>
-      <h4>Divers</h4><p>Château féodal de Nyons avec remparts
-<br>Château de la Chanteyrie</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Nyons: Lorsque mourut Béranger  en 1032, à cette époque trois puissantes familles dans la région, les Barons de Mévouillon pour la vallée de l'Ouvèze et la région du Buis, les Barons de Montauban de la Haute Vallée de l'Aygues et en trois l'Abbaye de Saint-Cesaire:
+<br/>En 1206 Dragonnet de Montauban intervient pour la défense de Nyons (décède en 1278).  Au traité de 1262 Nyons devient la capitale  des Baronnies. Il y avait un château féodal  à l'extrémité méridionale, un massif donjon qui prit plus tard le nom de "Tour Randonne". Dragonnet II seigneur de Montauban épousa la fille  du Baron de Mévouillon, leur fils Roselin de Lunel prit le pouvoir à la mort du père mais en 1294 il décéda. Son héritier Hugues de Adhémar de Lombers qui en 1302 vendit la Baronnie au dauphins Humbert Ier  qui fit construire le château-Dalphinal et le village fortifié existé déjà, et donna en apanage à son fils Guy qui prit le titre de baron de Montauban en 1314 et à sa mort à son frère Jean II .
+<br/>La châtellenie fut confié à divers Vassaux, Jean Louvel, Tanneguy Duchâtel, Jean Baptiste de Macedoine, César de Canteline, puis Louis XI qui supprima la cour Delphinale et rattacha Nyons au vice Bailly de Bais. Les guerres de religion se déclenchèrent en 1572 jusqu'en 1578 où  Richelieu fit démanteler le château . En 1595 René de la Tour Gouvernet racheta Nyons où il fit construire la citadelle sur les hauteurs en 1604 mais les conflits continuèrent jusqu'en 1633, Louis XIII fit démolir l'ensemble Château citadelle et remparts, l'épidémie de la peste en 1630 n'arrangeat pas les choses, un gouverneur fut nommé Pierre III de la Tour du Pin Gouvernet lieutenant des armées royales qui mourut en 1692, puis  à cette époque se créa une municipalité qui bénéficie de tous les droits seigneuriaux  qui durera jusqu'à la révolution. à cette date le château était habité par les seigneurs Duclaux.
+<br/>CHANTEYRIE; château du XIIIe siècle remanié au cours des ans jusqu'au XVIIIe siècle,il a appartenu à la famille de Bruyère, famille de militaire dont plusieurs membres ont de haut faits d'armes à leur actif. Des de Bruyère, passa aux Corréard Dupuy la Marne est à la famille de Vernejoul. aujourd'hui orienté vers la viticulture.</p>
+<h4>Architecture</h4><p>Du premier château Féodal dit  "châteauvieux" construit sur le sommet au XIe siècle il ne reste plus que la tour Randonne, tour de 8 mètres de côté 10 mètres de haut et des murs de 2 mètres d'épaisseur, une citadelle fut construite sur le plateau du Guard au XIVe siècle ainsi qu'un château Dalphinale construit au XIIIe siècle, de l'ensemble il reste deux tours circulaires et la tour centrale de cette Maison forte, deux tours dans les remparts, portes et passages voûtés. Le tout fut vendu à la ville, mais en 1852 Monsieur Francou curé de Nyons racheta pour éviter le pillage des pierres fut revendu au Consorts Roussa  Barnouin qui géra tous les biens. Madame Chardon-Dratz commença à partir de 1962 une restauration partielle, la partie restaurée a pris le nom de Château-vieux qui comprend l'ancienne tour sarrasine et quatre tours asymétriques.</p>
+<h4>Habitants / Familles</h4><p>Famille Beranger
+<br/>Famille Duclaux"</p>
+<h4>Divers</h4><p>Château féodal de Nyons avec remparts
+<br/>Château de la Chanteyrie</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

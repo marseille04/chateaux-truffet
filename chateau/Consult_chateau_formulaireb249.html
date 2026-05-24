@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Buxy — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,64 +113,61 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_71.html">Saône-et-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_71.html">Saône-et-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_71.html" class="back-link">Retour au département 71 — Saône-et-Loire</a>
-  <div class="fiche">
-    <h2>Buxy</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>71 — Saône-et-Loire</td></tr>
-          <tr><td>Canton</td><td>Buxy</td></tr>
-          <tr><td>Commune</td><td>Buxy</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>X-XVI</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_71/71_Buxy_1.jpg" alt="Buxy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Buxy_2.jpg" alt="Buxy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Buxy_3.jpg" alt="Buxy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Buxy_4.jpg" alt="Buxy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Buxy_5.jpg" alt="Buxy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Buxy_6.jpg" alt="Buxy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Buxy_7.jpg" alt="Buxy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Buxy_8.jpg" alt="Buxy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Buxy_9.jpg" alt="Buxy" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_71.html">Retour au département 71 — Saône-et-Loire</a>
+<div class="fiche">
+<h2>Buxy</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Buxy" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_71/71_Buxy_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Buxy" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Buxy_1.jpg"/><img alt="Buxy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Buxy_2.jpg"/><img alt="Buxy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Buxy_3.jpg"/><img alt="Buxy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Buxy_4.jpg"/><img alt="Buxy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Buxy_5.jpg"/><img alt="Buxy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Buxy_6.jpg"/><img alt="Buxy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Buxy_7.jpg"/><img alt="Buxy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Buxy_8.jpg"/><img alt="Buxy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Buxy_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>71 — Saône-et-Loire</td></tr>
+<tr><td>Canton</td><td>Buxy</td></tr>
+<tr><td>Commune</td><td>Buxy</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>X-XVI</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>BUXY; Au Xe siècle est alors le siège d'une prévôté dépendant des comtes. Les conflits entre le roi de France et les comtes amènent le village à se fortifier à partir du XIIe siècle.  Les templiers s'installent dans la région vers 1185 à la demeure templière de Jully. Dans le procès de 1310, Martin de Buxy, un templier de cette maison, fut entendu comme témoin. En 1204, Béatrix, comtesse de Chalon octroie une charte précisant les droits et devoirs des habitants de Buxy. Les buxynois sauront faire valoir leurs droits. C'est la véritable naissance de la municipalité buxynoise.  En 1237, le chalonnais passe entre les mains du duc de Bourgogne Hugues. 
-<br>Après la mort de Charles le Téméraire en 1477, le duché tombe entre les mains des rois de France (Louis XI). Dans la lignée des personnages importants ayant reçu Buxy, citons entre autres Marie de Savoye, marquise de Rothelin, puis la famille de Hochebourg. En succession, Buxy passa dans la famille de Longueville et à la Princesse de Condé, Françoise d'Orléans suivie par Charles de Bourbon. La veuve de Charles de Bourbon cède la terre de Buxy à Jacques du Blé, marquis d'Uxelles pendant environ un siècle. Les biens de Nicolas du Blé sont attribués au marquis de Beringhem, gouverneur de Chalon. Celui-ci vendit Buxy à François Henrion de Pressey, gouverneur des pages de la chambre du roi et trésorier de France en Bourgogne, son fils aîné, Camille sera le dernier seigneur de Buxy qu'il quittera, criblé de dettes.  Buxy n'échappe pas à la tourmente révolutionnaire. Une milice bourgeoise est créé le 24 juillet 1789. Elle deviendra la Garde Nationale et sera armée jusqu'en 1792,</p>
-      <h4>Architecture</h4><p>Buxy; Les murailles de Buxy sont laissées à l'abandon et les habitants construisent sur les remparts. Après la destruction de ce qui rappelle la féodalité (terriers, titres), vient la période des perquisitions et des ventes des biens du clergé et des émigrés, avec arrestations et réquisitions. Mais la population ne s'engage pas réellement à la suite de quelques révolutionnaires. Buxy participe à l'effort de guerre, ce qui permet à un enfant du pays, Claude Meuziau, de devenir général et baron d'Empire, puis plus tard baron héréditaire.                                                                     Châteaux de Cary Potet, les Raveaux, le Cray, et de la tour Bandin (aujourd'hui sur le territoire communal de Montagny-les-Buxy , anciennes tours denceinte, dont la tour du Roi et la tour Rouge qui abrite un caveau et un restaurant gastronomique.
-<br>Vestiges des anciennes fortifications.
-<br>Ruines de lancien château fort des Damas (tour de Tenarre). Tours escalier, tour Perrault (1531), tour Perrussot (vers 1550), tour Saccazand.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Martin de Buxy
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Buxy, de Cary-Potet, des Raveaux, de Cray et de la tour badin</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>BUXY; Au Xe siècle est alors le siège d'une prévôté dépendant des comtes. Les conflits entre le roi de France et les comtes amènent le village à se fortifier à partir du XIIe siècle.  Les templiers s'installent dans la région vers 1185 à la demeure templière de Jully. Dans le procès de 1310, Martin de Buxy, un templier de cette maison, fut entendu comme témoin. En 1204, Béatrix, comtesse de Chalon octroie une charte précisant les droits et devoirs des habitants de Buxy. Les buxynois sauront faire valoir leurs droits. C'est la véritable naissance de la municipalité buxynoise.  En 1237, le chalonnais passe entre les mains du duc de Bourgogne Hugues. 
+<br/>Après la mort de Charles le Téméraire en 1477, le duché tombe entre les mains des rois de France (Louis XI). Dans la lignée des personnages importants ayant reçu Buxy, citons entre autres Marie de Savoye, marquise de Rothelin, puis la famille de Hochebourg. En succession, Buxy passa dans la famille de Longueville et à la Princesse de Condé, Françoise d'Orléans suivie par Charles de Bourbon. La veuve de Charles de Bourbon cède la terre de Buxy à Jacques du Blé, marquis d'Uxelles pendant environ un siècle. Les biens de Nicolas du Blé sont attribués au marquis de Beringhem, gouverneur de Chalon. Celui-ci vendit Buxy à François Henrion de Pressey, gouverneur des pages de la chambre du roi et trésorier de France en Bourgogne, son fils aîné, Camille sera le dernier seigneur de Buxy qu'il quittera, criblé de dettes.  Buxy n'échappe pas à la tourmente révolutionnaire. Une milice bourgeoise est créé le 24 juillet 1789. Elle deviendra la Garde Nationale et sera armée jusqu'en 1792,</p>
+<h4>Architecture</h4><p>Buxy; Les murailles de Buxy sont laissées à l'abandon et les habitants construisent sur les remparts. Après la destruction de ce qui rappelle la féodalité (terriers, titres), vient la période des perquisitions et des ventes des biens du clergé et des émigrés, avec arrestations et réquisitions. Mais la population ne s'engage pas réellement à la suite de quelques révolutionnaires. Buxy participe à l'effort de guerre, ce qui permet à un enfant du pays, Claude Meuziau, de devenir général et baron d'Empire, puis plus tard baron héréditaire.                                                                     Châteaux de Cary Potet, les Raveaux, le Cray, et de la tour Bandin (aujourd'hui sur le territoire communal de Montagny-les-Buxy , anciennes tours denceinte, dont la tour du Roi et la tour Rouge qui abrite un caveau et un restaurant gastronomique.
+<br/>Vestiges des anciennes fortifications.
+<br/>Ruines de lancien château fort des Damas (tour de Tenarre). Tours escalier, tour Perrault (1531), tour Perrussot (vers 1550), tour Saccazand.</p>
+<h4>Habitants / Familles</h4><p>Famille de Martin de Buxy
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Buxy, de Cary-Potet, des Raveaux, de Cray et de la tour badin</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

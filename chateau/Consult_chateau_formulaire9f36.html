@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Cénac_St_Julien — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,64 +113,62 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_24.html">Dordogne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_24.html">Dordogne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_24.html" class="back-link">Retour au département 24 — Dordogne</a>
-  <div class="fiche">
-    <h2>Cénac_St_Julien</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>24 — Dordogne</td></tr>
-          <tr><td>Canton</td><td>Domme</td></tr>
-          <tr><td>Commune</td><td>Cénac et St-Julien</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII-XVIII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>45° 08' 53" Nord, 1° 13' 43" Est.  Montmirail grav 8 et 9  GPS : 48° 6' 11,99" Nord, 0° 47' 25,01" Est.   Miraval grav 4-5. Thouron grav 6</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_24/24_C%c3%a9nac_St_Julien_1.jpg" alt="Cénac_St_Julien" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_C%c3%a9nac_St_Julien_2.jpg" alt="Cénac_St_Julien" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_C%c3%a9nac_St_Julien_3.jpg" alt="Cénac_St_Julien" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_C%c3%a9nac_St_Julien_4.html" alt="Cénac_St_Julien" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_C%c3%a9nac_St_Julien_5.jpg" alt="Cénac_St_Julien" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_C%c3%a9nac_St_Julien_6.jpg" alt="Cénac_St_Julien" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_C%c3%a9nac_St_Julien_7.jpg" alt="Cénac_St_Julien" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_C%c3%a9nac_St_Julien_8.jpg" alt="Cénac_St_Julien" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_C%c3%a9nac_St_Julien_9.jpg" alt="Cénac_St_Julien" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_24.html">Retour au département 24 — Dordogne</a>
+<div class="fiche">
+<h2>Cénac_St_Julien</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Cénac_St_Julien" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_24/24_C%c3%a9nac_St_Julien_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Cénac_St_Julien" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_C%c3%a9nac_St_Julien_1.jpg"/><img alt="Cénac_St_Julien" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_C%c3%a9nac_St_Julien_2.jpg"/><img alt="Cénac_St_Julien" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_C%c3%a9nac_St_Julien_3.jpg"/><img alt="Cénac_St_Julien" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_C%c3%a9nac_St_Julien_4.html"/><img alt="Cénac_St_Julien" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_C%c3%a9nac_St_Julien_5.jpg"/><img alt="Cénac_St_Julien" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_C%c3%a9nac_St_Julien_6.jpg"/><img alt="Cénac_St_Julien" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_C%c3%a9nac_St_Julien_7.jpg"/><img alt="Cénac_St_Julien" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_C%c3%a9nac_St_Julien_8.jpg"/><img alt="Cénac_St_Julien" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_C%c3%a9nac_St_Julien_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>24 — Dordogne</td></tr>
+<tr><td>Canton</td><td>Domme</td></tr>
+<tr><td>Commune</td><td>Cénac et St-Julien</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII-XVIII</td></tr>
+<tr><td>Coordonnées GPS</td><td>45° 08' 53" Nord, 1° 13' 43" Est.  Montmirail grav 8 et 9  GPS : 48° 6' 11,99" Nord, 0° 47' 25,01" Est.   Miraval grav 4-5. Thouron grav 6</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Six châteaux à Cénac-Saint-Julien                                                                     THOURON  Il fut construit au XVIIIe siècle. Il a été acheté par la commune de Cénac et Saint Julien en 1946. Anciennement utilisé comme logement pour les enseignants, il sera un jour réhabilité. Son escalier a été refait récemment.                                        COSTELCAVE : Demeure du XV-XIXe siècle de la famille du conventionnel Taillefer.  vers 1740 jean baptite Taillefer fait agrandir le château,   à sa mort la falille s'y installa, en 1800  son fils  Guillaume député à la convention fait réunir les deux bâtiments avec deux tours, en 1970 madame Marie-Françoise  propriétaire.  MONTMIRAIL ; les villages de Saint-Julien et de Cénac se développent durant tout lancien régime. Les nombreux manoirs conservés aujourdhui dans la commune témoignent de la prospérité de cette époque. Le château est situé au sud ouest du bourg, à mi-pente dun coteau dominant le Céou. Cet ancien repaire noble est mentionné au XVe siècle. Il appartient alors aux Faures de Montauriol. En 1760, le château avait justice sur quelques maisons de Cénac. L'édifice subit de nombreuses destructions, et doit être reconstruit au XXe siècle. La demeure possède une tour-pigeonnier au toit recouvert de lauzes, seigneurie de 1650 à la Révolution.
-<br>MARAVAL  chambre d'hôte d' Anne-Marie et Thierry Sponne, Les premières traces de Maraval remontent au XVe siècle et plus précisément à 1476, où il est question du fief de Maraval. À la fin du XIXe siècle, le château accueillit des surs trappistines qui quittèrent les lieux en 1910.</p>
-      <h4>Architecture</h4><p>THOURON  Il fut construit au XVIIIe siècle.    AYGUEVIVES corps de logis  de plan rectangulaire   flanqué de deux tours rondes ,  est une demeure du XVIIIe siècle et agrandie sous l'Empire. Elle jouit d'une admirable vue sur Domme, dont le dessin coloré se reflète au miroir de l'étang qui alimente le moulin. Alimenté par le Goujon, il fabriquait de lhuile de noix. Une des tours a été endommagée en 1967. Demeure des Maleville, Ayguevive a été longtemps l'atelier du grand artiste Lucien de Maleville , le charme du Périgord noir.                                                            MONTMIRAIL du XIe, XIVe, XVe, XVIIIe et XIXe siècles. Le château culmine à 320 mètres de hauteur et surplombe le village . Ce château, comme celui de la Marne également, n'a rien à voir avec les films "Les Visiteurs". Il est bien conservé et a toujours été habité. Les salles d'armes et les cachots ont été restauré il y a 20 ans.                                                                     Fondaumier : Maison des seigneurs de Fayrac au XIXe siècle du romancier Albert-Camille-Jean Cahuet (dit Albéric Cahuet)
-<br>MARAVAL: Repaire noble du début du XIXe siècle. Au début du XIXe siècle, Maraval fut détruit en grande partie par un incendie et cest sur les ruines de lancien château que fut reconstruite la demeure actuelle.</p>
-      <h4>Habitants / Familles</h4><p>Ayguevive  Famille des Malleville                              Thouron Famille de Sénigon                                Montmirail  Faures de Montauriol
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Six châteaux à Cénac-Saint-Julien grav -1-7;   Ayguevives grav 2.  Constelcave grav-3. Mésange bleu  GPS : 45° 08' 53" Nord, 1° 13' 43" Est.  Montmirail grav 8 et 9  GPS : 48° 6' 11,99" Nord, 0° 47' 25,01" Est.   Miraval grav 4-5. Thouron grav 6</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Six châteaux à Cénac-Saint-Julien                                                                     THOURON  Il fut construit au XVIIIe siècle. Il a été acheté par la commune de Cénac et Saint Julien en 1946. Anciennement utilisé comme logement pour les enseignants, il sera un jour réhabilité. Son escalier a été refait récemment.                                        COSTELCAVE : Demeure du XV-XIXe siècle de la famille du conventionnel Taillefer.  vers 1740 jean baptite Taillefer fait agrandir le château,   à sa mort la falille s'y installa, en 1800  son fils  Guillaume député à la convention fait réunir les deux bâtiments avec deux tours, en 1970 madame Marie-Françoise  propriétaire.  MONTMIRAIL ; les villages de Saint-Julien et de Cénac se développent durant tout lancien régime. Les nombreux manoirs conservés aujourdhui dans la commune témoignent de la prospérité de cette époque. Le château est situé au sud ouest du bourg, à mi-pente dun coteau dominant le Céou. Cet ancien repaire noble est mentionné au XVe siècle. Il appartient alors aux Faures de Montauriol. En 1760, le château avait justice sur quelques maisons de Cénac. L'édifice subit de nombreuses destructions, et doit être reconstruit au XXe siècle. La demeure possède une tour-pigeonnier au toit recouvert de lauzes, seigneurie de 1650 à la Révolution.
+<br/>MARAVAL  chambre d'hôte d' Anne-Marie et Thierry Sponne, Les premières traces de Maraval remontent au XVe siècle et plus précisément à 1476, où il est question du fief de Maraval. À la fin du XIXe siècle, le château accueillit des surs trappistines qui quittèrent les lieux en 1910.</p>
+<h4>Architecture</h4><p>THOURON  Il fut construit au XVIIIe siècle.    AYGUEVIVES corps de logis  de plan rectangulaire   flanqué de deux tours rondes ,  est une demeure du XVIIIe siècle et agrandie sous l'Empire. Elle jouit d'une admirable vue sur Domme, dont le dessin coloré se reflète au miroir de l'étang qui alimente le moulin. Alimenté par le Goujon, il fabriquait de lhuile de noix. Une des tours a été endommagée en 1967. Demeure des Maleville, Ayguevive a été longtemps l'atelier du grand artiste Lucien de Maleville , le charme du Périgord noir.                                                            MONTMIRAIL du XIe, XIVe, XVe, XVIIIe et XIXe siècles. Le château culmine à 320 mètres de hauteur et surplombe le village . Ce château, comme celui de la Marne également, n'a rien à voir avec les films "Les Visiteurs". Il est bien conservé et a toujours été habité. Les salles d'armes et les cachots ont été restauré il y a 20 ans.                                                                     Fondaumier : Maison des seigneurs de Fayrac au XIXe siècle du romancier Albert-Camille-Jean Cahuet (dit Albéric Cahuet)
+<br/>MARAVAL: Repaire noble du début du XIXe siècle. Au début du XIXe siècle, Maraval fut détruit en grande partie par un incendie et cest sur les ruines de lancien château que fut reconstruite la demeure actuelle.</p>
+<h4>Habitants / Familles</h4><p>Ayguevive  Famille des Malleville                              Thouron Famille de Sénigon                                Montmirail  Faures de Montauriol
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Six châteaux à Cénac-Saint-Julien grav -1-7;   Ayguevives grav 2.  Constelcave grav-3. Mésange bleu  GPS : 45° 08' 53" Nord, 1° 13' 43" Est.  Montmirail grav 8 et 9  GPS : 48° 6' 11,99" Nord, 0° 47' 25,01" Est.   Miraval grav 4-5. Thouron grav 6</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

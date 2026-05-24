@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Espelette — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_64.html">Pyrénées-Atlantiques</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_64.html">Pyrénées-Atlantiques</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_64.html" class="back-link">Retour au département 64 — Pyrénées-Atlantiques</a>
-  <div class="fiche">
-    <h2>Espelette</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>64 — Pyrénées-Atlantiques</td></tr>
-          <tr><td>Canton</td><td>Cambo les Bains</td></tr>
-          <tr><td>Commune</td><td>Espelette</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XI-XV-XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_64/64_Espelette_1.jpg" alt="Espelette" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_64/64_Espelette_2.jpg" alt="Espelette" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_64/64_Espelette_3.jpg" alt="Espelette" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_64/64_Espelette_4.jpg" alt="Espelette" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_64/64_Espelette_5.jpg" alt="Espelette" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_64.html">Retour au département 64 — Pyrénées-Atlantiques</a>
+<div class="fiche">
+<h2>Espelette</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Espelette" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_64/64_Espelette_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Espelette" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_64/64_Espelette_1.jpg"/><img alt="Espelette" class="" loading="lazy" onclick="setHero(this)" src="../image/image_64/64_Espelette_2.jpg"/><img alt="Espelette" class="" loading="lazy" onclick="setHero(this)" src="../image/image_64/64_Espelette_3.jpg"/><img alt="Espelette" class="" loading="lazy" onclick="setHero(this)" src="../image/image_64/64_Espelette_4.jpg"/><img alt="Espelette" class="" loading="lazy" onclick="setHero(this)" src="../image/image_64/64_Espelette_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>64 — Pyrénées-Atlantiques</td></tr>
+<tr><td>Canton</td><td>Cambo les Bains</td></tr>
+<tr><td>Commune</td><td>Espelette</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XI-XV-XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>ESPELETTE, les barons dEzpeleta firent bâtir le château vers lan 1000, Ces barons féodaux étaient à lorigine vassaux du roi de Navarre. Le premier sujet connu de cette ancienne famille est Don Aznar, seigneur dEzpeleta en lan 1059. Il faisait partie des 12 barons du royaume de Navarre. Les seigneurs dEzpeleta en Labourd étaient associés, dès le XIe siècle, aux plus puissants barons de Navarre, suite au mariage dEléanor et dHenri Plantagenêt, lAquitaine, dont le Labourd faisait partie, passa sous la domination des rois dAngleterre jusquau XIVe siècle, et les barons dEzpeleta guerroyaient contre le roi de France. Le cardinal de Richelieu confisqua donc en 1637 les terres du baron Bertrand II dEzpeleta et les habitants détruirent le château. Bertrand II mourut peu de temps après, vers 1640, laissant à sa soeur Barbe tous les biens quil avait en France.  Suite à cette demande, Barbe réintégra le domaine familial, et les habitants furent condamnés à payer à leur suzeraine  pour la reconstruction du château, cette dette ne fut acquittée quen 1670.   A la mort de la baronne, en 1690, le roi Louis XIV, par droit daubaine, donna la seigneurie à Antoine de Gramont, souverain de Bidache. Dès lors, Dona Juliana Henrique, petite nièce de Barbe protesta et récupèra les terres et le château, abandonnant les autres biens au Duc de Gramont. La baronne Juliana Henrique mourut sans descendance en 1694, et légua aux habitants dEspelette le château et les droits seigneuriaux qui y étaient attachés. Les Ezpeletars devinrent ainsi possesseurs dune terre noble. Dès lors, le château servit de presbytère jusquen 1967, il abrita également justice de paix et lécole publique. L'ancien château des Barons d'Ezpeleta a été racheté par la commune, devenu le musée Bigouden.</p>
-      <h4>Architecture</h4><p>ESPELETTE   les origines ce château remonteraient aux début du XIe siècle. Il fut la propriété d'une même lignée jusqu'à la fin du XVIIe siècle. La tour dangle a été inscrite à linventaire des M.H en 1937 et lensemble du château en 1993.  Des vestiges de la forteresse de jadis, ont été trouvé à proximité. Sa destination actuelle est entre autre : des bureaux de la Mairie, d'office de tourisme.  Il mesure environ 45 mètres de longueur pour 10 de large. Il fut très largement rénové en 1997. En 1998, à la demande du Service Régional de lArchéologie dAquitaine et de la Mairie dEspelette, la société HADES a réalisé létude archéologique du château. Une prospection archéologique à sa périphérie, sous forme de sondages en tranchées a révélé les vestiges dune forteresse de la fin du Moyen-Age.
-<br>En 1998, la rénovation complète du château a débuté, sous le contrôle de madame Payen, architecte des bâtiments de France, qui sest fondée sur létude de la société HADES pour restituer les baies disparues et supprimer les ouvertures parasites.</p>
-      <h4>Habitants / Familles</h4><p>Famille d' Antoine de Gramont
-<br>        "</p>
-      <h4>Divers</h4><p>Château d'Espelette  43° 20' 25 nord, 1° 26' 45 ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>ESPELETTE, les barons dEzpeleta firent bâtir le château vers lan 1000, Ces barons féodaux étaient à lorigine vassaux du roi de Navarre. Le premier sujet connu de cette ancienne famille est Don Aznar, seigneur dEzpeleta en lan 1059. Il faisait partie des 12 barons du royaume de Navarre. Les seigneurs dEzpeleta en Labourd étaient associés, dès le XIe siècle, aux plus puissants barons de Navarre, suite au mariage dEléanor et dHenri Plantagenêt, lAquitaine, dont le Labourd faisait partie, passa sous la domination des rois dAngleterre jusquau XIVe siècle, et les barons dEzpeleta guerroyaient contre le roi de France. Le cardinal de Richelieu confisqua donc en 1637 les terres du baron Bertrand II dEzpeleta et les habitants détruirent le château. Bertrand II mourut peu de temps après, vers 1640, laissant à sa soeur Barbe tous les biens quil avait en France.  Suite à cette demande, Barbe réintégra le domaine familial, et les habitants furent condamnés à payer à leur suzeraine  pour la reconstruction du château, cette dette ne fut acquittée quen 1670.   A la mort de la baronne, en 1690, le roi Louis XIV, par droit daubaine, donna la seigneurie à Antoine de Gramont, souverain de Bidache. Dès lors, Dona Juliana Henrique, petite nièce de Barbe protesta et récupèra les terres et le château, abandonnant les autres biens au Duc de Gramont. La baronne Juliana Henrique mourut sans descendance en 1694, et légua aux habitants dEspelette le château et les droits seigneuriaux qui y étaient attachés. Les Ezpeletars devinrent ainsi possesseurs dune terre noble. Dès lors, le château servit de presbytère jusquen 1967, il abrita également justice de paix et lécole publique. L'ancien château des Barons d'Ezpeleta a été racheté par la commune, devenu le musée Bigouden.</p>
+<h4>Architecture</h4><p>ESPELETTE   les origines ce château remonteraient aux début du XIe siècle. Il fut la propriété d'une même lignée jusqu'à la fin du XVIIe siècle. La tour dangle a été inscrite à linventaire des M.H en 1937 et lensemble du château en 1993.  Des vestiges de la forteresse de jadis, ont été trouvé à proximité. Sa destination actuelle est entre autre : des bureaux de la Mairie, d'office de tourisme.  Il mesure environ 45 mètres de longueur pour 10 de large. Il fut très largement rénové en 1997. En 1998, à la demande du Service Régional de lArchéologie dAquitaine et de la Mairie dEspelette, la société HADES a réalisé létude archéologique du château. Une prospection archéologique à sa périphérie, sous forme de sondages en tranchées a révélé les vestiges dune forteresse de la fin du Moyen-Age.
+<br/>En 1998, la rénovation complète du château a débuté, sous le contrôle de madame Payen, architecte des bâtiments de France, qui sest fondée sur létude de la société HADES pour restituer les baies disparues et supprimer les ouvertures parasites.</p>
+<h4>Habitants / Familles</h4><p>Famille d' Antoine de Gramont
+<br/>        "</p>
+<h4>Divers</h4><p>Château d'Espelette  43° 20' 25 nord, 1° 26' 45 ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

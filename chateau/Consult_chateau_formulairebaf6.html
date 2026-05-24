@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Flèche — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,60 +113,61 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_72.html">Sarthe</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_72.html">Sarthe</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_72.html" class="back-link">Retour au département 72 — Sarthe</a>
-  <div class="fiche">
-    <h2>Flèche</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>72 — Sarthe</td></tr>
-          <tr><td>Canton</td><td>La Flèche</td></tr>
-          <tr><td>Commune</td><td>La Flèche</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI-XIX</td></tr>
-          <tr><td>Coordonnées GPS</td><td>47° 42' 10" Nord, 0° 04' 36" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_72/72_Fl%c3%a8che_1.jpg" alt="Flèche" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Fl%c3%a8che_2.jpg" alt="Flèche" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Fl%c3%a8che_3.jpg" alt="Flèche" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Fl%c3%a8che_4.jpg" alt="Flèche" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Fl%c3%a8che_5.jpg" alt="Flèche" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Fl%c3%a8che_6.jpg" alt="Flèche" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_72.html">Retour au département 72 — Sarthe</a>
+<div class="fiche">
+<h2>Flèche</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Flèche" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_72/72_Fl%c3%a8che_1.jpg"/><div class="hero-count" id="hero-count">1 / 6</div></div><div class="photo-strip"><img alt="Flèche" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Fl%c3%a8che_1.jpg"/><img alt="Flèche" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Fl%c3%a8che_2.jpg"/><img alt="Flèche" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Fl%c3%a8che_3.jpg"/><img alt="Flèche" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Fl%c3%a8che_4.jpg"/><img alt="Flèche" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Fl%c3%a8che_5.jpg"/><img alt="Flèche" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Fl%c3%a8che_6.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>72 — Sarthe</td></tr>
+<tr><td>Canton</td><td>La Flèche</td></tr>
+<tr><td>Commune</td><td>La Flèche</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI-XIX</td></tr>
+<tr><td>Coordonnées GPS</td><td>47° 42' 10" Nord, 0° 04' 36" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>A la Flèche une dizaine de châteaux dont je n'ai pas d'informations mis à part Bouchevreau , Doussay et Prytanée-National.                                                     .  BOUCHEVREAU, reconstruit vers 1854, puis remanié à deux reprises vers 1866  et vers 1871, le logis a conservé quelques vestiges datant du XVIIIe siècle notamment le fronton triangulaire d'un ancien avant-corps dans le comble. Les communs datent du XIXe siècle. Le logis se compose d'un corps central flanqué de deux ailes couvertes de toits en croupe. Il est flanqué de deux corps latéraux, à gauche un corps couvert d'un toit polygonal et appareillé en calcaire taillé, à droite un corps également appareillé en calcaire taillé et couvert d'un toit en terrasse, élévation ordonnancée Étages : sous-sol  un étage carré et étage de comble Escaliers , escalier tournant à retours avec jour, escalier dans-oeuvre ; escalier tournant à retours sans jour  en charpente   en : calcaire ; grès ; silex ; appareil mixte ; moellon ; pierre de taille. toit à longs pans ; pignon couvert ; croupe  terrasse ; toit polygonal , couvert d'ardoise.                                                                                                              PRYTANEE NATIONAL, il représente un des 6 lycées de la défense française. En 1603, le roi Henri IV cède son « Château-Neuf » de La Flèche, une importante maison de famille que sa grand-mère Françoise d'Alençon avait fait bâtir, en 1540, pour y établir le Collège royal Henri-le-Grand. Le roi en confie la création aux Jésuites. Devenu le « Prytanée militaire » en 1808, sous l'impulsion de l'empereur Napoléon Ier, il abrite aujourd'hui dans ses murs l'un des 6 Lycées Militaires de France, appelés les Lycées de la Défense, depuis 2006. L'ensemble des bâtiments du Prytanée sont classés aux M.H. depuis 1919.</p>
-      <h4>Architecture</h4><p>DOUSSAY, Jules de Lamandé, son fils, pris personnellement la direction du domaine et s'adonna tout à la fois aux affaires publiques. On connaît sa rude bataille pour tenter d'éviter l'annexion de Sainte-Colombe à La Flèche.Sa fille Marie-Adèle-Alphonsine épousa le 7 juin 1870 Gilles-Louis de Maupeou, VIIe comte d'Ableiges, ingénieur du Génie maritime (1841-1925). L'un de leurs fils, Alphonse (1872-1953), officier de cavalerie, est l'aïeul de la branche fléchoise des Maupeou et de cent quinze arrière-petits-enfants .Son petit-fils, Henri, dirigea l'exploitation de Doussay .  Mentionné dès le XVIIe siècle, l'édifice fut considérablement remanié dans le dernier quart du XVIIIe siècle. La chapelle fut probablement également construite à cette époque. Un avant corps fut adossé à la face postérieure du logis vers 1828. Les communs furent remaniés au XIXe siècle. Parties constituantes: cour, parties agricoles, logement, fabrique de jardin  escalier dans-oeuvre ; escalier tournant à retours avec jour ; en charpente
-<br>Gros-oeuvre: calcaire; grès; silex; appareil mixte; moellon; moellon sans chaîne en pierre de taille; enduit toit à longs pans ; pignon couvert ; croupe en ardoise .                                                                                         PRYTANEE NATIONAL, d'architecture classique, le Prytanée a la forme de 2 grandes cours successives que domine l'imposante stature de l'église Saint-Louis, dont la construction a débuté, en 1607. Les travaux ont suivi un plan élaboré par Louis Métezeau, architecte du roi de France, avec des cours en enfilade, à peu près de même grandeur. L'église fut achevée en 1621 et l'ensemble des travaux s'acheva en 1655 par la construction de la porte d'honneur, avec sur le fronton, le buste du roi Henri IV.</p>
-      <h4>Habitants / Familles</h4><p>Bouchevreau;                                                                              Prytannée; Françoise d'Alençon                                                     Doussay  Jules de Lamandé                              
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>A la Flèche une dizaine de châteaux Rochevreau grav-1-2, Doussay--4-5 et Prytanée-National grav-3.                                                  Prytannée GPS : 47° 42' 10" Nord, 0° 04' 36" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>A la Flèche une dizaine de châteaux dont je n'ai pas d'informations mis à part Bouchevreau , Doussay et Prytanée-National.                                                     .  BOUCHEVREAU, reconstruit vers 1854, puis remanié à deux reprises vers 1866  et vers 1871, le logis a conservé quelques vestiges datant du XVIIIe siècle notamment le fronton triangulaire d'un ancien avant-corps dans le comble. Les communs datent du XIXe siècle. Le logis se compose d'un corps central flanqué de deux ailes couvertes de toits en croupe. Il est flanqué de deux corps latéraux, à gauche un corps couvert d'un toit polygonal et appareillé en calcaire taillé, à droite un corps également appareillé en calcaire taillé et couvert d'un toit en terrasse, élévation ordonnancée Étages : sous-sol  un étage carré et étage de comble Escaliers , escalier tournant à retours avec jour, escalier dans-oeuvre ; escalier tournant à retours sans jour  en charpente   en : calcaire ; grès ; silex ; appareil mixte ; moellon ; pierre de taille. toit à longs pans ; pignon couvert ; croupe  terrasse ; toit polygonal , couvert d'ardoise.                                                                                                              PRYTANEE NATIONAL, il représente un des 6 lycées de la défense française. En 1603, le roi Henri IV cède son « Château-Neuf » de La Flèche, une importante maison de famille que sa grand-mère Françoise d'Alençon avait fait bâtir, en 1540, pour y établir le Collège royal Henri-le-Grand. Le roi en confie la création aux Jésuites. Devenu le « Prytanée militaire » en 1808, sous l'impulsion de l'empereur Napoléon Ier, il abrite aujourd'hui dans ses murs l'un des 6 Lycées Militaires de France, appelés les Lycées de la Défense, depuis 2006. L'ensemble des bâtiments du Prytanée sont classés aux M.H. depuis 1919.</p>
+<h4>Architecture</h4><p>DOUSSAY, Jules de Lamandé, son fils, pris personnellement la direction du domaine et s'adonna tout à la fois aux affaires publiques. On connaît sa rude bataille pour tenter d'éviter l'annexion de Sainte-Colombe à La Flèche.Sa fille Marie-Adèle-Alphonsine épousa le 7 juin 1870 Gilles-Louis de Maupeou, VIIe comte d'Ableiges, ingénieur du Génie maritime (1841-1925). L'un de leurs fils, Alphonse (1872-1953), officier de cavalerie, est l'aïeul de la branche fléchoise des Maupeou et de cent quinze arrière-petits-enfants .Son petit-fils, Henri, dirigea l'exploitation de Doussay .  Mentionné dès le XVIIe siècle, l'édifice fut considérablement remanié dans le dernier quart du XVIIIe siècle. La chapelle fut probablement également construite à cette époque. Un avant corps fut adossé à la face postérieure du logis vers 1828. Les communs furent remaniés au XIXe siècle. Parties constituantes: cour, parties agricoles, logement, fabrique de jardin  escalier dans-oeuvre ; escalier tournant à retours avec jour ; en charpente
+<br/>Gros-oeuvre: calcaire; grès; silex; appareil mixte; moellon; moellon sans chaîne en pierre de taille; enduit toit à longs pans ; pignon couvert ; croupe en ardoise .                                                                                         PRYTANEE NATIONAL, d'architecture classique, le Prytanée a la forme de 2 grandes cours successives que domine l'imposante stature de l'église Saint-Louis, dont la construction a débuté, en 1607. Les travaux ont suivi un plan élaboré par Louis Métezeau, architecte du roi de France, avec des cours en enfilade, à peu près de même grandeur. L'église fut achevée en 1621 et l'ensemble des travaux s'acheva en 1655 par la construction de la porte d'honneur, avec sur le fronton, le buste du roi Henri IV.</p>
+<h4>Habitants / Familles</h4><p>Bouchevreau;                                                                              Prytannée; Françoise d'Alençon                                                     Doussay  Jules de Lamandé                              
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>A la Flèche une dizaine de châteaux Rochevreau grav-1-2, Doussay--4-5 et Prytanée-National grav-3.                                                  Prytannée GPS : 47° 42' 10" Nord, 0° 04' 36" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

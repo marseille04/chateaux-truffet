@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Dingé — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_35.html">Ille-et-Vilaine</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_35.html">Ille-et-Vilaine</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_35.html" class="back-link">Retour au département 35 — Ille-et-Vilaine</a>
-  <div class="fiche">
-    <h2>Dingé</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>35 — Ille-et-Vilaine</td></tr>
-          <tr><td>Canton</td><td>Combourg</td></tr>
-          <tr><td>Commune</td><td>Dingé</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XII-XVI-XX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_35/35_Ding%c3%a9_1.jpg" alt="Dingé" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Ding%c3%a9_2.jpg" alt="Dingé" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Ding%c3%a9_3.jpg" alt="Dingé" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Ding%c3%a9_4.jpg" alt="Dingé" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Ding%c3%a9_5.jpg" alt="Dingé" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Ding%c3%a9_6.jpg" alt="Dingé" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_35.html">Retour au département 35 — Ille-et-Vilaine</a>
+<div class="fiche">
+<h2>Dingé</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Dingé" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_35/35_Ding%c3%a9_1.jpg"/><div class="hero-count" id="hero-count">1 / 6</div></div><div class="photo-strip"><img alt="Dingé" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Ding%c3%a9_1.jpg"/><img alt="Dingé" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Ding%c3%a9_2.jpg"/><img alt="Dingé" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Ding%c3%a9_3.jpg"/><img alt="Dingé" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Ding%c3%a9_4.jpg"/><img alt="Dingé" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Ding%c3%a9_5.jpg"/><img alt="Dingé" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Ding%c3%a9_6.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>35 — Ille-et-Vilaine</td></tr>
+<tr><td>Canton</td><td>Combourg</td></tr>
+<tr><td>Commune</td><td>Dingé</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XII-XVI-XX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux châteaux à Dingé; Ville-André, Bougetin et Plessis .                                     VILLE ANDRE  du XIV- XVI-XVII-XXe siècle, mentionné en 1360.  Charles de Vaucouleurs, seigneur de la Ville-André. Propriété des descendants de la famille Vaucouleurs. On signale aussi les manoirs de la Haute et de la Basse Ville-André. La Haute Ville-André appartient à la famille Bourgneuf, seigneurs du château en 1390 et 1513, on signale Alain de Bourgneuf, en 1488, puis passe entre les mains des familles de Lescouët en 1543, Vaucouleurs, seigneurs de Lanjamet en 1549, Quilfistre, seigneurs de Bazvalan en 1768-1789. La Basse Ville-André appartient à la famille le Vaillé (en 1390), puis à la famille de la Perche en 1513 ;                                                                     PLESSIS, au Chat du XVIIe siècle. Le premier château du XIe siècle est édifié par Haimon Cattus et son père Gimondus. En 1445, est mentionnée l'existence d'un château de bois. L'ancien manoir ou château du Plessis-au-Chat appartient d'abord à la famille le Chat, puis successivement aux familles Plesguen en 1445 et 1552, on signale Pierre de Plesguen en 1480, la Haye en 1580 et en 1674, Bouttier, seigneurs du Boishamon en 1678, Thierry en 1704, Fresne, seigneurs de Virel du XVIIIe siècle. Le manoir du Plessix-au-Chat tirait son nom de la famille le Chat, assez puissante au XIIe siècle tant à Dingé qu'à Combourg. Les seigneurs du Plessis-au-Chat, qui devaient au seigneur de Combourg une paire de gants blancs à chaque Angevine, fondèrent la chapelle voisine de leur demeure et desservie en 1663 par Julien Mary  Pouillé de Rennes.</p>
-      <h4>Architecture</h4><p>BOUGETIN, manoir du XVIIe siècle. Edifié au XIIe siècle, le manoir et la chapelle ont été plusieurs fois reconstruits. La chapelle Saint-Maurice de Bougetin avait, en 1663, Jean Lanos pour chapelain, et il s'y faisait souvent des mariages. En 1748, l'évêque de Saint-Malo ordonna de la faire restaurer, mais il paraît que ses ordres ne furent pas exécutés, car en 1764 le chapelain reçut ordre d'en dire les messes de fondation à l'église paroissiale. Il se tenait une assemblée très nombreuse le 22 septembre autour de cette chapelle, et la statue de saint Maurice, transportée à l'église depuis sa ruine, continue à la fin du XIXe siècle à être l'objet de fréquents pèlerinages. Propriété successive des familles Langan en 1406 et en 1600, Vaucouleurs en 1633, Beaumanoir en 1666, Julienne le Liepvre, veuve et donataire de Bertrand Bouttier, seigneur du Boishamon, puis Fresne, seigneurs de Virel en 1764. On signale Jehan de Langan en 1480. Son ancienne chapelle est reconstruite avec des pierres sculptées provenant en partie de l'ancien prieuré de Lehon, près de Dinan.</p>
-      <h4>Habitants / Familles</h4><p>Villa-André; Famille  de Lescouët                                            Plessis:  Famille le Chat
-<br>        "</p>
-      <h4>Divers</h4><p>trois châteaux à Dingè; grand Val grav- 4   Plessis grav-5, Ville-André grav-6    et Bougetin-grav-1-2-3                                   gps 48° 21' 27" nord, 1° 42' 58" ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux châteaux à Dingé; Ville-André, Bougetin et Plessis .                                     VILLE ANDRE  du XIV- XVI-XVII-XXe siècle, mentionné en 1360.  Charles de Vaucouleurs, seigneur de la Ville-André. Propriété des descendants de la famille Vaucouleurs. On signale aussi les manoirs de la Haute et de la Basse Ville-André. La Haute Ville-André appartient à la famille Bourgneuf, seigneurs du château en 1390 et 1513, on signale Alain de Bourgneuf, en 1488, puis passe entre les mains des familles de Lescouët en 1543, Vaucouleurs, seigneurs de Lanjamet en 1549, Quilfistre, seigneurs de Bazvalan en 1768-1789. La Basse Ville-André appartient à la famille le Vaillé (en 1390), puis à la famille de la Perche en 1513 ;                                                                     PLESSIS, au Chat du XVIIe siècle. Le premier château du XIe siècle est édifié par Haimon Cattus et son père Gimondus. En 1445, est mentionnée l'existence d'un château de bois. L'ancien manoir ou château du Plessis-au-Chat appartient d'abord à la famille le Chat, puis successivement aux familles Plesguen en 1445 et 1552, on signale Pierre de Plesguen en 1480, la Haye en 1580 et en 1674, Bouttier, seigneurs du Boishamon en 1678, Thierry en 1704, Fresne, seigneurs de Virel du XVIIIe siècle. Le manoir du Plessix-au-Chat tirait son nom de la famille le Chat, assez puissante au XIIe siècle tant à Dingé qu'à Combourg. Les seigneurs du Plessis-au-Chat, qui devaient au seigneur de Combourg une paire de gants blancs à chaque Angevine, fondèrent la chapelle voisine de leur demeure et desservie en 1663 par Julien Mary  Pouillé de Rennes.</p>
+<h4>Architecture</h4><p>BOUGETIN, manoir du XVIIe siècle. Edifié au XIIe siècle, le manoir et la chapelle ont été plusieurs fois reconstruits. La chapelle Saint-Maurice de Bougetin avait, en 1663, Jean Lanos pour chapelain, et il s'y faisait souvent des mariages. En 1748, l'évêque de Saint-Malo ordonna de la faire restaurer, mais il paraît que ses ordres ne furent pas exécutés, car en 1764 le chapelain reçut ordre d'en dire les messes de fondation à l'église paroissiale. Il se tenait une assemblée très nombreuse le 22 septembre autour de cette chapelle, et la statue de saint Maurice, transportée à l'église depuis sa ruine, continue à la fin du XIXe siècle à être l'objet de fréquents pèlerinages. Propriété successive des familles Langan en 1406 et en 1600, Vaucouleurs en 1633, Beaumanoir en 1666, Julienne le Liepvre, veuve et donataire de Bertrand Bouttier, seigneur du Boishamon, puis Fresne, seigneurs de Virel en 1764. On signale Jehan de Langan en 1480. Son ancienne chapelle est reconstruite avec des pierres sculptées provenant en partie de l'ancien prieuré de Lehon, près de Dinan.</p>
+<h4>Habitants / Familles</h4><p>Villa-André; Famille  de Lescouët                                            Plessis:  Famille le Chat
+<br/>        "</p>
+<h4>Divers</h4><p>trois châteaux à Dingè; grand Val grav- 4   Plessis grav-5, Ville-André grav-6    et Bougetin-grav-1-2-3                                   gps 48° 21' 27" nord, 1° 42' 58" ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

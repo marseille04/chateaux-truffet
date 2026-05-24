@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Mareuil_Chateau — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,65 +113,64 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_24.html">Dordogne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_24.html">Dordogne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_24.html" class="back-link">Retour au département 24 — Dordogne</a>
-  <div class="fiche">
-    <h2>Mareuil_Chateau</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>24 — Dordogne</td></tr>
-          <tr><td>Canton</td><td>Mareuil</td></tr>
-          <tr><td>Commune</td><td>Mareuil</td></tr>
-          <tr><td>Type d'édifice</td><td>Forteresse</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>45° 26' 9,5" Nord et 0° 25' 12,3" Est.    Beauregard    GPS : 45° 26' 02,1" Nord et 0° 26' 2,9" Est. Gauterie grav 6-7 GPS : 45° 27' 05" Nord, 0° 27' 11" Est.   Mareuil GPS : 45° 27' 14,52" Nord, 0° 27' 10,86" Est. Chavreroche grav 3. Bélussière grav 4. Clozuroux grav 5. Puychenie grav 8</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_24/24_Mareuil_Chateau_1.jpg" alt="Mareuil_Chateau" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Mareuil_Chateau_2.jpg" alt="Mareuil_Chateau" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Mareuil_Chateau_3.jpg" alt="Mareuil_Chateau" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Mareuil_Chateau_4.jpg" alt="Mareuil_Chateau" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Mareuil_Chateau_5.jpg" alt="Mareuil_Chateau" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Mareuil_Chateau_6.jpg" alt="Mareuil_Chateau" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Mareuil_Chateau_7.jpg" alt="Mareuil_Chateau" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Mareuil_Chateau_8.jpg" alt="Mareuil_Chateau" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_24.html">Retour au département 24 — Dordogne</a>
+<div class="fiche">
+<h2>Mareuil_Chateau</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Mareuil_Chateau" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_24/24_Mareuil_Chateau_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Mareuil_Chateau" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Mareuil_Chateau_1.jpg"/><img alt="Mareuil_Chateau" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Mareuil_Chateau_2.jpg"/><img alt="Mareuil_Chateau" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Mareuil_Chateau_3.jpg"/><img alt="Mareuil_Chateau" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Mareuil_Chateau_4.jpg"/><img alt="Mareuil_Chateau" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Mareuil_Chateau_5.jpg"/><img alt="Mareuil_Chateau" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Mareuil_Chateau_6.jpg"/><img alt="Mareuil_Chateau" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Mareuil_Chateau_7.jpg"/><img alt="Mareuil_Chateau" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Mareuil_Chateau_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>24 — Dordogne</td></tr>
+<tr><td>Canton</td><td>Mareuil</td></tr>
+<tr><td>Commune</td><td>Mareuil</td></tr>
+<tr><td>Type d'édifice</td><td>Forteresse</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVII</td></tr>
+<tr><td>Coordonnées GPS</td><td>45° 26' 9,5" Nord et 0° 25' 12,3" Est.    Beauregard    GPS : 45° 26' 02,1" Nord et 0° 26' 2,9" Est. Gauterie grav 6-7 GPS : 45° 27' 05" Nord, 0° 27' 11" Est.   Mareuil GPS : 45° 27' 14,52" Nord, 0° 27' 10,86" Est. Chavreroche grav 3. Bélussière grav 4. Clozuroux grav 5. Puychenie grav 8</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>A MAREUIL plusieurs châteaux; Beaulieu, Beauregard, Gauterie, Monbreton.                           MAREUIL, (voir article suivant).                               BEAULIEU, au sud-ouest du bourg,  propriété de la famille Pichon, . La famille Pichon possède le domaine de la Révolution à 1960, date à laquelle il est racheté par les actuels propriétaires.
-<br>BEAUREGARD, du XVe, XVIe et XVIIe siècles, inscrit au titre des M.H. en 1948.       Le château surveillait lentrée en Périgord, laccès vers Angoulême et vers le Limousin. Cest pourquoi il a joué un grand rôle pendant une partie de la guerre de 100 ans. Le château actuel fut reconstruit vers la fin du XVe siècle, sur des fondations plus anciennes. La dernière prieure de l'abbaye de Fontaine y naquit. Elle fut tuée et brûlée à la Révolution, et repose dans l'église de Saint-Pardoux. Le corps de logis est flanqué de deux énormes tours à mâchicoulis et est défendu au nord par une troisième tour désaxée sur la gauche. Situé à l'est la chartreuse du XVIIIe siècle à un étage soudée à la forteresse en équerre. Des pilastres rejoignent le toit.
-<br>GAUTERIE,   La commune de Mareuil tient une place importante dans lhistoire du Périgord, il sagit de lune des quatre baronnies de la contrée parmi Bourdeilles, Biron et Beynac. Dautre part, au XIIIe siècle, le village est un prieuré rattaché à Brantôme. Dailleurs, les barons de Mareuil affichent également leur attachement à la religion. En effet, leur devise est Ré qué Diou, ce qui signifie Rien que Dieu. Le château de la Gauterie, ancienne demeure de la famille des de Raimond, a connu de nombreuses restaurations entreprises par les propriétaires actuels.
-<br>MONBRETON,  La vieille demeure appartenait à des familles les Falampin et les Petits.</p>
-      <h4>Architecture</h4><p>BEAULIEU,  offre un logis classique encadré par deux tours circulaires côté parc et deux pavillons carrés côté cour. Le haut des fenêtres est orné de têtes sculptées et lintérieur conserve un bel escalier à balustres de pierre. Des communs forment des ailes en retour déquerre, reliées par une grille rythmée de pilastres                                           
-<br>GAUTERIE, leur châtellenie comprend onze paroisses, est une construction qui mêle des éléments des XVIe et XIXe siècles, mais qui  sinscrit dans les traces dun édifice plus ancien, situé au sommet dune falaise, on peut voir une partie de la tour descalier datant du XVIe siècle et le pigeonnier qui est une ancienne tour de défense. Au sud du bourg, avec des éléments du XVIe siècle mais qui s'inscrit dans les traces d'un édifice bien plus ancien Lensemble a été largement remanié, notamment la tour carrée.
-<br>MONTBRETON se compose dun corps de logis rectangulaire à cinq travées. Le bâtiment comporte deux étages et un supplémentaire, placé sous les combles, est construit en pierre de taille. Au-dessus dune corniche ouvragée se dresse le toit du logis qui se termine à ses extrémités, par deux petits toits pointus. Dans chacun de ces toits souvrent une fenêtre donnant sur les combles. Située au centre une troisième fenêtre est placée en chien assis, deux cheminées en pierre complètent la toiture couverte dardoises.</p>
-      <h4>Habitants / Familles</h4><p>Famille des de Raimond
-<br>        "</p>
-      <h4>Divers</h4><p>Beaulieu   grav 1-2  GPS : 45° 26' 9,5" Nord et 0° 25' 12,3" Est.    Beauregard    GPS : 45° 26' 02,1" Nord et 0° 26' 2,9" Est. Gauterie grav 6-7 GPS : 45° 27' 05" Nord, 0° 27' 11" Est.   Mareuil GPS : 45° 27' 14,52" Nord, 0° 27' 10,86" Est. Chavreroche grav 3. Bélussière grav 4. Clozuroux grav 5. Puychenie grav 8</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>A MAREUIL plusieurs châteaux; Beaulieu, Beauregard, Gauterie, Monbreton.                           MAREUIL, (voir article suivant).                               BEAULIEU, au sud-ouest du bourg,  propriété de la famille Pichon, . La famille Pichon possède le domaine de la Révolution à 1960, date à laquelle il est racheté par les actuels propriétaires.
+<br/>BEAUREGARD, du XVe, XVIe et XVIIe siècles, inscrit au titre des M.H. en 1948.       Le château surveillait lentrée en Périgord, laccès vers Angoulême et vers le Limousin. Cest pourquoi il a joué un grand rôle pendant une partie de la guerre de 100 ans. Le château actuel fut reconstruit vers la fin du XVe siècle, sur des fondations plus anciennes. La dernière prieure de l'abbaye de Fontaine y naquit. Elle fut tuée et brûlée à la Révolution, et repose dans l'église de Saint-Pardoux. Le corps de logis est flanqué de deux énormes tours à mâchicoulis et est défendu au nord par une troisième tour désaxée sur la gauche. Situé à l'est la chartreuse du XVIIIe siècle à un étage soudée à la forteresse en équerre. Des pilastres rejoignent le toit.
+<br/>GAUTERIE,   La commune de Mareuil tient une place importante dans lhistoire du Périgord, il sagit de lune des quatre baronnies de la contrée parmi Bourdeilles, Biron et Beynac. Dautre part, au XIIIe siècle, le village est un prieuré rattaché à Brantôme. Dailleurs, les barons de Mareuil affichent également leur attachement à la religion. En effet, leur devise est Ré qué Diou, ce qui signifie Rien que Dieu. Le château de la Gauterie, ancienne demeure de la famille des de Raimond, a connu de nombreuses restaurations entreprises par les propriétaires actuels.
+<br/>MONBRETON,  La vieille demeure appartenait à des familles les Falampin et les Petits.</p>
+<h4>Architecture</h4><p>BEAULIEU,  offre un logis classique encadré par deux tours circulaires côté parc et deux pavillons carrés côté cour. Le haut des fenêtres est orné de têtes sculptées et lintérieur conserve un bel escalier à balustres de pierre. Des communs forment des ailes en retour déquerre, reliées par une grille rythmée de pilastres                                           
+<br/>GAUTERIE, leur châtellenie comprend onze paroisses, est une construction qui mêle des éléments des XVIe et XIXe siècles, mais qui  sinscrit dans les traces dun édifice plus ancien, situé au sommet dune falaise, on peut voir une partie de la tour descalier datant du XVIe siècle et le pigeonnier qui est une ancienne tour de défense. Au sud du bourg, avec des éléments du XVIe siècle mais qui s'inscrit dans les traces d'un édifice bien plus ancien Lensemble a été largement remanié, notamment la tour carrée.
+<br/>MONTBRETON se compose dun corps de logis rectangulaire à cinq travées. Le bâtiment comporte deux étages et un supplémentaire, placé sous les combles, est construit en pierre de taille. Au-dessus dune corniche ouvragée se dresse le toit du logis qui se termine à ses extrémités, par deux petits toits pointus. Dans chacun de ces toits souvrent une fenêtre donnant sur les combles. Située au centre une troisième fenêtre est placée en chien assis, deux cheminées en pierre complètent la toiture couverte dardoises.</p>
+<h4>Habitants / Familles</h4><p>Famille des de Raimond
+<br/>        "</p>
+<h4>Divers</h4><p>Beaulieu   grav 1-2  GPS : 45° 26' 9,5" Nord et 0° 25' 12,3" Est.    Beauregard    GPS : 45° 26' 02,1" Nord et 0° 26' 2,9" Est. Gauterie grav 6-7 GPS : 45° 27' 05" Nord, 0° 27' 11" Est.   Mareuil GPS : 45° 27' 14,52" Nord, 0° 27' 10,86" Est. Chavreroche grav 3. Bélussière grav 4. Clozuroux grav 5. Puychenie grav 8</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

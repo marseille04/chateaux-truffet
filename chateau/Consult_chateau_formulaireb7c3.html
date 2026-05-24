@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Meslay_Vidame — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,56 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_28.html">Eure-et-Loir</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_28.html">Eure-et-Loir</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_28.html" class="back-link">Retour au département 28 — Eure-et-Loir</a>
-  <div class="fiche">
-    <h2>Meslay_Vidame</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>28 — Eure-et-Loir</td></tr>
-          <tr><td>Canton</td><td>Les Villages Vovéens</td></tr>
-          <tr><td>Commune</td><td>Meslay le Vidame</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII-XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_28/28_Meslay_Vidame_1.jpg" alt="Meslay_Vidame" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_28/28_Meslay_Vidame_2.jpg" alt="Meslay_Vidame" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_28/28_Meslay_Vidame_3.jpg" alt="Meslay_Vidame" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_28/28_Meslay_Vidame_4.jpg" alt="Meslay_Vidame" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_28.html">Retour au département 28 — Eure-et-Loir</a>
+<div class="fiche">
+<h2>Meslay_Vidame</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Meslay_Vidame" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_28/28_Meslay_Vidame_1.jpg"/><div class="hero-count" id="hero-count">1 / 4</div></div><div class="photo-strip"><img alt="Meslay_Vidame" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_28/28_Meslay_Vidame_1.jpg"/><img alt="Meslay_Vidame" class="" loading="lazy" onclick="setHero(this)" src="../image/image_28/28_Meslay_Vidame_2.jpg"/><img alt="Meslay_Vidame" class="" loading="lazy" onclick="setHero(this)" src="../image/image_28/28_Meslay_Vidame_3.jpg"/><img alt="Meslay_Vidame" class="" loading="lazy" onclick="setHero(this)" src="../image/image_28/28_Meslay_Vidame_4.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>28 — Eure-et-Loir</td></tr>
+<tr><td>Canton</td><td>Les Villages Vovéens</td></tr>
+<tr><td>Commune</td><td>Meslay le Vidame</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII-XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>MESLAY-VIDAME,  était le siège dune seigneurie, attestée dès les XIIe et XIIIe siècles, les sires de Meslay puis les Vendôme possédèrent la charge héréditaire de Vidame de Chartres.  Au XVIe siècle, plusieurs membres de la famille de Thou possédèrent le domaine et en 1651, la terre de Meslay fut érigée en comté au profit de Jacques Auguste de Thou (1553-1617), historien et magistrat, ami de Montaigne. En 1690, Jean Rouille, conseiller au Parlement, seigneur et comte de Meslay, acquiert le domaine où il meurt en 1715. Anne-Jean Rouille lui succède.  En 1734, Antoine Lambert Masson (1696-1779), chevalier, comte de Meslay et sa femme, Michèle Pétronille Merault, comtesse de la Grève, deviennent propriétaires du domaine. En 1779, leur fils, Jérôme Pélagie Masson (1742-1799) leur succède. Jean de Ferrières se vit en 1572  confisquer la seigneurie qui échut aux d'Angennes. La seigneurie est achetée en 1734  par Antoine Lambert Masson de Meslay, qui accroît la propriété sur les terres avoisinantes. En 1789, à la Révolution le château fut placé sous séquestre, et en 1799, il passe à Charles François de Paule de Barentin, puis au vicomte Charles Henri Dambray, Président de la chambre des Pairs sous Louis XVIII. Jean Maurice Goujon, marquis de Gasville, gendre du précédent, en devient propriétaire. En 1874, sa veuve, Antoinette Pélagie Célestine Dambray en fit don à Yvonne de Sesmaisons, comtesse de Brimont. En 1880, le château et une partie du domaine sont vendus par le Comte de Brimont aux Convert qui les conserveront jusqu'à la première guerre mondiale.</p>
-      <h4>Architecture</h4><p>MESLAY-VIDAME,  le château actuel fut reconstruit en 1707: la façade possède onze fenêtres, une ceinture de douves et des communs de chaque côté. Au XVIIIe siècle, il était entouré de vergers et dominait un parc à la française. La seigneurie couvrait un domaine qui comprenait des terres, des forêts et de nombreux moulins et fermes etc.  Du château du XVIIe siècle, il ne subsiste que les pavillons dentrée.</p>
-      <h4>Habitants / Familles</h4><p>Famille d' Antoine Lambert Masson 
-<br>        "</p>
-      <h4>Divers</h4><p>Meslay_Vidame         gps 48° 16' 51?"nord, 1° 27' 40" est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>MESLAY-VIDAME,  était le siège dune seigneurie, attestée dès les XIIe et XIIIe siècles, les sires de Meslay puis les Vendôme possédèrent la charge héréditaire de Vidame de Chartres.  Au XVIe siècle, plusieurs membres de la famille de Thou possédèrent le domaine et en 1651, la terre de Meslay fut érigée en comté au profit de Jacques Auguste de Thou (1553-1617), historien et magistrat, ami de Montaigne. En 1690, Jean Rouille, conseiller au Parlement, seigneur et comte de Meslay, acquiert le domaine où il meurt en 1715. Anne-Jean Rouille lui succède.  En 1734, Antoine Lambert Masson (1696-1779), chevalier, comte de Meslay et sa femme, Michèle Pétronille Merault, comtesse de la Grève, deviennent propriétaires du domaine. En 1779, leur fils, Jérôme Pélagie Masson (1742-1799) leur succède. Jean de Ferrières se vit en 1572  confisquer la seigneurie qui échut aux d'Angennes. La seigneurie est achetée en 1734  par Antoine Lambert Masson de Meslay, qui accroît la propriété sur les terres avoisinantes. En 1789, à la Révolution le château fut placé sous séquestre, et en 1799, il passe à Charles François de Paule de Barentin, puis au vicomte Charles Henri Dambray, Président de la chambre des Pairs sous Louis XVIII. Jean Maurice Goujon, marquis de Gasville, gendre du précédent, en devient propriétaire. En 1874, sa veuve, Antoinette Pélagie Célestine Dambray en fit don à Yvonne de Sesmaisons, comtesse de Brimont. En 1880, le château et une partie du domaine sont vendus par le Comte de Brimont aux Convert qui les conserveront jusqu'à la première guerre mondiale.</p>
+<h4>Architecture</h4><p>MESLAY-VIDAME,  le château actuel fut reconstruit en 1707: la façade possède onze fenêtres, une ceinture de douves et des communs de chaque côté. Au XVIIIe siècle, il était entouré de vergers et dominait un parc à la française. La seigneurie couvrait un domaine qui comprenait des terres, des forêts et de nombreux moulins et fermes etc.  Du château du XVIIe siècle, il ne subsiste que les pavillons dentrée.</p>
+<h4>Habitants / Familles</h4><p>Famille d' Antoine Lambert Masson 
+<br/>        "</p>
+<h4>Divers</h4><p>Meslay_Vidame         gps 48° 16' 51?"nord, 1° 27' 40" est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

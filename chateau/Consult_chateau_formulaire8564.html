@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>PerraIs — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,57 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_72.html">Sarthe</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_72.html">Sarthe</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_72.html" class="back-link">Retour au département 72 — Sarthe</a>
-  <div class="fiche">
-    <h2>PerraIs</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>72 — Sarthe</td></tr>
-          <tr><td>Canton</td><td>La Suze-sur-Sarthe</td></tr>
-          <tr><td>Commune</td><td>Parigné le Pôlin,</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII-XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_72/72_Perrais_1.jpg" alt="PerraIs" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Perrais_2.jpg" alt="PerraIs" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Perrais_3.jpg" alt="PerraIs" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Perrais_4.jpg" alt="PerraIs" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_72.html">Retour au département 72 — Sarthe</a>
+<div class="fiche">
+<h2>PerraIs</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="PerraIs" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_72/72_Perrais_1.jpg"/><div class="hero-count" id="hero-count">1 / 4</div></div><div class="photo-strip"><img alt="PerraIs" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Perrais_1.jpg"/><img alt="PerraIs" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Perrais_2.jpg"/><img alt="PerraIs" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Perrais_3.jpg"/><img alt="PerraIs" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Perrais_4.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>72 — Sarthe</td></tr>
+<tr><td>Canton</td><td>La Suze-sur-Sarthe</td></tr>
+<tr><td>Commune</td><td>Parigné le Pôlin,</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII-XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>PERRAIS, le domaine est entré dans les possessions de la famille de Broc par une alliance en 1450 avec la famille de Saint-Benoît. Sébastien de Broc fixe sa résidence sur la terre des Perrais au début du XVIIe siècle, et fait construire vers 1630 l'aile est de l'actuel château en l'adossant à une tour du XVe siècle. Au XVIIIe siècle, Michel-Armand de Broc, premier marquis du nom, fait édifier le grand corps de logis principal avec sa façade sur la cour d'honneur.
-<br>À la fin du XIXe siècle, le dernier marquis, Thibaut de Broc, marié à Berthe Worms de Romilly, une riche héritière, fait exécuter d'importants travaux avec l'ajout du pavillon ouest et des arcades qui bordent la cour d'honneur par l'architecte Sanson. Le paysagiste Achille Duchêne crée les parterres des terrasses et le parc à la française. Les dépendances sont agrandies ; la marquise de Broc y installe un hôpital pendant la Première Guerre mondiale. Le roi d'Espagne, Alphonse XIII se porte acquéreur, en 1931, mais renonce aussitôt à son projet en raison de la situation politique dans son royaume. Le château des Perrais est brièvement occupé par les Allemands en 1940 puis en 1944-45 par les Américains, qui y installent une école de déminage. En 1946, la vicomtesse de Lantivy offre son domaine à l'Évêché, lequel le transforme pour accueillir l'Institution Saint-Michel des Perrais, établissement d'enseignement catholique privé. Mgr Grente avait pour ambition de créer un internat moderne, loin des villes, pour former les élites futures de la France.  L'Institution Saint-Michel des Perrais cesse ses fonctions en juillet 2015. Un vétérinaire nantais s'en porte acquéreur en avril 2017 pour en faire sa résidence.</p>
-      <h4>Architecture</h4><p>PERRAIS,  château construit au XVIIe siècle, avec une importante galerie de portraits. La cour d'honneur est bordée à l'est par une aile au toit à une pente portant des lucarnes alternées. Un chaînage de pierre souligne les ouvertures, aux croisées à petit bois. Trois tours rondes à l'est et au nord, le corps de logis principal du XVIIIe siècle avec un avant-corps en légère avancée, en bossage de tuffeau et dominé par un fronton présentant un tympan sculpté des armes des Broc, encadrées de trophées guerriers. A l'ouest, la cour d'honneur est fermée par un pavillon carré et des arcades surbaissées, uvre de l'architecte P.E. Sanson. Communs des XVIIIe et XIXe siècles à partir des deux pavillons des extrémités sud. Parc de 1900, dessiné par A. Duchêne, comportant des statues copiant celles de Versailles. Au nord, vaste terrasse dominant la vallée. Les façades et toitures du château  y compris l'aile du XIXe siècle, et celles des ailes des communs, l'escalier avec sa cage, les pièces suivantes du rez-de-chaussée avec leur décor : la salle à manger, la bibliothèque, le grand-salon, la chapelle font l'objet d'une inscription aux M.H.depuis le 21 décembre 1984. Éléments protégés MH : les façades et les toitures du château, y compris l'aile du XIXe siècle, et celles des ailes des communs; l'escalier avec sa cage, la chapelle : inscription par arrêté du 21 décembre 1984.</p>
-      <h4>Habitants / Familles</h4><p>famille de Broc
-<br>        "</p>
-      <h4>Divers</h4><p>Gps 47° 50' 53" nord, 0° 06' 36" est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>PERRAIS, le domaine est entré dans les possessions de la famille de Broc par une alliance en 1450 avec la famille de Saint-Benoît. Sébastien de Broc fixe sa résidence sur la terre des Perrais au début du XVIIe siècle, et fait construire vers 1630 l'aile est de l'actuel château en l'adossant à une tour du XVe siècle. Au XVIIIe siècle, Michel-Armand de Broc, premier marquis du nom, fait édifier le grand corps de logis principal avec sa façade sur la cour d'honneur.
+<br/>À la fin du XIXe siècle, le dernier marquis, Thibaut de Broc, marié à Berthe Worms de Romilly, une riche héritière, fait exécuter d'importants travaux avec l'ajout du pavillon ouest et des arcades qui bordent la cour d'honneur par l'architecte Sanson. Le paysagiste Achille Duchêne crée les parterres des terrasses et le parc à la française. Les dépendances sont agrandies ; la marquise de Broc y installe un hôpital pendant la Première Guerre mondiale. Le roi d'Espagne, Alphonse XIII se porte acquéreur, en 1931, mais renonce aussitôt à son projet en raison de la situation politique dans son royaume. Le château des Perrais est brièvement occupé par les Allemands en 1940 puis en 1944-45 par les Américains, qui y installent une école de déminage. En 1946, la vicomtesse de Lantivy offre son domaine à l'Évêché, lequel le transforme pour accueillir l'Institution Saint-Michel des Perrais, établissement d'enseignement catholique privé. Mgr Grente avait pour ambition de créer un internat moderne, loin des villes, pour former les élites futures de la France.  L'Institution Saint-Michel des Perrais cesse ses fonctions en juillet 2015. Un vétérinaire nantais s'en porte acquéreur en avril 2017 pour en faire sa résidence.</p>
+<h4>Architecture</h4><p>PERRAIS,  château construit au XVIIe siècle, avec une importante galerie de portraits. La cour d'honneur est bordée à l'est par une aile au toit à une pente portant des lucarnes alternées. Un chaînage de pierre souligne les ouvertures, aux croisées à petit bois. Trois tours rondes à l'est et au nord, le corps de logis principal du XVIIIe siècle avec un avant-corps en légère avancée, en bossage de tuffeau et dominé par un fronton présentant un tympan sculpté des armes des Broc, encadrées de trophées guerriers. A l'ouest, la cour d'honneur est fermée par un pavillon carré et des arcades surbaissées, uvre de l'architecte P.E. Sanson. Communs des XVIIIe et XIXe siècles à partir des deux pavillons des extrémités sud. Parc de 1900, dessiné par A. Duchêne, comportant des statues copiant celles de Versailles. Au nord, vaste terrasse dominant la vallée. Les façades et toitures du château  y compris l'aile du XIXe siècle, et celles des ailes des communs, l'escalier avec sa cage, les pièces suivantes du rez-de-chaussée avec leur décor : la salle à manger, la bibliothèque, le grand-salon, la chapelle font l'objet d'une inscription aux M.H.depuis le 21 décembre 1984. Éléments protégés MH : les façades et les toitures du château, y compris l'aile du XIXe siècle, et celles des ailes des communs; l'escalier avec sa cage, la chapelle : inscription par arrêté du 21 décembre 1984.</p>
+<h4>Habitants / Familles</h4><p>famille de Broc
+<br/>        "</p>
+<h4>Divers</h4><p>Gps 47° 50' 53" nord, 0° 06' 36" est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

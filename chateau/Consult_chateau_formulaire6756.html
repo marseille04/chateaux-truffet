@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Brosse_Tence — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,54 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_43.html">Haute-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_43.html">Haute-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_43.html" class="back-link">Retour au département 43 — Haute-Loire</a>
-  <div class="fiche">
-    <h2>Brosse_Tence</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>43 — Haute-Loire</td></tr>
-          <tr><td>Canton</td><td>Tence</td></tr>
-          <tr><td>Commune</td><td>Tence</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_43/43_Brosse_Tence_1.jpg" alt="Brosse_Tence" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Brosse_Tence_2.jpg" alt="Brosse_Tence" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_43.html">Retour au département 43 — Haute-Loire</a>
+<div class="fiche">
+<h2>Brosse_Tence</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Brosse_Tence" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_43/43_Brosse_Tence_1.jpg"/><div class="hero-count" id="hero-count">1 / 2</div></div><div class="photo-strip"><img alt="Brosse_Tence" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Brosse_Tence_1.jpg"/><img alt="Brosse_Tence" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Brosse_Tence_2.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>43 — Haute-Loire</td></tr>
+<tr><td>Canton</td><td>Tence</td></tr>
+<tr><td>Commune</td><td>Tence</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>BROSSE, sous l'ancien régime, était une baronnie dont le premier seigneur connu est Pons-Imbert de La Garde signalé entre 1296 et 1309. Du XIVe au XVIe siècles, de nombreuses familles se succèdent à La Brosse,  Malet   de La Tour-Maubourg, Rochebaron-Usson, Semur, Lavieu, St-Germain  d'Apchon. Dans la première moitié  du XVIe siècle, La Brosse passe aux Clermont de Chaste  qui le gardent  jusqu'en 1751. Cette famille a joué un  rôle important  dans le Velay  pendant les guerres de religions. En 1752, par son mariage, Marie-Charlotte de  Clermont de Chaste apporte La Brosse à Marie-Louis de Caillebot de Salle, sénéchal du Velay, lieutenant général gouverneur de la Marche en 1778, qui transforme l'ancienne maison forte en château de plaisance. En 1789, l'édifice est vendu à la famille Maurin, les descendants sont  toujours propriétaires. Cette demeure, dont l'état  s'était lourdement  dégradé depuis 1935, a été  restaurée à partir des années 1970 par l'architecte Claude Perron,  les travaux ont touchés l'agencement intérieur.  Nous pouvons citer entre autres les châteaux de Joux (voir article),   du Besset (voir article), tous de lépoque féodale avec rénovations et ajouts ultérieurs, ainsi que les maisons fortes de La Borie et du Mazel (même période).</p>
-      <h4>Architecture</h4><p>la maison forte de la Brosse devenue château se compose d'un corps de logis de forme allongé  et d'une tour ronde. De l'ancienne maison forte il subsiste essentiellement  le sous-sol avec ses caves, la tour d'angle couverte d'un toit conique et la face nord du château. Cette dernière, surmontée de vestiges de mâchicoulis, présente des reprises de maçonnerie. La façade principale, reconstruite en 1778, offre une élévation à deux étages et cinq travées. Jusqu'au  milieu du XXe siècle elle était encadrée  par deux pavillons en retour d'angle  à un étage sans doute édifiés au  XIXe siècle. Seul le pavillon, côté est, subsiste aujourd'hui, il renferme le logement des gardiens. L'escalier  intérieur du château, remanié, comportait autrefois  trois volées contre deux actuellement. Les trois niveaux de la tour ont une coupole en couverture. Les dépendances jouxtent le château à l'est, remise, grange étable. Le  jardin s'étend devant la façade principale du château, au-devant d'une cour. Son extrémité sud, formant   terrasse, est supportée par des voûtes en berceau.</p>
-      <h4>Habitants / Familles</h4><p>Clermont de Chaste
-<br>        "</p>
-      <h4>Divers</h4><p>Château de la Brosse</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>BROSSE, sous l'ancien régime, était une baronnie dont le premier seigneur connu est Pons-Imbert de La Garde signalé entre 1296 et 1309. Du XIVe au XVIe siècles, de nombreuses familles se succèdent à La Brosse,  Malet   de La Tour-Maubourg, Rochebaron-Usson, Semur, Lavieu, St-Germain  d'Apchon. Dans la première moitié  du XVIe siècle, La Brosse passe aux Clermont de Chaste  qui le gardent  jusqu'en 1751. Cette famille a joué un  rôle important  dans le Velay  pendant les guerres de religions. En 1752, par son mariage, Marie-Charlotte de  Clermont de Chaste apporte La Brosse à Marie-Louis de Caillebot de Salle, sénéchal du Velay, lieutenant général gouverneur de la Marche en 1778, qui transforme l'ancienne maison forte en château de plaisance. En 1789, l'édifice est vendu à la famille Maurin, les descendants sont  toujours propriétaires. Cette demeure, dont l'état  s'était lourdement  dégradé depuis 1935, a été  restaurée à partir des années 1970 par l'architecte Claude Perron,  les travaux ont touchés l'agencement intérieur.  Nous pouvons citer entre autres les châteaux de Joux (voir article),   du Besset (voir article), tous de lépoque féodale avec rénovations et ajouts ultérieurs, ainsi que les maisons fortes de La Borie et du Mazel (même période).</p>
+<h4>Architecture</h4><p>la maison forte de la Brosse devenue château se compose d'un corps de logis de forme allongé  et d'une tour ronde. De l'ancienne maison forte il subsiste essentiellement  le sous-sol avec ses caves, la tour d'angle couverte d'un toit conique et la face nord du château. Cette dernière, surmontée de vestiges de mâchicoulis, présente des reprises de maçonnerie. La façade principale, reconstruite en 1778, offre une élévation à deux étages et cinq travées. Jusqu'au  milieu du XXe siècle elle était encadrée  par deux pavillons en retour d'angle  à un étage sans doute édifiés au  XIXe siècle. Seul le pavillon, côté est, subsiste aujourd'hui, il renferme le logement des gardiens. L'escalier  intérieur du château, remanié, comportait autrefois  trois volées contre deux actuellement. Les trois niveaux de la tour ont une coupole en couverture. Les dépendances jouxtent le château à l'est, remise, grange étable. Le  jardin s'étend devant la façade principale du château, au-devant d'une cour. Son extrémité sud, formant   terrasse, est supportée par des voûtes en berceau.</p>
+<h4>Habitants / Familles</h4><p>Clermont de Chaste
+<br/>        "</p>
+<h4>Divers</h4><p>Château de la Brosse</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

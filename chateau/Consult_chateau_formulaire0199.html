@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Lalinde — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,68 +113,67 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_24.html">Dordogne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_24.html">Dordogne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_24.html" class="back-link">Retour au département 24 — Dordogne</a>
-  <div class="fiche">
-    <h2>Lalinde</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>24 — Dordogne</td></tr>
-          <tr><td>Canton</td><td>Lalinde</td></tr>
-          <tr><td>Commune</td><td>Lalinde</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIII-XVII-XVIII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>44° 52' 25" Nord, 0° 44' 28" Est                                                                                    la Bastide grav de 4 à 5 GPS : 44° 50' 08" Nord, 0° 44' 17" Est. Mauzac grav 8</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_24/24_Lalinde_1.jpg" alt="Lalinde" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Lalinde_2.jpg" alt="Lalinde" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Lalinde_3.jpg" alt="Lalinde" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Lalinde_4.jpg" alt="Lalinde" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Lalinde_5.jpg" alt="Lalinde" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Lalinde_6.jpg" alt="Lalinde" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Lalinde_7.jpg" alt="Lalinde" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Lalinde_8.jpg" alt="Lalinde" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_24.html">Retour au département 24 — Dordogne</a>
+<div class="fiche">
+<h2>Lalinde</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Lalinde" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_24/24_Lalinde_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Lalinde" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Lalinde_1.jpg"/><img alt="Lalinde" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Lalinde_2.jpg"/><img alt="Lalinde" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Lalinde_3.jpg"/><img alt="Lalinde" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Lalinde_4.jpg"/><img alt="Lalinde" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Lalinde_5.jpg"/><img alt="Lalinde" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Lalinde_6.jpg"/><img alt="Lalinde" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Lalinde_7.jpg"/><img alt="Lalinde" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Lalinde_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>24 — Dordogne</td></tr>
+<tr><td>Canton</td><td>Lalinde</td></tr>
+<tr><td>Commune</td><td>Lalinde</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIII-XVII-XVIII</td></tr>
+<tr><td>Coordonnées GPS</td><td>44° 52' 25" Nord, 0° 44' 28" Est                                                                                    la Bastide grav de 4 à 5 GPS : 44° 50' 08" Nord, 0° 44' 17" Est. Mauzac grav 8</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>LALINDE, il a été un temps aménagé en restaurant. C'est en 2010 une demeure privée. De la bastide, il ne reste plus que quelques fragments de l'ancien rempart, côté Dordogne, et la porte dite de Bergerac, faussement appelée porte Romaine, qui date du XIIe siècle, inscrite auxM.H. 
-<br>Le château de la Finou, ou château de Laffinoux,
-<br>Le château de la Rue, XIIIe au XVIe siècle, à Drayaux, 
-<br>À Sauvebuf,(voir article suivant) .                                Le château des Landes, XVIIe et XVIIIe siècles,(voir article)
-<br>LAFFINOUX est un ancien repaire noble. Propriété successive des familles Villardey, d'Espaigne, Blanc de Lauvezin, de La Cropte, puis de La Valette, le château est acheté à la fin du XIXe siècle par le tragédien Hilarion Ballande qui y a fait construire un théâtre de plein air.  Le château a été racheté par la famille Liard après 1945 qui a commencé sa rénovation dans les années 60 puis l'a revendu dans les années 70 à l'ex O.R.T.F. pour devenir un centre de vacances.                                          
-<br>LA-RUE  Propriété des Archevêques de Bordeaux au XIIIe siècle, le château passe ensuite en cinq siècles aux mains des familles d'Abzac, d'Escodéra, d'Aubusson, Gouffier de Gonor et de Lostanges. 
-<br>Ayant subi des dégâts à plusieurs reprises, entre autres pendant la guerre de cent ans, le château est intégralement restauré au XVIe siècle, période à laquelle est érigée la tour hexagonale.
-<br>FINOU   Les différentes parties de l'édifice ont été bâties entre le XVe et le XVIIIe siècle. Le domaine a été transformé en centre de vacances. En effet, de nombreux vacanciers viennent s'y ressourcer tous les étés dans ce domaine qui pour eux est unique.    inscrit au titre des M.H. en 1948,</p>
-      <h4>Architecture</h4><p>LAFFINOUX  En 1267, Lalinde est l'une des toutes premières bastides édifiées en Périgord par les Anglais. Sous cesmurs, en 1370, le duc de Berry planta son étendard. Il y a là un deschâteaux qui assurait la protection de la ville de Lalinde, et sur lequel segreffait le rempart médiéval. Un sociétaire du Français, M. Ballande, enfantdu pays, acheta vers 1900, le château de Laffinoux et le fit restaurer. Un quadrilatère de murailles renforcées de tours basses enserre le château. Une douve court sur l'un des côtés. Près du portail d'entrée, tour circulaire duXVe siècle. Dans la cour d'honneur, tour ronde du XVe siècle et pavillon rectangulaire dont les murs et les toits sont galbés d'époque Régence, avec galerie à terrasse. Des communs tiennent tout un côté de la cour d'honneur. Le château de Laffinoux est inscrit à l'inventaire des M.H. par arrêté du 29 novembre 1948.
-<br>LA-RUE, Ayant subi des dégâts à plusieurs reprises, entre autres pendant la guerre de cent ans, le château est intégralement restauré au XVIe siècle, période à laquelle est érigée la tour hexagonale. L'enceinte forme un quadrilatère dont les angles correspondent aux quatre points cardinaux. Les murs, particulièrement élevés au sud-est et au sud-ouest, ont conservé des vestiges de mâchicoulis. L'entrée située au nord-est, était défendue par une barbacane. Précédant cette barbacane et surmontant une douve, un pont-levis permettait l'accès au château. Autour de l'angle nord des remparts sont groupés les bâtiments du château. À leur pointe sud s'élève une tour hexagonale qu'emprunte un escalier en colimaçon.</p>
-      <h4>Habitants / Familles</h4><p>Laffinoux Famille Villardey                                    La Rue Famille d'Abzac
-<br>        "</p>
-      <h4>Divers</h4><p>A Lalinde;  Lalinde vestiges grav de 1 à 3.        Laffinoux grav  6-7 GPS : 44° 52' 25" Nord, 0° 44' 28" Est                                                                                    la Bastide grav de 4 à 5 GPS : 44° 50' 08" Nord, 0° 44' 17" Est. Mauzac grav 8</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>LALINDE, il a été un temps aménagé en restaurant. C'est en 2010 une demeure privée. De la bastide, il ne reste plus que quelques fragments de l'ancien rempart, côté Dordogne, et la porte dite de Bergerac, faussement appelée porte Romaine, qui date du XIIe siècle, inscrite auxM.H. 
+<br/>Le château de la Finou, ou château de Laffinoux,
+<br/>Le château de la Rue, XIIIe au XVIe siècle, à Drayaux, 
+<br/>À Sauvebuf,(voir article suivant) .                                Le château des Landes, XVIIe et XVIIIe siècles,(voir article)
+<br/>LAFFINOUX est un ancien repaire noble. Propriété successive des familles Villardey, d'Espaigne, Blanc de Lauvezin, de La Cropte, puis de La Valette, le château est acheté à la fin du XIXe siècle par le tragédien Hilarion Ballande qui y a fait construire un théâtre de plein air.  Le château a été racheté par la famille Liard après 1945 qui a commencé sa rénovation dans les années 60 puis l'a revendu dans les années 70 à l'ex O.R.T.F. pour devenir un centre de vacances.                                          
+<br/>LA-RUE  Propriété des Archevêques de Bordeaux au XIIIe siècle, le château passe ensuite en cinq siècles aux mains des familles d'Abzac, d'Escodéra, d'Aubusson, Gouffier de Gonor et de Lostanges. 
+<br/>Ayant subi des dégâts à plusieurs reprises, entre autres pendant la guerre de cent ans, le château est intégralement restauré au XVIe siècle, période à laquelle est érigée la tour hexagonale.
+<br/>FINOU   Les différentes parties de l'édifice ont été bâties entre le XVe et le XVIIIe siècle. Le domaine a été transformé en centre de vacances. En effet, de nombreux vacanciers viennent s'y ressourcer tous les étés dans ce domaine qui pour eux est unique.    inscrit au titre des M.H. en 1948,</p>
+<h4>Architecture</h4><p>LAFFINOUX  En 1267, Lalinde est l'une des toutes premières bastides édifiées en Périgord par les Anglais. Sous cesmurs, en 1370, le duc de Berry planta son étendard. Il y a là un deschâteaux qui assurait la protection de la ville de Lalinde, et sur lequel segreffait le rempart médiéval. Un sociétaire du Français, M. Ballande, enfantdu pays, acheta vers 1900, le château de Laffinoux et le fit restaurer. Un quadrilatère de murailles renforcées de tours basses enserre le château. Une douve court sur l'un des côtés. Près du portail d'entrée, tour circulaire duXVe siècle. Dans la cour d'honneur, tour ronde du XVe siècle et pavillon rectangulaire dont les murs et les toits sont galbés d'époque Régence, avec galerie à terrasse. Des communs tiennent tout un côté de la cour d'honneur. Le château de Laffinoux est inscrit à l'inventaire des M.H. par arrêté du 29 novembre 1948.
+<br/>LA-RUE, Ayant subi des dégâts à plusieurs reprises, entre autres pendant la guerre de cent ans, le château est intégralement restauré au XVIe siècle, période à laquelle est érigée la tour hexagonale. L'enceinte forme un quadrilatère dont les angles correspondent aux quatre points cardinaux. Les murs, particulièrement élevés au sud-est et au sud-ouest, ont conservé des vestiges de mâchicoulis. L'entrée située au nord-est, était défendue par une barbacane. Précédant cette barbacane et surmontant une douve, un pont-levis permettait l'accès au château. Autour de l'angle nord des remparts sont groupés les bâtiments du château. À leur pointe sud s'élève une tour hexagonale qu'emprunte un escalier en colimaçon.</p>
+<h4>Habitants / Familles</h4><p>Laffinoux Famille Villardey                                    La Rue Famille d'Abzac
+<br/>        "</p>
+<h4>Divers</h4><p>A Lalinde;  Lalinde vestiges grav de 1 à 3.        Laffinoux grav  6-7 GPS : 44° 52' 25" Nord, 0° 44' 28" Est                                                                                    la Bastide grav de 4 à 5 GPS : 44° 50' 08" Nord, 0° 44' 17" Est. Mauzac grav 8</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

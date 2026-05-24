@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Menestreau_Vilette — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,59 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_45.html">Loiret</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_45.html">Loiret</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_45.html" class="back-link">Retour au département 45 — Loiret</a>
-  <div class="fiche">
-    <h2>Menestreau_Vilette</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>45 — Loiret</td></tr>
-          <tr><td>Canton</td><td>La Ferté-Saint-Aubin</td></tr>
-          <tr><td>Commune</td><td>Ménestreau en Villette</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVIII-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_45/45_Menestreau_Vilette_1.jpg" alt="Menestreau_Vilette" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Menestreau_Vilette_2.jpg" alt="Menestreau_Vilette" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Menestreau_Vilette_3.jpg" alt="Menestreau_Vilette" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Menestreau_Vilette_4.jpg" alt="Menestreau_Vilette" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Menestreau_Vilette_5.jpg" alt="Menestreau_Vilette" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Menestreau_Vilette_6.jpg" alt="Menestreau_Vilette" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Menestreau_Vilette_7.jpg" alt="Menestreau_Vilette" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_45.html">Retour au département 45 — Loiret</a>
+<div class="fiche">
+<h2>Menestreau_Vilette</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Menestreau_Vilette" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_45/45_Menestreau_Vilette_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Menestreau_Vilette" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Menestreau_Vilette_1.jpg"/><img alt="Menestreau_Vilette" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Menestreau_Vilette_2.jpg"/><img alt="Menestreau_Vilette" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Menestreau_Vilette_3.jpg"/><img alt="Menestreau_Vilette" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Menestreau_Vilette_4.jpg"/><img alt="Menestreau_Vilette" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Menestreau_Vilette_5.jpg"/><img alt="Menestreau_Vilette" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Menestreau_Vilette_6.jpg"/><img alt="Menestreau_Vilette" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Menestreau_Vilette_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>45 — Loiret</td></tr>
+<tr><td>Canton</td><td>La Ferté-Saint-Aubin</td></tr>
+<tr><td>Commune</td><td>Ménestreau en Villette</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVIII-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Cinq châteaux dans cet article; Ciran, Mazuray, Louan, Gd-Bois et-Vilette.                                                                                                              GRAND-BOIS,  en briques, avec pans de bois à l'étage, présente ce style "villa normande" en vogue à l'époque de sa construction, à l'extrême fin du XIXe siècle. Les pignons couverts avec avancées du toit sont également caractéristiques de ce style néo-régional des années 1900.                                                                                                               CIRAN,  du XIXe siècle, une de ses plus belles vitrines. Le domaine est agrémenté d'un parc aux cerfs, d'une volière, d'un marais ornithologique et d'une ferme. Le parc du château constitue un véritable arboretum composé de trente essences d'arbres différents. Les plus remarquables sont centenaires : douglas, châtaignier, séquoïa géant, cèdre du Liban, et le plus ancien, un chêne pédonculé dénommé "le chêne de Jeanne d'Arc", serait âgé de 500 à 600 ans. L'Association pour "la Fondation Sologne", qui en est propriétaire depuis 1977, gère et entretient ce domaine dans un équilibre entre la nature et le travail des hommes. Le domaine du Ciran s'est fixé pour objectif de participer à la conservation et à la mise en valeur du milieu naturel.                                                                                                                MAZURAY, situé à un point culminant de la Sologne, ce château en brique avec pierre en remplissage a été construit au XIXe siècle, vers 1882, puis modifié par la suite. L'un des bâtiments, à l'origine couvert d'une terrasse a été surmonté d'un toit à longs pans percé d'une haute lucarne néo-Renaissance.</p>
-      <h4>Architecture</h4><p>LOUAN, du XIXe siècle,  Henri du Verne reconstruisit le château vers 1885, sur un site plus ancien, en gardant l'ancienne plate-forme rectangulaire fossoyée.  Le maître d'uvre ayant emprunté le vocabulaire ornemental de la Renaissance afin de l'adapter aux matériaux du pays. Les écuries et les remises sont disposées de part et d'autre de l'entrée avec deux tourelles aux angles du front d'entrée. La basse-cour est repoussée au-delà des fossés, tout autour des douves pleines d'eaux vives de toute beauté. Les douves sont anciennes, mais le château est récent. Seulement, ce que la nouveauté de la construction n'a pas changé, c'est le magnifique site où elle se trouve. En effet si vous arrivez de plain-pied au château du côté cour, il n'en va pas de même sur la façade opposée : là on est étonné de voir que ces douves et ces eaux vives sont à l'extrême pointe d'un plateau, sur une hauteur qui, par trois étages successifs de terrasses gazonnées, descend au fond de la vallée.                                                                                                       VILETTE, le nouveau château de Villette, construit au XVIIIe siècle, tourne le dos à l'ancien lieu seigneurial de Villette, qu'il relègue à quelques centaines de mètres avec les bâtiments de la ferme. À défaut de pouvoir s'approprier matériellement le site et de l'intégrer dans le parc le nouveau château s'approprie le toponyme voisin attaché au lieu seigneurial, Villette, qui remplace l'ancien toponyme du "Puet", jugé peu évocateur.</p>
-      <h4>Habitants / Familles</h4><p>Dseigneurs locaux
-<br>        "</p>
-      <h4>Divers</h4><p>Quatre châteaux à   Ménestreau en Villette  Gav 1-2      Ciran grav 3-4-5, Mazuray, louan grav 6-7, Gd-Bois et-Vilette.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Cinq châteaux dans cet article; Ciran, Mazuray, Louan, Gd-Bois et-Vilette.                                                                                                              GRAND-BOIS,  en briques, avec pans de bois à l'étage, présente ce style "villa normande" en vogue à l'époque de sa construction, à l'extrême fin du XIXe siècle. Les pignons couverts avec avancées du toit sont également caractéristiques de ce style néo-régional des années 1900.                                                                                                               CIRAN,  du XIXe siècle, une de ses plus belles vitrines. Le domaine est agrémenté d'un parc aux cerfs, d'une volière, d'un marais ornithologique et d'une ferme. Le parc du château constitue un véritable arboretum composé de trente essences d'arbres différents. Les plus remarquables sont centenaires : douglas, châtaignier, séquoïa géant, cèdre du Liban, et le plus ancien, un chêne pédonculé dénommé "le chêne de Jeanne d'Arc", serait âgé de 500 à 600 ans. L'Association pour "la Fondation Sologne", qui en est propriétaire depuis 1977, gère et entretient ce domaine dans un équilibre entre la nature et le travail des hommes. Le domaine du Ciran s'est fixé pour objectif de participer à la conservation et à la mise en valeur du milieu naturel.                                                                                                                MAZURAY, situé à un point culminant de la Sologne, ce château en brique avec pierre en remplissage a été construit au XIXe siècle, vers 1882, puis modifié par la suite. L'un des bâtiments, à l'origine couvert d'une terrasse a été surmonté d'un toit à longs pans percé d'une haute lucarne néo-Renaissance.</p>
+<h4>Architecture</h4><p>LOUAN, du XIXe siècle,  Henri du Verne reconstruisit le château vers 1885, sur un site plus ancien, en gardant l'ancienne plate-forme rectangulaire fossoyée.  Le maître d'uvre ayant emprunté le vocabulaire ornemental de la Renaissance afin de l'adapter aux matériaux du pays. Les écuries et les remises sont disposées de part et d'autre de l'entrée avec deux tourelles aux angles du front d'entrée. La basse-cour est repoussée au-delà des fossés, tout autour des douves pleines d'eaux vives de toute beauté. Les douves sont anciennes, mais le château est récent. Seulement, ce que la nouveauté de la construction n'a pas changé, c'est le magnifique site où elle se trouve. En effet si vous arrivez de plain-pied au château du côté cour, il n'en va pas de même sur la façade opposée : là on est étonné de voir que ces douves et ces eaux vives sont à l'extrême pointe d'un plateau, sur une hauteur qui, par trois étages successifs de terrasses gazonnées, descend au fond de la vallée.                                                                                                       VILETTE, le nouveau château de Villette, construit au XVIIIe siècle, tourne le dos à l'ancien lieu seigneurial de Villette, qu'il relègue à quelques centaines de mètres avec les bâtiments de la ferme. À défaut de pouvoir s'approprier matériellement le site et de l'intégrer dans le parc le nouveau château s'approprie le toponyme voisin attaché au lieu seigneurial, Villette, qui remplace l'ancien toponyme du "Puet", jugé peu évocateur.</p>
+<h4>Habitants / Familles</h4><p>Dseigneurs locaux
+<br/>        "</p>
+<h4>Divers</h4><p>Quatre châteaux à   Ménestreau en Villette  Gav 1-2      Ciran grav 3-4-5, Mazuray, louan grav 6-7, Gd-Bois et-Vilette.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

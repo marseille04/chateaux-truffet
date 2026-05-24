@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Pont_Abbé — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,61 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_29.html">Finistère</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_29.html">Finistère</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_29.html" class="back-link">Retour au département 29 — Finistère</a>
-  <div class="fiche">
-    <h2>Pont_Abbé</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>29 — Finistère</td></tr>
-          <tr><td>Canton</td><td>Pont-l</td></tr>
-          <tr><td>Commune</td><td>Pont-l</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIV</td></tr>
-          <tr><td>Coordonnées GPS</td><td>47° 52' 01" Nord, 4° 13' 20" Ouest                                    Kernuz GPS : 47° 52' 05" Nord, 4° 13' 19" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_29/29_Pont_Abb%c3%a9_1.jpg" alt="Pont_Abbé" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Pont_Abb%c3%a9_2.jpg" alt="Pont_Abbé" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Pont_Abb%c3%a9_3.jpg" alt="Pont_Abbé" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Pont_Abb%c3%a9_4.jpg" alt="Pont_Abbé" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Pont_Abb%c3%a9_5.jpg" alt="Pont_Abbé" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Pont_Abb%c3%a9_6.jpg" alt="Pont_Abbé" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Pont_Abb%c3%a9_7.jpg" alt="Pont_Abbé" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Pont_Abb%c3%a9_8.jpg" alt="Pont_Abbé" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Pont_Abb%c3%a9_9.jpg" alt="Pont_Abbé" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_29.html">Retour au département 29 — Finistère</a>
+<div class="fiche">
+<h2>Pont_Abbé</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Pont_Abbé" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_29/29_Pont_Abb%c3%a9_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Pont_Abbé" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Pont_Abb%c3%a9_1.jpg"/><img alt="Pont_Abbé" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Pont_Abb%c3%a9_2.jpg"/><img alt="Pont_Abbé" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Pont_Abb%c3%a9_3.jpg"/><img alt="Pont_Abbé" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Pont_Abb%c3%a9_4.jpg"/><img alt="Pont_Abbé" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Pont_Abb%c3%a9_5.jpg"/><img alt="Pont_Abbé" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Pont_Abb%c3%a9_6.jpg"/><img alt="Pont_Abbé" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Pont_Abb%c3%a9_7.jpg"/><img alt="Pont_Abbé" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Pont_Abb%c3%a9_8.jpg"/><img alt="Pont_Abbé" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Pont_Abb%c3%a9_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>29 — Finistère</td></tr>
+<tr><td>Canton</td><td>Pont-l</td></tr>
+<tr><td>Commune</td><td>Pont-l</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIV</td></tr>
+<tr><td>Coordonnées GPS</td><td>47° 52' 01" Nord, 4° 13' 20" Ouest                                    Kernuz GPS : 47° 52' 05" Nord, 4° 13' 19" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>PONT  L'ABBE,  En 1350, Hervé IV, jetait les fondations d'une chapelle dans l'enceinte du château, mais en 1553, Charles de Quélennec passé au protestantisme, en chassait les chatelains, ce qui amena la ruine de l'édifice. Durant les guerres de la Ligue, Pont l'Abbé est aux mains du duc de Mercoeur. Les troupes du roi vinrent l'assiéger mais sans succès. En 1590, la forteresse est aux mains des royalistes. Le baron Toussaint de Beaumanoir étant au siège d'Ancenis, donna ordre au jeune sergent de Douarnenez nommé Trogoff de se porter au secours du château. Dès qu'il fut maître de la place, Trogoff inquiéta le pays par ses fréquentes sorties, pillant et brulant tout sur son passage. Les habitants demandèrent l'aide du Capitaine de Lézonnet, qui tenait garnison à Concarneau. Il accourut accompagné d'un grand nombre de paysans plus désireux de faire du mal aux royalistes que poussés par un zèle religieux. Le siège étant posé on fit jouer le canon contre la tour, les défenses et parapets, où il ne fit pas grand mal. Trogoff, s'avançant à regarder les assaillants par une petite lucarne fut tué d'un coup d'arquebuse. La garnison demanda à capituler, ce qui lui fut accordé. En 1675, se place la révolte du Papier timbré ou des Bonnets Rouges. Les paysans, protestant contre des nouvelles impositions, dévastèrent l'édifice et l'incendièrent. Au début du XVIIIe siècle, le chevalier d'Ernothon reconstruisit le corps de logis du château sur les anciennes caves. Le chevalier d'Ernothon devint fou et se jeta par l'une des fenêtres du château. A la Révolution le château servit de prison. Madame de Pompéry la Sévigné Cornouaillaise y séjourna. Le château passa à la Nation suite de l'émigration du baron Bande de Saint Père, et fut vendu comme bien national le 25 pluviose an VII. La ville de Pont-l'Abbé en devint acquéreur en 1836, installa les services municipaux, les écoles, la gendarmerie, et plus tard la justice de paix.</p>
-      <h4>Architecture</h4><p>KERLUT, le manoir de Kerlut est un petit château  construit à  Plobannalec-Lesconil, sur le Ster, en granit taillé. Il fut édifié, de 1896 à 1898, pour le Comte Arthur Janvier de La Motte. Un camping occupe maintenant le Domaine de Kerlut. Vous pourrez aussi y louer une salle et y organiser votre mariage.                                                                                                              KERNUZ, château construit au XVIe siècle sur le site d'une ancienne place forte ; le bâtiment a été fortement restauré et agrandi au XIXe siècle par Armand du Châtellier qui s'adresse à Joseph Bigot, architecte à Quimper. Les travaux, qui constituent la première grande "restauration" de l'architecte sont menés en plusieurs campagnes : construction de la partie ouest en 1843, restauration de la tour est en 1845, construction de la partie est en 1847. Surélévation au-dessus de l'arc en accolade, et construction en pendant, par Jean-Marie Abgrall au XXe siècle. Outre la chapelle mortuaire gothique en deux parties qui se trouve au fond de la propriété, le gisant de chevalier du Moyen Âge, une stèle de l'Âge de fer, un pigeonnier de 900 boulins, on trouve aussi un menhir, vestige de l'âge d'or intellectuel de Kernuz. Paul-Armand du Châtellier y créa un musée d'art préhistorique. Le dernier du Châtellier transformera finalement la demeure en hôtel-restaurant et centre équestre, avant qu'il ne ferme définitivement ses portes au public à la fin des années 90.                               TREBEHORET, le château de Trébéhoret a été construit au XIXe siècle. C'est un édifice de style classique composé d'un corps de logis rectangulaire à cinq travées sur lequel se greffent plusieurs pavillons du côté de la façade antérieure. Maçonnerie de moellon avec encadrements de baies, chaînes d'angle, corniche et lucarnes en pierre de taille.</p>
-      <h4>Habitants / Familles</h4><p>Pont-L'Abbé; Famille; baron Toussaint de Beaumanoir                                 Kernuz ; Famille Armand du Châtellier
-<br>        "</p>
-      <h4>Divers</h4><p>Trois châteaux à Pont l'Abbé  dont Pont l'Abbé, Kerlut grav-1  Kernuz  grav-2-3 et Trebahoret grav-4. pont-abbé grav- 5-à-9                                         Barons-GPS : 47° 52' 01" Nord, 4° 13' 20" Ouest                                    Kernuz GPS : 47° 52' 05" Nord, 4° 13' 19" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>PONT  L'ABBE,  En 1350, Hervé IV, jetait les fondations d'une chapelle dans l'enceinte du château, mais en 1553, Charles de Quélennec passé au protestantisme, en chassait les chatelains, ce qui amena la ruine de l'édifice. Durant les guerres de la Ligue, Pont l'Abbé est aux mains du duc de Mercoeur. Les troupes du roi vinrent l'assiéger mais sans succès. En 1590, la forteresse est aux mains des royalistes. Le baron Toussaint de Beaumanoir étant au siège d'Ancenis, donna ordre au jeune sergent de Douarnenez nommé Trogoff de se porter au secours du château. Dès qu'il fut maître de la place, Trogoff inquiéta le pays par ses fréquentes sorties, pillant et brulant tout sur son passage. Les habitants demandèrent l'aide du Capitaine de Lézonnet, qui tenait garnison à Concarneau. Il accourut accompagné d'un grand nombre de paysans plus désireux de faire du mal aux royalistes que poussés par un zèle religieux. Le siège étant posé on fit jouer le canon contre la tour, les défenses et parapets, où il ne fit pas grand mal. Trogoff, s'avançant à regarder les assaillants par une petite lucarne fut tué d'un coup d'arquebuse. La garnison demanda à capituler, ce qui lui fut accordé. En 1675, se place la révolte du Papier timbré ou des Bonnets Rouges. Les paysans, protestant contre des nouvelles impositions, dévastèrent l'édifice et l'incendièrent. Au début du XVIIIe siècle, le chevalier d'Ernothon reconstruisit le corps de logis du château sur les anciennes caves. Le chevalier d'Ernothon devint fou et se jeta par l'une des fenêtres du château. A la Révolution le château servit de prison. Madame de Pompéry la Sévigné Cornouaillaise y séjourna. Le château passa à la Nation suite de l'émigration du baron Bande de Saint Père, et fut vendu comme bien national le 25 pluviose an VII. La ville de Pont-l'Abbé en devint acquéreur en 1836, installa les services municipaux, les écoles, la gendarmerie, et plus tard la justice de paix.</p>
+<h4>Architecture</h4><p>KERLUT, le manoir de Kerlut est un petit château  construit à  Plobannalec-Lesconil, sur le Ster, en granit taillé. Il fut édifié, de 1896 à 1898, pour le Comte Arthur Janvier de La Motte. Un camping occupe maintenant le Domaine de Kerlut. Vous pourrez aussi y louer une salle et y organiser votre mariage.                                                                                                              KERNUZ, château construit au XVIe siècle sur le site d'une ancienne place forte ; le bâtiment a été fortement restauré et agrandi au XIXe siècle par Armand du Châtellier qui s'adresse à Joseph Bigot, architecte à Quimper. Les travaux, qui constituent la première grande "restauration" de l'architecte sont menés en plusieurs campagnes : construction de la partie ouest en 1843, restauration de la tour est en 1845, construction de la partie est en 1847. Surélévation au-dessus de l'arc en accolade, et construction en pendant, par Jean-Marie Abgrall au XXe siècle. Outre la chapelle mortuaire gothique en deux parties qui se trouve au fond de la propriété, le gisant de chevalier du Moyen Âge, une stèle de l'Âge de fer, un pigeonnier de 900 boulins, on trouve aussi un menhir, vestige de l'âge d'or intellectuel de Kernuz. Paul-Armand du Châtellier y créa un musée d'art préhistorique. Le dernier du Châtellier transformera finalement la demeure en hôtel-restaurant et centre équestre, avant qu'il ne ferme définitivement ses portes au public à la fin des années 90.                               TREBEHORET, le château de Trébéhoret a été construit au XIXe siècle. C'est un édifice de style classique composé d'un corps de logis rectangulaire à cinq travées sur lequel se greffent plusieurs pavillons du côté de la façade antérieure. Maçonnerie de moellon avec encadrements de baies, chaînes d'angle, corniche et lucarnes en pierre de taille.</p>
+<h4>Habitants / Familles</h4><p>Pont-L'Abbé; Famille; baron Toussaint de Beaumanoir                                 Kernuz ; Famille Armand du Châtellier
+<br/>        "</p>
+<h4>Divers</h4><p>Trois châteaux à Pont l'Abbé  dont Pont l'Abbé, Kerlut grav-1  Kernuz  grav-2-3 et Trebahoret grav-4. pont-abbé grav- 5-à-9                                         Barons-GPS : 47° 52' 01" Nord, 4° 13' 20" Ouest                                    Kernuz GPS : 47° 52' 05" Nord, 4° 13' 19" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

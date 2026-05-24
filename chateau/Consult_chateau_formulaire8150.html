@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Marigny_Brisay — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,62 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_86.html">Vienne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_86.html">Vienne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_86.html" class="back-link">Retour au département 86 — Vienne</a>
-  <div class="fiche">
-    <h2>Marigny_Brisay</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>86 — Vienne</td></tr>
-          <tr><td>Canton</td><td>Jaunay-Clan</td></tr>
-          <tr><td>Commune</td><td>Marigny-Brisay</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIV-XVI-XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_86/86_Marigny_Brizay_1.jpg" alt="Marigny_Brisay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Marigny_Brizay_2.jpg" alt="Marigny_Brisay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Marigny_Brizay_3.jpg" alt="Marigny_Brisay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Marigny_Brizay_4.jpg" alt="Marigny_Brisay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Marigny_Brizay_5.jpg" alt="Marigny_Brisay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Marigny_Brizay_6.jpg" alt="Marigny_Brisay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Marigny_Brizay_7.jpg" alt="Marigny_Brisay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Marigny_Brizay_8.jpg" alt="Marigny_Brisay" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_86.html">Retour au département 86 — Vienne</a>
+<div class="fiche">
+<h2>Marigny_Brisay</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Marigny_Brisay" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_86/86_Marigny_Brizay_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Marigny_Brisay" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Marigny_Brizay_1.jpg"/><img alt="Marigny_Brisay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Marigny_Brizay_2.jpg"/><img alt="Marigny_Brisay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Marigny_Brizay_3.jpg"/><img alt="Marigny_Brisay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Marigny_Brizay_4.jpg"/><img alt="Marigny_Brisay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Marigny_Brizay_5.jpg"/><img alt="Marigny_Brisay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Marigny_Brizay_6.jpg"/><img alt="Marigny_Brisay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Marigny_Brizay_7.jpg"/><img alt="Marigny_Brisay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Marigny_Brizay_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>86 — Vienne</td></tr>
+<tr><td>Canton</td><td>Jaunay-Clan</td></tr>
+<tr><td>Commune</td><td>Marigny-Brisay</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIV-XVI-XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>MARIGNY-BRISAY;  on trouve 8 autres châteaux et 6 manoirs     Quatre châteaux à Mailleterie, de la Tour de Signy du Cour du Puy et de Mare.  
-<br>MAILLETERIE, est mentionné dès le XVIIe siècle, de puissants contreforts épaulent l'enceinte du logis encore défendu par une imposante tour cylindrique à poivrière couverte d'ardoise. Cette tour classée aux M.H. articule un double bâtiment de tuffeau a vocation défensive. Le site fut sans doute un relais des templiers si lon en croit les trois tombeaux découverts dans lune des caves attenantes. Acquis en 1809 par Marianne Baillet. La propriété appartient actuellement à Pierre Brochet. Le château a été la propriété d'un peintre allemand célèbre, Paul Loskill qui y avait installé son atelier.                                                                                            MONTFAUCON,  une première construction remontant sans doute au XIVe siècle, aujourd'hui vestiges                                             TOUR DE SIGNY, un document de 1123 fait état dune paroisse nommée Margniaco, un autre évoquant la "Ecclesia de Margniaco Juxta Castrum Bellimontis" en 1133. La paroisse devint Marigny-Brizay en 1733.  Du château de La Tour Signy, détruit au XIXe siècle, subsiste un magnifique portail monumental qui correspond au style Henri IV. La beauté des vestiges encore visibles laisse imaginer la richesse architecturale du château lui-même, contrastant ainsi avec la relative sobriété des châteaux et manoirs voisins.</p>
-      <h4>Architecture</h4><p>COUR du PUY  remontent aux XVe et XVIIe siècles ; une pierre portant la croix de Malte est datée 1643. La propriété comporte des communs, des parties agricoles et un pigeonnier. un étage carré escalier hors-oeuvre ; escalier en vis : calcaire toit à longs pans
-<br>MARE, les origines remontent au XVIe siècle. Le domaine a souvent changé de mains et aussi d'aspect au cours des temps. Il a appartenu à Nicolas de sainte-Marthe qui fut échevin de Poitiers en 1613 et lieutenant général de la sénéchaussée. Le bâtiment actuel a été bâti en englobant un petit manoir dénommé le petit fou. Une tour hexagonale, dont le mouvement tournant des baies dénote la fonction, se dresse sur l'élévation nord. Elle appartient, ainsi que la partie attenante à deux étages, au petit manoir du XVIe siècle. Son escalier en vis introduit à une chambre dont la cheminée est ouvragée dans le style Louis XIII. Le logis principal donne au sud sur des jardins à la Française et un vaste panorama. La façade d'exécution soignée, porte la marque du classicisme, les lucarnes et les ils de buf, répartis en alternance et remontés au XIXe siècle, interrompent la corniche. On voit dans la cour nord un imposant pigeonnier carré surmonté d'un clocheton. Plusieurs métairies y étaient rattachées ainsi que des bois et vignes, signes de sa vocation agricole.</p>
-      <h4>Habitants / Familles</h4><p>Mailleterie Marianne Baillet
-<br>        "</p>
-      <h4>Divers</h4><p>MARIGNY-BRISAY;  Mailleterie grav-8, de Montfaucon grav 4-5-6 ,  Cour du Puy grav -7  de Mare grav 2-3.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>MARIGNY-BRISAY;  on trouve 8 autres châteaux et 6 manoirs     Quatre châteaux à Mailleterie, de la Tour de Signy du Cour du Puy et de Mare.  
+<br/>MAILLETERIE, est mentionné dès le XVIIe siècle, de puissants contreforts épaulent l'enceinte du logis encore défendu par une imposante tour cylindrique à poivrière couverte d'ardoise. Cette tour classée aux M.H. articule un double bâtiment de tuffeau a vocation défensive. Le site fut sans doute un relais des templiers si lon en croit les trois tombeaux découverts dans lune des caves attenantes. Acquis en 1809 par Marianne Baillet. La propriété appartient actuellement à Pierre Brochet. Le château a été la propriété d'un peintre allemand célèbre, Paul Loskill qui y avait installé son atelier.                                                                                            MONTFAUCON,  une première construction remontant sans doute au XIVe siècle, aujourd'hui vestiges                                             TOUR DE SIGNY, un document de 1123 fait état dune paroisse nommée Margniaco, un autre évoquant la "Ecclesia de Margniaco Juxta Castrum Bellimontis" en 1133. La paroisse devint Marigny-Brizay en 1733.  Du château de La Tour Signy, détruit au XIXe siècle, subsiste un magnifique portail monumental qui correspond au style Henri IV. La beauté des vestiges encore visibles laisse imaginer la richesse architecturale du château lui-même, contrastant ainsi avec la relative sobriété des châteaux et manoirs voisins.</p>
+<h4>Architecture</h4><p>COUR du PUY  remontent aux XVe et XVIIe siècles ; une pierre portant la croix de Malte est datée 1643. La propriété comporte des communs, des parties agricoles et un pigeonnier. un étage carré escalier hors-oeuvre ; escalier en vis : calcaire toit à longs pans
+<br/>MARE, les origines remontent au XVIe siècle. Le domaine a souvent changé de mains et aussi d'aspect au cours des temps. Il a appartenu à Nicolas de sainte-Marthe qui fut échevin de Poitiers en 1613 et lieutenant général de la sénéchaussée. Le bâtiment actuel a été bâti en englobant un petit manoir dénommé le petit fou. Une tour hexagonale, dont le mouvement tournant des baies dénote la fonction, se dresse sur l'élévation nord. Elle appartient, ainsi que la partie attenante à deux étages, au petit manoir du XVIe siècle. Son escalier en vis introduit à une chambre dont la cheminée est ouvragée dans le style Louis XIII. Le logis principal donne au sud sur des jardins à la Française et un vaste panorama. La façade d'exécution soignée, porte la marque du classicisme, les lucarnes et les ils de buf, répartis en alternance et remontés au XIXe siècle, interrompent la corniche. On voit dans la cour nord un imposant pigeonnier carré surmonté d'un clocheton. Plusieurs métairies y étaient rattachées ainsi que des bois et vignes, signes de sa vocation agricole.</p>
+<h4>Habitants / Familles</h4><p>Mailleterie Marianne Baillet
+<br/>        "</p>
+<h4>Divers</h4><p>MARIGNY-BRISAY;  Mailleterie grav-8, de Montfaucon grav 4-5-6 ,  Cour du Puy grav -7  de Mare grav 2-3.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

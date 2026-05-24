@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Amboise_II — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,62 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_37.html">Indre-et-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_37.html">Indre-et-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_37.html" class="back-link">Retour au département 37 — Indre-et-Loire</a>
-  <div class="fiche">
-    <h2>Amboise_II</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
-          <tr><td>Canton</td><td>Amboise</td></tr>
-          <tr><td>Commune</td><td>Amboise</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_37/37_Amboise_II_1.jpg" alt="Amboise_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Amboise_II_2.jpg" alt="Amboise_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Amboise_II_3.jpg" alt="Amboise_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Amboise_II_4.jpg" alt="Amboise_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Amboise_II_5.jpg" alt="Amboise_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Amboise_II_6.jpg" alt="Amboise_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Amboise_II_7.jpg" alt="Amboise_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Amboise_II_8.jpg" alt="Amboise_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Amboise_II_9.jpg" alt="Amboise_II" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_37.html">Retour au département 37 — Indre-et-Loire</a>
+<div class="fiche">
+<h2>Amboise_II</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Amboise_II" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_37/37_Amboise_II_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Amboise_II" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Amboise_II_1.jpg"/><img alt="Amboise_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Amboise_II_2.jpg"/><img alt="Amboise_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Amboise_II_3.jpg"/><img alt="Amboise_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Amboise_II_4.jpg"/><img alt="Amboise_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Amboise_II_5.jpg"/><img alt="Amboise_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Amboise_II_6.jpg"/><img alt="Amboise_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Amboise_II_7.jpg"/><img alt="Amboise_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Amboise_II_8.jpg"/><img alt="Amboise_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Amboise_II_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
+<tr><td>Canton</td><td>Amboise</td></tr>
+<tr><td>Commune</td><td>Amboise</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Quatre édifices dans cet article le manoir de Choiseul,  le Clos Lucé , Gaillard et les Minimes.                                                                      CHOISEUL manoir du XVIIIe siècle transformé en hôtel restaurant.                                                                                                 CLOS-LUCE, en 1472 construction du manoir de Cloux par Etienne le Loup en 1490 acquisition par Charles VIII qu'il fit construire l'oratoire pour Anne de Bretagne en 1500. Le Roi François 1er y invita Léonard de Vinci qui vécut au château du Clos Lucé, en 1516.  Le château du Clos Lucé est de style Renaissance, on y accède par un pont-levis, bâtisse en brique rose et tuffeau comportant deux ailes en retour d'équerre à l'angle desquels s'élève une tourelle d'escalier polygonale à droite de cet ensemble un chemin de ronde conduit à la tour de guet   conçu en 1471 comme un ancien fief relevant du château d'Amboise, il passe entre plusieurs mains avant d'être acheté par Charles VIII et de devenir une résidence dété des rois de France. Il gardera cette fonction jusqu'en 1516 où François Ier le met à la disposition de Léonard de Vinci, qui y vivra 3 ans, jusqu'à sa mort le 2/05/1519. En tant que maison de Léonard de Vinci, le château du Clos Lucé est classé aux M.H. depuis 1862, est aujourd'hui un lieu d'interprétation, de connaissance et de synthèse qui a pour vocation de permettre au plus large public de découvrir l'univers de Léonard de Vinci. Il est situé dans le centre ville d'Amboise. Il est la propriété de la famille Saint-Bris depuis 1855. François Saint Bris en est le directeur.</p>
-      <h4>Architecture</h4><p>GAILLARD, sa construction a débuté en 1496 et s'est achevée en 1519. Il est de style première Renaissance. L'architecte qui suivit les travaux fut François Giocondo dit Le Boccador. Ses premiers propriétaires furent Charles VIII et Louis XII. Le château servait le domaine royal et Jardins du Roi. Il appartient aujourd'hui à la SCI Dom Pacello. Le château Gaillard est classé aux M.H. depuis 1963.   Ancien fief relevant du château d'Amboise, ce domaine appartenait à Charles VIII qui y fit établir des jardins fleuristes et potagers. En 1505, Louis XII le donna à son jardinier Pacello contre une redevance annuelle d'un bouquet de fleurs d'oranger. En 1559, le cardinal de Lorraine l'acheta et fit reconstruire la façade du logis seigneurial. La chapelle est une salle rectangulaire édifiée en partie dans le rocher, et en partie couverte d'une terrasse. Elle s'orne d'une niche (cartouche à ornements Renaissance), encadrée de pilastres et dominée d'un linteau décoré de rinceaux d'oiseaux et d'une figure de Madeleine.                                                  Les MINIMES du XVIIIe siècle de plan rectangulaire  à deux niveaux toits en croupes couvert d'ardoise transformé en hôtel restaurant par monsieur Desforges.</p>
-      <h4>Habitants / Familles</h4><p>Léonard de Vinci    Famille Saint-Bris 
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Quatre édifices à Amboise le manoir de Choiseul grav-1,  le Clos Lucé grav 2-3-4 , Gaillard grav-5-6 et les Minimes grav-9.   Gaillard 47° 24' 47" Nord et 0° 59' 09" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Quatre édifices dans cet article le manoir de Choiseul,  le Clos Lucé , Gaillard et les Minimes.                                                                      CHOISEUL manoir du XVIIIe siècle transformé en hôtel restaurant.                                                                                                 CLOS-LUCE, en 1472 construction du manoir de Cloux par Etienne le Loup en 1490 acquisition par Charles VIII qu'il fit construire l'oratoire pour Anne de Bretagne en 1500. Le Roi François 1er y invita Léonard de Vinci qui vécut au château du Clos Lucé, en 1516.  Le château du Clos Lucé est de style Renaissance, on y accède par un pont-levis, bâtisse en brique rose et tuffeau comportant deux ailes en retour d'équerre à l'angle desquels s'élève une tourelle d'escalier polygonale à droite de cet ensemble un chemin de ronde conduit à la tour de guet   conçu en 1471 comme un ancien fief relevant du château d'Amboise, il passe entre plusieurs mains avant d'être acheté par Charles VIII et de devenir une résidence dété des rois de France. Il gardera cette fonction jusqu'en 1516 où François Ier le met à la disposition de Léonard de Vinci, qui y vivra 3 ans, jusqu'à sa mort le 2/05/1519. En tant que maison de Léonard de Vinci, le château du Clos Lucé est classé aux M.H. depuis 1862, est aujourd'hui un lieu d'interprétation, de connaissance et de synthèse qui a pour vocation de permettre au plus large public de découvrir l'univers de Léonard de Vinci. Il est situé dans le centre ville d'Amboise. Il est la propriété de la famille Saint-Bris depuis 1855. François Saint Bris en est le directeur.</p>
+<h4>Architecture</h4><p>GAILLARD, sa construction a débuté en 1496 et s'est achevée en 1519. Il est de style première Renaissance. L'architecte qui suivit les travaux fut François Giocondo dit Le Boccador. Ses premiers propriétaires furent Charles VIII et Louis XII. Le château servait le domaine royal et Jardins du Roi. Il appartient aujourd'hui à la SCI Dom Pacello. Le château Gaillard est classé aux M.H. depuis 1963.   Ancien fief relevant du château d'Amboise, ce domaine appartenait à Charles VIII qui y fit établir des jardins fleuristes et potagers. En 1505, Louis XII le donna à son jardinier Pacello contre une redevance annuelle d'un bouquet de fleurs d'oranger. En 1559, le cardinal de Lorraine l'acheta et fit reconstruire la façade du logis seigneurial. La chapelle est une salle rectangulaire édifiée en partie dans le rocher, et en partie couverte d'une terrasse. Elle s'orne d'une niche (cartouche à ornements Renaissance), encadrée de pilastres et dominée d'un linteau décoré de rinceaux d'oiseaux et d'une figure de Madeleine.                                                  Les MINIMES du XVIIIe siècle de plan rectangulaire  à deux niveaux toits en croupes couvert d'ardoise transformé en hôtel restaurant par monsieur Desforges.</p>
+<h4>Habitants / Familles</h4><p>Léonard de Vinci    Famille Saint-Bris 
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Quatre édifices à Amboise le manoir de Choiseul grav-1,  le Clos Lucé grav 2-3-4 , Gaillard grav-5-6 et les Minimes grav-9.   Gaillard 47° 24' 47" Nord et 0° 59' 09" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

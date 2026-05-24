@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>St_Etienne_Gourgas — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,63 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_34.html">Hérault</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_34.html">Hérault</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_34.html" class="back-link">Retour au département 34 — Hérault</a>
-  <div class="fiche">
-    <h2>St_Etienne_Gourgas</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>34 — Hérault</td></tr>
-          <tr><td>Canton</td><td>Lodève</td></tr>
-          <tr><td>Commune</td><td>St-Etienne de Gourgas</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIV-XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_34/34_St_Etienne_Gourgas_1.jpg" alt="St_Etienne_Gourgas" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_St_Etienne_Gourgas_2.jpg" alt="St_Etienne_Gourgas" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_St_Etienne_Gourgas_3.jpg" alt="St_Etienne_Gourgas" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_St_Etienne_Gourgas_4.jpg" alt="St_Etienne_Gourgas" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_St_Etienne_Gourgas_5.jpg" alt="St_Etienne_Gourgas" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_St_Etienne_Gourgas_6.jpg" alt="St_Etienne_Gourgas" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_St_Etienne_Gourgas_7.jpg" alt="St_Etienne_Gourgas" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_St_Etienne_Gourgas_8.jpg" alt="St_Etienne_Gourgas" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_St_Etienne_Gourgas_9.jpg" alt="St_Etienne_Gourgas" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_34.html">Retour au département 34 — Hérault</a>
+<div class="fiche">
+<h2>St_Etienne_Gourgas</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="St_Etienne_Gourgas" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_34/34_St_Etienne_Gourgas_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="St_Etienne_Gourgas" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_St_Etienne_Gourgas_1.jpg"/><img alt="St_Etienne_Gourgas" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_St_Etienne_Gourgas_2.jpg"/><img alt="St_Etienne_Gourgas" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_St_Etienne_Gourgas_3.jpg"/><img alt="St_Etienne_Gourgas" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_St_Etienne_Gourgas_4.jpg"/><img alt="St_Etienne_Gourgas" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_St_Etienne_Gourgas_5.jpg"/><img alt="St_Etienne_Gourgas" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_St_Etienne_Gourgas_6.jpg"/><img alt="St_Etienne_Gourgas" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_St_Etienne_Gourgas_7.jpg"/><img alt="St_Etienne_Gourgas" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_St_Etienne_Gourgas_8.jpg"/><img alt="St_Etienne_Gourgas" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_St_Etienne_Gourgas_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>34 — Hérault</td></tr>
+<tr><td>Canton</td><td>Lodève</td></tr>
+<tr><td>Commune</td><td>St-Etienne de Gourgas</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIV-XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Trois châteaux à Saint-Etienne de Gourgas celui d'Aubaigues, celui de Gourgas et de la Roques.
-<br>AUBAIGNES, le castrum d'Aubaigues, du latin Alba acqua, « eau blanche », est mentionné dès le XIe siècle dans le cartulaire des évêques de Lodève. En 1140, le chevalier Bérenger  d'Aubaigues est cité comme vassal et viguier de l'évêque Pierre I de Raymond.  Il lui rend l'hommage en ces termes :  Moi, Béranger, fils d'Alixende, je ne te tromperai pas, toi, Pierre, évêque de Lodève, fils de Marie, au sujet du château d'Aubaigues, de la tour et de tout ce qui appartient à ce château. 
-<br>ROQUES, maison forte château féodal du XVIe siècle appartenant au seigneur de Lodève Dupuy-Montbrun vers 1530, laissé à l'abandon depuis le XIXe siècle et restauré avec passion à partir des années 2000 par les propriétaires Dominique et Michel Vinitzky.                                                                                               GOURGAS,  il appartiendrait actuellement  au comte de Beaumevieille.</p>
-      <h4>Architecture</h4><p>Aubaignes, mentionné comme castrum  du XIIe siècle ; la demeure actuelle a pu être construite au XVIIe siècle sur des bâtiments plus anciens datant du XIVe siècle. L'édifice comprend  un  étage de soubassement et  un étage en surcroît. Gros oeuvre en grès et pierre de taille, toit à longs pans recouvert de tuiles creuses. L'appareil de grès et pierre de taille s'élève sur deux étages avec un escalier extérieur. Le château est coiffé d'un toit à long pans de tuiles creuses. Gourgas, le gros-oeuvre du château et de la chapelle peut dater de la fin du XVIe ou du début du XVIIe siècle ; dans le courant du XIXe siècle,  adjonction de granges.  L'édifice comprend un étage carré ; étage en surcroît, le gros-oeuvre en grès ; pierre de taille ; enduit partiel, toit à longs pans, tuiles creuses.                                  Château fort de Gourgas, construction probable du XIVe ; remanié à la fin du XVIIIe siècle, détruit en 1956 à l'exception d'une tour d'angle et du soubassement des murs .</p>
-      <h4>Habitants / Familles</h4><p>Chevalier Bérenger                                                                               Famille de Michel Vinitzky
-<br>        "</p>
-      <h4>Divers</h4><p>Saint-Etienne de Gourgas château d'Aubaigues, de Gourgas et de la Roques.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Trois châteaux à Saint-Etienne de Gourgas celui d'Aubaigues, celui de Gourgas et de la Roques.
+<br/>AUBAIGNES, le castrum d'Aubaigues, du latin Alba acqua, « eau blanche », est mentionné dès le XIe siècle dans le cartulaire des évêques de Lodève. En 1140, le chevalier Bérenger  d'Aubaigues est cité comme vassal et viguier de l'évêque Pierre I de Raymond.  Il lui rend l'hommage en ces termes :  Moi, Béranger, fils d'Alixende, je ne te tromperai pas, toi, Pierre, évêque de Lodève, fils de Marie, au sujet du château d'Aubaigues, de la tour et de tout ce qui appartient à ce château. 
+<br/>ROQUES, maison forte château féodal du XVIe siècle appartenant au seigneur de Lodève Dupuy-Montbrun vers 1530, laissé à l'abandon depuis le XIXe siècle et restauré avec passion à partir des années 2000 par les propriétaires Dominique et Michel Vinitzky.                                                                                               GOURGAS,  il appartiendrait actuellement  au comte de Beaumevieille.</p>
+<h4>Architecture</h4><p>Aubaignes, mentionné comme castrum  du XIIe siècle ; la demeure actuelle a pu être construite au XVIIe siècle sur des bâtiments plus anciens datant du XIVe siècle. L'édifice comprend  un  étage de soubassement et  un étage en surcroît. Gros oeuvre en grès et pierre de taille, toit à longs pans recouvert de tuiles creuses. L'appareil de grès et pierre de taille s'élève sur deux étages avec un escalier extérieur. Le château est coiffé d'un toit à long pans de tuiles creuses. Gourgas, le gros-oeuvre du château et de la chapelle peut dater de la fin du XVIe ou du début du XVIIe siècle ; dans le courant du XIXe siècle,  adjonction de granges.  L'édifice comprend un étage carré ; étage en surcroît, le gros-oeuvre en grès ; pierre de taille ; enduit partiel, toit à longs pans, tuiles creuses.                                  Château fort de Gourgas, construction probable du XIVe ; remanié à la fin du XVIIIe siècle, détruit en 1956 à l'exception d'une tour d'angle et du soubassement des murs .</p>
+<h4>Habitants / Familles</h4><p>Chevalier Bérenger                                                                               Famille de Michel Vinitzky
+<br/>        "</p>
+<h4>Divers</h4><p>Saint-Etienne de Gourgas château d'Aubaigues, de Gourgas et de la Roques.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

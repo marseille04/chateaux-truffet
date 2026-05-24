@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Sauveterre_Béarn — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,62 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_64.html">Pyrénées-Atlantiques</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_64.html">Pyrénées-Atlantiques</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_64.html" class="back-link">Retour au département 64 — Pyrénées-Atlantiques</a>
-  <div class="fiche">
-    <h2>Sauveterre_Béarn</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>64 — Pyrénées-Atlantiques</td></tr>
-          <tr><td>Canton</td><td>Orthez</td></tr>
-          <tr><td>Commune</td><td>Sauveterre de Béarn</td></tr>
-          <tr><td>Type d'édifice</td><td>Tour-Château</td></tr>
-          <tr><td>Période d'origine</td><td>XII-XV</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_64/64_Sauveterre_B%c3%a9arn_1.jpg" alt="Sauveterre_Béarn" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_64/64_Sauveterre_B%c3%a9arn_2.jpg" alt="Sauveterre_Béarn" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_64/64_Sauveterre_B%c3%a9arn_3.jpg" alt="Sauveterre_Béarn" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_64/64_Sauveterre_B%c3%a9arn_4.jpg" alt="Sauveterre_Béarn" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_64/64_Sauveterre_B%c3%a9arn_5.jpg" alt="Sauveterre_Béarn" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_64/64_Sauveterre_B%c3%a9arn_6.jpg" alt="Sauveterre_Béarn" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_64/64_Sauveterre_B%c3%a9arn_7.jpg" alt="Sauveterre_Béarn" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_64/64_Sauveterre_B%c3%a9arn_8.jpg" alt="Sauveterre_Béarn" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_64/64_Sauveterre_B%c3%a9arn_9.jpg" alt="Sauveterre_Béarn" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_64.html">Retour au département 64 — Pyrénées-Atlantiques</a>
+<div class="fiche">
+<h2>Sauveterre_Béarn</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Sauveterre_Béarn" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_64/64_Sauveterre_B%c3%a9arn_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Sauveterre_Béarn" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_64/64_Sauveterre_B%c3%a9arn_1.jpg"/><img alt="Sauveterre_Béarn" class="" loading="lazy" onclick="setHero(this)" src="../image/image_64/64_Sauveterre_B%c3%a9arn_2.jpg"/><img alt="Sauveterre_Béarn" class="" loading="lazy" onclick="setHero(this)" src="../image/image_64/64_Sauveterre_B%c3%a9arn_3.jpg"/><img alt="Sauveterre_Béarn" class="" loading="lazy" onclick="setHero(this)" src="../image/image_64/64_Sauveterre_B%c3%a9arn_4.jpg"/><img alt="Sauveterre_Béarn" class="" loading="lazy" onclick="setHero(this)" src="../image/image_64/64_Sauveterre_B%c3%a9arn_5.jpg"/><img alt="Sauveterre_Béarn" class="" loading="lazy" onclick="setHero(this)" src="../image/image_64/64_Sauveterre_B%c3%a9arn_6.jpg"/><img alt="Sauveterre_Béarn" class="" loading="lazy" onclick="setHero(this)" src="../image/image_64/64_Sauveterre_B%c3%a9arn_7.jpg"/><img alt="Sauveterre_Béarn" class="" loading="lazy" onclick="setHero(this)" src="../image/image_64/64_Sauveterre_B%c3%a9arn_8.jpg"/><img alt="Sauveterre_Béarn" class="" loading="lazy" onclick="setHero(this)" src="../image/image_64/64_Sauveterre_B%c3%a9arn_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>64 — Pyrénées-Atlantiques</td></tr>
+<tr><td>Canton</td><td>Orthez</td></tr>
+<tr><td>Commune</td><td>Sauveterre de Béarn</td></tr>
+<tr><td>Type d'édifice</td><td>Tour-Château</td></tr>
+<tr><td>Période d'origine</td><td>XII-XV</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>A Sauveterre de Béarn le château de Marsan, de Sus et des barons de Salettes aujourd'hui hôtel de ville, ancienne demeure du XVIe siècle, autrefois propriété des "maquis de Nays, comtes de Salette.      SAUVETERRE, au XVe siècle, la cité est toujours une ville-frontière économique, de garnison et de réception royale. En effet, lors de la campagne de Catalogne de 1456 à 1466, en 1462 puis en 1463, Gaston IV de Foix-Béarn reçoit le roi de France Louis XI à Sauveterre. Ce dernier rencontre en 1462 Jean II, roi dAragon, sur le pont dOsserain. Les vicomtes de Béarn, deviennent légitimement rois de Navarre à la suite  dune guerre de succession  en 1479. Sauveterre jouera un rôle important dans lindépendance de la Navarre durant le XVIe siècle grâce à son statut de ville-frontière. Un troisième bourg, « le bourg Pléguignou » va être totalement réaménagé comme un bourg militaire face à la Navarre. Larsenal y est dailleurs édifié dès le XVe siècle.                                                                      Tour de Montréal  L'histoire de cette tour débute aux alentours du XIIe siècle comme pour le reste du village. Elle avait pour but de défendre cette Sauveté placée à un endroit stratégique entre la Navarre et l'Aquitaine, le long d'une boucle du Gave d'Oloron.   Durant de nombreux siècles les terribles meurtrières les puissants créneaux ont longtemps fait trembler les armées redoutables d'Espagne et d'Angleterre. En 1523 gardienne du Béarn et de sa souveraineté, défendant Sauveterre, résistant à l'armée venant d'Espagne, conduite par le prince d'Orrange, Philibert de Challon.  Le donjon du château Vicomtel, longeant la courtine Sud, seigneurs et chevaliers pouvaient se réfugier dans ces murs. Au deuxième étage celui du hourd de bois, la belle baie géminée éclairait le logement du seigneur.                                               Manoir de Marsan à Sauveterre hôtel restaurant d'andré Capdet.</p>
-      <h4>Architecture</h4><p>La tour Montréal,  classé MH (1886) bâtie au cours du XIIe siècle, haute de 37 mètres, était une tour de défense et d'habitation. Elle servait à surveiller les incursions espagnoles et basques. Elle abrite aujourd'hui la maquette reconstituant la cité médiévale de Sauveterre entre les XIIIe et XVIe siècles. A l'instar de la Tour Moncade d'Orthez, elle faisait parti d'un ensemble plus vaste aujourd'hui disparu. Toutefois cette massive tour de 30 mètres de hauteur est parvenue presque intacte à nos jours, malgré les tumultes connus dans cette partie de la France.          La maison forte. Il s'agit d'un ancien bastion qui avait pour but de protéger la ville. Des meurtrières étaient disposées sur sa façade, elles sont de nos jours couvertes d'enduit.  De très nombreuses meurtrières sur les côtés Sud et Est de l'édifice qui prend une forme rectangulaire de 15 mètres de longueur pour 10 de largeur. Elle était partie intégrante d'un ensemble défensif assez complet comprenant des remparts, 3 ponts fortifiés, une maison forte, des portes intermédiaires. Les ruines du château vicomtal,  Inscrit MH (2014)30, bâti par Gaston VII de Béarn (1225-1290) et remanié par Gaston Fébus (1349-1391) au XIVe siècle. Lhôtel de ville, ancienne demeure du XVIe siècle, autrefois propriété des "maquis de Nays, comtes de Salette. La porte de Lester du XIIe siècle. La porte du Datter,  Inscrit MH en 1937  ainsi que les remparts du XIIe au XIXe siècles.</p>
-      <h4>Habitants / Familles</h4><p>Seigneurs locaux
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Tour de Montréal  grav de 1 à 6 143° 23' 53 nord, 0° 56' 23 ouest Château des baron de Salette grav 7 de Marsan grav 8 et de Sus grav 9</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>A Sauveterre de Béarn le château de Marsan, de Sus et des barons de Salettes aujourd'hui hôtel de ville, ancienne demeure du XVIe siècle, autrefois propriété des "maquis de Nays, comtes de Salette.      SAUVETERRE, au XVe siècle, la cité est toujours une ville-frontière économique, de garnison et de réception royale. En effet, lors de la campagne de Catalogne de 1456 à 1466, en 1462 puis en 1463, Gaston IV de Foix-Béarn reçoit le roi de France Louis XI à Sauveterre. Ce dernier rencontre en 1462 Jean II, roi dAragon, sur le pont dOsserain. Les vicomtes de Béarn, deviennent légitimement rois de Navarre à la suite  dune guerre de succession  en 1479. Sauveterre jouera un rôle important dans lindépendance de la Navarre durant le XVIe siècle grâce à son statut de ville-frontière. Un troisième bourg, « le bourg Pléguignou » va être totalement réaménagé comme un bourg militaire face à la Navarre. Larsenal y est dailleurs édifié dès le XVe siècle.                                                                      Tour de Montréal  L'histoire de cette tour débute aux alentours du XIIe siècle comme pour le reste du village. Elle avait pour but de défendre cette Sauveté placée à un endroit stratégique entre la Navarre et l'Aquitaine, le long d'une boucle du Gave d'Oloron.   Durant de nombreux siècles les terribles meurtrières les puissants créneaux ont longtemps fait trembler les armées redoutables d'Espagne et d'Angleterre. En 1523 gardienne du Béarn et de sa souveraineté, défendant Sauveterre, résistant à l'armée venant d'Espagne, conduite par le prince d'Orrange, Philibert de Challon.  Le donjon du château Vicomtel, longeant la courtine Sud, seigneurs et chevaliers pouvaient se réfugier dans ces murs. Au deuxième étage celui du hourd de bois, la belle baie géminée éclairait le logement du seigneur.                                               Manoir de Marsan à Sauveterre hôtel restaurant d'andré Capdet.</p>
+<h4>Architecture</h4><p>La tour Montréal,  classé MH (1886) bâtie au cours du XIIe siècle, haute de 37 mètres, était une tour de défense et d'habitation. Elle servait à surveiller les incursions espagnoles et basques. Elle abrite aujourd'hui la maquette reconstituant la cité médiévale de Sauveterre entre les XIIIe et XVIe siècles. A l'instar de la Tour Moncade d'Orthez, elle faisait parti d'un ensemble plus vaste aujourd'hui disparu. Toutefois cette massive tour de 30 mètres de hauteur est parvenue presque intacte à nos jours, malgré les tumultes connus dans cette partie de la France.          La maison forte. Il s'agit d'un ancien bastion qui avait pour but de protéger la ville. Des meurtrières étaient disposées sur sa façade, elles sont de nos jours couvertes d'enduit.  De très nombreuses meurtrières sur les côtés Sud et Est de l'édifice qui prend une forme rectangulaire de 15 mètres de longueur pour 10 de largeur. Elle était partie intégrante d'un ensemble défensif assez complet comprenant des remparts, 3 ponts fortifiés, une maison forte, des portes intermédiaires. Les ruines du château vicomtal,  Inscrit MH (2014)30, bâti par Gaston VII de Béarn (1225-1290) et remanié par Gaston Fébus (1349-1391) au XIVe siècle. Lhôtel de ville, ancienne demeure du XVIe siècle, autrefois propriété des "maquis de Nays, comtes de Salette. La porte de Lester du XIIe siècle. La porte du Datter,  Inscrit MH en 1937  ainsi que les remparts du XIIe au XIXe siècles.</p>
+<h4>Habitants / Familles</h4><p>Seigneurs locaux
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Tour de Montréal  grav de 1 à 6 143° 23' 53 nord, 0° 56' 23 ouest Château des baron de Salette grav 7 de Marsan grav 8 et de Sus grav 9</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

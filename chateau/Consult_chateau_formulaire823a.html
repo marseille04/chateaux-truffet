@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Marcay — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,61 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_86.html">Vienne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_86.html">Vienne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_86.html" class="back-link">Retour au département 86 — Vienne</a>
-  <div class="fiche">
-    <h2>Marcay</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>86 — Vienne</td></tr>
-          <tr><td>Canton</td><td>Vivonne</td></tr>
-          <tr><td>Commune</td><td>Marçay</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XII-XVI-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_86/86_Marcay_1.jpg" alt="Marcay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Marcay_2.jpg" alt="Marcay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Marcay_3.jpg" alt="Marcay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Marcay_4.jpg" alt="Marcay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Marcay_5.jpg" alt="Marcay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Marcay_6.jpg" alt="Marcay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Marcay_7.jpg" alt="Marcay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Marcay_8.jpg" alt="Marcay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Marcay_9.jpg" alt="Marcay" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_86.html">Retour au département 86 — Vienne</a>
+<div class="fiche">
+<h2>Marcay</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Marcay" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_86/86_Marcay_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Marcay" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Marcay_1.jpg"/><img alt="Marcay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Marcay_2.jpg"/><img alt="Marcay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Marcay_3.jpg"/><img alt="Marcay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Marcay_4.jpg"/><img alt="Marcay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Marcay_5.jpg"/><img alt="Marcay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Marcay_6.jpg"/><img alt="Marcay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Marcay_7.jpg"/><img alt="Marcay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Marcay_8.jpg"/><img alt="Marcay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Marcay_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>86 — Vienne</td></tr>
+<tr><td>Canton</td><td>Vivonne</td></tr>
+<tr><td>Commune</td><td>Marçay</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XII-XVI-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Trois châteaux à Marcay dont celui de Marcay, de Bierson de la Bonnetieres, la Badenière et de Bonnevaux.                                                                 BIERSON, cité dès 1489 dans un fief appartenant à l'abbaye de Bonnevaux, relevant de la châtellenie de Vivonne. Le château aurait brûlé au XIXe siècle, mais a été reconstruit entre 1850 et 1856, en conservant quelques éléments de l'édifice plus ancien, par la famille Majou de la Rousselière. L'élévation principale ouest est de style néo-XVIIe mêlé à quelques éléments de style néo-XVIIIe et présente deux pavillons latéraux en avancée sous toiture à croupe assortie de lucarnes en il-de-buf. Le corps de logis central est découpé par un pavillon hors uvre sommé d'une haute toiture. A l'intérieur, l'édifice présente des salons et salles à manger lambrissés et un escalier en bois tournant éclairé par un vitrail réalisé au début du XXe siècle, présentant une femme nue à sa toilette, est une des rares oeuvres exécutées dans le domaine civil par le maître verrier parisien Henri Carot.                                                                                                    BONNETIERE  début du XVIe siècle, le flef des Bonnetières relevait de la châtellenie de Clavière. Il subsiste aujourd'hui, portant le nom de cette ancienne seigneurie, un château ne paraissant pas antérieur au XIXe siècle.                                                                                 MARCAY, le château primitif fut construit autour des années 1150, dévasté par les huguenots, il est restauré à partir de 1597.</p>
-      <h4>Architecture</h4><p>BONNETIEREs, il s'agit d'une haute construction rectangulaire à trois niveaux apparents, recouverte d'un toit d'ardoise à croupes et présente trois travées d'ouvertures. On accède à la porte d'entrée après avoir gravi quelques marches de pierre. De part et d'autre, lui sont accolés deux pavillons carrés couverts à l'identique. Chacun de ces pavillons est un peu plus bas que le corps de logis principal et présente une travée de baies sur deux niveaux, le 3ème est éclairé par une lucarne.                                                  BONNEVAUX, une partie fut démolie, le reste a été transformé en château aux XVIIIe et XIXe siècles incluant l'ancienne galerie du cloître. Ce vaste château, à deux niveaux couvert d'ardoise, se compose d'un corps de logis flanqué de part et d'autre d'une aile saillante à ses deux extrémités. Les deux ailes renferment des salles voûtées et des escaliers en vis, les ouvertures et sa façade furent modifiées au XIXe siècle. Les murs du logis, percés d'ouvertures en travée, sont dépourvus de décoration, peut-être par respect du lieu. La galerie du cloître est accolée à la face nord du corps de logis principal.                                                     MARCAY, entouré autrefois de douves, qui subsistent en partie à l'est, précédé au nord par une vaste cour entourée de communs, le château est constitué par un bâtiment principal qui se développe entre deux grosses tours cylindriques, couronnées d'un chemin de ronde avec créneaux et mâchicoulis. Du côté sud, deux ailes en retour d'équerre s'ajoutent au bâtiment principal, aboutissant chacune à une tour polygonale. Percements et toitures ont été refaits au XVIIe siècle. vestiges de fossés à l'est. Au sud-ouest, escaliers remaniés.</p>
-      <h4>Habitants / Familles</h4><p>Bierson; famille Majou de la Rousselière.
-<br>        "</p>
-      <h4>Divers</h4><p>à Marcay dont celui de Marcay grav-1-2-8-9, de Bierson grav -4 5 de la Bonnetieres grav-6, la Badenière grav 3 et de Bonnevaux grav 5-6 .                                                                  Marcay 46° 27' 49" nord, 0° 13' 51" est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Trois châteaux à Marcay dont celui de Marcay, de Bierson de la Bonnetieres, la Badenière et de Bonnevaux.                                                                 BIERSON, cité dès 1489 dans un fief appartenant à l'abbaye de Bonnevaux, relevant de la châtellenie de Vivonne. Le château aurait brûlé au XIXe siècle, mais a été reconstruit entre 1850 et 1856, en conservant quelques éléments de l'édifice plus ancien, par la famille Majou de la Rousselière. L'élévation principale ouest est de style néo-XVIIe mêlé à quelques éléments de style néo-XVIIIe et présente deux pavillons latéraux en avancée sous toiture à croupe assortie de lucarnes en il-de-buf. Le corps de logis central est découpé par un pavillon hors uvre sommé d'une haute toiture. A l'intérieur, l'édifice présente des salons et salles à manger lambrissés et un escalier en bois tournant éclairé par un vitrail réalisé au début du XXe siècle, présentant une femme nue à sa toilette, est une des rares oeuvres exécutées dans le domaine civil par le maître verrier parisien Henri Carot.                                                                                                    BONNETIERE  début du XVIe siècle, le flef des Bonnetières relevait de la châtellenie de Clavière. Il subsiste aujourd'hui, portant le nom de cette ancienne seigneurie, un château ne paraissant pas antérieur au XIXe siècle.                                                                                 MARCAY, le château primitif fut construit autour des années 1150, dévasté par les huguenots, il est restauré à partir de 1597.</p>
+<h4>Architecture</h4><p>BONNETIEREs, il s'agit d'une haute construction rectangulaire à trois niveaux apparents, recouverte d'un toit d'ardoise à croupes et présente trois travées d'ouvertures. On accède à la porte d'entrée après avoir gravi quelques marches de pierre. De part et d'autre, lui sont accolés deux pavillons carrés couverts à l'identique. Chacun de ces pavillons est un peu plus bas que le corps de logis principal et présente une travée de baies sur deux niveaux, le 3ème est éclairé par une lucarne.                                                  BONNEVAUX, une partie fut démolie, le reste a été transformé en château aux XVIIIe et XIXe siècles incluant l'ancienne galerie du cloître. Ce vaste château, à deux niveaux couvert d'ardoise, se compose d'un corps de logis flanqué de part et d'autre d'une aile saillante à ses deux extrémités. Les deux ailes renferment des salles voûtées et des escaliers en vis, les ouvertures et sa façade furent modifiées au XIXe siècle. Les murs du logis, percés d'ouvertures en travée, sont dépourvus de décoration, peut-être par respect du lieu. La galerie du cloître est accolée à la face nord du corps de logis principal.                                                     MARCAY, entouré autrefois de douves, qui subsistent en partie à l'est, précédé au nord par une vaste cour entourée de communs, le château est constitué par un bâtiment principal qui se développe entre deux grosses tours cylindriques, couronnées d'un chemin de ronde avec créneaux et mâchicoulis. Du côté sud, deux ailes en retour d'équerre s'ajoutent au bâtiment principal, aboutissant chacune à une tour polygonale. Percements et toitures ont été refaits au XVIIe siècle. vestiges de fossés à l'est. Au sud-ouest, escaliers remaniés.</p>
+<h4>Habitants / Familles</h4><p>Bierson; famille Majou de la Rousselière.
+<br/>        "</p>
+<h4>Divers</h4><p>à Marcay dont celui de Marcay grav-1-2-8-9, de Bierson grav -4 5 de la Bonnetieres grav-6, la Badenière grav 3 et de Bonnevaux grav 5-6 .                                                                  Marcay 46° 27' 49" nord, 0° 13' 51" est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

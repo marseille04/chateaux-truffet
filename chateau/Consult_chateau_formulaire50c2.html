@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Vautheau_Vouchot — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,66 +113,63 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_71.html">Saône-et-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_71.html">Saône-et-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_71.html" class="back-link">Retour au département 71 — Saône-et-Loire</a>
-  <div class="fiche">
-    <h2>Vautheau_Vouchot</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>71 — Saône-et-Loire</td></tr>
-          <tr><td>Canton</td><td>St-Leger-sous-Beuvray</td></tr>
-          <tr><td>Commune</td><td>La Grande-Verrière</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_71/71_Vautheau_Vouchot_1.jpg" alt="Vautheau_Vouchot" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Vautheau_Vouchot_2.jpg" alt="Vautheau_Vouchot" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Vautheau_Vouchot_3.jpg" alt="Vautheau_Vouchot" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Vautheau_Vouchot_4.jpg" alt="Vautheau_Vouchot" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Vautheau_Vouchot_5.jpg" alt="Vautheau_Vouchot" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Vautheau_Vouchot_6.jpg" alt="Vautheau_Vouchot" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Vautheau_Vouchot_7.jpg" alt="Vautheau_Vouchot" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Vautheau_Vouchot_8.jpg" alt="Vautheau_Vouchot" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Vautheau_Vouchot_9.jpg" alt="Vautheau_Vouchot" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_71.html">Retour au département 71 — Saône-et-Loire</a>
+<div class="fiche">
+<h2>Vautheau_Vouchot</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Vautheau_Vouchot" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_71/71_Vautheau_Vouchot_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Vautheau_Vouchot" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Vautheau_Vouchot_1.jpg"/><img alt="Vautheau_Vouchot" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Vautheau_Vouchot_2.jpg"/><img alt="Vautheau_Vouchot" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Vautheau_Vouchot_3.jpg"/><img alt="Vautheau_Vouchot" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Vautheau_Vouchot_4.jpg"/><img alt="Vautheau_Vouchot" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Vautheau_Vouchot_5.jpg"/><img alt="Vautheau_Vouchot" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Vautheau_Vouchot_6.jpg"/><img alt="Vautheau_Vouchot" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Vautheau_Vouchot_7.jpg"/><img alt="Vautheau_Vouchot" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Vautheau_Vouchot_8.jpg"/><img alt="Vautheau_Vouchot" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Vautheau_Vouchot_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>71 — Saône-et-Loire</td></tr>
+<tr><td>Canton</td><td>St-Leger-sous-Beuvray</td></tr>
+<tr><td>Commune</td><td>La Grande-Verrière</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>VOUCHOT, Garnier du Vouchot, est une ancienne famille de Bourgogne, qui remonte à Jehan Garnier seigneur du Vouchot vivant en 1486, et un Jean Garnier du Vouchot, seigneur de Glennes en 1470. Jean Garnier châtelain de Glaine et son épouse Pierrette Simonot, début du XVIe siècle.
-<br>Jean II Garnier, notaire et praticien d'Autun, seigneur de Vouchot 1584  Philibert Garnier, noble écuyer, seigneur du Vouchot  teste en 1607, Jean III Garnier fils de Philibert, époux de Charlotte de Grand Jacques François de l'Etouffe, comte de Pradines, seigneur de Valorges et son épouse Charlotte Garnier du Vouchot  vend en 1680 à Sébastien de Lagoutte et Françoise de Chevigny.
-<br>Claude de Lagoutte, fils de Sébastien et seigneur du Vouchot, Claude II de Lagoutte, seigneur du Vivier, et du Vouchot, neveu, et fils d'Antoine de Lagoutte, décédé sans postérité 1720.
-<br>Charles-Jean de Lagoutte, écuyer, Sébastien-Marie de Lagoutte, fils de Charles Jean, époux de Marguerite-Charlotte de Girval. Jean-Charles Hubert de Lagoutte, propriétaire du Vivier. François-Xavier de Lagoutte, Lieutenant-colonel, propriétaire en 1866.           VAUTHEAU; La seigneurie est ancienne, Guy de Vautheau en est seigneur au début du XIIIe siècle. Après avoir été partagé entre trois seigneurs, Vautheau est possédé en totalité en 1375 par le duc de Bourgogne qui fait aussitôt réparer la maison forte. Par alliance, celle-ci passe en 1456 à la famille de Choiseul de Traves qui la conserve jusqu'à la vente faite en 1728 à Pierre de Maizière. Louis Thomas de La Vesvre, chevalier de Saint-Louis, fut seigneur de Vautheau en 1760, puis la seigneurie passa en 1866 au comte d'Esterno.</p>
-      <h4>Architecture</h4><p>Château du Vouchot, près de l'église, au Nord, avec deux tours hexagones sur la façade et deux rondes détachées, connu sous le nom de Château de Vouchot ou Château de Verrière. Son portail est inscrit au titre des Monuments historiques, cette forteresse de plaine à plates-formes quadrangulaires, du XIIe siècle, modifiée au XVe siècle, transformé en château moderne au XVIIIe siècle, logis rectangulaire avec ses deux tours hexagonales en façade arrière et deux tours rondes, détachées de l'ancien château, qui apparaît encore sur l'ancien plan cadastral, au Nord du logis actuel. Avec des traces d'une terrasse le long de la route départementale 3, côté Est, la basse cour. Situé au finage de La Grande-Verrière, au nord de l'église, fait l'objet d'une inscription partielle au titre des Monuments historiques pour son portail Louis XIII, depuis le 27 septembre 1995. Vautheau, ancienne maison forte est en ruine, et son accès est périlleux. Au milieu des arbres et du taillis qui l'ont envahi, on distingue les fossés ainsi que des pans de murs de l'enceinte et d'une tour carrée. Seule reste debout la haute tourelle d'escalier qui flanquait cette tour: sa porte est surmontée d'une accolade qui renferme un écusson.                                             La grande Verrière; Château de Savilly, possession de la famille Desplaces de Charmasse  Le château, perché sur une colline, se trouve dans un domaine de 6 hectares, entouré des vieux arbres    Château de Bouton, en 1670, à Charlotte de Gorris, veuve de Philibert de Lagoutte, reconstruit en 1832.
-<br>Ancien Manoir, dans le Bourg
-<br>Château de Glaine, dit Château des Roches de Glenne.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Lagoutte 
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Vautheau de Vouchot de Boisseau de Bouton et de Monthelon</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>VOUCHOT, Garnier du Vouchot, est une ancienne famille de Bourgogne, qui remonte à Jehan Garnier seigneur du Vouchot vivant en 1486, et un Jean Garnier du Vouchot, seigneur de Glennes en 1470. Jean Garnier châtelain de Glaine et son épouse Pierrette Simonot, début du XVIe siècle.
+<br/>Jean II Garnier, notaire et praticien d'Autun, seigneur de Vouchot 1584  Philibert Garnier, noble écuyer, seigneur du Vouchot  teste en 1607, Jean III Garnier fils de Philibert, époux de Charlotte de Grand Jacques François de l'Etouffe, comte de Pradines, seigneur de Valorges et son épouse Charlotte Garnier du Vouchot  vend en 1680 à Sébastien de Lagoutte et Françoise de Chevigny.
+<br/>Claude de Lagoutte, fils de Sébastien et seigneur du Vouchot, Claude II de Lagoutte, seigneur du Vivier, et du Vouchot, neveu, et fils d'Antoine de Lagoutte, décédé sans postérité 1720.
+<br/>Charles-Jean de Lagoutte, écuyer, Sébastien-Marie de Lagoutte, fils de Charles Jean, époux de Marguerite-Charlotte de Girval. Jean-Charles Hubert de Lagoutte, propriétaire du Vivier. François-Xavier de Lagoutte, Lieutenant-colonel, propriétaire en 1866.           VAUTHEAU; La seigneurie est ancienne, Guy de Vautheau en est seigneur au début du XIIIe siècle. Après avoir été partagé entre trois seigneurs, Vautheau est possédé en totalité en 1375 par le duc de Bourgogne qui fait aussitôt réparer la maison forte. Par alliance, celle-ci passe en 1456 à la famille de Choiseul de Traves qui la conserve jusqu'à la vente faite en 1728 à Pierre de Maizière. Louis Thomas de La Vesvre, chevalier de Saint-Louis, fut seigneur de Vautheau en 1760, puis la seigneurie passa en 1866 au comte d'Esterno.</p>
+<h4>Architecture</h4><p>Château du Vouchot, près de l'église, au Nord, avec deux tours hexagones sur la façade et deux rondes détachées, connu sous le nom de Château de Vouchot ou Château de Verrière. Son portail est inscrit au titre des Monuments historiques, cette forteresse de plaine à plates-formes quadrangulaires, du XIIe siècle, modifiée au XVe siècle, transformé en château moderne au XVIIIe siècle, logis rectangulaire avec ses deux tours hexagonales en façade arrière et deux tours rondes, détachées de l'ancien château, qui apparaît encore sur l'ancien plan cadastral, au Nord du logis actuel. Avec des traces d'une terrasse le long de la route départementale 3, côté Est, la basse cour. Situé au finage de La Grande-Verrière, au nord de l'église, fait l'objet d'une inscription partielle au titre des Monuments historiques pour son portail Louis XIII, depuis le 27 septembre 1995. Vautheau, ancienne maison forte est en ruine, et son accès est périlleux. Au milieu des arbres et du taillis qui l'ont envahi, on distingue les fossés ainsi que des pans de murs de l'enceinte et d'une tour carrée. Seule reste debout la haute tourelle d'escalier qui flanquait cette tour: sa porte est surmontée d'une accolade qui renferme un écusson.                                             La grande Verrière; Château de Savilly, possession de la famille Desplaces de Charmasse  Le château, perché sur une colline, se trouve dans un domaine de 6 hectares, entouré des vieux arbres    Château de Bouton, en 1670, à Charlotte de Gorris, veuve de Philibert de Lagoutte, reconstruit en 1832.
+<br/>Ancien Manoir, dans le Bourg
+<br/>Château de Glaine, dit Château des Roches de Glenne.</p>
+<h4>Habitants / Familles</h4><p>Famille de Lagoutte 
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Vautheau de Vouchot de Boisseau de Bouton et de Monthelon</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

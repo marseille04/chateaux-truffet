@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Neuvy_le_Roy — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,57 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_37.html">Indre-et-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_37.html">Indre-et-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_37.html" class="back-link">Retour au département 37 — Indre-et-Loire</a>
-  <div class="fiche">
-    <h2>Neuvy_le_Roy</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
-          <tr><td>Canton</td><td>Château-Renault</td></tr>
-          <tr><td>Commune</td><td>Neuvy le roy</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_37/37_Neuvy_le_Roy_1.jpg" alt="Neuvy_le_Roy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Neuvy_le_Roy_2.jpg" alt="Neuvy_le_Roy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Neuvy_le_Roy_3.jpg" alt="Neuvy_le_Roy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Neuvy_le_Roy_4.jpg" alt="Neuvy_le_Roy" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_37.html">Retour au département 37 — Indre-et-Loire</a>
+<div class="fiche">
+<h2>Neuvy_le_Roy</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Neuvy_le_Roy" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_37/37_Neuvy_le_Roy_1.jpg"/><div class="hero-count" id="hero-count">1 / 4</div></div><div class="photo-strip"><img alt="Neuvy_le_Roy" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Neuvy_le_Roy_1.jpg"/><img alt="Neuvy_le_Roy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Neuvy_le_Roy_2.jpg"/><img alt="Neuvy_le_Roy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Neuvy_le_Roy_3.jpg"/><img alt="Neuvy_le_Roy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Neuvy_le_Roy_4.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
+<tr><td>Canton</td><td>Château-Renault</td></tr>
+<tr><td>Commune</td><td>Neuvy le roy</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>A Neuvy le Roy, château de Beaulieu du XIXe siècle, la Martinerie du XVIe siècle, XIXe siècle,  Rouvre voir article.                                                              MARTINIERIE,  datant de 1789, il est cité comme tenue de la Martignerie, fief du château du Bois. L'édifice est décrit dans le P.V d'adjudication du 13 avril 1791, lors de la vente à Louis Belle, comme composé au rez-de-chaussée de six salles dont une cuisine et une boulangerie et à l'étage des chambres avec cabinet, dont l'un servant de chartrier. La représentation en plan de la Martinerie, sur le cadastre napoléonien de 1834 est analogue à celle de 1789, complété par un bâtiment en équerre, situé à l'angle sud-ouest, qui d'après la tradition aurait été démolie en 1850. Il va se scinder en deux parties au milieu du XIXe siècle, la partie Est du XVIe siècle, si l'on en croit la forme du pignon Est et celle de la charpente va former un seul bâtiment réservé à l'écurie et à des chambres. L'autre partie, composée d'un logis à deux pavillons, reprend des bases de construction ancienne, puisque les tracés des murs des façades nord et sud est identique sur le cadastre napoléonien et le cadastre actuel. Sur cette structure, aurait été bâti au milieu du XIXe siècle, ce bâtiment monumental orné de lucarnes finement sculptées, très proches de celles du château de Rennefort.</p>
-      <h4>Architecture</h4><p>MARTINERIE, château à élévation ordonnancée, à un étage et un étage de comble, composé d'un corps de logis, à quatre travées, couvert d'un toit à longs pans, encadré par deux pavillons, à une travée, couverts d'un toit en pavillon. L'étage de comble  de la façade Sud est orné de lucarnes en pierre de taille, au décor finement sculpté, les pilastres accostés de volutes à la base sont surmontés de chapiteaux corinthiens. Elles sont couronnées de frontons triangulaires, sur le corps de logis et cintrés en forme de coquille sur les pavillons. La façade Nord est beaucoup plus sobre, il n'y a pas de lucarnes sur le corps de logis, et celles des deux pavillons sont couvertes d'un toit en croupe, sans ornementation sculptée. Les deux pavillons ne sont pas identiques, le pavillon Ouest, percé de trois baies, dispose de trois niveaux, alors que le pavillon Est est sur deux niveaux comme le corps de logis. L'autre bâtiment, situé à l'Ouest du château, est couvert d'un toit à longs pans, au pignon Ouest découvert, percé de deux baies géminées en arc en plein cintre à la partie supérieure. Pigeonnier : tour cylindrique couverte d'un toit conique percé de deux lucarnes en pierre de taille. Caves troglodytes situées au Nord-Est du château, protégées d'un parement enduit et pierre de taille, couronné d'une balustrade.</p>
-      <h4>Habitants / Familles</h4><p>Seigneurs locaux
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>A Neuvy le roy, Château de Beaulieu grav-4,                                 la Martinerie grav 1-2,  la Martinière grav-3                      Martinerie : 47° 36' 12" Nord et 0° 35' 38" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>A Neuvy le Roy, château de Beaulieu du XIXe siècle, la Martinerie du XVIe siècle, XIXe siècle,  Rouvre voir article.                                                              MARTINIERIE,  datant de 1789, il est cité comme tenue de la Martignerie, fief du château du Bois. L'édifice est décrit dans le P.V d'adjudication du 13 avril 1791, lors de la vente à Louis Belle, comme composé au rez-de-chaussée de six salles dont une cuisine et une boulangerie et à l'étage des chambres avec cabinet, dont l'un servant de chartrier. La représentation en plan de la Martinerie, sur le cadastre napoléonien de 1834 est analogue à celle de 1789, complété par un bâtiment en équerre, situé à l'angle sud-ouest, qui d'après la tradition aurait été démolie en 1850. Il va se scinder en deux parties au milieu du XIXe siècle, la partie Est du XVIe siècle, si l'on en croit la forme du pignon Est et celle de la charpente va former un seul bâtiment réservé à l'écurie et à des chambres. L'autre partie, composée d'un logis à deux pavillons, reprend des bases de construction ancienne, puisque les tracés des murs des façades nord et sud est identique sur le cadastre napoléonien et le cadastre actuel. Sur cette structure, aurait été bâti au milieu du XIXe siècle, ce bâtiment monumental orné de lucarnes finement sculptées, très proches de celles du château de Rennefort.</p>
+<h4>Architecture</h4><p>MARTINERIE, château à élévation ordonnancée, à un étage et un étage de comble, composé d'un corps de logis, à quatre travées, couvert d'un toit à longs pans, encadré par deux pavillons, à une travée, couverts d'un toit en pavillon. L'étage de comble  de la façade Sud est orné de lucarnes en pierre de taille, au décor finement sculpté, les pilastres accostés de volutes à la base sont surmontés de chapiteaux corinthiens. Elles sont couronnées de frontons triangulaires, sur le corps de logis et cintrés en forme de coquille sur les pavillons. La façade Nord est beaucoup plus sobre, il n'y a pas de lucarnes sur le corps de logis, et celles des deux pavillons sont couvertes d'un toit en croupe, sans ornementation sculptée. Les deux pavillons ne sont pas identiques, le pavillon Ouest, percé de trois baies, dispose de trois niveaux, alors que le pavillon Est est sur deux niveaux comme le corps de logis. L'autre bâtiment, situé à l'Ouest du château, est couvert d'un toit à longs pans, au pignon Ouest découvert, percé de deux baies géminées en arc en plein cintre à la partie supérieure. Pigeonnier : tour cylindrique couverte d'un toit conique percé de deux lucarnes en pierre de taille. Caves troglodytes situées au Nord-Est du château, protégées d'un parement enduit et pierre de taille, couronné d'une balustrade.</p>
+<h4>Habitants / Familles</h4><p>Seigneurs locaux
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>A Neuvy le roy, Château de Beaulieu grav-4,                                 la Martinerie grav 1-2,  la Martinière grav-3                      Martinerie : 47° 36' 12" Nord et 0° 35' 38" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

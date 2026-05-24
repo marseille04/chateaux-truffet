@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Berville_Mer — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,57 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_27.html">Eure</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_27.html">Eure</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_27.html" class="back-link">Retour au département 27 — Eure</a>
-  <div class="fiche">
-    <h2>Berville_Mer</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>27 — Eure</td></tr>
-          <tr><td>Canton</td><td>Beuzeville</td></tr>
-          <tr><td>Commune</td><td>Berville_sur mer</td></tr>
-          <tr><td>Type d'édifice</td><td>Manoir</td></tr>
-          <tr><td>Période d'origine</td><td>XVII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>49° 25' 15,54" Nord, 0° 21' 30,9" Est                   Pommeraye grav-3  GPS : 49° 25' 27" Nord, 0° 20' 18" Est  St-Pierre du Val grav 4-5  gps 9° 23' 55" nord, 0° 21' 42" est</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_27/27_Berville_Mer_1.jpg" alt="Berville_Mer" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_27/27_Berville_Mer_2.jpg" alt="Berville_Mer" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_27/27_Berville_Mer_3.jpg" alt="Berville_Mer" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_27/27_Berville_Mer_4.jpg" alt="Berville_Mer" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_27/27_Berville_Mer_5.jpg" alt="Berville_Mer" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_27.html">Retour au département 27 — Eure</a>
+<div class="fiche">
+<h2>Berville_Mer</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Berville_Mer" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_27/27_Berville_Mer_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Berville_Mer" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_27/27_Berville_Mer_1.jpg"/><img alt="Berville_Mer" class="" loading="lazy" onclick="setHero(this)" src="../image/image_27/27_Berville_Mer_2.jpg"/><img alt="Berville_Mer" class="" loading="lazy" onclick="setHero(this)" src="../image/image_27/27_Berville_Mer_3.jpg"/><img alt="Berville_Mer" class="" loading="lazy" onclick="setHero(this)" src="../image/image_27/27_Berville_Mer_4.jpg"/><img alt="Berville_Mer" class="" loading="lazy" onclick="setHero(this)" src="../image/image_27/27_Berville_Mer_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>27 — Eure</td></tr>
+<tr><td>Canton</td><td>Beuzeville</td></tr>
+<tr><td>Commune</td><td>Berville_sur mer</td></tr>
+<tr><td>Type d'édifice</td><td>Manoir</td></tr>
+<tr><td>Période d'origine</td><td>XVII</td></tr>
+<tr><td>Coordonnées GPS</td><td>49° 25' 15,54" Nord, 0° 21' 30,9" Est                   Pommeraye grav-3  GPS : 49° 25' 27" Nord, 0° 20' 18" Est  St-Pierre du Val grav 4-5  gps 9° 23' 55" nord, 0° 21' 42" est</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux châteaux dans cet article Marolet et Pommeraye .            MAROLLET ou Berville il date du XVIIe au XIXe siècle. L'édifice est aussi désigné sous le château de Berville-sur-Mer, qui a appartenu à la Famille de Saint-Albon, est inscrit aux M.H. depuis 1971. Sont protégés aux M.H. : les façades et les toitures du manoir ainsi que du pigeonnier, le salon, la salle à manger et le bureau du rez-de-chaussée avec leurs boiseries. Il possède aussi un colombier polygonal en brique et un portail en pan de bois.                                                                                                                           A cinq K.M. au sud à Saint-Pierre du val le château SAINT-PIERRE du Val  (XIe, XVIIIe et XIXe).  est un château fort probablement construit au XIe siècle et détruit certainement à la fin de la guerre de Cent Ans. Au XVIIIe siècle, construction pour la famille Grosourdis d'un château et de ses dépendances. Ils sont démolis vers 1840 pour construire un château au style troubadour. Acquis par le marquis de Saint-Pierre en 1921, le château est de nouveau démoli. Michel de Grosourdy, marquis de Saint-Pierre (1916-1987), écrivain français, est décédé et enterré à Saint-Pierre-du-Val le 19 juin 1987. Sa fille, Isaure de Saint Pierre, est écrivain et journaliste.</p>
-      <h4>Architecture</h4><p>ST-PIERRE DU VAL, au XVIIIe siècle, construction pour la famille Grosourdis d'un château et de ses dépendances. Ils sont démolis vers 1840 pour construire un château au style troubadour. Acquis par le marquis de Saint-Pierre en 1921, le château est de nouveau démoli. Ne subsistent aujourd'hui que les ruines du donjon médiéval, un des deux bâtiments d'écuries (actuellement logis d'habitation), le colombier, une forge, le chenil, une maison dite de garde.                                                                                                            POMMERAYE, la construction du Manoir de la Pommeraye date du XVIIIe et XXe siècle. Il fut l'ancienne propriété de la famille Houel de la Pommeraye. Il est situé à proximité du hameau de Carbec construit dans le style néo-normand par l'architecte Henri Jacquelin. Le manoir est inscrit à l'inventaire général du patrimoine culturel. Il subsiste un des deux pavillons carrés de brique du XVIIe siècle. Il sera racheté au XIVe siècle, pour devenir le siège de la Seigneurie de Berville-sur-Mer,   par la Famille Houel de la Pommeraye qui le conservera jusqu'à la Révolution Française. Le dernier des Houel disparaitra, lors de l'émigration, en exil. Puis, au début du XIXe siècle, Claude Massol de Saint-Amand, Premier Préfet de l'Eure, posséda le château de la Pommeraye qui sera reconstruit, dans un style néo-Normand, au début du XXe siècle, pour Georges Desurmont et sa femme Madeleine Descamps, construit au XVIIIe siècle, fut détruit en 1912. Il fut remplacé, vers 1916, par le château de la Pommeray, actuel, à pans de bois. Seuls, le lavoir et le moulin ont été détruits.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Saint-Albon                                                                 Famille Houel de la Pommeraye. 
-<br>        "</p>
-      <h4>Divers</h4><p>Barville grav-1                                                                               Marollet  Grav-2   GPS : 49° 25' 15,54" Nord, 0° 21' 30,9" Est                   Pommeraye grav-3  GPS : 49° 25' 27" Nord, 0° 20' 18" Est  St-Pierre du Val grav 4-5  gps 9° 23' 55" nord, 0° 21' 42" est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux châteaux dans cet article Marolet et Pommeraye .            MAROLLET ou Berville il date du XVIIe au XIXe siècle. L'édifice est aussi désigné sous le château de Berville-sur-Mer, qui a appartenu à la Famille de Saint-Albon, est inscrit aux M.H. depuis 1971. Sont protégés aux M.H. : les façades et les toitures du manoir ainsi que du pigeonnier, le salon, la salle à manger et le bureau du rez-de-chaussée avec leurs boiseries. Il possède aussi un colombier polygonal en brique et un portail en pan de bois.                                                                                                                           A cinq K.M. au sud à Saint-Pierre du val le château SAINT-PIERRE du Val  (XIe, XVIIIe et XIXe).  est un château fort probablement construit au XIe siècle et détruit certainement à la fin de la guerre de Cent Ans. Au XVIIIe siècle, construction pour la famille Grosourdis d'un château et de ses dépendances. Ils sont démolis vers 1840 pour construire un château au style troubadour. Acquis par le marquis de Saint-Pierre en 1921, le château est de nouveau démoli. Michel de Grosourdy, marquis de Saint-Pierre (1916-1987), écrivain français, est décédé et enterré à Saint-Pierre-du-Val le 19 juin 1987. Sa fille, Isaure de Saint Pierre, est écrivain et journaliste.</p>
+<h4>Architecture</h4><p>ST-PIERRE DU VAL, au XVIIIe siècle, construction pour la famille Grosourdis d'un château et de ses dépendances. Ils sont démolis vers 1840 pour construire un château au style troubadour. Acquis par le marquis de Saint-Pierre en 1921, le château est de nouveau démoli. Ne subsistent aujourd'hui que les ruines du donjon médiéval, un des deux bâtiments d'écuries (actuellement logis d'habitation), le colombier, une forge, le chenil, une maison dite de garde.                                                                                                            POMMERAYE, la construction du Manoir de la Pommeraye date du XVIIIe et XXe siècle. Il fut l'ancienne propriété de la famille Houel de la Pommeraye. Il est situé à proximité du hameau de Carbec construit dans le style néo-normand par l'architecte Henri Jacquelin. Le manoir est inscrit à l'inventaire général du patrimoine culturel. Il subsiste un des deux pavillons carrés de brique du XVIIe siècle. Il sera racheté au XIVe siècle, pour devenir le siège de la Seigneurie de Berville-sur-Mer,   par la Famille Houel de la Pommeraye qui le conservera jusqu'à la Révolution Française. Le dernier des Houel disparaitra, lors de l'émigration, en exil. Puis, au début du XIXe siècle, Claude Massol de Saint-Amand, Premier Préfet de l'Eure, posséda le château de la Pommeraye qui sera reconstruit, dans un style néo-Normand, au début du XXe siècle, pour Georges Desurmont et sa femme Madeleine Descamps, construit au XVIIIe siècle, fut détruit en 1912. Il fut remplacé, vers 1916, par le château de la Pommeray, actuel, à pans de bois. Seuls, le lavoir et le moulin ont été détruits.</p>
+<h4>Habitants / Familles</h4><p>Famille de Saint-Albon                                                                 Famille Houel de la Pommeraye. 
+<br/>        "</p>
+<h4>Divers</h4><p>Barville grav-1                                                                               Marollet  Grav-2   GPS : 49° 25' 15,54" Nord, 0° 21' 30,9" Est                   Pommeraye grav-3  GPS : 49° 25' 27" Nord, 0° 20' 18" Est  St-Pierre du Val grav 4-5  gps 9° 23' 55" nord, 0° 21' 42" est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

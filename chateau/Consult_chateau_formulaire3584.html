@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Houdencourt — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,53 +113,57 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_80.html">Somme</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_80.html">Somme</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_80.html" class="back-link">Retour au département 80 — Somme</a>
-  <div class="fiche">
-    <h2>Houdencourt</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>80 — Somme</td></tr>
-          <tr><td>Canton</td><td>Flixecourt</td></tr>
-          <tr><td>Commune</td><td>Houdencourt</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_80/80_Houdencourt_1.jpg" alt="Houdencourt" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_80/80_Houdencourt_2.jpg" alt="Houdencourt" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_80.html">Retour au département 80 — Somme</a>
+<div class="fiche">
+<h2>Houdencourt</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Houdencourt" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_80/80_Houdencourt_1.jpg"/><div class="hero-count" id="hero-count">1 / 2</div></div><div class="photo-strip"><img alt="Houdencourt" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Houdencourt_1.jpg"/><img alt="Houdencourt" class="" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Houdencourt_2.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>80 — Somme</td></tr>
+<tr><td>Canton</td><td>Flixecourt</td></tr>
+<tr><td>Commune</td><td>Houdencourt</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>HOUDENCOURT, en 1407, la seigneurie appartient à Jean d'Embreville, écuyer, puis à la famille de Brucamps de 1430 à 1550. À cette date, elle passe par alliance à la famille de Boubers. Pierre de Boubers, écuyer, cède la terre en 1603 à François de Croze, également écuyer, que sa fille Marguerite apporte par alliance à Jean de Gaude, seigneur de Martainneville et de Saint-Élier, capitaine au régiment de Soyecourt. Celui-ci achète en 1656 la seigneurie voisine de Franqueville, ainsi que la moitié sud de la forêt de Goyaval, qui prend alors le nom de forêt de Martainneville. Marie-Thérèse de Gaude, marquise de Boudeville, comtesse de Martainneville et baronne de Cotigny, hérite des domaines familiaux en 1749 et épouse la même année Philippe-Charles Vogt, comte de Hunolstein et d'Ottange, chambellan de Stanislas Leszczynski, ancien roi de Pologne puis duc de Lorraine et de Bar, et capitaine au régiment royal allemand de cavalerie.   Elle transmet dès 1770 à leur second fils Jean-François Léonor Vogt, baron de Hunolstein, les seigneuries de Houdencourt et de Franqueville, les seigneuries de Harondel et de Rouvroy en partie, et les droits formant la vicomté de Domart, c'est lui qui fait reconstruire le logis, caractéristique des petits châteaux de plaisance du milieu du XVIIIe siècle,  rehaussé de brique au XIXe siècle, il porte la date de 1772. Les communs et dépendances, semblent former un ensemble compact et homogène. Les d'Hunolsten émigrent dès 1789 et le domaine de Houdencourt, saisi comme bien national, est acquis en 1793 par son ancien fermier, Jean-Baptiste Roussel.  La partie nord du bois de Martainneville est acquise dans les années 1820 par Jean-Charles Deberny, nouveau propriétaire du château et du domaine de Ribeaucourt, qui lui donnera son nom. Jean-Baptiste Roussel fils est aussi maire de Fransu dans les années 1830-1840.</p>
-      <h4>Architecture</h4><p>HOUDENCOURT. il fait agrandir le logis d'un pavillon à un étage carré et étage de comble, dans le style du corps de logis initial, et agrémenter la toiture dils-de-buf et de lucarnes ornés et d'une crête.L'ensemble de ces travaux porte la marque du Second Empire.  Juliette Roussel, fille de Jules et héritière du domaine, épouse en 1884 Hippolyte Jérosme, héritier de la ferme du Bois-Riquier à Ville-le-Marclet. Le couple fait reconstruire ou remanier les bâtiments d'exploitation de la ferme qui, selon Patrick Longuet, portent sur une pierre la date de 1890 surmontée des initiales J. et R. (Jérosme et Roussel). La propriété passe ensuite à leur fille Eugénie, qui a épousé après la Première Guerre mondiale l'officier britannique Arthur Grace en cantonnement au manoir. La famille Grace vend la propriété en 1973 à un entrepreneur, qui laisse le domaine se dégradé, corps de logis est construit en rez-de-chaussée surélevé, en brique et pierre sur soubassement de grès. Les façades sont en brique avec éléments saillants en pierre, les pignons sont à assises alternées. Les façades ordonnancées sont marquées par un léger avant-corps central de quatre travées. Le toit à longs pans et croupes brisés et les lucarnes ont été restitués selon le modèle ancien. Le corps de logis, simple en profondeur, n'a conservé aucun aménagement ancien. Au nord du château se déploie l'emprise de l'ancien jardin clos de mur. Les communs et les dépendances sont pour la plupart construits en brique et pierre à assises alternées, complétés de pignons à pan de bois, et couverts de tuile.</p>
-      <h4>Habitants / Familles</h4><p>Famille des  d'Hunolsten "</p>
-      <h4>Divers</h4><p>Château d'Houdencourt</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>HOUDENCOURT, en 1407, la seigneurie appartient à Jean d'Embreville, écuyer, puis à la famille de Brucamps de 1430 à 1550. À cette date, elle passe par alliance à la famille de Boubers. Pierre de Boubers, écuyer, cède la terre en 1603 à François de Croze, également écuyer, que sa fille Marguerite apporte par alliance à Jean de Gaude, seigneur de Martainneville et de Saint-Élier, capitaine au régiment de Soyecourt. Celui-ci achète en 1656 la seigneurie voisine de Franqueville, ainsi que la moitié sud de la forêt de Goyaval, qui prend alors le nom de forêt de Martainneville. Marie-Thérèse de Gaude, marquise de Boudeville, comtesse de Martainneville et baronne de Cotigny, hérite des domaines familiaux en 1749 et épouse la même année Philippe-Charles Vogt, comte de Hunolstein et d'Ottange, chambellan de Stanislas Leszczynski, ancien roi de Pologne puis duc de Lorraine et de Bar, et capitaine au régiment royal allemand de cavalerie.   Elle transmet dès 1770 à leur second fils Jean-François Léonor Vogt, baron de Hunolstein, les seigneuries de Houdencourt et de Franqueville, les seigneuries de Harondel et de Rouvroy en partie, et les droits formant la vicomté de Domart, c'est lui qui fait reconstruire le logis, caractéristique des petits châteaux de plaisance du milieu du XVIIIe siècle,  rehaussé de brique au XIXe siècle, il porte la date de 1772. Les communs et dépendances, semblent former un ensemble compact et homogène. Les d'Hunolsten émigrent dès 1789 et le domaine de Houdencourt, saisi comme bien national, est acquis en 1793 par son ancien fermier, Jean-Baptiste Roussel.  La partie nord du bois de Martainneville est acquise dans les années 1820 par Jean-Charles Deberny, nouveau propriétaire du château et du domaine de Ribeaucourt, qui lui donnera son nom. Jean-Baptiste Roussel fils est aussi maire de Fransu dans les années 1830-1840.</p>
+<h4>Architecture</h4><p>HOUDENCOURT. il fait agrandir le logis d'un pavillon à un étage carré et étage de comble, dans le style du corps de logis initial, et agrémenter la toiture dils-de-buf et de lucarnes ornés et d'une crête.L'ensemble de ces travaux porte la marque du Second Empire.  Juliette Roussel, fille de Jules et héritière du domaine, épouse en 1884 Hippolyte Jérosme, héritier de la ferme du Bois-Riquier à Ville-le-Marclet. Le couple fait reconstruire ou remanier les bâtiments d'exploitation de la ferme qui, selon Patrick Longuet, portent sur une pierre la date de 1890 surmontée des initiales J. et R. (Jérosme et Roussel). La propriété passe ensuite à leur fille Eugénie, qui a épousé après la Première Guerre mondiale l'officier britannique Arthur Grace en cantonnement au manoir. La famille Grace vend la propriété en 1973 à un entrepreneur, qui laisse le domaine se dégradé, corps de logis est construit en rez-de-chaussée surélevé, en brique et pierre sur soubassement de grès. Les façades sont en brique avec éléments saillants en pierre, les pignons sont à assises alternées. Les façades ordonnancées sont marquées par un léger avant-corps central de quatre travées. Le toit à longs pans et croupes brisés et les lucarnes ont été restitués selon le modèle ancien. Le corps de logis, simple en profondeur, n'a conservé aucun aménagement ancien. Au nord du château se déploie l'emprise de l'ancien jardin clos de mur. Les communs et les dépendances sont pour la plupart construits en brique et pierre à assises alternées, complétés de pignons à pan de bois, et couverts de tuile.</p>
+<h4>Habitants / Familles</h4><p>Famille des  d'Hunolsten "</p>
+<h4>Divers</h4><p>Château d'Houdencourt</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

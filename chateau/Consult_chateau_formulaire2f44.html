@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Mareuil_Lay_Disay — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,61 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_85.html">Vendée</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_85.html">Vendée</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_85.html" class="back-link">Retour au département 85 — Vendée</a>
-  <div class="fiche">
-    <h2>Mareuil_Lay_Disay</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>85 — Vendée</td></tr>
-          <tr><td>Canton</td><td></td></tr>
-          <tr><td>Commune</td><td>Mareuil sur Lay-Disay</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI-XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_85/85_Mareuil_Lay_Disay_1.jpg" alt="Mareuil_Lay_Disay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Mareuil_Lay_Disay_2.jpg" alt="Mareuil_Lay_Disay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Mareuil_Lay_Disay_3.jpg" alt="Mareuil_Lay_Disay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Mareuil_Lay_Disay_4.jpg" alt="Mareuil_Lay_Disay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Mareuil_Lay_Disay_5.jpg" alt="Mareuil_Lay_Disay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Mareuil_Lay_Disay_6.jpg" alt="Mareuil_Lay_Disay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Mareuil_Lay_Disay_7.jpg" alt="Mareuil_Lay_Disay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Mareuil_Lay_Disay_8.jpg" alt="Mareuil_Lay_Disay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Mareuil_Lay_Disay_9.jpg" alt="Mareuil_Lay_Disay" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_85.html">Retour au département 85 — Vendée</a>
+<div class="fiche">
+<h2>Mareuil_Lay_Disay</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Mareuil_Lay_Disay" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_85/85_Mareuil_Lay_Disay_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Mareuil_Lay_Disay" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Mareuil_Lay_Disay_1.jpg"/><img alt="Mareuil_Lay_Disay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Mareuil_Lay_Disay_2.jpg"/><img alt="Mareuil_Lay_Disay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Mareuil_Lay_Disay_3.jpg"/><img alt="Mareuil_Lay_Disay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Mareuil_Lay_Disay_4.jpg"/><img alt="Mareuil_Lay_Disay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Mareuil_Lay_Disay_5.jpg"/><img alt="Mareuil_Lay_Disay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Mareuil_Lay_Disay_6.jpg"/><img alt="Mareuil_Lay_Disay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Mareuil_Lay_Disay_7.jpg"/><img alt="Mareuil_Lay_Disay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Mareuil_Lay_Disay_8.jpg"/><img alt="Mareuil_Lay_Disay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Mareuil_Lay_Disay_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>85 — Vendée</td></tr>
+<tr><td>Canton</td><td></td></tr>
+<tr><td>Commune</td><td>Mareuil sur Lay-Disay</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI-XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>A Mareuil; le château St-André, le Beaulieu, le Bredurière, du Bessay, la Folie, le Guibert, le  Marie-fou , le Salidieu, St-André  et Dissay  tous ses châteaux ont une activité viticole ou chambres d'hôtes.                                                                                         MAREUIL, pendant la guerre de Cent Ans, Bertrand du Guesclin reprend Mareuil en août 1372, qui était tombée aux mains des Anglais à la suite du traité de Brétigny-Calais. En 1431, le fils de Marguerite de Clisson, Jean de Blois, met le siège devant le château qui était à nouveau retombé dans le camp anglais. Le château étant quasi imprenable, les Anglais résistent aux sièges jusqu'en 1438, lorsqu'un certain Geoffroy de Mareuil, capitaine du Roi, réussi à chasser les Anglais, qui ne reviendront plus à Mareuil. Au XVe siècle cette ancienne seigneurie était rattachée à la vicomté de Thouars qui appartenait à la famille d'Amboise.                                                                    MARIE DU FOU,  Le domaine appartient aujourdhui au viticulteur Mourat qui détient également le caveau. Le château sert désormais de vitrine à leur activité.</p>
-      <h4>Architecture</h4><p>MAREUIL, au Moyen-Âge, pour les mêmes raisons de position stratégique, un château fort est bâti sur la butte rocheuse où se situe l'actuel château de Marie du Fou, tout près de l'église. On peut voir la forme de ces fortifications sur un plan de 1704 intitulé " plan de Maroeuil". Ce château, fait d'une enceinte presque circulaire, comprenait un donjon quadrangulaire, un châtelet d'entrée et quelques tours rondes et carrées renforçant les courtines. Le châtelet était presque en vis-à-vis du pont enjambant le Lay, pour surveiller et contrôler tout passage. Un profond fossé le séparait du reste du plateau rocheux où se situait le village et un prieuré, et cet ensemble était peut-être entouré d'une enceinte fortifiée. Mais avant cette forteresse, il y avait très probablement une motte castrale, comme le laisse supposer ce plan de 1704 où on voit une colline entourée d'un fossé en direction de la Roche sur Yon et légendé « ancien fort ». À noter, sur ce même plan, une certaine "vieille tour" qui était implantée sur le pic rocheux où se trouve actuellement le calvaire de la route des Pineaux. Cette tour était sans doute une fortification avancée complémentaire au château.                                                  MARIE DU FOU, construit entre le XIIe et le XVIe siècle, le château comportait deux enceintes de 400 mètres environ avec des tours carrées et rondes, un donjon et des logements seigneuriaux. Durant la première partie du XVe siècle, le château primitif servait de base dactivité militaire au seigneur.</p>
-      <h4>Habitants / Familles</h4><p>Famille d'Amboise
-<br>        "</p>
-      <h4>Divers</h4><p>A Mareuil sur Lay-Disay, château de  Folie grav 2, Marie-Fou grav 3, Salidieu grav_5,  St -André grav-6, Bessay -9, Beaulieu 7-8</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>A Mareuil; le château St-André, le Beaulieu, le Bredurière, du Bessay, la Folie, le Guibert, le  Marie-fou , le Salidieu, St-André  et Dissay  tous ses châteaux ont une activité viticole ou chambres d'hôtes.                                                                                         MAREUIL, pendant la guerre de Cent Ans, Bertrand du Guesclin reprend Mareuil en août 1372, qui était tombée aux mains des Anglais à la suite du traité de Brétigny-Calais. En 1431, le fils de Marguerite de Clisson, Jean de Blois, met le siège devant le château qui était à nouveau retombé dans le camp anglais. Le château étant quasi imprenable, les Anglais résistent aux sièges jusqu'en 1438, lorsqu'un certain Geoffroy de Mareuil, capitaine du Roi, réussi à chasser les Anglais, qui ne reviendront plus à Mareuil. Au XVe siècle cette ancienne seigneurie était rattachée à la vicomté de Thouars qui appartenait à la famille d'Amboise.                                                                    MARIE DU FOU,  Le domaine appartient aujourdhui au viticulteur Mourat qui détient également le caveau. Le château sert désormais de vitrine à leur activité.</p>
+<h4>Architecture</h4><p>MAREUIL, au Moyen-Âge, pour les mêmes raisons de position stratégique, un château fort est bâti sur la butte rocheuse où se situe l'actuel château de Marie du Fou, tout près de l'église. On peut voir la forme de ces fortifications sur un plan de 1704 intitulé " plan de Maroeuil". Ce château, fait d'une enceinte presque circulaire, comprenait un donjon quadrangulaire, un châtelet d'entrée et quelques tours rondes et carrées renforçant les courtines. Le châtelet était presque en vis-à-vis du pont enjambant le Lay, pour surveiller et contrôler tout passage. Un profond fossé le séparait du reste du plateau rocheux où se situait le village et un prieuré, et cet ensemble était peut-être entouré d'une enceinte fortifiée. Mais avant cette forteresse, il y avait très probablement une motte castrale, comme le laisse supposer ce plan de 1704 où on voit une colline entourée d'un fossé en direction de la Roche sur Yon et légendé « ancien fort ». À noter, sur ce même plan, une certaine "vieille tour" qui était implantée sur le pic rocheux où se trouve actuellement le calvaire de la route des Pineaux. Cette tour était sans doute une fortification avancée complémentaire au château.                                                  MARIE DU FOU, construit entre le XIIe et le XVIe siècle, le château comportait deux enceintes de 400 mètres environ avec des tours carrées et rondes, un donjon et des logements seigneuriaux. Durant la première partie du XVe siècle, le château primitif servait de base dactivité militaire au seigneur.</p>
+<h4>Habitants / Familles</h4><p>Famille d'Amboise
+<br/>        "</p>
+<h4>Divers</h4><p>A Mareuil sur Lay-Disay, château de  Folie grav 2, Marie-Fou grav 3, Salidieu grav_5,  St -André grav-6, Bessay -9, Beaulieu 7-8</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

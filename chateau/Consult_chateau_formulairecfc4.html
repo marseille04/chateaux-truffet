@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>La_Borie — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,60 +113,62 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_46.html">Lot</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_46.html">Lot</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_46.html" class="back-link">Retour au département 46 — Lot</a>
-  <div class="fiche">
-    <h2>La_Borie</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>46 — Lot</td></tr>
-          <tr><td>Canton</td><td>Biars-sur-Cère</td></tr>
-          <tr><td>Commune</td><td>Laval de Cère</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_46/46_La_Borie_1.jpg" alt="La_Borie" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_La_Borie_2.jpg" alt="La_Borie" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_La_Borie_3.jpg" alt="La_Borie" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_La_Borie_4.jpg" alt="La_Borie" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_La_Borie_5.jpg" alt="La_Borie" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_46.html">Retour au département 46 — Lot</a>
+<div class="fiche">
+<h2>La_Borie</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="La_Borie" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_46/46_La_Borie_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="La_Borie" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_La_Borie_1.jpg"/><img alt="La_Borie" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_La_Borie_2.jpg"/><img alt="La_Borie" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_La_Borie_3.jpg"/><img alt="La_Borie" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_La_Borie_4.jpg"/><img alt="La_Borie" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_La_Borie_5.jpg"/></div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>46 — Lot</td></tr>
+<tr><td>Canton</td><td>Biars-sur-Cère</td></tr>
+<tr><td>Commune</td><td>Laval de Cère</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>LA-BORIE, située en vicomté de Turenne et relevant de la châtellenie de Gagnac, la seigneurie de Laborie était détenue jusqu'au XVIIIe siècle par une famille originaire d'Auvergne, les Grenier. Un certain Jean de Grenier, seigneur de Laborie et de Comiac, aurait pris part, en 1215, à la Croisade des Albigeois au  côté de Louis, fils de Philippe Auguste.  La famille de Grenier à la seigneurie de Comiac, met en doute cette affirmation. En revanche, un hommage de Raymond de Grenier rendu au vicomte de Turenne en 1334, pour ses biens de Gagnac, Cahus et Comiac, appuie l'hypothèse d'une assise seigneuriale ancienne à Laborie. En 1504, noble Jean Grenier, seigneur de Laborie, tient le repaire avec justice basse sous la suzeraineté du seigneur de Castelnau.
-<br>La POSTE, en effet, cette bâtisse fut le berceau du maréchal François, un certain Canrobert, celui-ci fut d'abord aide de camp du Prince Louis Napoléon (futur Napoléon III), d'ailleurs il prit part au coup d'état du 2 décembre 1851, puis il commanda en 1855 le corps expéditionnaire français en Crimée. Il se distingua encore en 1870 à la bataille de Saint-Privat en Moselle. Après la guerre il fut élu sénateur du Lot. Son corps repose actuellement aux Invalides. La maison du héros, acquise par la municipalité en 1935 abrite donc depuis lors le bureau de poste.</p>
-      <h4>Architecture</h4><p>La Borie, la demeure seigneuriale, probablement bâtie à la période médiévale, est endommagée lors des guerres de Religion et semble entièrement reconstruite en 1600 pour Henri de Grenier, d'après la date inscrite au-dessus d'une fenêtre de la tour d'escalier,  un corps de logis rectangulaire et flanqué sur ses deux angles du même côté de deux grosses tours rondes La grosse tour ronde, accrochée sur l'angle, est bâtie en moellon de tout venant et pourrait appartenir à une campagne de travaux ultérieur.  La face opposée étant coupée en son centre par une tourelle d'escalier polygonale, cette tourelle est la seule à conserver son chemin de ronde à mâchicoulis du XVe siècle.   Le château est restauré pour un certain Matre à la fin du XIXe siècle.                 
-<br>La Poste s'installe dans cette grande maison bourgeoise sans doute du XVIIIe siècle que l'on qualifie parfois, dans la région, de « château » à cause de sa tour centrale, de ses deux bretèches et de ses deux linteaux en accolade. La tour est couverte d'un toit en lauzes de schistes. Outre son architecture, c'est aussi le passé de cette maison occupée par la Poste qui remplit de fierté le cur des habitants de Laval de Cère.</p>
-      <h4>Habitants / Familles</h4><p>Famille des Grenier
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Château  de La-Borie et le manoir de la poste gravure 5.</p>
-    </div>
-  </div>
+
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>LA-BORIE, située en vicomté de Turenne et relevant de la châtellenie de Gagnac, la seigneurie de Laborie était détenue jusqu'au XVIIIe siècle par une famille originaire d'Auvergne, les Grenier. Un certain Jean de Grenier, seigneur de Laborie et de Comiac, aurait pris part, en 1215, à la Croisade des Albigeois au  côté de Louis, fils de Philippe Auguste.  La famille de Grenier à la seigneurie de Comiac, met en doute cette affirmation. En revanche, un hommage de Raymond de Grenier rendu au vicomte de Turenne en 1334, pour ses biens de Gagnac, Cahus et Comiac, appuie l'hypothèse d'une assise seigneuriale ancienne à Laborie. En 1504, noble Jean Grenier, seigneur de Laborie, tient le repaire avec justice basse sous la suzeraineté du seigneur de Castelnau.
+<br/>La POSTE, en effet, cette bâtisse fut le berceau du maréchal François, un certain Canrobert, celui-ci fut d'abord aide de camp du Prince Louis Napoléon (futur Napoléon III), d'ailleurs il prit part au coup d'état du 2 décembre 1851, puis il commanda en 1855 le corps expéditionnaire français en Crimée. Il se distingua encore en 1870 à la bataille de Saint-Privat en Moselle. Après la guerre il fut élu sénateur du Lot. Son corps repose actuellement aux Invalides. La maison du héros, acquise par la municipalité en 1935 abrite donc depuis lors le bureau de poste.</p>
+<h4>Architecture</h4><p>La Borie, la demeure seigneuriale, probablement bâtie à la période médiévale, est endommagée lors des guerres de Religion et semble entièrement reconstruite en 1600 pour Henri de Grenier, d'après la date inscrite au-dessus d'une fenêtre de la tour d'escalier,  un corps de logis rectangulaire et flanqué sur ses deux angles du même côté de deux grosses tours rondes La grosse tour ronde, accrochée sur l'angle, est bâtie en moellon de tout venant et pourrait appartenir à une campagne de travaux ultérieur.  La face opposée étant coupée en son centre par une tourelle d'escalier polygonale, cette tourelle est la seule à conserver son chemin de ronde à mâchicoulis du XVe siècle.   Le château est restauré pour un certain Matre à la fin du XIXe siècle.                 
+<br/>La Poste s'installe dans cette grande maison bourgeoise sans doute du XVIIIe siècle que l'on qualifie parfois, dans la région, de « château » à cause de sa tour centrale, de ses deux bretèches et de ses deux linteaux en accolade. La tour est couverte d'un toit en lauzes de schistes. Outre son architecture, c'est aussi le passé de cette maison occupée par la Poste qui remplit de fierté le cur des habitants de Laval de Cère.</p>
+<h4>Habitants / Familles</h4><p>Famille des Grenier
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Château  de La-Borie et le manoir de la poste gravure 5.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

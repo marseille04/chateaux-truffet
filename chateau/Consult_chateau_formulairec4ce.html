@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Picquigny — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,56 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_80.html">Somme</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_80.html">Somme</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_80.html" class="back-link">Retour au département 80 — Somme</a>
-  <div class="fiche">
-    <h2>Picquigny</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>80 — Somme</td></tr>
-          <tr><td>Canton</td><td>Ailly-sur-Somme</td></tr>
-          <tr><td>Commune</td><td>Picquigny</td></tr>
-          <tr><td>Type d'édifice</td><td>Forteresse</td></tr>
-          <tr><td>Période d'origine</td><td>XIII-XIV</td></tr>
-          <tr><td>Coordonnées GPS</td><td>49° 56' 36" Nord 2° 08' 28" Est</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_80/80_Picquigny_1.jpg" alt="Picquigny" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_80/80_Picquigny_2.jpg" alt="Picquigny" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_80/80_Picquigny_3.jpg" alt="Picquigny" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_80/80_Picquigny_4.jpg" alt="Picquigny" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_80/80_Picquigny_5.jpg" alt="Picquigny" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_80.html">Retour au département 80 — Somme</a>
+<div class="fiche">
+<h2>Picquigny</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Picquigny" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_80/80_Picquigny_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Picquigny" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Picquigny_1.jpg"/><img alt="Picquigny" class="" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Picquigny_2.jpg"/><img alt="Picquigny" class="" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Picquigny_3.jpg"/><img alt="Picquigny" class="" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Picquigny_4.jpg"/><img alt="Picquigny" class="" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Picquigny_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>80 — Somme</td></tr>
+<tr><td>Canton</td><td>Ailly-sur-Somme</td></tr>
+<tr><td>Commune</td><td>Picquigny</td></tr>
+<tr><td>Type d'édifice</td><td>Forteresse</td></tr>
+<tr><td>Période d'origine</td><td>XIII-XIV</td></tr>
+<tr><td>Coordonnées GPS</td><td>49° 56' 36" Nord 2° 08' 28" Est</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>PICQUIGNY, par alliance avec Robert III d'Ailly-le-Haut-Clocher, le château passe entre les mains de la famille d'Ailly. En 1470, le château est incendié par les Français, s'enfuyant devant les troupes de Charles le Téméraire qui quelques jours plus tard achèveront sa ruine. La courtine sud est reconstruite après 1475. Au XVIe siècle, les travaux continuent et donnent au château médiéval une allure plus résidentielle avec un système défensif remodelé. Dans le second quart du XVIe siècle, Antoine d'Ailly augmente la superficie du château dont il fait remparer les terres-pleins et adosse contre l'épaisse courtine sud du grand bâtiment, un corps de logis, cantonné à l'est d'un pavillon, dit Pavillon Renaissance, portant autrefois la date de 1539. Il répare aussi certainement la Porte de Gard qui porte ses armoiries. La seconde campagne de construction complètera la précédente, par le réaménagement de la porte d'entrée au sud et des tours et par la construction au nord du pavillon Sévigné. Témoin du travail mené par   Les plus anciens vestiges, que sont les tours d'entrée, la barbacane, la porte du Gard et la tour Est, ne datent cependant que de la première moitié du XIVe siècle, peut-être sous Renaud de Picquigny ou de sa fille Marguerite qui, à sa mort, laisse la seigneurie à sa cousine, également prénommée Marguerite, seigneur de Picquigny, la façade de la cuisine porte sur l'un de ses pilastres la date de 1575 ainsi que les initiales entrelacées P.E.F.D.W. (Philibert-Emmanuel d'Ailly et Françoise de Warty, sa mère), et la voûte de cette cuisine porte dans un cartouche la date de 1583 (seul le dernier chiffre est encore visible). Passé en 1620 à Honoré d'Albert, duc de Chevreuses et de Chaulne, le château est  vendu le 27 avril 1774 à Pierre Bryet , à Liefman Calmer le 24 avril 1779, puis à Charles-Philippe, comte d'Artois, avant d'être finalement vendu comme bien national le 29 nivôse de l'an III. La dernière propriétaire, la comtesse Aymar de la Rochefoucault, lègue les ruines du château le 12 août 1912 à la Société des Antiquaires de Picardie.</p>
-      <h4>Architecture</h4><p>PICQUIGNY, les plus anciens vestiges, que sont les tours d'entrée, la barbacane, la porte du Gard et la tour Est, ne datent cependant que de la première moitié du XIVe siècle, peut-être sous Renaud de Picquigny. Le plan du château, dépourvu de donjon, suivait primitivement un tracé parallélépipédique irrégulier cantonné de tours aux angles et de part et d'autre de l'entrée méridionale, également précédée d'une fausse barbacane. Les vestiges du château ne comportent plus de toiture, hormis le pavillon Sévigné, dont le dernier étage est amputé pour former un faux attique et couvert d'une toiture en pavillon à tuiles plates. L'élévation comporte un niveau de sous-sol abritant les celliers voûtés en berceau plein cintre et passages souterrains. L'un d'eux aboutit à une prison logée dans la tour nord-est, voûtée en cul-de-four et voûtes d'ogives au profil chanfreiné. Le rez-de-chaussée était occupé par les salles de garnisons et les communs. La cuisine et l'arrière-cuisine, aménagées dans la tour Est de l'entrée, ont respectivement gardé une voûte d'arêtes à lunettes et un départ de voûte d'ogives. Les deux niveaux supérieurs d'étages carrés accueillaient la grande salle de réception et les appartements privés. Les pavillons étaient des organes de distribution logeant des escaliers droits maçonnés rampe sur rampe sur voûte en anse de panier. Au milieu du corps principal, une tourelle polygonale dans oeuvre comportait également un escalier à vis maçonné sans jour.<br>Éléments protégés MH : les ruines du château de Picquigny : classement par arrêté du 11 septembre 1906.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Philibert-Emmanuel d'Ailly "</p>
-      <h4>Divers</h4><p>Picquigny GPS : 49° 56' 36" Nord 2° 08' 28" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>PICQUIGNY, par alliance avec Robert III d'Ailly-le-Haut-Clocher, le château passe entre les mains de la famille d'Ailly. En 1470, le château est incendié par les Français, s'enfuyant devant les troupes de Charles le Téméraire qui quelques jours plus tard achèveront sa ruine. La courtine sud est reconstruite après 1475. Au XVIe siècle, les travaux continuent et donnent au château médiéval une allure plus résidentielle avec un système défensif remodelé. Dans le second quart du XVIe siècle, Antoine d'Ailly augmente la superficie du château dont il fait remparer les terres-pleins et adosse contre l'épaisse courtine sud du grand bâtiment, un corps de logis, cantonné à l'est d'un pavillon, dit Pavillon Renaissance, portant autrefois la date de 1539. Il répare aussi certainement la Porte de Gard qui porte ses armoiries. La seconde campagne de construction complètera la précédente, par le réaménagement de la porte d'entrée au sud et des tours et par la construction au nord du pavillon Sévigné. Témoin du travail mené par   Les plus anciens vestiges, que sont les tours d'entrée, la barbacane, la porte du Gard et la tour Est, ne datent cependant que de la première moitié du XIVe siècle, peut-être sous Renaud de Picquigny ou de sa fille Marguerite qui, à sa mort, laisse la seigneurie à sa cousine, également prénommée Marguerite, seigneur de Picquigny, la façade de la cuisine porte sur l'un de ses pilastres la date de 1575 ainsi que les initiales entrelacées P.E.F.D.W. (Philibert-Emmanuel d'Ailly et Françoise de Warty, sa mère), et la voûte de cette cuisine porte dans un cartouche la date de 1583 (seul le dernier chiffre est encore visible). Passé en 1620 à Honoré d'Albert, duc de Chevreuses et de Chaulne, le château est  vendu le 27 avril 1774 à Pierre Bryet , à Liefman Calmer le 24 avril 1779, puis à Charles-Philippe, comte d'Artois, avant d'être finalement vendu comme bien national le 29 nivôse de l'an III. La dernière propriétaire, la comtesse Aymar de la Rochefoucault, lègue les ruines du château le 12 août 1912 à la Société des Antiquaires de Picardie.</p>
+<h4>Architecture</h4><p>PICQUIGNY, les plus anciens vestiges, que sont les tours d'entrée, la barbacane, la porte du Gard et la tour Est, ne datent cependant que de la première moitié du XIVe siècle, peut-être sous Renaud de Picquigny. Le plan du château, dépourvu de donjon, suivait primitivement un tracé parallélépipédique irrégulier cantonné de tours aux angles et de part et d'autre de l'entrée méridionale, également précédée d'une fausse barbacane. Les vestiges du château ne comportent plus de toiture, hormis le pavillon Sévigné, dont le dernier étage est amputé pour former un faux attique et couvert d'une toiture en pavillon à tuiles plates. L'élévation comporte un niveau de sous-sol abritant les celliers voûtés en berceau plein cintre et passages souterrains. L'un d'eux aboutit à une prison logée dans la tour nord-est, voûtée en cul-de-four et voûtes d'ogives au profil chanfreiné. Le rez-de-chaussée était occupé par les salles de garnisons et les communs. La cuisine et l'arrière-cuisine, aménagées dans la tour Est de l'entrée, ont respectivement gardé une voûte d'arêtes à lunettes et un départ de voûte d'ogives. Les deux niveaux supérieurs d'étages carrés accueillaient la grande salle de réception et les appartements privés. Les pavillons étaient des organes de distribution logeant des escaliers droits maçonnés rampe sur rampe sur voûte en anse de panier. Au milieu du corps principal, une tourelle polygonale dans oeuvre comportait également un escalier à vis maçonné sans jour.<br/>Éléments protégés MH : les ruines du château de Picquigny : classement par arrêté du 11 septembre 1906.</p>
+<h4>Habitants / Familles</h4><p>Famille de Philibert-Emmanuel d'Ailly "</p>
+<h4>Divers</h4><p>Picquigny GPS : 49° 56' 36" Nord 2° 08' 28" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

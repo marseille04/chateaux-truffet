@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>St_Denis_Chevasse — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,60 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_85.html">Vendée</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_85.html">Vendée</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_85.html" class="back-link">Retour au département 85 — Vendée</a>
-  <div class="fiche">
-    <h2>St_Denis_Chevasse</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>85 — Vendée</td></tr>
-          <tr><td>Canton</td><td>Aizenay</td></tr>
-          <tr><td>Commune</td><td>St-Denis de Chevasse</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI-XVIII-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_85/85_St_Denis_Chevasse_1.jpg" alt="St_Denis_Chevasse" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_St_Denis_Chevasse_2.jpg" alt="St_Denis_Chevasse" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_St_Denis_Chevasse_3.jpg" alt="St_Denis_Chevasse" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_St_Denis_Chevasse_4.jpg" alt="St_Denis_Chevasse" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_St_Denis_Chevasse_5.jpg" alt="St_Denis_Chevasse" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_St_Denis_Chevasse_6.jpg" alt="St_Denis_Chevasse" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_St_Denis_Chevasse_7.jpg" alt="St_Denis_Chevasse" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_St_Denis_Chevasse_8.jpg" alt="St_Denis_Chevasse" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_85.html">Retour au département 85 — Vendée</a>
+<div class="fiche">
+<h2>St_Denis_Chevasse</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="St_Denis_Chevasse" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_85/85_St_Denis_Chevasse_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="St_Denis_Chevasse" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_St_Denis_Chevasse_1.jpg"/><img alt="St_Denis_Chevasse" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_St_Denis_Chevasse_2.jpg"/><img alt="St_Denis_Chevasse" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_St_Denis_Chevasse_3.jpg"/><img alt="St_Denis_Chevasse" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_St_Denis_Chevasse_4.jpg"/><img alt="St_Denis_Chevasse" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_St_Denis_Chevasse_5.jpg"/><img alt="St_Denis_Chevasse" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_St_Denis_Chevasse_6.jpg"/><img alt="St_Denis_Chevasse" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_St_Denis_Chevasse_7.jpg"/><img alt="St_Denis_Chevasse" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_St_Denis_Chevasse_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>85 — Vendée</td></tr>
+<tr><td>Canton</td><td>Aizenay</td></tr>
+<tr><td>Commune</td><td>St-Denis de Chevasse</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI-XVIII-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>A Saint-Denis de Chevasse le château de l'Aurière du XIXe siècle, du Breuil du XIXe siècle,  pas d'informations pour les châteaux suivants; du Chatenay du XVIIIe siècle, de la Marchegaizière du XVIe siècle, du Puy-Tesson du XIXe siècle                                                                                    BREUIL, pendant la Révolution, François Aimé Masson part pour l'exil dans l'Armée des Princes. Après la Terreur, il revient à Saint Denis la Chevasse et la famille rachète les biens du Breuil : Le roi Louis XVIII le fait chevalier de Saint-Louis en 1816 pour services rendus au pays. Il sera maire de la commune de 1808 à 1820. Pendant la période de la restauration le vieux manoir est dans un état déplorable. A partir de 1860 les Jousseaume achètent le Breuil et font construire le château actuel. Aujourd'hui ce patrimoine a été aménagé pour une activité touristique, il permet cependant d'identifier ce qu'était encore la vie en autarcie au XIXe siècle avec son rendez-vous de chasse, ses grandes dépendances, ses écuries, son pressoir, son four à pain et son lavoir. Pas d'information historique pour les autres château,  le château du Breuil cherche un nouveau propriétaire. Pierre et Monique Maestre, qui lont acquis en 1988, souhaitent maintenant passer le relais.</p>
-      <h4>Architecture</h4><p>AURIERE  du XIXe siècle même style que le château du Puy Peysson                                                                                                                     BREUIL; de plan rectangulaire à deux niveaux à cinq travées  trois lucarnes centrales sur toit en croupes accolée de deux tours rondes toit en poivrières, le manoir a été reconstruit au XIXe siècle, gîte indépendant de caractère à l'architecture en pierre et granit, toiture ardoise et façade galbée.                                                                               CHATENAY du XVIIIe siècle.                                                               MARCHEGAIZIERE  du XVIe siècle  construction de style moderne à gardé malgré tout ses échauguettes carrées  sur mâchicoulis d'encorbellement et tour carrée à l'opposé avec retour en équerre toit presque plat.                                                                               PUY-TESSON,  du XIXe siècle de plan rectangulaire, trois travées à deux niveaux sur soubassements imposants avec lucarnes sur combles en croupe entre deux tourelles à toit en poivrière  sur angle de la façade retour en équerre  de l'édifice de même niveaux à trois travées.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Chevasse
-<br>        "</p>
-      <h4>Divers</h4><p>A Saint-Denis de Chevasse le château de l'Aurière grav -1-2, du Breuil grav 4-5-6, breuil-Baret grav-7, Marchegaisière-8, Puybuisson grav-3-</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>A Saint-Denis de Chevasse le château de l'Aurière du XIXe siècle, du Breuil du XIXe siècle,  pas d'informations pour les châteaux suivants; du Chatenay du XVIIIe siècle, de la Marchegaizière du XVIe siècle, du Puy-Tesson du XIXe siècle                                                                                    BREUIL, pendant la Révolution, François Aimé Masson part pour l'exil dans l'Armée des Princes. Après la Terreur, il revient à Saint Denis la Chevasse et la famille rachète les biens du Breuil : Le roi Louis XVIII le fait chevalier de Saint-Louis en 1816 pour services rendus au pays. Il sera maire de la commune de 1808 à 1820. Pendant la période de la restauration le vieux manoir est dans un état déplorable. A partir de 1860 les Jousseaume achètent le Breuil et font construire le château actuel. Aujourd'hui ce patrimoine a été aménagé pour une activité touristique, il permet cependant d'identifier ce qu'était encore la vie en autarcie au XIXe siècle avec son rendez-vous de chasse, ses grandes dépendances, ses écuries, son pressoir, son four à pain et son lavoir. Pas d'information historique pour les autres château,  le château du Breuil cherche un nouveau propriétaire. Pierre et Monique Maestre, qui lont acquis en 1988, souhaitent maintenant passer le relais.</p>
+<h4>Architecture</h4><p>AURIERE  du XIXe siècle même style que le château du Puy Peysson                                                                                                                     BREUIL; de plan rectangulaire à deux niveaux à cinq travées  trois lucarnes centrales sur toit en croupes accolée de deux tours rondes toit en poivrières, le manoir a été reconstruit au XIXe siècle, gîte indépendant de caractère à l'architecture en pierre et granit, toiture ardoise et façade galbée.                                                                               CHATENAY du XVIIIe siècle.                                                               MARCHEGAIZIERE  du XVIe siècle  construction de style moderne à gardé malgré tout ses échauguettes carrées  sur mâchicoulis d'encorbellement et tour carrée à l'opposé avec retour en équerre toit presque plat.                                                                               PUY-TESSON,  du XIXe siècle de plan rectangulaire, trois travées à deux niveaux sur soubassements imposants avec lucarnes sur combles en croupe entre deux tourelles à toit en poivrière  sur angle de la façade retour en équerre  de l'édifice de même niveaux à trois travées.</p>
+<h4>Habitants / Familles</h4><p>Famille de Chevasse
+<br/>        "</p>
+<h4>Divers</h4><p>A Saint-Denis de Chevasse le château de l'Aurière grav -1-2, du Breuil grav 4-5-6, breuil-Baret grav-7, Marchegaisière-8, Puybuisson grav-3-</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

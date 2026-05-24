@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Borie_Courbiere — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_43.html">Haute-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_43.html">Haute-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_43.html" class="back-link">Retour au département 43 — Haute-Loire</a>
-  <div class="fiche">
-    <h2>Borie_Courbiere</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>43 — Haute-Loire</td></tr>
-          <tr><td>Canton</td><td>Allègre</td></tr>
-          <tr><td>Commune</td><td>Céaux-d`Allègre</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_43/43_Borie_Courbiere_1.jpg" alt="Borie_Courbiere" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Borie_Courbiere_2.jpg" alt="Borie_Courbiere" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Borie_Courbiere_3.jpg" alt="Borie_Courbiere" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Borie_Courbiere_4.jpg" alt="Borie_Courbiere" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Borie_Courbiere_5.jpg" alt="Borie_Courbiere" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Borie_Courbiere_6.jpg" alt="Borie_Courbiere" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_43.html">Retour au département 43 — Haute-Loire</a>
+<div class="fiche">
+<h2>Borie_Courbiere</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Borie_Courbiere" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_43/43_Borie_Courbiere_1.jpg"/><div class="hero-count" id="hero-count">1 / 6</div></div><div class="photo-strip"><img alt="Borie_Courbiere" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Borie_Courbiere_1.jpg"/><img alt="Borie_Courbiere" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Borie_Courbiere_2.jpg"/><img alt="Borie_Courbiere" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Borie_Courbiere_3.jpg"/><img alt="Borie_Courbiere" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Borie_Courbiere_4.jpg"/><img alt="Borie_Courbiere" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Borie_Courbiere_5.jpg"/><img alt="Borie_Courbiere" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Borie_Courbiere_6.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>43 — Haute-Loire</td></tr>
+<tr><td>Canton</td><td>Allègre</td></tr>
+<tr><td>Commune</td><td>Céaux-d`Allègre</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>BORIE-Chambarel,  maison forte se trouvant au lieu-dit de La Borie qui existe depuis le XIIIe siècle. Dépendance du seigneur dAllègre, le fief de Chambarel passa en 1370 aux de Posterle, puis en 1420 par mariage dAymarde de Posterle aux Guerrin de Pouzols. Pierre III de Guerrin modernise cette maison forte à la fin du XVe siècle. Ses Armes losange dargent et de sable sont visibles sur lécu qui surmonte lentrée principale et à dautres divers endroits  En 1774, la propriété est achetée par A.Digonnet avocat au Puy et en 1874 vendue à des fermiers.                                                             COURBIERE,  château construit au XVe siècle par les chevaliers de Bar, qui se sont distingués lors des Croisades seigneurs de Courbières à partir de 1200. Décors intérieurs du XVIIIe siècle.</p>
-      <h4>Architecture</h4><p>Maison forte ou château de la Borie-Chambarel, du XIIIe siècle au XVe siècle, façades et toitures de la maison-forte et du grenier attenant escalier à vis avec l' oratoire, salon avec son décor de boiseries au rez-de-chaussée, elle a été modifiée dans ses percement au XVe siècle puis à diverses autres époques. De plan presque carré, l'édifice est flanqué de quatre tours et  prolongé par une  aile de communs.  L'intérieur a conservé son caractère avec des décors quasiment complets. En dépit des vicissitudes du temps qui vit le démantèlement du chemin de ronde et lécrêtement de ses tours, la maison a conservé des éléments de décor intéressants, fenêtres à meneaux et archivoltes à crossettes frappés décus, linteaux chargés de têtes sculptées. Les meneaux sont des montants et compartiments de pierre de taille, ou assemblages de pièces de bois, divisant en plusieurs vides la surface dune fenêtre des monuments de style gothique ou Renaissance.                                                                                Courbière, édifié au XIIIe siècle.  maison forte du XIVe siècle remanié au XVIIe siècle,    tour carrée  découronnée de l'étage supérieur et des mâchicoulis et percées de fenêtres. Château, y compris les communs du XVIIIe siècle, le donjon médiéval, de plan carré avec une tourelle d'escalier à l'angle nord-est, a été modernisé au XVIIIe siècle.  A cette époque également, construction d'une aile à l'angle nord-est du donjon. L'ensemble des bâtiments est disposé autour d'une cour intérieure. Du côté Est de cette cour, en retour sur l'aile du XVIIIe siècle, se trouve un bâtiment de communs.</p>
-      <h4>Habitants / Familles</h4><p>Guerin de Pouzols
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Borie à Chambanel, château de Courbiere et vestiges à Céaux d'Allègre</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>BORIE-Chambarel,  maison forte se trouvant au lieu-dit de La Borie qui existe depuis le XIIIe siècle. Dépendance du seigneur dAllègre, le fief de Chambarel passa en 1370 aux de Posterle, puis en 1420 par mariage dAymarde de Posterle aux Guerrin de Pouzols. Pierre III de Guerrin modernise cette maison forte à la fin du XVe siècle. Ses Armes losange dargent et de sable sont visibles sur lécu qui surmonte lentrée principale et à dautres divers endroits  En 1774, la propriété est achetée par A.Digonnet avocat au Puy et en 1874 vendue à des fermiers.                                                             COURBIERE,  château construit au XVe siècle par les chevaliers de Bar, qui se sont distingués lors des Croisades seigneurs de Courbières à partir de 1200. Décors intérieurs du XVIIIe siècle.</p>
+<h4>Architecture</h4><p>Maison forte ou château de la Borie-Chambarel, du XIIIe siècle au XVe siècle, façades et toitures de la maison-forte et du grenier attenant escalier à vis avec l' oratoire, salon avec son décor de boiseries au rez-de-chaussée, elle a été modifiée dans ses percement au XVe siècle puis à diverses autres époques. De plan presque carré, l'édifice est flanqué de quatre tours et  prolongé par une  aile de communs.  L'intérieur a conservé son caractère avec des décors quasiment complets. En dépit des vicissitudes du temps qui vit le démantèlement du chemin de ronde et lécrêtement de ses tours, la maison a conservé des éléments de décor intéressants, fenêtres à meneaux et archivoltes à crossettes frappés décus, linteaux chargés de têtes sculptées. Les meneaux sont des montants et compartiments de pierre de taille, ou assemblages de pièces de bois, divisant en plusieurs vides la surface dune fenêtre des monuments de style gothique ou Renaissance.                                                                                Courbière, édifié au XIIIe siècle.  maison forte du XIVe siècle remanié au XVIIe siècle,    tour carrée  découronnée de l'étage supérieur et des mâchicoulis et percées de fenêtres. Château, y compris les communs du XVIIIe siècle, le donjon médiéval, de plan carré avec une tourelle d'escalier à l'angle nord-est, a été modernisé au XVIIIe siècle.  A cette époque également, construction d'une aile à l'angle nord-est du donjon. L'ensemble des bâtiments est disposé autour d'une cour intérieure. Du côté Est de cette cour, en retour sur l'aile du XVIIIe siècle, se trouve un bâtiment de communs.</p>
+<h4>Habitants / Familles</h4><p>Guerin de Pouzols
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Borie à Chambanel, château de Courbiere et vestiges à Céaux d'Allègre</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Roussillon_Morvan — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,54 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_71.html">Saône-et-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_71.html">Saône-et-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_71.html" class="back-link">Retour au département 71 — Saône-et-Loire</a>
-  <div class="fiche">
-    <h2>Roussillon_Morvan</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>71 — Saône-et-Loire</td></tr>
-          <tr><td>Canton</td><td>Lucenay-L`Evêque</td></tr>
-          <tr><td>Commune</td><td>Roussillon-en-Morvan</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_71/71_Roussillon_Morvan_1.jpg" alt="Roussillon_Morvan" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Roussillon_Morvan_2.jpg" alt="Roussillon_Morvan" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_71.html">Retour au département 71 — Saône-et-Loire</a>
+<div class="fiche">
+<h2>Roussillon_Morvan</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Roussillon_Morvan" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_71/71_Roussillon_Morvan_1.jpg"/><div class="hero-count" id="hero-count">1 / 2</div></div><div class="photo-strip"><img alt="Roussillon_Morvan" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Roussillon_Morvan_1.jpg"/><img alt="Roussillon_Morvan" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Roussillon_Morvan_2.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>71 — Saône-et-Loire</td></tr>
+<tr><td>Canton</td><td>Lucenay-L`Evêque</td></tr>
+<tr><td>Commune</td><td>Roussillon-en-Morvan</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>ROUSSILLON, la commune de Roussillon en Morvan  tient son nom de celui de ses seigneurs qui s'y établirent à la fin du XVe siècle après l'abandon d'une première résidence, située sur la commune d'Anost, encore indiquée a Lucenay-l'Evêque, sous le nom de "Vieux château, vestiges du château de Roussillon". Avant ce transfert, le village portait le nom de Blain. Ce nom persiste encore dans celui du hameau de Blain-le-Vieil. Quant au nom même de Roussillon, il est fort possible qu'il ait un lien avec le Roussillon, au pied des Pyrénées, car aux VIIIe et IXe siècles, les comtes d'Autun eurent des liens étroits, matrimoniaux et patrimoniaux avec le Languedoc. Thierry, comte d'Autun en 755, eut un fils, Guillaume au-Court-Nez, qui devint duc de Toulouse et marquis de Septimanie. L'un de ses fils ou petit-fils, Bernard de Septimanie, fut comte de Roussillon. Jusqu'à la fin du IXe siècle, plusieurs de leurs descendants portèrent simultanément des titres en Bourgogne et dans le Roussillon. Au XIIe siècle à la noble maison de Chinon dont-un membre porte le nom Girard de Roussillon, Hugues de Tenan,  en 1240 seigneur de Cussy,  puis à Guillaume de Cruix puis à nouveau Eudes de Roussillon comte de Nevers,   en 1298 Odon de Roussillon qui fera passer par alliance de sa fille Isabelle à Jean II de Chaugy dont cette famille gardera le nom jusqu'en 1772 à la mort du dernier de ce nom Nicolas  Etienne de Chaugny qui céda tous ces biens au comte Philippe-Louis de Châtellux.</p>
-      <h4>Architecture</h4><p>Roussillon,  château médiévale avec deux tours quadrangulaires de tailles différentes. En 1473, l'un des descendants des Armagnacs, Michel de Chaulgy, ou Chaugy, conseiller et chambellan du duc de Bourgogne, se fit construire un « vaste château flanqué de cinq grosses tours ». Vendu comme bien national, il fut démoli à la Révolution. Il ne reste que quelques ruines d'une tour comprise dans la construction de la ferme voisine,  et d'autres ruines éparses dans les taillis avoisinants. Une riche demeure lui succéda, dont il ne reste que l'orangerie, au lieu-dit « Le Château ». Il était situé entre le bourg de Roussillon et le hameau de Chézet.   Démolition du château et violation des sépultures de l'église, le corps de Nicolas-Etienne de Chaugy fut jeté à la voirie et son cercueil de plomb servit à faire des balles. Le manoir du Monceau ou de Roussillon, fut vendu le 13 mai 1794 et démoli en 1800, par Chassey qui en dispersa les matériaux. Il n'en reste plus au XIXe siècle que l'orangerie et les remises qui était d'une élégance quasi royale, nous dit l'Abbé Jacques-François Baudiau.  C'est aujourd'hui une construction à usage de colonie de vacances.</p>
-      <h4>Habitants / Familles</h4><p>Famille d'Odon de Roussillon
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Rossillon</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>ROUSSILLON, la commune de Roussillon en Morvan  tient son nom de celui de ses seigneurs qui s'y établirent à la fin du XVe siècle après l'abandon d'une première résidence, située sur la commune d'Anost, encore indiquée a Lucenay-l'Evêque, sous le nom de "Vieux château, vestiges du château de Roussillon". Avant ce transfert, le village portait le nom de Blain. Ce nom persiste encore dans celui du hameau de Blain-le-Vieil. Quant au nom même de Roussillon, il est fort possible qu'il ait un lien avec le Roussillon, au pied des Pyrénées, car aux VIIIe et IXe siècles, les comtes d'Autun eurent des liens étroits, matrimoniaux et patrimoniaux avec le Languedoc. Thierry, comte d'Autun en 755, eut un fils, Guillaume au-Court-Nez, qui devint duc de Toulouse et marquis de Septimanie. L'un de ses fils ou petit-fils, Bernard de Septimanie, fut comte de Roussillon. Jusqu'à la fin du IXe siècle, plusieurs de leurs descendants portèrent simultanément des titres en Bourgogne et dans le Roussillon. Au XIIe siècle à la noble maison de Chinon dont-un membre porte le nom Girard de Roussillon, Hugues de Tenan,  en 1240 seigneur de Cussy,  puis à Guillaume de Cruix puis à nouveau Eudes de Roussillon comte de Nevers,   en 1298 Odon de Roussillon qui fera passer par alliance de sa fille Isabelle à Jean II de Chaugy dont cette famille gardera le nom jusqu'en 1772 à la mort du dernier de ce nom Nicolas  Etienne de Chaugny qui céda tous ces biens au comte Philippe-Louis de Châtellux.</p>
+<h4>Architecture</h4><p>Roussillon,  château médiévale avec deux tours quadrangulaires de tailles différentes. En 1473, l'un des descendants des Armagnacs, Michel de Chaulgy, ou Chaugy, conseiller et chambellan du duc de Bourgogne, se fit construire un « vaste château flanqué de cinq grosses tours ». Vendu comme bien national, il fut démoli à la Révolution. Il ne reste que quelques ruines d'une tour comprise dans la construction de la ferme voisine,  et d'autres ruines éparses dans les taillis avoisinants. Une riche demeure lui succéda, dont il ne reste que l'orangerie, au lieu-dit « Le Château ». Il était situé entre le bourg de Roussillon et le hameau de Chézet.   Démolition du château et violation des sépultures de l'église, le corps de Nicolas-Etienne de Chaugy fut jeté à la voirie et son cercueil de plomb servit à faire des balles. Le manoir du Monceau ou de Roussillon, fut vendu le 13 mai 1794 et démoli en 1800, par Chassey qui en dispersa les matériaux. Il n'en reste plus au XIXe siècle que l'orangerie et les remises qui était d'une élégance quasi royale, nous dit l'Abbé Jacques-François Baudiau.  C'est aujourd'hui une construction à usage de colonie de vacances.</p>
+<h4>Habitants / Familles</h4><p>Famille d'Odon de Roussillon
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Rossillon</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

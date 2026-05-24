@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Thugny_Trugny — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,57 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_08.html">Ardennes</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_08.html">Ardennes</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_08.html" class="back-link">Retour au département 08 — Ardennes</a>
-  <div class="fiche">
-    <h2>Thugny_Trugny</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>08 — Ardennes</td></tr>
-          <tr><td>Canton</td><td>Rethel</td></tr>
-          <tr><td>Commune</td><td>Thugny-Trugny</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI</td></tr>
-          <tr><td>Coordonnées GPS</td><td>49° 29' 07" Nord, 4° 25' 14" Est                                                                Cité Mazarin grav 6    GPS : 49° 30' 32,4" Nord, 4° 22' 8,51" Est</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_08/08_Thugny_Trugny_1.jpg" alt="Thugny_Trugny" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_08/08_Thugny_Trugny_2.jpg" alt="Thugny_Trugny" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_08/08_Thugny_Trugny_3.jpg" alt="Thugny_Trugny" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_08/08_Thugny_Trugny_4.jpg" alt="Thugny_Trugny" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_08/08_Thugny_Trugny_5.jpg" alt="Thugny_Trugny" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_08/08_Thugny_Trugny_6.jpg" alt="Thugny_Trugny" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_08.html">Retour au département 08 — Ardennes</a>
+<div class="fiche">
+<h2>Thugny_Trugny</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Thugny_Trugny" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_08/08_Thugny_Trugny_1.jpg"/><div class="hero-count" id="hero-count">1 / 6</div></div><div class="photo-strip"><img alt="Thugny_Trugny" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Thugny_Trugny_1.jpg"/><img alt="Thugny_Trugny" class="" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Thugny_Trugny_2.jpg"/><img alt="Thugny_Trugny" class="" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Thugny_Trugny_3.jpg"/><img alt="Thugny_Trugny" class="" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Thugny_Trugny_4.jpg"/><img alt="Thugny_Trugny" class="" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Thugny_Trugny_5.jpg"/><img alt="Thugny_Trugny" class="" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Thugny_Trugny_6.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>08 — Ardennes</td></tr>
+<tr><td>Canton</td><td>Rethel</td></tr>
+<tr><td>Commune</td><td>Thugny-Trugny</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI</td></tr>
+<tr><td>Coordonnées GPS</td><td>49° 29' 07" Nord, 4° 25' 14" Est                                                                Cité Mazarin grav 6    GPS : 49° 30' 32,4" Nord, 4° 22' 8,51" Est</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux châteaux dans cet article Thugny,  cité Mazarin.                    THUGNY-TRUGNY, du XVIe siècle est attribuée à Jean-Jacques de Suzanne, comte de Cerny-en-Laonnois.  sa fille épouse Charles de Moÿ. Sa petite-fille, Claude de Moÿ, née en ce château, est une riche héritière qui épouse en 1585 Henri de Lorraine-Chaligny, prince du Saint-Empire Germanique. Ce dernier meurt assez jeune en 1601 suivit de sa veuve en 1627. Au début de l'an 1653, le maréchal Turenne reçoit le cardinal Mazarin en cet endroit. En 1721, Procope Hyacinthe de Ligne, héritier des marquis de Moÿ et des Lorraine Chaligny,  ancien brigadier des armées du Roi, menant une vie désordonnée, vend le château à Antoine Crozat un financier du XVIIIe siècle.  Son propriétaire, M. Jacques de Causans, le restaure depuis 3 ans.  Propriété d'Aynard, marquis de Chabrillan, décédé en 1950, puis de son petit-fils, le comte Robert Henri de Caumont La Force, décédé en 2005, il a bénéficié, depuis 2007, d'une importante campagne de restauration, afin d'être aménagé pour l'organisation de réception. Il sert en effet de cadre à des manifestations diverses, qui permettent au propriétaire, Jacques de Causans, de continuer à financer les travaux de rénovation du bien transmis au sein de sa famille. Éléments protégés MH .                                                                                  A Rethel château de la CITE MAZARIN,  appelé aussi la Porte du château Rethel est un ancien château bâti à Rethel,  Il ne reste que quelques vestiges, dont la porte d'entrée du château de la Cité Mazarin, le porche et une partie de sa façade extérieure existent encore. Il appartient depuis à un particulier. La porte est visible de l'extérieur.</p>
-      <h4>Architecture</h4><p>THUGNY-TRUGNY  date du XVIe siècle. Suite aux dommages subis pendant la première guerre mondiale, il fut reconstruit sur la base des anciens plans en ne rebâtissant qu'une partie des pavillons. En arrivant par la rue du château se dresse le châtelet avec son allure fortifiée.  Le château est bâti en gaize, renforcée de pierres plus dures aux encadrements et dans les chaînes en besace. Une terrasse bordée de balustrade a été créée, au-dessus de voûtes, vestiges d'un ancien bâtiment endommagé en 1918.   Sur le coté, caché dans des arbres, s'élève une grange seigneuriale, avec, à chaque coin, des tourelles coiffées de poivrière, tout en utilsant les techniques de construction des années 1920. C'est un bâtiment de forme oblongue, qui comporte une ligne de mâchicoulis, protégeant l'entrée, et une arcade de passage charretier, qui s'ouvre sur un passage voûté. Derrière le châtelet, se trouve un bâtiment de style classique, avec une façade sur deux niveaux en regard du canal. Il est composé de deux grands pavillons d'angle saillants, d'importances inégales et sur trois niveaux. Le plus grand de ces pavillons d'angle compte trois travées, renforcée de pierres plus dures aux encadrements et dans les chaînes en besace. Une terrasse bordée de balustrade a été créée, au-dessus de voûtes, vestiges d'un ancien bâtiment endommagé en 1918.. Son propriétaire est Mr Jacques de Causans qui le fait restaurer depuis 3 ans. C'est une propriété privée. Le château est classé aux M.H depuis 1946.</p>
-      <h4>Habitants / Familles</h4><p>Henri de Lorraine-Chaligny"</p>
-      <h4>Divers</h4><p>Deux châteaux dans cet article Thugny  cité Mazarin    Thugny  GPS : 49° 29' 07" Nord, 4° 25' 14" Est                                                                Cité Mazarin grav 6    GPS : 49° 30' 32,4" Nord, 4° 22' 8,51" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux châteaux dans cet article Thugny,  cité Mazarin.                    THUGNY-TRUGNY, du XVIe siècle est attribuée à Jean-Jacques de Suzanne, comte de Cerny-en-Laonnois.  sa fille épouse Charles de Moÿ. Sa petite-fille, Claude de Moÿ, née en ce château, est une riche héritière qui épouse en 1585 Henri de Lorraine-Chaligny, prince du Saint-Empire Germanique. Ce dernier meurt assez jeune en 1601 suivit de sa veuve en 1627. Au début de l'an 1653, le maréchal Turenne reçoit le cardinal Mazarin en cet endroit. En 1721, Procope Hyacinthe de Ligne, héritier des marquis de Moÿ et des Lorraine Chaligny,  ancien brigadier des armées du Roi, menant une vie désordonnée, vend le château à Antoine Crozat un financier du XVIIIe siècle.  Son propriétaire, M. Jacques de Causans, le restaure depuis 3 ans.  Propriété d'Aynard, marquis de Chabrillan, décédé en 1950, puis de son petit-fils, le comte Robert Henri de Caumont La Force, décédé en 2005, il a bénéficié, depuis 2007, d'une importante campagne de restauration, afin d'être aménagé pour l'organisation de réception. Il sert en effet de cadre à des manifestations diverses, qui permettent au propriétaire, Jacques de Causans, de continuer à financer les travaux de rénovation du bien transmis au sein de sa famille. Éléments protégés MH .                                                                                  A Rethel château de la CITE MAZARIN,  appelé aussi la Porte du château Rethel est un ancien château bâti à Rethel,  Il ne reste que quelques vestiges, dont la porte d'entrée du château de la Cité Mazarin, le porche et une partie de sa façade extérieure existent encore. Il appartient depuis à un particulier. La porte est visible de l'extérieur.</p>
+<h4>Architecture</h4><p>THUGNY-TRUGNY  date du XVIe siècle. Suite aux dommages subis pendant la première guerre mondiale, il fut reconstruit sur la base des anciens plans en ne rebâtissant qu'une partie des pavillons. En arrivant par la rue du château se dresse le châtelet avec son allure fortifiée.  Le château est bâti en gaize, renforcée de pierres plus dures aux encadrements et dans les chaînes en besace. Une terrasse bordée de balustrade a été créée, au-dessus de voûtes, vestiges d'un ancien bâtiment endommagé en 1918.   Sur le coté, caché dans des arbres, s'élève une grange seigneuriale, avec, à chaque coin, des tourelles coiffées de poivrière, tout en utilsant les techniques de construction des années 1920. C'est un bâtiment de forme oblongue, qui comporte une ligne de mâchicoulis, protégeant l'entrée, et une arcade de passage charretier, qui s'ouvre sur un passage voûté. Derrière le châtelet, se trouve un bâtiment de style classique, avec une façade sur deux niveaux en regard du canal. Il est composé de deux grands pavillons d'angle saillants, d'importances inégales et sur trois niveaux. Le plus grand de ces pavillons d'angle compte trois travées, renforcée de pierres plus dures aux encadrements et dans les chaînes en besace. Une terrasse bordée de balustrade a été créée, au-dessus de voûtes, vestiges d'un ancien bâtiment endommagé en 1918.. Son propriétaire est Mr Jacques de Causans qui le fait restaurer depuis 3 ans. C'est une propriété privée. Le château est classé aux M.H depuis 1946.</p>
+<h4>Habitants / Familles</h4><p>Henri de Lorraine-Chaligny"</p>
+<h4>Divers</h4><p>Deux châteaux dans cet article Thugny  cité Mazarin    Thugny  GPS : 49° 29' 07" Nord, 4° 25' 14" Est                                                                Cité Mazarin grav 6    GPS : 49° 30' 32,4" Nord, 4° 22' 8,51" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

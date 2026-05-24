@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Trébas — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_81.html">Tarn</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_81.html">Tarn</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_81.html" class="back-link">Retour au département 81 — Tarn</a>
-  <div class="fiche">
-    <h2>Trébas</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>81 — Tarn</td></tr>
-          <tr><td>Canton</td><td>Réalmont</td></tr>
-          <tr><td>Commune</td><td>Curvalle</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_81/81_Trebas_1.jpg" alt="Trébas" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_81/81_Trebas_2.jpg" alt="Trébas" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_81/81_Trebas_3.jpg" alt="Trébas" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_81/81_Trebas_4.jpg" alt="Trébas" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_81/81_Trebas_5.jpg" alt="Trébas" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_81.html">Retour au département 81 — Tarn</a>
+<div class="fiche">
+<h2>Trébas</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Trébas" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_81/81_Trebas_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Trébas" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Trebas_1.jpg"/><img alt="Trébas" class="" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Trebas_2.jpg"/><img alt="Trébas" class="" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Trebas_3.jpg"/><img alt="Trébas" class="" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Trebas_4.jpg"/><img alt="Trébas" class="" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Trebas_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>81 — Tarn</td></tr>
+<tr><td>Canton</td><td>Réalmont</td></tr>
+<tr><td>Commune</td><td>Curvalle</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>TREBAS, vers 1300, Guillaume-Raymond de Rocadel était seigneur de Larroque et Gaycre et co-seigneur de Trébas. Les biens des d'Armagnac ayant été confisqués par le roi, ce dernier vendit la seigneurie de Trébas à un certain Jean Louis d'Ax, noble qui fit bâtir une première maison fortifiée à l'endroit où se trouve le château actuel. La vicomté de Trébas appartenait en 1465 à Armand d'Ax, seigneur de Trébas. Elle passa ensuite à la maison de Lévis, des ducs de Ventadour, qui la revendit en 1632 à messire Antoine de Gaillardy, chanoine d'Albi, elle passa en 1645 à noble Joseph d'Adhémar, seigneur de Treinhes.  Au début du XVe siècle, Marie de Bourbon, sur de Jacques de Bourbon, roi de Hongrie, Naples et Jérusalem, resta plusieurs années prisonnière de Jean de Beyne  dans la tour du château de Curvalle.  Revenons au passé tumultueux de Plaisance et Curvalle, plus précisément au XVIIe siècle. Le baron Durand de Sénégas épouse l'héritière du château de Curvalle et en devient ainsi le seigneur ; puis en 1608, il achète la ville et le château de Plaisance au seigneur de Panat, protestant comme lui. Mais il a des prétentions et demande des droits seigneuriaux aux habitants, lesquels en avaient été affranchis. Ceux-ci refusent de payer, soutenus par le seigneur François de Nogaret, du château voisin de La Bastide Teulat. Ils sont soumis alors à de nombreuses exactions, meurtres et pillages. L'affaire est portée devant le tribunal des grands jours . En 1665 le seigneur Durand de Sénégas est condamné : ses biens seront rasés et il sera décapité sur la place St- Blaise. C'est ainsi que la tour de Curvalle et le château de Plaisance furent détruits en ces années 1665-1666. Désormais les consuls dirigeront le bourg  jusqu'en 1790.</p>
-      <h4>Architecture</h4><p>TREBAS, Le château présente un bel aspect avec sa façade flanquée à gauche d'une grosse tour ronde et une autre tour au milieu de la façade abritant l'escalier. Alors que les fenêtres de façades ont été refaites , celles des tours ont conservé de beaux éléments anciens, notamment celles de la tour d'escalier qui présentent encore des meneaux horizontaux, ainsi que la porte du XVIe siècle menant à l'escalier à vis en pierre. Les toitures sont couvertes de Lauzes.  La ville  de Curvalle  sest développé autour des bases médiévales et des fortifications ,  dont il reste encore trois portes  à la fin du XVIIIe et au début du XIXe siècles, dans le haut du village, le vieux bourg, au dimension modeste, fait  parti de Curvalle avant la création de la bastide de Plaisance ; constitué de rues concentriques, il était entouré de remparts. Aujourd'hui, il nous reste les deux portes d'accès et le « balat » fossé qui bordait le rempart. Près de la deuxième porte se dresse la croix St-Eutrope, du XVIe siècle, en forme de raquette, elle présente sur la face antérieure un christ en croix, sculpté en relief ; sur la face postérieure une niche contenait  une statue de la Vierge.</p>
-      <h4>Habitants / Familles</h4><p>Baron Durand de Sénégas
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Trébas à Curvalle</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>TREBAS, vers 1300, Guillaume-Raymond de Rocadel était seigneur de Larroque et Gaycre et co-seigneur de Trébas. Les biens des d'Armagnac ayant été confisqués par le roi, ce dernier vendit la seigneurie de Trébas à un certain Jean Louis d'Ax, noble qui fit bâtir une première maison fortifiée à l'endroit où se trouve le château actuel. La vicomté de Trébas appartenait en 1465 à Armand d'Ax, seigneur de Trébas. Elle passa ensuite à la maison de Lévis, des ducs de Ventadour, qui la revendit en 1632 à messire Antoine de Gaillardy, chanoine d'Albi, elle passa en 1645 à noble Joseph d'Adhémar, seigneur de Treinhes.  Au début du XVe siècle, Marie de Bourbon, sur de Jacques de Bourbon, roi de Hongrie, Naples et Jérusalem, resta plusieurs années prisonnière de Jean de Beyne  dans la tour du château de Curvalle.  Revenons au passé tumultueux de Plaisance et Curvalle, plus précisément au XVIIe siècle. Le baron Durand de Sénégas épouse l'héritière du château de Curvalle et en devient ainsi le seigneur ; puis en 1608, il achète la ville et le château de Plaisance au seigneur de Panat, protestant comme lui. Mais il a des prétentions et demande des droits seigneuriaux aux habitants, lesquels en avaient été affranchis. Ceux-ci refusent de payer, soutenus par le seigneur François de Nogaret, du château voisin de La Bastide Teulat. Ils sont soumis alors à de nombreuses exactions, meurtres et pillages. L'affaire est portée devant le tribunal des grands jours . En 1665 le seigneur Durand de Sénégas est condamné : ses biens seront rasés et il sera décapité sur la place St- Blaise. C'est ainsi que la tour de Curvalle et le château de Plaisance furent détruits en ces années 1665-1666. Désormais les consuls dirigeront le bourg  jusqu'en 1790.</p>
+<h4>Architecture</h4><p>TREBAS, Le château présente un bel aspect avec sa façade flanquée à gauche d'une grosse tour ronde et une autre tour au milieu de la façade abritant l'escalier. Alors que les fenêtres de façades ont été refaites , celles des tours ont conservé de beaux éléments anciens, notamment celles de la tour d'escalier qui présentent encore des meneaux horizontaux, ainsi que la porte du XVIe siècle menant à l'escalier à vis en pierre. Les toitures sont couvertes de Lauzes.  La ville  de Curvalle  sest développé autour des bases médiévales et des fortifications ,  dont il reste encore trois portes  à la fin du XVIIIe et au début du XIXe siècles, dans le haut du village, le vieux bourg, au dimension modeste, fait  parti de Curvalle avant la création de la bastide de Plaisance ; constitué de rues concentriques, il était entouré de remparts. Aujourd'hui, il nous reste les deux portes d'accès et le « balat » fossé qui bordait le rempart. Près de la deuxième porte se dresse la croix St-Eutrope, du XVIe siècle, en forme de raquette, elle présente sur la face antérieure un christ en croix, sculpté en relief ; sur la face postérieure une niche contenait  une statue de la Vierge.</p>
+<h4>Habitants / Familles</h4><p>Baron Durand de Sénégas
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Trébas à Curvalle</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

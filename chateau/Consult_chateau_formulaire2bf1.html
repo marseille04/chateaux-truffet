@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Crépon — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_14.html">Calvados</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_14.html">Calvados</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_14.html" class="back-link">Retour au département 14 — Calvados</a>
-  <div class="fiche">
-    <h2>Crépon</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>14 — Calvados</td></tr>
-          <tr><td>Canton</td><td>Courseulles-sur-Mer</td></tr>
-          <tr><td>Commune</td><td>Crépon</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII-XVIII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>49° 18' 52" Nord, 0° 33' 08" Ouest     Crépon grav-5   GPS : 49° 18' 45,35" Nord, 0° 32' 57,42" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_14/14_Cr%c3%a9pon_1.jpg" alt="Crépon" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_14/14_Cr%c3%a9pon_2.jpg" alt="Crépon" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_14/14_Cr%c3%a9pon_3.jpg" alt="Crépon" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_14/14_Cr%c3%a9pon_4.jpg" alt="Crépon" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_14/14_Cr%c3%a9pon_5.jpg" alt="Crépon" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_14.html">Retour au département 14 — Calvados</a>
+<div class="fiche">
+<h2>Crépon</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Crépon" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_14/14_Cr%c3%a9pon_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Crépon" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Cr%c3%a9pon_1.jpg"/><img alt="Crépon" class="" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Cr%c3%a9pon_2.jpg"/><img alt="Crépon" class="" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Cr%c3%a9pon_3.jpg"/><img alt="Crépon" class="" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Cr%c3%a9pon_4.jpg"/><img alt="Crépon" class="" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Cr%c3%a9pon_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>14 — Calvados</td></tr>
+<tr><td>Canton</td><td>Courseulles-sur-Mer</td></tr>
+<tr><td>Commune</td><td>Crépon</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII-XVIII</td></tr>
+<tr><td>Coordonnées GPS</td><td>49° 18' 52" Nord, 0° 33' 08" Ouest     Crépon grav-5   GPS : 49° 18' 45,35" Nord, 0° 32' 57,42" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Trois châteaux dans cet article; Crépon, Blais et Nathan.                                 BLAIS, au nord est de Bayeux le château occupant  le site du château-fort de la baronnie de Crépon fondée par Osbern de Crépon, sénéchal de Normandie, assassiné vers 1040. Logis construit au XVIIe siècle, au XVIIIe siècle, il est entièrement repris pour la famille de Blais (nom gravé au-dessus de la porte), remploi d'un décor datant peut-être du XVIe siècle sur la travée centrale, édification des ailes et aménagement du jardin régulier. Fin du XVIIIe ou début XIXe siècle établissement d'un logement à l'extrémité Est de l'aile du pressoir. Au XIXe siècle, réaménagement intérieur du logis, comblement des douves fermant la cour à l'ouest, aile sud restaurée récemment à la suite d'un incendie. Logis en moellon enduit, élévations sur cour et sur jardin à travées, logement: en moellon enduit, chaîne à bossage, élévations sud et est à travées.                                                                             CREPON, logis et écuries construits à la fin du XVIIe siècle ou dans les premières années du XVIIIe siècle  par l'architecte non identifié du château de la Perquette à Bellengreville (les façades identiques); en 1801, édification du corps des communs, et de la remise pour Michel Costé de Donveville, juge de paix du canton, et pour son épouse Marguerite Amie (porte date et inscription).</p>
-      <h4>Architecture</h4><p>NATHAN, date de la 1re moitié du XVIIe au 1re moitié du XVIIIe siècle. La construction initiale remonte à 1605, où le premier corps de bâtiment fut construit, avec un passage cocher, aujourd'hui, disparu. Le manoir de Mathan appartenait alors à la Famille Hüe de Mathan, qui lui donna son nom. Il était composé d'un logis, et d'un cellier. Un bassin, alimenté par un ruisseau, coulait sur ses terres, complétant l'ensemble. Ce bâtiment se caractérise par un escalier en pierre monumental, ainsi que par des frontons surbaissés (en forme de triangles aplatis) qui surmontent les portes et l'entrée principale. Un siècle après sa construction, Manoir de Mathan fut doublé en longueur sur la partie Ouest. Puis on lui rajouta une grange, une remise et des écuries afin de l'organiser autour d'une cour carrée qui est sa structure actuelle. Il fut ensuite surélevé et le nouveau porche d'entrée fut construit. Au milieu de la cour, une fontaine à pompe a été conservée. Le manoir de Mathan est signalé dans l'inventaire général du patrimoine culturel de Basse-Normandie,  se situe route de Bayeux, appartient à Koen et Isabelle Sileghem. C'est devenu un Hôtel de Charme.                                                                                                                     CREPON, c'est les Crépon qui rajoutent à cette époque, les ailes du logis portent le monogramme A.D. sur l'aile est, A.C. sur l'aile ouest; courant du XIXe siècle suppression de la cour d'honneur, aménagement d'un jardin paysager et au XXe siècle destruction du mur de clôture lors de l'élargissement des voies au nord est et au sud. Logis, sous sol partiel, avant corps en pierre de taille, enduit d'origine à petits galets sur la façade principale, sable pour le soubassement, rouge pour la partie supérieure, façades nord-ouest et sud-est ordonnancées ; puits en pierre de taille.</p>
-      <h4>Habitants / Familles</h4><p>famille de Blais                                                                             Crépon Michel Costé de Donveville                                       Famille Hüe de Mathan
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>deux châteaux dans cet article; Blais grav -1 et Nathan grav 2-3-4.     Nathan GPS : 49° 18' 52" Nord, 0° 33' 08" Ouest     Crépon grav-5   GPS : 49° 18' 45,35" Nord, 0° 32' 57,42" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Trois châteaux dans cet article; Crépon, Blais et Nathan.                                 BLAIS, au nord est de Bayeux le château occupant  le site du château-fort de la baronnie de Crépon fondée par Osbern de Crépon, sénéchal de Normandie, assassiné vers 1040. Logis construit au XVIIe siècle, au XVIIIe siècle, il est entièrement repris pour la famille de Blais (nom gravé au-dessus de la porte), remploi d'un décor datant peut-être du XVIe siècle sur la travée centrale, édification des ailes et aménagement du jardin régulier. Fin du XVIIIe ou début XIXe siècle établissement d'un logement à l'extrémité Est de l'aile du pressoir. Au XIXe siècle, réaménagement intérieur du logis, comblement des douves fermant la cour à l'ouest, aile sud restaurée récemment à la suite d'un incendie. Logis en moellon enduit, élévations sur cour et sur jardin à travées, logement: en moellon enduit, chaîne à bossage, élévations sud et est à travées.                                                                             CREPON, logis et écuries construits à la fin du XVIIe siècle ou dans les premières années du XVIIIe siècle  par l'architecte non identifié du château de la Perquette à Bellengreville (les façades identiques); en 1801, édification du corps des communs, et de la remise pour Michel Costé de Donveville, juge de paix du canton, et pour son épouse Marguerite Amie (porte date et inscription).</p>
+<h4>Architecture</h4><p>NATHAN, date de la 1re moitié du XVIIe au 1re moitié du XVIIIe siècle. La construction initiale remonte à 1605, où le premier corps de bâtiment fut construit, avec un passage cocher, aujourd'hui, disparu. Le manoir de Mathan appartenait alors à la Famille Hüe de Mathan, qui lui donna son nom. Il était composé d'un logis, et d'un cellier. Un bassin, alimenté par un ruisseau, coulait sur ses terres, complétant l'ensemble. Ce bâtiment se caractérise par un escalier en pierre monumental, ainsi que par des frontons surbaissés (en forme de triangles aplatis) qui surmontent les portes et l'entrée principale. Un siècle après sa construction, Manoir de Mathan fut doublé en longueur sur la partie Ouest. Puis on lui rajouta une grange, une remise et des écuries afin de l'organiser autour d'une cour carrée qui est sa structure actuelle. Il fut ensuite surélevé et le nouveau porche d'entrée fut construit. Au milieu de la cour, une fontaine à pompe a été conservée. Le manoir de Mathan est signalé dans l'inventaire général du patrimoine culturel de Basse-Normandie,  se situe route de Bayeux, appartient à Koen et Isabelle Sileghem. C'est devenu un Hôtel de Charme.                                                                                                                     CREPON, c'est les Crépon qui rajoutent à cette époque, les ailes du logis portent le monogramme A.D. sur l'aile est, A.C. sur l'aile ouest; courant du XIXe siècle suppression de la cour d'honneur, aménagement d'un jardin paysager et au XXe siècle destruction du mur de clôture lors de l'élargissement des voies au nord est et au sud. Logis, sous sol partiel, avant corps en pierre de taille, enduit d'origine à petits galets sur la façade principale, sable pour le soubassement, rouge pour la partie supérieure, façades nord-ouest et sud-est ordonnancées ; puits en pierre de taille.</p>
+<h4>Habitants / Familles</h4><p>famille de Blais                                                                             Crépon Michel Costé de Donveville                                       Famille Hüe de Mathan
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>deux châteaux dans cet article; Blais grav -1 et Nathan grav 2-3-4.     Nathan GPS : 49° 18' 52" Nord, 0° 33' 08" Ouest     Crépon grav-5   GPS : 49° 18' 45,35" Nord, 0° 32' 57,42" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

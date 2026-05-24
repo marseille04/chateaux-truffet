@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Gizeux — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,57 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_37.html">Indre-et-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_37.html">Indre-et-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_37.html" class="back-link">Retour au département 37 — Indre-et-Loire</a>
-  <div class="fiche">
-    <h2>Gizeux</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
-          <tr><td>Canton</td><td>Langeais</td></tr>
-          <tr><td>Commune</td><td>Gizeux</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIII-XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_37/37_Gizeux_1.jpg" alt="Gizeux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Gizeux_2.jpg" alt="Gizeux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Gizeux_3.jpg" alt="Gizeux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Gizeux_4.jpg" alt="Gizeux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Gizeux_5.jpg" alt="Gizeux" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_37.html">Retour au département 37 — Indre-et-Loire</a>
+<div class="fiche">
+<h2>Gizeux</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Gizeux" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_37/37_Gizeux_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Gizeux" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Gizeux_1.jpg"/><img alt="Gizeux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Gizeux_2.jpg"/><img alt="Gizeux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Gizeux_3.jpg"/><img alt="Gizeux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Gizeux_4.jpg"/><img alt="Gizeux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Gizeux_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
+<tr><td>Canton</td><td>Langeais</td></tr>
+<tr><td>Commune</td><td>Gizeux</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIII-XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>GIZEUX, châtellenie relevant de la seigneurie de Montsoreau, le château passa en 1330 à la maison des Du Bellay, par alliance de Hugues du Bellay qui bâtit   l'édifice actuel. La première forteresse fut achevée en 1415.  En 1661  extension de la lignée des du Bellay . Un lointain  cousin hérite Antoine  Saladin d'Anglure et en 1667 le domaine est cédé à Anne de Frézeau,  veuve de René de Rouxelley, comte de la Roche Millay . En 1723 à René de Grandhomme qui d'être anobli par une charge de secrétaire du roi. En 1786, la petite-fille de René de Grandhomme madame de Brancas marquise de Céreste sans enfants fait don de Gizeux à Louis Gabriel-Marie de Contades à l'occasion de son mariage avec sa filleule mademoiselle Constantin de la Lorie. Aujourd'hui, le château de Gizeux appartient à la famille de Laffon qui en a fait un gite d'hôtes, est classé aux M.H. depuis 1945</p>
-      <h4>Architecture</h4><p>GIZEUX, il est de style Médiéval et Renaissance, construit du XIIIe au XVIIIe siècle, comprend un corps de logis central et deux ailes en retour sur la cour d'honneur avec, dans les angles rentrants, deux tours polygonales d'escaliers à vis. Un bâtiment bâti à peu près à la même époque en bordure de la terrasse sud, est terminé par un pavillon rectangulaire plus élevé, affecté au logement des fermiers. Un autre bâtiment du XVIIIe siècle relie le précédent au corps principal. Au nord se trouvent les communs avec une grande cour, deux corps de bâtiments en équerre, et une cour secondaire dont l'accès se fait par un passage voûté ouvert dans l'axe du bâtiment principal. Ses façades se déploient sur 250 mètres de long, et font de lui le plus long château de la Touraine angevine.  Subsiste une décoration analogue des pièces de l'aile sud et dans le couloir qui les dessert. Une grande galerie entièrement couverte de peintures occupe le premier étage du bâtiment XVIIIe siècle en retour vers l'est. Le château de Gizeux possède de superbes communs dont de magnifiques écuries,  est précédé d'une cour d'honneur et de parterres qui s'inclinent vers une prairie limitée sur trois côtés par les douves et où se trouve l'entrée. A gauche se développent les bâtiments des communs ; à droite, une terrasse limitée par un ancien mur d'enceinte, puis le grand canal. En bordure de la cour des communs se trouve une tour cylindrique à mâchicoulis, vestige de la forteresse du XIVe siècle.</p>
-      <h4>Habitants / Familles</h4><p>Famille de René de Grandhomme 
-<br>        "</p>
-      <h4>Divers</h4><p>Gizeux : 47° 23' 26,16" Nord et 0° 12' 21,96" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>GIZEUX, châtellenie relevant de la seigneurie de Montsoreau, le château passa en 1330 à la maison des Du Bellay, par alliance de Hugues du Bellay qui bâtit   l'édifice actuel. La première forteresse fut achevée en 1415.  En 1661  extension de la lignée des du Bellay . Un lointain  cousin hérite Antoine  Saladin d'Anglure et en 1667 le domaine est cédé à Anne de Frézeau,  veuve de René de Rouxelley, comte de la Roche Millay . En 1723 à René de Grandhomme qui d'être anobli par une charge de secrétaire du roi. En 1786, la petite-fille de René de Grandhomme madame de Brancas marquise de Céreste sans enfants fait don de Gizeux à Louis Gabriel-Marie de Contades à l'occasion de son mariage avec sa filleule mademoiselle Constantin de la Lorie. Aujourd'hui, le château de Gizeux appartient à la famille de Laffon qui en a fait un gite d'hôtes, est classé aux M.H. depuis 1945</p>
+<h4>Architecture</h4><p>GIZEUX, il est de style Médiéval et Renaissance, construit du XIIIe au XVIIIe siècle, comprend un corps de logis central et deux ailes en retour sur la cour d'honneur avec, dans les angles rentrants, deux tours polygonales d'escaliers à vis. Un bâtiment bâti à peu près à la même époque en bordure de la terrasse sud, est terminé par un pavillon rectangulaire plus élevé, affecté au logement des fermiers. Un autre bâtiment du XVIIIe siècle relie le précédent au corps principal. Au nord se trouvent les communs avec une grande cour, deux corps de bâtiments en équerre, et une cour secondaire dont l'accès se fait par un passage voûté ouvert dans l'axe du bâtiment principal. Ses façades se déploient sur 250 mètres de long, et font de lui le plus long château de la Touraine angevine.  Subsiste une décoration analogue des pièces de l'aile sud et dans le couloir qui les dessert. Une grande galerie entièrement couverte de peintures occupe le premier étage du bâtiment XVIIIe siècle en retour vers l'est. Le château de Gizeux possède de superbes communs dont de magnifiques écuries,  est précédé d'une cour d'honneur et de parterres qui s'inclinent vers une prairie limitée sur trois côtés par les douves et où se trouve l'entrée. A gauche se développent les bâtiments des communs ; à droite, une terrasse limitée par un ancien mur d'enceinte, puis le grand canal. En bordure de la cour des communs se trouve une tour cylindrique à mâchicoulis, vestige de la forteresse du XIVe siècle.</p>
+<h4>Habitants / Familles</h4><p>Famille de René de Grandhomme 
+<br/>        "</p>
+<h4>Divers</h4><p>Gizeux : 47° 23' 26,16" Nord et 0° 12' 21,96" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

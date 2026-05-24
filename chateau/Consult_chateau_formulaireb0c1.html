@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>St_Omer — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_62.html">Pas-de-Calais</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_62.html">Pas-de-Calais</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_62.html" class="back-link">Retour au département 62 — Pas-de-Calais</a>
-  <div class="fiche">
-    <h2>St_Omer</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>62 — Pas-de-Calais</td></tr>
-          <tr><td>Canton</td><td>St_Omer</td></tr>
-          <tr><td>Commune</td><td>St_Omer-Bledecques</td></tr>
-          <tr><td>Type d'édifice</td><td>Châteaux</td></tr>
-          <tr><td>Période d'origine</td><td>XVII-XVIII-XIX-</td></tr>
-          <tr><td>Coordonnées GPS</td><td>50° 47' 37" Nord, 2° 00' 56" Es                                                              Werthove GPS : 50° 43' 04" Nord, 2° 16' 38" Est</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_62/62_St_Omer_1.jpg" alt="St_Omer" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_St_Omer_2.jpg" alt="St_Omer" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_St_Omer_3.jpg" alt="St_Omer" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_St_Omer_4.jpg" alt="St_Omer" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_St_Omer_5.jpg" alt="St_Omer" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_St_Omer_6.jpg" alt="St_Omer" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_St_Omer_7.jpg" alt="St_Omer" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_62.html">Retour au département 62 — Pas-de-Calais</a>
+<div class="fiche">
+<h2>St_Omer</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="St_Omer" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_62/62_St_Omer_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="St_Omer" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_St_Omer_1.jpg"/><img alt="St_Omer" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_St_Omer_2.jpg"/><img alt="St_Omer" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_St_Omer_3.jpg"/><img alt="St_Omer" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_St_Omer_4.jpg"/><img alt="St_Omer" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_St_Omer_5.jpg"/><img alt="St_Omer" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_St_Omer_6.jpg"/><img alt="St_Omer" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_St_Omer_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>62 — Pas-de-Calais</td></tr>
+<tr><td>Canton</td><td>St_Omer</td></tr>
+<tr><td>Commune</td><td>St_Omer-Bledecques</td></tr>
+<tr><td>Type d'édifice</td><td>Châteaux</td></tr>
+<tr><td>Période d'origine</td><td>XVII-XVIII-XIX-</td></tr>
+<tr><td>Coordonnées GPS</td><td>50° 47' 37" Nord, 2° 00' 56" Es                                                              Werthove GPS : 50° 43' 04" Nord, 2° 16' 38" Est</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Cinq châteaux dans cet article, Bonningues, Clarques, Sandelin et Werthose.                                                                                                            BONNINGUES les ARDRES  le manoir de Bonningues-les-Ardres se situe dans un charmant petit village, dans la vallée de la Hem, vous propose ses chambres d'hôtes. C'est une demeure Napoléonienne datant de 1839, entouré d'un jardin de 5000 m2 . Vous apprécierez le calme et l'ambiance chaleureuse qui règnent dans cette maison. Chaque pièce a été rénovée pour restituer l'original de son passé. Côté jardin, détente et plénitude vous accompagneront dans le salon dans un espace à la Française.                                                                   TILQUES  La bâtisse du XIXe siècle se trouve au cur du marais Audomarois, dans un vaste parc verdoyant. Le château Tilques daté de 1891 a été bâti à partir des ruines d'un manoir du XVIIe siècle. L'hôtel 3 étoiles, avec sa belle architecture néo-flamande et son parc de 4 hectares, offre un cadre magnifique aux hôtes venus apprécier un délicieux séjour avec dîner à deux.                                                                      CLARQUES,  présentant un corps central du XVIIIe siècle, est  agrandi au début du XXe siècle avec lajout de deux grandes ailes en saillie. Lensemble présente cependant une unité harmonieuse, sinscrivant dans un parc romantique aménagé au XIXe siècle, à proximité dune ancienne motte féodale.</p>
-      <h4>Architecture</h4><p>HOTEL SANDELIN, en 1773, Pierre Sandelin, comte de Fruges, achète lancien hôtel du gouverneur de Saint-Omer, sa construction date du 3ème quart du XVIIIe siècle. Pierre Sandelin meurt en 1776, cest donc son épouse, Marie-Josèphe, qui mène le projet à son terme.  Lhôtel particulier suit le modèle français de lhôtel « entre cour et jardin ». Le corps de logis principal se prolonge par deux ailes en retour hébergeant les écuries et les cuisines, lensemble formant un « U » autour de la cour principale qui donne sur la rue. Le portail principal et les murs le cantonnant ; les façades et toitures des bâtiments entourant la cour d'honneur, le sol, la façade postérieure et la toiture correspondante , le sol du jardin;, classés le 7/07/1955 -  L'hôtel Sandelin est devenu un musée,                                                                             WERTHOSE date de 1903. Le château de Westhove a été construit vers 1903-1904 dans un style Néo-Renaissance. Entouré d'un grand parc, il se trouve à proximité de la rivière Aa. Il servira de Kommandantur à l'armée allemande jusqu'en 1943. Le château devient, à cette date, une propriété communale. L'ensemble parc et le château de Westhove a été transformé en un centre sportif avec des terrains de sport, dans le parc et vestiaires dans le château de Blendecques. L'édifice est fermé au public depuis 2004. Il est devenu la propriété de la commune. Aujourd'hui, l'accès intérieur est interdit par des grilles, l'ensemble du château de Blendecques ayant été entièrement vandalisé a été inscrit en totalité aux M.H. en 2011.</p>
-      <h4>Habitants / Familles</h4><p>Pierre Sandelin"</p>
-      <h4>Divers</h4><p>Cinq châteaux dans cet article,  de St-Omer-Bledecques; Bonningues grav-1, Tilques grav-6, Bosuit grav-7 Clarques, Hallines grav-2-3, Sandelin grav-4    et Werthose grav-5.                                          GPS : 50° 47' 37" Nord, 2° 00' 56" Es                                                              Werthove GPS : 50° 43' 04" Nord, 2° 16' 38" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Cinq châteaux dans cet article, Bonningues, Clarques, Sandelin et Werthose.                                                                                                            BONNINGUES les ARDRES  le manoir de Bonningues-les-Ardres se situe dans un charmant petit village, dans la vallée de la Hem, vous propose ses chambres d'hôtes. C'est une demeure Napoléonienne datant de 1839, entouré d'un jardin de 5000 m2 . Vous apprécierez le calme et l'ambiance chaleureuse qui règnent dans cette maison. Chaque pièce a été rénovée pour restituer l'original de son passé. Côté jardin, détente et plénitude vous accompagneront dans le salon dans un espace à la Française.                                                                   TILQUES  La bâtisse du XIXe siècle se trouve au cur du marais Audomarois, dans un vaste parc verdoyant. Le château Tilques daté de 1891 a été bâti à partir des ruines d'un manoir du XVIIe siècle. L'hôtel 3 étoiles, avec sa belle architecture néo-flamande et son parc de 4 hectares, offre un cadre magnifique aux hôtes venus apprécier un délicieux séjour avec dîner à deux.                                                                      CLARQUES,  présentant un corps central du XVIIIe siècle, est  agrandi au début du XXe siècle avec lajout de deux grandes ailes en saillie. Lensemble présente cependant une unité harmonieuse, sinscrivant dans un parc romantique aménagé au XIXe siècle, à proximité dune ancienne motte féodale.</p>
+<h4>Architecture</h4><p>HOTEL SANDELIN, en 1773, Pierre Sandelin, comte de Fruges, achète lancien hôtel du gouverneur de Saint-Omer, sa construction date du 3ème quart du XVIIIe siècle. Pierre Sandelin meurt en 1776, cest donc son épouse, Marie-Josèphe, qui mène le projet à son terme.  Lhôtel particulier suit le modèle français de lhôtel « entre cour et jardin ». Le corps de logis principal se prolonge par deux ailes en retour hébergeant les écuries et les cuisines, lensemble formant un « U » autour de la cour principale qui donne sur la rue. Le portail principal et les murs le cantonnant ; les façades et toitures des bâtiments entourant la cour d'honneur, le sol, la façade postérieure et la toiture correspondante , le sol du jardin;, classés le 7/07/1955 -  L'hôtel Sandelin est devenu un musée,                                                                             WERTHOSE date de 1903. Le château de Westhove a été construit vers 1903-1904 dans un style Néo-Renaissance. Entouré d'un grand parc, il se trouve à proximité de la rivière Aa. Il servira de Kommandantur à l'armée allemande jusqu'en 1943. Le château devient, à cette date, une propriété communale. L'ensemble parc et le château de Westhove a été transformé en un centre sportif avec des terrains de sport, dans le parc et vestiaires dans le château de Blendecques. L'édifice est fermé au public depuis 2004. Il est devenu la propriété de la commune. Aujourd'hui, l'accès intérieur est interdit par des grilles, l'ensemble du château de Blendecques ayant été entièrement vandalisé a été inscrit en totalité aux M.H. en 2011.</p>
+<h4>Habitants / Familles</h4><p>Pierre Sandelin"</p>
+<h4>Divers</h4><p>Cinq châteaux dans cet article,  de St-Omer-Bledecques; Bonningues grav-1, Tilques grav-6, Bosuit grav-7 Clarques, Hallines grav-2-3, Sandelin grav-4    et Werthose grav-5.                                          GPS : 50° 47' 37" Nord, 2° 00' 56" Es                                                              Werthove GPS : 50° 43' 04" Nord, 2° 16' 38" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

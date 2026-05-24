@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Glaire — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,57 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_08.html">Ardennes</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_08.html">Ardennes</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_08.html" class="back-link">Retour au département 08 — Ardennes</a>
-  <div class="fiche">
-    <h2>Glaire</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>08 — Ardennes</td></tr>
-          <tr><td>Canton</td><td>Sedan</td></tr>
-          <tr><td>Commune</td><td>Glaire</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI-XVII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>49° 42' 42" Nord, 4° 54' 56" Est                                                     Vilette grav -4-5-6                                     GPS : 49° 42' 36,64" Nord, 4° 53' 53,97" Est</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_08/08_Glaire_1.jpg" alt="Glaire" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_08/08_Glaire_2.jpg" alt="Glaire" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_08/08_Glaire_3.jpg" alt="Glaire" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_08/08_Glaire_4.jpg" alt="Glaire" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_08/08_Glaire_5.jpg" alt="Glaire" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_08/08_Glaire_6.jpg" alt="Glaire" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_08.html">Retour au département 08 — Ardennes</a>
+<div class="fiche">
+<h2>Glaire</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Glaire" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_08/08_Glaire_1.jpg"/><div class="hero-count" id="hero-count">1 / 6</div></div><div class="photo-strip"><img alt="Glaire" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Glaire_1.jpg"/><img alt="Glaire" class="" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Glaire_2.jpg"/><img alt="Glaire" class="" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Glaire_3.jpg"/><img alt="Glaire" class="" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Glaire_4.jpg"/><img alt="Glaire" class="" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Glaire_5.jpg"/><img alt="Glaire" class="" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Glaire_6.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>08 — Ardennes</td></tr>
+<tr><td>Canton</td><td>Sedan</td></tr>
+<tr><td>Commune</td><td>Glaire</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI-XVII</td></tr>
+<tr><td>Coordonnées GPS</td><td>49° 42' 42" Nord, 4° 54' 56" Est                                                     Vilette grav -4-5-6                                     GPS : 49° 42' 36,64" Nord, 4° 53' 53,97" Est</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux châteaux dans cet article , Bellevue  et Vilette.                       BELLEVUE, situé à la sortie de Sedan pour se rendre à Glaire, le château, de style néoclassique qui rappelle les châteaux de la Renaissance, est édifié avec les belles pierres jaunes des carrières de Dom-le-Mesnil. Propriété de Louis Amour, frère du maire de Donchery, ce château du XIXe siècle est le lieu où, le 2 septembre 1870,  que Napoléon III, assiégé à Sedan avec ses 83 000 hommes, va se rendre à Donchery où il rencontrera Bismarck. Puis il se rendra au château de Bellevue à Glaire, ou il rencontrera l'empereur Guillaume Ier d'Allemagne, où il signera l'acte de reddition de l'Armée Française. Le lendemain, les soldats français seront emmenés sur la presqu'île d'Iges de Glaire, qui s'étend sur plusieurs centaines d'hectares.  lEmpereur devait attendre le roi Guillaume 1er, mais Bismarck, craignant une sorte dapitoiement de sa part, exigea que la capitulation soit signée avant son arrivée. Elle le fut à onze heures en présence du général de Wimpffen. Le roi de Prusse ne se rendit à Bellevue que vers deux heures de laprès-midi et eut avec Napoléon une entrevue dun quart dheure au cours de laquelle lempereur lui affirma navoir jamais voulu cette guerre et dont Guillaume Ier révéla plus tard quils étaient tous les deux fort émus. Le château a été découpé en plusieurs copropriétés à laube des années 1960, et un des propriétaires espère lui rendre tout son lustre dantan.</p>
-      <h4>Architecture</h4><p>VILLETTE, un édifice est reconstruit dans les décennies suivantes, qui correspond aux trois travées de gauche de la façade principale actuelle, déjà flanquée de trois tours. Un vestibule central séparait deux grandes salles. En 1656 Mazarin fait l'acquisiion aux comtes de Rethel, s'y serait réfugié brièvement durant la fronde des princes. Les bâtiments sont aménagés une première fois au XVIIe siècle. ils sont acquis au XVIIIe siècle par Jean-François Maucomble, seigneur engagiste de Glaire (et père de Jean-François Nicolas Joseph Maucomble, général sous l'Empire et la Restauration. Ce Maucomble donne au bâtiment sa forme actuelle, pour l'essentiel. Il fait construire le pavillon au Nord, faisant saillie, agrandit et homogénéise la façade principale, revoit les ouvertures et aménage un jardin. Pendant la Révolution Française, et particulièrement pendant les années de terreur puis à la fin de sa vie, la famille Maucomble héberge discrètement en ce lieu l'évêque constitutionnel du diocèse de Sedan, Nicolas Philbert. Il y meurt en Juin 1797. Conformément à ses volontés, on l'enterre dans le cimetière de la petite église. Le fait est noté par quelques historiens et archivistes locaux qui mentionnent notamment l'inscription laissée par ses Vicaires sur une plaque de marbre. En 1982, toutefois, des travaux d'évacuation des eaux de pluie mettent au jour la fameuse plaque de marbre et la sépulture, sous vingt centimètres de terre, au pied du mur du cimetière, face à l'entrée de l'église. Une nouvelle inhumation est effectuée et le curé de Glaire lui apporte une ultime bénédiction. En 1990 le château est acquit par M. Albert Caprani. Au XIXe siècle, l'édifice devient la propriété de négociants en laine de Sedan, les Kistemann qui procèdent à de nouveaux remaniements, notamment sur la façade arrière.</p>
-      <h4>Habitants / Familles</h4><p>Vilette Famille Jean-François Maucomble"</p>
-      <h4>Divers</h4><p>Deux châteaux dans cet article , Bellevue  et Vilette.                                      Bellevue Grav-1-2-3                                                GPS : 49° 42' 42" Nord, 4° 54' 56" Est                                                     Vilette grav -4-5-6                                     GPS : 49° 42' 36,64" Nord, 4° 53' 53,97" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux châteaux dans cet article , Bellevue  et Vilette.                       BELLEVUE, situé à la sortie de Sedan pour se rendre à Glaire, le château, de style néoclassique qui rappelle les châteaux de la Renaissance, est édifié avec les belles pierres jaunes des carrières de Dom-le-Mesnil. Propriété de Louis Amour, frère du maire de Donchery, ce château du XIXe siècle est le lieu où, le 2 septembre 1870,  que Napoléon III, assiégé à Sedan avec ses 83 000 hommes, va se rendre à Donchery où il rencontrera Bismarck. Puis il se rendra au château de Bellevue à Glaire, ou il rencontrera l'empereur Guillaume Ier d'Allemagne, où il signera l'acte de reddition de l'Armée Française. Le lendemain, les soldats français seront emmenés sur la presqu'île d'Iges de Glaire, qui s'étend sur plusieurs centaines d'hectares.  lEmpereur devait attendre le roi Guillaume 1er, mais Bismarck, craignant une sorte dapitoiement de sa part, exigea que la capitulation soit signée avant son arrivée. Elle le fut à onze heures en présence du général de Wimpffen. Le roi de Prusse ne se rendit à Bellevue que vers deux heures de laprès-midi et eut avec Napoléon une entrevue dun quart dheure au cours de laquelle lempereur lui affirma navoir jamais voulu cette guerre et dont Guillaume Ier révéla plus tard quils étaient tous les deux fort émus. Le château a été découpé en plusieurs copropriétés à laube des années 1960, et un des propriétaires espère lui rendre tout son lustre dantan.</p>
+<h4>Architecture</h4><p>VILLETTE, un édifice est reconstruit dans les décennies suivantes, qui correspond aux trois travées de gauche de la façade principale actuelle, déjà flanquée de trois tours. Un vestibule central séparait deux grandes salles. En 1656 Mazarin fait l'acquisiion aux comtes de Rethel, s'y serait réfugié brièvement durant la fronde des princes. Les bâtiments sont aménagés une première fois au XVIIe siècle. ils sont acquis au XVIIIe siècle par Jean-François Maucomble, seigneur engagiste de Glaire (et père de Jean-François Nicolas Joseph Maucomble, général sous l'Empire et la Restauration. Ce Maucomble donne au bâtiment sa forme actuelle, pour l'essentiel. Il fait construire le pavillon au Nord, faisant saillie, agrandit et homogénéise la façade principale, revoit les ouvertures et aménage un jardin. Pendant la Révolution Française, et particulièrement pendant les années de terreur puis à la fin de sa vie, la famille Maucomble héberge discrètement en ce lieu l'évêque constitutionnel du diocèse de Sedan, Nicolas Philbert. Il y meurt en Juin 1797. Conformément à ses volontés, on l'enterre dans le cimetière de la petite église. Le fait est noté par quelques historiens et archivistes locaux qui mentionnent notamment l'inscription laissée par ses Vicaires sur une plaque de marbre. En 1982, toutefois, des travaux d'évacuation des eaux de pluie mettent au jour la fameuse plaque de marbre et la sépulture, sous vingt centimètres de terre, au pied du mur du cimetière, face à l'entrée de l'église. Une nouvelle inhumation est effectuée et le curé de Glaire lui apporte une ultime bénédiction. En 1990 le château est acquit par M. Albert Caprani. Au XIXe siècle, l'édifice devient la propriété de négociants en laine de Sedan, les Kistemann qui procèdent à de nouveaux remaniements, notamment sur la façade arrière.</p>
+<h4>Habitants / Familles</h4><p>Vilette Famille Jean-François Maucomble"</p>
+<h4>Divers</h4><p>Deux châteaux dans cet article , Bellevue  et Vilette.                                      Bellevue Grav-1-2-3                                                GPS : 49° 42' 42" Nord, 4° 54' 56" Est                                                     Vilette grav -4-5-6                                     GPS : 49° 42' 36,64" Nord, 4° 53' 53,97" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

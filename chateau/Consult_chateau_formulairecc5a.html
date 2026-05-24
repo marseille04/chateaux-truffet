@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Mésnil_St_Denis — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,57 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_78.html">Yvelines</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_78.html">Yvelines</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_78.html" class="back-link">Retour au département 78 — Yvelines</a>
-  <div class="fiche">
-    <h2>Mésnil_St_Denis</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>78 — Yvelines</td></tr>
-          <tr><td>Canton</td><td>Maurepas</td></tr>
-          <tr><td>Commune</td><td>Mésnil st denis</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI-XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_78/78_Mesnil_St_Denis_1.jpg" alt="Mésnil_St_Denis" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_78/78_Mesnil_St_Denis_2.jpg" alt="Mésnil_St_Denis" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_78/78_Mesnil_St_Denis_3.jpg" alt="Mésnil_St_Denis" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_78/78_Mesnil_St_Denis_4.jpg" alt="Mésnil_St_Denis" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_78/78_Mesnil_St_Denis_5.jpg" alt="Mésnil_St_Denis" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_78/78_Mesnil_St_Denis_6.html" alt="Mésnil_St_Denis" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_78/78_Mesnil_St_Denis_7.jpg" alt="Mésnil_St_Denis" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_78.html">Retour au département 78 — Yvelines</a>
+<div class="fiche">
+<h2>Mésnil_St_Denis</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Mésnil_St_Denis" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_78/78_Mesnil_St_Denis_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Mésnil_St_Denis" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Mesnil_St_Denis_1.jpg"/><img alt="Mésnil_St_Denis" class="" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Mesnil_St_Denis_2.jpg"/><img alt="Mésnil_St_Denis" class="" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Mesnil_St_Denis_3.jpg"/><img alt="Mésnil_St_Denis" class="" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Mesnil_St_Denis_4.jpg"/><img alt="Mésnil_St_Denis" class="" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Mesnil_St_Denis_5.jpg"/><img alt="Mésnil_St_Denis" class="" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Mesnil_St_Denis_6.html"/><img alt="Mésnil_St_Denis" class="" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Mesnil_St_Denis_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>78 — Yvelines</td></tr>
+<tr><td>Canton</td><td>Maurepas</td></tr>
+<tr><td>Commune</td><td>Mésnil st denis</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI-XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Trois châteaux dans cet article; Ambesis, Mesnil et la Verrière.                                                                         AMBESIS, le château a été construit à la fin du XVIIe siècle, ainsi que l'aile Est qui comporte une chapelle, l'aile ouest a été reconstruite au XVIIIe siècle ou au XIXe siècle et adjonction d'une pièce (toit en terrasse) au milieu de la façade sur jardin (avant 1819). L'édifice, de plan symétrique, se compose d'un sous sol et d'un étage carré. Le gros-oeuvre en meulière; moellon et enduit, élévation ordonnancée surmontée d'un toit à longs pans ; croupe et terrasse recouverts de tuiles plates.    Éléments protégés MH : les façades et les toitures de la maison de maître avec l'escalier et sa cage ; les façades et les toitures des bâtiments des communs situés le long de la cour avec la chapelle en totalité ; les potagers avec leurs murs ; le parc clos et l'allée de tilleuls : inscription par arrêté du 21 janvier 1997. <br>La VERRIERE,  à  cinq K.M. au sud, dont les jardins ont été dessinés par Le Nôtre, a été construit au XVIe siècle. Cest en 1507, avec lachat de la terre de la verrière par Barthélémy Séguier, noble et magistrat, que commence lédification du château. Son descendant, Jean Séguier, chancelier du Roi Louis XIV, le terminera vers 1660 en accordant une attention toute particulière au parc confiés aux plus grands paysagistes de France, notamment André Le Nôtre. Sa perspective a été classée au titre des monuments historiques. Découvrez ce lieu rarement accessible au public mais aussi son théâtre à litalienne, son parc et son étonnante chapelle.  Éléments protégés MH : le parc du château de La Verrière : inscription par arrêté du 11 juillet 1945. Propriété de la MGEN.</p>
-      <h4>Architecture</h4><p>MESNIL, en 1580 Louis Habert de Montmort achète le fief du Mesnil et fait construire à partir de 1589. A sa mort son fils Jean-Louis du Rieu de Fargis,  époux d'Anne Hue de Miroménil  en 1727, François de la Pointe dessine le château (1691-1693)  Rhabillage des façades (modénature et lucarnes) et adjonction des attiques du corps de logis central au XIXe siècle.  Le château sort de la descendance des Habert et sera acquit  en  1865 par lea famille d'Husson-Carcenac. Le domaine est occupé en 1870 par les prussiens. En 1929, il deviendra propriété de Fredrik Herman Gade, ministre Norvégien, qui y accueillera en 1940 le Roi des Albanais, Zog 1er et sa femme la reine Géraldine, tous deux alors en exil. Puis, à sa mort, le château sera acheté en 1947 par Milton Reynolds, habitant Chicago, qui entreprendra la fabrication des 1ers stylos à bille dans les communs, commercialisés en France ! En 1952, la commune du Mesnil-St-Denis, présidée par Me Raymond Berrurier, racheta le château afin d'y installer la mairie, les écoles et divers services communaux. Le château est précédé et séparé par un fossé d'une avant cour, elle même ceinturée de douves, qui abrite les bâtiments des communs dont l' éléments les plus remarquables est un beau colombier circulaire datant du XVIe siècle, la demeure est composée d'un corps de logis dont l'avant corps, couronné par un fronton, est percé au rez-de-chaussée de portes fenêtres, que flanquent des pavillons prolongés par des ailes faisant saillie sur les deux façades, L'ensemble coiffé de hauts combles en ardoise, a éré transformé au XVIIIe siècle.   Du Mesnil St Denis  Période ou style : Renaissance<br>Le château de la Région Ile-de-France qui vous découvrirez est inscrit aux M.H depuis 1947. Ce sigle est officiel et est destiné à  le protéger  en tant que monument présentant un intérêt à l'échelle régionale.</p>
-      <h4>Habitants / Familles</h4><p>Verrière ;Barthélémy Séguier                                                          Mesnil  ; Louis Habert de Montmort"</p>
-      <h4>Divers</h4><p>Trois châteaux dans cet article; Ambesi grav-1, Mesnil grav-2-3 et la Verrière grav-4-5.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Trois châteaux dans cet article; Ambesis, Mesnil et la Verrière.                                                                         AMBESIS, le château a été construit à la fin du XVIIe siècle, ainsi que l'aile Est qui comporte une chapelle, l'aile ouest a été reconstruite au XVIIIe siècle ou au XIXe siècle et adjonction d'une pièce (toit en terrasse) au milieu de la façade sur jardin (avant 1819). L'édifice, de plan symétrique, se compose d'un sous sol et d'un étage carré. Le gros-oeuvre en meulière; moellon et enduit, élévation ordonnancée surmontée d'un toit à longs pans ; croupe et terrasse recouverts de tuiles plates.    Éléments protégés MH : les façades et les toitures de la maison de maître avec l'escalier et sa cage ; les façades et les toitures des bâtiments des communs situés le long de la cour avec la chapelle en totalité ; les potagers avec leurs murs ; le parc clos et l'allée de tilleuls : inscription par arrêté du 21 janvier 1997. <br/>La VERRIERE,  à  cinq K.M. au sud, dont les jardins ont été dessinés par Le Nôtre, a été construit au XVIe siècle. Cest en 1507, avec lachat de la terre de la verrière par Barthélémy Séguier, noble et magistrat, que commence lédification du château. Son descendant, Jean Séguier, chancelier du Roi Louis XIV, le terminera vers 1660 en accordant une attention toute particulière au parc confiés aux plus grands paysagistes de France, notamment André Le Nôtre. Sa perspective a été classée au titre des monuments historiques. Découvrez ce lieu rarement accessible au public mais aussi son théâtre à litalienne, son parc et son étonnante chapelle.  Éléments protégés MH : le parc du château de La Verrière : inscription par arrêté du 11 juillet 1945. Propriété de la MGEN.</p>
+<h4>Architecture</h4><p>MESNIL, en 1580 Louis Habert de Montmort achète le fief du Mesnil et fait construire à partir de 1589. A sa mort son fils Jean-Louis du Rieu de Fargis,  époux d'Anne Hue de Miroménil  en 1727, François de la Pointe dessine le château (1691-1693)  Rhabillage des façades (modénature et lucarnes) et adjonction des attiques du corps de logis central au XIXe siècle.  Le château sort de la descendance des Habert et sera acquit  en  1865 par lea famille d'Husson-Carcenac. Le domaine est occupé en 1870 par les prussiens. En 1929, il deviendra propriété de Fredrik Herman Gade, ministre Norvégien, qui y accueillera en 1940 le Roi des Albanais, Zog 1er et sa femme la reine Géraldine, tous deux alors en exil. Puis, à sa mort, le château sera acheté en 1947 par Milton Reynolds, habitant Chicago, qui entreprendra la fabrication des 1ers stylos à bille dans les communs, commercialisés en France ! En 1952, la commune du Mesnil-St-Denis, présidée par Me Raymond Berrurier, racheta le château afin d'y installer la mairie, les écoles et divers services communaux. Le château est précédé et séparé par un fossé d'une avant cour, elle même ceinturée de douves, qui abrite les bâtiments des communs dont l' éléments les plus remarquables est un beau colombier circulaire datant du XVIe siècle, la demeure est composée d'un corps de logis dont l'avant corps, couronné par un fronton, est percé au rez-de-chaussée de portes fenêtres, que flanquent des pavillons prolongés par des ailes faisant saillie sur les deux façades, L'ensemble coiffé de hauts combles en ardoise, a éré transformé au XVIIIe siècle.   Du Mesnil St Denis  Période ou style : Renaissance<br/>Le château de la Région Ile-de-France qui vous découvrirez est inscrit aux M.H depuis 1947. Ce sigle est officiel et est destiné à  le protéger  en tant que monument présentant un intérêt à l'échelle régionale.</p>
+<h4>Habitants / Familles</h4><p>Verrière ;Barthélémy Séguier                                                          Mesnil  ; Louis Habert de Montmort"</p>
+<h4>Divers</h4><p>Trois châteaux dans cet article; Ambesi grav-1, Mesnil grav-2-3 et la Verrière grav-4-5.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

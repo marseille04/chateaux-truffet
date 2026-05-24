@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Arfeuille — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,61 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_23.html">Creuse</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_23.html">Creuse</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_23.html" class="back-link">Retour au département 23 — Creuse</a>
-  <div class="fiche">
-    <h2>Arfeuille</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>23 — Creuse</td></tr>
-          <tr><td>Canton</td><td>Felletin</td></tr>
-          <tr><td>Commune</td><td>Felletin</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV</td></tr>
-          <tr><td>Coordonnées GPS</td><td>45° 52' 56" Nord et 2° 12" 23" Est   grav -1-2-3-4                                                                Bas-Bouteix grav 5-6                                                     Chatain grav 7-8</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_23/23_Arfeuille_1.jpg" alt="Arfeuille" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_23/23_Arfeuille_2.jpg" alt="Arfeuille" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_23/23_Arfeuille_3.jpg" alt="Arfeuille" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_23/23_Arfeuille_4.jpg" alt="Arfeuille" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_23/23_Arfeuille_5.jpg" alt="Arfeuille" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_23/23_Arfeuille_6.jpg" alt="Arfeuille" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_23/23_Arfeuille_7.jpg" alt="Arfeuille" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_23/23_Arfeuille_8.jpg" alt="Arfeuille" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_23.html">Retour au département 23 — Creuse</a>
+<div class="fiche">
+<h2>Arfeuille</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Arfeuille" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_23/23_Arfeuille_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Arfeuille" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_23/23_Arfeuille_1.jpg"/><img alt="Arfeuille" class="" loading="lazy" onclick="setHero(this)" src="../image/image_23/23_Arfeuille_2.jpg"/><img alt="Arfeuille" class="" loading="lazy" onclick="setHero(this)" src="../image/image_23/23_Arfeuille_3.jpg"/><img alt="Arfeuille" class="" loading="lazy" onclick="setHero(this)" src="../image/image_23/23_Arfeuille_4.jpg"/><img alt="Arfeuille" class="" loading="lazy" onclick="setHero(this)" src="../image/image_23/23_Arfeuille_5.jpg"/><img alt="Arfeuille" class="" loading="lazy" onclick="setHero(this)" src="../image/image_23/23_Arfeuille_6.jpg"/><img alt="Arfeuille" class="" loading="lazy" onclick="setHero(this)" src="../image/image_23/23_Arfeuille_7.jpg"/><img alt="Arfeuille" class="" loading="lazy" onclick="setHero(this)" src="../image/image_23/23_Arfeuille_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>23 — Creuse</td></tr>
+<tr><td>Canton</td><td>Felletin</td></tr>
+<tr><td>Commune</td><td>Felletin</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV</td></tr>
+<tr><td>Coordonnées GPS</td><td>45° 52' 56" Nord et 2° 12" 23" Est   grav -1-2-3-4                                                                Bas-Bouteix grav 5-6                                                     Chatain grav 7-8</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>A Felletin, le château d'Arfeuille, celui de Chatain (voir article) et de la Faye. Et à cinq km à l'est à St-Frion le maison forte de Bas Bouteix.                             ARFEUILLE, date du XVe siècle, construit par la famille Mourins d'Arfeuille, il est à ce jour, l'un des 5 derniers châteaux français, à avoir été transmis de père en fils, dans la famille du même nom depuis sa construction. Il est issu de Jean Mourins d'Arfeuille, qui sauva de la mort, le roi Philippe Le Bel, lors de la bataille de Mons en Puelle, le 18 août 1304,  le 26 novembre 1791, Yves Mourins d'Arfeuille émigre avec son jeune fils Victorin. En 1792, ils rejoignent la coalition des gentilshommes d'Auvergne et se mettent sous les ordres du frère de Louis XVI. Quatre cardinaux d'Arfeuille ont vécu au XIVe siècle sous la papauté à Avignon. À la Révolution, Yves d'Arfeuille émigra et combattit sous les ordres des frères du roi Louis XVI. Il ne rentrera en France qu'en 1809.  En mars 1793, avec les troupes du duc de Condé, Yves Mourins prend les armes contre la jeune République française. Le comité de surveillance de Felletin fait alors emprisonner Mayeule, son épouse, et Adélaïde, sa fille, dans la pièce située au rez-de-chaussée de la tour ronde du château. Ensuite, tous les biens de la famille Mourins sont confisqués. Il appartient toujours à la famille d'Arfeuille.</p>
-      <h4>Architecture</h4><p>ARFEUILLE, du XVe siècle, excepté pour une aile et le parc créés 3 siècles plus tard. Le donjon qui a perdu son chemin de ronde et ses mâchicoulis, actuellement la Mairie de Felletin Henriette de Duras, érudite et passionnée de sciences, finança de nombreuses sociétés savantes et réunit dans son salon tous les notables de la région. Edifice  en forme de T avec une tour carrée toit à quatre pans sur mâchicoulis, le corps de logis à deux niveaux  avec série de lucarnes  sur comble en tuile, accolée dans le prolongement d'une tour ronde toit en poivrière.                                           BAS-BOUTEIX, date de 1362. Maison rurale de nobles felletinois du début du XVIIe siècle, remaniée aux XIXe et  XXe siècles, avant-corps de 1900,  corps de logis barlong avec tours et tourelles en encorbellement aux angles, et escalier droit central dans oeuvre. Des éléments défensifs, mâchicoulis et meurtrières à mousqueterie servaient contre les attaques de petits groupes armés et les troubles dus aux guerres de religion, qui persistèrent jusqu'en 1640 en Bas Limousin. L'intérieur est divisé en deux pièces principales, de chaque côté d'un escalier tournant à deux volées droites avec repos et palier.                CHATAIN à Arfeuille  le château date du XIIe siècle, il a été largement remanié au XVe et XVIIIe siècle. Il sert de maison de repos pour personnes âgées. Il a été la résidence dété des princes Galitzine. Il subsiste une cheminée de lépoque Loubens de Verdalle et une autre de la période des princes Galitzine</p>
-      <h4>Habitants / Familles</h4><p>Famille Mourins d'Arfeuille
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Arfeuille GPS : 45° 52' 56" Nord et 2° 12" 23" Est   grav -1-2-3-4                                                                Bas-Bouteix grav 5-6                                                     Chatain grav 7-8</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>A Felletin, le château d'Arfeuille, celui de Chatain (voir article) et de la Faye. Et à cinq km à l'est à St-Frion le maison forte de Bas Bouteix.                             ARFEUILLE, date du XVe siècle, construit par la famille Mourins d'Arfeuille, il est à ce jour, l'un des 5 derniers châteaux français, à avoir été transmis de père en fils, dans la famille du même nom depuis sa construction. Il est issu de Jean Mourins d'Arfeuille, qui sauva de la mort, le roi Philippe Le Bel, lors de la bataille de Mons en Puelle, le 18 août 1304,  le 26 novembre 1791, Yves Mourins d'Arfeuille émigre avec son jeune fils Victorin. En 1792, ils rejoignent la coalition des gentilshommes d'Auvergne et se mettent sous les ordres du frère de Louis XVI. Quatre cardinaux d'Arfeuille ont vécu au XIVe siècle sous la papauté à Avignon. À la Révolution, Yves d'Arfeuille émigra et combattit sous les ordres des frères du roi Louis XVI. Il ne rentrera en France qu'en 1809.  En mars 1793, avec les troupes du duc de Condé, Yves Mourins prend les armes contre la jeune République française. Le comité de surveillance de Felletin fait alors emprisonner Mayeule, son épouse, et Adélaïde, sa fille, dans la pièce située au rez-de-chaussée de la tour ronde du château. Ensuite, tous les biens de la famille Mourins sont confisqués. Il appartient toujours à la famille d'Arfeuille.</p>
+<h4>Architecture</h4><p>ARFEUILLE, du XVe siècle, excepté pour une aile et le parc créés 3 siècles plus tard. Le donjon qui a perdu son chemin de ronde et ses mâchicoulis, actuellement la Mairie de Felletin Henriette de Duras, érudite et passionnée de sciences, finança de nombreuses sociétés savantes et réunit dans son salon tous les notables de la région. Edifice  en forme de T avec une tour carrée toit à quatre pans sur mâchicoulis, le corps de logis à deux niveaux  avec série de lucarnes  sur comble en tuile, accolée dans le prolongement d'une tour ronde toit en poivrière.                                           BAS-BOUTEIX, date de 1362. Maison rurale de nobles felletinois du début du XVIIe siècle, remaniée aux XIXe et  XXe siècles, avant-corps de 1900,  corps de logis barlong avec tours et tourelles en encorbellement aux angles, et escalier droit central dans oeuvre. Des éléments défensifs, mâchicoulis et meurtrières à mousqueterie servaient contre les attaques de petits groupes armés et les troubles dus aux guerres de religion, qui persistèrent jusqu'en 1640 en Bas Limousin. L'intérieur est divisé en deux pièces principales, de chaque côté d'un escalier tournant à deux volées droites avec repos et palier.                CHATAIN à Arfeuille  le château date du XIIe siècle, il a été largement remanié au XVe et XVIIIe siècle. Il sert de maison de repos pour personnes âgées. Il a été la résidence dété des princes Galitzine. Il subsiste une cheminée de lépoque Loubens de Verdalle et une autre de la période des princes Galitzine</p>
+<h4>Habitants / Familles</h4><p>Famille Mourins d'Arfeuille
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Arfeuille GPS : 45° 52' 56" Nord et 2° 12" 23" Est   grav -1-2-3-4                                                                Bas-Bouteix grav 5-6                                                     Chatain grav 7-8</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

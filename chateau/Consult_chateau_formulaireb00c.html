@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Pignan_Turenne — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,63 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_34.html">Hérault</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_34.html">Hérault</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_34.html" class="back-link">Retour au département 34 — Hérault</a>
-  <div class="fiche">
-    <h2>Pignan_Turenne</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>34 — Hérault</td></tr>
-          <tr><td>Canton</td><td>Pignan</td></tr>
-          <tr><td>Commune</td><td>Pignan</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIII-XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_34/34_Pignan_Turenne_1.jpg" alt="Pignan_Turenne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Pignan_Turenne_2.jpg" alt="Pignan_Turenne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Pignan_Turenne_3.jpg" alt="Pignan_Turenne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Pignan_Turenne_4.jpg" alt="Pignan_Turenne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Pignan_Turenne_5.jpg" alt="Pignan_Turenne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Pignan_Turenne_6.jpg" alt="Pignan_Turenne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Pignan_Turenne_7.jpg" alt="Pignan_Turenne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Pignan_Turenne_8.jpg" alt="Pignan_Turenne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Pignan_Turenne_9.jpg" alt="Pignan_Turenne" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_34.html">Retour au département 34 — Hérault</a>
+<div class="fiche">
+<h2>Pignan_Turenne</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Pignan_Turenne" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_34/34_Pignan_Turenne_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Pignan_Turenne" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Pignan_Turenne_1.jpg"/><img alt="Pignan_Turenne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Pignan_Turenne_2.jpg"/><img alt="Pignan_Turenne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Pignan_Turenne_3.jpg"/><img alt="Pignan_Turenne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Pignan_Turenne_4.jpg"/><img alt="Pignan_Turenne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Pignan_Turenne_5.jpg"/><img alt="Pignan_Turenne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Pignan_Turenne_6.jpg"/><img alt="Pignan_Turenne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Pignan_Turenne_7.jpg"/><img alt="Pignan_Turenne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Pignan_Turenne_8.jpg"/><img alt="Pignan_Turenne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Pignan_Turenne_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>34 — Hérault</td></tr>
+<tr><td>Canton</td><td>Pignan</td></tr>
+<tr><td>Commune</td><td>Pignan</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIII-XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>PIGNAN-TURENNE, lieu fortifié avec château et enceinte. Sous l'autorité des Guilhem cousins des seigneurs de Montpellier, passera par héritage aux Bossavin puis aux Terrail, les derniers du nom ayant épousé Elisabeth Ricard sans postérité transmet la seigneurie de Pignan et son château à son neveu François de Ricard époux de Louise d'Hèbles. Après la mort de François  la seigneurie est administré par le baron de Las- Ribes et de Pignan Gabriel d'Hèbles, qui entreprend en 1676 la construction du nouveau château qui est continué en 1690 par  Henri de Baschi marquis  du Caylar qui a épousé Elisabeth de Ricard héritière, à l'occasion du mariage de la fille d'Henri et Anne marie de l'Estrade le domaine élevé au rang de marquisat en 1721, leur fille  Suzanne en 1745 prend pour époux son cousin germain François du Baschi marquis d'Aubais. Gabrielle-Pauline de Baschi mariée en seconde noces à Marie-René-Joseph de Turenne marquis d'Aynac maître de camp de cavalerie meurt en 1777 et Gabrielle convole en 1782 avec le vicomte de Lostanges, le fils de sa première union  Henri-Amédée Mercure maréchal de camp héritier de la fortune  des Baschi et des Turenne épousa une demoiselle Brignac de Montarnaud, après deux générations le château est acquit par François Gablier qui le revend en 1892 au baron Maurice de Hirsch de Guereult banquier et en 1895 le château est acquis par la commune qui y installe l'hôtel de ville.
-<br> VIGNOUGOUL, ce château dit de Saint-Martin  a été construit par Bertrand Adhémar d'Olivet au XVIe siècle le domaine passa aux Bermont du Caylar en 1669 et resta dans cette famille jusqu'en 1789,  vendu  à monsieur Paul-Louis  Bret.  Devenu aujourd'hui centre psychothérapique pas d'informations historiques.</p>
-      <h4>Architecture</h4><p>Pignan,   de nombreux vestiges médiévaux sont visibles, dont plusieurs hautes tours bâties en Opus monspelliensis  (l'une d'elle est surmontée d'un campanile) et d'anciennes portes de rempart.    La tour carrée (aussi appelée tour du Fort Viel).   La tour de l'Horloge, dont la porte fortifiée est un reste de murs neufs de 1386. Les maisons Burlon et Jourdan,  c'est l'actuel Fort Viel.  À la fin du XIVe siècle,   baronnie de Montpellier toute entière, passe sous la souveraineté du roi de France. les remparts du village seront démolis sur l'ordre de Louis XIII,     Il faudra attendre 27 ans (1652) pour que le roi permette la construction de murailles simples.                                  Château des Turenne mairie élevé sur l'emplacement d'un château plus ancien cette construction, de style Louis XIII, a été  réalisée et menée à bien en deux campagnes de 1673 à 1698 . On remarquera l'aspect austère, , dans sa rigoureuse géométrie, de la façade primitive. Aussi a t'on pris soin plus tard de le remanier pour le mettre à la mode en lui donnant un air plus gai, en particulier en ajourant les pièces par la destruction de meneaux et en lui apportant de nombreuses modifications intérieures, jusqu'au Directoire et à l'Empire. Outre le très bel escalier, les visiteurs seront frappés par les caves que l'on prétend en général d'époque médiévale. En fait pour l'essentiel, elles datent du XVIIe et XVIIIe siècle. Seul un imposant pan de mur, en appareil régulier, est un vestige des remparts construits après 1386 que l'on retrouve à l'extérieur du château. En symétrie avec ce grand mur on avait dressé une fort belle orangerie dont on peut voir les restes coté nord.
-<br>Château de Saint-Martin de Vignougoul du XVIIe siècle corps de logis carré à trois niveaux et trois travées flanqués de tourelles  en angle toit en poivrières.</p>
-      <h4>Habitants / Familles</h4><p>Famille de  Gabriel d'Hèbles                                                                        Famille de Bertrand Adhémar d'Olivet 
-<br>        "</p>
-      <h4>Divers</h4><p>Vestiges du château des Turenne, le nouveau château transformé en Mairie et le château de vignougoul</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>PIGNAN-TURENNE, lieu fortifié avec château et enceinte. Sous l'autorité des Guilhem cousins des seigneurs de Montpellier, passera par héritage aux Bossavin puis aux Terrail, les derniers du nom ayant épousé Elisabeth Ricard sans postérité transmet la seigneurie de Pignan et son château à son neveu François de Ricard époux de Louise d'Hèbles. Après la mort de François  la seigneurie est administré par le baron de Las- Ribes et de Pignan Gabriel d'Hèbles, qui entreprend en 1676 la construction du nouveau château qui est continué en 1690 par  Henri de Baschi marquis  du Caylar qui a épousé Elisabeth de Ricard héritière, à l'occasion du mariage de la fille d'Henri et Anne marie de l'Estrade le domaine élevé au rang de marquisat en 1721, leur fille  Suzanne en 1745 prend pour époux son cousin germain François du Baschi marquis d'Aubais. Gabrielle-Pauline de Baschi mariée en seconde noces à Marie-René-Joseph de Turenne marquis d'Aynac maître de camp de cavalerie meurt en 1777 et Gabrielle convole en 1782 avec le vicomte de Lostanges, le fils de sa première union  Henri-Amédée Mercure maréchal de camp héritier de la fortune  des Baschi et des Turenne épousa une demoiselle Brignac de Montarnaud, après deux générations le château est acquit par François Gablier qui le revend en 1892 au baron Maurice de Hirsch de Guereult banquier et en 1895 le château est acquis par la commune qui y installe l'hôtel de ville.
+<br/> VIGNOUGOUL, ce château dit de Saint-Martin  a été construit par Bertrand Adhémar d'Olivet au XVIe siècle le domaine passa aux Bermont du Caylar en 1669 et resta dans cette famille jusqu'en 1789,  vendu  à monsieur Paul-Louis  Bret.  Devenu aujourd'hui centre psychothérapique pas d'informations historiques.</p>
+<h4>Architecture</h4><p>Pignan,   de nombreux vestiges médiévaux sont visibles, dont plusieurs hautes tours bâties en Opus monspelliensis  (l'une d'elle est surmontée d'un campanile) et d'anciennes portes de rempart.    La tour carrée (aussi appelée tour du Fort Viel).   La tour de l'Horloge, dont la porte fortifiée est un reste de murs neufs de 1386. Les maisons Burlon et Jourdan,  c'est l'actuel Fort Viel.  À la fin du XIVe siècle,   baronnie de Montpellier toute entière, passe sous la souveraineté du roi de France. les remparts du village seront démolis sur l'ordre de Louis XIII,     Il faudra attendre 27 ans (1652) pour que le roi permette la construction de murailles simples.                                  Château des Turenne mairie élevé sur l'emplacement d'un château plus ancien cette construction, de style Louis XIII, a été  réalisée et menée à bien en deux campagnes de 1673 à 1698 . On remarquera l'aspect austère, , dans sa rigoureuse géométrie, de la façade primitive. Aussi a t'on pris soin plus tard de le remanier pour le mettre à la mode en lui donnant un air plus gai, en particulier en ajourant les pièces par la destruction de meneaux et en lui apportant de nombreuses modifications intérieures, jusqu'au Directoire et à l'Empire. Outre le très bel escalier, les visiteurs seront frappés par les caves que l'on prétend en général d'époque médiévale. En fait pour l'essentiel, elles datent du XVIIe et XVIIIe siècle. Seul un imposant pan de mur, en appareil régulier, est un vestige des remparts construits après 1386 que l'on retrouve à l'extérieur du château. En symétrie avec ce grand mur on avait dressé une fort belle orangerie dont on peut voir les restes coté nord.
+<br/>Château de Saint-Martin de Vignougoul du XVIIe siècle corps de logis carré à trois niveaux et trois travées flanqués de tourelles  en angle toit en poivrières.</p>
+<h4>Habitants / Familles</h4><p>Famille de  Gabriel d'Hèbles                                                                        Famille de Bertrand Adhémar d'Olivet 
+<br/>        "</p>
+<h4>Divers</h4><p>Vestiges du château des Turenne, le nouveau château transformé en Mairie et le château de vignougoul</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Baronville — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,54 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_28.html">Eure-et-Loir</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_28.html">Eure-et-Loir</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_28.html" class="back-link">Retour au département 28 — Eure-et-Loir</a>
-  <div class="fiche">
-    <h2>Baronville</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>28 — Eure-et-Loir</td></tr>
-          <tr><td>Canton</td><td>Auneau</td></tr>
-          <tr><td>Commune</td><td>Béville le Comte</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>48° 26' 53" Nord, 1° 43' 52" Est</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_28/28_Baronville_1.jpg" alt="Baronville" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_28/28_Baronville_2.jpg" alt="Baronville" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_28.html">Retour au département 28 — Eure-et-Loir</a>
+<div class="fiche">
+<h2>Baronville</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Baronville" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_28/28_Baronville_1.jpg"/><div class="hero-count" id="hero-count">1 / 2</div></div><div class="photo-strip"><img alt="Baronville" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_28/28_Baronville_1.jpg"/><img alt="Baronville" class="" loading="lazy" onclick="setHero(this)" src="../image/image_28/28_Baronville_2.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>28 — Eure-et-Loir</td></tr>
+<tr><td>Canton</td><td>Auneau</td></tr>
+<tr><td>Commune</td><td>Béville le Comte</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII</td></tr>
+<tr><td>Coordonnées GPS</td><td>48° 26' 53" Nord, 1° 43' 52" Est</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>BARONVILLE,  au XVe siècle  les terres appartenaient  à la famille  de Prunelé, en 1522 passe  à la famille  de Gyves et en 1623 le château est édifié  par la famille de Montescot. Passé ensuite par mariage dans la famille de Lattaignant, la seigneurie de Baronville est acquise en 1783 par le marquis dAligre, premier président du parlement de Paris. En 1868, son arrière-petit-fils, le Marquis de Pomereu dAligre fait détruire lancienne demeure et édifie le château que nous admirons aujourd'hui, conçu pour les réceptions du second Empire et construit sur les plans de larchitecte Léon de Sanges. Le marquis de Pomereu d'Aligre fait graver sur la façade du château la devise suivante: "Pereat Nomen cum Peribit Honor", qui signifie, Périsse le nom lorsque périra l'Honneur. Ces événements laisseront des traces sur la vaste demeure et son parc, jusquà ce que le comte et la comtesse Bertrand de Rougé, descendants des Pomereu d'Aligre, entreprennent dimportantes restaurations afin de sauver ce patrimoine historique et familial. Depuis 1981, Baronville a retrouvé sa vocation initiale, les réceptions, pour les groupes uniquement. La nature y est reine, suivant des perspectives tracées dès le XVIIe siècle par les seigneurs de Baronville, puis adaptées par le marquis de Pomereu d'Aligre au XIXe siècle.</p>
-      <h4>Architecture</h4><p>BARONVILLE,  édifice  construit sur l'emplacement de l'ancien château en pierre blanche en amplifiant démesurément le volume,   corps de logis central encadré de deux pavillons à toits indépendants en forte saillie, un avant corps à toit aigu consiste dans un monumental pavillon dont le rez-de-chaussé est occupé par un vestibule arrondi. Durant la 1ère guerre mondiale le domaine de Baronville accueille des blessés en convalescence entre 1914 et 1918,  il sera occupé 3 fois par les soldats allemands (dont le Feld-Maréchal Friedrich Paulus) entre 1940 et 1944, notamment pour accueillir une base aérienne pour lutter contre l'Opération Overlord en Normandie. Ces occupations successives laissèrent l'édifice et son parc dans un état relativement dégradé, jusquà ce que le comte et la comtesse de Rougé, descendants des d'Aligre, entreprennent dimportantes restaurations pour sauver ce patrimoine historique et familial. Depuis 1981, le château est ouvert à la location pour les grandes réceptions de mariage, lancement de produit, tournages,  En 2012, le comte Aymeric de Rougé ouvre le Carrousel de Baronville aux réceptions, après une rénovation complète d'une aile des anciennes écuries de Baronville, construites en 1882, pour Armand, Marquis de Pomereu d'Aligre.</p>
-      <h4>Habitants / Familles</h4><p>le Marquis de Pomereu dAligre
-<br>        "</p>
-      <h4>Divers</h4><p>Baronville      GPS : 48° 26' 53" Nord, 1° 43' 52" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>BARONVILLE,  au XVe siècle  les terres appartenaient  à la famille  de Prunelé, en 1522 passe  à la famille  de Gyves et en 1623 le château est édifié  par la famille de Montescot. Passé ensuite par mariage dans la famille de Lattaignant, la seigneurie de Baronville est acquise en 1783 par le marquis dAligre, premier président du parlement de Paris. En 1868, son arrière-petit-fils, le Marquis de Pomereu dAligre fait détruire lancienne demeure et édifie le château que nous admirons aujourd'hui, conçu pour les réceptions du second Empire et construit sur les plans de larchitecte Léon de Sanges. Le marquis de Pomereu d'Aligre fait graver sur la façade du château la devise suivante: "Pereat Nomen cum Peribit Honor", qui signifie, Périsse le nom lorsque périra l'Honneur. Ces événements laisseront des traces sur la vaste demeure et son parc, jusquà ce que le comte et la comtesse Bertrand de Rougé, descendants des Pomereu d'Aligre, entreprennent dimportantes restaurations afin de sauver ce patrimoine historique et familial. Depuis 1981, Baronville a retrouvé sa vocation initiale, les réceptions, pour les groupes uniquement. La nature y est reine, suivant des perspectives tracées dès le XVIIe siècle par les seigneurs de Baronville, puis adaptées par le marquis de Pomereu d'Aligre au XIXe siècle.</p>
+<h4>Architecture</h4><p>BARONVILLE,  édifice  construit sur l'emplacement de l'ancien château en pierre blanche en amplifiant démesurément le volume,   corps de logis central encadré de deux pavillons à toits indépendants en forte saillie, un avant corps à toit aigu consiste dans un monumental pavillon dont le rez-de-chaussé est occupé par un vestibule arrondi. Durant la 1ère guerre mondiale le domaine de Baronville accueille des blessés en convalescence entre 1914 et 1918,  il sera occupé 3 fois par les soldats allemands (dont le Feld-Maréchal Friedrich Paulus) entre 1940 et 1944, notamment pour accueillir une base aérienne pour lutter contre l'Opération Overlord en Normandie. Ces occupations successives laissèrent l'édifice et son parc dans un état relativement dégradé, jusquà ce que le comte et la comtesse de Rougé, descendants des d'Aligre, entreprennent dimportantes restaurations pour sauver ce patrimoine historique et familial. Depuis 1981, le château est ouvert à la location pour les grandes réceptions de mariage, lancement de produit, tournages,  En 2012, le comte Aymeric de Rougé ouvre le Carrousel de Baronville aux réceptions, après une rénovation complète d'une aile des anciennes écuries de Baronville, construites en 1882, pour Armand, Marquis de Pomereu d'Aligre.</p>
+<h4>Habitants / Familles</h4><p>le Marquis de Pomereu dAligre
+<br/>        "</p>
+<h4>Divers</h4><p>Baronville      GPS : 48° 26' 53" Nord, 1° 43' 52" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

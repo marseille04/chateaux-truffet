@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Giroussens — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,59 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_81.html">Tarn</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_81.html">Tarn</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_81.html" class="back-link">Retour au département 81 — Tarn</a>
-  <div class="fiche">
-    <h2>Giroussens</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>81 — Tarn</td></tr>
-          <tr><td>Canton</td><td>Saint-Sulpice la Pointe</td></tr>
-          <tr><td>Commune</td><td>Giroussens</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_81/81_Giroussens_1.jpg" alt="Giroussens" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_81/81_Giroussens_2.jpg" alt="Giroussens" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_81/81_Giroussens_3.jpg" alt="Giroussens" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_81/81_Giroussens_4.jpg" alt="Giroussens" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_81/81_Giroussens_5.jpg" alt="Giroussens" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_81/81_Giroussens_6.jpg" alt="Giroussens" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_81.html">Retour au département 81 — Tarn</a>
+<div class="fiche">
+<h2>Giroussens</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Giroussens" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_81/81_Giroussens_1.jpg"/><div class="hero-count" id="hero-count">1 / 6</div></div><div class="photo-strip"><img alt="Giroussens" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Giroussens_1.jpg"/><img alt="Giroussens" class="" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Giroussens_2.jpg"/><img alt="Giroussens" class="" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Giroussens_3.jpg"/><img alt="Giroussens" class="" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Giroussens_4.jpg"/><img alt="Giroussens" class="" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Giroussens_5.jpg"/><img alt="Giroussens" class="" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Giroussens_6.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>81 — Tarn</td></tr>
+<tr><td>Canton</td><td>Saint-Sulpice la Pointe</td></tr>
+<tr><td>Commune</td><td>Giroussens</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Quatre châteaux à Giroussens,  celui de Belbéze du XVIIe siècle, de Cathalo du XIXe siècle, de Montel, de  Saint-Sulpice et de Bourdoncles                                                                                GIROUSSENS, le château originel, le Pech Mascou est construit au XIIIe siècle. En 1437, le château était une prison royale mais il est incendié par les protestants en 1562.
-<br>BELBEZE, est construit en 1640 par Jean Flotes, grand maître des eaux et forêts à Toulouse. Il est cédé à Jean Dalbi en 1660, avocat en parlement. À la Révolution, vendu comme bien national.  Pendant le Moyen-Age, la population se déplace dans un castrum sur la falaise à 80 m de hauteur. Il est mentionné à partir de 1156. Plus au nord, un château, le Pech Mascou, est construit sur les bords de l'Agout au XIIIe siècle. Le seigneur Amalric de Lautrec érige Giroussens en bastide. Dès lors une ville se développe et prospère à l'abri de remparts. L'église Saint-Salvy est reconstruite à la fin du XIVe siècle. Entre 1330 et 1356, Gui de Comminges, seigneur de la basse terre d'Albigeois, réside à Giroussens. Il est le chef d'une bande de brigands et vit de vols et pillages de la région. En 1381, le comte de Foix-Béarn, Gaston Fébus va vaincre ces pillards dans la plaine d'Albi. À la mort du comte, Giroussens rentre dans le domaine de Charles VI. Puis la ville passe à Mathieu de Foix-Graillis par Charles VII en 1425. Sous Charles VIII, le domaine retourne à la couronne royale. Mais Louis XIV cède la seigneurie à François de Gélas, vicomte de Lautrec et marquis d'Ambres, en 1695, il restera dans sa descendance jusqu'à la Révolution.                                                                                     Du château de Cathalo, de Montel et du manoir de Saint-Sulpice pas d'information historique.</p>
-      <h4>Architecture</h4><p>Belbéze; de plan carré avec quatre tours de  trois niveaux couvertes d'un toit en pyramide avec lucarnes sur face avant, le corps de logis à deux niveaux de plan carrée toit en croupes.                                                                                                             Cathalo, corps de logis à deux niveaux et attiques à cinq travées, accès au rez-de-chaussée avec terrasses par  un escalier. Flanqué de deux tours carrées  à trois niveaux,  toit crénelée en terrasses                                                                                   Montels corps de logis de plan carrées à deux niveaux  accès sur  la terrasse par escalier, toiture en croupe avec lucarnes et au centre en façade un chien assis,  l'édifice est flanqué de deux échauguettes ronde sur encorbellement  à toit très pointu.                                                                                                                    Manoir de Saint-Sulpice  de plan rectangulaire à trois niveaux, pavillon d'entrée en saillit pour l'entrée un niveau surmonté d'un autre pavillon d'une travée surmonté d'un balcon et fronton redondant. Les faces de côtés sont terminées  par deux frontons parallèles triangulaires.</p>
-      <h4>Habitants / Familles</h4><p>Gui de Comminges,                                                                                  Famille de François de Gélas
-<br>        "</p>
-      <h4>Divers</h4><p>Le château de Belbéze, de Cathalo, de Montel, de Saint-Sulpice et de Bourboncles à Giroussens.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Quatre châteaux à Giroussens,  celui de Belbéze du XVIIe siècle, de Cathalo du XIXe siècle, de Montel, de  Saint-Sulpice et de Bourdoncles                                                                                GIROUSSENS, le château originel, le Pech Mascou est construit au XIIIe siècle. En 1437, le château était une prison royale mais il est incendié par les protestants en 1562.
+<br/>BELBEZE, est construit en 1640 par Jean Flotes, grand maître des eaux et forêts à Toulouse. Il est cédé à Jean Dalbi en 1660, avocat en parlement. À la Révolution, vendu comme bien national.  Pendant le Moyen-Age, la population se déplace dans un castrum sur la falaise à 80 m de hauteur. Il est mentionné à partir de 1156. Plus au nord, un château, le Pech Mascou, est construit sur les bords de l'Agout au XIIIe siècle. Le seigneur Amalric de Lautrec érige Giroussens en bastide. Dès lors une ville se développe et prospère à l'abri de remparts. L'église Saint-Salvy est reconstruite à la fin du XIVe siècle. Entre 1330 et 1356, Gui de Comminges, seigneur de la basse terre d'Albigeois, réside à Giroussens. Il est le chef d'une bande de brigands et vit de vols et pillages de la région. En 1381, le comte de Foix-Béarn, Gaston Fébus va vaincre ces pillards dans la plaine d'Albi. À la mort du comte, Giroussens rentre dans le domaine de Charles VI. Puis la ville passe à Mathieu de Foix-Graillis par Charles VII en 1425. Sous Charles VIII, le domaine retourne à la couronne royale. Mais Louis XIV cède la seigneurie à François de Gélas, vicomte de Lautrec et marquis d'Ambres, en 1695, il restera dans sa descendance jusqu'à la Révolution.                                                                                     Du château de Cathalo, de Montel et du manoir de Saint-Sulpice pas d'information historique.</p>
+<h4>Architecture</h4><p>Belbéze; de plan carré avec quatre tours de  trois niveaux couvertes d'un toit en pyramide avec lucarnes sur face avant, le corps de logis à deux niveaux de plan carrée toit en croupes.                                                                                                             Cathalo, corps de logis à deux niveaux et attiques à cinq travées, accès au rez-de-chaussée avec terrasses par  un escalier. Flanqué de deux tours carrées  à trois niveaux,  toit crénelée en terrasses                                                                                   Montels corps de logis de plan carrées à deux niveaux  accès sur  la terrasse par escalier, toiture en croupe avec lucarnes et au centre en façade un chien assis,  l'édifice est flanqué de deux échauguettes ronde sur encorbellement  à toit très pointu.                                                                                                                    Manoir de Saint-Sulpice  de plan rectangulaire à trois niveaux, pavillon d'entrée en saillit pour l'entrée un niveau surmonté d'un autre pavillon d'une travée surmonté d'un balcon et fronton redondant. Les faces de côtés sont terminées  par deux frontons parallèles triangulaires.</p>
+<h4>Habitants / Familles</h4><p>Gui de Comminges,                                                                                  Famille de François de Gélas
+<br/>        "</p>
+<h4>Divers</h4><p>Le château de Belbéze, de Cathalo, de Montel, de Saint-Sulpice et de Bourboncles à Giroussens.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Boisset_Gaujac — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,62 +113,61 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_30.html">Gard</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_30.html">Gard</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_30.html" class="back-link">Retour au département 30 — Gard</a>
-  <div class="fiche">
-    <h2>Boisset_Gaujac</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>30 — Gard</td></tr>
-          <tr><td>Canton</td><td>Alès</td></tr>
-          <tr><td>Commune</td><td>Boisset et Gaujac</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_30/30_Boisset_Gaujac_1.jpg" alt="Boisset_Gaujac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_Boisset_Gaujac_2.jpg" alt="Boisset_Gaujac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_Boisset_Gaujac_3.jpg" alt="Boisset_Gaujac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_Boisset_Gaujac_4.jpg" alt="Boisset_Gaujac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_Boisset_Gaujac_5.jpg" alt="Boisset_Gaujac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_Boisset_Gaujac_6.jpg" alt="Boisset_Gaujac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_Boisset_Gaujac_7.jpg" alt="Boisset_Gaujac" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_30.html">Retour au département 30 — Gard</a>
+<div class="fiche">
+<h2>Boisset_Gaujac</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Boisset_Gaujac" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_30/30_Boisset_Gaujac_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Boisset_Gaujac" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Boisset_Gaujac_1.jpg"/><img alt="Boisset_Gaujac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Boisset_Gaujac_2.jpg"/><img alt="Boisset_Gaujac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Boisset_Gaujac_3.jpg"/><img alt="Boisset_Gaujac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Boisset_Gaujac_4.jpg"/><img alt="Boisset_Gaujac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Boisset_Gaujac_5.jpg"/><img alt="Boisset_Gaujac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Boisset_Gaujac_6.jpg"/><img alt="Boisset_Gaujac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Boisset_Gaujac_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>30 — Gard</td></tr>
+<tr><td>Canton</td><td>Alès</td></tr>
+<tr><td>Commune</td><td>Boisset et Gaujac</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux châteaux à Boisset et Gaujac;  celui de Boisset et de Lascours.                                                                                         BOISSET ou  MONTVAILLANT en 1219 le fief appartenait à Pierre de Bermond II  dAnduze. En 1243, le roi Saint-Louis, en fait don au sénéchal de Beaucaire et en 1345,  vendus au comte de Beaufort, frère du pape Clément VI.  En 1542, est confié au sieur Claude de Laporte, qui demeure le vassal du comte de Beaufort, en 1634, le fils dAuban et Catherine de Laporte, noble Jean de Petit, seigneur de Boisset,  Charlotte de Montmorency.  En 1736, ses descendants cèdent la seigneurie à Louis Flavard, avocat au parlement et habitant Anduze, exécuté à la Révolution, laisse son bien à sa veuve, Marie de Boisset. Ses fils Pierre-Paul,  Jean et César-Jean se partagent la succession le 24 octobre 1814. En 1822, Pierre-Paul vend sa propriété à Michel Montaud, maire de Boisset. A sa mort, en 1848, M. Montaud laissait deux enfants. Marie-Louise Tirza, mariée le 29 janvier 1826 à Jean-Pierre Eugène Rieu de Montvaillant et Désiré Montaud.    La propriété passe à Mme de Montvaillant. La famille Rieu de Montvaillant était connue à Anduze et à Mialet. Il décède à 79 ans en 1906 et son fils Alfred hérite du château quil vend, pour payer ses dettes en 1932 à un pasteur retraité, monsieur Brunel, qui, à son tour le cède en novembre 1940 à monsieur Elie Cohen.
-<br>LASCOURS,  fief au XIIIe siècle appartenait à la maison d'Anduze, passa aux Cilias, aux Bagard et aux Boulogne de Calvisson.  Jérôme Reynaud de Bologne de Lascours, né en 1761 à Gaujac, député et président du corps législatif. Fortuné Reynaud de Bologne de Lascours, né en 1786 à Gaujac, fils du précédent, député et pair de France. De 1830 à 1840  il fut reconstruit par Louis Joseph Reynaud qui le  passa  a la famille de Chaponnay,  et  au prince de Croÿ grande famille de l'aristocratie européenne.  Aujourd'hui à Pierre-Alain Challier.</p>
-      <h4>Architecture</h4><p>Boisset ou Montvaillant porte des vestiges vieux parfois de plusieurs siècles, oppidum et voie romaine. Le château, devenu maison denfants, servit pendant la guerre de lieu de passage et de refuge à de nombreux enfants juifs puis, une association dAvignon en fit une colonie de vacances.
-<br>En 1948, la confédération du Gard des Anciens Combattants et victimes de la guerre achète la propriété et en fait une maison de repos ouverte en 1952. Elle est rachetée en 1997 par les uvres et Institutions des Diaconesses de Reuilly (O.I.D.R.) qui y installe une maison spécialisée dans laccueil des personnes atteintes de la maladie dAlzheimer. les bâtiments, une échauguette visible à langle ouest nous rappelle que cette demeure a une très ancienne histoire.
-<br>Château de Lascours du XVIe siècle, remanié au XIXe siècle;  maison forte  avec donjon, corps de logis rectangulaire à deux niveaux  accolés au donjon ancien  prolongés par des ailes servant de maintenances.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Claude de Laporte                                                                     Reynaud de Bologne de Lascours
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Boisset, de Lascours, de Montvaillant</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux châteaux à Boisset et Gaujac;  celui de Boisset et de Lascours.                                                                                         BOISSET ou  MONTVAILLANT en 1219 le fief appartenait à Pierre de Bermond II  dAnduze. En 1243, le roi Saint-Louis, en fait don au sénéchal de Beaucaire et en 1345,  vendus au comte de Beaufort, frère du pape Clément VI.  En 1542, est confié au sieur Claude de Laporte, qui demeure le vassal du comte de Beaufort, en 1634, le fils dAuban et Catherine de Laporte, noble Jean de Petit, seigneur de Boisset,  Charlotte de Montmorency.  En 1736, ses descendants cèdent la seigneurie à Louis Flavard, avocat au parlement et habitant Anduze, exécuté à la Révolution, laisse son bien à sa veuve, Marie de Boisset. Ses fils Pierre-Paul,  Jean et César-Jean se partagent la succession le 24 octobre 1814. En 1822, Pierre-Paul vend sa propriété à Michel Montaud, maire de Boisset. A sa mort, en 1848, M. Montaud laissait deux enfants. Marie-Louise Tirza, mariée le 29 janvier 1826 à Jean-Pierre Eugène Rieu de Montvaillant et Désiré Montaud.    La propriété passe à Mme de Montvaillant. La famille Rieu de Montvaillant était connue à Anduze et à Mialet. Il décède à 79 ans en 1906 et son fils Alfred hérite du château quil vend, pour payer ses dettes en 1932 à un pasteur retraité, monsieur Brunel, qui, à son tour le cède en novembre 1940 à monsieur Elie Cohen.
+<br/>LASCOURS,  fief au XIIIe siècle appartenait à la maison d'Anduze, passa aux Cilias, aux Bagard et aux Boulogne de Calvisson.  Jérôme Reynaud de Bologne de Lascours, né en 1761 à Gaujac, député et président du corps législatif. Fortuné Reynaud de Bologne de Lascours, né en 1786 à Gaujac, fils du précédent, député et pair de France. De 1830 à 1840  il fut reconstruit par Louis Joseph Reynaud qui le  passa  a la famille de Chaponnay,  et  au prince de Croÿ grande famille de l'aristocratie européenne.  Aujourd'hui à Pierre-Alain Challier.</p>
+<h4>Architecture</h4><p>Boisset ou Montvaillant porte des vestiges vieux parfois de plusieurs siècles, oppidum et voie romaine. Le château, devenu maison denfants, servit pendant la guerre de lieu de passage et de refuge à de nombreux enfants juifs puis, une association dAvignon en fit une colonie de vacances.
+<br/>En 1948, la confédération du Gard des Anciens Combattants et victimes de la guerre achète la propriété et en fait une maison de repos ouverte en 1952. Elle est rachetée en 1997 par les uvres et Institutions des Diaconesses de Reuilly (O.I.D.R.) qui y installe une maison spécialisée dans laccueil des personnes atteintes de la maladie dAlzheimer. les bâtiments, une échauguette visible à langle ouest nous rappelle que cette demeure a une très ancienne histoire.
+<br/>Château de Lascours du XVIe siècle, remanié au XIXe siècle;  maison forte  avec donjon, corps de logis rectangulaire à deux niveaux  accolés au donjon ancien  prolongés par des ailes servant de maintenances.</p>
+<h4>Habitants / Familles</h4><p>Famille de Claude de Laporte                                                                     Reynaud de Bologne de Lascours
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Boisset, de Lascours, de Montvaillant</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

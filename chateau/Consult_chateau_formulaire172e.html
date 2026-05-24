@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Rabatelière — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,55 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_85.html">Vendée</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_85.html">Vendée</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_85.html" class="back-link">Retour au département 85 — Vendée</a>
-  <div class="fiche">
-    <h2>Rabatelière</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>85 — Vendée</td></tr>
-          <tr><td>Canton</td><td>Montaigu</td></tr>
-          <tr><td>Commune</td><td>La Rabatelière</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_85/85_Rabateli%c3%a8re_1.jpg" alt="Rabatelière" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Rabateli%c3%a8re_2.jpg" alt="Rabatelière" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Rabateli%c3%a8re_3.jpg" alt="Rabatelière" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_85.html">Retour au département 85 — Vendée</a>
+<div class="fiche">
+<h2>Rabatelière</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Rabatelière" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_85/85_Rabateli%c3%a8re_1.jpg"/><div class="hero-count" id="hero-count">1 / 3</div></div><div class="photo-strip"><img alt="Rabatelière" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Rabateli%c3%a8re_1.jpg"/><img alt="Rabatelière" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Rabateli%c3%a8re_2.jpg"/><img alt="Rabatelière" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Rabateli%c3%a8re_3.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>85 — Vendée</td></tr>
+<tr><td>Canton</td><td>Montaigu</td></tr>
+<tr><td>Commune</td><td>La Rabatelière</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>RABATELIERE, Le fief de la Rabatelière doit son nom à la famille Rabasteau. Le prieur de cette commanderie, Louis de Lorraine, la donna à Pierre Bruneau en récompense de ses combats contre les Sarrasins. Au cours des siècles les Bruneau firent de ce lieu une grande seigneurie. Le chartrier de la Rabatelière est surtout connu par Jean Bruneau en 1392, qui mourut par violence lors dune querelle avec Pierre Vau, un pauvre homme de labour voisin. La famille fut surtout connue par le mariage de Jacques Bruneau en 1503 avec Jacquette Moreau, dame de la Jaunière et riche héritière. Grâce à sa fortune la Rabatelière fut  agrandie, en 1632, fut érigée en baronnie par Louis XIII, pour récompenser Charles Bruneau qui avait défendu Ré contre les huguenots. En 1642, La Rabatelière devint une vicomté. La famille Bruneau s'éteignit avec François Bruneau, qui épousa le 7 janvier 1644 Charlotte de Pompadour et fut tué le 3 août 1645 à Nordlingen comme maréchal de camp du duc dEnghien. La Rabatelière fut vendue en 1720 à la famille nantaise des Montaudouin. À la Révolution, René de Montaudouin refusant démigrer, la propriété fut saccagée par les colonnes infernales, puis vendue par ses héritiers en 1828 à Charles Henry de La Poëze. Elle fut entièrement restaurée par son fils Olivier, chambellan de lEmpereur Napoléon III. Le château fut ensuite habité par Yves Gabriel de La Poëze et son épouse Margueritte Legoux fille du baron Jules Legoux,  Leurs propriétaires actuels, Wilfrid et Nathalie Montassier,</p>
-      <h4>Architecture</h4><p>RABATELIERE, manoir construit sans doute au Moyen-Age, transformé dans les années 1630. Salon oval de 1780 avec décor de gypseries. Il fut remanié dans les années 1830 après son acquisition par le comte de La Poëze qui crée le parc paysager. Le château de La Rabatelière est profondément transformé de 1891 à 1900 par l'architecte Félix Libaudière.  C'est un château construit au XVIIe et XVIIIe siècle d'un corps de logis rectangulaire  à deux niveaux flanqué à droite comme à gauche de pavillons , série de lucarnes à pinacles sur combles, les pavillons sont accolés en retour d'équerre de bâtiment de dépendances, la toiture à toit brisée formant une cour d'honneur. Se trouve au coeur d'un parc romantique de 24 hectares, traversé dallées cavalières. Passionnés dhistoire et très impliqués dans la vie culturelle locale.</p>
-      <h4>Habitants / Familles</h4><p>Famille Bruneau
-<br>        "</p>
-      <h4>Divers</h4><p>Rabatelière: 46° 51' 36" Nord, 1° 15' 15" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>RABATELIERE, Le fief de la Rabatelière doit son nom à la famille Rabasteau. Le prieur de cette commanderie, Louis de Lorraine, la donna à Pierre Bruneau en récompense de ses combats contre les Sarrasins. Au cours des siècles les Bruneau firent de ce lieu une grande seigneurie. Le chartrier de la Rabatelière est surtout connu par Jean Bruneau en 1392, qui mourut par violence lors dune querelle avec Pierre Vau, un pauvre homme de labour voisin. La famille fut surtout connue par le mariage de Jacques Bruneau en 1503 avec Jacquette Moreau, dame de la Jaunière et riche héritière. Grâce à sa fortune la Rabatelière fut  agrandie, en 1632, fut érigée en baronnie par Louis XIII, pour récompenser Charles Bruneau qui avait défendu Ré contre les huguenots. En 1642, La Rabatelière devint une vicomté. La famille Bruneau s'éteignit avec François Bruneau, qui épousa le 7 janvier 1644 Charlotte de Pompadour et fut tué le 3 août 1645 à Nordlingen comme maréchal de camp du duc dEnghien. La Rabatelière fut vendue en 1720 à la famille nantaise des Montaudouin. À la Révolution, René de Montaudouin refusant démigrer, la propriété fut saccagée par les colonnes infernales, puis vendue par ses héritiers en 1828 à Charles Henry de La Poëze. Elle fut entièrement restaurée par son fils Olivier, chambellan de lEmpereur Napoléon III. Le château fut ensuite habité par Yves Gabriel de La Poëze et son épouse Margueritte Legoux fille du baron Jules Legoux,  Leurs propriétaires actuels, Wilfrid et Nathalie Montassier,</p>
+<h4>Architecture</h4><p>RABATELIERE, manoir construit sans doute au Moyen-Age, transformé dans les années 1630. Salon oval de 1780 avec décor de gypseries. Il fut remanié dans les années 1830 après son acquisition par le comte de La Poëze qui crée le parc paysager. Le château de La Rabatelière est profondément transformé de 1891 à 1900 par l'architecte Félix Libaudière.  C'est un château construit au XVIIe et XVIIIe siècle d'un corps de logis rectangulaire  à deux niveaux flanqué à droite comme à gauche de pavillons , série de lucarnes à pinacles sur combles, les pavillons sont accolés en retour d'équerre de bâtiment de dépendances, la toiture à toit brisée formant une cour d'honneur. Se trouve au coeur d'un parc romantique de 24 hectares, traversé dallées cavalières. Passionnés dhistoire et très impliqués dans la vie culturelle locale.</p>
+<h4>Habitants / Familles</h4><p>Famille Bruneau
+<br/>        "</p>
+<h4>Divers</h4><p>Rabatelière: 46° 51' 36" Nord, 1° 15' 15" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

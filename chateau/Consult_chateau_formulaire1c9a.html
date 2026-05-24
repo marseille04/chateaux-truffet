@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Flixecourt_Blanc — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,57 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_80.html">Somme</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_80.html">Somme</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_80.html" class="back-link">Retour au département 80 — Somme</a>
-  <div class="fiche">
-    <h2>Flixecourt_Blanc</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>80 — Somme</td></tr>
-          <tr><td>Canton</td><td>Flixecourt</td></tr>
-          <tr><td>Commune</td><td>Flixecourt</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI</td></tr>
-          <tr><td>Coordonnées GPS</td><td>50° 00' 49" Nord, 2° 04' 55" Est                                                      Blanc grav-4 GPS : 49° 54' 51" Nord, 1° 43' 23" Est                                                               Navette 50° 01' 04? N, 2° 04' 20? E    Rouge grav-6                                            50° 01' 08? N, 2° 04' 36? E          Hesse grav-5                                              50° 00' 34? N, 2° 04' 50? E</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_80/80_Flixecourt_Blanc_1.jpg" alt="Flixecourt_Blanc" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_80/80_Flixecourt_Blanc_2.jpg" alt="Flixecourt_Blanc" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_80/80_Flixecourt_Blanc_3.jpg" alt="Flixecourt_Blanc" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_80/80_Flixecourt_Blanc_4.jpg" alt="Flixecourt_Blanc" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_80/80_Flixecourt_Blanc_5.jpg" alt="Flixecourt_Blanc" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_80/80_Flixecourt_Blanc_6.jpg" alt="Flixecourt_Blanc" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_80.html">Retour au département 80 — Somme</a>
+<div class="fiche">
+<h2>Flixecourt_Blanc</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Flixecourt_Blanc" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_80/80_Flixecourt_Blanc_1.jpg"/><div class="hero-count" id="hero-count">1 / 6</div></div><div class="photo-strip"><img alt="Flixecourt_Blanc" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Flixecourt_Blanc_1.jpg"/><img alt="Flixecourt_Blanc" class="" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Flixecourt_Blanc_2.jpg"/><img alt="Flixecourt_Blanc" class="" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Flixecourt_Blanc_3.jpg"/><img alt="Flixecourt_Blanc" class="" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Flixecourt_Blanc_4.jpg"/><img alt="Flixecourt_Blanc" class="" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Flixecourt_Blanc_5.jpg"/><img alt="Flixecourt_Blanc" class="" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Flixecourt_Blanc_6.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>80 — Somme</td></tr>
+<tr><td>Canton</td><td>Flixecourt</td></tr>
+<tr><td>Commune</td><td>Flixecourt</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI</td></tr>
+<tr><td>Coordonnées GPS</td><td>50° 00' 49" Nord, 2° 04' 55" Est                                                      Blanc grav-4 GPS : 49° 54' 51" Nord, 1° 43' 23" Est                                                               Navette 50° 01' 04? N, 2° 04' 20? E    Rouge grav-6                                            50° 01' 08? N, 2° 04' 36? E          Hesse grav-5                                              50° 00' 34? N, 2° 04' 50? E</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>FLIXECOURT, logement patronal faisant partie de l'ensemble textile Saint frères Flixecourt, construit entre 1884 et 1886, dates sur la grille du grand portail, d'après les plans de l'architecte Paul Louis Deleforterie d'Amiens pour Jean-Baptiste Saint. Existence d'un fonds d'archives privées. Il abrita létat major du général Rawlinson, commandant de la IVe armée anglaise, lors de loffensive en Août 1918. Il fut en 1942 le cadre dune importante conférence de la Luftwaffe, présidée par le maréchal Goering. Le domaine constitue une oeuvre majeure dans l'art de l'architecture éclectique et dans celui du parc paysager et de son jardin tels qu'ils étaient conçus à la fin du XIXe siècle.    Éléments protégés MH : les façades et les toitures, la grille d'honneur, le grand escalier de pierre à balustres avec son plafond peint, les pièces suivantes avec leur décor : le hall d'entrée, le grand et le petit salon, la grande et la petite salle à manger, la salle de billard, la chambre bureau, la salle de bains, la chambre d'angle, la chambre de monsieur et la salle de bains adjacente au premier étage : inscription par arrêté du 28 avril 1980. Le parc et le jardin : inscription par arrêté du 29 juillet 2013.  Construit en brique et pierre, il est composé d'un corps de logis avec un avant corps en ressaut et des pavillons en décrochement. Ses hautes toitures à la française, s'inspirent des châteaux de la fin du XVIe siècle. Côté jardin, l'avant-corps octogonal est davantage en saillie et une tour d'inspiration médiévale répond au nord-ouest au pavillon du nord-est. Le décor extérieur a été particulièrement soigné : fronton à volutes pour les fenêtres de l'avant corps, balcons étagés reposant sur des consoles, mascarons, grotesques qui révèlent l'éclectisme de la fin du XIXe siècle.</p>
-      <h4>Architecture</h4><p>BLANC, le château blanc de Flixecourt il n'en présente pas moins un véritable intérêt patrimonial au sein du vaste ensemble Saint-Frères, de la vallée de la Nièvre.   Blanc est le troisième et avant dernier château construit par la famille Saint, tout près de la direction des usines de la vallées de la Nièvre.  En 1912, Alice Saint, de la branche rouennaise, veuve d'Henri de la branche de Flixecourt, fait appel à l'architecte Charles Bourgeois pour construire ce château, face aux usines et magasin construits à la fin du XIXe siècle , le long de la voie ferrée en contrebas. Alice Saint, veuve depuis 1907, s'adresse à un architecte alors très en vue dans le nord de la France pour construire sa nouvelle demeure dans le bon goût de la haute bourgeoisie industrielle. Charles Bourgeois est alors en pleine ascension. Il a appris son métier à Tourcoing, puis en Belgique, avant de travailler en collaboration avec son père, architecte lui aussi. Dans les premières années du XIXe siècle, il travaille essentiellement pour la petite, moyenne, et haute bourgeoisie de Tourcoing et des environs. En 1912, il est nommé directeur de l'école des beaux-arts de Tourcoing, poste qu'il occupera jusqu'en 1940. Le château Blanc est sa première commande dans la Somme, sa cliente est en contact avec les réseaux industriels du Nord. Sa fille aînée Marie a épousé Albert Six, fils d'un industriel lainier bien connu à Roubaix et Tourcoing.  Charles Bourgeois sait s'adapter à la clientèle. Il est capable de réaliser des immeubles de styles très variés, du plus tendance aux intonations art nouveau, au plus classique, dans le bon goût Louis XV qu'affectionne la haute bourgeoisie.</p>
-      <h4>Habitants / Familles</h4><p>Blanc; famille de Saint"</p>
-      <h4>Divers</h4><p>Flixecourt GPS : 50° 00' 49" Nord, 2° 04' 55" Est                                                      Blanc grav-4 GPS : 49° 54' 51" Nord, 1° 43' 23" Est                                                               Navette 50° 01' 04? N, 2° 04' 20? E    Rouge grav-6                                            50° 01' 08? N, 2° 04' 36? E          Hesse grav-5                                              50° 00' 34? N, 2° 04' 50? E</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>FLIXECOURT, logement patronal faisant partie de l'ensemble textile Saint frères Flixecourt, construit entre 1884 et 1886, dates sur la grille du grand portail, d'après les plans de l'architecte Paul Louis Deleforterie d'Amiens pour Jean-Baptiste Saint. Existence d'un fonds d'archives privées. Il abrita létat major du général Rawlinson, commandant de la IVe armée anglaise, lors de loffensive en Août 1918. Il fut en 1942 le cadre dune importante conférence de la Luftwaffe, présidée par le maréchal Goering. Le domaine constitue une oeuvre majeure dans l'art de l'architecture éclectique et dans celui du parc paysager et de son jardin tels qu'ils étaient conçus à la fin du XIXe siècle.    Éléments protégés MH : les façades et les toitures, la grille d'honneur, le grand escalier de pierre à balustres avec son plafond peint, les pièces suivantes avec leur décor : le hall d'entrée, le grand et le petit salon, la grande et la petite salle à manger, la salle de billard, la chambre bureau, la salle de bains, la chambre d'angle, la chambre de monsieur et la salle de bains adjacente au premier étage : inscription par arrêté du 28 avril 1980. Le parc et le jardin : inscription par arrêté du 29 juillet 2013.  Construit en brique et pierre, il est composé d'un corps de logis avec un avant corps en ressaut et des pavillons en décrochement. Ses hautes toitures à la française, s'inspirent des châteaux de la fin du XVIe siècle. Côté jardin, l'avant-corps octogonal est davantage en saillie et une tour d'inspiration médiévale répond au nord-ouest au pavillon du nord-est. Le décor extérieur a été particulièrement soigné : fronton à volutes pour les fenêtres de l'avant corps, balcons étagés reposant sur des consoles, mascarons, grotesques qui révèlent l'éclectisme de la fin du XIXe siècle.</p>
+<h4>Architecture</h4><p>BLANC, le château blanc de Flixecourt il n'en présente pas moins un véritable intérêt patrimonial au sein du vaste ensemble Saint-Frères, de la vallée de la Nièvre.   Blanc est le troisième et avant dernier château construit par la famille Saint, tout près de la direction des usines de la vallées de la Nièvre.  En 1912, Alice Saint, de la branche rouennaise, veuve d'Henri de la branche de Flixecourt, fait appel à l'architecte Charles Bourgeois pour construire ce château, face aux usines et magasin construits à la fin du XIXe siècle , le long de la voie ferrée en contrebas. Alice Saint, veuve depuis 1907, s'adresse à un architecte alors très en vue dans le nord de la France pour construire sa nouvelle demeure dans le bon goût de la haute bourgeoisie industrielle. Charles Bourgeois est alors en pleine ascension. Il a appris son métier à Tourcoing, puis en Belgique, avant de travailler en collaboration avec son père, architecte lui aussi. Dans les premières années du XIXe siècle, il travaille essentiellement pour la petite, moyenne, et haute bourgeoisie de Tourcoing et des environs. En 1912, il est nommé directeur de l'école des beaux-arts de Tourcoing, poste qu'il occupera jusqu'en 1940. Le château Blanc est sa première commande dans la Somme, sa cliente est en contact avec les réseaux industriels du Nord. Sa fille aînée Marie a épousé Albert Six, fils d'un industriel lainier bien connu à Roubaix et Tourcoing.  Charles Bourgeois sait s'adapter à la clientèle. Il est capable de réaliser des immeubles de styles très variés, du plus tendance aux intonations art nouveau, au plus classique, dans le bon goût Louis XV qu'affectionne la haute bourgeoisie.</p>
+<h4>Habitants / Familles</h4><p>Blanc; famille de Saint"</p>
+<h4>Divers</h4><p>Flixecourt GPS : 50° 00' 49" Nord, 2° 04' 55" Est                                                      Blanc grav-4 GPS : 49° 54' 51" Nord, 1° 43' 23" Est                                                               Navette 50° 01' 04? N, 2° 04' 20? E    Rouge grav-6                                            50° 01' 08? N, 2° 04' 36? E          Hesse grav-5                                              50° 00' 34? N, 2° 04' 50? E</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

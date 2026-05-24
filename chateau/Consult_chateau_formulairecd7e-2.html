@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Martinvast — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,60 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_50.html">Manche</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_50.html">Manche</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_50.html" class="back-link">Retour au département 50 — Manche</a>
-  <div class="fiche">
-    <h2>Martinvast</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>50 — Manche</td></tr>
-          <tr><td>Canton</td><td>Cherbourg-Octeville-3</td></tr>
-          <tr><td>Commune</td><td>Martinvast</td></tr>
-          <tr><td>Type d'édifice</td><td>Forteresse</td></tr>
-          <tr><td>Période d'origine</td><td>XVI</td></tr>
-          <tr><td>Coordonnées GPS</td><td>49° 35' 22" Nord, 1° 39' 31" Ouest :   Gps  49° 28' 32" Nord, 1° 25'0" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_50/50_Martinvast_1.jpg" alt="Martinvast" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Martinvast_2.jpg" alt="Martinvast" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Martinvast_3.jpg" alt="Martinvast" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Martinvast_4.jpg" alt="Martinvast" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Martinvast_5.jpg" alt="Martinvast" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Martinvast_6.jpg" alt="Martinvast" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Martinvast_7.jpg" alt="Martinvast" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Martinvast_8.jpg" alt="Martinvast" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_50.html">Retour au département 50 — Manche</a>
+<div class="fiche">
+<h2>Martinvast</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Martinvast" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_50/50_Martinvast_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Martinvast" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Martinvast_1.jpg"/><img alt="Martinvast" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Martinvast_2.jpg"/><img alt="Martinvast" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Martinvast_3.jpg"/><img alt="Martinvast" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Martinvast_4.jpg"/><img alt="Martinvast" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Martinvast_5.jpg"/><img alt="Martinvast" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Martinvast_6.jpg"/><img alt="Martinvast" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Martinvast_7.jpg"/><img alt="Martinvast" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Martinvast_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>50 — Manche</td></tr>
+<tr><td>Canton</td><td>Cherbourg-Octeville-3</td></tr>
+<tr><td>Commune</td><td>Martinvast</td></tr>
+<tr><td>Type d'édifice</td><td>Forteresse</td></tr>
+<tr><td>Période d'origine</td><td>XVI</td></tr>
+<tr><td>Coordonnées GPS</td><td>49° 35' 22" Nord, 1° 39' 31" Ouest :   Gps  49° 28' 32" Nord, 1° 25'0" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>MARTINVAST-BEAUREPAIRE   Le premier château fut ruiné par la guerre de cent ans et reconstruit de 1579 à 1581 par Barthole du Moncel, avec une aile encadrée de deux gros pavillons carrés saillants et bastionnés. Des constructions médiévales qui pouvaient subsister, il ne conserva que le donjon. Il était alors entouré de douves et de marécages. De 1820 à 1867, un de ses descendants, le comte Alexandre du Moncel, maréchal de camp et Pair de France, le restaura pour le rendre habitable et le flanqua de quatre tours, il supprima les douves et assécha les marécages. En 1867 il fut vendu au baron Arthur de Schickler, banquier de la famille royale de Prusse à Berlin, qui le transforma en château néo-gothique par l'adjonction d'une galerie médiévale au nord et l'édification d'une aile du même style qui reliait le donjon à la construction du XVIe siècle. L'architecte chargé de la transformation fut l'anglais William Henry White. En 1944, la construction du XVIe siècle fut entièrement brûlée par une bombe anglaise tandis qu'une bombe américaine détruisait la moitié de l'aile néo-gothique construite au XIXe siècle. Après la guerre, la comtesse Hubert de Pourtales, fille du Baron Arthur de Schickler, sépara des ruines la partie de l'aile néo-gothique intacte. Il fallut attendre son acquisition en 1962 par son petit-fils, le comte Christian de Pourtales Schickler, pour voir entreprendre tout d'abord en 1967 la restauration de l'aile Est du XVIe siècle, puis à partir de 1995, la construction d'une galerie de liaison destinée à relier cette aile avec la partie intacte du château du XIXe siècle. Le parc du château est l'un des plus beaux de Normandie.</p>
-      <h4>Architecture</h4><p>MARTINVAST-BEAUREPAIRE, dit Beaurepaire est appelé aussi le château de Martinvast, domaine de Beaurepaire en 1528, la famille de Thieuville, qui portait d'argent à deux bandes de gueules, accompagnées de sept coquilles de même, possédait la seigneurie de Hardinvast. En 1646, la famille Blondel possédait cette seigneurie, et portait d'argent à la fasce d'azur chargée d'un croissant d'or accosté d'une boule et demie de même, accompagnée de neuf hermines de sable, quatre en chef et cinq en bas. Ce château construit dans la première moitié du XIXe siècle possède un domaine agricole à l'anglaise et est également situé en partie sur la commune de Martinvast.  Inscription  du 28 décembre 1992 Les façades et les toitures de l'ensemble des bâtiments, à l'exclusion des bâtiments contemporains; l'obélisque et le moulin à vent; cette dernière inscription protège également le parc de 100 hectares (avec l'ensemble de ses aménagements paysagers et hydrauliques). Il est composé de bois, prairies, étangs et d'une cascade. Il est, en partie, situé aussi sur Hardinvast. C'est un château fort de style néo-gothique. Sa construction a débuté au XVIe et s'est achevée au XIXe siècle. Son parc fait 100 Ha, propose la location de ses salles pour vos évènements et ses chambres d'hôtes.</p>
-      <h4>Habitants / Familles</h4><p>Famille du comte Barthole du Moncel
-<br>        "</p>
-      <h4>Divers</h4><p>Martinvast, Beaurepaire GPS : 49° 35' 22" Nord, 1° 39' 31" Ouest :   Gps  49° 28' 32" Nord, 1° 25'0" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>MARTINVAST-BEAUREPAIRE   Le premier château fut ruiné par la guerre de cent ans et reconstruit de 1579 à 1581 par Barthole du Moncel, avec une aile encadrée de deux gros pavillons carrés saillants et bastionnés. Des constructions médiévales qui pouvaient subsister, il ne conserva que le donjon. Il était alors entouré de douves et de marécages. De 1820 à 1867, un de ses descendants, le comte Alexandre du Moncel, maréchal de camp et Pair de France, le restaura pour le rendre habitable et le flanqua de quatre tours, il supprima les douves et assécha les marécages. En 1867 il fut vendu au baron Arthur de Schickler, banquier de la famille royale de Prusse à Berlin, qui le transforma en château néo-gothique par l'adjonction d'une galerie médiévale au nord et l'édification d'une aile du même style qui reliait le donjon à la construction du XVIe siècle. L'architecte chargé de la transformation fut l'anglais William Henry White. En 1944, la construction du XVIe siècle fut entièrement brûlée par une bombe anglaise tandis qu'une bombe américaine détruisait la moitié de l'aile néo-gothique construite au XIXe siècle. Après la guerre, la comtesse Hubert de Pourtales, fille du Baron Arthur de Schickler, sépara des ruines la partie de l'aile néo-gothique intacte. Il fallut attendre son acquisition en 1962 par son petit-fils, le comte Christian de Pourtales Schickler, pour voir entreprendre tout d'abord en 1967 la restauration de l'aile Est du XVIe siècle, puis à partir de 1995, la construction d'une galerie de liaison destinée à relier cette aile avec la partie intacte du château du XIXe siècle. Le parc du château est l'un des plus beaux de Normandie.</p>
+<h4>Architecture</h4><p>MARTINVAST-BEAUREPAIRE, dit Beaurepaire est appelé aussi le château de Martinvast, domaine de Beaurepaire en 1528, la famille de Thieuville, qui portait d'argent à deux bandes de gueules, accompagnées de sept coquilles de même, possédait la seigneurie de Hardinvast. En 1646, la famille Blondel possédait cette seigneurie, et portait d'argent à la fasce d'azur chargée d'un croissant d'or accosté d'une boule et demie de même, accompagnée de neuf hermines de sable, quatre en chef et cinq en bas. Ce château construit dans la première moitié du XIXe siècle possède un domaine agricole à l'anglaise et est également situé en partie sur la commune de Martinvast.  Inscription  du 28 décembre 1992 Les façades et les toitures de l'ensemble des bâtiments, à l'exclusion des bâtiments contemporains; l'obélisque et le moulin à vent; cette dernière inscription protège également le parc de 100 hectares (avec l'ensemble de ses aménagements paysagers et hydrauliques). Il est composé de bois, prairies, étangs et d'une cascade. Il est, en partie, situé aussi sur Hardinvast. C'est un château fort de style néo-gothique. Sa construction a débuté au XVIe et s'est achevée au XIXe siècle. Son parc fait 100 Ha, propose la location de ses salles pour vos évènements et ses chambres d'hôtes.</p>
+<h4>Habitants / Familles</h4><p>Famille du comte Barthole du Moncel
+<br/>        "</p>
+<h4>Divers</h4><p>Martinvast, Beaurepaire GPS : 49° 35' 22" Nord, 1° 39' 31" Ouest :   Gps  49° 28' 32" Nord, 1° 25'0" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

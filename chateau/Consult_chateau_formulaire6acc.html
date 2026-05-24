@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Noirmoutier — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,60 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_85.html">Vendée</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_85.html">Vendée</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_85.html" class="back-link">Retour au département 85 — Vendée</a>
-  <div class="fiche">
-    <h2>Noirmoutier</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>85 — Vendée</td></tr>
-          <tr><td>Canton</td><td>Saint-Jean-de-Monts</td></tr>
-          <tr><td>Commune</td><td>Noirmoutier-en-Ile</td></tr>
-          <tr><td>Type d'édifice</td><td>Forteresse</td></tr>
-          <tr><td>Période d'origine</td><td>IX-XIV-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_85/85_Noirmoutier_1.jpg" alt="Noirmoutier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Noirmoutier_2.jpg" alt="Noirmoutier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Noirmoutier_3.jpg" alt="Noirmoutier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Noirmoutier_4.jpg" alt="Noirmoutier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Noirmoutier_5.jpg" alt="Noirmoutier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Noirmoutier_6.jpg" alt="Noirmoutier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Noirmoutier_7.jpg" alt="Noirmoutier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Noirmoutier_8.jpg" alt="Noirmoutier" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_85.html">Retour au département 85 — Vendée</a>
+<div class="fiche">
+<h2>Noirmoutier</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Noirmoutier" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_85/85_Noirmoutier_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Noirmoutier" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Noirmoutier_1.jpg"/><img alt="Noirmoutier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Noirmoutier_2.jpg"/><img alt="Noirmoutier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Noirmoutier_3.jpg"/><img alt="Noirmoutier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Noirmoutier_4.jpg"/><img alt="Noirmoutier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Noirmoutier_5.jpg"/><img alt="Noirmoutier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Noirmoutier_6.jpg"/><img alt="Noirmoutier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Noirmoutier_7.jpg"/><img alt="Noirmoutier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Noirmoutier_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>85 — Vendée</td></tr>
+<tr><td>Canton</td><td>Saint-Jean-de-Monts</td></tr>
+<tr><td>Commune</td><td>Noirmoutier-en-Ile</td></tr>
+<tr><td>Type d'édifice</td><td>Forteresse</td></tr>
+<tr><td>Période d'origine</td><td>IX-XIV-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>NOIRMOUTIER,   cité en 830 avec la construction d'un castrum par l'abbé Hilbold, du monastère de Saint-Philbert, pour défendre les moines et la population de l'île, contre les vikings.  L'île se retrouve alors sous la coupe des seigneurs de La Garnache qui firent construire le château qui sera détenu par la famille de la Trémoille, vicomte de Thouars. Le château  résistera à de nombreuses attaques : les Anglais en 1342 et en 1360 puis en 1386 sous les ordres du comte d'Arundel, les Espagnols en 1524 puis en 1588. Mais, en 1674, le château  sera pris par les troupes hollandaises de l'Amiral Tromp. En 1690, une maison fut construite dans l'enceinte du château pour le seigneur de La Paunière, gouverneur de l'île et du château. Il en fera sa demeure. Le château  fut vendu en 1720, à Louis IV Henri de Bourbon-Condé qui le revendra, en 1767, à Louis XV.  Durant la Révolution, le château servit de prison militaire :. En 1871, durant la Commune, des insurgés y furent emprisonnés.                                                                      PELAVE, Gérard Beaupère, propriétaire de lhôtel du Pélavé, vient de vendre son bien aux nouveaux propriétaires : la société Michel-Ange, de la famille Arthus-Bertrand, hôtel restaurant.                                                      ELBEE monsieur Sabry a voulu perpétuer le souvenir du Général d'Elbée,  y  sera incarcéré avant d'être fusillé sur la place d'arme par les troupes républicaines.</p>
-      <h4>Architecture</h4><p>NOIRMOUTIER;  sur le site dun castrum élevé au IXe siècle par les moines pour résister aux assauts normands sont bâtis au XIIe siècle un donjon et son enceinte quadrangulaire de 50x 100 m, fortifiée. lensemble de la structure garde une fonction militaire jusqu'à la Révolution, et sert ensuite de casernement pendant tout le XIXe siècle. Le château  est reconstruit en pierre au XIIe siècle par le pouvoir féodal qui essaie de stabiliser la région, en empêchant les pillages normands.  Lensemble de la structure garde une fonction militaire jusqu'à la Révolution, et sert ensuite de casernement pendant tout le XIXe siècle. Le donjon carré, fortifiée de 19x15,50, haut de 18 m, flanqué de tourelles dangle dont deux coiffées de toitures en poivrières et de contreforts hémicylindriques est de même type que dautres donjons de la région de même époque (Tiffauges, Pouzauges), louverture de baies géminées à décor trilobé et de fenêtres à meneaux dans les parties supérieures témoigne des réaménagements du XIVe siècle pour le confort de la résidence.  ce donjon  dans une enceinte rectangulaire entourés de hautes murailles pourvue de tours sera construite et entourera la basse-cour et abrite encore aujourd'hui le logis du seigneur de la Paunière gouverneur de l'ile et du château. Depuis 1993, le château  accueille dans ses murs et dans sa cour, le "Festival de Noirmoutier-en-l'Ile", organisé par le "Théâtre régional des Pays de la Loire".  Depuis 1905, il abrite un musée.</p>
-      <h4>Habitants / Familles</h4><p>Famille de la Trémoille
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Noirmoutier                     47° 00' 01" Nord et 2° 14' 33" Ouest   Grav 1 à 6 Elbée grav 7-8</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>NOIRMOUTIER,   cité en 830 avec la construction d'un castrum par l'abbé Hilbold, du monastère de Saint-Philbert, pour défendre les moines et la population de l'île, contre les vikings.  L'île se retrouve alors sous la coupe des seigneurs de La Garnache qui firent construire le château qui sera détenu par la famille de la Trémoille, vicomte de Thouars. Le château  résistera à de nombreuses attaques : les Anglais en 1342 et en 1360 puis en 1386 sous les ordres du comte d'Arundel, les Espagnols en 1524 puis en 1588. Mais, en 1674, le château  sera pris par les troupes hollandaises de l'Amiral Tromp. En 1690, une maison fut construite dans l'enceinte du château pour le seigneur de La Paunière, gouverneur de l'île et du château. Il en fera sa demeure. Le château  fut vendu en 1720, à Louis IV Henri de Bourbon-Condé qui le revendra, en 1767, à Louis XV.  Durant la Révolution, le château servit de prison militaire :. En 1871, durant la Commune, des insurgés y furent emprisonnés.                                                                      PELAVE, Gérard Beaupère, propriétaire de lhôtel du Pélavé, vient de vendre son bien aux nouveaux propriétaires : la société Michel-Ange, de la famille Arthus-Bertrand, hôtel restaurant.                                                      ELBEE monsieur Sabry a voulu perpétuer le souvenir du Général d'Elbée,  y  sera incarcéré avant d'être fusillé sur la place d'arme par les troupes républicaines.</p>
+<h4>Architecture</h4><p>NOIRMOUTIER;  sur le site dun castrum élevé au IXe siècle par les moines pour résister aux assauts normands sont bâtis au XIIe siècle un donjon et son enceinte quadrangulaire de 50x 100 m, fortifiée. lensemble de la structure garde une fonction militaire jusqu'à la Révolution, et sert ensuite de casernement pendant tout le XIXe siècle. Le château  est reconstruit en pierre au XIIe siècle par le pouvoir féodal qui essaie de stabiliser la région, en empêchant les pillages normands.  Lensemble de la structure garde une fonction militaire jusqu'à la Révolution, et sert ensuite de casernement pendant tout le XIXe siècle. Le donjon carré, fortifiée de 19x15,50, haut de 18 m, flanqué de tourelles dangle dont deux coiffées de toitures en poivrières et de contreforts hémicylindriques est de même type que dautres donjons de la région de même époque (Tiffauges, Pouzauges), louverture de baies géminées à décor trilobé et de fenêtres à meneaux dans les parties supérieures témoigne des réaménagements du XIVe siècle pour le confort de la résidence.  ce donjon  dans une enceinte rectangulaire entourés de hautes murailles pourvue de tours sera construite et entourera la basse-cour et abrite encore aujourd'hui le logis du seigneur de la Paunière gouverneur de l'ile et du château. Depuis 1993, le château  accueille dans ses murs et dans sa cour, le "Festival de Noirmoutier-en-l'Ile", organisé par le "Théâtre régional des Pays de la Loire".  Depuis 1905, il abrite un musée.</p>
+<h4>Habitants / Familles</h4><p>Famille de la Trémoille
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Noirmoutier                     47° 00' 01" Nord et 2° 14' 33" Ouest   Grav 1 à 6 Elbée grav 7-8</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

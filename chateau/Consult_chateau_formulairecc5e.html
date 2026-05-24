@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Rivière — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,55 +113,57 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_62.html">Pas-de-Calais</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_62.html">Pas-de-Calais</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_62.html" class="back-link">Retour au département 62 — Pas-de-Calais</a>
-  <div class="fiche">
-    <h2>Rivière</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>62 — Pas-de-Calais</td></tr>
-          <tr><td>Canton</td><td>Arras</td></tr>
-          <tr><td>Commune</td><td>Rivière</td></tr>
-          <tr><td>Type d'édifice</td><td>Châteaux</td></tr>
-          <tr><td>Période d'origine</td><td>XIV-XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_62/62_Rivi%c3%a8re_62_1.jpg" alt="Rivière" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Rivi%c3%a8re_62_2.jpg" alt="Rivière" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Rivi%c3%a8re_62_3.jpg" alt="Rivière" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Rivi%c3%a8re_62_4.jpg" alt="Rivière" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_62.html">Retour au département 62 — Pas-de-Calais</a>
+<div class="fiche">
+<h2>Rivière</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Rivière" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_62/62_Rivi%c3%a8re_62_1.jpg"/><div class="hero-count" id="hero-count">1 / 4</div></div><div class="photo-strip"><img alt="Rivière" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Rivi%c3%a8re_62_1.jpg"/><img alt="Rivière" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Rivi%c3%a8re_62_2.jpg"/><img alt="Rivière" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Rivi%c3%a8re_62_3.jpg"/><img alt="Rivière" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Rivi%c3%a8re_62_4.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>62 — Pas-de-Calais</td></tr>
+<tr><td>Canton</td><td>Arras</td></tr>
+<tr><td>Commune</td><td>Rivière</td></tr>
+<tr><td>Type d'édifice</td><td>Châteaux</td></tr>
+<tr><td>Période d'origine</td><td>XIV-XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Trois châteaux dans cet article, Bretencourt, Beaumetz-les-loges et Grosville. BRETENCOURT L'origine du hameau de Brétencourt est due à une ancienne forteresse construite sur les bords du Crinchon. Dès le XIe siècle, il est fait mention de Simon de Brétrancourt. Sous Philippe Auguste, le domaine passe au chevalier Wagon d'Arras dont le fils, en 1250, cède une portion de dîme pour aider à la construction d'une chapelle dédiée à St-Eloi. On trouve dans une requête adressée au magistrat d'Arras, datée de 1393, que le domaine appartient alors à Pierre de Saint-Pol. Sa fille apporte ce fief en dot à Herlin de Warluzel. Cette dernière famille conservera le domaine jusqu'àu XVIIe siècle, avant qu'il ne soit vendu à Philippe-François de Briois. Le château est flanqué d'une tourelle, seul vestige de l'ancien château-fort que l'on voit sur une miniature de 1605. Il fut partiellement démoli vers 1820 et remplacé par une simple demeure.                                                                                     A quelques K.M. au nord ouest, le château de BEAUMETZ LES LOGES  La seigneurie de Beaumetz appartenait, au XVIIIe siècle, à la famille Briois, durant 3 générations. La famille Briois fit construire, de 1760 à 1770, un nouveau château en pierre, composé d'un corps de logis central long de 7 travées, surmonté d'un haut comble à la Française, cantonné par 2 ailes longues, chacune de 3 travées et surmontées d'un comble mansardé. L'aspect de cet édifice, aujourd'hui, disparu, est connu par des cartes postales anciennes. Le château de Beaumetz fut transmit, par la famille Briois, au XVIIIe siècle, par alliances, aux familles Girod de Resnes, puis de Guillebon. À peu prés épargné par les combats de la première guerre mondiale, ce château brûla, accidentellement, en 1934. En 1936, il fut remplacé par un autre château, en brique et pierre, surmonté de combles entièrement mansardé.</p>
-      <h4>Architecture</h4><p>GROSVILLE  sur les caves d'un bâtiment construit en 1690 par son oncle François de la Charité, seigneur de Grosville, cette gentilhommière par le maître d'uvre André Merville de Maruil qui travaillait aux constructions d'Arras. La propriété fut acquise, en 1773 par Alphonse-Norbert Harduin, échevin d'Arras. Elle resta dans cette famille jusqu'en 1975, date de son achat par la famille de Diesbach. De longues prairies remontant en pente douce la rive gauche du Crinchon: telle est, maintenant que les obus de la guerre 1914-1918 ont ravagé les quatre rangées d'ormes, la perspective offerte aux habitants de la demeure. Ils découvrent l'édifice dans l'encadrement d'un portail monumental en pierre dont le fronton triangulaire surbaissé est orné de rinceaux entourant un cartouche bûché. De part et d'autre de ce portail, un haut mur caché par des arbres taillés. A droite et à gauche de la cour, les communs. Dans le fond, le château, composé d'un corps principal et de deux ailes en retour, au rez-de-chaussée et un étage. Le raccord biaisé des bâtiments, la saillie de l'avant-corps central, couronné d'un fronton triangulaire, le décrochement des annexes donnent vie à cet agréable ensemble. La belle impression d'unité qui s'en dégage est à peine atténuée par la coloration différente des matériaux utilisés, on a employé la brique pour les communs et qu'on l'a associée à la pierre pour le corps principal. Au-dessus de la porte, un fronton triangulaire portait les armoiries de la famille Lhoste.<br>Éléments protégés MH : les açades et les toitures du château ainsi que celles des communs (y compris le pigeonnier) ; le portail d'entrée : inscription par arrêté du 25 avril 1975.</p>
-      <h4>Habitants / Familles</h4><p>Bretencourt; Famille de Herlin de Warluzel.       Beaumetz ;  Famille Briois,                                  Grosville;  Alphonse-Norbert Harduin"</p>
-      <h4>Divers</h4><p>Trois châteaux dans cet article de Rivière; Bretencourt, Beaumetz les loges grav-4 et Grosville grav 1-2-3                                                Rivière   gps 50° 14' 00? nord, 2° 41' 25? est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Trois châteaux dans cet article, Bretencourt, Beaumetz-les-loges et Grosville. BRETENCOURT L'origine du hameau de Brétencourt est due à une ancienne forteresse construite sur les bords du Crinchon. Dès le XIe siècle, il est fait mention de Simon de Brétrancourt. Sous Philippe Auguste, le domaine passe au chevalier Wagon d'Arras dont le fils, en 1250, cède une portion de dîme pour aider à la construction d'une chapelle dédiée à St-Eloi. On trouve dans une requête adressée au magistrat d'Arras, datée de 1393, que le domaine appartient alors à Pierre de Saint-Pol. Sa fille apporte ce fief en dot à Herlin de Warluzel. Cette dernière famille conservera le domaine jusqu'àu XVIIe siècle, avant qu'il ne soit vendu à Philippe-François de Briois. Le château est flanqué d'une tourelle, seul vestige de l'ancien château-fort que l'on voit sur une miniature de 1605. Il fut partiellement démoli vers 1820 et remplacé par une simple demeure.                                                                                     A quelques K.M. au nord ouest, le château de BEAUMETZ LES LOGES  La seigneurie de Beaumetz appartenait, au XVIIIe siècle, à la famille Briois, durant 3 générations. La famille Briois fit construire, de 1760 à 1770, un nouveau château en pierre, composé d'un corps de logis central long de 7 travées, surmonté d'un haut comble à la Française, cantonné par 2 ailes longues, chacune de 3 travées et surmontées d'un comble mansardé. L'aspect de cet édifice, aujourd'hui, disparu, est connu par des cartes postales anciennes. Le château de Beaumetz fut transmit, par la famille Briois, au XVIIIe siècle, par alliances, aux familles Girod de Resnes, puis de Guillebon. À peu prés épargné par les combats de la première guerre mondiale, ce château brûla, accidentellement, en 1934. En 1936, il fut remplacé par un autre château, en brique et pierre, surmonté de combles entièrement mansardé.</p>
+<h4>Architecture</h4><p>GROSVILLE  sur les caves d'un bâtiment construit en 1690 par son oncle François de la Charité, seigneur de Grosville, cette gentilhommière par le maître d'uvre André Merville de Maruil qui travaillait aux constructions d'Arras. La propriété fut acquise, en 1773 par Alphonse-Norbert Harduin, échevin d'Arras. Elle resta dans cette famille jusqu'en 1975, date de son achat par la famille de Diesbach. De longues prairies remontant en pente douce la rive gauche du Crinchon: telle est, maintenant que les obus de la guerre 1914-1918 ont ravagé les quatre rangées d'ormes, la perspective offerte aux habitants de la demeure. Ils découvrent l'édifice dans l'encadrement d'un portail monumental en pierre dont le fronton triangulaire surbaissé est orné de rinceaux entourant un cartouche bûché. De part et d'autre de ce portail, un haut mur caché par des arbres taillés. A droite et à gauche de la cour, les communs. Dans le fond, le château, composé d'un corps principal et de deux ailes en retour, au rez-de-chaussée et un étage. Le raccord biaisé des bâtiments, la saillie de l'avant-corps central, couronné d'un fronton triangulaire, le décrochement des annexes donnent vie à cet agréable ensemble. La belle impression d'unité qui s'en dégage est à peine atténuée par la coloration différente des matériaux utilisés, on a employé la brique pour les communs et qu'on l'a associée à la pierre pour le corps principal. Au-dessus de la porte, un fronton triangulaire portait les armoiries de la famille Lhoste.<br/>Éléments protégés MH : les açades et les toitures du château ainsi que celles des communs (y compris le pigeonnier) ; le portail d'entrée : inscription par arrêté du 25 avril 1975.</p>
+<h4>Habitants / Familles</h4><p>Bretencourt; Famille de Herlin de Warluzel.       Beaumetz ;  Famille Briois,                                  Grosville;  Alphonse-Norbert Harduin"</p>
+<h4>Divers</h4><p>Trois châteaux dans cet article de Rivière; Bretencourt, Beaumetz les loges grav-4 et Grosville grav 1-2-3                                                Rivière   gps 50° 14' 00? nord, 2° 41' 25? est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

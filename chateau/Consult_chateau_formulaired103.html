@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Pressy_sous_Dondin — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,63 +113,63 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_71.html">Saône-et-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_71.html">Saône-et-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_71.html" class="back-link">Retour au département 71 — Saône-et-Loire</a>
-  <div class="fiche">
-    <h2>Pressy_sous_Dondin</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>71 — Saône-et-Loire</td></tr>
-          <tr><td>Canton</td><td>St-Bonnet-de-Joux</td></tr>
-          <tr><td>Commune</td><td>Pressy-sous-Dondin</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_71/71_Pressy_Dondin_1.jpg" alt="Pressy_sous_Dondin" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Pressy_Dondin_2.jpg" alt="Pressy_sous_Dondin" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Pressy_Dondin_3.jpg" alt="Pressy_sous_Dondin" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Pressy_Dondin_4.jpg" alt="Pressy_sous_Dondin" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Pressy_Dondin_5.jpg" alt="Pressy_sous_Dondin" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Pressy_Dondin_6.jpg" alt="Pressy_sous_Dondin" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Pressy_Dondin_7.jpg" alt="Pressy_sous_Dondin" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_71.html">Retour au département 71 — Saône-et-Loire</a>
+<div class="fiche">
+<h2>Pressy_sous_Dondin</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Pressy_sous_Dondin" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_71/71_Pressy_Dondin_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Pressy_sous_Dondin" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Pressy_Dondin_1.jpg"/><img alt="Pressy_sous_Dondin" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Pressy_Dondin_2.jpg"/><img alt="Pressy_sous_Dondin" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Pressy_Dondin_3.jpg"/><img alt="Pressy_sous_Dondin" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Pressy_Dondin_4.jpg"/><img alt="Pressy_sous_Dondin" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Pressy_Dondin_5.jpg"/><img alt="Pressy_sous_Dondin" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Pressy_Dondin_6.jpg"/><img alt="Pressy_sous_Dondin" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Pressy_Dondin_7.jpg"/></div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>71 — Saône-et-Loire</td></tr>
+<tr><td>Canton</td><td>St-Bonnet-de-Joux</td></tr>
+<tr><td>Commune</td><td>Pressy-sous-Dondin</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>PRESSY sous Dondin, Dondin  aujourd'hui en ruines, Il fut construit au XIIe siècle, au sommet dun vallon dominant la Gande, ce devait être une forteresse imposante, elle fut en partie détruite, et certainement utilisé comme carrière de pierres par les habitants. 
-<br>Pressy, était la propriété  du comte de Châtenet de Puységur ancien officier des dragons, la maison des châtenet de Puységur  originaire de L'Armagnac, compte parmi les plus anciennes  et les plus respectés de cette province, lactuel château de Pressy est très récent, mais il est le résultat dun agrandissement fait par Max de Longueville en 1871 et non dune reconstruction, le château nayant jamais été détruit et démantelé. Les seigneurs de Pressy,  Anthoine de Drompvent et en 1859, et Max de Longeville.         Marchizeuil,  situé légèrement à lécart du hameau de Marchizeuil, il fut saccagé et démantelé à de nombreuses reprises jusquau XVIIIe siècle, ce devait être une construction assez importante, avec douves et fortifications, il fut de nouveau bâti en 1751 par Jean-François de Montel de Buxy qui  fit combler les fossés.
-<br>Château dit le" Tinailler du Château",  lactuel tinailler  fut construit en 1679, avec les deniers personnels de Nicole de la Souche, la jeune épouse du seigneur de Pressy Hugues de Collonge, il remplaça le précédent « construit en terre » qui venait dêtre emporté par un violent orage, il comporte une cave au rez-de-chaussée et un cuvage à létage, la vieille chapelle, le domaine des Henrys, l'église, en 1972, fut tourné au domaine des Henrys le film réalisé par Henri Graziani « Poil de Carotte », avec Philippe Noiret et Monique Chaumette.                                                                   Un autre château dans la commune dit de Truchot.</p>
-      <h4>Architecture</h4><p>A l'écart des grands axes de circulation, la commune de Pressy-sous-Dondin marque le passage entre le Charolais et le Clunisois, la petite vallée de la Gande marquant la frontière. 
-<br>Si l'architecture Clunisoise reste omniprésente, avec ses maisons à galerie et pigeonnier carré, la pierre jaune a disparu pour être remplacée par le granit gris. Il n'existe pas de bourg à proprement parler, mais la partie centrale du village qui regroupe la mairie, le château et l'église se divise en deux sections très anciennes, dont on retrouve trace déjà au XVème siècle, le bas de Pressy et le haut de Pressy, auxquelles se greffent les deux hameaux des Thévenins et des Copets. 
-<br>Les principaux monuments à voir à Pressy sont, le château de Dondin,  de Marchizeuil,  de Pressy,  le château primitif était constitué dun quadrilatère denviron 100 mètres de côté, entouré de douves et formé par des bâtiments dexploitation reliés à lhabitation de taille modeste, puisquelle ne comportait quune quinzaine de pièces.                                                                 Le Tinailler du château. Le domaine des Henrys, le long de la route menant de Pressy-sous-Dondin à Marchizeuil, se trouve un élégant domaine qui semble dater du XIX siècle, lensemble des bâtiments forme un quadrilatère fermé, le logis étant surélevé et ne comportant quun étage, côté cour, laccès se fait par un large escalier en pierre, et côté jardin, le logis souvre sur le vallon formé par le ruisseau de Pressy-sous-Dondin.</p>
-      <h4>Habitants / Familles</h4><p>Comte de Châtenet de Puységur
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Pressy, de Dondin, de Marchizeuil, de Truchot, la Chapelle et la Tour</p>
-    </div>
-  </div>
+
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>PRESSY sous Dondin, Dondin  aujourd'hui en ruines, Il fut construit au XIIe siècle, au sommet dun vallon dominant la Gande, ce devait être une forteresse imposante, elle fut en partie détruite, et certainement utilisé comme carrière de pierres par les habitants. 
+<br/>Pressy, était la propriété  du comte de Châtenet de Puységur ancien officier des dragons, la maison des châtenet de Puységur  originaire de L'Armagnac, compte parmi les plus anciennes  et les plus respectés de cette province, lactuel château de Pressy est très récent, mais il est le résultat dun agrandissement fait par Max de Longueville en 1871 et non dune reconstruction, le château nayant jamais été détruit et démantelé. Les seigneurs de Pressy,  Anthoine de Drompvent et en 1859, et Max de Longeville.         Marchizeuil,  situé légèrement à lécart du hameau de Marchizeuil, il fut saccagé et démantelé à de nombreuses reprises jusquau XVIIIe siècle, ce devait être une construction assez importante, avec douves et fortifications, il fut de nouveau bâti en 1751 par Jean-François de Montel de Buxy qui  fit combler les fossés.
+<br/>Château dit le" Tinailler du Château",  lactuel tinailler  fut construit en 1679, avec les deniers personnels de Nicole de la Souche, la jeune épouse du seigneur de Pressy Hugues de Collonge, il remplaça le précédent « construit en terre » qui venait dêtre emporté par un violent orage, il comporte une cave au rez-de-chaussée et un cuvage à létage, la vieille chapelle, le domaine des Henrys, l'église, en 1972, fut tourné au domaine des Henrys le film réalisé par Henri Graziani « Poil de Carotte », avec Philippe Noiret et Monique Chaumette.                                                                   Un autre château dans la commune dit de Truchot.</p>
+<h4>Architecture</h4><p>A l'écart des grands axes de circulation, la commune de Pressy-sous-Dondin marque le passage entre le Charolais et le Clunisois, la petite vallée de la Gande marquant la frontière. 
+<br/>Si l'architecture Clunisoise reste omniprésente, avec ses maisons à galerie et pigeonnier carré, la pierre jaune a disparu pour être remplacée par le granit gris. Il n'existe pas de bourg à proprement parler, mais la partie centrale du village qui regroupe la mairie, le château et l'église se divise en deux sections très anciennes, dont on retrouve trace déjà au XVème siècle, le bas de Pressy et le haut de Pressy, auxquelles se greffent les deux hameaux des Thévenins et des Copets. 
+<br/>Les principaux monuments à voir à Pressy sont, le château de Dondin,  de Marchizeuil,  de Pressy,  le château primitif était constitué dun quadrilatère denviron 100 mètres de côté, entouré de douves et formé par des bâtiments dexploitation reliés à lhabitation de taille modeste, puisquelle ne comportait quune quinzaine de pièces.                                                                 Le Tinailler du château. Le domaine des Henrys, le long de la route menant de Pressy-sous-Dondin à Marchizeuil, se trouve un élégant domaine qui semble dater du XIX siècle, lensemble des bâtiments forme un quadrilatère fermé, le logis étant surélevé et ne comportant quun étage, côté cour, laccès se fait par un large escalier en pierre, et côté jardin, le logis souvre sur le vallon formé par le ruisseau de Pressy-sous-Dondin.</p>
+<h4>Habitants / Familles</h4><p>Comte de Châtenet de Puységur
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Pressy, de Dondin, de Marchizeuil, de Truchot, la Chapelle et la Tour</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Bienfaite — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,55 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_14.html">Calvados</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_14.html">Calvados</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_14.html" class="back-link">Retour au département 14 — Calvados</a>
-  <div class="fiche">
-    <h2>Bienfaite</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>14 — Calvados</td></tr>
-          <tr><td>Canton</td><td>Livarot</td></tr>
-          <tr><td>Commune</td><td>Saint-Martin-de-Bienfaite-</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>49° 02' 43" Nord, 0° 21' 44" Est</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_14/14_Bienfaite_1.jpg" alt="Bienfaite" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_14/14_Bienfaite_2.jpg" alt="Bienfaite" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_14/14_Bienfaite_3.jpg" alt="Bienfaite" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_14.html">Retour au département 14 — Calvados</a>
+<div class="fiche">
+<h2>Bienfaite</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Bienfaite" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_14/14_Bienfaite_1.jpg"/><div class="hero-count" id="hero-count">1 / 3</div></div><div class="photo-strip"><img alt="Bienfaite" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Bienfaite_1.jpg"/><img alt="Bienfaite" class="" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Bienfaite_2.jpg"/><img alt="Bienfaite" class="" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Bienfaite_3.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>14 — Calvados</td></tr>
+<tr><td>Canton</td><td>Livarot</td></tr>
+<tr><td>Commune</td><td>Saint-Martin-de-Bienfaite-</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVII</td></tr>
+<tr><td>Coordonnées GPS</td><td>49° 02' 43" Nord, 0° 21' 44" Est</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>BIENFAITE, la maison de Bienfaite remonte  à lan mil, aux temps des premiers ducs de Normandie. Une antique motte féodale, dressée sur un éperon naturel, veille alors sur la vallée de lOrbiquet. Les seigneurs de Bienfaite bâtissent une demeure médiévale non loin delle, près du ruisseau de la Cressonière, abandonnée à la Révolution, la propriété est rachetée au Chaumont-Quitry par le comte de Noinville en 1840. Il aménage les abords et crée un parc à langlaise comme un écrin autour du château. Le ruisseau de la Cressonnière, qui coule à quelques mètres, reflète limage de la demeure. A la fin du XIXe siècle une aile de style Renaissance est accolée au nord du bâtiment. Le château et son parc sont classés parmi les sites en août 1943. Comme bien dautres sites protégés à cette époque, le classement correspond à la volonté de ladministration des beaux-Arts de préserver les magnifiques plantations de "leffort de guerre" : bois duvre ou de chauffage.</p>
-      <h4>Architecture</h4><p>BiIENFAITE,  ce premier château est démantelé au XVe siècle  est remplacé par une nouvelle construction, remaniée au XVIIe siècle. Coiffé de toitures à la Mansart, le château présente une façade classique de pierres de taille et de briques. Seule une tour du XVe siècle subsiste à lextrémité sud,  le château de Bienfaite, entouré de grands arbres, est blotti en fond de vallée entre léglise et le village. Sur le versant orienté plein ouest, lensemble compose un charmant tableau parmi les collines rondes et verdoyantes aux sommets couronnés de bois. Devant la façade ouest, une large échancrure  du ruisseau ménage des vues sur les prairies de fond de vallée et les champs cultivés qui occupent le bas des pentes. A lest, le parc est longé par un mur en argile à silex chaîné et couronné de briques, à lintérieur des communs sy appuient. Le portail dentrée, massive ferronnerie du XIXe siècle, souvre entre deux piliers de pierres calcaires en bossage alternées de briques. Depuis 1850 le parc et le château ne semblent pas avoir beaucoup changés. Lentretien du domaine est effectué sans excès et les magnifiques arbres ombragent toujours la propriété. Seuls les massifs floraux du comte de Noinville qui ornaient la façade dentrée ont été remplacés par une pelouse circulaire bordée dallées.</p>
-      <h4>Habitants / Familles</h4><p>Famille ; Chaumont-Quitry 
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Bienfaite grav 1-2-3  GPS : 49° 02' 43" Nord, 0° 21' 44" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>BIENFAITE, la maison de Bienfaite remonte  à lan mil, aux temps des premiers ducs de Normandie. Une antique motte féodale, dressée sur un éperon naturel, veille alors sur la vallée de lOrbiquet. Les seigneurs de Bienfaite bâtissent une demeure médiévale non loin delle, près du ruisseau de la Cressonière, abandonnée à la Révolution, la propriété est rachetée au Chaumont-Quitry par le comte de Noinville en 1840. Il aménage les abords et crée un parc à langlaise comme un écrin autour du château. Le ruisseau de la Cressonnière, qui coule à quelques mètres, reflète limage de la demeure. A la fin du XIXe siècle une aile de style Renaissance est accolée au nord du bâtiment. Le château et son parc sont classés parmi les sites en août 1943. Comme bien dautres sites protégés à cette époque, le classement correspond à la volonté de ladministration des beaux-Arts de préserver les magnifiques plantations de "leffort de guerre" : bois duvre ou de chauffage.</p>
+<h4>Architecture</h4><p>BiIENFAITE,  ce premier château est démantelé au XVe siècle  est remplacé par une nouvelle construction, remaniée au XVIIe siècle. Coiffé de toitures à la Mansart, le château présente une façade classique de pierres de taille et de briques. Seule une tour du XVe siècle subsiste à lextrémité sud,  le château de Bienfaite, entouré de grands arbres, est blotti en fond de vallée entre léglise et le village. Sur le versant orienté plein ouest, lensemble compose un charmant tableau parmi les collines rondes et verdoyantes aux sommets couronnés de bois. Devant la façade ouest, une large échancrure  du ruisseau ménage des vues sur les prairies de fond de vallée et les champs cultivés qui occupent le bas des pentes. A lest, le parc est longé par un mur en argile à silex chaîné et couronné de briques, à lintérieur des communs sy appuient. Le portail dentrée, massive ferronnerie du XIXe siècle, souvre entre deux piliers de pierres calcaires en bossage alternées de briques. Depuis 1850 le parc et le château ne semblent pas avoir beaucoup changés. Lentretien du domaine est effectué sans excès et les magnifiques arbres ombragent toujours la propriété. Seuls les massifs floraux du comte de Noinville qui ornaient la façade dentrée ont été remplacés par une pelouse circulaire bordée dallées.</p>
+<h4>Habitants / Familles</h4><p>Famille ; Chaumont-Quitry 
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Bienfaite grav 1-2-3  GPS : 49° 02' 43" Nord, 0° 21' 44" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

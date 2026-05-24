@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Sommieres — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,62 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_30.html">Gard</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_30.html">Gard</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_30.html" class="back-link">Retour au département 30 — Gard</a>
-  <div class="fiche">
-    <h2>Sommieres</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>30 — Gard</td></tr>
-          <tr><td>Canton</td><td>Calvisson</td></tr>
-          <tr><td>Commune</td><td>Sommières</td></tr>
-          <tr><td>Type d'édifice</td><td>Château fort</td></tr>
-          <tr><td>Période d'origine</td><td>XVII-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_30/30_Sommieres_1.jpg" alt="Sommieres" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_Sommieres_2.jpg" alt="Sommieres" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_Sommieres_3.jpg" alt="Sommieres" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_Sommieres_4.jpg" alt="Sommieres" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_Sommieres_5.jpg" alt="Sommieres" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_Sommieres_6.jpg" alt="Sommieres" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_Sommieres_7.jpg" alt="Sommieres" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_Sommieres_8.jpg" alt="Sommieres" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_Sommieres_9.jpg" alt="Sommieres" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_30.html">Retour au département 30 — Gard</a>
+<div class="fiche">
+<h2>Sommieres</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Sommieres" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_30/30_Sommieres_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Sommieres" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Sommieres_1.jpg"/><img alt="Sommieres" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Sommieres_2.jpg"/><img alt="Sommieres" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Sommieres_3.jpg"/><img alt="Sommieres" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Sommieres_4.jpg"/><img alt="Sommieres" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Sommieres_5.jpg"/><img alt="Sommieres" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Sommieres_6.jpg"/><img alt="Sommieres" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Sommieres_7.jpg"/><img alt="Sommieres" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Sommieres_8.jpg"/><img alt="Sommieres" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Sommieres_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>30 — Gard</td></tr>
+<tr><td>Canton</td><td>Calvisson</td></tr>
+<tr><td>Commune</td><td>Sommières</td></tr>
+<tr><td>Type d'édifice</td><td>Château fort</td></tr>
+<tr><td>Période d'origine</td><td>XVII-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Plusieurs châteaux à Sommières dont celui de Sommières du Xe siècle,  de Lantillac du XIXe siècle, pas d'informations sinon du XIXe siècle, de Puech-Bouquet du XVIIe siècle, de Costes-Cirgues du XIXe siècle, de Massereau, d'Aujargues (chambres d'hôtes).                                 SOMMIERES, les origines de la ville sont liés à cette époque des premiers seigneurs les Bermond d'Anduze et les de Sauve, le seigneur  Bernard III d'Anduze fit construire  le château dans  la seconde moitié du Xe siècle, fiefs principaux de la maison des Princes d'Anduze, Satrapes de Sauve, et de leurs cousins les Roquefeuil-Anduze. Ces deux familles seigneuriales, de grande importance régionale, y battaient monnaie, dans un des ateliers de la ville, entre les années 1220-1266.  La tour actuelle, appelée tour Bermonde, date des années 1160-1180, en 1248 incorporé au domaine royal mais subit de nombreux assauts pendant les guerres des albigeois. Après la révocation de l'édit de Nantes, le château fut transformé en prison, après la Révolution le château servit de carrière et la tour restée intact  appartient depuis 1809 à la commune.                                                                                    PUECH-BOUQUET, la construction de l'édifice pourrait remonter en 1606. Il fut acheté en 1704 par le seigneur Jean-Joseph dAlbenas à qui les Huguenots avaient détruit le château. Par succession, ce domaine devient la propriété de son petit-fils François-Alexandrin dAlbenas qui le transmet lui aussi par succession à son fils Jean-Joseph dAlbenas. Le 31 mai 1810  Jean-Joseph dAlbenas, vend le domaine appelé Pied Bouquet à Jérôme-Etienne Aubanel, négociant. Après différents travaux de rénovation et dagrandissement de la propriété, le sieur Aubanel vend le 1er novembre 1814 ce domaine à Guillaume Cazaly, natif français, négociant demeurant à Londres. Le domaine reste dans la famille Cazaly jusquen décembre 1859 date de la vente du domaine de Pié Bouquet à la comtesse de Noailles. En 1955, le château et 50 ha de bois attenant furent vendus à M. Jacques Lafont; il en est toujours propriétaire. 
-<br>COSTES-CIRGUES, aujourd'hui exploitation viticole de Béatrice Althoff et son fils David.                                                                  MASSEREAU, camping de luxe, il est le premier établissement d'hôtellerie de plein air à obtenir la 5e étoile en 2010.</p>
-      <h4>Architecture</h4><p>Sommières, le premier château remonterait au IXe siècle, la seconde tour est construite sous Louis IX puis le château sétend vers le Nord sur un rocher dominant la ville. Elle est alors entourée de remparts qui offrent une protection contre les Vidourlades ainsi quun système de défense. Après la Révolution une évolution nette se fait jour avec la vente et le démantèlement des remparts, le comblement des fossés. Aujourdhui Sommières sétend des deux côtés du fleuve avec un urbanisme plus diffus en rive droite qui sest développé dans la seconde moitié du XXe siècle,  Bermond forteresse du Xe ou XIe siècle. Le château comprenait deux tours, la deuxième, dite la tour Montlaur semblable à celle qui reste, a été détruite lors du premier siège de la ville en 1573. L'importance stratégique du château provenait de sa situation dominant le pont romain, seul point de passage sur Vidourle entre les Cévennes et la mer. La tour Bermond  haute de 25 mètres reste le grand témoin du passé.                                                                                          Costes-Cirgues dit autrefois mas de Fine; bien caché dans la végétation, remanié au début du XXe siècle dans le style belle époque, toiture conique pointue couverte d'ardoises de la tour de l'horloge avec cadran en façade, présence, à côté, sur une terrasse, d'un campanile en fer forgé.                                                 Lantillac, au quartier de Calès, petit château du milieu du XIXe siècle, juché sur la colline surplombant la ville et les ruines du château médiéval dont la tour Bermond ou Carrée. Deux petites tours rondes, à l'origine couvertes de toitures coniques, encadrent sa façade.                                                                                  Massereau, plus ancien, il possède également une tour d'angle comportant encore une fois une ancienne horloge. Cette tour ronde est coiffée d'un dôme de pierre surmonté d'un petit campanile très sobre composé de quatre arceaux de fer supportant un timbre hémisphérique pour sonner les heures.</p>
-      <h4>Habitants / Familles</h4><p>Seigneur  Bernard III d'Anduze                                                               Seigneur Jean-Joseph dAlbenas
-<br>        "</p>
-      <h4>Divers</h4><p>La tour de Sommières; le château d'Estelou, de Costes-Cirgues et de Lantillac.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Plusieurs châteaux à Sommières dont celui de Sommières du Xe siècle,  de Lantillac du XIXe siècle, pas d'informations sinon du XIXe siècle, de Puech-Bouquet du XVIIe siècle, de Costes-Cirgues du XIXe siècle, de Massereau, d'Aujargues (chambres d'hôtes).                                 SOMMIERES, les origines de la ville sont liés à cette époque des premiers seigneurs les Bermond d'Anduze et les de Sauve, le seigneur  Bernard III d'Anduze fit construire  le château dans  la seconde moitié du Xe siècle, fiefs principaux de la maison des Princes d'Anduze, Satrapes de Sauve, et de leurs cousins les Roquefeuil-Anduze. Ces deux familles seigneuriales, de grande importance régionale, y battaient monnaie, dans un des ateliers de la ville, entre les années 1220-1266.  La tour actuelle, appelée tour Bermonde, date des années 1160-1180, en 1248 incorporé au domaine royal mais subit de nombreux assauts pendant les guerres des albigeois. Après la révocation de l'édit de Nantes, le château fut transformé en prison, après la Révolution le château servit de carrière et la tour restée intact  appartient depuis 1809 à la commune.                                                                                    PUECH-BOUQUET, la construction de l'édifice pourrait remonter en 1606. Il fut acheté en 1704 par le seigneur Jean-Joseph dAlbenas à qui les Huguenots avaient détruit le château. Par succession, ce domaine devient la propriété de son petit-fils François-Alexandrin dAlbenas qui le transmet lui aussi par succession à son fils Jean-Joseph dAlbenas. Le 31 mai 1810  Jean-Joseph dAlbenas, vend le domaine appelé Pied Bouquet à Jérôme-Etienne Aubanel, négociant. Après différents travaux de rénovation et dagrandissement de la propriété, le sieur Aubanel vend le 1er novembre 1814 ce domaine à Guillaume Cazaly, natif français, négociant demeurant à Londres. Le domaine reste dans la famille Cazaly jusquen décembre 1859 date de la vente du domaine de Pié Bouquet à la comtesse de Noailles. En 1955, le château et 50 ha de bois attenant furent vendus à M. Jacques Lafont; il en est toujours propriétaire. 
+<br/>COSTES-CIRGUES, aujourd'hui exploitation viticole de Béatrice Althoff et son fils David.                                                                  MASSEREAU, camping de luxe, il est le premier établissement d'hôtellerie de plein air à obtenir la 5e étoile en 2010.</p>
+<h4>Architecture</h4><p>Sommières, le premier château remonterait au IXe siècle, la seconde tour est construite sous Louis IX puis le château sétend vers le Nord sur un rocher dominant la ville. Elle est alors entourée de remparts qui offrent une protection contre les Vidourlades ainsi quun système de défense. Après la Révolution une évolution nette se fait jour avec la vente et le démantèlement des remparts, le comblement des fossés. Aujourdhui Sommières sétend des deux côtés du fleuve avec un urbanisme plus diffus en rive droite qui sest développé dans la seconde moitié du XXe siècle,  Bermond forteresse du Xe ou XIe siècle. Le château comprenait deux tours, la deuxième, dite la tour Montlaur semblable à celle qui reste, a été détruite lors du premier siège de la ville en 1573. L'importance stratégique du château provenait de sa situation dominant le pont romain, seul point de passage sur Vidourle entre les Cévennes et la mer. La tour Bermond  haute de 25 mètres reste le grand témoin du passé.                                                                                          Costes-Cirgues dit autrefois mas de Fine; bien caché dans la végétation, remanié au début du XXe siècle dans le style belle époque, toiture conique pointue couverte d'ardoises de la tour de l'horloge avec cadran en façade, présence, à côté, sur une terrasse, d'un campanile en fer forgé.                                                 Lantillac, au quartier de Calès, petit château du milieu du XIXe siècle, juché sur la colline surplombant la ville et les ruines du château médiéval dont la tour Bermond ou Carrée. Deux petites tours rondes, à l'origine couvertes de toitures coniques, encadrent sa façade.                                                                                  Massereau, plus ancien, il possède également une tour d'angle comportant encore une fois une ancienne horloge. Cette tour ronde est coiffée d'un dôme de pierre surmonté d'un petit campanile très sobre composé de quatre arceaux de fer supportant un timbre hémisphérique pour sonner les heures.</p>
+<h4>Habitants / Familles</h4><p>Seigneur  Bernard III d'Anduze                                                               Seigneur Jean-Joseph dAlbenas
+<br/>        "</p>
+<h4>Divers</h4><p>La tour de Sommières; le château d'Estelou, de Costes-Cirgues et de Lantillac.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

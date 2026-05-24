@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Bagnols_Ceze — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,61 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_30.html">Gard</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_30.html">Gard</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_30.html" class="back-link">Retour au département 30 — Gard</a>
-  <div class="fiche">
-    <h2>Bagnols_Ceze</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>30 — Gard</td></tr>
-          <tr><td>Canton</td><td>Bagnols sur Cèze</td></tr>
-          <tr><td>Commune</td><td>Bagnols-sur-Cèze</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_30/30_Bagnols_Ceze_1.jpg" alt="Bagnols_Ceze" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_Bagnols_Ceze_2.jpg" alt="Bagnols_Ceze" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_Bagnols_Ceze_3.jpg" alt="Bagnols_Ceze" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_Bagnols_Ceze_4.jpg" alt="Bagnols_Ceze" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_Bagnols_Ceze_5.jpg" alt="Bagnols_Ceze" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_Bagnols_Ceze_6.jpg" alt="Bagnols_Ceze" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_Bagnols_Ceze_7.jpg" alt="Bagnols_Ceze" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_Bagnols_Ceze_8.jpg" alt="Bagnols_Ceze" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_30.html">Retour au département 30 — Gard</a>
+<div class="fiche">
+<h2>Bagnols_Ceze</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Bagnols_Ceze" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_30/30_Bagnols_Ceze_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Bagnols_Ceze" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Bagnols_Ceze_1.jpg"/><img alt="Bagnols_Ceze" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Bagnols_Ceze_2.jpg"/><img alt="Bagnols_Ceze" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Bagnols_Ceze_3.jpg"/><img alt="Bagnols_Ceze" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Bagnols_Ceze_4.jpg"/><img alt="Bagnols_Ceze" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Bagnols_Ceze_5.jpg"/><img alt="Bagnols_Ceze" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Bagnols_Ceze_6.jpg"/><img alt="Bagnols_Ceze" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Bagnols_Ceze_7.jpg"/><img alt="Bagnols_Ceze" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Bagnols_Ceze_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>30 — Gard</td></tr>
+<tr><td>Canton</td><td>Bagnols sur Cèze</td></tr>
+<tr><td>Commune</td><td>Bagnols-sur-Cèze</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Trois châteaux à Bagnols-sur-Cèze, le château du Val-de-Cèze du XVIIe siècle, le manoir de Maransan du XV-XVIe siècles, et le château de Paniscoule. Pas d'information historiques sur ces deux derniers.                                                                                  BAGNOLS-sur-Cèze,  en 1631, le duc de Montmorency, gouverneur du Languedoc et seigneur de Bagnols se révolte contre Louis XIII. Il est battu, condamné et exécuté. En signe de représailles, le Roi ordonne la démolition du château et des murailles de la ville, reconstruite au XVIIIe siècle pour se défendre d'éventuels assauts des Camisards.                                      MARANSAN, au XVIe siècle Guillaume de Joyeuse, abbé des Chambons, au XVIII siècle, Monseigneur de Belzunce, évêque de Marseille et abbé de Chambons. Aujourd'hui propriété  de monsieur  Broche qui le restaure.                                                          PANISCOULE;   situé aux abords du château du VAL de CEZE.  Ces deux châteaux font partie de la même famille. En 1623, création de la gentilhommière raccrochée au château de Paniscoule, par un membre de la famille de Castries. En  1900, la comtesse de Castries meurt dans son château à Gaujac. Le château du Val de Cèze est alors vendu à Abel Sautel et son épouse qui en font une résidence dété. En 1930, leur fille se marie avec Paul Clap, chasseur alpin et plus tard apiculteur de Bagnols sur Cèze. En 1936, le jeune couple cède le domaine à leur voisine Jacqueline André-Thome. Sa fille Eléonore Patenôte épouse le baron Sapion du Roure de Beaujeu et en 1969 les descendants de Joseph Thome quittent le berceau familial. Seule Georgette Thome demeure au château. Le 7 Août François Brahin le transforme en hôtel et le rebaptise "Ventadous", propriété de  monsieur Ali Garsallah, du XVIIe siècle transformé en hôtel restaurant, est implanté au sein de l'ancien repère de chasse du seigneur du château de Paniscoule.</p>
-      <h4>Architecture</h4><p>Bagnols sur Céze, la mairie est situé dans un château.                          Château de Maransan, corps de logis central au nord à trois niveaux deux ailes en retour formant une cour autrefois fermé par un mur  crénelé et portail. Dans l'angle intérieur une tour octogonal  de quatre étages pour  escalier à vis de style Renaissance, ce château resté longtemps à l'abandon, fut transformé en exploitation agricole.     Val de Cèze du XVIIe siècle  est implanté au sein de l'ancien repère de chasse,  quadrilatère à deux niveaux flanqué de tours à trois niveaux carrées  en angles, toitures à balustrades,  créneaux sur façade avec pavillon saillant plein cintre crénelé, fenêtres à meneaux, le château du Val de Cèze porte la trace de nombreux siècles qui ont transformé sa construction primitive. 
-<br>Paniscoule; du XIXe siècle, corps de logis rectangulaire à trois niveaux et attiques, toitures terminant par une tourelle centrale à clocheton,  deux tourelles rondes en façade de même niveau sur les deux angles.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Castries
-<br>        "</p>
-      <h4>Divers</h4><p>Patrimoine dans Bagnols sur Céze le château de Maransan du Val de Cèze et de la Paniscoule.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Trois châteaux à Bagnols-sur-Cèze, le château du Val-de-Cèze du XVIIe siècle, le manoir de Maransan du XV-XVIe siècles, et le château de Paniscoule. Pas d'information historiques sur ces deux derniers.                                                                                  BAGNOLS-sur-Cèze,  en 1631, le duc de Montmorency, gouverneur du Languedoc et seigneur de Bagnols se révolte contre Louis XIII. Il est battu, condamné et exécuté. En signe de représailles, le Roi ordonne la démolition du château et des murailles de la ville, reconstruite au XVIIIe siècle pour se défendre d'éventuels assauts des Camisards.                                      MARANSAN, au XVIe siècle Guillaume de Joyeuse, abbé des Chambons, au XVIII siècle, Monseigneur de Belzunce, évêque de Marseille et abbé de Chambons. Aujourd'hui propriété  de monsieur  Broche qui le restaure.                                                          PANISCOULE;   situé aux abords du château du VAL de CEZE.  Ces deux châteaux font partie de la même famille. En 1623, création de la gentilhommière raccrochée au château de Paniscoule, par un membre de la famille de Castries. En  1900, la comtesse de Castries meurt dans son château à Gaujac. Le château du Val de Cèze est alors vendu à Abel Sautel et son épouse qui en font une résidence dété. En 1930, leur fille se marie avec Paul Clap, chasseur alpin et plus tard apiculteur de Bagnols sur Cèze. En 1936, le jeune couple cède le domaine à leur voisine Jacqueline André-Thome. Sa fille Eléonore Patenôte épouse le baron Sapion du Roure de Beaujeu et en 1969 les descendants de Joseph Thome quittent le berceau familial. Seule Georgette Thome demeure au château. Le 7 Août François Brahin le transforme en hôtel et le rebaptise "Ventadous", propriété de  monsieur Ali Garsallah, du XVIIe siècle transformé en hôtel restaurant, est implanté au sein de l'ancien repère de chasse du seigneur du château de Paniscoule.</p>
+<h4>Architecture</h4><p>Bagnols sur Céze, la mairie est situé dans un château.                          Château de Maransan, corps de logis central au nord à trois niveaux deux ailes en retour formant une cour autrefois fermé par un mur  crénelé et portail. Dans l'angle intérieur une tour octogonal  de quatre étages pour  escalier à vis de style Renaissance, ce château resté longtemps à l'abandon, fut transformé en exploitation agricole.     Val de Cèze du XVIIe siècle  est implanté au sein de l'ancien repère de chasse,  quadrilatère à deux niveaux flanqué de tours à trois niveaux carrées  en angles, toitures à balustrades,  créneaux sur façade avec pavillon saillant plein cintre crénelé, fenêtres à meneaux, le château du Val de Cèze porte la trace de nombreux siècles qui ont transformé sa construction primitive. 
+<br/>Paniscoule; du XIXe siècle, corps de logis rectangulaire à trois niveaux et attiques, toitures terminant par une tourelle centrale à clocheton,  deux tourelles rondes en façade de même niveau sur les deux angles.</p>
+<h4>Habitants / Familles</h4><p>Famille de Castries
+<br/>        "</p>
+<h4>Divers</h4><p>Patrimoine dans Bagnols sur Céze le château de Maransan du Val de Cèze et de la Paniscoule.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

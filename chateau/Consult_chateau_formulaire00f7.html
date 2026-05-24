@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Albignac — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,53 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_30.html">Gard</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_30.html">Gard</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_30.html" class="back-link">Retour au département 30 — Gard</a>
-  <div class="fiche">
-    <h2>Albignac</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>30 — Gard</td></tr>
-          <tr><td>Canton</td><td>Alzon</td></tr>
-          <tr><td>Commune</td><td>Arrigas</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_30/30_Albignac_1.jpg" alt="Albignac" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_30.html">Retour au département 30 — Gard</a>
+<div class="fiche">
+<h2>Albignac</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Albignac" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_30/30_Albignac_1.jpg"/><div class="hero-count" id="hero-count">1 / 1</div></div><div class="photo-strip"><img alt="Albignac" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_Albignac_1.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>30 — Gard</td></tr>
+<tr><td>Canton</td><td>Alzon</td></tr>
+<tr><td>Commune</td><td>Arrigas</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>ALBIGNAC, après la destruction du Pont d'Arre, la famille d'Albignac fait construire le château d'Arrigas. Au XVIIe siècle, la famille d'Albignac apporte de sérieuses modifications au château  et s'installe définitivement dans cette belle demeure héritée des Béranger de Caladon. Il porte aujourdhui le nom de « château d'Albignac » C'est là que naît en 1739 Louis-Alexandre d'Albignac, qui sera lieutenant-général des armées du roi, général de division sous la Révolution et l'Empire, chevalier de Saint-Louis et chevalier de la Légion d'Honneur. Après une carrière remarquée, mais brimée, sous l'Ancien Régime, Louis-Alexandre d'Albignac se met au service de la Révolution en acceptant de devenir le premier maire du Vigan (1790) puis en reprenant du service contre les ennemis de la Révolution (camps de Jalès en 1791-1792), à l'armée des Alpes ou à l'armée du Rhin. C'est le plus illustre des enfants d'Arrigas, bien qu'il soit mort dans son hôtel particulier du Vigan. Les d'Albignac y vivent jusqu'à la mort du général Louis Alexandre d'Albignac (1739-1825). Le château devient ensuite la propriété de son neveu, Marc Antoine de la Tour Lisside jusqu'à sa mort en 1848. Acheté en 2011 par des amoureux de la région.</p>
-      <h4>Architecture</h4><p>lorigine du château d'Albignac semble incertaine. Certains ouvrages le mentionnent déjà au XIVe siècle. Toutefois, les éléments sculptés les plus anciens retrouvés datent de la première moitié du XVe siècle. Il est modifié à toutes les époques qui suivent. De la fin du Moyen-Age, il conserve une petite muraille percée de meurtrières donnant sur la place du village dArrigas et quelques murs. Sa façade présente de belles fenêtres à meneaux des XVe, XVIe et XVIIe siècles, des baies géminées de cette dernière époque également, des corniches en pierre, ainsi que des encadrements de portes en pierre des XVIe et XVIIe siècles. Tout le rez-de-chaussée est constitué de salles voûtées construites très probablement au XVIIe siècle à l'intérieur des murs pré-existants. La seconde moitié du XIXe siècle sonne le début de l'agonie pour ces vieilles pierres; le château est divisé et dépecé. Un aménagement des lieux dans la seconde moitié du XXe siècle le sauve peut-être de la ruine, le château s'apprête à retrouver son allure et vivre une nouvelle aventure, une restauration est en cours.</p>
-      <h4>Habitants / Familles</h4><p>la famille d'Albignac
-<br>        "</p>
-      <h4>Divers</h4><p>Château d'Albignac.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>ALBIGNAC, après la destruction du Pont d'Arre, la famille d'Albignac fait construire le château d'Arrigas. Au XVIIe siècle, la famille d'Albignac apporte de sérieuses modifications au château  et s'installe définitivement dans cette belle demeure héritée des Béranger de Caladon. Il porte aujourdhui le nom de « château d'Albignac » C'est là que naît en 1739 Louis-Alexandre d'Albignac, qui sera lieutenant-général des armées du roi, général de division sous la Révolution et l'Empire, chevalier de Saint-Louis et chevalier de la Légion d'Honneur. Après une carrière remarquée, mais brimée, sous l'Ancien Régime, Louis-Alexandre d'Albignac se met au service de la Révolution en acceptant de devenir le premier maire du Vigan (1790) puis en reprenant du service contre les ennemis de la Révolution (camps de Jalès en 1791-1792), à l'armée des Alpes ou à l'armée du Rhin. C'est le plus illustre des enfants d'Arrigas, bien qu'il soit mort dans son hôtel particulier du Vigan. Les d'Albignac y vivent jusqu'à la mort du général Louis Alexandre d'Albignac (1739-1825). Le château devient ensuite la propriété de son neveu, Marc Antoine de la Tour Lisside jusqu'à sa mort en 1848. Acheté en 2011 par des amoureux de la région.</p>
+<h4>Architecture</h4><p>lorigine du château d'Albignac semble incertaine. Certains ouvrages le mentionnent déjà au XIVe siècle. Toutefois, les éléments sculptés les plus anciens retrouvés datent de la première moitié du XVe siècle. Il est modifié à toutes les époques qui suivent. De la fin du Moyen-Age, il conserve une petite muraille percée de meurtrières donnant sur la place du village dArrigas et quelques murs. Sa façade présente de belles fenêtres à meneaux des XVe, XVIe et XVIIe siècles, des baies géminées de cette dernière époque également, des corniches en pierre, ainsi que des encadrements de portes en pierre des XVIe et XVIIe siècles. Tout le rez-de-chaussée est constitué de salles voûtées construites très probablement au XVIIe siècle à l'intérieur des murs pré-existants. La seconde moitié du XIXe siècle sonne le début de l'agonie pour ces vieilles pierres; le château est divisé et dépecé. Un aménagement des lieux dans la seconde moitié du XXe siècle le sauve peut-être de la ruine, le château s'apprête à retrouver son allure et vivre une nouvelle aventure, une restauration est en cours.</p>
+<h4>Habitants / Familles</h4><p>la famille d'Albignac
+<br/>        "</p>
+<h4>Divers</h4><p>Château d'Albignac.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

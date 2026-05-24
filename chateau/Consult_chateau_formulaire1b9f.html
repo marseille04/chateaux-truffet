@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Lorrière — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,56 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_72.html">Sarthe</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_72.html">Sarthe</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_72.html" class="back-link">Retour au département 72 — Sarthe</a>
-  <div class="fiche">
-    <h2>Lorrière</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>72 — Sarthe</td></tr>
-          <tr><td>Canton</td><td>Le Lude</td></tr>
-          <tr><td>Commune</td><td>Dissé-sous-le-Lude</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>47° 35' 14,39" Nord, 0° 8' 34,64" Est</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_72/72_Lorri%c3%a8re_1.jpg" alt="Lorrière" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Lorri%c3%a8re_2.jpg" alt="Lorrière" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Lorri%c3%a8re_3.jpg" alt="Lorrière" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_72.html">Retour au département 72 — Sarthe</a>
+<div class="fiche">
+<h2>Lorrière</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Lorrière" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_72/72_Lorri%c3%a8re_1.jpg"/><div class="hero-count" id="hero-count">1 / 3</div></div><div class="photo-strip"><img alt="Lorrière" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Lorri%c3%a8re_1.jpg"/><img alt="Lorrière" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Lorri%c3%a8re_2.jpg"/><img alt="Lorrière" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Lorri%c3%a8re_3.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>72 — Sarthe</td></tr>
+<tr><td>Canton</td><td>Le Lude</td></tr>
+<tr><td>Commune</td><td>Dissé-sous-le-Lude</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVII</td></tr>
+<tr><td>Coordonnées GPS</td><td>47° 35' 14,39" Nord, 0° 8' 34,64" Est</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>LORRIERE, il est alors la propriété d'un certain Aymar de Bueil qui le vend en 1489 à René du Mesnil qui vraisemblablement fait construire un nouveau logis avec une tourelle d'escalier demi-hors-oeuvre. Par mariage, le château passe à René de Rougé, gouverneur du Lude et à Marguerite Le Court de la Bellière. En 1675, Pierre II du Rougé et Avoye de Chérité vendent Lorière à Marie Viette, veuve de Pierre Monden. En 1835, Lorière échoue par alliance à Henri Bernard comte de la Frégeolière qui décide d'agrandir le manoir familial. En 1864-65, l'architecte Ernest Dainville propose plusieurs projets et réalise les transformations. Après la Première Guerre mondiale, le comte Renaud Bernard de la Frégeolière confie à l'architecte blésois A. Lafargue la modernisation des intérieurs. En même temps, l'architecte paysagiste Jules Vacherot remodèle les jardins situés au nord du logis dans un style historiciste.</p>
-      <h4>Architecture</h4><p>LORRIERE .Un logis de la fin du XVe siècle semble avoir été construit à côté ou dans le prolongement d'un vieux château dont il reste quelques vestiges dans les soubassements des terrasses et les pans de murs écorchés placés derrière. La reconstitution de l'histoire des bâtiments est difficile en l'absence de documents anciens. Il semble que le visiteur arrivait depuis la vieille route qui longeait la rive droite de la Marconne. La forme du parcellaire révélée par le premier cadastre rend compte d'un site déjà régularisé autour de bâtiments désordonnés de plan fermé. A la fin du XVe siècle, la construction du petit logis avec tourelle d'escalier extérieure présent sur le plan de 1812 paraît avoir été déterminante dans cet aménagement, l'ensemble de la nouvelle composition étant parallèle au tracé général de la rivière. A cette époque ou plutôt durant les guerres de religion, la terrasse sur laquelle est implantée la demeure est entourée de murs de fortification peu épais constitués de petits moellons. On peut imaginer deux petites tours carrées en forme de bastions aux angles nord-ouest et nord-est. A l'est, la fortification soutient la terrasse : une tourelle placée dans l'angle avec l'actuel portail d'entrée peut faire le pendant avec celle placée dans l'angle des communs , ancienne demeure Vers 1925, les dessins de Jules Vacherot furent réalisés dans une perspective perpendiculaire à l'axe de l'entrée de la cour et de la rivière. Les fortifications abattues au nord donnent de l'ampleur à l'espace recomposé pour mettre en valeur l'arrivée par l'allée qui longe la rive gauche de la rivière. Un court de tennis est aménagé avec une cabane. Les ifs taillés en topiaire peuvent abriter une salle de verdure.
-<br>Éléments protégés MH : en totalité le corps de bâtiment agrandi par Dainville, la chapelle, la fuie ; les façades et les toitures des autres bâtiments tels qu'ils figurent sur le plan de 1848 annexé à l'arrêté ; le jardin et les murs de soutènement : inscription par arrêté du 3 décembre 2001,</p>
-      <h4>Habitants / Familles</h4><p>Famille de René du Mesnil
-<br>        "</p>
-      <h4>Divers</h4><p>GPS : 47° 35' 14,39" Nord, 0° 8' 34,64" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>LORRIERE, il est alors la propriété d'un certain Aymar de Bueil qui le vend en 1489 à René du Mesnil qui vraisemblablement fait construire un nouveau logis avec une tourelle d'escalier demi-hors-oeuvre. Par mariage, le château passe à René de Rougé, gouverneur du Lude et à Marguerite Le Court de la Bellière. En 1675, Pierre II du Rougé et Avoye de Chérité vendent Lorière à Marie Viette, veuve de Pierre Monden. En 1835, Lorière échoue par alliance à Henri Bernard comte de la Frégeolière qui décide d'agrandir le manoir familial. En 1864-65, l'architecte Ernest Dainville propose plusieurs projets et réalise les transformations. Après la Première Guerre mondiale, le comte Renaud Bernard de la Frégeolière confie à l'architecte blésois A. Lafargue la modernisation des intérieurs. En même temps, l'architecte paysagiste Jules Vacherot remodèle les jardins situés au nord du logis dans un style historiciste.</p>
+<h4>Architecture</h4><p>LORRIERE .Un logis de la fin du XVe siècle semble avoir été construit à côté ou dans le prolongement d'un vieux château dont il reste quelques vestiges dans les soubassements des terrasses et les pans de murs écorchés placés derrière. La reconstitution de l'histoire des bâtiments est difficile en l'absence de documents anciens. Il semble que le visiteur arrivait depuis la vieille route qui longeait la rive droite de la Marconne. La forme du parcellaire révélée par le premier cadastre rend compte d'un site déjà régularisé autour de bâtiments désordonnés de plan fermé. A la fin du XVe siècle, la construction du petit logis avec tourelle d'escalier extérieure présent sur le plan de 1812 paraît avoir été déterminante dans cet aménagement, l'ensemble de la nouvelle composition étant parallèle au tracé général de la rivière. A cette époque ou plutôt durant les guerres de religion, la terrasse sur laquelle est implantée la demeure est entourée de murs de fortification peu épais constitués de petits moellons. On peut imaginer deux petites tours carrées en forme de bastions aux angles nord-ouest et nord-est. A l'est, la fortification soutient la terrasse : une tourelle placée dans l'angle avec l'actuel portail d'entrée peut faire le pendant avec celle placée dans l'angle des communs , ancienne demeure Vers 1925, les dessins de Jules Vacherot furent réalisés dans une perspective perpendiculaire à l'axe de l'entrée de la cour et de la rivière. Les fortifications abattues au nord donnent de l'ampleur à l'espace recomposé pour mettre en valeur l'arrivée par l'allée qui longe la rive gauche de la rivière. Un court de tennis est aménagé avec une cabane. Les ifs taillés en topiaire peuvent abriter une salle de verdure.
+<br/>Éléments protégés MH : en totalité le corps de bâtiment agrandi par Dainville, la chapelle, la fuie ; les façades et les toitures des autres bâtiments tels qu'ils figurent sur le plan de 1848 annexé à l'arrêté ; le jardin et les murs de soutènement : inscription par arrêté du 3 décembre 2001,</p>
+<h4>Habitants / Familles</h4><p>Famille de René du Mesnil
+<br/>        "</p>
+<h4>Divers</h4><p>GPS : 47° 35' 14,39" Nord, 0° 8' 34,64" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Marmousse — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,54 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_28.html">Eure-et-Loir</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_28.html">Eure-et-Loir</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_28.html" class="back-link">Retour au département 28 — Eure-et-Loir</a>
-  <div class="fiche">
-    <h2>Marmousse</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>28 — Eure-et-Loir</td></tr>
-          <tr><td>Canton</td><td>Dreux</td></tr>
-          <tr><td>Commune</td><td>Garnay</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVIII-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_28/28_Marmousse_1.jpg" alt="Marmousse" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_28/28_Marmousse_2.jpg" alt="Marmousse" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_28.html">Retour au département 28 — Eure-et-Loir</a>
+<div class="fiche">
+<h2>Marmousse</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Marmousse" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_28/28_Marmousse_1.jpg"/><div class="hero-count" id="hero-count">1 / 2</div></div><div class="photo-strip"><img alt="Marmousse" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_28/28_Marmousse_1.jpg"/><img alt="Marmousse" class="" loading="lazy" onclick="setHero(this)" src="../image/image_28/28_Marmousse_2.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>28 — Eure-et-Loir</td></tr>
+<tr><td>Canton</td><td>Dreux</td></tr>
+<tr><td>Commune</td><td>Garnay</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVIII-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>MARMOUSSE,  en 1540, le fief est détenu par François de Boulchard avant de passer en héritage à sa sur Antoinette, son mari, Guillaume de Lambert, seigneur du Chesnay, de la Fosse aux loups, de Chailloy et de Garnay, de 1557 à 1566. En 1568, le seigneur est Urbain de Nancelles, seigneur de la Fosse et de Mormoulins, époux de Jacqueline de Fontaines, dame de Chaudon, dont il a un fils, Charles, écuyer et sieur de Marmousse. En 1615, la seigneurie est cédée à Messire René Sain de Bois-Le-Comte, seigneur de Rochefort, Grand Audiencier en 1622,  Après sa mort à Turin, la seigneurie est acquise par Jacques de Guillon, seigneur de Richebourg, qui meurt en 1647. La seigneurie de Marmousse revient à son fils Antoine en 1650. Il a épousé en 1645 Marie dEstrappes, leur fils Léonard baptisé le 5 juin 1653 à Garnay, ils ont deux filles, Barbe et Françoise-Marguerite. La sur de Léonarde a épousé son cousin Marcellin de Guillon, seigneur de Menetou-Couture.  Cest donc à lui quéchoit la vente de la seigneurie de Marmousse acquise, le 15 juin 1714, par Michel-Jacques Lévy et sa femme Marie-Elisabeth Hallé. La seigneurie de Marmousse et Chambléan est vendue le 26 janvier 1719 à Vincent Maynon dInvault (1668-1736) Le jeune Vincent Maynon a épousé le 16 août 1699, la fille cadette de Jules Hardouin-Mansart.  De cette union naissent trois fils entre 1716 et 1721: Vincent-Michel, Guillaume-François et Etienne, la famille Maynon, en la personne dÉtienne dInvault, arrêté et emprisonné avec sa femme, aucun des trois frères nayant de descendance. leurs seules héritières sont Mme Bouvard de Fourqueux et Pauline de Lamoignon Malesherbes.</p>
-      <h4>Architecture</h4><p>MARMOUSSE,  Le 9 avril 1807, elles aliènent la seigneurie, à M. Jean-Baptiste Tourteau de Septeuil. Parvient ensuite par héritage à son gendre Charles-Auguste du Bouëxic de Pinieux (1779-1851) qui a épousé, le 19 mars 1808, Constance-Stéphanie Tourteau de Septeuil. Sous la Restauration, le comte de Pinieux occupe différentes fonctions : maire de Garnay en 1814, conseiller général et député dEure-et-Loir de 1824 à 1830. Il meurt en son château le 16 octobre 1851.Le domaine passe alors à son gendre, le baron Nicolas-Auguste Graillet, baron de Beine.  Le 24 mars 1887, Marmousse revient au vicomte Adolphe Odoard Le Rebours, époux dAlix-Marie-Charlotte, fille unique du précédent. Ce dernier est propriétaire dun château, celui de Coolus dans la Marne, localité dont il est maire entre 1871 et 1879 et entre 1884 et 1896.  En 1903 François Thureau-Dangin (1872-1944). Le  novembre 1902, la propriété est mise en vente et acquise en 1905 par François Thureau-Dangin.  Toujours  dans cette famille.                                                                                                 Le château actuel est composé dun long corps de logis de deux étages, flanqué dun pavillon à chaque extrémité. Les deux façades sont semblables: le corps central est surmonté dun fronton triangulaire percé dun oculus, caractéristique du XVIIIe siècle. Sous la corniche, un arc de briques en plein cintre englobe la porte dentrée. On accède à létage noble, matérialisé par ses hautes fenêtres et sa surélévation, par un escalier à double volée. Lors de sa vente en 1714 puis en 1719, le château avait cette même apparence, Lépaisseur des murs plus importante du côté du canal laisse supposer que cette partie du château est la plus ancienne et que la façade fut prolongée ensuite. Autre différence avec le château actuel, il y avait dans la cour « deux grandes ailes de bâtiments, deux pavillons à lentrée, le tout entouré de fossés et en face du château.</p>
-      <h4>Habitants / Familles</h4><p>vicomte Adolphe Odoard Le Rebours
-<br>        "</p>
-      <h4>Divers</h4><p>Marmousse gps 48° 41' 58" Nord, 1° 20' 18" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>MARMOUSSE,  en 1540, le fief est détenu par François de Boulchard avant de passer en héritage à sa sur Antoinette, son mari, Guillaume de Lambert, seigneur du Chesnay, de la Fosse aux loups, de Chailloy et de Garnay, de 1557 à 1566. En 1568, le seigneur est Urbain de Nancelles, seigneur de la Fosse et de Mormoulins, époux de Jacqueline de Fontaines, dame de Chaudon, dont il a un fils, Charles, écuyer et sieur de Marmousse. En 1615, la seigneurie est cédée à Messire René Sain de Bois-Le-Comte, seigneur de Rochefort, Grand Audiencier en 1622,  Après sa mort à Turin, la seigneurie est acquise par Jacques de Guillon, seigneur de Richebourg, qui meurt en 1647. La seigneurie de Marmousse revient à son fils Antoine en 1650. Il a épousé en 1645 Marie dEstrappes, leur fils Léonard baptisé le 5 juin 1653 à Garnay, ils ont deux filles, Barbe et Françoise-Marguerite. La sur de Léonarde a épousé son cousin Marcellin de Guillon, seigneur de Menetou-Couture.  Cest donc à lui quéchoit la vente de la seigneurie de Marmousse acquise, le 15 juin 1714, par Michel-Jacques Lévy et sa femme Marie-Elisabeth Hallé. La seigneurie de Marmousse et Chambléan est vendue le 26 janvier 1719 à Vincent Maynon dInvault (1668-1736) Le jeune Vincent Maynon a épousé le 16 août 1699, la fille cadette de Jules Hardouin-Mansart.  De cette union naissent trois fils entre 1716 et 1721: Vincent-Michel, Guillaume-François et Etienne, la famille Maynon, en la personne dÉtienne dInvault, arrêté et emprisonné avec sa femme, aucun des trois frères nayant de descendance. leurs seules héritières sont Mme Bouvard de Fourqueux et Pauline de Lamoignon Malesherbes.</p>
+<h4>Architecture</h4><p>MARMOUSSE,  Le 9 avril 1807, elles aliènent la seigneurie, à M. Jean-Baptiste Tourteau de Septeuil. Parvient ensuite par héritage à son gendre Charles-Auguste du Bouëxic de Pinieux (1779-1851) qui a épousé, le 19 mars 1808, Constance-Stéphanie Tourteau de Septeuil. Sous la Restauration, le comte de Pinieux occupe différentes fonctions : maire de Garnay en 1814, conseiller général et député dEure-et-Loir de 1824 à 1830. Il meurt en son château le 16 octobre 1851.Le domaine passe alors à son gendre, le baron Nicolas-Auguste Graillet, baron de Beine.  Le 24 mars 1887, Marmousse revient au vicomte Adolphe Odoard Le Rebours, époux dAlix-Marie-Charlotte, fille unique du précédent. Ce dernier est propriétaire dun château, celui de Coolus dans la Marne, localité dont il est maire entre 1871 et 1879 et entre 1884 et 1896.  En 1903 François Thureau-Dangin (1872-1944). Le  novembre 1902, la propriété est mise en vente et acquise en 1905 par François Thureau-Dangin.  Toujours  dans cette famille.                                                                                                 Le château actuel est composé dun long corps de logis de deux étages, flanqué dun pavillon à chaque extrémité. Les deux façades sont semblables: le corps central est surmonté dun fronton triangulaire percé dun oculus, caractéristique du XVIIIe siècle. Sous la corniche, un arc de briques en plein cintre englobe la porte dentrée. On accède à létage noble, matérialisé par ses hautes fenêtres et sa surélévation, par un escalier à double volée. Lors de sa vente en 1714 puis en 1719, le château avait cette même apparence, Lépaisseur des murs plus importante du côté du canal laisse supposer que cette partie du château est la plus ancienne et que la façade fut prolongée ensuite. Autre différence avec le château actuel, il y avait dans la cour « deux grandes ailes de bâtiments, deux pavillons à lentrée, le tout entouré de fossés et en face du château.</p>
+<h4>Habitants / Familles</h4><p>vicomte Adolphe Odoard Le Rebours
+<br/>        "</p>
+<h4>Divers</h4><p>Marmousse gps 48° 41' 58" Nord, 1° 20' 18" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Corbie_Daours — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,56 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_80.html">Somme</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_80.html">Somme</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_80.html" class="back-link">Retour au département 80 — Somme</a>
-  <div class="fiche">
-    <h2>Corbie_Daours</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>80 — Somme</td></tr>
-          <tr><td>Canton</td><td>Corbie</td></tr>
-          <tr><td>Commune</td><td>Corbie</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII-XIX</td></tr>
-          <tr><td>Coordonnées GPS</td><td>49°54' 28,43" Nord, 2°30' 43,7" Est                                                   Fouilloy GPS : 49° 54' 01" Nord, 2° 30' 16" Est</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_80/80_Corbie_Daours_1.jpg" alt="Corbie_Daours" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_80/80_Corbie_Daours_2.jpg" alt="Corbie_Daours" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_80/80_Corbie_Daours_3.jpg" alt="Corbie_Daours" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_80/80_Corbie_Daours_4.jpg" alt="Corbie_Daours" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_80/80_Corbie_Daours_5.jpg" alt="Corbie_Daours" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_80.html">Retour au département 80 — Somme</a>
+<div class="fiche">
+<h2>Corbie_Daours</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Corbie_Daours" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_80/80_Corbie_Daours_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Corbie_Daours" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Corbie_Daours_1.jpg"/><img alt="Corbie_Daours" class="" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Corbie_Daours_2.jpg"/><img alt="Corbie_Daours" class="" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Corbie_Daours_3.jpg"/><img alt="Corbie_Daours" class="" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Corbie_Daours_4.jpg"/><img alt="Corbie_Daours" class="" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Corbie_Daours_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>80 — Somme</td></tr>
+<tr><td>Canton</td><td>Corbie</td></tr>
+<tr><td>Commune</td><td>Corbie</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII-XIX</td></tr>
+<tr><td>Coordonnées GPS</td><td>49°54' 28,43" Nord, 2°30' 43,7" Est                                                   Fouilloy GPS : 49° 54' 01" Nord, 2° 30' 16" Est</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Trois château dans cet article; Corbie , Fouilloy et Bussy.                                            CORBIE, cet ancien château appartenait au Baron Oswald Caix de Saint-Aymour construit sur les plans de l'architecte amiénois Charles Joseph Pinsard au XIXe siècle.  Charles-Louis-Marie-Oswald de Caix de Saint-Aymour, maire de Corbie de 1855 à 1861 et conseiller général de 1848 à 1861 fit construire un château de style troubadour entre 1850 et 1854 pour lui servir de résidence temporaire. Sa fille Hélène en hérita ; elle épousa Albalat y Navajas, comte de San Carlos et le couple partit vivre en Espagne. En 1923, grâce à la contribution financière de la ville de Chartres, marraine de guerre de la ville de Corbie, la municipalité racheta le château qui fut transformé en hôtel de ville et le parc en jardin public. La façade de l'hôtel de ville a été ravalée et le jardin public réaménagé en 2013, désormais, une place-parvis dénommé « espace Chartres » donne accès au monument aux morts sculpté par Albert Roze et à l'hôtel de ville. Construit en brique, le bâtiment est facilement identifiable par ses tourelles couvertes d'ardoise. Il a été rénové complètement en 2013 ainsi que le jardin public qui l'entoure.                                                                                             A l'est village voisin FOUILLOY château servant d'hôtel de ville  La construction du château date du XIXe siècle. Il se situe rue Jules Lardière, à Fouilloy.  Georges Duhamel, médecin militaire en 1916 et écrivain fut en cantonnement à Fouilloy. Il la évoqué dans des lettres écrites à son épouse. Aujourdhui les services de la mairie se trouvent au milieu dun parc aménagé dans lancien château de Fouilloy datant du XIXe siècle et qui fut cédé à la commune au XXe siècle.</p>
-      <h4>Architecture</h4><p>BUSSY   les Daours à l'ouest de Corbie. La seigneurie de Bussy, qui relevait de la châtellenie de Daours, appartient surtout aux familles de Sacquespée aux XVIe et XVIIe siècles et Pingré au XVIIIe siècle. Le 1er des Sacquespée à posséder Bussy fut Pierre, écuyer, seigneur de Becquincourt, mayeur d'Amiens en 1535, receveur des tailles de l'élection d'Amiens. A la mort de l'un de leurs descendants, le château fut vendu en 1696, à Louis de Gomer, mais ce dernier revendit le domaine, dès 1713, à Adrien Pingré, bourgeois et échevin d'Amiens en 1686, conseiller secrétaire du Roi, maison et couronne de France. A la fin du XIXe siècle ce sont les de Witasse Thézy qui habitent le château. Agnès de Witasse Thézy fut la dernière à y vivre jusqu'en 1982, date de son décès. Le château actuel, de dimensions modestes, fut conçu comme une maison des champs, construit en pierre au XVIIIe siècle, il fut remanié au XIXe siècle. On ajouta en particulier, vers 1830, les deux ailes latérales.                                                                                                              DAOURS, les premiers seigneurs de Daours portaient le nom de leur terre. Les plus anciens que l'on connaisse sont, en 1148, Gérard de Durs, et, en 1153, Baudouin de Dours. Il existait alors un château-fort très important situé non loin du confluent de la Somme et de l'Hallue, à 200 m envifon en face du château actuel, construit au XVIIIe siècle, comme une propriété de campagne, se caractérisant par sa sobriété. Il est construit entièrement en pierre sur un soubassement en grès, et se compose d'un corps de logis orienté nord-sud, de plan rectangulaire, dont l'élévation est à deux étages. Dans le prolongement du corps de logis, d'un côté seulement, en l'occurrence à l'ouest, fut bâtie un peu plus tard, pour la famille Lequieu, une aile latérale comprenant un rez-de-chaussée couvert d'un toit à la Mansart. De toute évidence une autre aile existait à l'est mais fut détruite à une date imprécise par un incendie, semble-t-il. M. et Mme Hollville qui ont redonné vie à l'édifice, dans l'enceinte duquel ils ont installé un magasin d'antiquités.</p>
-      <h4>Habitants / Familles</h4><p>corbie; .Charles-Louis-Marie-Oswald de Caix de Saint-Aymour                    Fouilloy; Georges Duhamel                                 Bussy;  famille de Sacquespée                          Daours;famille Lequieu"</p>
-      <h4>Divers</h4><p>Trois châteaux dans cet article; Corbie grav-1, Fouilloy Grav-5  et Bussy grav-2-3-4.                        Corbie  GPS : 49°54' 28,43" Nord, 2°30' 43,7" Est                                                   Fouilloy GPS : 49° 54' 01" Nord, 2° 30' 16" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Trois château dans cet article; Corbie , Fouilloy et Bussy.                                            CORBIE, cet ancien château appartenait au Baron Oswald Caix de Saint-Aymour construit sur les plans de l'architecte amiénois Charles Joseph Pinsard au XIXe siècle.  Charles-Louis-Marie-Oswald de Caix de Saint-Aymour, maire de Corbie de 1855 à 1861 et conseiller général de 1848 à 1861 fit construire un château de style troubadour entre 1850 et 1854 pour lui servir de résidence temporaire. Sa fille Hélène en hérita ; elle épousa Albalat y Navajas, comte de San Carlos et le couple partit vivre en Espagne. En 1923, grâce à la contribution financière de la ville de Chartres, marraine de guerre de la ville de Corbie, la municipalité racheta le château qui fut transformé en hôtel de ville et le parc en jardin public. La façade de l'hôtel de ville a été ravalée et le jardin public réaménagé en 2013, désormais, une place-parvis dénommé « espace Chartres » donne accès au monument aux morts sculpté par Albert Roze et à l'hôtel de ville. Construit en brique, le bâtiment est facilement identifiable par ses tourelles couvertes d'ardoise. Il a été rénové complètement en 2013 ainsi que le jardin public qui l'entoure.                                                                                             A l'est village voisin FOUILLOY château servant d'hôtel de ville  La construction du château date du XIXe siècle. Il se situe rue Jules Lardière, à Fouilloy.  Georges Duhamel, médecin militaire en 1916 et écrivain fut en cantonnement à Fouilloy. Il la évoqué dans des lettres écrites à son épouse. Aujourdhui les services de la mairie se trouvent au milieu dun parc aménagé dans lancien château de Fouilloy datant du XIXe siècle et qui fut cédé à la commune au XXe siècle.</p>
+<h4>Architecture</h4><p>BUSSY   les Daours à l'ouest de Corbie. La seigneurie de Bussy, qui relevait de la châtellenie de Daours, appartient surtout aux familles de Sacquespée aux XVIe et XVIIe siècles et Pingré au XVIIIe siècle. Le 1er des Sacquespée à posséder Bussy fut Pierre, écuyer, seigneur de Becquincourt, mayeur d'Amiens en 1535, receveur des tailles de l'élection d'Amiens. A la mort de l'un de leurs descendants, le château fut vendu en 1696, à Louis de Gomer, mais ce dernier revendit le domaine, dès 1713, à Adrien Pingré, bourgeois et échevin d'Amiens en 1686, conseiller secrétaire du Roi, maison et couronne de France. A la fin du XIXe siècle ce sont les de Witasse Thézy qui habitent le château. Agnès de Witasse Thézy fut la dernière à y vivre jusqu'en 1982, date de son décès. Le château actuel, de dimensions modestes, fut conçu comme une maison des champs, construit en pierre au XVIIIe siècle, il fut remanié au XIXe siècle. On ajouta en particulier, vers 1830, les deux ailes latérales.                                                                                                              DAOURS, les premiers seigneurs de Daours portaient le nom de leur terre. Les plus anciens que l'on connaisse sont, en 1148, Gérard de Durs, et, en 1153, Baudouin de Dours. Il existait alors un château-fort très important situé non loin du confluent de la Somme et de l'Hallue, à 200 m envifon en face du château actuel, construit au XVIIIe siècle, comme une propriété de campagne, se caractérisant par sa sobriété. Il est construit entièrement en pierre sur un soubassement en grès, et se compose d'un corps de logis orienté nord-sud, de plan rectangulaire, dont l'élévation est à deux étages. Dans le prolongement du corps de logis, d'un côté seulement, en l'occurrence à l'ouest, fut bâtie un peu plus tard, pour la famille Lequieu, une aile latérale comprenant un rez-de-chaussée couvert d'un toit à la Mansart. De toute évidence une autre aile existait à l'est mais fut détruite à une date imprécise par un incendie, semble-t-il. M. et Mme Hollville qui ont redonné vie à l'édifice, dans l'enceinte duquel ils ont installé un magasin d'antiquités.</p>
+<h4>Habitants / Familles</h4><p>corbie; .Charles-Louis-Marie-Oswald de Caix de Saint-Aymour                    Fouilloy; Georges Duhamel                                 Bussy;  famille de Sacquespée                          Daours;famille Lequieu"</p>
+<h4>Divers</h4><p>Trois châteaux dans cet article; Corbie grav-1, Fouilloy Grav-5  et Bussy grav-2-3-4.                        Corbie  GPS : 49°54' 28,43" Nord, 2°30' 43,7" Est                                                   Fouilloy GPS : 49° 54' 01" Nord, 2° 30' 16" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Tour_Serviat — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,56 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_63.html">Puy-de-Dôme</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_63.html">Puy-de-Dôme</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_63.html" class="back-link">Retour au département 63 — Puy-de-Dôme</a>
-  <div class="fiche">
-    <h2>Tour_Serviat</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>63 — Puy-de-Dôme</td></tr>
-          <tr><td>Canton</td><td>Combronde</td></tr>
-          <tr><td>Commune</td><td>Montcel</td></tr>
-          <tr><td>Type d'édifice</td><td>Vestiges</td></tr>
-          <tr><td>Période d'origine</td><td>XV</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_63/63_Tour_Serviat_1.jpg" alt="Tour_Serviat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Tour_Serviat_2.jpg" alt="Tour_Serviat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Tour_Serviat_3.jpg" alt="Tour_Serviat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Tour_Serviat_4.jpg" alt="Tour_Serviat" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_63.html">Retour au département 63 — Puy-de-Dôme</a>
+<div class="fiche">
+<h2>Tour_Serviat</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Tour_Serviat" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_63/63_Tour_Serviat_1.jpg"/><div class="hero-count" id="hero-count">1 / 4</div></div><div class="photo-strip"><img alt="Tour_Serviat" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Tour_Serviat_1.jpg"/><img alt="Tour_Serviat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Tour_Serviat_2.jpg"/><img alt="Tour_Serviat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Tour_Serviat_3.jpg"/><img alt="Tour_Serviat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Tour_Serviat_4.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>63 — Puy-de-Dôme</td></tr>
+<tr><td>Canton</td><td>Combronde</td></tr>
+<tr><td>Commune</td><td>Montcel</td></tr>
+<tr><td>Type d'édifice</td><td>Vestiges</td></tr>
+<tr><td>Période d'origine</td><td>XV</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>TOUR-SERVIAT, en limite de la commune de Montcel, est situé à lemplacement dun domaine gallo-romain, une villa appartenant à un nommé Servatius. Il remonte au haut Moyen-Age. On relève en effet un hommage du seigneur de cette époque à Alphonse de Poitiers, le frère de Saint Louis, en plein XIIIe siècle. Deux siècles plus tard, en 1497, Antoine de Charais est seigneur de Latour-Serviat. Il est  lartisan de la construction du logis central et de ses tours, quil accole à la grosse tour féodale qui date, elle, du XIIe siècle. En 1520, Catherine de Charais, descendante directe dAntoine dame de la Tour-Serviat, veuve, la porte par remariage , épouse Gilbert de la Mer, seigneur de Matha. La dynastie de la Mer garde la possession du fief jusquen 1620.  En 1628, Gaspard de La Mer vend sa part de la seigneurie à Anne de Sauzay,  veuve de Louis de Bonnevie la seigneurie au seigneur de Mazières, Louis de Bonnevie.  Par le jeu des héritiers, puis par mariage à la famille de Larochelambert, dont un descendant vend le domaine en 1757 à Pierre Amable Duboys, seigneur de Macholles. Ce dernier mourant sans descendance en 1773, sa soeur Marguerite hérite de la propriété. Marguerite épousera Pierre Amable Soubrany, seigneur de Verrières, Les 2 parts du domaine sont  de nouveau réunies   par le mariage d'une fille de Bonnevie en 1790,    avec   Charles Ignace de Beauverger-Montgon. Puis la propriété est vendue en 1798 à douze propriétaires locaux.  Il est ensuite acquis par M.  Changarnier en  2004, qui entreprend sa restauration complète afin de retrouver son état dorigine.   MONTCEL, cest seulement en 1790 que la municipalité de Montcel obtient par soumission ce fief faisant partie des biens nationaux. Aujourdhui au XXIe siècle, un vestige du château de Catherine de Médicis est resté, trois tours qui dominent la vallée de la Morge.</p>
-      <h4>Architecture</h4><p>Château  de Serviat édifié au XVe siècle, situé à 1,8 km du bourg,  donjon-logis quadrangulaire flanqué  d'une tour du XVe siècle et de trois tours rondes sur angles,  il est dérasé et il ne reste que deux niveaux du corps de logis. Une tourelle d'escalier circulaire est demi hors-oeuvre. Lensemble de la propriété est vendue en 1798 à douze propriétaires locaux. Le château est alors utilisé comme bâtiment agricole, ce qui en sauve le gros oeuvre.                     Montcel fait partie de la communauté de Communes des Côtes de Combrailles et se mobilise pour les actions dintérêts communautaires et principalement pour le développement économique. La commune a conservé un caractère champêtre par la diversité du paysage que lon préserve pour le bien être de tous.  Les restes de muraille et les 3 tours surplombent encore la route et dissimulent le cimetière de la commune. L'histoire de ce château ainsi que sa seigneurie sont confuses. Seule la prise de possession par la reine Catherine de Médicis en 1552 est connue.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Gaspard de La Mer 
-<br>        "</p>
-      <h4>Divers</h4><p>Vestiges  de Montcxel et château de la tour Serviat</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>TOUR-SERVIAT, en limite de la commune de Montcel, est situé à lemplacement dun domaine gallo-romain, une villa appartenant à un nommé Servatius. Il remonte au haut Moyen-Age. On relève en effet un hommage du seigneur de cette époque à Alphonse de Poitiers, le frère de Saint Louis, en plein XIIIe siècle. Deux siècles plus tard, en 1497, Antoine de Charais est seigneur de Latour-Serviat. Il est  lartisan de la construction du logis central et de ses tours, quil accole à la grosse tour féodale qui date, elle, du XIIe siècle. En 1520, Catherine de Charais, descendante directe dAntoine dame de la Tour-Serviat, veuve, la porte par remariage , épouse Gilbert de la Mer, seigneur de Matha. La dynastie de la Mer garde la possession du fief jusquen 1620.  En 1628, Gaspard de La Mer vend sa part de la seigneurie à Anne de Sauzay,  veuve de Louis de Bonnevie la seigneurie au seigneur de Mazières, Louis de Bonnevie.  Par le jeu des héritiers, puis par mariage à la famille de Larochelambert, dont un descendant vend le domaine en 1757 à Pierre Amable Duboys, seigneur de Macholles. Ce dernier mourant sans descendance en 1773, sa soeur Marguerite hérite de la propriété. Marguerite épousera Pierre Amable Soubrany, seigneur de Verrières, Les 2 parts du domaine sont  de nouveau réunies   par le mariage d'une fille de Bonnevie en 1790,    avec   Charles Ignace de Beauverger-Montgon. Puis la propriété est vendue en 1798 à douze propriétaires locaux.  Il est ensuite acquis par M.  Changarnier en  2004, qui entreprend sa restauration complète afin de retrouver son état dorigine.   MONTCEL, cest seulement en 1790 que la municipalité de Montcel obtient par soumission ce fief faisant partie des biens nationaux. Aujourdhui au XXIe siècle, un vestige du château de Catherine de Médicis est resté, trois tours qui dominent la vallée de la Morge.</p>
+<h4>Architecture</h4><p>Château  de Serviat édifié au XVe siècle, situé à 1,8 km du bourg,  donjon-logis quadrangulaire flanqué  d'une tour du XVe siècle et de trois tours rondes sur angles,  il est dérasé et il ne reste que deux niveaux du corps de logis. Une tourelle d'escalier circulaire est demi hors-oeuvre. Lensemble de la propriété est vendue en 1798 à douze propriétaires locaux. Le château est alors utilisé comme bâtiment agricole, ce qui en sauve le gros oeuvre.                     Montcel fait partie de la communauté de Communes des Côtes de Combrailles et se mobilise pour les actions dintérêts communautaires et principalement pour le développement économique. La commune a conservé un caractère champêtre par la diversité du paysage que lon préserve pour le bien être de tous.  Les restes de muraille et les 3 tours surplombent encore la route et dissimulent le cimetière de la commune. L'histoire de ce château ainsi que sa seigneurie sont confuses. Seule la prise de possession par la reine Catherine de Médicis en 1552 est connue.</p>
+<h4>Habitants / Familles</h4><p>Famille de Gaspard de La Mer 
+<br/>        "</p>
+<h4>Divers</h4><p>Vestiges  de Montcxel et château de la tour Serviat</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

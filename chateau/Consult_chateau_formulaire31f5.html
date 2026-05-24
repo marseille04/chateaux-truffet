@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Pierre_de_Bresse — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,64 +113,61 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_71.html">Saône-et-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_71.html">Saône-et-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_71.html" class="back-link">Retour au département 71 — Saône-et-Loire</a>
-  <div class="fiche">
-    <h2>Pierre_de_Bresse</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>71 — Saône-et-Loire</td></tr>
-          <tr><td>Canton</td><td>Pierre-de-Bresse</td></tr>
-          <tr><td>Commune</td><td>Pierre-de-Bresse</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_71/71_Pierre_de_Bresse_1.jpg" alt="Pierre_de_Bresse" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Pierre_de_Bresse_2.jpg" alt="Pierre_de_Bresse" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Pierre_de_Bresse_3.jpg" alt="Pierre_de_Bresse" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Pierre_de_Bresse_4.jpg" alt="Pierre_de_Bresse" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Pierre_de_Bresse_5.jpg" alt="Pierre_de_Bresse" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Pierre_de_Bresse_6.jpg" alt="Pierre_de_Bresse" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Pierre_de_Bresse_7.jpg" alt="Pierre_de_Bresse" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Pierre_de_Bresse_8.jpg" alt="Pierre_de_Bresse" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Pierre_de_Bresse_9.jpg" alt="Pierre_de_Bresse" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_71.html">Retour au département 71 — Saône-et-Loire</a>
+<div class="fiche">
+<h2>Pierre_de_Bresse</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Pierre_de_Bresse" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_71/71_Pierre_de_Bresse_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Pierre_de_Bresse" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Pierre_de_Bresse_1.jpg"/><img alt="Pierre_de_Bresse" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Pierre_de_Bresse_2.jpg"/><img alt="Pierre_de_Bresse" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Pierre_de_Bresse_3.jpg"/><img alt="Pierre_de_Bresse" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Pierre_de_Bresse_4.jpg"/><img alt="Pierre_de_Bresse" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Pierre_de_Bresse_5.jpg"/><img alt="Pierre_de_Bresse" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Pierre_de_Bresse_6.jpg"/><img alt="Pierre_de_Bresse" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Pierre_de_Bresse_7.jpg"/><img alt="Pierre_de_Bresse" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Pierre_de_Bresse_8.jpg"/><img alt="Pierre_de_Bresse" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Pierre_de_Bresse_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>71 — Saône-et-Loire</td></tr>
+<tr><td>Canton</td><td>Pierre-de-Bresse</td></tr>
+<tr><td>Commune</td><td>Pierre-de-Bresse</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>PIERRE DE BRESSE, cité en 1092 par donation de l'évêque de Chalons au prieur "Robertus de Petra" le premier seigneur qui donna son nom.  Au XIIIe siècle à la famille de Vienne, et par alliance  en 1380 à la famille Jean Mypont dont la veuve, Jeanne de Villiers l'apporte à son second époux Jean Bouton de Fay en 1436 jusqu'à la fin du XVIe siècle que Claude Bouton hérita de la Baronnie, ce dernier vend son fief à son beau-frère le poète Pontus de Tyard, le château fut remanié en 1680 par Claude de Tyard comte de Bissy militaire sous Louis XIV  et restera dans cette famille de militaire jusqu'en 1852, la baronnie passe par alliance à Ludovic-Omer Marquis d'Estampes. En 1880, à la mort de la marquise d'Estampes, le second de ses fils, Ambroise-Théodore d'Estampes 1826 - 1889, hérite du château. En 1889, Louis d'Estampes, passe à son cousin germain du précédent, en 1901 sa veuve , Jeanne Bayet, d'origine belge, hérite du domaine. En 1920, Hector d'Estampes et André d'Estampes, le fils  de Louis d'Estampes, héritent du domaine. 
-<br>En 1944, un incendie ravage l'aile gauche du château mais le logis seigneurial est épargné et en 1955, décès d'André, comte d'Estampes. En 1956, le département de Saône-et-Loire acquiert le château et transforme les communs en maison de retraite. 
-<br>En 1981  le château abrite l'Ecomusée de la Bresse Bourgignonne.
-<br>TERRANS, au XVe siècle seigneurie des Terrans, cette famille de ce nom  possédait une maison forte de l'un de ses représentant en 1427 était conseiller de Philippe le Bon. La seigneurie sera morcelée entre plusieurs propriétaires, avant d'être réunifiée à la fin du XVIIe siècle par la famille  de Chatenay, en 1707 par alliance la seigneurie passe à jean François de Truchis, le troisième fils  Guillaume de Truchis comte de Surville lieutenant du roi pour les villes et citadelles de Chalon sur Saône, fit construire le château en 1765 toujours dans la famille des Truchis de Varennes.                                 Dans la commune le château Paillot Transformé en collège.</p>
-      <h4>Architecture</h4><p>Pierre de Bresse, du château féodal qui fut reconstruit et agrandi en forme de U en 1680, sur l'emplacement d'une  ancienne forteresse entouré de douves, corps de logis principal à deux niveaux possède un avant corps en saillie et fronton trapézoïdal portant l'écusson des Tyard, deux ailes en retour d'équerres flanqués aux extrémités de tours rondes coiffées de dômes à campaniles percées, à l'exception de la tour nord-est, de canonnières, les communs furent construit en 1744 et servent de maison de retraite départementale.                                                                          Terrans, château construit en 1765 de forme rectangulaire le corps de logis comporte un rez-de-chaussée élevé sur un sous-sol, un étage carré et un étage de combles, oeils-de-boeuf sur la base du toits, un avant corps central  avec fronton triangulaire sculpté, les communs identiques le précédent implantés de part et d'autre  de la cour .</p>
-      <h4>Habitants / Familles</h4><p>Famille de Claude de Tyard 
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Pierre de Bresse et de Terrans</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>PIERRE DE BRESSE, cité en 1092 par donation de l'évêque de Chalons au prieur "Robertus de Petra" le premier seigneur qui donna son nom.  Au XIIIe siècle à la famille de Vienne, et par alliance  en 1380 à la famille Jean Mypont dont la veuve, Jeanne de Villiers l'apporte à son second époux Jean Bouton de Fay en 1436 jusqu'à la fin du XVIe siècle que Claude Bouton hérita de la Baronnie, ce dernier vend son fief à son beau-frère le poète Pontus de Tyard, le château fut remanié en 1680 par Claude de Tyard comte de Bissy militaire sous Louis XIV  et restera dans cette famille de militaire jusqu'en 1852, la baronnie passe par alliance à Ludovic-Omer Marquis d'Estampes. En 1880, à la mort de la marquise d'Estampes, le second de ses fils, Ambroise-Théodore d'Estampes 1826 - 1889, hérite du château. En 1889, Louis d'Estampes, passe à son cousin germain du précédent, en 1901 sa veuve , Jeanne Bayet, d'origine belge, hérite du domaine. En 1920, Hector d'Estampes et André d'Estampes, le fils  de Louis d'Estampes, héritent du domaine. 
+<br/>En 1944, un incendie ravage l'aile gauche du château mais le logis seigneurial est épargné et en 1955, décès d'André, comte d'Estampes. En 1956, le département de Saône-et-Loire acquiert le château et transforme les communs en maison de retraite. 
+<br/>En 1981  le château abrite l'Ecomusée de la Bresse Bourgignonne.
+<br/>TERRANS, au XVe siècle seigneurie des Terrans, cette famille de ce nom  possédait une maison forte de l'un de ses représentant en 1427 était conseiller de Philippe le Bon. La seigneurie sera morcelée entre plusieurs propriétaires, avant d'être réunifiée à la fin du XVIIe siècle par la famille  de Chatenay, en 1707 par alliance la seigneurie passe à jean François de Truchis, le troisième fils  Guillaume de Truchis comte de Surville lieutenant du roi pour les villes et citadelles de Chalon sur Saône, fit construire le château en 1765 toujours dans la famille des Truchis de Varennes.                                 Dans la commune le château Paillot Transformé en collège.</p>
+<h4>Architecture</h4><p>Pierre de Bresse, du château féodal qui fut reconstruit et agrandi en forme de U en 1680, sur l'emplacement d'une  ancienne forteresse entouré de douves, corps de logis principal à deux niveaux possède un avant corps en saillie et fronton trapézoïdal portant l'écusson des Tyard, deux ailes en retour d'équerres flanqués aux extrémités de tours rondes coiffées de dômes à campaniles percées, à l'exception de la tour nord-est, de canonnières, les communs furent construit en 1744 et servent de maison de retraite départementale.                                                                          Terrans, château construit en 1765 de forme rectangulaire le corps de logis comporte un rez-de-chaussée élevé sur un sous-sol, un étage carré et un étage de combles, oeils-de-boeuf sur la base du toits, un avant corps central  avec fronton triangulaire sculpté, les communs identiques le précédent implantés de part et d'autre  de la cour .</p>
+<h4>Habitants / Familles</h4><p>Famille de Claude de Tyard 
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Pierre de Bresse et de Terrans</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

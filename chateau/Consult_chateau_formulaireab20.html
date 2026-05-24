@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Champigny_veude — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,59 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_37.html">Indre-et-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_37.html">Indre-et-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_37.html" class="back-link">Retour au département 37 — Indre-et-Loire</a>
-  <div class="fiche">
-    <h2>Champigny_veude</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
-          <tr><td>Canton</td><td>Ste Maure en Touraine</td></tr>
-          <tr><td>Commune</td><td>Champigny-sur-Veude</td></tr>
-          <tr><td>Type d'édifice</td><td>Forteresse</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVI</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_37/37_Champigny_veude_1.jpg" alt="Champigny_veude" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Champigny_veude_2.jpg" alt="Champigny_veude" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Champigny_veude_3.jpg" alt="Champigny_veude" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Champigny_veude_4.jpg" alt="Champigny_veude" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Champigny_veude_5.jpg" alt="Champigny_veude" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Champigny_veude_6.jpg" alt="Champigny_veude" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Champigny_veude_7.jpg" alt="Champigny_veude" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_37.html">Retour au département 37 — Indre-et-Loire</a>
+<div class="fiche">
+<h2>Champigny_veude</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Champigny_veude" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_37/37_Champigny_veude_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Champigny_veude" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Champigny_veude_1.jpg"/><img alt="Champigny_veude" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Champigny_veude_2.jpg"/><img alt="Champigny_veude" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Champigny_veude_3.jpg"/><img alt="Champigny_veude" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Champigny_veude_4.jpg"/><img alt="Champigny_veude" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Champigny_veude_5.jpg"/><img alt="Champigny_veude" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Champigny_veude_6.jpg"/><img alt="Champigny_veude" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Champigny_veude_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
+<tr><td>Canton</td><td>Ste Maure en Touraine</td></tr>
+<tr><td>Commune</td><td>Champigny-sur-Veude</td></tr>
+<tr><td>Type d'édifice</td><td>Forteresse</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVI</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>deux châteaux à Champigny, celui de Champigny et de Pataudière.                                                                                                               CHAMPIGNY sur VEUDE ;  en 1470- 1508 Il fut commencé par Louis Ier de Bourbon et achevé par Louis II, premier duc de Montpensier. En 1625, Marie de Bourbon l'apporte en dot à Gaston d'Orléans. En 1635 le duc d'Orléans est invité par le cardinal à échanger Champigny pour la seigneurie de Bois-le-Vicomte, le contrat stipule qu'il sera détruit à la réserve des servitudes. Seule la chapelle échappe à la destruction, le pape Urbain VIII qui y a officié, refusant son autorisation. En 1656, sa restitution est obtenue par la fille Anne-Marie d'Orléans dit la grande mademoiselle fille  de Gaston d'Orléans. Des réparations sont réalisées sur les communs utilisés comme habitation principale. Ceux-ci, avec quelques murs d'enceinte, sont les seuls restes du château bâti par Louis de Bourbon. Ce sont trois corps de logis en équerre entourant l'ancienne basse-cour. Celui du centre présente deux étages avec, en son milieu, un pavillon surélevé et en saillie et à chaque extrémité, deux tours d'angle circulaires couvertes d'un toit en coupole, surmonté d'un lanternon. La chapelle fut achevée en 1540. J. Guillaume date le porche de 1549 date inscrite à l'intérieur du porche et non de 1570, il serait donc contemporain des bâtiments subsistants de l'avant-cour (datés de 1545 par une clef de voûte des écuries). Les vitraux de la chapelle sont un témoignage exceptionnel de l'art du vitrail du XVIe siècle. En 1980 le château appartenait à Bryan Wallace en 1980 à une société japonaise.</p>
-      <h4>Architecture</h4><p>PATAUDIERE, le premier seigneur connu est Étienne Fergon, mort en 1574, secrétaire de Louis III de Bourbon, duc de Montpensier, Il avait épousé Perrine Martine Ferrand, fille dAlexandre Ferrand, intendant de Louis de Bourbon. Leur fils Martin Fergon épousa Esther du Bec, fille de Marc du Bec, seigneur de Courcoué, et, à la mort de leur mère, en 1587, donna la Pataudière à sa sur Suzanne, qui, en 1601, vendit la seigneurie à René de Lomeron, conseiller et secrétaire du roi, décéda le 5 janvier 1629 et fut inhumé dans léglise. Du château, les éléments protégés  sont : les façades et toitures , à l'exception de la partie rajoutée au XIXe siècle, la cour d'honneur, la clôture et ses deux tourelles d'angle, inscrits aux M.H. le 13 novembre 1997. Le parc a été transformé en jardin zoologique au début du 20e siècle. Le château  a été racheté par des américains, qui l'entretiennent. A une époque, le château a appartenu à une société japonaise qui avait voulu les démonter pour les emmener au Japon! il appartenait à André Bazin et que Marc Honoré d'Estienne d'Orves était son conservateur, le couple de régisseurs Christiane et Thierry Millet qui vivent au château. propriétaires: Bernard et Joan Carl passent actuellement quelques jours à Champigny. Le couple américain, qui a acquis le château en 2000,</p>
-      <h4>Habitants / Familles</h4><p>La Grande Mademoiselle
-<br>        "</p>
-      <h4>Divers</h4><p>deux châteaux à Champigny, celui de Champigny   47° 04' 05? nord, 0° 19' 05? est                           et de Pataudière grav-7.    47° 4' 4,44" Nord, 0° 19' 5,16" Est grav 1 à 5</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>deux châteaux à Champigny, celui de Champigny et de Pataudière.                                                                                                               CHAMPIGNY sur VEUDE ;  en 1470- 1508 Il fut commencé par Louis Ier de Bourbon et achevé par Louis II, premier duc de Montpensier. En 1625, Marie de Bourbon l'apporte en dot à Gaston d'Orléans. En 1635 le duc d'Orléans est invité par le cardinal à échanger Champigny pour la seigneurie de Bois-le-Vicomte, le contrat stipule qu'il sera détruit à la réserve des servitudes. Seule la chapelle échappe à la destruction, le pape Urbain VIII qui y a officié, refusant son autorisation. En 1656, sa restitution est obtenue par la fille Anne-Marie d'Orléans dit la grande mademoiselle fille  de Gaston d'Orléans. Des réparations sont réalisées sur les communs utilisés comme habitation principale. Ceux-ci, avec quelques murs d'enceinte, sont les seuls restes du château bâti par Louis de Bourbon. Ce sont trois corps de logis en équerre entourant l'ancienne basse-cour. Celui du centre présente deux étages avec, en son milieu, un pavillon surélevé et en saillie et à chaque extrémité, deux tours d'angle circulaires couvertes d'un toit en coupole, surmonté d'un lanternon. La chapelle fut achevée en 1540. J. Guillaume date le porche de 1549 date inscrite à l'intérieur du porche et non de 1570, il serait donc contemporain des bâtiments subsistants de l'avant-cour (datés de 1545 par une clef de voûte des écuries). Les vitraux de la chapelle sont un témoignage exceptionnel de l'art du vitrail du XVIe siècle. En 1980 le château appartenait à Bryan Wallace en 1980 à une société japonaise.</p>
+<h4>Architecture</h4><p>PATAUDIERE, le premier seigneur connu est Étienne Fergon, mort en 1574, secrétaire de Louis III de Bourbon, duc de Montpensier, Il avait épousé Perrine Martine Ferrand, fille dAlexandre Ferrand, intendant de Louis de Bourbon. Leur fils Martin Fergon épousa Esther du Bec, fille de Marc du Bec, seigneur de Courcoué, et, à la mort de leur mère, en 1587, donna la Pataudière à sa sur Suzanne, qui, en 1601, vendit la seigneurie à René de Lomeron, conseiller et secrétaire du roi, décéda le 5 janvier 1629 et fut inhumé dans léglise. Du château, les éléments protégés  sont : les façades et toitures , à l'exception de la partie rajoutée au XIXe siècle, la cour d'honneur, la clôture et ses deux tourelles d'angle, inscrits aux M.H. le 13 novembre 1997. Le parc a été transformé en jardin zoologique au début du 20e siècle. Le château  a été racheté par des américains, qui l'entretiennent. A une époque, le château a appartenu à une société japonaise qui avait voulu les démonter pour les emmener au Japon! il appartenait à André Bazin et que Marc Honoré d'Estienne d'Orves était son conservateur, le couple de régisseurs Christiane et Thierry Millet qui vivent au château. propriétaires: Bernard et Joan Carl passent actuellement quelques jours à Champigny. Le couple américain, qui a acquis le château en 2000,</p>
+<h4>Habitants / Familles</h4><p>La Grande Mademoiselle
+<br/>        "</p>
+<h4>Divers</h4><p>deux châteaux à Champigny, celui de Champigny   47° 04' 05? nord, 0° 19' 05? est                           et de Pataudière grav-7.    47° 4' 4,44" Nord, 0° 19' 5,16" Est grav 1 à 5</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

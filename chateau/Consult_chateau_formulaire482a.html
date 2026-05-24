@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Auflance_Carignan — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,59 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_08.html">Ardennes</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_08.html">Ardennes</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_08.html" class="back-link">Retour au département 08 — Ardennes</a>
-  <div class="fiche">
-    <h2>Auflance_Carignan</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>08 — Ardennes</td></tr>
-          <tr><td>Canton</td><td>Carignan</td></tr>
-          <tr><td>Commune</td><td>Auflance</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>49° 37' 04" Nord, 5° 17' 28" Est                                                      Lombut  49° 37' 48? nord, 5° 07' 16? est</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_08/08_Auflance_Carignan_1.jpg" alt="Auflance_Carignan" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_08/08_Auflance_Carignan_2.jpg" alt="Auflance_Carignan" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_08/08_Auflance_Carignan_3.jpg" alt="Auflance_Carignan" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_08/08_Auflance_Carignan_4.jpg" alt="Auflance_Carignan" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_08/08_Auflance_Carignan_5.jpg" alt="Auflance_Carignan" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_08/08_Auflance_Carignan_6.jpg" alt="Auflance_Carignan" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_08/08_Auflance_Carignan_7.jpg" alt="Auflance_Carignan" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_08/08_Auflance_Carignan_8.jpg" alt="Auflance_Carignan" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_08.html">Retour au département 08 — Ardennes</a>
+<div class="fiche">
+<h2>Auflance_Carignan</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Auflance_Carignan" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_08/08_Auflance_Carignan_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Auflance_Carignan" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Auflance_Carignan_1.jpg"/><img alt="Auflance_Carignan" class="" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Auflance_Carignan_2.jpg"/><img alt="Auflance_Carignan" class="" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Auflance_Carignan_3.jpg"/><img alt="Auflance_Carignan" class="" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Auflance_Carignan_4.jpg"/><img alt="Auflance_Carignan" class="" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Auflance_Carignan_5.jpg"/><img alt="Auflance_Carignan" class="" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Auflance_Carignan_6.jpg"/><img alt="Auflance_Carignan" class="" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Auflance_Carignan_7.jpg"/><img alt="Auflance_Carignan" class="" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Auflance_Carignan_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>08 — Ardennes</td></tr>
+<tr><td>Canton</td><td>Carignan</td></tr>
+<tr><td>Commune</td><td>Auflance</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII</td></tr>
+<tr><td>Coordonnées GPS</td><td>49° 37' 04" Nord, 5° 17' 28" Est                                                      Lombut  49° 37' 48? nord, 5° 07' 16? est</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Cinq châteaux dans cet article,  Point central est  Carignan, Auflance, Euilly6Lombut, Mouzon et la Ferté pas d'info sur le donjon non plus sur le manoir de la Gravière.                                                                                         AUFLANCE, C'est au XVIIe siècle que la Famille de Custine viendra s'installer, à Auflance, proche de la frontière belge. Un château sera bâti, dont il ne reste que des vestiges : Un remarquable portail Renaissance orné d'armoiries, surmonté d'une Pieta, une tour ronde et des souterrains.  Le château d'Auflance a été construit au XVIIe siècle, les éléments protégés à l'inventaire supplémentaire des M.H.  sont les vestiges du château, y compris la façade des communs, inscription par arrêté du 18 septembre 1991.                                                                                                         CARIGNAN Les remparts datent de 1681. Ils comportaient initialement 10 bastions munis d'échauguettes. L'édifice est inscrit au titre des monuments historiques en 1988 et 1994.                               EUILLY-LOMBUT, le château fut assiégé par les généraux de saint Casimir, Roi de Pologne, qui s'en emparèrent sur Elizabeth de Gorlitz, Duchesse de Luxembourg vers 1422. On trouve quatre races de seigneurs de Lombut, Jean de Lombut l'était au commencement du XIIIe siècle. Picelot de Croï de Custine fit passer cette seigneurie dans sa maison par son alliance avec Catherine de Lombut, héritière apparemment des premiers seigneurs. Ide de Custine d'Auflance, la porta en partie dans la famille de Sapone par son mariage avec Gilles de Levant. Gambier de Hezecques était déjà seigneur de Lombut en partie, sur la fin du XVIe siècle; ses descendants l'ont possédé depuis sans interruption. La demoiselle de Hezecques leur héritière, réunit les deux parties, faisant la totalité de cette seigneurie, l'une provenant de son père, l'autre de sa mère. C'est à ce titre que M. de Pouilly, son premier mari l'a possédée et que M. de Juvigni qu'elle épousa en secondes noces la posséda ensuite.</p>
-      <h4>Architecture</h4><p>MOUZON, des travaux rue de la Mothe ont mis en exergue des vestiges d'un mur d'enceinte du IXe-XIe siècles, antérieur à ces fortifications. Celles-ci sont datées généralement de la fin du XIIe ou début du XIIIe, et leur construction est probablement contemporaine de celle de l'abbatiale. Elles sont en partie réagencées et surtout adaptées à l'artillerie par la mise en place de bastions et par l'épaississement des murs dans la seconde moitié du XVIe et le début du siècle suivant. La place est plusieurs fois assiégée. Les troupes espagnoles s'en emparent notamment en 1650, et les troupes françaises commandées par Turenne, la reprennent en 1653. Elle est démantelée quelques décennies plus tard. L'édifice est inscrit au titre des monuments historiques en 1926 et 20005.   Les fortifications de Mouzon correspondent aux vestiges des fortifications qui entouraient la ville. La porte de Bourgogne est l'élément le plus ancien de ce qui subsiste aujourd'hui des fortifications. Au sein de cette porte, la tour carrée surplombant les remparts est l'élément initial et date du début du xiiie siècle.                                                                                                                    L'ouvrage de La FERTE est un ouvrage fortifié de la ligne Maginot situé sur les communes de Villy et de La Ferté-sur-Chiers. L'édifice, bâti au sommet d'une colline ayant pour nom « La Croix de Villy », est parfois appelé ouvrage de Villy-La Ferté.</p>
-      <h4>Habitants / Familles</h4><p>Auflance ; Famille de Custine "</p>
-      <h4>Divers</h4><p>Cinq châteaux dans cet article Auflancegrav 2-3,  Carignan  Grav-1 ,  Euilly Lombut grav-4,   Mouzon  grav-5-6,  graviere grav-7 et la ferté grav 8 .                                Auflance GPS : 49° 37' 04" Nord, 5° 17' 28" Est                                                      Lombut  49° 37' 48? nord, 5° 07' 16? est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Cinq châteaux dans cet article,  Point central est  Carignan, Auflance, Euilly6Lombut, Mouzon et la Ferté pas d'info sur le donjon non plus sur le manoir de la Gravière.                                                                                         AUFLANCE, C'est au XVIIe siècle que la Famille de Custine viendra s'installer, à Auflance, proche de la frontière belge. Un château sera bâti, dont il ne reste que des vestiges : Un remarquable portail Renaissance orné d'armoiries, surmonté d'une Pieta, une tour ronde et des souterrains.  Le château d'Auflance a été construit au XVIIe siècle, les éléments protégés à l'inventaire supplémentaire des M.H.  sont les vestiges du château, y compris la façade des communs, inscription par arrêté du 18 septembre 1991.                                                                                                         CARIGNAN Les remparts datent de 1681. Ils comportaient initialement 10 bastions munis d'échauguettes. L'édifice est inscrit au titre des monuments historiques en 1988 et 1994.                               EUILLY-LOMBUT, le château fut assiégé par les généraux de saint Casimir, Roi de Pologne, qui s'en emparèrent sur Elizabeth de Gorlitz, Duchesse de Luxembourg vers 1422. On trouve quatre races de seigneurs de Lombut, Jean de Lombut l'était au commencement du XIIIe siècle. Picelot de Croï de Custine fit passer cette seigneurie dans sa maison par son alliance avec Catherine de Lombut, héritière apparemment des premiers seigneurs. Ide de Custine d'Auflance, la porta en partie dans la famille de Sapone par son mariage avec Gilles de Levant. Gambier de Hezecques était déjà seigneur de Lombut en partie, sur la fin du XVIe siècle; ses descendants l'ont possédé depuis sans interruption. La demoiselle de Hezecques leur héritière, réunit les deux parties, faisant la totalité de cette seigneurie, l'une provenant de son père, l'autre de sa mère. C'est à ce titre que M. de Pouilly, son premier mari l'a possédée et que M. de Juvigni qu'elle épousa en secondes noces la posséda ensuite.</p>
+<h4>Architecture</h4><p>MOUZON, des travaux rue de la Mothe ont mis en exergue des vestiges d'un mur d'enceinte du IXe-XIe siècles, antérieur à ces fortifications. Celles-ci sont datées généralement de la fin du XIIe ou début du XIIIe, et leur construction est probablement contemporaine de celle de l'abbatiale. Elles sont en partie réagencées et surtout adaptées à l'artillerie par la mise en place de bastions et par l'épaississement des murs dans la seconde moitié du XVIe et le début du siècle suivant. La place est plusieurs fois assiégée. Les troupes espagnoles s'en emparent notamment en 1650, et les troupes françaises commandées par Turenne, la reprennent en 1653. Elle est démantelée quelques décennies plus tard. L'édifice est inscrit au titre des monuments historiques en 1926 et 20005.   Les fortifications de Mouzon correspondent aux vestiges des fortifications qui entouraient la ville. La porte de Bourgogne est l'élément le plus ancien de ce qui subsiste aujourd'hui des fortifications. Au sein de cette porte, la tour carrée surplombant les remparts est l'élément initial et date du début du xiiie siècle.                                                                                                                    L'ouvrage de La FERTE est un ouvrage fortifié de la ligne Maginot situé sur les communes de Villy et de La Ferté-sur-Chiers. L'édifice, bâti au sommet d'une colline ayant pour nom « La Croix de Villy », est parfois appelé ouvrage de Villy-La Ferté.</p>
+<h4>Habitants / Familles</h4><p>Auflance ; Famille de Custine "</p>
+<h4>Divers</h4><p>Cinq châteaux dans cet article Auflancegrav 2-3,  Carignan  Grav-1 ,  Euilly Lombut grav-4,   Mouzon  grav-5-6,  graviere grav-7 et la ferté grav 8 .                                Auflance GPS : 49° 37' 04" Nord, 5° 17' 28" Est                                                      Lombut  49° 37' 48? nord, 5° 07' 16? est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Sablé_sur_Sarthe — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,61 +113,61 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_72.html">Sarthe</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_72.html">Sarthe</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_72.html" class="back-link">Retour au département 72 — Sarthe</a>
-  <div class="fiche">
-    <h2>Sablé_sur_Sarthe</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>72 — Sarthe</td></tr>
-          <tr><td>Canton</td><td>Sablé-sur-Sarthe</td></tr>
-          <tr><td>Commune</td><td>Sablé-sur-Sarthe</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>47° 50' 17" Nord, 0° 19' 58" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_72/72_Sabl%c3%a9_sur_Sarthe_1.jpg" alt="Sablé_sur_Sarthe" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Sabl%c3%a9_sur_Sarthe_2.jpg" alt="Sablé_sur_Sarthe" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Sabl%c3%a9_sur_Sarthe_3.jpg" alt="Sablé_sur_Sarthe" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Sabl%c3%a9_sur_Sarthe_4.jpg" alt="Sablé_sur_Sarthe" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Sabl%c3%a9_sur_Sarthe_5.jpg" alt="Sablé_sur_Sarthe" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Sabl%c3%a9_sur_Sarthe_6.jpg" alt="Sablé_sur_Sarthe" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Sabl%c3%a9_sur_Sarthe_7.jpg" alt="Sablé_sur_Sarthe" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_72.html">Retour au département 72 — Sarthe</a>
+<div class="fiche">
+<h2>Sablé_sur_Sarthe</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Sablé_sur_Sarthe" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_72/72_Sabl%c3%a9_sur_Sarthe_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Sablé_sur_Sarthe" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Sabl%c3%a9_sur_Sarthe_1.jpg"/><img alt="Sablé_sur_Sarthe" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Sabl%c3%a9_sur_Sarthe_2.jpg"/><img alt="Sablé_sur_Sarthe" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Sabl%c3%a9_sur_Sarthe_3.jpg"/><img alt="Sablé_sur_Sarthe" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Sabl%c3%a9_sur_Sarthe_4.jpg"/><img alt="Sablé_sur_Sarthe" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Sabl%c3%a9_sur_Sarthe_5.jpg"/><img alt="Sablé_sur_Sarthe" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Sabl%c3%a9_sur_Sarthe_6.jpg"/><img alt="Sablé_sur_Sarthe" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Sabl%c3%a9_sur_Sarthe_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>72 — Sarthe</td></tr>
+<tr><td>Canton</td><td>Sablé-sur-Sarthe</td></tr>
+<tr><td>Commune</td><td>Sablé-sur-Sarthe</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVII</td></tr>
+<tr><td>Coordonnées GPS</td><td>47° 50' 17" Nord, 0° 19' 58" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Plusieurs châteaux à Sablé sur Sarthe dont Sablé, manoir Giraudet, de Villeneuve, la Martinière,  et de Guivon. Pas d'info pour ces trois derniers.                                                                                                                      SABLE,  au XIe siècle appartient à la maison de Beaumont au XVe siècle  passe aux ducs d'Anjou. et à Louis XI héritier du dernier duc vendu à la maison de Lorraine, la baronnie est cédée en 1593 par Charles de Lorraine duc de Mayenne maréchal de France obtiendra  en 1502 l'érection de Sablé en marquisat son fils épousera Madeleine Souvré , fille de Gilles , marquis de Courtanvaux, maréchal de France, nouveau logis bâti entre 1715 et 1750 par l'architecte Desgots pour Jean-Baptiste Colbert de Torcy, marquis de Sablé,  Jean-Baptiste Colbert de Torcy, ministre des Affaires étrangères de Louis XIV, achète le château de Sablé en 1711. Au XIXe siècle Sablé passera par alliance  aux La Porte de Ryantz, puis  passe ensuite brièvement dans les biens de la famille de Rougé.  Au lendemain de la guerre de 1780 le duc de Chaulnes  acquiert le domaine et le restaure,  Acheté par la famille Williot en 1918, le château est transformé en manufacture de chicorée en 1921. La société Williot fils, fabricants de chicorée dans ses deux manufactures à Poix-du-Nord et à Sablé-sur-Sarthe, développe son activité et sa marque Chicorée Williot sous la direction de Michel Williot, acquis par la ville de Sablé  en 1978. Aujourd'hui centre technique de conservation des documents.                                                                       GUAUTRET, Il fut construit de 1515 à 1750. Un château-fort dont il ne reste que des vestiges est attesté dès le Xe siècle. Le logis qui avait été reconstruit au XVe ou au XVIe siècle a lui aussi été détruit. C'est devenu le Centre Technique de la Banque National de France.</p>
-      <h4>Architecture</h4><p>SABLE sur SARTHE, château fort mentionné aux Xe et XIe siècles dont ne subsiste que des vestiges. Logis reconstruit au XVe ou XVIe siècle, détruit. Dans la première moitié du XVIIe siècle, corps postérieur hors-oeuvre,   Des travaux de rénovation commencent en 1715 et se poursuivent jusqu'en 1728, mais ce n'est qu'en 1741 qu'est achevée la décoration intérieure. Remaniement du logis pour le duc de Chaulnes par l'architecte Lafenestre en 1870, escalier tournant à retours orné de ferronnerie, vestibule, salons. Garenne mentionnée au XIVe siècle sur les communes de Sablé et Courtillers, actuellement en vestiges    Destruction partielle vers 1773 de l'enceinte datant du XIIIe ou XIVe siècle. Jardin régulier, bassin réalisés entre 1715 et 1750, au 3ème quart XIXe siècle, jardin en partie détruit et converti en jardin paysager avec portail en ferronnerie. En 1919 l'édifice est converti en manufacture de chicorée.  Son parc sont classés aux M.H. depuis 1983. L'architecte du château de Sablé-sur-Sarthe est Mr Desgots, est devenu le Centre Technique .  Éléments protégés MH : les façades et les toitures des communs : inscription par arrêté du 16 octobre 1983.</p>
-      <h4>Habitants / Familles</h4><p>Sablé;Famille de Jean-Baptiste Colbert de Torcy et  famille de Rougé
-<br>        
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Plusieurs châteaux à Sablé sur Sarthe dont Sablé grav 1-2-3, manoir Giraudet grav-5, de Villeneuve gracv-6, la Martinière grav 7,  et de Guivon grav_4.               .                                                     Sablé GPS : 47° 50' 17" Nord, 0° 19' 58" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Plusieurs châteaux à Sablé sur Sarthe dont Sablé, manoir Giraudet, de Villeneuve, la Martinière,  et de Guivon. Pas d'info pour ces trois derniers.                                                                                                                      SABLE,  au XIe siècle appartient à la maison de Beaumont au XVe siècle  passe aux ducs d'Anjou. et à Louis XI héritier du dernier duc vendu à la maison de Lorraine, la baronnie est cédée en 1593 par Charles de Lorraine duc de Mayenne maréchal de France obtiendra  en 1502 l'érection de Sablé en marquisat son fils épousera Madeleine Souvré , fille de Gilles , marquis de Courtanvaux, maréchal de France, nouveau logis bâti entre 1715 et 1750 par l'architecte Desgots pour Jean-Baptiste Colbert de Torcy, marquis de Sablé,  Jean-Baptiste Colbert de Torcy, ministre des Affaires étrangères de Louis XIV, achète le château de Sablé en 1711. Au XIXe siècle Sablé passera par alliance  aux La Porte de Ryantz, puis  passe ensuite brièvement dans les biens de la famille de Rougé.  Au lendemain de la guerre de 1780 le duc de Chaulnes  acquiert le domaine et le restaure,  Acheté par la famille Williot en 1918, le château est transformé en manufacture de chicorée en 1921. La société Williot fils, fabricants de chicorée dans ses deux manufactures à Poix-du-Nord et à Sablé-sur-Sarthe, développe son activité et sa marque Chicorée Williot sous la direction de Michel Williot, acquis par la ville de Sablé  en 1978. Aujourd'hui centre technique de conservation des documents.                                                                       GUAUTRET, Il fut construit de 1515 à 1750. Un château-fort dont il ne reste que des vestiges est attesté dès le Xe siècle. Le logis qui avait été reconstruit au XVe ou au XVIe siècle a lui aussi été détruit. C'est devenu le Centre Technique de la Banque National de France.</p>
+<h4>Architecture</h4><p>SABLE sur SARTHE, château fort mentionné aux Xe et XIe siècles dont ne subsiste que des vestiges. Logis reconstruit au XVe ou XVIe siècle, détruit. Dans la première moitié du XVIIe siècle, corps postérieur hors-oeuvre,   Des travaux de rénovation commencent en 1715 et se poursuivent jusqu'en 1728, mais ce n'est qu'en 1741 qu'est achevée la décoration intérieure. Remaniement du logis pour le duc de Chaulnes par l'architecte Lafenestre en 1870, escalier tournant à retours orné de ferronnerie, vestibule, salons. Garenne mentionnée au XIVe siècle sur les communes de Sablé et Courtillers, actuellement en vestiges    Destruction partielle vers 1773 de l'enceinte datant du XIIIe ou XIVe siècle. Jardin régulier, bassin réalisés entre 1715 et 1750, au 3ème quart XIXe siècle, jardin en partie détruit et converti en jardin paysager avec portail en ferronnerie. En 1919 l'édifice est converti en manufacture de chicorée.  Son parc sont classés aux M.H. depuis 1983. L'architecte du château de Sablé-sur-Sarthe est Mr Desgots, est devenu le Centre Technique .  Éléments protégés MH : les façades et les toitures des communs : inscription par arrêté du 16 octobre 1983.</p>
+<h4>Habitants / Familles</h4><p>Sablé;Famille de Jean-Baptiste Colbert de Torcy et  famille de Rougé
+<br/>
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Plusieurs châteaux à Sablé sur Sarthe dont Sablé grav 1-2-3, manoir Giraudet grav-5, de Villeneuve gracv-6, la Martinière grav 7,  et de Guivon grav_4.               .                                                     Sablé GPS : 47° 50' 17" Nord, 0° 19' 58" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

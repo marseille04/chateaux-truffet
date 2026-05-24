@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Borie_Saulnier — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,59 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_24.html">Dordogne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_24.html">Dordogne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_24.html" class="back-link">Retour au département 24 — Dordogne</a>
-  <div class="fiche">
-    <h2>Borie_Saulnier</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>24 — Dordogne</td></tr>
-          <tr><td>Canton</td><td>Champagnac de Belair</td></tr>
-          <tr><td>Commune</td><td>Champagnac de Belair</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIV-XVII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>45° 23' 36" Nord, 0° 41' 59" Est</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_24/24_Borie_Saulnier_1.jpg" alt="Borie_Saulnier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Borie_Saulnier_2.jpg" alt="Borie_Saulnier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Borie_Saulnier_3.jpg" alt="Borie_Saulnier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Borie_Saulnier_4.jpg" alt="Borie_Saulnier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Borie_Saulnier_5.jpg" alt="Borie_Saulnier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Borie_Saulnier_6.jpg" alt="Borie_Saulnier" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_24.html">Retour au département 24 — Dordogne</a>
+<div class="fiche">
+<h2>Borie_Saulnier</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Borie_Saulnier" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_24/24_Borie_Saulnier_1.jpg"/><div class="hero-count" id="hero-count">1 / 6</div></div><div class="photo-strip"><img alt="Borie_Saulnier" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Borie_Saulnier_1.jpg"/><img alt="Borie_Saulnier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Borie_Saulnier_2.jpg"/><img alt="Borie_Saulnier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Borie_Saulnier_3.jpg"/><img alt="Borie_Saulnier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Borie_Saulnier_4.jpg"/><img alt="Borie_Saulnier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Borie_Saulnier_5.jpg"/><img alt="Borie_Saulnier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Borie_Saulnier_6.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>24 — Dordogne</td></tr>
+<tr><td>Canton</td><td>Champagnac de Belair</td></tr>
+<tr><td>Commune</td><td>Champagnac de Belair</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIV-XVII</td></tr>
+<tr><td>Coordonnées GPS</td><td>45° 23' 36" Nord, 0° 41' 59" Est</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>BORIE-Saulnier Jean Jules Sarlande (ou Albert Sarlande) (1813 - 1888), maire d'Alger de 1858 à 1870, a acheté le château de la Borie Saulnier. Il est décédé dans son château le 1er décembre 1888.  Son fils, François Albert Sarlande (1847 - 1913), député de la Dordogne de 1876 à 1881, est décédé dans sa propriété du château de la Borie Saulnier le 30 août 1913.
-<br>Les propriétaires vous recevront en amis dans cet ancien repaire noble du XIVe et XVIIe siècle, au coeur du Périgord Vert, La Borie fut longtemps le principal manoir de la Henri III lui accorda, en 1578, quatre mille écus, à prendre sur la recette générale de Guienne. Finalement, la famille dArnault préféra vendre sa terre à la famille Saulnier, qui avait acquis une grande fortune dans le commerce du sel et possédait déjà de nombreux fiefs dans la région. Guy Saulnier, marié à Peyronne de Saint-Aulaire releva le vieux repaire de ses ruines. La Borie-Saulnier, les Saulnier de la Borie sunirent aux dAydie, aux La Marthonnie, aux Lafaye de Chardeuil, aux dHautefort  de Marqueyssac et de Rouffignac, aux Ranconnet,  aux Brosse, aux Montalembert. La fille de Mme de Montalembert épousa le marquis de Taillefer, dont la famille tirait son nom dun célèbre exploit guerrier. En 1873, le marquis vendit le château à M. Sarlande, député de Nontron. Napoléon III, qui devait nommer un Sarlande au poste de premier préfet dAlger, fut reçu au château.</p>
-      <h4>Architecture</h4><p>BORIE-SAULNIER appelé aussi château de Laborie, date des XVIe et XVIIe siècles, enceinte  carrée entourantun logis flanquéd'un donjon, cette demeure du XIIIe siècle, qui fut jadis témoin de guerres de religion, de plan rectangulaire avec un corps de logis en équerre à trois niveaux toitures à deux pans avec échauguettes sur côté parc et sur cour en angle une tour hexagonale à cinq niveaux à toit pointu à quatre pans  et tour carré sur l' autre angle, l'édifice sur soubassement entouré de douves  est fermé par des bâtiments formant la cour et en façade  sur les deux angles tours rondes à deux niveaux couronné de mâchicoulis et chemin de ronde crénelés reliant la tour voisine identique toit en poivrières.</p>
-      <h4>Habitants / Familles</h4><p>Claude et Michel Duseau
-<br>        "</p>
-      <h4>Divers</h4><p>Champagnac de Belair , le château de Borie-Saulnier GPS : 45° 23' 36" Nord, 0° 41' 59" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>BORIE-Saulnier Jean Jules Sarlande (ou Albert Sarlande) (1813 - 1888), maire d'Alger de 1858 à 1870, a acheté le château de la Borie Saulnier. Il est décédé dans son château le 1er décembre 1888.  Son fils, François Albert Sarlande (1847 - 1913), député de la Dordogne de 1876 à 1881, est décédé dans sa propriété du château de la Borie Saulnier le 30 août 1913.
+<br/>Les propriétaires vous recevront en amis dans cet ancien repaire noble du XIVe et XVIIe siècle, au coeur du Périgord Vert, La Borie fut longtemps le principal manoir de la Henri III lui accorda, en 1578, quatre mille écus, à prendre sur la recette générale de Guienne. Finalement, la famille dArnault préféra vendre sa terre à la famille Saulnier, qui avait acquis une grande fortune dans le commerce du sel et possédait déjà de nombreux fiefs dans la région. Guy Saulnier, marié à Peyronne de Saint-Aulaire releva le vieux repaire de ses ruines. La Borie-Saulnier, les Saulnier de la Borie sunirent aux dAydie, aux La Marthonnie, aux Lafaye de Chardeuil, aux dHautefort  de Marqueyssac et de Rouffignac, aux Ranconnet,  aux Brosse, aux Montalembert. La fille de Mme de Montalembert épousa le marquis de Taillefer, dont la famille tirait son nom dun célèbre exploit guerrier. En 1873, le marquis vendit le château à M. Sarlande, député de Nontron. Napoléon III, qui devait nommer un Sarlande au poste de premier préfet dAlger, fut reçu au château.</p>
+<h4>Architecture</h4><p>BORIE-SAULNIER appelé aussi château de Laborie, date des XVIe et XVIIe siècles, enceinte  carrée entourantun logis flanquéd'un donjon, cette demeure du XIIIe siècle, qui fut jadis témoin de guerres de religion, de plan rectangulaire avec un corps de logis en équerre à trois niveaux toitures à deux pans avec échauguettes sur côté parc et sur cour en angle une tour hexagonale à cinq niveaux à toit pointu à quatre pans  et tour carré sur l' autre angle, l'édifice sur soubassement entouré de douves  est fermé par des bâtiments formant la cour et en façade  sur les deux angles tours rondes à deux niveaux couronné de mâchicoulis et chemin de ronde crénelés reliant la tour voisine identique toit en poivrières.</p>
+<h4>Habitants / Familles</h4><p>Claude et Michel Duseau
+<br/>        "</p>
+<h4>Divers</h4><p>Champagnac de Belair , le château de Borie-Saulnier GPS : 45° 23' 36" Nord, 0° 41' 59" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

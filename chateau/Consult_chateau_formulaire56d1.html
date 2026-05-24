@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Mirebel — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,60 +113,61 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_39.html">Jura</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_39.html">Jura</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_39.html" class="back-link">Retour au département 39 — Jura</a>
-  <div class="fiche">
-    <h2>Mirebel</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>39 — Jura</td></tr>
-          <tr><td>Canton</td><td>Conliège</td></tr>
-          <tr><td>Commune</td><td>Mirebel</td></tr>
-          <tr><td>Type d'édifice</td><td>Vestiges</td></tr>
-          <tr><td>Période d'origine</td><td>XII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_39/39_Mirebel_1.jpg" alt="Mirebel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_39/39_Mirebel_2.jpg" alt="Mirebel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_39/39_Mirebel_3.jpg" alt="Mirebel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_39/39_Mirebel_4.jpg" alt="Mirebel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_39/39_Mirebel_5.jpg" alt="Mirebel" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_39.html">Retour au département 39 — Jura</a>
+<div class="fiche">
+<h2>Mirebel</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Mirebel" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_39/39_Mirebel_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Mirebel" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_39/39_Mirebel_1.jpg"/><img alt="Mirebel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_39/39_Mirebel_2.jpg"/><img alt="Mirebel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_39/39_Mirebel_3.jpg"/><img alt="Mirebel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_39/39_Mirebel_4.jpg"/><img alt="Mirebel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_39/39_Mirebel_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>39 — Jura</td></tr>
+<tr><td>Canton</td><td>Conliège</td></tr>
+<tr><td>Commune</td><td>Mirebel</td></tr>
+<tr><td>Type d'édifice</td><td>Vestiges</td></tr>
+<tr><td>Période d'origine</td><td>XII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>MIREBEL, attesté dès le XIIe siècle, l'édifice est le siège d'une seigneurie qui ressort du domaine des comtes de Bourgogne.
-<br>Le premier seigneur connu de Mirebel est Gérard Ier de Vienne, En 1280, Jean Ier de Vienne,  l'une des plus puissantes familles du Comté. Henri de Vienne, son petit-fils, résida aussi à Mirebel, de 1364 jusqu'à sa mort  Henri avait deux fils: Gauthier, l'aîné, qui reçu Mirebel dans son héritage et Jean, amiral de France. Gauthier mourut sans enfant vers 1399. Ses biens, et  Mirebel, passèrent à un fils de son frère Jean, puis à un autre Jean de Vienne, sire de Pagny. A la mort de ce Jean de Vienne en 1422, le fief de Mirebel passa aux Chalon-Arlay. En 1479, les armées de Louis XI ruinèrent en partie le château et Louis XI confisqua les biens de Jean de Chalon-Arlay. En 1479, le château est ruiné par les troupes de Louis XV, puis définitivement détruit par celles de Henri IV en 1595  la tour qui restait alors encore debout  servait  de poste de guet. La seigneurie de Mirebel fut restituée, au début du XVIe siècle, à la famille des Princes d'Orange qui devait ensuite devenir, par mariage, Orange-Nassau et régner sur les Pays-Bas comme c'est encore le cas aujourd'hui. Mais le château de Mirebel ne se releva pas de ses ruines. Inoccupé depuis, les vestiges du château a été acheté, en 2002, par la commune de Mirebel aux descendants des Princes d'Orange.</p>
-      <h4>Architecture</h4><p>Mirebel, l'éperon sur lequel est construit le château comprend trois zones séparées par des fossés;  la zone du château proprement-dit, une zone vide de vestiges  et au nord une zone avec des vestiges qui pourrait être celle d'une  redoute avec tour.
-<br>La zone du château proprement-dit:  Une enceinte, de 1,20 m. d'épaisseur, épousant le contour du premier plateau renferme un ensemble de vestiges. L'accès se faisait au nord, du côté ou le fossé est le plus important, par une porte que commandait un donjon carré de 10 m. de côté et qui devait comporter trois niveaux. Une fenêtre éclaire le second niveau et on y voit encore à ce même étage des latrines sur encorbellement et une archère. Celui-ci pourrait être daté du XIIIe siècle. Au donjon, à une époque plus tardive,  au XVe siècle, a été accolé un logis, comportant de larges ouvertures, auquel on a associé en retour un autre mur, plus large, qui barre le promontoire sur toute sa largeur. Au sud, divers creux et bosses, suggèrent l'emplacement d'anciens   bâtiments.
-<br>La zone nord, et un bâtiment quadrangulaire de 7 m. X 11 m., avec des murs épais de 2,10 m, d'un étage sur plancher.</p>
-      <h4>Habitants / Familles</h4><p>Gérard Ier de Vienne
-<br>        "</p>
-      <h4>Divers</h4><p>Vestiges de Mirebel</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>MIREBEL, attesté dès le XIIe siècle, l'édifice est le siège d'une seigneurie qui ressort du domaine des comtes de Bourgogne.
+<br/>Le premier seigneur connu de Mirebel est Gérard Ier de Vienne, En 1280, Jean Ier de Vienne,  l'une des plus puissantes familles du Comté. Henri de Vienne, son petit-fils, résida aussi à Mirebel, de 1364 jusqu'à sa mort  Henri avait deux fils: Gauthier, l'aîné, qui reçu Mirebel dans son héritage et Jean, amiral de France. Gauthier mourut sans enfant vers 1399. Ses biens, et  Mirebel, passèrent à un fils de son frère Jean, puis à un autre Jean de Vienne, sire de Pagny. A la mort de ce Jean de Vienne en 1422, le fief de Mirebel passa aux Chalon-Arlay. En 1479, les armées de Louis XI ruinèrent en partie le château et Louis XI confisqua les biens de Jean de Chalon-Arlay. En 1479, le château est ruiné par les troupes de Louis XV, puis définitivement détruit par celles de Henri IV en 1595  la tour qui restait alors encore debout  servait  de poste de guet. La seigneurie de Mirebel fut restituée, au début du XVIe siècle, à la famille des Princes d'Orange qui devait ensuite devenir, par mariage, Orange-Nassau et régner sur les Pays-Bas comme c'est encore le cas aujourd'hui. Mais le château de Mirebel ne se releva pas de ses ruines. Inoccupé depuis, les vestiges du château a été acheté, en 2002, par la commune de Mirebel aux descendants des Princes d'Orange.</p>
+<h4>Architecture</h4><p>Mirebel, l'éperon sur lequel est construit le château comprend trois zones séparées par des fossés;  la zone du château proprement-dit, une zone vide de vestiges  et au nord une zone avec des vestiges qui pourrait être celle d'une  redoute avec tour.
+<br/>La zone du château proprement-dit:  Une enceinte, de 1,20 m. d'épaisseur, épousant le contour du premier plateau renferme un ensemble de vestiges. L'accès se faisait au nord, du côté ou le fossé est le plus important, par une porte que commandait un donjon carré de 10 m. de côté et qui devait comporter trois niveaux. Une fenêtre éclaire le second niveau et on y voit encore à ce même étage des latrines sur encorbellement et une archère. Celui-ci pourrait être daté du XIIIe siècle. Au donjon, à une époque plus tardive,  au XVe siècle, a été accolé un logis, comportant de larges ouvertures, auquel on a associé en retour un autre mur, plus large, qui barre le promontoire sur toute sa largeur. Au sud, divers creux et bosses, suggèrent l'emplacement d'anciens   bâtiments.
+<br/>La zone nord, et un bâtiment quadrangulaire de 7 m. X 11 m., avec des murs épais de 2,10 m, d'un étage sur plancher.</p>
+<h4>Habitants / Familles</h4><p>Gérard Ier de Vienne
+<br/>        "</p>
+<h4>Divers</h4><p>Vestiges de Mirebel</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

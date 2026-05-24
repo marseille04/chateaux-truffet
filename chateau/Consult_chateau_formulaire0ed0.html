@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Effiat_Denone — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,62 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_63.html">Puy-de-Dôme</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_63.html">Puy-de-Dôme</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_63.html" class="back-link">Retour au département 63 — Puy-de-Dôme</a>
-  <div class="fiche">
-    <h2>Effiat_Denone</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>63 — Puy-de-Dôme</td></tr>
-          <tr><td>Canton</td><td>Aigueperse</td></tr>
-          <tr><td>Commune</td><td>Effiat</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_63/63_Effiat_Denone_1.jpg" alt="Effiat_Denone" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Effiat_Denone_2.jpg" alt="Effiat_Denone" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Effiat_Denone_3.jpg" alt="Effiat_Denone" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Effiat_Denone_4.jpg" alt="Effiat_Denone" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Effiat_Denone_5.jpg" alt="Effiat_Denone" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Effiat_Denone_6.jpg" alt="Effiat_Denone" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Effiat_Denone_7.jpg" alt="Effiat_Denone" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Effiat_Denone_8.jpg" alt="Effiat_Denone" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Effiat_Denone_9.jpg" alt="Effiat_Denone" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_63.html">Retour au département 63 — Puy-de-Dôme</a>
+<div class="fiche">
+<h2>Effiat_Denone</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Effiat_Denone" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_63/63_Effiat_Denone_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Effiat_Denone" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Effiat_Denone_1.jpg"/><img alt="Effiat_Denone" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Effiat_Denone_2.jpg"/><img alt="Effiat_Denone" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Effiat_Denone_3.jpg"/><img alt="Effiat_Denone" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Effiat_Denone_4.jpg"/><img alt="Effiat_Denone" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Effiat_Denone_5.jpg"/><img alt="Effiat_Denone" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Effiat_Denone_6.jpg"/><img alt="Effiat_Denone" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Effiat_Denone_7.jpg"/><img alt="Effiat_Denone" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Effiat_Denone_8.jpg"/><img alt="Effiat_Denone" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Effiat_Denone_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>63 — Puy-de-Dôme</td></tr>
+<tr><td>Canton</td><td>Aigueperse</td></tr>
+<tr><td>Commune</td><td>Effiat</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>EFFIAT, fief  en 1375 de Louis de Martinges, passa aux Neufville et acquit  par Gilbert II de Coëffier qui construit en 1557 et fait partie d'un grand projet d' Antoine Coëffier de Ruzé d'Effiat, dit Ruzé par l'alliance avec Bonne Ruzé, ami de Richelieu et conseiller du roi en 1625, dont les terres furent érigées en marquisat en 1627 et qui devint maréchal de France en 1631. Ses trois fils ne suivent pas les pas  du maréchal d'Effiat. Le second Henri d'Effiat marquis de Cinq Mars lieutenant du roi à quinze ans  et grand écuyer de Louis XIII à dix neuf  grandit au château avant de devenir le favori de Louis XIII entraîné dans une conspiration contre Richelieu. Il fut condamné à avoir la tête tranchée  en 1642, la mère lègue  le château  à son petit fils qui décédera sans postérité en 1719, le château revient à un parent Paul-Jules de la Meilleraye neveu du cardinal de Mazarin, puis passera à Louis de la Tour d'Auvergne et au financier John Law. Le château est racheté  en 1728 par le comte de Sampigny d'Yssoncourt qui y résidera jusqu'en 1846  date à laquelle la dernière  et heritière ruinée s'en débarrasse le vend à un marchand nommé Boucard qui le revend aussitôt  à la famille de Moroges qui le sauve de la destruction.                                                                            DENONE, ce charmant petit château, entouré de douves, d'allées de tilleuls et de marronniers, a été édifié dans les années 1560 par Charles de Marillac qui fut ambassadeur de France au temps de François Ier et de Henri II. Il appartint notamment aux comtes d'Effiat, ainsi qu'à la famille de Louise de Marillac. Marqué par le destin tragique de l'un des leurs, Cinq-Mars qui inspira le roman de Vigny. Le Cardinal de Richelieu, reçu par le Marquis d'Effiat qui avait acheté Denone a une héritière des Marillac, y séjourna du 4 au 8 septembre 1629 lors d'un voyage en Auvergne. Un superbe lit Louis XIII à baldaquins cramoisis rappelle le passage de Richelieu dans la chambre dite "du Cardinal" où on peut admirer de ravissants plafonds peints dans un style d'inspiration italienne. Au XVIIIe siècle le domaine appartient au financier John Law, aujourd'hui à la famille Pourtier.</p>
-      <h4>Architecture</h4><p>château  d'Effiat est situé au milieu d'une enceinte rectangulaire limitée par un canal formant douves. L'entrée se fait par un pont-levis et une porte monumentale. Le château est actuellement constitué d'un corps de logis rectangulaire d'ordonnance classique à trois niveaux encadré de deux pavillons rectangulaires saillants, et les ailes qui les prolongeaient ont disparues. La façade est ornée de pilastres doriques. Les bâtiments des communs et de la ferme datent de la fin du XVIIe siècle, toiture en croupe  avec pente assez prononcé.  Le château d'Effiat a été classé monument historique le 16 avril 1942 puis inscrit 6 juin 1980 et à nouveau classé le 10 mars 2004.      
-<br>Le château de Denone, admirable bâtiment dont la construction remonte au XVIe siècle, situé dans le hameau du même nom. Le château a été construit en 1550 à l'emplacement d'un château féodal. Le bâtiment Renaissance s'appuie sur 3 tours plus anciennes, restes d'une petite forteresse antérieure, Il est situé au milieu d'un jardin aménagé au XVIIe siècle bordé à l'ouest de douves, et à l'est de communs dont certaines parties datent du XVIIe siècle. Le château est constitué de deux corps de logis perpendiculaires, flanqués de trois tours circulaires  à leurs angles extérieurs. Ils sont divisés en pièces faisant  toute la largeur des ailes, moins le couloir qui les  dessert.  Ces deux couloirs distribuent l'édifice à partir   d'un escalier droit dont les  volées sont séparées par un mur d'échiffre.  La tour nord renferme un escalier à vis. A l'intérieur l'édifice a conservé au premier étage, deux plafonds en bois à poutres et poutrelles décorés de peintures de la fin du XVIe ou début XVIIe siècle,  les autres pièces présentent des plafonds à la française, des cheminées XVIIe et XVIIIe siècle.</p>
-      <h4>Habitants / Familles</h4><p>Marquis de Cinq Mars                                                            Famille de Charles de Marillac
-<br>        "</p>
-      <h4>Divers</h4><p>Château d'Effiat et de Denone.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>EFFIAT, fief  en 1375 de Louis de Martinges, passa aux Neufville et acquit  par Gilbert II de Coëffier qui construit en 1557 et fait partie d'un grand projet d' Antoine Coëffier de Ruzé d'Effiat, dit Ruzé par l'alliance avec Bonne Ruzé, ami de Richelieu et conseiller du roi en 1625, dont les terres furent érigées en marquisat en 1627 et qui devint maréchal de France en 1631. Ses trois fils ne suivent pas les pas  du maréchal d'Effiat. Le second Henri d'Effiat marquis de Cinq Mars lieutenant du roi à quinze ans  et grand écuyer de Louis XIII à dix neuf  grandit au château avant de devenir le favori de Louis XIII entraîné dans une conspiration contre Richelieu. Il fut condamné à avoir la tête tranchée  en 1642, la mère lègue  le château  à son petit fils qui décédera sans postérité en 1719, le château revient à un parent Paul-Jules de la Meilleraye neveu du cardinal de Mazarin, puis passera à Louis de la Tour d'Auvergne et au financier John Law. Le château est racheté  en 1728 par le comte de Sampigny d'Yssoncourt qui y résidera jusqu'en 1846  date à laquelle la dernière  et heritière ruinée s'en débarrasse le vend à un marchand nommé Boucard qui le revend aussitôt  à la famille de Moroges qui le sauve de la destruction.                                                                            DENONE, ce charmant petit château, entouré de douves, d'allées de tilleuls et de marronniers, a été édifié dans les années 1560 par Charles de Marillac qui fut ambassadeur de France au temps de François Ier et de Henri II. Il appartint notamment aux comtes d'Effiat, ainsi qu'à la famille de Louise de Marillac. Marqué par le destin tragique de l'un des leurs, Cinq-Mars qui inspira le roman de Vigny. Le Cardinal de Richelieu, reçu par le Marquis d'Effiat qui avait acheté Denone a une héritière des Marillac, y séjourna du 4 au 8 septembre 1629 lors d'un voyage en Auvergne. Un superbe lit Louis XIII à baldaquins cramoisis rappelle le passage de Richelieu dans la chambre dite "du Cardinal" où on peut admirer de ravissants plafonds peints dans un style d'inspiration italienne. Au XVIIIe siècle le domaine appartient au financier John Law, aujourd'hui à la famille Pourtier.</p>
+<h4>Architecture</h4><p>château  d'Effiat est situé au milieu d'une enceinte rectangulaire limitée par un canal formant douves. L'entrée se fait par un pont-levis et une porte monumentale. Le château est actuellement constitué d'un corps de logis rectangulaire d'ordonnance classique à trois niveaux encadré de deux pavillons rectangulaires saillants, et les ailes qui les prolongeaient ont disparues. La façade est ornée de pilastres doriques. Les bâtiments des communs et de la ferme datent de la fin du XVIIe siècle, toiture en croupe  avec pente assez prononcé.  Le château d'Effiat a été classé monument historique le 16 avril 1942 puis inscrit 6 juin 1980 et à nouveau classé le 10 mars 2004.      
+<br/>Le château de Denone, admirable bâtiment dont la construction remonte au XVIe siècle, situé dans le hameau du même nom. Le château a été construit en 1550 à l'emplacement d'un château féodal. Le bâtiment Renaissance s'appuie sur 3 tours plus anciennes, restes d'une petite forteresse antérieure, Il est situé au milieu d'un jardin aménagé au XVIIe siècle bordé à l'ouest de douves, et à l'est de communs dont certaines parties datent du XVIIe siècle. Le château est constitué de deux corps de logis perpendiculaires, flanqués de trois tours circulaires  à leurs angles extérieurs. Ils sont divisés en pièces faisant  toute la largeur des ailes, moins le couloir qui les  dessert.  Ces deux couloirs distribuent l'édifice à partir   d'un escalier droit dont les  volées sont séparées par un mur d'échiffre.  La tour nord renferme un escalier à vis. A l'intérieur l'édifice a conservé au premier étage, deux plafonds en bois à poutres et poutrelles décorés de peintures de la fin du XVIe ou début XVIIe siècle,  les autres pièces présentent des plafonds à la française, des cheminées XVIIe et XVIIIe siècle.</p>
+<h4>Habitants / Familles</h4><p>Marquis de Cinq Mars                                                            Famille de Charles de Marillac
+<br/>        "</p>
+<h4>Divers</h4><p>Château d'Effiat et de Denone.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

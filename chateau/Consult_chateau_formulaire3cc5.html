@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Béziers — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,63 +113,61 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_34.html">Hérault</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_34.html">Hérault</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_34.html" class="back-link">Retour au département 34 — Hérault</a>
-  <div class="fiche">
-    <h2>Béziers</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>34 — Hérault</td></tr>
-          <tr><td>Canton</td><td>Béziers</td></tr>
-          <tr><td>Commune</td><td>Béziers</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVIII-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_34/34_Beziers_1.jpg" alt="Béziers" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Beziers_2.jpg" alt="Béziers" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Beziers_3.jpg" alt="Béziers" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Beziers_4.jpg" alt="Béziers" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Beziers_5.jpg" alt="Béziers" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Beziers_6.jpg" alt="Béziers" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Beziers_7.jpg" alt="Béziers" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Beziers_8.jpg" alt="Béziers" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_34.html">Retour au département 34 — Hérault</a>
+<div class="fiche">
+<h2>Béziers</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Béziers" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_34/34_Beziers_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Béziers" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Beziers_1.jpg"/><img alt="Béziers" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Beziers_2.jpg"/><img alt="Béziers" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Beziers_3.jpg"/><img alt="Béziers" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Beziers_4.jpg"/><img alt="Béziers" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Beziers_5.jpg"/><img alt="Béziers" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Beziers_6.jpg"/><img alt="Béziers" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Beziers_7.jpg"/><img alt="Béziers" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Beziers_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>34 — Hérault</td></tr>
+<tr><td>Canton</td><td>Béziers</td></tr>
+<tr><td>Commune</td><td>Béziers</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVIII-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Plusieurs châteaux à Béziers, le Libouriac, Poussan le Haut, de la Roche, de Saint-Jean d'Aureillans et de  St-Bauzille (voir article).                 LIBOURIAC; l'ensemble est conçu et réalise pour la famille Gaujal en 1883-1885, L'épouse d'Abel Gaujal, fille du banquier Lagarrigue, avait hérité du banquier Jean-François Mas le vieux domaine de Libouriac ,qui fut d'une certaine importance au milieu du XVIIe siècle sous le marquis de Gayon. Marie Lagarrigue, épouse d'Abel Gaujal, commande à Louis Garros la construction d'un château sur le domaine hérité de son oncle Jean-François Mas.  L'ancien château, propriété de la famille de Gayon puis des membres de la famille de Dom Bedos de Celles fût détruit et le domaine complètement reconstruit. La date de 1885 sur la façade du château correspond à la fin de la construction.
-<br>POUSSAN le HAUT, en 1370, « Guillaume de Narbonne du château de Poussan » est mentionné parmi les chefs de l'armée du duc d'Anjou commandée par Bertrand Du Guesclin. Le château fut construit à la fin du XVIIIe siècle pour la famille de Nattes de Montpellier.                                                                             CHATEAU LA ROCHE, société civile immobilière est en activité depuis six ans. elle est spécialisée dans le secteur d'activité de la location de terrains et d'autres biens immobiliers. M Philippe et Pierre  Roger.  
-<br> ST-JEAN D'AUREILLANS  il sagit plutôt ici dun grand domaine qui possède une tour néo-gothique du XIXe siècle.</p>
-      <h4>Architecture</h4><p>château de Libouriac  datant du dernier quart du XIXe siècle, cet édifice représentatif de l'architecture éclectique, les façades et toitures des dépendances et bâtiments annexes tels que chapelle, maison des jardiniers, du régisseur.  Le style associe le néo-gothique au néo-Renaissance. Le vaste hall présente une galerie d'étage et s'ouvre sur l'escalier éclairé par une verrière au décor de fleurs et d'oiseaux. Isolée au sud-ouest se trouve la chapelle octogonale avec clocher. Le parc se développe en contrebas, vers la vallée du Libron. Les bâtiments d'exploitation sont situés au sud.                        Château de Poussan le haut, les façades et toitures des ailes nord  ainsi que le portail d'entrée du château. De plan carré, l'édifice est formé de quatre corps de bâtiments entourant une cour et cantonné de pavillons décrochés. L'entrée dans la cour centrale s'effectue par un porche monumental et un passage voûté en anse de panier. L'aile  est précédée par une cour dite "cour des lions". Cette façade est cantonnée par deux pavillons fortement décrochés. Au centre se dresse un porche monumental orné de pilastres colossaux à chapiteaux ioniques, surmonté d'un fronton circulaire. Sous ce porche s'ouvre le passage en anse de panier qui permet d'accéder à la cour intérieure. L'aile nord donne sur le parc qui entoure le château au nord. Cette façade est également cantonnée de deux pavillons en fort décrochement. Elle a pour seul décor des masques qui ornent la corniche et les clefs des fenêtres. Un haut perron permet d'y accéder. L'intérieur n'a pas conservé de décor ancien.                                                                                                     St-Jean d'Aureilhans  a été entièrement réaménagé  est devenu un beau jardin public, il accueille aussi un centre de loisirs pour enfants.</p>
-      <h4>Habitants / Familles</h4><p>Famille Gaujal                                                                                    Famille de Nattes
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Béziers plusieurs châteaux, celui de Gayonne, de Libouriac, de Poussan le Haut, de la Roche, de Saint-Jean d'Aureillans et de Saint-Bauzille.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Plusieurs châteaux à Béziers, le Libouriac, Poussan le Haut, de la Roche, de Saint-Jean d'Aureillans et de  St-Bauzille (voir article).                 LIBOURIAC; l'ensemble est conçu et réalise pour la famille Gaujal en 1883-1885, L'épouse d'Abel Gaujal, fille du banquier Lagarrigue, avait hérité du banquier Jean-François Mas le vieux domaine de Libouriac ,qui fut d'une certaine importance au milieu du XVIIe siècle sous le marquis de Gayon. Marie Lagarrigue, épouse d'Abel Gaujal, commande à Louis Garros la construction d'un château sur le domaine hérité de son oncle Jean-François Mas.  L'ancien château, propriété de la famille de Gayon puis des membres de la famille de Dom Bedos de Celles fût détruit et le domaine complètement reconstruit. La date de 1885 sur la façade du château correspond à la fin de la construction.
+<br/>POUSSAN le HAUT, en 1370, « Guillaume de Narbonne du château de Poussan » est mentionné parmi les chefs de l'armée du duc d'Anjou commandée par Bertrand Du Guesclin. Le château fut construit à la fin du XVIIIe siècle pour la famille de Nattes de Montpellier.                                                                             CHATEAU LA ROCHE, société civile immobilière est en activité depuis six ans. elle est spécialisée dans le secteur d'activité de la location de terrains et d'autres biens immobiliers. M Philippe et Pierre  Roger.  
+<br/> ST-JEAN D'AUREILLANS  il sagit plutôt ici dun grand domaine qui possède une tour néo-gothique du XIXe siècle.</p>
+<h4>Architecture</h4><p>château de Libouriac  datant du dernier quart du XIXe siècle, cet édifice représentatif de l'architecture éclectique, les façades et toitures des dépendances et bâtiments annexes tels que chapelle, maison des jardiniers, du régisseur.  Le style associe le néo-gothique au néo-Renaissance. Le vaste hall présente une galerie d'étage et s'ouvre sur l'escalier éclairé par une verrière au décor de fleurs et d'oiseaux. Isolée au sud-ouest se trouve la chapelle octogonale avec clocher. Le parc se développe en contrebas, vers la vallée du Libron. Les bâtiments d'exploitation sont situés au sud.                        Château de Poussan le haut, les façades et toitures des ailes nord  ainsi que le portail d'entrée du château. De plan carré, l'édifice est formé de quatre corps de bâtiments entourant une cour et cantonné de pavillons décrochés. L'entrée dans la cour centrale s'effectue par un porche monumental et un passage voûté en anse de panier. L'aile  est précédée par une cour dite "cour des lions". Cette façade est cantonnée par deux pavillons fortement décrochés. Au centre se dresse un porche monumental orné de pilastres colossaux à chapiteaux ioniques, surmonté d'un fronton circulaire. Sous ce porche s'ouvre le passage en anse de panier qui permet d'accéder à la cour intérieure. L'aile nord donne sur le parc qui entoure le château au nord. Cette façade est également cantonnée de deux pavillons en fort décrochement. Elle a pour seul décor des masques qui ornent la corniche et les clefs des fenêtres. Un haut perron permet d'y accéder. L'intérieur n'a pas conservé de décor ancien.                                                                                                     St-Jean d'Aureilhans  a été entièrement réaménagé  est devenu un beau jardin public, il accueille aussi un centre de loisirs pour enfants.</p>
+<h4>Habitants / Familles</h4><p>Famille Gaujal                                                                                    Famille de Nattes
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Béziers plusieurs châteaux, celui de Gayonne, de Libouriac, de Poussan le Haut, de la Roche, de Saint-Jean d'Aureillans et de Saint-Bauzille.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Thil_Chenoves — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,62 +113,63 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_71.html">Saône-et-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_71.html">Saône-et-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_71.html" class="back-link">Retour au département 71 — Saône-et-Loire</a>
-  <div class="fiche">
-    <h2>Thil_Chenoves</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>71 — Saône-et-Loire</td></tr>
-          <tr><td>Canton</td><td>Buxy</td></tr>
-          <tr><td>Commune</td><td>Chenoves</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_71/71_Thil_Chenoves_1.jpg" alt="Thil_Chenoves" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Thil_Chenoves_2.jpg" alt="Thil_Chenoves" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Thil_Chenoves_3.jpg" alt="Thil_Chenoves" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Thil_Chenoves_4.jpg" alt="Thil_Chenoves" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Thil_Chenoves_5.jpg" alt="Thil_Chenoves" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_71.html">Retour au département 71 — Saône-et-Loire</a>
+<div class="fiche">
+<h2>Thil_Chenoves</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Thil_Chenoves" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_71/71_Thil_Chenoves_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Thil_Chenoves" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Thil_Chenoves_1.jpg"/><img alt="Thil_Chenoves" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Thil_Chenoves_2.jpg"/><img alt="Thil_Chenoves" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Thil_Chenoves_3.jpg"/><img alt="Thil_Chenoves" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Thil_Chenoves_4.jpg"/><img alt="Thil_Chenoves" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Thil_Chenoves_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>71 — Saône-et-Loire</td></tr>
+<tr><td>Canton</td><td>Buxy</td></tr>
+<tr><td>Commune</td><td>Chenoves</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>THIL, les du Tartre, seigneurs du lieu vers 1300, y bâtissent une maison forte.  Charles VIII, de passage en Bourgogne en 1491 et se rendant en Italie, maintient, par lettres patentes, les du Tartre dans leurs fonctions. 
-<br>La maison forte en  1575 est très endommagée lors du passage des  Saxons. En 1593  Moïse de Rymon, seigneur de La Courtine succède aux du Tartre. 
-<br>A la mort du précédent, en 1622 ses héritiers se disputent le bien qui finit par échoir à Antoine Mercier, capitaine du château de Montcenis, avant 1661 Antoine achève la transformation du château, sans doute ébauchée par Moïse de Rymon. 
-<br>Après une période confuse, en 1741 le domaine est acquis par Jacques Perrin de Cypierre, dont les descendants vont bâtir une cave voûtée, une chapelle et la terrasse sud, cette famille compte, parmi ses membres, des intendants de la généralité d'Orléans. 
-<br>Le château est vendu à J-B. Dumont de Sermaise en 1787, en 1793  le bien est saisi sur le précédent et divisé en plusieurs lots et à partir de 1845  après avoir été laissé à l'abandon, le château est peu à peu remembré.  Passe  en 1875 au  baron Max Bernard de La Vernette Saint-Maurice qui rachète le château et en confie la restauration à l'architecte chalonnais Changarnier Philibert Bernard de La Vernette, fils du précédent, en  1907 acquit des parcelles de terres pour y aménager un parc. En 1947 le précédent, sans héritier, cède la propriété aux Surs Dominicaines missionnaires des campagnes  et en 1973  fondation de lassociation Accueil et Partage.</p>
-      <h4>Architecture</h4><p>THIL à Chenoves. En 1875, le château consistait en un bâtiment de plan rectangulaire comportant un étage de comble éclairé par des lucarnes à ailerons à frontons cintrés, sous un toit à croupes, les angles nord-ouest et sud-ouest étaient flanqués de tours circulaires coiffées de toits coniques très bas. À l'est de ce corps de logis, des bâtiments hétéroclites entouraient une cour, parmi lesquels on distinguait, à l'angle nord-est, la base d'une tour, une petite tour occupait sans doute l'angle sud-est du quadrilatère.
-<br>La restauration en a fait une construction de plan carré cantonnée de tours rondes, celles-ci sont couvertes de toitures coniques très aiguës, et les logis, de hauts toits brisés en ardoise, à la base desquels on a remonté, sur une corniche en brique, en  changeant la répartition, les lucarnes du XVIIe siècle, un avant-corps de trois travées se détache au centre de la façade sud, les tours occidentales ont conservé leurs petites baies rectangulaires et des archères.</p>
-      <h4>Habitants / Familles</h4><p>Famille Moïse de Rymon
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Thil,de Bouthières et de valottes</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>THIL, les du Tartre, seigneurs du lieu vers 1300, y bâtissent une maison forte.  Charles VIII, de passage en Bourgogne en 1491 et se rendant en Italie, maintient, par lettres patentes, les du Tartre dans leurs fonctions. 
+<br/>La maison forte en  1575 est très endommagée lors du passage des  Saxons. En 1593  Moïse de Rymon, seigneur de La Courtine succède aux du Tartre. 
+<br/>A la mort du précédent, en 1622 ses héritiers se disputent le bien qui finit par échoir à Antoine Mercier, capitaine du château de Montcenis, avant 1661 Antoine achève la transformation du château, sans doute ébauchée par Moïse de Rymon. 
+<br/>Après une période confuse, en 1741 le domaine est acquis par Jacques Perrin de Cypierre, dont les descendants vont bâtir une cave voûtée, une chapelle et la terrasse sud, cette famille compte, parmi ses membres, des intendants de la généralité d'Orléans. 
+<br/>Le château est vendu à J-B. Dumont de Sermaise en 1787, en 1793  le bien est saisi sur le précédent et divisé en plusieurs lots et à partir de 1845  après avoir été laissé à l'abandon, le château est peu à peu remembré.  Passe  en 1875 au  baron Max Bernard de La Vernette Saint-Maurice qui rachète le château et en confie la restauration à l'architecte chalonnais Changarnier Philibert Bernard de La Vernette, fils du précédent, en  1907 acquit des parcelles de terres pour y aménager un parc. En 1947 le précédent, sans héritier, cède la propriété aux Surs Dominicaines missionnaires des campagnes  et en 1973  fondation de lassociation Accueil et Partage.</p>
+<h4>Architecture</h4><p>THIL à Chenoves. En 1875, le château consistait en un bâtiment de plan rectangulaire comportant un étage de comble éclairé par des lucarnes à ailerons à frontons cintrés, sous un toit à croupes, les angles nord-ouest et sud-ouest étaient flanqués de tours circulaires coiffées de toits coniques très bas. À l'est de ce corps de logis, des bâtiments hétéroclites entouraient une cour, parmi lesquels on distinguait, à l'angle nord-est, la base d'une tour, une petite tour occupait sans doute l'angle sud-est du quadrilatère.
+<br/>La restauration en a fait une construction de plan carré cantonnée de tours rondes, celles-ci sont couvertes de toitures coniques très aiguës, et les logis, de hauts toits brisés en ardoise, à la base desquels on a remonté, sur une corniche en brique, en  changeant la répartition, les lucarnes du XVIIe siècle, un avant-corps de trois travées se détache au centre de la façade sud, les tours occidentales ont conservé leurs petites baies rectangulaires et des archères.</p>
+<h4>Habitants / Familles</h4><p>Famille Moïse de Rymon
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Thil,de Bouthières et de valottes</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

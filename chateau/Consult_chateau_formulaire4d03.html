@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Mesplès — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,56 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_64.html">Pyrénées-Atlantiques</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_64.html">Pyrénées-Atlantiques</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_64.html" class="back-link">Retour au département 64 — Pyrénées-Atlantiques</a>
-  <div class="fiche">
-    <h2>Mesplès</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>64 — Pyrénées-Atlantiques</td></tr>
-          <tr><td>Canton</td><td>Oloron Ste-Marie</td></tr>
-          <tr><td>Commune</td><td>St-Goin</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_64/64_Mespl%c3%a8s_1.jpg" alt="Mesplès" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_64/64_Mespl%c3%a8s_2.jpg" alt="Mesplès" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_64.html">Retour au département 64 — Pyrénées-Atlantiques</a>
+<div class="fiche">
+<h2>Mesplès</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Mesplès" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_64/64_Mespl%c3%a8s_1.jpg"/><div class="hero-count" id="hero-count">1 / 2</div></div><div class="photo-strip"><img alt="Mesplès" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_64/64_Mespl%c3%a8s_1.jpg"/><img alt="Mesplès" class="" loading="lazy" onclick="setHero(this)" src="../image/image_64/64_Mespl%c3%a8s_2.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>64 — Pyrénées-Atlantiques</td></tr>
+<tr><td>Canton</td><td>Oloron Ste-Marie</td></tr>
+<tr><td>Commune</td><td>St-Goin</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>MESPLES le château construit de 1710 à 1715 par Jean Anchot de Mesplès Marquis de Mesplès qui possède les seigneuries d'Esquiule, Berbielle, Ilhasse, Saint Goin et autres lieux sur les bases de l'ancienne maison Noble Anhanh dont il reste encore de nombreux vestiges visibles".  En 1732, la seigneurie de Saint-Goin sera adjointe à la baronnie de Mesplès pour être érigée en Marquisat par Louis XV. Il est l'un des rares témoignages de l'architecture aristocratique du début du XVIIIe siècle en Béarn et il se caractérise par une belle façade ordonnancée sous un toit d'ardoises à lucarnes. Demeure attachée aux plaisirs de l'aristocratie, le château s'ouvre directement sur un parc clos de murs. Acheté par Emmanuel Lagarde à la marquise de Verthamon, fille unique du Marquis de Jean César de Mesplès en 1822, il sera exploité en hôtel de luxe à destination d'anglais ou d'américains fortunés, attirés par la pêche au saumon dans le gave d'Oloron à compter des années 1890 jusqu'en 1935 environ. Après la seconde guerre mondiale, il sert à accueillir des enfants espagnols orphelins de parents persécutés par le régime franquiste avec l'aide de l'Unitarian Service Committee, association américaine pilotée en France par Miss Persis Miller. Aujourd'hui propriété de monsieur Frédéric Bertails.</p>
-      <h4>Architecture</h4><p>MESPLES,  Il est remarquable par son architecture classique du début XVIIIe siècle . Il est construit entre 1710 et 1715 et composé d'un grand corps de logis (34x15m), coiffé dune toiture massive dardoises avec coyaux, développe deux grandes façades au Nord-Est et au Sud-Ouest au rythme rigoureux de 9 et 7 travées sur deux niveaux. La largeur du corps de logis au Nord-Ouest était occupée par une façade ouverte à trois travées. La largeur Sud-Est à une seule travée sur un petit avant corps, ouvre sur la cour des communs. Cet édifice se caractérise notamment par une belle façade ordonnancée sous un toit dardoises à lucarnes. Vers les années 1920, il est transformé en hôtel restaurant avec tennis et golf.  Aujourdhui,  le château des Marquis de Mesplès reprend vit avec une restauration d'ampleur pour lui redonner sa splendeur du XVIIIe siècle.</p>
-      <h4>Habitants / Familles</h4><p>Marquis de Jean César de Mesplès
-<br>        
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Mesplés à Saint-Goin</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>MESPLES le château construit de 1710 à 1715 par Jean Anchot de Mesplès Marquis de Mesplès qui possède les seigneuries d'Esquiule, Berbielle, Ilhasse, Saint Goin et autres lieux sur les bases de l'ancienne maison Noble Anhanh dont il reste encore de nombreux vestiges visibles".  En 1732, la seigneurie de Saint-Goin sera adjointe à la baronnie de Mesplès pour être érigée en Marquisat par Louis XV. Il est l'un des rares témoignages de l'architecture aristocratique du début du XVIIIe siècle en Béarn et il se caractérise par une belle façade ordonnancée sous un toit d'ardoises à lucarnes. Demeure attachée aux plaisirs de l'aristocratie, le château s'ouvre directement sur un parc clos de murs. Acheté par Emmanuel Lagarde à la marquise de Verthamon, fille unique du Marquis de Jean César de Mesplès en 1822, il sera exploité en hôtel de luxe à destination d'anglais ou d'américains fortunés, attirés par la pêche au saumon dans le gave d'Oloron à compter des années 1890 jusqu'en 1935 environ. Après la seconde guerre mondiale, il sert à accueillir des enfants espagnols orphelins de parents persécutés par le régime franquiste avec l'aide de l'Unitarian Service Committee, association américaine pilotée en France par Miss Persis Miller. Aujourd'hui propriété de monsieur Frédéric Bertails.</p>
+<h4>Architecture</h4><p>MESPLES,  Il est remarquable par son architecture classique du début XVIIIe siècle . Il est construit entre 1710 et 1715 et composé d'un grand corps de logis (34x15m), coiffé dune toiture massive dardoises avec coyaux, développe deux grandes façades au Nord-Est et au Sud-Ouest au rythme rigoureux de 9 et 7 travées sur deux niveaux. La largeur du corps de logis au Nord-Ouest était occupée par une façade ouverte à trois travées. La largeur Sud-Est à une seule travée sur un petit avant corps, ouvre sur la cour des communs. Cet édifice se caractérise notamment par une belle façade ordonnancée sous un toit dardoises à lucarnes. Vers les années 1920, il est transformé en hôtel restaurant avec tennis et golf.  Aujourdhui,  le château des Marquis de Mesplès reprend vit avec une restauration d'ampleur pour lui redonner sa splendeur du XVIIIe siècle.</p>
+<h4>Habitants / Familles</h4><p>Marquis de Jean César de Mesplès
+<br/>
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Mesplés à Saint-Goin</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

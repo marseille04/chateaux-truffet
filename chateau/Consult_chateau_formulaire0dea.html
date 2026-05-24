@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Villemont — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,60 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_63.html">Puy-de-Dôme</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_63.html">Puy-de-Dôme</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_63.html" class="back-link">Retour au département 63 — Puy-de-Dôme</a>
-  <div class="fiche">
-    <h2>Villemont</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>63 — Puy-de-Dôme</td></tr>
-          <tr><td>Canton</td><td>Vensat</td></tr>
-          <tr><td>Commune</td><td>Vensat</td></tr>
-          <tr><td>Type d'édifice</td><td>Vestiges</td></tr>
-          <tr><td>Période d'origine</td><td>XVI</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_63/63_Villemont_1.jpg" alt="Villemont" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Villemont_2.jpg" alt="Villemont" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Villemont_3.jpg" alt="Villemont" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Villemont_4.jpg" alt="Villemont" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Villemont_5.jpg" alt="Villemont" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Villemont_6.jpg" alt="Villemont" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Villemont_7.jpg" alt="Villemont" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Villemont_8.jpg" alt="Villemont" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_63.html">Retour au département 63 — Puy-de-Dôme</a>
+<div class="fiche">
+<h2>Villemont</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Villemont" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_63/63_Villemont_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Villemont" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Villemont_1.jpg"/><img alt="Villemont" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Villemont_2.jpg"/><img alt="Villemont" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Villemont_3.jpg"/><img alt="Villemont" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Villemont_4.jpg"/><img alt="Villemont" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Villemont_5.jpg"/><img alt="Villemont" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Villemont_6.jpg"/><img alt="Villemont" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Villemont_7.jpg"/><img alt="Villemont" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Villemont_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>63 — Puy-de-Dôme</td></tr>
+<tr><td>Canton</td><td>Vensat</td></tr>
+<tr><td>Commune</td><td>Vensat</td></tr>
+<tr><td>Type d'édifice</td><td>Vestiges</td></tr>
+<tr><td>Période d'origine</td><td>XVI</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>VILLEMONT, était à l'origine un modeste domaine qualifié, au début du XVIe siècle. Il dépendait du comté de Montpensier appartenant alors au connétable de Bourbon (Charles III de Bourbon) et fut confisqué par François Ier qui fit alors payer au connétable le prix de sa trahison. Échu à Michel de Veyny d'Arbouse, beau-frère du chancelier Duprat, il resta dans la même famille  jusqu'à sa vente en 1958. Les Veyny, propriétaires de Villemont, prospèrent tout au long du XVIIe siècle, s'illustrent dans les armées, l'église et se font pourvoir de père en fils à la charge de bailli de l'ancien comté devenu duché de Montpensier. La seigneurerie de Villemont est érigée en marquisat, en 1720 par le régent. En 1740, elle appartient à Gilbert de Veyny « Mestre de Cavalerie » et constructeur du château actuel dont la légende veut qu'en disgrâce de la cour de Louis XV il aurait fait édifier l'immense ensemble que l'on connait aujourd'hui pour y loger son régiment. La Révolution et le début du XIXe siècle correspondent à une période de déclin au cours de laquelle les héritiers de Gilbert de Veyny se déchirent en un procès successoral qui ne se termine qu'en 1846. Pendant tout ce temps, mal entretenu, le château se dégrade le jugement  accorde la propriété à madame de Mallet de Vendègre fille de Veyny d'Arbouse  mariée  au vicomte Maisniel qui  s'attache à partir de 1870  à redonner à la demeure sa splendeur d'antan. A la mort du vicomte de Maisniel le château passe par légue au comte de Sampigny cousin de la comtesse et c'est la petite fille de ce dernier  qui le vendit en 1958 à un particulier pour un centre d'acceuil pour enfants défavorisés  et en juillet 1958 un incendie détruit   le bâtiment, à l'abandon pendant quarante ans. Repris en 1995, par monsieur Jean-Michel de Rocquigny à l'état de ruines.</p>
-      <h4>Architecture</h4><p>La première construction importante est donc l'uvre de Michel de Veyny :  L'édifice présente des caractéristiques de l'architecture auvergnate, portail d'entrée avec clocheton, murs sommés  de balustres carrées,  longues écuries basses couvertes de toits à la Mansart, c'est alors un bâtiment en L, flanqué sur sa façade, orientée au Sud, de deux tours coiffées de toitures coniques. Au sud toujours, on a des jardins à la française tandis qu'au nord partent des allées cavalières en étoile.  Situé au bord de la Toulaine, ce château a été construit au XVIe siècle, puis modifié et considérablement agrandi au XVIIIe siècle. Il s'appelait primitivement Neufville et a pris au cours du XVIIe siècle le nom du château qui lui était contigu. Détruit par un terrible incendie en 1958, cet édifice a le profil mystérieux des ruines romantiques. Un élégant portique ouvre sur l'ancienne cour d'apparat, vaste comme un champ de mars. La cour intérieure est accessible au public mais, en raison des travaux, l'accès aux parties bâties est interdit et dangereux, il ne reste aujourd'hui de ce château  qu'une ruine, suite à un incendie  en 1958.  Après une période d'agonie un espoir réapparaîtra  en 1995, année à partir de laquelle une opération de sauvegarde sera entreprise qui permettra la renaissance de ce joyau du XVIIIe siècle Auvergnat.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Michel de Veyny d'Arbouse
-<br>        "</p>
-      <h4>Divers</h4><p>Vestiges du château Renaissance de Villemont, et château de Vinsat</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>VILLEMONT, était à l'origine un modeste domaine qualifié, au début du XVIe siècle. Il dépendait du comté de Montpensier appartenant alors au connétable de Bourbon (Charles III de Bourbon) et fut confisqué par François Ier qui fit alors payer au connétable le prix de sa trahison. Échu à Michel de Veyny d'Arbouse, beau-frère du chancelier Duprat, il resta dans la même famille  jusqu'à sa vente en 1958. Les Veyny, propriétaires de Villemont, prospèrent tout au long du XVIIe siècle, s'illustrent dans les armées, l'église et se font pourvoir de père en fils à la charge de bailli de l'ancien comté devenu duché de Montpensier. La seigneurerie de Villemont est érigée en marquisat, en 1720 par le régent. En 1740, elle appartient à Gilbert de Veyny « Mestre de Cavalerie » et constructeur du château actuel dont la légende veut qu'en disgrâce de la cour de Louis XV il aurait fait édifier l'immense ensemble que l'on connait aujourd'hui pour y loger son régiment. La Révolution et le début du XIXe siècle correspondent à une période de déclin au cours de laquelle les héritiers de Gilbert de Veyny se déchirent en un procès successoral qui ne se termine qu'en 1846. Pendant tout ce temps, mal entretenu, le château se dégrade le jugement  accorde la propriété à madame de Mallet de Vendègre fille de Veyny d'Arbouse  mariée  au vicomte Maisniel qui  s'attache à partir de 1870  à redonner à la demeure sa splendeur d'antan. A la mort du vicomte de Maisniel le château passe par légue au comte de Sampigny cousin de la comtesse et c'est la petite fille de ce dernier  qui le vendit en 1958 à un particulier pour un centre d'acceuil pour enfants défavorisés  et en juillet 1958 un incendie détruit   le bâtiment, à l'abandon pendant quarante ans. Repris en 1995, par monsieur Jean-Michel de Rocquigny à l'état de ruines.</p>
+<h4>Architecture</h4><p>La première construction importante est donc l'uvre de Michel de Veyny :  L'édifice présente des caractéristiques de l'architecture auvergnate, portail d'entrée avec clocheton, murs sommés  de balustres carrées,  longues écuries basses couvertes de toits à la Mansart, c'est alors un bâtiment en L, flanqué sur sa façade, orientée au Sud, de deux tours coiffées de toitures coniques. Au sud toujours, on a des jardins à la française tandis qu'au nord partent des allées cavalières en étoile.  Situé au bord de la Toulaine, ce château a été construit au XVIe siècle, puis modifié et considérablement agrandi au XVIIIe siècle. Il s'appelait primitivement Neufville et a pris au cours du XVIIe siècle le nom du château qui lui était contigu. Détruit par un terrible incendie en 1958, cet édifice a le profil mystérieux des ruines romantiques. Un élégant portique ouvre sur l'ancienne cour d'apparat, vaste comme un champ de mars. La cour intérieure est accessible au public mais, en raison des travaux, l'accès aux parties bâties est interdit et dangereux, il ne reste aujourd'hui de ce château  qu'une ruine, suite à un incendie  en 1958.  Après une période d'agonie un espoir réapparaîtra  en 1995, année à partir de laquelle une opération de sauvegarde sera entreprise qui permettra la renaissance de ce joyau du XVIIIe siècle Auvergnat.</p>
+<h4>Habitants / Familles</h4><p>Famille de Michel de Veyny d'Arbouse
+<br/>        "</p>
+<h4>Divers</h4><p>Vestiges du château Renaissance de Villemont, et château de Vinsat</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

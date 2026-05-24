@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Bellenaves — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,57 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_03.html">Allier</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_03.html">Allier</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_03.html" class="back-link">Retour au département 03 — Allier</a>
-  <div class="fiche">
-    <h2>Bellenaves</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>03 — Allier</td></tr>
-          <tr><td>Canton</td><td>Ebreuil</td></tr>
-          <tr><td>Commune</td><td>Bellenaves</td></tr>
-          <tr><td>Type d'édifice</td><td>Maison forte</td></tr>
-          <tr><td>Période d'origine</td><td>XIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_03/03_Bellenaves_1.jpg" alt="Bellenaves" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Bellenaves_2.jpg" alt="Bellenaves" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Bellenaves_3.jpg" alt="Bellenaves" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Bellenaves_4.jpg" alt="Bellenaves" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Bellenaves_5.jpg" alt="Bellenaves" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Bellenaves_6.jpg" alt="Bellenaves" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Bellenaves_7.jpg" alt="Bellenaves" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_03.html">Retour au département 03 — Allier</a>
+<div class="fiche">
+<h2>Bellenaves</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Bellenaves" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_03/03_Bellenaves_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Bellenaves" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Bellenaves_1.jpg"/><img alt="Bellenaves" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Bellenaves_2.jpg"/><img alt="Bellenaves" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Bellenaves_3.jpg"/><img alt="Bellenaves" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Bellenaves_4.jpg"/><img alt="Bellenaves" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Bellenaves_5.jpg"/><img alt="Bellenaves" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Bellenaves_6.jpg"/><img alt="Bellenaves" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Bellenaves_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>03 — Allier</td></tr>
+<tr><td>Canton</td><td>Ebreuil</td></tr>
+<tr><td>Commune</td><td>Bellenaves</td></tr>
+<tr><td>Type d'édifice</td><td>Maison forte</td></tr>
+<tr><td>Période d'origine</td><td>XIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>A Bellenaves cinq châteaux Bellenaves (voir article), de Beyrat du XIVe-XVIIIe siècles ( voir article), de la Cave du XVe siècle avec tour, de Fognat du XIVe siècle, de Graveron du XV-XIXe siècle avec grosses tours rondes, de Tizon du XIVe siècle avec tours imposantes  et de la Presles du XV-XIXe siècle.           BELLENAVES, mariage en 1196 de Guy II de Dampierre avec Mathilde, dame de Bourbon, les sires de Bourbon sont des proches du roi. En 1227  le château actuel a été construit à partir du XIIIe siècle  par les seigneurs du lieu, les Jehan de Bellenaves.  Archambaud VIII de Bourbon passa un accord avec Roger Jehan sur la seigneurie de Bellenaves qui serait commune entre eux par moitié. Louis Ier Jean accompagne le roi Charles VIII dans sa campagne italienne. Le roi le cite dans sa correspondance. Il en fit son chambellan et  lui présenta Madeleine d'Anjou, fille naturelle légitimée du roi René. Louis Ier Jehan se maria en 1496, en présence du roi et de la reine, avec Madeleine d'Anjou. La famille Jehan a conservé la seigneurie de Bellenaves jusqu'au XVIe siècle. En 1564, Louis Jehan est seigneur de Bellenaves. À la fin du XVIe siècle, Charlotte de Bellenaves est la seule héritière. Elle apporta la seigneurie par mariage à Blain Loup, seigneur de Pierrebrune, Montfand et autres lieux. En 1646, la seigneurie passa par mariages dans la famille des Rochechouart, barons de La Tour d'Auvergne, puis en 1675 à la famille de Gillier, marquis de Clérambaud, en 1696, aux Montmorency-Luxembourg, en 1722, aux Pardaillan, ducs d'Épernon. Le château est acheté par la famille Dutour de Salvert en 1771. La terre devint alors un marquisat. vendu ensuite en 1956 à un marchand de grains qui installa un silo dans les communs et conserva ce qui restait de la décoration intérieure,  Il est racheté en 1979 par la famille Arisolli qui s'est employée à le restaurer. Aujourd'hui Philippe Alfonsi, grand reporter, propriétaire du château de Bellenaves, également gites de France depuis 2014.</p>
-      <h4>Architecture</h4><p>Bellenaves, le château actuel a été construit à partir du XIIIe par les seigneurs du lieu de construction médiévale agrandie à l'époque classique. Une importante campagne de travaux permit au XVIIIe siècle de réunir au gros donjon carré des XIVe - XVe siècles un long bâtiment englobant  l'ancien logis à tourelle dont il était séparé. Le donjon a conservé l'essentiel de ses dispositions et de son décor. Le nouveau logis fut doté de larges ouvertures et de décors intérieurs dignes d'une demeure de plaisance. Parc à l'anglaise aménagé dans l'ancienne enceinte,  Ce château est l'une des plus ancienne maison féodale du Bourbonnais. Pendant la Révolution, une tour est brûlée. Une partie des remparts et le donjon sont encore en place. On peut y voir des éléments sculptés  des XIIIe et XVe siècles, une porte romane et un ensemble de fenêtres à meneaux du XVe siècle et une façade du XVIIe siècle.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Jehan de Bellenaves"</p>
-      <h4>Divers</h4><p>Château de Bellenaves</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>A Bellenaves cinq châteaux Bellenaves (voir article), de Beyrat du XIVe-XVIIIe siècles ( voir article), de la Cave du XVe siècle avec tour, de Fognat du XIVe siècle, de Graveron du XV-XIXe siècle avec grosses tours rondes, de Tizon du XIVe siècle avec tours imposantes  et de la Presles du XV-XIXe siècle.           BELLENAVES, mariage en 1196 de Guy II de Dampierre avec Mathilde, dame de Bourbon, les sires de Bourbon sont des proches du roi. En 1227  le château actuel a été construit à partir du XIIIe siècle  par les seigneurs du lieu, les Jehan de Bellenaves.  Archambaud VIII de Bourbon passa un accord avec Roger Jehan sur la seigneurie de Bellenaves qui serait commune entre eux par moitié. Louis Ier Jean accompagne le roi Charles VIII dans sa campagne italienne. Le roi le cite dans sa correspondance. Il en fit son chambellan et  lui présenta Madeleine d'Anjou, fille naturelle légitimée du roi René. Louis Ier Jehan se maria en 1496, en présence du roi et de la reine, avec Madeleine d'Anjou. La famille Jehan a conservé la seigneurie de Bellenaves jusqu'au XVIe siècle. En 1564, Louis Jehan est seigneur de Bellenaves. À la fin du XVIe siècle, Charlotte de Bellenaves est la seule héritière. Elle apporta la seigneurie par mariage à Blain Loup, seigneur de Pierrebrune, Montfand et autres lieux. En 1646, la seigneurie passa par mariages dans la famille des Rochechouart, barons de La Tour d'Auvergne, puis en 1675 à la famille de Gillier, marquis de Clérambaud, en 1696, aux Montmorency-Luxembourg, en 1722, aux Pardaillan, ducs d'Épernon. Le château est acheté par la famille Dutour de Salvert en 1771. La terre devint alors un marquisat. vendu ensuite en 1956 à un marchand de grains qui installa un silo dans les communs et conserva ce qui restait de la décoration intérieure,  Il est racheté en 1979 par la famille Arisolli qui s'est employée à le restaurer. Aujourd'hui Philippe Alfonsi, grand reporter, propriétaire du château de Bellenaves, également gites de France depuis 2014.</p>
+<h4>Architecture</h4><p>Bellenaves, le château actuel a été construit à partir du XIIIe par les seigneurs du lieu de construction médiévale agrandie à l'époque classique. Une importante campagne de travaux permit au XVIIIe siècle de réunir au gros donjon carré des XIVe - XVe siècles un long bâtiment englobant  l'ancien logis à tourelle dont il était séparé. Le donjon a conservé l'essentiel de ses dispositions et de son décor. Le nouveau logis fut doté de larges ouvertures et de décors intérieurs dignes d'une demeure de plaisance. Parc à l'anglaise aménagé dans l'ancienne enceinte,  Ce château est l'une des plus ancienne maison féodale du Bourbonnais. Pendant la Révolution, une tour est brûlée. Une partie des remparts et le donjon sont encore en place. On peut y voir des éléments sculptés  des XIIIe et XVe siècles, une porte romane et un ensemble de fenêtres à meneaux du XVe siècle et une façade du XVIIe siècle.</p>
+<h4>Habitants / Familles</h4><p>Famille de Jehan de Bellenaves"</p>
+<h4>Divers</h4><p>Château de Bellenaves</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

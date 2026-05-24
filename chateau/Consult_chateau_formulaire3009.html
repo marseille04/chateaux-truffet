@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Guyonnière_Butière — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,54 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_85.html">Vendée</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_85.html">Vendée</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_85.html" class="back-link">Retour au département 85 — Vendée</a>
-  <div class="fiche">
-    <h2>Guyonnière_Butière</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>85 — Vendée</td></tr>
-          <tr><td>Canton</td><td>Montaigu</td></tr>
-          <tr><td>Commune</td><td>Butière</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_85/85_Guyonni%c3%a8re_Buti%c3%a8re_1.jpg" alt="Guyonnière_Butière" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Guyonni%c3%a8re_Buti%c3%a8re_2.jpg" alt="Guyonnière_Butière" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_85.html">Retour au département 85 — Vendée</a>
+<div class="fiche">
+<h2>Guyonnière_Butière</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Guyonnière_Butière" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_85/85_Guyonni%c3%a8re_Buti%c3%a8re_1.jpg"/><div class="hero-count" id="hero-count">1 / 2</div></div><div class="photo-strip"><img alt="Guyonnière_Butière" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Guyonni%c3%a8re_Buti%c3%a8re_1.jpg"/><img alt="Guyonnière_Butière" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Guyonni%c3%a8re_Buti%c3%a8re_2.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>85 — Vendée</td></tr>
+<tr><td>Canton</td><td>Montaigu</td></tr>
+<tr><td>Commune</td><td>Butière</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>GUYONNIERE, le site de Melay,  ses plus anciens seigneurs connus furent les Marin. Ce nom subsiste dans celui de la toute proche métairie des  Marin. Les Marin figuraient sur les bans et arrière-bans du Poitou, entre autres sur ceux convoqués en 1467. La terre de Meslay passa au début du XVIe siècle, par mariage, aux Gastinaire, seigneurs de la Preuille, en Saint-Hilaire-de-Loulay, puis à la fin du XVIIe siècle, par alliance, dans la famille Du Trehant, seigneur du Hallay, à Boufféré. Après dautres propriétaires, denviron 1740 jusque vers 1770, Charles De La Roche Saint-André, de la branche cadette des Ganuchères, à Treize-Septiers, se qualifia, à son tour, seigneur de Melay-de-la-Court avant que le fief devienne la propriété de lamiral Du Chaffault, son beau-frère. Celui-ci apprit lincendie de son « château » de Meslay lors de sa détention à Nantes, avant de mourir en 1794.                                                                                                  ROCHE THEVENIN, cette ancienne baronnie dès 1411. Avant 1515, ce fief s'appelait la Roche-Brisard, du nom de ses anciens seigneurs. Il reçut son nom actuel lors de son acquisition par les Thévenin qui sy succédèrent jusquau XVIIIe siècle. Les restes du château remontent au XVIe siècle. Il fut brûlé lors de la Révolution. Il fut la propriété dans la deuxième moitié du XIXe siècle de Guillaume Grootaers, sculpteur nantais qui y a laissé des uvres.</p>
-      <h4>Architecture</h4><p>GUYONNIERE, le château de style XVIIIe siècle environ 900 m² est orienté Nord Sud présente un corps de logis principal encadré de pavillons carrées. Ensemble en parfait état aux prestations luxueuses. Jolies dépendances aux abords du château : cour fermée avec logement de gardien, d'ami avec jardin clos de murs, garages, bureaux et salles aménagées. Chapelle. Tour de garde. Bâtiments d'entretien et bâtiment pour les animaux. Superbe parc de 42 hectares dont : parc clos de murs avec le château et les dépendances, l'édifice de plan rectangulaire à deux niveaux  sur soubassement et lucarnes sur combles toits en croupes, flanqué de droite et gauche de pavillons carrées de un niveau toit en croupes recouvert de tuiles.                                                                                       ROCHES-THEVENIN, corps de logis rectangulaire à deux niveaux toit en croupe  dans une cour avec deux bâtiment de dépendances.  date du XVI au XIXe siècle. Le logis de la Roche-Thévenin,  est situé au sud de la rivière Asson au sommet dun coteau. On y trouve un chemin de croix de 1855, dans l'église paroissiale, les petites croix qui surmontent chaque tableau ont été faites d'un bois de chêne, provenant de la charpente de l'ancienne église qui portait le millésime de 1646. Le manoir de la Roche-Thevenin est inscrit aux M.H. depuis le 7/12/1992, est privé et fermé au public.</p>
-      <h4>Habitants / Familles</h4><p>Amiral Du Chaffault
-<br>        "</p>
-      <h4>Divers</h4><p>A Butière le château  de la Guyonnière grav 1. de la Roche-Thevenin; 46° 58' 9,09" Nord, 1° 16' 5,14" Ouest grav-2</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>GUYONNIERE, le site de Melay,  ses plus anciens seigneurs connus furent les Marin. Ce nom subsiste dans celui de la toute proche métairie des  Marin. Les Marin figuraient sur les bans et arrière-bans du Poitou, entre autres sur ceux convoqués en 1467. La terre de Meslay passa au début du XVIe siècle, par mariage, aux Gastinaire, seigneurs de la Preuille, en Saint-Hilaire-de-Loulay, puis à la fin du XVIIe siècle, par alliance, dans la famille Du Trehant, seigneur du Hallay, à Boufféré. Après dautres propriétaires, denviron 1740 jusque vers 1770, Charles De La Roche Saint-André, de la branche cadette des Ganuchères, à Treize-Septiers, se qualifia, à son tour, seigneur de Melay-de-la-Court avant que le fief devienne la propriété de lamiral Du Chaffault, son beau-frère. Celui-ci apprit lincendie de son « château » de Meslay lors de sa détention à Nantes, avant de mourir en 1794.                                                                                                  ROCHE THEVENIN, cette ancienne baronnie dès 1411. Avant 1515, ce fief s'appelait la Roche-Brisard, du nom de ses anciens seigneurs. Il reçut son nom actuel lors de son acquisition par les Thévenin qui sy succédèrent jusquau XVIIIe siècle. Les restes du château remontent au XVIe siècle. Il fut brûlé lors de la Révolution. Il fut la propriété dans la deuxième moitié du XIXe siècle de Guillaume Grootaers, sculpteur nantais qui y a laissé des uvres.</p>
+<h4>Architecture</h4><p>GUYONNIERE, le château de style XVIIIe siècle environ 900 m² est orienté Nord Sud présente un corps de logis principal encadré de pavillons carrées. Ensemble en parfait état aux prestations luxueuses. Jolies dépendances aux abords du château : cour fermée avec logement de gardien, d'ami avec jardin clos de murs, garages, bureaux et salles aménagées. Chapelle. Tour de garde. Bâtiments d'entretien et bâtiment pour les animaux. Superbe parc de 42 hectares dont : parc clos de murs avec le château et les dépendances, l'édifice de plan rectangulaire à deux niveaux  sur soubassement et lucarnes sur combles toits en croupes, flanqué de droite et gauche de pavillons carrées de un niveau toit en croupes recouvert de tuiles.                                                                                       ROCHES-THEVENIN, corps de logis rectangulaire à deux niveaux toit en croupe  dans une cour avec deux bâtiment de dépendances.  date du XVI au XIXe siècle. Le logis de la Roche-Thévenin,  est situé au sud de la rivière Asson au sommet dun coteau. On y trouve un chemin de croix de 1855, dans l'église paroissiale, les petites croix qui surmontent chaque tableau ont été faites d'un bois de chêne, provenant de la charpente de l'ancienne église qui portait le millésime de 1646. Le manoir de la Roche-Thevenin est inscrit aux M.H. depuis le 7/12/1992, est privé et fermé au public.</p>
+<h4>Habitants / Familles</h4><p>Amiral Du Chaffault
+<br/>        "</p>
+<h4>Divers</h4><p>A Butière le château  de la Guyonnière grav 1. de la Roche-Thevenin; 46° 58' 9,09" Nord, 1° 16' 5,14" Ouest grav-2</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

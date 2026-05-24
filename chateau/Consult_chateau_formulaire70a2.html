@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Courbevaux — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,56 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_45.html">Loiret</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_45.html">Loiret</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_45.html" class="back-link">Retour au département 45 — Loiret</a>
-  <div class="fiche">
-    <h2>Courbevaux</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>45 — Loiret</td></tr>
-          <tr><td>Canton</td><td>Château-Renard</td></tr>
-          <tr><td>Commune</td><td>Saint-Germain des Prés</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_45/45_Courbevaux_1.jpg" alt="Courbevaux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Courbevaux_2.jpg" alt="Courbevaux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Courbevaux_3.jpg" alt="Courbevaux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Courbevaux_4.jpg" alt="Courbevaux" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_45.html">Retour au département 45 — Loiret</a>
+<div class="fiche">
+<h2>Courbevaux</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Courbevaux" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_45/45_Courbevaux_1.jpg"/><div class="hero-count" id="hero-count">1 / 4</div></div><div class="photo-strip"><img alt="Courbevaux" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Courbevaux_1.jpg"/><img alt="Courbevaux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Courbevaux_2.jpg"/><img alt="Courbevaux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Courbevaux_3.jpg"/><img alt="Courbevaux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Courbevaux_4.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>45 — Loiret</td></tr>
+<tr><td>Canton</td><td>Château-Renard</td></tr>
+<tr><td>Commune</td><td>Saint-Germain des Prés</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>COURBEVAUX, existait au Moyen Âge. Il a été détruit pendant la guerre de cent ans, puis reconstruit peu après. Le château que l'on peut voir aujourd'hui est une construction de la fin du XIXe siècle, dans un style néo-gothique fantaisiste, avec tours crénelées, immense vitrail, fenêtres à meneaux. À ce château de Courbevaux reste attaché le souvenir d'une personnalité singulière : Emmanuel de Sainville. Propriétaire à la fin du XIXe siècle, il y a élevé des paons et des poules gâtinaises. Adepte de parapsychologie et de télépathie, il a marqué l'imaginaire du Gâtinais. Peintre à ses heures, il signait ses toiles "Loup de Sainville".  En 1958, Alice et René Paroux habitent au Kremlin-Bicêtre dans un appartement assez modeste, à quelques encablures de Paris. René est entrepreneur de travaux publics et Alice soccupe des neuf enfants. Le Home Sweet Home est étroit, et mon grand-père recherche une résidence secondaire, avec bois et pièce deau. Comment tombe-t-il sur lannonce du Chasseur français, quil ne lit jamais. En tout cas, il saute sur loccasion et laventure commence.</p>
-      <h4>Architecture</h4><p>COURBEVAUX, au XIXe siècle, est à cette époque dans un piteux état : le château est « en état de vétusté », selon la terminologie de lacte de vente, délabré et insalubre, le parc mal entretenu malgré les « beaux arbres dessences diverses » et les douves quasiment sans eau. Corps de logis à deux niveaux sur soubassement à grandes baies sur pignon et façade accolé d'une tourelle carrée et d'une ronde, tour pentagonal   sur l'arrière crénelées.</p>
-      <h4>Habitants / Familles</h4><p>Emmanuel de Sainville et la famille Paroux
-<br>        "</p>
-      <h4>Divers</h4><p>A Saint-Germain-des-Prés le château de Courbevaux</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>COURBEVAUX, existait au Moyen Âge. Il a été détruit pendant la guerre de cent ans, puis reconstruit peu après. Le château que l'on peut voir aujourd'hui est une construction de la fin du XIXe siècle, dans un style néo-gothique fantaisiste, avec tours crénelées, immense vitrail, fenêtres à meneaux. À ce château de Courbevaux reste attaché le souvenir d'une personnalité singulière : Emmanuel de Sainville. Propriétaire à la fin du XIXe siècle, il y a élevé des paons et des poules gâtinaises. Adepte de parapsychologie et de télépathie, il a marqué l'imaginaire du Gâtinais. Peintre à ses heures, il signait ses toiles "Loup de Sainville".  En 1958, Alice et René Paroux habitent au Kremlin-Bicêtre dans un appartement assez modeste, à quelques encablures de Paris. René est entrepreneur de travaux publics et Alice soccupe des neuf enfants. Le Home Sweet Home est étroit, et mon grand-père recherche une résidence secondaire, avec bois et pièce deau. Comment tombe-t-il sur lannonce du Chasseur français, quil ne lit jamais. En tout cas, il saute sur loccasion et laventure commence.</p>
+<h4>Architecture</h4><p>COURBEVAUX, au XIXe siècle, est à cette époque dans un piteux état : le château est « en état de vétusté », selon la terminologie de lacte de vente, délabré et insalubre, le parc mal entretenu malgré les « beaux arbres dessences diverses » et les douves quasiment sans eau. Corps de logis à deux niveaux sur soubassement à grandes baies sur pignon et façade accolé d'une tourelle carrée et d'une ronde, tour pentagonal   sur l'arrière crénelées.</p>
+<h4>Habitants / Familles</h4><p>Emmanuel de Sainville et la famille Paroux
+<br/>        "</p>
+<h4>Divers</h4><p>A Saint-Germain-des-Prés le château de Courbevaux</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

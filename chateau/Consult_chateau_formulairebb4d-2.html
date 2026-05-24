@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Vaulogé_Rousson — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_72.html">Sarthe</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_72.html">Sarthe</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_72.html" class="back-link">Retour au département 72 — Sarthe</a>
-  <div class="fiche">
-    <h2>Vaulogé_Rousson</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>72 — Sarthe</td></tr>
-          <tr><td>Canton</td><td>La Suze-sur-Sarthe</td></tr>
-          <tr><td>Commune</td><td>Fercé sur Sarthe</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>47° 51' 37,51" Nord, 0° 16' 21,5" Ouest                              Vauloge  GPS : 47° 53' 32" Nord, 0° 02' 58" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_72/72_Vaulog%c3%a9_Rousson_1.jpg" alt="Vaulogé_Rousson" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Vaulog%c3%a9_Rousson_2.jpg" alt="Vaulogé_Rousson" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Vaulog%c3%a9_Rousson_3.jpg" alt="Vaulogé_Rousson" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Vaulog%c3%a9_Rousson_4.jpg" alt="Vaulogé_Rousson" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Vaulog%c3%a9_Rousson_5.jpg" alt="Vaulogé_Rousson" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_72.html">Retour au département 72 — Sarthe</a>
+<div class="fiche">
+<h2>Vaulogé_Rousson</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Vaulogé_Rousson" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_72/72_Vaulog%c3%a9_Rousson_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Vaulogé_Rousson" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Vaulog%c3%a9_Rousson_1.jpg"/><img alt="Vaulogé_Rousson" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Vaulog%c3%a9_Rousson_2.jpg"/><img alt="Vaulogé_Rousson" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Vaulog%c3%a9_Rousson_3.jpg"/><img alt="Vaulogé_Rousson" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Vaulog%c3%a9_Rousson_4.jpg"/><img alt="Vaulogé_Rousson" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Vaulog%c3%a9_Rousson_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>72 — Sarthe</td></tr>
+<tr><td>Canton</td><td>La Suze-sur-Sarthe</td></tr>
+<tr><td>Commune</td><td>Fercé sur Sarthe</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVII</td></tr>
+<tr><td>Coordonnées GPS</td><td>47° 51' 37,51" Nord, 0° 16' 21,5" Ouest                              Vauloge  GPS : 47° 53' 32" Nord, 0° 02' 58" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux châteaux à Vaulogé celui de Vaulogé et de Rousson.
-<br>VAULOGE  Les premiers seigneurs de Vaulogé semblent être venus de Normandie, possédé par cette famille jusquau début du XVIIe, les Vahais propriétaire par alliance,  En 1793 il passa à la famille Picot de Pontaubray et prit le nom Picot de Vaulougé au début du XIXe siècle selon le vu dun des héritiers du domaine. En 1904, Renée-Thérèse, lun des membres de la famille Renée-Thérése Picot de Vaulogé épousa le prince de Carini et depuis cette époque la propriété était aux mains des descendants de ce dernier.                                                                        Éléments protégés MH : les éléments bâtis constitutifs du château, à savoir : l'ancien logis  avec en particulier, la cheminée sculptée de 1514 ; la partie conservée des murs de l'enceinte ; les douves en eau ou comblées ; les façades et les toitures des remises, des écuries et des moulins ; les chapelles Saint-Henri et Saint-Roch : inscription par arrêté du 23 juin 1992.</p>
-      <h4>Architecture</h4><p>VAULOGE, au début du XVe siècle, au cur d'une petite vallée serpentée par la rivière Gée, Jean III de Vaulogé fit bâtir le château, deux corps de logis en équerre, défendu depuis le début du XVIIe siècle par de larges douves alimentées par les bras de la rivière et par des murailles crénelées. Lentrée seffectuait par louest au moyen dun portail précédé dun pont-levis. Le corps de logis central de 1831 rez-de-chaussée surélevé, un étage carré et un étage logé dans un comble à quatre pans  que chevauche une lucarne  de Style  néogothique, avec deux tours circulaires aux toits en poivrière sous une ligne de consoles imitant des mâchicoulis, fut réalisé par l'architecte Delarue. Moulin contigu alimenté par la Gée et chapelle Saint Roch sur la partie droite de l'esplanade. La partie actuelle de l'enceinte date probablement du XIVe siècle, la partie nouvelle du début du XIXe siècle. Protégée par une tour du XVe siècle, dont la base est à huit pans supporte, grâce à un encorbellement, une fine tourelle.                                                                                                                          ROUSSON, le manoir de Rousson fut construit à la fin du XVe siècle, pour la famille de Champagne, qui l'utilisait comme dépendance, de son Château de Pescheseul. Les parties agricoles furent remaniées au XVIIIe siècle. Le Manoir de Rousson est situé dans un méandre de la Sarthe, près d'un bras mort de la rivière. Il est composé d'un corps de logis simple, flanqué d'une tourelle d'escalier polygonale et accompagné de dépendances, en retour d'équerre. Les façades et toitures du corps de logis avec sa tour, la cheminée du salon au rez-de-chaussée, les 3 cheminées au 1er étage et celle de la tour sont inscrits aux M.H. depuis le 30/05/1984.</p>
-      <h4>Habitants / Familles</h4><p>Vaulogé; famille Picot de Pontaubray                                              Rousson; famille de Champagne,
-<br>        "</p>
-      <h4>Divers</h4><p>Deux châteaux à vaulogé celui de Vaulogé grav 1-2-3-4 et de Rousson grav_5.                                                                                  Rousson GPS : 47° 51' 37,51" Nord, 0° 16' 21,5" Ouest                              Vauloge  GPS : 47° 53' 32" Nord, 0° 02' 58" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux châteaux à Vaulogé celui de Vaulogé et de Rousson.
+<br/>VAULOGE  Les premiers seigneurs de Vaulogé semblent être venus de Normandie, possédé par cette famille jusquau début du XVIIe, les Vahais propriétaire par alliance,  En 1793 il passa à la famille Picot de Pontaubray et prit le nom Picot de Vaulougé au début du XIXe siècle selon le vu dun des héritiers du domaine. En 1904, Renée-Thérèse, lun des membres de la famille Renée-Thérése Picot de Vaulogé épousa le prince de Carini et depuis cette époque la propriété était aux mains des descendants de ce dernier.                                                                        Éléments protégés MH : les éléments bâtis constitutifs du château, à savoir : l'ancien logis  avec en particulier, la cheminée sculptée de 1514 ; la partie conservée des murs de l'enceinte ; les douves en eau ou comblées ; les façades et les toitures des remises, des écuries et des moulins ; les chapelles Saint-Henri et Saint-Roch : inscription par arrêté du 23 juin 1992.</p>
+<h4>Architecture</h4><p>VAULOGE, au début du XVe siècle, au cur d'une petite vallée serpentée par la rivière Gée, Jean III de Vaulogé fit bâtir le château, deux corps de logis en équerre, défendu depuis le début du XVIIe siècle par de larges douves alimentées par les bras de la rivière et par des murailles crénelées. Lentrée seffectuait par louest au moyen dun portail précédé dun pont-levis. Le corps de logis central de 1831 rez-de-chaussée surélevé, un étage carré et un étage logé dans un comble à quatre pans  que chevauche une lucarne  de Style  néogothique, avec deux tours circulaires aux toits en poivrière sous une ligne de consoles imitant des mâchicoulis, fut réalisé par l'architecte Delarue. Moulin contigu alimenté par la Gée et chapelle Saint Roch sur la partie droite de l'esplanade. La partie actuelle de l'enceinte date probablement du XIVe siècle, la partie nouvelle du début du XIXe siècle. Protégée par une tour du XVe siècle, dont la base est à huit pans supporte, grâce à un encorbellement, une fine tourelle.                                                                                                                          ROUSSON, le manoir de Rousson fut construit à la fin du XVe siècle, pour la famille de Champagne, qui l'utilisait comme dépendance, de son Château de Pescheseul. Les parties agricoles furent remaniées au XVIIIe siècle. Le Manoir de Rousson est situé dans un méandre de la Sarthe, près d'un bras mort de la rivière. Il est composé d'un corps de logis simple, flanqué d'une tourelle d'escalier polygonale et accompagné de dépendances, en retour d'équerre. Les façades et toitures du corps de logis avec sa tour, la cheminée du salon au rez-de-chaussée, les 3 cheminées au 1er étage et celle de la tour sont inscrits aux M.H. depuis le 30/05/1984.</p>
+<h4>Habitants / Familles</h4><p>Vaulogé; famille Picot de Pontaubray                                              Rousson; famille de Champagne,
+<br/>        "</p>
+<h4>Divers</h4><p>Deux châteaux à vaulogé celui de Vaulogé grav 1-2-3-4 et de Rousson grav_5.                                                                                  Rousson GPS : 47° 51' 37,51" Nord, 0° 16' 21,5" Ouest                              Vauloge  GPS : 47° 53' 32" Nord, 0° 02' 58" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

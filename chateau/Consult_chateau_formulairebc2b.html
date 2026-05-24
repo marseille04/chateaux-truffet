@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Luynes — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,57 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_37.html">Indre-et-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_37.html">Indre-et-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_37.html" class="back-link">Retour au département 37 — Indre-et-Loire</a>
-  <div class="fiche">
-    <h2>Luynes</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
-          <tr><td>Canton</td><td>St-Cyr sur Loire</td></tr>
-          <tr><td>Commune</td><td>Luynes</td></tr>
-          <tr><td>Type d'édifice</td><td>Forteresse</td></tr>
-          <tr><td>Période d'origine</td><td></td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_37/37_Luynes_1.jpg" alt="Luynes" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Luynes_2.jpg" alt="Luynes" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Luynes_3.jpg" alt="Luynes" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Luynes_4.jpg" alt="Luynes" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Luynes_5.jpg" alt="Luynes" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_37.html">Retour au département 37 — Indre-et-Loire</a>
+<div class="fiche">
+<h2>Luynes</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Luynes" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_37/37_Luynes_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Luynes" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Luynes_1.jpg"/><img alt="Luynes" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Luynes_2.jpg"/><img alt="Luynes" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Luynes_3.jpg"/><img alt="Luynes" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Luynes_4.jpg"/><img alt="Luynes" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Luynes_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
+<tr><td>Canton</td><td>St-Cyr sur Loire</td></tr>
+<tr><td>Commune</td><td>Luynes</td></tr>
+<tr><td>Type d'édifice</td><td>Forteresse</td></tr>
+<tr><td>Période d'origine</td><td></td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>LUYNES, au XIIIe siècle reconstruction de la forteresse. Sous la protection des comtes de Maillé, des marchands passementiers s'y réfugièrent non loin des troubles des guerres de religion. Il date du XIIIe et XVIIe siècle et appartient à une personne privée. au XVe siècle construction du logis de la cour par Hardouin IV de Maillé . Les sires de Maillé reçoivent le titre de baron et plusieurs d'entre eux participent aux Croisades.  Passe à la maison de Laval qui obtint la classification en comté. En 1619, le comté est acheté par Charles d'Albert de Luynes, favori du roi Louis XIII. Il fait de la terre un duché et prairie auquel il donne le nom de Luynes en l'honneur du nouveau seigneur, le territoire placé sous l'autorité des ducs de Luynes va s'étendre à près des deux tiers du nord de la Touraine.  A sa mort, en 1623 interruption des travaux, sa veuve Marie de Rohan de Montbazon la célébre héroïne de la Fronde restée sans descendants mâles de son mariage, transmettra le domaine au fils du connétable le titre ducal de Chevreuse ainsi que le château de Dampierre , hérité de la maison de Lorraine.   Le château est resté dans la même famille  depuis 1619 à l'actuel duc de Luynes.</p>
-      <h4>Architecture</h4><p>LUYNES,  se dresse sur un imposant promontoire rocheux, qui domine le Val-de-Loire. Il appartient à Philippe d'Albert de Luynes qui possède aussi le château de Dampierre dans les Yvelines.   Un deuxième château est rebâti dès le XIIe siècle, il est toujours visible.  Le château comprend alors une haute-cour et une basse-cour, celle-ci, située en contrebas de la première, accueille des granges et des écuries. Un donjon occupe le centre de la haute-cour dont les remparts sont de deux étages plus hauts qu'aujourd'hui et couronnés de galeries en bois (hourds), dont le matériau a été offert par Saint Louis. Au nord, l'édifice est protégé par une douve qui se dédouble à lest. Entre ces deux douves se trouvait un châtelet qui protégeait laccès du château par deux ponts-levis.  Au XVIIe siècle, le deuxième duc de Luynes fait démolir le donjon et bâtir une grande aile classique, fermant la façade sud, donnant sur la vallée. Cette aile sera partiellement détruite au XVIIIe siècle. Pendant la Renaissance, la baronnie devient le siège d'un comté. Des ouvertures sont percées dans les murailles.  Le château de Luynes est une ancienne forteresse de style médiéval, bâtie au XIIIe siècle. Sa construction ne sera achevée qu'au XVIIe siècle.  Le château de Luynes est inscrit aux M.H. depuis le 17/07/1926.</p>
-      <h4>Habitants / Familles</h4><p>Philippe d'Albert duc de Luynes.
-<br>        "</p>
-      <h4>Divers</h4><p>Luynes; 47° 23' 8,12" Nord, 0° 33' 3,92" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>LUYNES, au XIIIe siècle reconstruction de la forteresse. Sous la protection des comtes de Maillé, des marchands passementiers s'y réfugièrent non loin des troubles des guerres de religion. Il date du XIIIe et XVIIe siècle et appartient à une personne privée. au XVe siècle construction du logis de la cour par Hardouin IV de Maillé . Les sires de Maillé reçoivent le titre de baron et plusieurs d'entre eux participent aux Croisades.  Passe à la maison de Laval qui obtint la classification en comté. En 1619, le comté est acheté par Charles d'Albert de Luynes, favori du roi Louis XIII. Il fait de la terre un duché et prairie auquel il donne le nom de Luynes en l'honneur du nouveau seigneur, le territoire placé sous l'autorité des ducs de Luynes va s'étendre à près des deux tiers du nord de la Touraine.  A sa mort, en 1623 interruption des travaux, sa veuve Marie de Rohan de Montbazon la célébre héroïne de la Fronde restée sans descendants mâles de son mariage, transmettra le domaine au fils du connétable le titre ducal de Chevreuse ainsi que le château de Dampierre , hérité de la maison de Lorraine.   Le château est resté dans la même famille  depuis 1619 à l'actuel duc de Luynes.</p>
+<h4>Architecture</h4><p>LUYNES,  se dresse sur un imposant promontoire rocheux, qui domine le Val-de-Loire. Il appartient à Philippe d'Albert de Luynes qui possède aussi le château de Dampierre dans les Yvelines.   Un deuxième château est rebâti dès le XIIe siècle, il est toujours visible.  Le château comprend alors une haute-cour et une basse-cour, celle-ci, située en contrebas de la première, accueille des granges et des écuries. Un donjon occupe le centre de la haute-cour dont les remparts sont de deux étages plus hauts qu'aujourd'hui et couronnés de galeries en bois (hourds), dont le matériau a été offert par Saint Louis. Au nord, l'édifice est protégé par une douve qui se dédouble à lest. Entre ces deux douves se trouvait un châtelet qui protégeait laccès du château par deux ponts-levis.  Au XVIIe siècle, le deuxième duc de Luynes fait démolir le donjon et bâtir une grande aile classique, fermant la façade sud, donnant sur la vallée. Cette aile sera partiellement détruite au XVIIIe siècle. Pendant la Renaissance, la baronnie devient le siège d'un comté. Des ouvertures sont percées dans les murailles.  Le château de Luynes est une ancienne forteresse de style médiéval, bâtie au XIIIe siècle. Sa construction ne sera achevée qu'au XVIIe siècle.  Le château de Luynes est inscrit aux M.H. depuis le 17/07/1926.</p>
+<h4>Habitants / Familles</h4><p>Philippe d'Albert duc de Luynes.
+<br/>        "</p>
+<h4>Divers</h4><p>Luynes; 47° 23' 8,12" Nord, 0° 33' 3,92" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

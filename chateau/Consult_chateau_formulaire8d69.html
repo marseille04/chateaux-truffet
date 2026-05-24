@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Nassigny — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,57 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_03.html">Allier</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_03.html">Allier</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_03.html" class="back-link">Retour au département 03 — Allier</a>
-  <div class="fiche">
-    <h2>Nassigny</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>03 — Allier</td></tr>
-          <tr><td>Canton</td><td>Herisson</td></tr>
-          <tr><td>Commune</td><td>Nassigny</td></tr>
-          <tr><td>Type d'édifice</td><td>Maison forte</td></tr>
-          <tr><td>Période d'origine</td><td>XIV-XV</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_03/03_Nassigny_1.jpg" alt="Nassigny" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Nassigny_2.jpg" alt="Nassigny" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Nassigny_3.jpg" alt="Nassigny" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Nassigny_4.jpg" alt="Nassigny" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Nassigny_5.jpg" alt="Nassigny" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_03.html">Retour au département 03 — Allier</a>
+<div class="fiche">
+<h2>Nassigny</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Nassigny" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_03/03_Nassigny_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Nassigny" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Nassigny_1.jpg"/><img alt="Nassigny" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Nassigny_2.jpg"/><img alt="Nassigny" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Nassigny_3.jpg"/><img alt="Nassigny" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Nassigny_4.jpg"/><img alt="Nassigny" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Nassigny_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>03 — Allier</td></tr>
+<tr><td>Canton</td><td>Herisson</td></tr>
+<tr><td>Commune</td><td>Nassigny</td></tr>
+<tr><td>Type d'édifice</td><td>Maison forte</td></tr>
+<tr><td>Période d'origine</td><td>XIV-XV</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux châteaux à Nassigny dont Nassigny du XIV-XIXe siècle et la Guerche du XVe siècle.                                 NASSIGNY, dépendant de l'abbaye de Saint-Denis avant d'être vendu à des particuliers en 1570. A cette époque, un incendie dû aux guerres de Religion détruit une partie du château qui fut alors réédifiée dans le style de l'époque.                            GUERCHE pas d'informations historiques sinon qu'un incendie l'a en partie détruit.</p>
-      <h4>Architecture</h4><p>Guerche, du XVIIIe siècle Ancienne forteresse médiévale dont il subsiste d'importants vestiges, donjon carré, tours et qui a été entièrement remaniée à l'époque classique. Le château actuel  est formé de deux corps de bâtiments perpendiculaires délimitant une cour rectangulaire, un corps de logis et un commun. La cour est fermée par un mur percé d'un porche face à un pont surmontant des douves. Cette façade est encadrée de deux tours. La cour intérieure comprend également le second commun, la chapelle et le porche du XVIIIe siècle. Ce porche se compose d'un petit pavillon rectangulaire à deux niveaux. Au rez-de-chaussée, il est traversé par un passage voûté en plein cintre. Du côté extérieur, l'ornementation de la porte comporte deux pilastres non cannelés surmontés de chapiteaux reliés entre eux par un bandeau orné en son centre d'un cartouche comportant une date encadrée de deux petits triangles. Sous le toit court une corniche de briques polychromes ornée de modillons.  Incendie de la toiture. 
-<br>Nassigny, château construit vers la fin du XIVe siècle, l'édifice est un quadrilatère partiellement flanqué de deux tours polygonales. La façade comprend une tour d'escalier. Vers 1850, restaurations intérieures. Ne subsiste du XVIe siècle que l'escalier à vis, le plafond du salon sud, et sans doute la cheminée monumentale de style gothique, hormis le foyer. Le salon et le hall d'entrée sont tapissés d'une toile de jute peinte par l'un des propriétaires au XIXe siècle, et représentant des scènes bucoliques ou florales.</p>
-      <h4>Habitants / Familles</h4><p>Seigneurs locaux"</p>
-      <h4>Divers</h4><p>Château de la Guerche et de Nassigny</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux châteaux à Nassigny dont Nassigny du XIV-XIXe siècle et la Guerche du XVe siècle.                                 NASSIGNY, dépendant de l'abbaye de Saint-Denis avant d'être vendu à des particuliers en 1570. A cette époque, un incendie dû aux guerres de Religion détruit une partie du château qui fut alors réédifiée dans le style de l'époque.                            GUERCHE pas d'informations historiques sinon qu'un incendie l'a en partie détruit.</p>
+<h4>Architecture</h4><p>Guerche, du XVIIIe siècle Ancienne forteresse médiévale dont il subsiste d'importants vestiges, donjon carré, tours et qui a été entièrement remaniée à l'époque classique. Le château actuel  est formé de deux corps de bâtiments perpendiculaires délimitant une cour rectangulaire, un corps de logis et un commun. La cour est fermée par un mur percé d'un porche face à un pont surmontant des douves. Cette façade est encadrée de deux tours. La cour intérieure comprend également le second commun, la chapelle et le porche du XVIIIe siècle. Ce porche se compose d'un petit pavillon rectangulaire à deux niveaux. Au rez-de-chaussée, il est traversé par un passage voûté en plein cintre. Du côté extérieur, l'ornementation de la porte comporte deux pilastres non cannelés surmontés de chapiteaux reliés entre eux par un bandeau orné en son centre d'un cartouche comportant une date encadrée de deux petits triangles. Sous le toit court une corniche de briques polychromes ornée de modillons.  Incendie de la toiture. 
+<br/>Nassigny, château construit vers la fin du XIVe siècle, l'édifice est un quadrilatère partiellement flanqué de deux tours polygonales. La façade comprend une tour d'escalier. Vers 1850, restaurations intérieures. Ne subsiste du XVIe siècle que l'escalier à vis, le plafond du salon sud, et sans doute la cheminée monumentale de style gothique, hormis le foyer. Le salon et le hall d'entrée sont tapissés d'une toile de jute peinte par l'un des propriétaires au XIXe siècle, et représentant des scènes bucoliques ou florales.</p>
+<h4>Habitants / Familles</h4><p>Seigneurs locaux"</p>
+<h4>Divers</h4><p>Château de la Guerche et de Nassigny</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

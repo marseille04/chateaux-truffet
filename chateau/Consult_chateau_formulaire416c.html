@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Montbouy — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,59 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_45.html">Loiret</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_45.html">Loiret</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_45.html" class="back-link">Retour au département 45 — Loiret</a>
-  <div class="fiche">
-    <h2>Montbouy</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>45 — Loiret</td></tr>
-          <tr><td>Canton</td><td>Châtillon-Coligny</td></tr>
-          <tr><td>Commune</td><td>Montbouy</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVII-XVIII-XIX-XX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_45/45_Montbouy_1.jpg" alt="Montbouy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Montbouy_2.jpg" alt="Montbouy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Montbouy_3.jpg" alt="Montbouy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Montbouy_4.jpg" alt="Montbouy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Montbouy_5.jpg" alt="Montbouy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Montbouy_6.jpg" alt="Montbouy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Montbouy_7.jpg" alt="Montbouy" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_45.html">Retour au département 45 — Loiret</a>
+<div class="fiche">
+<h2>Montbouy</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Montbouy" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_45/45_Montbouy_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Montbouy" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Montbouy_1.jpg"/><img alt="Montbouy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Montbouy_2.jpg"/><img alt="Montbouy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Montbouy_3.jpg"/><img alt="Montbouy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Montbouy_4.jpg"/><img alt="Montbouy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Montbouy_5.jpg"/><img alt="Montbouy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Montbouy_6.jpg"/><img alt="Montbouy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Montbouy_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>45 — Loiret</td></tr>
+<tr><td>Canton</td><td>Châtillon-Coligny</td></tr>
+<tr><td>Commune</td><td>Montbouy</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVII-XVIII-XIX-XX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Six châteaux à Montbouy, Bennes, les Giraults, Mousseaux, Chenevriere et  Puyseau.  Salleneuve.                                                                                     BENNES, le corps de logis de la ferme actuelle constitue le logis primitif du château de Bennes du XVe siècle, certaines baies ont été remaniées au XVIIIe siècle, la grange de la ferme date certainement du XVIIIe siècle, un deuxième corps de logis est élevé  dans la deuxième moitié du XVIIIe siècle, à quelque distance du premier, il est agrandi en 1911 par la construction d'un corps accolé selon la plus grande longueur et la chapelle, bâtie en retour d'équerre par Franconi, propriétaire au début du XIXe siècle, se trouve prise entre les deux bâtiments.                                                                                                                           GIRAULTS,  près de l'ancien château des Giraults disparu et connu par la tradition orale, on construit avant 1831  une grande ferme dont la maison est convertie en orphelinat par M. Dupuy vers 1820 - 1830; une chapelle est bâtie vers 1870, dans le style néo-gothique, pour servir à l'orphelinat; M. Milon achète les Giraults vers 1900 et fait construire une grande villa néo normande, les travaux sont réalisés entre 1905 et 1908.                                                                                                  MOUSSEAUX, le colombier est tout ce qui subsiste de l'édifice du XVIIIe siècle ; le corps de logis principal est de la deuxième moitié du XVIIIe siècle et a été repris au XIXe siècle ; les baies des communs et du colombier ont été remaniées à la même époque, à un étage carré et étage de comble,  à  toit conique;  toit à longs pans brisés; croupe brisée ; pignon couvert,  en  tuiles plates.                                                                                                            Salleneuve,  pas d'information historique.</p>
-      <h4>Architecture</h4><p>BENNES,  était alimenté en eau par un château d'eau, le remplissage était assuré par une machine à vapeur, on a arrêté son fonctionnement vers 1965 lors de l'adduction d'eau. Le logis primitif présente un escalier à vis dans une tour hors-oeuvre; la grange est à charpente sur poteaux et murs gouttereaux bas ; la chapelle comprend un escalier à vis dans une tour en demi hors-oeuvre; ardoise sur le corps du XXe siècle.                                                                                                  CHENEVRIERE,  de nouveaux bâtiments ont été bâtis à Chenevières sans doute vers la fin de la première moitié du XVIe siècle. Au XVIIe siècle, les actes et les représentations graphiques s'accordent pour décrire un lieu à nouveau en ruine. L'actuel château a été construit à la fin du XVIIIe siècle à l'emplacement de l'ancien édifice. Il présente une façade très simple de cinq travées dont l'axe central est marqué par la porte d'entrée et un fronton percé d'une lucarne. La façade postérieure donne sur le canal de Briare et le Loing au nord-est.                                                                                                                                                                                                                        PUYSEAU, est à cheval sur les communes de Montbouy et de la chapelle sur Aveyron. Située au cur de la campagne, derrière un beau portail ouvragé en fer forgé, cette résidence, d'une élégance toute classique, est composée d'un corps de logis, daté de la deuxième moitié du XVIIIe siècle, à un étage carré et un étage de combles éclairés par des lucarnes, recouvert de tuile plate. Deux pavillons symétriques, en légère saillie, prolongent le bâtiment. Un discret décor de brique encadre les baies.</p>
-      <h4>Habitants / Familles</h4><p>Resposables locaux
-<br>        "</p>
-      <h4>Divers</h4><p>Six châteaux à Montbouy, Bennes  grav-1, les Girault grav-2, Mousseaux grav-3, Chenevriere grav-6 et  Puyseau grav-7.  Salleneuve grav 4-5.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Six châteaux à Montbouy, Bennes, les Giraults, Mousseaux, Chenevriere et  Puyseau.  Salleneuve.                                                                                     BENNES, le corps de logis de la ferme actuelle constitue le logis primitif du château de Bennes du XVe siècle, certaines baies ont été remaniées au XVIIIe siècle, la grange de la ferme date certainement du XVIIIe siècle, un deuxième corps de logis est élevé  dans la deuxième moitié du XVIIIe siècle, à quelque distance du premier, il est agrandi en 1911 par la construction d'un corps accolé selon la plus grande longueur et la chapelle, bâtie en retour d'équerre par Franconi, propriétaire au début du XIXe siècle, se trouve prise entre les deux bâtiments.                                                                                                                           GIRAULTS,  près de l'ancien château des Giraults disparu et connu par la tradition orale, on construit avant 1831  une grande ferme dont la maison est convertie en orphelinat par M. Dupuy vers 1820 - 1830; une chapelle est bâtie vers 1870, dans le style néo-gothique, pour servir à l'orphelinat; M. Milon achète les Giraults vers 1900 et fait construire une grande villa néo normande, les travaux sont réalisés entre 1905 et 1908.                                                                                                  MOUSSEAUX, le colombier est tout ce qui subsiste de l'édifice du XVIIIe siècle ; le corps de logis principal est de la deuxième moitié du XVIIIe siècle et a été repris au XIXe siècle ; les baies des communs et du colombier ont été remaniées à la même époque, à un étage carré et étage de comble,  à  toit conique;  toit à longs pans brisés; croupe brisée ; pignon couvert,  en  tuiles plates.                                                                                                            Salleneuve,  pas d'information historique.</p>
+<h4>Architecture</h4><p>BENNES,  était alimenté en eau par un château d'eau, le remplissage était assuré par une machine à vapeur, on a arrêté son fonctionnement vers 1965 lors de l'adduction d'eau. Le logis primitif présente un escalier à vis dans une tour hors-oeuvre; la grange est à charpente sur poteaux et murs gouttereaux bas ; la chapelle comprend un escalier à vis dans une tour en demi hors-oeuvre; ardoise sur le corps du XXe siècle.                                                                                                  CHENEVRIERE,  de nouveaux bâtiments ont été bâtis à Chenevières sans doute vers la fin de la première moitié du XVIe siècle. Au XVIIe siècle, les actes et les représentations graphiques s'accordent pour décrire un lieu à nouveau en ruine. L'actuel château a été construit à la fin du XVIIIe siècle à l'emplacement de l'ancien édifice. Il présente une façade très simple de cinq travées dont l'axe central est marqué par la porte d'entrée et un fronton percé d'une lucarne. La façade postérieure donne sur le canal de Briare et le Loing au nord-est.                                                                                                                                                                                                                        PUYSEAU, est à cheval sur les communes de Montbouy et de la chapelle sur Aveyron. Située au cur de la campagne, derrière un beau portail ouvragé en fer forgé, cette résidence, d'une élégance toute classique, est composée d'un corps de logis, daté de la deuxième moitié du XVIIIe siècle, à un étage carré et un étage de combles éclairés par des lucarnes, recouvert de tuile plate. Deux pavillons symétriques, en légère saillie, prolongent le bâtiment. Un discret décor de brique encadre les baies.</p>
+<h4>Habitants / Familles</h4><p>Resposables locaux
+<br/>        "</p>
+<h4>Divers</h4><p>Six châteaux à Montbouy, Bennes  grav-1, les Girault grav-2, Mousseaux grav-3, Chenevriere grav-6 et  Puyseau grav-7.  Salleneuve grav 4-5.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

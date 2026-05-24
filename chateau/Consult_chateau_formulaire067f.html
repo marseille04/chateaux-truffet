@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Champ_Altier — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,55 +113,57 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_48.html">Lozère</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_48.html">Lozère</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_48.html" class="back-link">Retour au département 48 — Lozère</a>
-  <div class="fiche">
-    <h2>Champ_Altier</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>48 — Lozère</td></tr>
-          <tr><td>Canton</td><td>Saint-Etienne de Valdonnez</td></tr>
-          <tr><td>Commune</td><td>Altier</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_48/48_Champ_Altier_1.jpg" alt="Champ_Altier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_48/48_Champ_Altier_2.jpg" alt="Champ_Altier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_48/48_Champ_Altier_3.jpg" alt="Champ_Altier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_48/48_Champ_Altier_4.jpg" alt="Champ_Altier" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_48.html">Retour au département 48 — Lozère</a>
+<div class="fiche">
+<h2>Champ_Altier</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Champ_Altier" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_48/48_Champ_Altier_1.jpg"/><div class="hero-count" id="hero-count">1 / 4</div></div><div class="photo-strip"><img alt="Champ_Altier" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_48/48_Champ_Altier_1.jpg"/><img alt="Champ_Altier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_48/48_Champ_Altier_2.jpg"/><img alt="Champ_Altier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_48/48_Champ_Altier_3.jpg"/><img alt="Champ_Altier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_48/48_Champ_Altier_4.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>48 — Lozère</td></tr>
+<tr><td>Canton</td><td>Saint-Etienne de Valdonnez</td></tr>
+<tr><td>Commune</td><td>Altier</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>ALTIER, vestiges du Grand Altier on ne saura sans doute jamais qui a donné son nom à l'autre, du village d'Altier ou du ruisseau qui le baigne,             CHAMP,  propriété familiale, et fut toujours transmis aux héritiers les plus directs, le plus souvent par les femmes, et ce depuis son édification jusqu'à la fin du XVIIIe siècle. Le château figura depuis sa construction et pour trois générations dans la maison d'Altier (1308-1375), l'une des plus anciennes familles du Gévaudan. Elle s'est éteinte au XIVe siècle dans une branche de la famille de Borne, par le mariage en 1375, du damoiseau Armand de Borne avec Delphine d'Altier, fille unique de Raymond d'Altier. Il en résultera la création d'une nouvelle maison, les Borne d'Altier (1375-1828), solidement implantée au Champ pour une bonne douzaine de générations et porteront les titres de Comte d'Altier et de marquis du Champ . Il fut vendu en 1668 par les vicomtes de Polignac, successeurs des Randon, à la famille Borne d'Altier  en 1796 toujours dans la famille. Après la Révolution, en 1812, le dernier descendant des Borne d'Altier mourut sans postérité après avoir racheté le Champ à sa tante, qui l'avait elle-même racheté à l'administration. La succession, (Charles Elisabeth Michel de Borne d'Altier, émigré à l'étranger en juin 1793), car il n'existait plus civilement, arriva donc au petit cousin Jules de Chapelain, sous-préfet de Marvejols. La famille Chapelain (1812-1905) a conservé la propriété du Champ tout au long du XIXe siècle. À la troisième génération des Chapelain, Joseph baron de Chapelain de Gras Saint-Sauveur marquis du Champ n'eut que trois filles: L'aînée, Elisabeth qui transmis le nom (1899), se maria à Alfred Gaspard comte de Gourcy-Récicourt, décéda, ses enfants seront déshérités du château au profit de sa petite sur, Marie Margueritte mariée à Maurice Raguenet de St-Albin et le Champ passa donc successivement aux Raguenet de Saint-Albin (1905) puis aux Gourcy-Récicourt qui le rachète suite à la faillite des précédents (1919). Le 29 septembre 1928, Joseph Varin d'Ainvelle qui avait épousé la comtesse Elizabeth de Gourcy-Récicourt racheta le château du Champ.</p>
-      <h4>Architecture</h4><p>Altier, nef ancienne à berceau brisé, plein cintre. L'abside gothique fut reconstruite au XVIIe siècle. Portail roman s'ouvrant au sud. Cela n'empêchait point qu'il soit pillé pendant les guerres de Religion. Il n'en subsiste que les ruines, à 500 mètres au nord-est du village;  En 1942, il sera inscrit à l'inventaire des monuments historiques.   Champ, ce château du XIIe siècle. Les seigneurs d'Altier possédaient un château au lieu-dit "le Grand Altier". Ce n'est qu'au XIIIe siècle qu'un des fils cadet de la famille Altier fit construire une maison forte au lieu-dit "le Champ". Puis au XVe siècle et au XVIIe, de plan quadrangulaire formé par des logis disposés autour d'une cour, flanqués de tourelles circulaires, le château sera ensuite agrandi. Abandonné au XVIe siècle, ce n'est qu'à partir du XIXe siècle qu'il sera restauré. Il présente un aspect de type militaire avec des tours couronnées de mâchicoulis à toits superposés en poivrières.</p>
-      <h4>Habitants / Familles</h4><p>Famille d'Armand de Borne d'Altier"</p>
-      <h4>Divers</h4><p>Château de Champ à Altier et vestiges du Grand Altier</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>ALTIER, vestiges du Grand Altier on ne saura sans doute jamais qui a donné son nom à l'autre, du village d'Altier ou du ruisseau qui le baigne,             CHAMP,  propriété familiale, et fut toujours transmis aux héritiers les plus directs, le plus souvent par les femmes, et ce depuis son édification jusqu'à la fin du XVIIIe siècle. Le château figura depuis sa construction et pour trois générations dans la maison d'Altier (1308-1375), l'une des plus anciennes familles du Gévaudan. Elle s'est éteinte au XIVe siècle dans une branche de la famille de Borne, par le mariage en 1375, du damoiseau Armand de Borne avec Delphine d'Altier, fille unique de Raymond d'Altier. Il en résultera la création d'une nouvelle maison, les Borne d'Altier (1375-1828), solidement implantée au Champ pour une bonne douzaine de générations et porteront les titres de Comte d'Altier et de marquis du Champ . Il fut vendu en 1668 par les vicomtes de Polignac, successeurs des Randon, à la famille Borne d'Altier  en 1796 toujours dans la famille. Après la Révolution, en 1812, le dernier descendant des Borne d'Altier mourut sans postérité après avoir racheté le Champ à sa tante, qui l'avait elle-même racheté à l'administration. La succession, (Charles Elisabeth Michel de Borne d'Altier, émigré à l'étranger en juin 1793), car il n'existait plus civilement, arriva donc au petit cousin Jules de Chapelain, sous-préfet de Marvejols. La famille Chapelain (1812-1905) a conservé la propriété du Champ tout au long du XIXe siècle. À la troisième génération des Chapelain, Joseph baron de Chapelain de Gras Saint-Sauveur marquis du Champ n'eut que trois filles: L'aînée, Elisabeth qui transmis le nom (1899), se maria à Alfred Gaspard comte de Gourcy-Récicourt, décéda, ses enfants seront déshérités du château au profit de sa petite sur, Marie Margueritte mariée à Maurice Raguenet de St-Albin et le Champ passa donc successivement aux Raguenet de Saint-Albin (1905) puis aux Gourcy-Récicourt qui le rachète suite à la faillite des précédents (1919). Le 29 septembre 1928, Joseph Varin d'Ainvelle qui avait épousé la comtesse Elizabeth de Gourcy-Récicourt racheta le château du Champ.</p>
+<h4>Architecture</h4><p>Altier, nef ancienne à berceau brisé, plein cintre. L'abside gothique fut reconstruite au XVIIe siècle. Portail roman s'ouvrant au sud. Cela n'empêchait point qu'il soit pillé pendant les guerres de Religion. Il n'en subsiste que les ruines, à 500 mètres au nord-est du village;  En 1942, il sera inscrit à l'inventaire des monuments historiques.   Champ, ce château du XIIe siècle. Les seigneurs d'Altier possédaient un château au lieu-dit "le Grand Altier". Ce n'est qu'au XIIIe siècle qu'un des fils cadet de la famille Altier fit construire une maison forte au lieu-dit "le Champ". Puis au XVe siècle et au XVIIe, de plan quadrangulaire formé par des logis disposés autour d'une cour, flanqués de tourelles circulaires, le château sera ensuite agrandi. Abandonné au XVIe siècle, ce n'est qu'à partir du XIXe siècle qu'il sera restauré. Il présente un aspect de type militaire avec des tours couronnées de mâchicoulis à toits superposés en poivrières.</p>
+<h4>Habitants / Familles</h4><p>Famille d'Armand de Borne d'Altier"</p>
+<h4>Divers</h4><p>Château de Champ à Altier et vestiges du Grand Altier</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

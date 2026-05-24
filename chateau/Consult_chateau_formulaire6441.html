@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Pray — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,55 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_37.html">Indre-et-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_37.html">Indre-et-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_37.html" class="back-link">Retour au département 37 — Indre-et-Loire</a>
-  <div class="fiche">
-    <h2>Pray</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
-          <tr><td>Canton</td><td>Amboise</td></tr>
-          <tr><td>Commune</td><td>Chargé</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_37/37_Pray_1.jpg" alt="Pray" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Pray_2.jpg" alt="Pray" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Pray_3.jpg" alt="Pray" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_37.html">Retour au département 37 — Indre-et-Loire</a>
+<div class="fiche">
+<h2>Pray</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Pray" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_37/37_Pray_1.jpg"/><div class="hero-count" id="hero-count">1 / 3</div></div><div class="photo-strip"><img alt="Pray" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Pray_1.jpg"/><img alt="Pray" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Pray_2.jpg"/><img alt="Pray" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Pray_3.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
+<tr><td>Canton</td><td>Amboise</td></tr>
+<tr><td>Commune</td><td>Chargé</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>PRAY, Geoffroy de Pray donne son nom en 1244, ne saurait passer inaperçu.  En 1431 Pierre du Mesnil seigneur de Pray, d'Isabeau  de Beauvilliers en 1468,  des Godeau en 1483 et en 1516 de François de Razines en 1548.  En 1631, à Jacques Le Maire il revient au commissaire d'artillerie de la reine d'Angleterre. En à la famille Guast en 1674 qui cède le domaine  en 1710,  de Pray passe à Jean  Bouteroue d'Aubigny qui décède en 1732, de son mariage avec Françoise le Moine de Renne-Moulin laissera une fille  prénommée également Françoise qui épouse en 1733 Louis de Conflans marquis d'armentières, la marquise décède en 1746  en 1777  Pray est cédé à Joseph-Cyprien Bertrand du Platon et le domaine sera vendu en 1792 par le tuteur des enfants  à monsieur Gaudron prêtre. A partir de 1819 changera plusieurs fois de mains acquis par le vicomte Henri d'Amboise, en 1831 à M. Duport en 1834 à la famille Pasturin qui le passe en 1854 à Emile Louis Vincent Ermel de la Grange. Au XXe siècle,  la veuve d'Alphonse Daudet madame Julia Allard y vécu. aujourd'hui transformé en hôtel.</p>
-      <h4>Architecture</h4><p>PRAY, dans son écrin de verdure, campé sur le coteau où s'étagent ses terrasses dominant la Loire, le château de Pray, flanqué de tours témoignant de son passé de forteresse, il devient résidence à la Renaissance, d'où datent deux superbes lucarnes à croisées de pierres, fut l'un des premiers châteaux à être transformé pour vous offrir un art de vivre imprégné du passé. Au XVIIIe, il appartient au conseiller des Rois d'Espagne et de France, et même à un officier proche de La Fayette dont le portrait orne la cheminée du XIXe siècle décorée de faïences à motifs mythologiques. Le château conserve des origines médiévales deux tours  cylindriques qui flanquent la façade nord du corps de logis, la tour occidentale, la plus imposante à deux mètres d'épaisseur à la base. Le logis, couvert d'un toit pentu reposant sur des pignons à rondélis à conservé quelques lucarnes datant du XVIe siècle, la façade nord épaulée par deux contreforts possède en son centre une baie en anse de panier encadré par des pilastres à chapitaux.</p>
-      <h4>Habitants / Familles</h4><p>Joseph-Cyprien Bertrand du Platon 
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Pray à Chargé</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>PRAY, Geoffroy de Pray donne son nom en 1244, ne saurait passer inaperçu.  En 1431 Pierre du Mesnil seigneur de Pray, d'Isabeau  de Beauvilliers en 1468,  des Godeau en 1483 et en 1516 de François de Razines en 1548.  En 1631, à Jacques Le Maire il revient au commissaire d'artillerie de la reine d'Angleterre. En à la famille Guast en 1674 qui cède le domaine  en 1710,  de Pray passe à Jean  Bouteroue d'Aubigny qui décède en 1732, de son mariage avec Françoise le Moine de Renne-Moulin laissera une fille  prénommée également Françoise qui épouse en 1733 Louis de Conflans marquis d'armentières, la marquise décède en 1746  en 1777  Pray est cédé à Joseph-Cyprien Bertrand du Platon et le domaine sera vendu en 1792 par le tuteur des enfants  à monsieur Gaudron prêtre. A partir de 1819 changera plusieurs fois de mains acquis par le vicomte Henri d'Amboise, en 1831 à M. Duport en 1834 à la famille Pasturin qui le passe en 1854 à Emile Louis Vincent Ermel de la Grange. Au XXe siècle,  la veuve d'Alphonse Daudet madame Julia Allard y vécu. aujourd'hui transformé en hôtel.</p>
+<h4>Architecture</h4><p>PRAY, dans son écrin de verdure, campé sur le coteau où s'étagent ses terrasses dominant la Loire, le château de Pray, flanqué de tours témoignant de son passé de forteresse, il devient résidence à la Renaissance, d'où datent deux superbes lucarnes à croisées de pierres, fut l'un des premiers châteaux à être transformé pour vous offrir un art de vivre imprégné du passé. Au XVIIIe, il appartient au conseiller des Rois d'Espagne et de France, et même à un officier proche de La Fayette dont le portrait orne la cheminée du XIXe siècle décorée de faïences à motifs mythologiques. Le château conserve des origines médiévales deux tours  cylindriques qui flanquent la façade nord du corps de logis, la tour occidentale, la plus imposante à deux mètres d'épaisseur à la base. Le logis, couvert d'un toit pentu reposant sur des pignons à rondélis à conservé quelques lucarnes datant du XVIe siècle, la façade nord épaulée par deux contreforts possède en son centre une baie en anse de panier encadré par des pilastres à chapitaux.</p>
+<h4>Habitants / Familles</h4><p>Joseph-Cyprien Bertrand du Platon 
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Pray à Chargé</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

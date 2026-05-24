@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Dax — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,61 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_40.html">Landes</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_40.html">Landes</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_40.html" class="back-link">Retour au département 40 — Landes</a>
-  <div class="fiche">
-    <h2>Dax</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>40 — Landes</td></tr>
-          <tr><td>Canton</td><td>Dax</td></tr>
-          <tr><td>Commune</td><td>Dax</td></tr>
-          <tr><td>Type d'édifice</td><td>Patrimoine</td></tr>
-          <tr><td>Période d'origine</td><td>XVI-XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_40/40_Dax_1.jpg" alt="Dax" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_40/40_Dax_2.jpg" alt="Dax" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_40/40_Dax_3.jpg" alt="Dax" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_40/40_Dax_4.jpg" alt="Dax" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_40/40_Dax_5.jpg" alt="Dax" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_40/40_Dax_6.jpg" alt="Dax" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_40/40_Dax_7.jpg" alt="Dax" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_40/40_Dax_8.jpg" alt="Dax" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_40/40_Dax_9.jpg" alt="Dax" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_40.html">Retour au département 40 — Landes</a>
+<div class="fiche">
+<h2>Dax</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Dax" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_40/40_Dax_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Dax" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_40/40_Dax_1.jpg"/><img alt="Dax" class="" loading="lazy" onclick="setHero(this)" src="../image/image_40/40_Dax_2.jpg"/><img alt="Dax" class="" loading="lazy" onclick="setHero(this)" src="../image/image_40/40_Dax_3.jpg"/><img alt="Dax" class="" loading="lazy" onclick="setHero(this)" src="../image/image_40/40_Dax_4.jpg"/><img alt="Dax" class="" loading="lazy" onclick="setHero(this)" src="../image/image_40/40_Dax_5.jpg"/><img alt="Dax" class="" loading="lazy" onclick="setHero(this)" src="../image/image_40/40_Dax_6.jpg"/><img alt="Dax" class="" loading="lazy" onclick="setHero(this)" src="../image/image_40/40_Dax_7.jpg"/><img alt="Dax" class="" loading="lazy" onclick="setHero(this)" src="../image/image_40/40_Dax_8.jpg"/><img alt="Dax" class="" loading="lazy" onclick="setHero(this)" src="../image/image_40/40_Dax_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>40 — Landes</td></tr>
+<tr><td>Canton</td><td>Dax</td></tr>
+<tr><td>Commune</td><td>Dax</td></tr>
+<tr><td>Type d'édifice</td><td>Patrimoine</td></tr>
+<tr><td>Période d'origine</td><td>XVI-XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>DAX, au XIIe siècle envahit  par les Anglais  et les Français en 1442, et les Espagnols attaquent la riche ville fortifiée. Mais les remparts semblent indestructibles. En 1569, les protestants attaquent la ville, sans succès. A partir de 1648 et jusqu'à 1653, La fronde divise le Royaume. Les villes sont attaquées. En 1652, Dax résiste à plusieurs assauts. En 1660, les remparts sont construit sur ordre du Roi de France Louis XIV, l'infante Marie Thérèse et Anne d'Autriche. A la fin du XIXe siècle, les nobles des communes de France veulent supprimer les traces du passé pour aller vers le futur. Cela consiste à détruire fortifications et remparts. Déclassé et désaffecté, le château est rendu en 1888 à la ville, qui le cède à la Société de Dax-Salins-Thermal pour être finalement rasé en 1891 et remplacé par un casino et un luxueux établissement thermal qui est ravagé par un incendie en 1925. C'est sur ses ruines qu'est construit un splendide hôtel que l'on voit aujourd'hui.                                                    ST-PAUL-les-Dax  bien que les rois successifs Henri IV, Louis XIII ou Louis XIV aient apprécié la fidélité et les qualités guerrières des habitants, ils ont laissé peu de témoignages de leur générosité se contentant pour traverser le village de remettre en état les routes leur permettant de se rendre en Espagne. La commune de Saint-Paul naît avec la Révolution. Le 8 février 1790, elle obtient enfin son identité et devient indépendante sous le nom de Saint-Paul-lès-Dax en 1792. Le vaste territoire communal que doit gérer la nouvelle municipalité sera lobjet de convoitises de tous ses voisins, en particulier Dax qui a perdu  la majeure partie de son domaine agricole. Au cours de la période de la convention nationale (1792-1795), la commune porta le nom révolutionnaire de Bonnet-Rouge.</p>
-      <h4>Architecture</h4><p>Dax  château fort contrôlait le passage de lAdour et son pont fortifié et commandait lentrée  située à lépoque médiévale à une nouvelle porte dite Notre-Dame sur le rempart ouest, entre les deux grosses tours gallo-romaines.  Dans Les remparts absence de fente de tir, manque de crénelage, non présence de mâchicoulis ou bretèche, une telle fortification, construite il y a plus de 15 siècles est un trésor.   Les tours rondes sont nombreuses (Il y en aurait eu entre 38 à 49 suivant les historiens) disposées sur un quadrilatère irrégulier, de dimensions : 330m  x  445m  x  280m  x  410m. La hauteur des murs atteignaient parfois plus de 11 m et l'épaisseur variaient entre 2 à 4m.  Au XIVe siècle, un château fort est construit à l'angle Nord-Ouest.   Mais qui se souvient que jusqu'à à la fin du XIXe siècle, cet emplacement était occupé par un vieux château dont l'origine remonterait à la fin du XIIe ou au début du XIIIe siècle.                               Les châteaux de Saint-Paul de Dax de styles différents,  pas d'informations historiques.</p>
-      <h4>Habitants / Familles</h4><p>Seigneurs locaux
-<br>        "</p>
-      <h4>Divers</h4><p>Patrimoine de Dax, les remparts, le château, la fontaine, le château de Meysonnave grav 6 et autre châteaux sur saint Paul les Dax.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>DAX, au XIIe siècle envahit  par les Anglais  et les Français en 1442, et les Espagnols attaquent la riche ville fortifiée. Mais les remparts semblent indestructibles. En 1569, les protestants attaquent la ville, sans succès. A partir de 1648 et jusqu'à 1653, La fronde divise le Royaume. Les villes sont attaquées. En 1652, Dax résiste à plusieurs assauts. En 1660, les remparts sont construit sur ordre du Roi de France Louis XIV, l'infante Marie Thérèse et Anne d'Autriche. A la fin du XIXe siècle, les nobles des communes de France veulent supprimer les traces du passé pour aller vers le futur. Cela consiste à détruire fortifications et remparts. Déclassé et désaffecté, le château est rendu en 1888 à la ville, qui le cède à la Société de Dax-Salins-Thermal pour être finalement rasé en 1891 et remplacé par un casino et un luxueux établissement thermal qui est ravagé par un incendie en 1925. C'est sur ses ruines qu'est construit un splendide hôtel que l'on voit aujourd'hui.                                                    ST-PAUL-les-Dax  bien que les rois successifs Henri IV, Louis XIII ou Louis XIV aient apprécié la fidélité et les qualités guerrières des habitants, ils ont laissé peu de témoignages de leur générosité se contentant pour traverser le village de remettre en état les routes leur permettant de se rendre en Espagne. La commune de Saint-Paul naît avec la Révolution. Le 8 février 1790, elle obtient enfin son identité et devient indépendante sous le nom de Saint-Paul-lès-Dax en 1792. Le vaste territoire communal que doit gérer la nouvelle municipalité sera lobjet de convoitises de tous ses voisins, en particulier Dax qui a perdu  la majeure partie de son domaine agricole. Au cours de la période de la convention nationale (1792-1795), la commune porta le nom révolutionnaire de Bonnet-Rouge.</p>
+<h4>Architecture</h4><p>Dax  château fort contrôlait le passage de lAdour et son pont fortifié et commandait lentrée  située à lépoque médiévale à une nouvelle porte dite Notre-Dame sur le rempart ouest, entre les deux grosses tours gallo-romaines.  Dans Les remparts absence de fente de tir, manque de crénelage, non présence de mâchicoulis ou bretèche, une telle fortification, construite il y a plus de 15 siècles est un trésor.   Les tours rondes sont nombreuses (Il y en aurait eu entre 38 à 49 suivant les historiens) disposées sur un quadrilatère irrégulier, de dimensions : 330m  x  445m  x  280m  x  410m. La hauteur des murs atteignaient parfois plus de 11 m et l'épaisseur variaient entre 2 à 4m.  Au XIVe siècle, un château fort est construit à l'angle Nord-Ouest.   Mais qui se souvient que jusqu'à à la fin du XIXe siècle, cet emplacement était occupé par un vieux château dont l'origine remonterait à la fin du XIIe ou au début du XIIIe siècle.                               Les châteaux de Saint-Paul de Dax de styles différents,  pas d'informations historiques.</p>
+<h4>Habitants / Familles</h4><p>Seigneurs locaux
+<br/>        "</p>
+<h4>Divers</h4><p>Patrimoine de Dax, les remparts, le château, la fontaine, le château de Meysonnave grav 6 et autre châteaux sur saint Paul les Dax.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

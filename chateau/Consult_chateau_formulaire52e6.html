@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Langeais — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,57 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_37.html">Indre-et-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_37.html">Indre-et-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_37.html" class="back-link">Retour au département 37 — Indre-et-Loire</a>
-  <div class="fiche">
-    <h2>Langeais</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
-          <tr><td>Canton</td><td>Langeais</td></tr>
-          <tr><td>Commune</td><td>Langeais</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_37/37_Langeais_1.jpg" alt="Langeais" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Langeais_2.jpg" alt="Langeais" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Langeais_3.jpg" alt="Langeais" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Langeais_4.jpg" alt="Langeais" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Langeais_5.jpg" alt="Langeais" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_37.html">Retour au département 37 — Indre-et-Loire</a>
+<div class="fiche">
+<h2>Langeais</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Langeais" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_37/37_Langeais_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Langeais" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Langeais_1.jpg"/><img alt="Langeais" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Langeais_2.jpg"/><img alt="Langeais" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Langeais_3.jpg"/><img alt="Langeais" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Langeais_4.jpg"/><img alt="Langeais" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Langeais_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
+<tr><td>Canton</td><td>Langeais</td></tr>
+<tr><td>Commune</td><td>Langeais</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>LANGEAIS, cest en 1206 que Langeais entre dans le domaine Royal, à la suite des victoires de Philippe Auguste sur Jean sans Terre. A partir de cette période, le fief de Langeais est concédé à divers grands seigneurs proches du pouvoir Royal. Pendant la guerre de Cent Ans, Langeais est le repaire épisodique de bandes armées. Charles VII, conscient du danger que peut représenter ce type doccupation, décide de reprendre possession des lieux : la seigneurie est rachetée en 1422, et les fortifications autres que la grosse tour sont abattues. Langeais, pendant la seconde moitié du XVe siècle, demeure une place importante.  le château est cédé dès juillet 1466 au cousin du roi, Dunois, fils du compagnon de Jeanne dArc. En 1491 Anne de Bretagne épouse alors le cousin de Charles VIII, Louis dOrléans, qui régnera sous le nom de Louis XII. Après le XVe siècle, le château de Langeais est cédé à diverses personnes et n'est guère entretenu, seul Christophe Baron, propriétaire à partir de 1839, entreprend des travaux de restauration et achète une collection de mobilier. Mais malheureusement, son fils pour régler des dettes, vend une partie de cette collection. Après le décès du fils Baron, le château de Langeais est acquis le 28 juillet 1886 par Jacques Siegfried. C'est un homme daffaires très actif : banquier, il est chargé par le gouvernement de chercher de meilleurs moyens de développer le commerce français à létranger. Il est passionné par lart du Moyen Âge, il passe alors presque vingt ans de sa vie à le restaurer et le remeubler, restituant ainsi le cadre de vie de la noblesse de la fin du Moyen Âge. En 1904, il donne le château et sa riche collection à lInstitut de France, qui en est toujours propriétaire.</p>
-      <h4>Architecture</h4><p>LANGEAIS, fut reconstruit, sous Louis XI, en 1465. Il a remplacé un premier château fort édifié à la fin du Xe siècle par Foulques Nerra. Le château est précédé par un castrum disposant d'un donjon construit en bois et associé à un domicilium. Cet ouvrage fortifié est bâti sous l'impulsion de Foulques Nerra, comte d'Anjou en 994. Sous la domination de la dynastie anglaise des Plantagenêt, le château est agrandi par le roi d'Angleterre Richard Cur de Lion, comte du Maine et d'Anjou de 1189 à 1199. Philippe Auguste le reconquiert en 1206, puis il est détruit par les Anglais lors de la guerre de cent-ans. Du bâtiment de cette époque subsiste une façade de la tour principale, appelée « donjon de Foulques Nerra ». En 1465, Louis XI ordonne la reconstruction du château, en contrebas des vestiges de l'ancien édifice ; les travaux sont menés sous la direction de Jean Bourré, trésorier de France et ami du roi, et Jean Briçonnet. Le nouveau château de Langeais est achevé en 1469. Le château de Langeais est classé aux M.H. le 13/03/1922 ; la partie du parc du château autour des ruines jusqu'au pont est classée aux M.H. le 26/05/1942</p>
-      <h4>Habitants / Familles</h4><p>Famille de Christophe Baron et Jacques Siegfried
-<br>        "</p>
-      <h4>Divers</h4><p>Langeais, 47° 19' 29" Nord et 0° 24' 22" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>LANGEAIS, cest en 1206 que Langeais entre dans le domaine Royal, à la suite des victoires de Philippe Auguste sur Jean sans Terre. A partir de cette période, le fief de Langeais est concédé à divers grands seigneurs proches du pouvoir Royal. Pendant la guerre de Cent Ans, Langeais est le repaire épisodique de bandes armées. Charles VII, conscient du danger que peut représenter ce type doccupation, décide de reprendre possession des lieux : la seigneurie est rachetée en 1422, et les fortifications autres que la grosse tour sont abattues. Langeais, pendant la seconde moitié du XVe siècle, demeure une place importante.  le château est cédé dès juillet 1466 au cousin du roi, Dunois, fils du compagnon de Jeanne dArc. En 1491 Anne de Bretagne épouse alors le cousin de Charles VIII, Louis dOrléans, qui régnera sous le nom de Louis XII. Après le XVe siècle, le château de Langeais est cédé à diverses personnes et n'est guère entretenu, seul Christophe Baron, propriétaire à partir de 1839, entreprend des travaux de restauration et achète une collection de mobilier. Mais malheureusement, son fils pour régler des dettes, vend une partie de cette collection. Après le décès du fils Baron, le château de Langeais est acquis le 28 juillet 1886 par Jacques Siegfried. C'est un homme daffaires très actif : banquier, il est chargé par le gouvernement de chercher de meilleurs moyens de développer le commerce français à létranger. Il est passionné par lart du Moyen Âge, il passe alors presque vingt ans de sa vie à le restaurer et le remeubler, restituant ainsi le cadre de vie de la noblesse de la fin du Moyen Âge. En 1904, il donne le château et sa riche collection à lInstitut de France, qui en est toujours propriétaire.</p>
+<h4>Architecture</h4><p>LANGEAIS, fut reconstruit, sous Louis XI, en 1465. Il a remplacé un premier château fort édifié à la fin du Xe siècle par Foulques Nerra. Le château est précédé par un castrum disposant d'un donjon construit en bois et associé à un domicilium. Cet ouvrage fortifié est bâti sous l'impulsion de Foulques Nerra, comte d'Anjou en 994. Sous la domination de la dynastie anglaise des Plantagenêt, le château est agrandi par le roi d'Angleterre Richard Cur de Lion, comte du Maine et d'Anjou de 1189 à 1199. Philippe Auguste le reconquiert en 1206, puis il est détruit par les Anglais lors de la guerre de cent-ans. Du bâtiment de cette époque subsiste une façade de la tour principale, appelée « donjon de Foulques Nerra ». En 1465, Louis XI ordonne la reconstruction du château, en contrebas des vestiges de l'ancien édifice ; les travaux sont menés sous la direction de Jean Bourré, trésorier de France et ami du roi, et Jean Briçonnet. Le nouveau château de Langeais est achevé en 1469. Le château de Langeais est classé aux M.H. le 13/03/1922 ; la partie du parc du château autour des ruines jusqu'au pont est classée aux M.H. le 26/05/1942</p>
+<h4>Habitants / Familles</h4><p>Famille de Christophe Baron et Jacques Siegfried
+<br/>        "</p>
+<h4>Divers</h4><p>Langeais, 47° 19' 29" Nord et 0° 24' 22" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

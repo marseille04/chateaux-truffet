@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Ribeaucourt — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,53 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_80.html">Somme</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_80.html">Somme</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_80.html" class="back-link">Retour au département 80 — Somme</a>
-  <div class="fiche">
-    <h2>Ribeaucourt</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>80 — Somme</td></tr>
-          <tr><td>Canton</td><td>Flixecourt</td></tr>
-          <tr><td>Commune</td><td>Ribeaucourt</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>50° 07' 11,75" Nord, 2° 06' 58,71" Est</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_80/80_Ribeaucourt_1.jpg" alt="Ribeaucourt" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_80/80_Ribeaucourt_2.jpg" alt="Ribeaucourt" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_80.html">Retour au département 80 — Somme</a>
+<div class="fiche">
+<h2>Ribeaucourt</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Ribeaucourt" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_80/80_Ribeaucourt_1.jpg"/><div class="hero-count" id="hero-count">1 / 2</div></div><div class="photo-strip"><img alt="Ribeaucourt" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Ribeaucourt_1.jpg"/><img alt="Ribeaucourt" class="" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Ribeaucourt_2.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>80 — Somme</td></tr>
+<tr><td>Canton</td><td>Flixecourt</td></tr>
+<tr><td>Commune</td><td>Ribeaucourt</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII</td></tr>
+<tr><td>Coordonnées GPS</td><td>50° 07' 11,75" Nord, 2° 06' 58,71" Est</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>RIBEAUCOURT , en 1613, Marie de Boubers hérite de son père la seigneurie de Ribeaucourt et s'y installe avec son époux Antoine Le Fournier, seigneur de Wargemont, terre que possède la famille Le Fournier depuis le XVe siècle, la maison seigneuriale se présente encore sous la forme d'un manoir ayant conservé certains caractères médiévaux, comme la basse-cour précédant le logis et la tour latérale qui servira de chapelle seigneuriale jusqu'à la Révolution. Les deux caves subsistant sous le château actuel (aile nord-est et corps de logis sud-ouest) correspondent à ce premier manoir, la première portant un graffiti avec la date de 1642. Le logis à deux niveaux et pignons, qui sera agrandi et modifié en 1678, a été construit pour Antoine Le Fournier de Wargemont dans les années 1620, en tous les cas avant l'année 1635 qui marque le début d'une période de troubles dans le Ponthieu, peu propice à des travaux de cette envergure. Le 4 avril 1678, François le Fournier, chevalier, seigneur de Wargemont, Ribeaucourt, Barlette, Graincourt et Méricourt, passe marché avec le maître charpentier amiénois François de Vaux, par l'intermédiaire de Dom Augustin de Saint-Joseph, prieur des Feuillants d'Amiens; en effet, le charpentier vient de réaliser le grand escalier du couvent, situé rue des Rabuissons à Amiens, et avec lequel la famille Le Fournier est très liée.  On doit à François-Louis Le Fournier, marquis de Wargemont, maréchal de camp, des travaux considérables à Ribeaucourt dans le troisième quart du XVIIIe siècle, la façade du corps de logis principal comprend alors trois travées sur cour et sur jardin, et l'aile deux travées. Après ces travaux, le plan du logis doit être relativement simple et symétrique, le vestibule central desservant de part et d'autre une grande salle éclairée par une fenêtre sur la cour et une sur le jardin, suivie d'une chambre éclairée par deux fenêtres sur le jardin. Des pièces de service et de commodité complétaient  ces deux appartements côté cour. L'aménagement de la basse-cour à l'est et la construction des communs et dépendances ont dû s'étaler entre la fin du XVIIe et le milieu du XVIIIe siècle.</p>
-      <h4>Architecture</h4><p>RIBEAUCOURT, François-Louis Le Fournier de Wargemont laisse une succession obérée et ses domaines fonciers, mis en adjudication le 23 avril 1774, sont acquis  par son frère Aymar Le Fournier, comte de Wargemont. Mais de longues procédures vont l'opposer jusqu'à la Révolution aux enfants et héritiers de son frère. Ribeaucourt et acquis par un négociant d'Abbeville. L'ensemble est recouvré en 1803 par Bonne Charlotte Le Fournier de Wargemont, marquise de Persan qui le cède à son tour en 1821, avec la forêt de Goyaval et les terres de Barlette, au négociant amiénois Pierre-Louis Degove et à son gendre Jean-Charles Deberny  devenu seul propriétaire du château à la suite du décès de son beau-père, la commande du doublement du nombre des baies des façades du corps de logis principal, qui passent ainsi de trois à sept travées. On doit à Charles-Philippe de Berny,  ces travaux concernent la construction d'un corps de logis en prolongement du logis à l'ouest,  Ce bâtiment est presque symétrique à l'aile des cuisines, qui est alors surélevée d'un étage carré.   À la fin du XIXe ou au tout début du XXe siècle ce qui permet de régulariser la limite du parc dans la continuité de la perspective plantée. En 1928, Gérard de Berny, dernier représentant de la lignée, hérite de l'ensemble du patrimoine familial. Sénateur de la Somme et maire de Ribeaucourt, il est surtout connu comme bibliophile et amateur d'art et lègue à sa mort la demeure amiénoise de la famille à la ville d'Amiens pour en faire un musée d'histoire régionale (actuel musée de l'hôtel de Berny). À Ribeaucourt, il fait construire dans les années 1930 le portail en brique et pierre qui marque sur la place publique l'entrée de la rue du Château, qui a été occupé de 1940 à 1944 par l'armée allemande, qui installe des rampes de lancement de V1 et de V2 dans le bois.</p>
-      <h4>Habitants / Familles</h4><p>Famille Le Fournier"</p>
-      <h4>Divers</h4><p>Château de Ribeaucourt. GPS : 50° 07' 11,75" Nord, 2° 06' 58,71" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>RIBEAUCOURT , en 1613, Marie de Boubers hérite de son père la seigneurie de Ribeaucourt et s'y installe avec son époux Antoine Le Fournier, seigneur de Wargemont, terre que possède la famille Le Fournier depuis le XVe siècle, la maison seigneuriale se présente encore sous la forme d'un manoir ayant conservé certains caractères médiévaux, comme la basse-cour précédant le logis et la tour latérale qui servira de chapelle seigneuriale jusqu'à la Révolution. Les deux caves subsistant sous le château actuel (aile nord-est et corps de logis sud-ouest) correspondent à ce premier manoir, la première portant un graffiti avec la date de 1642. Le logis à deux niveaux et pignons, qui sera agrandi et modifié en 1678, a été construit pour Antoine Le Fournier de Wargemont dans les années 1620, en tous les cas avant l'année 1635 qui marque le début d'une période de troubles dans le Ponthieu, peu propice à des travaux de cette envergure. Le 4 avril 1678, François le Fournier, chevalier, seigneur de Wargemont, Ribeaucourt, Barlette, Graincourt et Méricourt, passe marché avec le maître charpentier amiénois François de Vaux, par l'intermédiaire de Dom Augustin de Saint-Joseph, prieur des Feuillants d'Amiens; en effet, le charpentier vient de réaliser le grand escalier du couvent, situé rue des Rabuissons à Amiens, et avec lequel la famille Le Fournier est très liée.  On doit à François-Louis Le Fournier, marquis de Wargemont, maréchal de camp, des travaux considérables à Ribeaucourt dans le troisième quart du XVIIIe siècle, la façade du corps de logis principal comprend alors trois travées sur cour et sur jardin, et l'aile deux travées. Après ces travaux, le plan du logis doit être relativement simple et symétrique, le vestibule central desservant de part et d'autre une grande salle éclairée par une fenêtre sur la cour et une sur le jardin, suivie d'une chambre éclairée par deux fenêtres sur le jardin. Des pièces de service et de commodité complétaient  ces deux appartements côté cour. L'aménagement de la basse-cour à l'est et la construction des communs et dépendances ont dû s'étaler entre la fin du XVIIe et le milieu du XVIIIe siècle.</p>
+<h4>Architecture</h4><p>RIBEAUCOURT, François-Louis Le Fournier de Wargemont laisse une succession obérée et ses domaines fonciers, mis en adjudication le 23 avril 1774, sont acquis  par son frère Aymar Le Fournier, comte de Wargemont. Mais de longues procédures vont l'opposer jusqu'à la Révolution aux enfants et héritiers de son frère. Ribeaucourt et acquis par un négociant d'Abbeville. L'ensemble est recouvré en 1803 par Bonne Charlotte Le Fournier de Wargemont, marquise de Persan qui le cède à son tour en 1821, avec la forêt de Goyaval et les terres de Barlette, au négociant amiénois Pierre-Louis Degove et à son gendre Jean-Charles Deberny  devenu seul propriétaire du château à la suite du décès de son beau-père, la commande du doublement du nombre des baies des façades du corps de logis principal, qui passent ainsi de trois à sept travées. On doit à Charles-Philippe de Berny,  ces travaux concernent la construction d'un corps de logis en prolongement du logis à l'ouest,  Ce bâtiment est presque symétrique à l'aile des cuisines, qui est alors surélevée d'un étage carré.   À la fin du XIXe ou au tout début du XXe siècle ce qui permet de régulariser la limite du parc dans la continuité de la perspective plantée. En 1928, Gérard de Berny, dernier représentant de la lignée, hérite de l'ensemble du patrimoine familial. Sénateur de la Somme et maire de Ribeaucourt, il est surtout connu comme bibliophile et amateur d'art et lègue à sa mort la demeure amiénoise de la famille à la ville d'Amiens pour en faire un musée d'histoire régionale (actuel musée de l'hôtel de Berny). À Ribeaucourt, il fait construire dans les années 1930 le portail en brique et pierre qui marque sur la place publique l'entrée de la rue du Château, qui a été occupé de 1940 à 1944 par l'armée allemande, qui installe des rampes de lancement de V1 et de V2 dans le bois.</p>
+<h4>Habitants / Familles</h4><p>Famille Le Fournier"</p>
+<h4>Divers</h4><p>Château de Ribeaucourt. GPS : 50° 07' 11,75" Nord, 2° 06' 58,71" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

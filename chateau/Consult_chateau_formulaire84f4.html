@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Périgeux — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,64 +113,62 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_24.html">Dordogne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_24.html">Dordogne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_24.html" class="back-link">Retour au département 24 — Dordogne</a>
-  <div class="fiche">
-    <h2>Périgeux</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>24 — Dordogne</td></tr>
-          <tr><td>Canton</td><td>Périgeux</td></tr>
-          <tr><td>Commune</td><td>Périgeux</td></tr>
-          <tr><td>Type d'édifice</td><td>Vestiges</td></tr>
-          <tr><td>Période d'origine</td><td>XII-XIV</td></tr>
-          <tr><td>Coordonnées GPS</td><td>45° 10' 53" Nord et 0° 42' 44" Est                                      Tour grav 7 GPS : 45° 10' 57,9" Nord, 0° 43' 9,1" Est                       Vésone grav 8 GPS : 45° 10' 46" Nord, 0° 42' 52" Est. Maison du Consul grav 8 Marsac grav 9</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_24/24_P%c3%a9rigueux_1.jpg" alt="Périgeux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_P%c3%a9rigueux_2.jpg" alt="Périgeux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_P%c3%a9rigueux_3.jpg" alt="Périgeux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_P%c3%a9rigueux_4.jpg" alt="Périgeux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_P%c3%a9rigueux_5.jpg" alt="Périgeux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_P%c3%a9rigueux_6.jpg" alt="Périgeux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_P%c3%a9rigueux_7.jpg" alt="Périgeux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_P%c3%a9rigueux_8.jpg" alt="Périgeux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_P%c3%a9rigueux_9.jpg" alt="Périgeux" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_24.html">Retour au département 24 — Dordogne</a>
+<div class="fiche">
+<h2>Périgeux</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Périgeux" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_24/24_P%c3%a9rigueux_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Périgeux" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_P%c3%a9rigueux_1.jpg"/><img alt="Périgeux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_P%c3%a9rigueux_2.jpg"/><img alt="Périgeux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_P%c3%a9rigueux_3.jpg"/><img alt="Périgeux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_P%c3%a9rigueux_4.jpg"/><img alt="Périgeux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_P%c3%a9rigueux_5.jpg"/><img alt="Périgeux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_P%c3%a9rigueux_6.jpg"/><img alt="Périgeux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_P%c3%a9rigueux_7.jpg"/><img alt="Périgeux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_P%c3%a9rigueux_8.jpg"/><img alt="Périgeux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_P%c3%a9rigueux_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>24 — Dordogne</td></tr>
+<tr><td>Canton</td><td>Périgeux</td></tr>
+<tr><td>Commune</td><td>Périgeux</td></tr>
+<tr><td>Type d'édifice</td><td>Vestiges</td></tr>
+<tr><td>Période d'origine</td><td>XII-XIV</td></tr>
+<tr><td>Coordonnées GPS</td><td>45° 10' 53" Nord et 0° 42' 44" Est                                      Tour grav 7 GPS : 45° 10' 57,9" Nord, 0° 43' 9,1" Est                       Vésone grav 8 GPS : 45° 10' 46" Nord, 0° 42' 52" Est. Maison du Consul grav 8 Marsac grav 9</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>BARRIERE, bâti  à Périgueux, Il date du XIIe siècle, fut construit sur une enceinte gallo-romaine, de la fin du IIIe siècle, pour protéger la cité. Il était le fief de la famille Barrière au XIIIe siècle. Jeanne de Barrière épouse en 1400 Olivier d'Abzac. Aujourdhui ruiné, il conserve toutefois son donjon roman du XIIe siècle et le reste dun logement rectangulaire avec sa tour descalier polygonale du XVe siècle. Côté ouest, les murs reposent sur l'ancienne muraille gallo-romaine, avec ses imposants blocs de pierre. Du château subsistent des murs percés de fenêtres à meneaux et deux tours, à l'est et au sud. La tour orientale, tronquée, offre une porte à décor flamboyant. la propriété revient par legs à la ville de Périgeux              La MAISON des CONSULS,   elle a successivement appartenu à la famille du Lau de la Côte puis aux Cayla. La maison appartenait avant la Révolution à la famille de Fayolle. En 1889, elle est classée au titre des M.H.  Côté rivière, la façade de style gothique flamboyant présente des mâchicoulis décorés surmontés d'un chemin de ronde, des fenêtres à meneaux et deux lucarnes, dont une est ornée de chimères. À l'arrière, des mâchicoulis qui prolongent ceux de l'hôtel Salleton surplombent la rue du Port-de-Graule, une étroite ruelle où se trouve la cour qui donne accès à une tour hexagonale dans laquelle se loge un escalier à vis.
-<br>VESONE, tour, vestiges gallo-romain dédié à Vésunna. C'est une tour ronde  située dans un jardin public, le jardin de Vésone, 50 mètres à l'ouest du musée Vesunna qui renferme les vestiges de la domus des Bouquets. Une brèche large de près de neuf mètres éventre son côté Est. A L'ouest à Marsac un magnifique château pas d'information historique.</p>
-      <h4>Architecture</h4><p>BARRIERE,  fut détruit, en partie, par les Huguenots, en 1575.   Construit sur les fondations des murailles de la ville, ortifications élevées avec les matériaux récupérés sur les ruines romaines de lancienne Vésuna, on trouve des preuves de son existence dés 1245. Il porte le nom de la famille qui le possédait au moyen âge.  Il est classé au titre des M.H. depuis la liste de 1862.                                                                   La Tour MATAGUERRE est une tour bâtie à Périgueux,  sa construction date du XIIIe siècle, est l'ultime vestige du rempart de l'enceinte médiévale qui protégeait le Puy Saint-Front, véritable noyau urbain qui est devenu le centre-ville de Périgueux. La Tour Mataguerre a été entièrement rebâtie au XVe siècle. De 1622 à 1831, elle servit d'endroit pour entreposer la poudre. Délabrée, sa toiture de forme conique fut supprimée en 1807. Construite sur le rocher, elle est de forme circulaire, avec une base plus évasée que le corps principal. Elle est couronnée de mâchicoulis et comporte des archères, est classée aux M.H. en 1840.
-<br>VESONE,  tour est le vestige d'un temple gallo-romain construit au Ie ou IIe siècle. Sa hauteur est de 24,6 m. Sa construction cylindrique de 21 mètres au-dessus du sol actuel. En 1833, le site, propriété du Comte Wlgrin de Taillefer, fut cédé à son décès, à la ville de Périgueux.</p>
-      <h4>Habitants / Familles</h4><p>Famille Barrière                                                              Famille du Lau de la Côte
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>A Périgueux; vestiges Barrière grav 1 à 5 GPS : 45° 10' 53" Nord et 0° 42' 44" Est                                      Tour grav 7 GPS : 45° 10' 57,9" Nord, 0° 43' 9,1" Est                       Vésone grav 8 GPS : 45° 10' 46" Nord, 0° 42' 52" Est. Maison du Consul grav 8 Marsac grav 9</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>BARRIERE, bâti  à Périgueux, Il date du XIIe siècle, fut construit sur une enceinte gallo-romaine, de la fin du IIIe siècle, pour protéger la cité. Il était le fief de la famille Barrière au XIIIe siècle. Jeanne de Barrière épouse en 1400 Olivier d'Abzac. Aujourdhui ruiné, il conserve toutefois son donjon roman du XIIe siècle et le reste dun logement rectangulaire avec sa tour descalier polygonale du XVe siècle. Côté ouest, les murs reposent sur l'ancienne muraille gallo-romaine, avec ses imposants blocs de pierre. Du château subsistent des murs percés de fenêtres à meneaux et deux tours, à l'est et au sud. La tour orientale, tronquée, offre une porte à décor flamboyant. la propriété revient par legs à la ville de Périgeux              La MAISON des CONSULS,   elle a successivement appartenu à la famille du Lau de la Côte puis aux Cayla. La maison appartenait avant la Révolution à la famille de Fayolle. En 1889, elle est classée au titre des M.H.  Côté rivière, la façade de style gothique flamboyant présente des mâchicoulis décorés surmontés d'un chemin de ronde, des fenêtres à meneaux et deux lucarnes, dont une est ornée de chimères. À l'arrière, des mâchicoulis qui prolongent ceux de l'hôtel Salleton surplombent la rue du Port-de-Graule, une étroite ruelle où se trouve la cour qui donne accès à une tour hexagonale dans laquelle se loge un escalier à vis.
+<br/>VESONE, tour, vestiges gallo-romain dédié à Vésunna. C'est une tour ronde  située dans un jardin public, le jardin de Vésone, 50 mètres à l'ouest du musée Vesunna qui renferme les vestiges de la domus des Bouquets. Une brèche large de près de neuf mètres éventre son côté Est. A L'ouest à Marsac un magnifique château pas d'information historique.</p>
+<h4>Architecture</h4><p>BARRIERE,  fut détruit, en partie, par les Huguenots, en 1575.   Construit sur les fondations des murailles de la ville, ortifications élevées avec les matériaux récupérés sur les ruines romaines de lancienne Vésuna, on trouve des preuves de son existence dés 1245. Il porte le nom de la famille qui le possédait au moyen âge.  Il est classé au titre des M.H. depuis la liste de 1862.                                                                   La Tour MATAGUERRE est une tour bâtie à Périgueux,  sa construction date du XIIIe siècle, est l'ultime vestige du rempart de l'enceinte médiévale qui protégeait le Puy Saint-Front, véritable noyau urbain qui est devenu le centre-ville de Périgueux. La Tour Mataguerre a été entièrement rebâtie au XVe siècle. De 1622 à 1831, elle servit d'endroit pour entreposer la poudre. Délabrée, sa toiture de forme conique fut supprimée en 1807. Construite sur le rocher, elle est de forme circulaire, avec une base plus évasée que le corps principal. Elle est couronnée de mâchicoulis et comporte des archères, est classée aux M.H. en 1840.
+<br/>VESONE,  tour est le vestige d'un temple gallo-romain construit au Ie ou IIe siècle. Sa hauteur est de 24,6 m. Sa construction cylindrique de 21 mètres au-dessus du sol actuel. En 1833, le site, propriété du Comte Wlgrin de Taillefer, fut cédé à son décès, à la ville de Périgueux.</p>
+<h4>Habitants / Familles</h4><p>Famille Barrière                                                              Famille du Lau de la Côte
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>A Périgueux; vestiges Barrière grav 1 à 5 GPS : 45° 10' 53" Nord et 0° 42' 44" Est                                      Tour grav 7 GPS : 45° 10' 57,9" Nord, 0° 43' 9,1" Est                       Vésone grav 8 GPS : 45° 10' 46" Nord, 0° 42' 52" Est. Maison du Consul grav 8 Marsac grav 9</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

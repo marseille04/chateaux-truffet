@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Morlaix — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,63 +113,66 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_29.html">Finistère</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_29.html">Finistère</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_29.html" class="back-link">Retour au département 29 — Finistère</a>
-  <div class="fiche">
-    <h2>Morlaix</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>29 — Finistère</td></tr>
-          <tr><td>Canton</td><td>Morlaix</td></tr>
-          <tr><td>Commune</td><td>Morlaix</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI-XIX</td></tr>
-          <tr><td>Coordonnées GPS</td><td>48° 36' 07" Nord, 3° 50' 39" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_29/29_Morlaix_1.jpg" alt="Morlaix" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Morlaix_2.jpg" alt="Morlaix" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Morlaix_3.jpg" alt="Morlaix" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Morlaix_4.jpg" alt="Morlaix" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_29.html">Retour au département 29 — Finistère</a>
+<div class="fiche">
+<h2>Morlaix</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Morlaix" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_29/29_Morlaix_1.jpg"/><div class="hero-count" id="hero-count">1 / 4</div></div><div class="photo-strip"><img alt="Morlaix" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Morlaix_1.jpg"/><img alt="Morlaix" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Morlaix_2.jpg"/><img alt="Morlaix" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Morlaix_3.jpg"/><img alt="Morlaix" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Morlaix_4.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>29 — Finistère</td></tr>
+<tr><td>Canton</td><td>Morlaix</td></tr>
+<tr><td>Commune</td><td>Morlaix</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI-XIX</td></tr>
+<tr><td>Coordonnées GPS</td><td>48° 36' 07" Nord, 3° 50' 39" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Quatre châteaux à Morlaix de Napoléon, Keroriouval, Keriocr'iou et Keranroux                                                                                                                    NAPOLEON III  Morlaix, château du XIXe siècle, propriété privée, ne se visite pas, visible de l'extérieur, pas d'historique.                                                                                                                                  KERORIOUVAL  Édifice construit au cours du XIXe siècle,  agrandi par l'adjonction d'une tour d'angle couverte en pavillon à la fin du siècle. Le château appartient à M. A. de Montluc de la Rivière au début du XXe siècle. Bâtiment de plan rectangulaire.                                                                    KEROCH' IOU   Château construit en 1898 sur le site d'un ancien manoir aujourd'hui ruiné. La propriété est vendue en 1893 par Paul de Champagny au baron Alphonse Cazin d'Honincthun qui confie les travaux du nouvel édifice à un architecte de Saint-Brieuc. Bâtiment néo-XVIIe de plan massé; le corps de logis est flanqué de plusieurs pavillons surélevés. Elévation de moellon avec soubassement, encadrements de baies, bandeaux horizontaux, chaînes d'angle, corniche en pierre de taille. Lucarnes surmontées d'un fronton semi-circulaire orné d'une coquille. : les façades et les toitures y compris le portail d'entrée : classement par arrêté du 26 novembre 1979.</p>
-      <h4>Architecture</h4><p>KERANROUX  La Seigneurie de Keranroux, connue depuis 1301, a été cédée au XVIIIe par la famille du Parc à Madame de la Fruglaye, née Sophie de Caradeuc, fille de Louis René de Caradeuc de la Chalotais, procureur général du Parlement de Bretagne. L'ancien manoir fut remplacé en 1773 par le château actuel, qui devint la résidence de la famille de la Fruglaye. Le bâtiment, de plan rectangulaire et d'ordonnance classique, occupait le centre d'un domaine composé d'un jardin entouré d'un parc. L'ensemble a subi aux XIXe et XXe siècles des modifications, toiture du château, sculpture de son fronton, reconstruction des communs, d'une maison de style Directoire dans le bas du parc et d'une ferme modèle à l'autre extrémité du domaine. Ces ajouts importants n'altèrent cependant pas la perception que l'on a du domaine. .Éléments protégés MH : les façades et les toitures, la suite des pièces du rez-de-chaussée, le vestibule et son escalier, les façades et les toitures de la chapelle, des communs, de la maison du régisseur et de la ferme de Roz-ar- Prat, le colombier et la fontaine, le jardin avec ses terrasses, les ruines de la chapelle médiévale : inscription par arrêté du 19 novembre 1992.</p>
-      <h4>Habitants / Familles</h4><p>Nec'Hoat; Famille La Barre de Nanteuil                Keroriouval;  M. A. de Montluc de la Rivière    Kerioch'Iou ; Famille de  Paul de Champagny       Keranroux; famille du Parc
-<br>        
-<br>        
-<br>        
-<br>        
-<br>        
-<br>        
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Quatre châteaux à Morlaix grav 1 de Napoléon, de Nec'Hoat  grav-3-4-5, Kéroriouval, de Keroch'iou grav 2-3  et de Kéranroux_6-7                                                                           Keroch'iou  GPS : 48° 36' 07" Nord, 3° 50' 39" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Quatre châteaux à Morlaix de Napoléon, Keroriouval, Keriocr'iou et Keranroux                                                                                                                    NAPOLEON III  Morlaix, château du XIXe siècle, propriété privée, ne se visite pas, visible de l'extérieur, pas d'historique.                                                                                                                                  KERORIOUVAL  Édifice construit au cours du XIXe siècle,  agrandi par l'adjonction d'une tour d'angle couverte en pavillon à la fin du siècle. Le château appartient à M. A. de Montluc de la Rivière au début du XXe siècle. Bâtiment de plan rectangulaire.                                                                    KEROCH' IOU   Château construit en 1898 sur le site d'un ancien manoir aujourd'hui ruiné. La propriété est vendue en 1893 par Paul de Champagny au baron Alphonse Cazin d'Honincthun qui confie les travaux du nouvel édifice à un architecte de Saint-Brieuc. Bâtiment néo-XVIIe de plan massé; le corps de logis est flanqué de plusieurs pavillons surélevés. Elévation de moellon avec soubassement, encadrements de baies, bandeaux horizontaux, chaînes d'angle, corniche en pierre de taille. Lucarnes surmontées d'un fronton semi-circulaire orné d'une coquille. : les façades et les toitures y compris le portail d'entrée : classement par arrêté du 26 novembre 1979.</p>
+<h4>Architecture</h4><p>KERANROUX  La Seigneurie de Keranroux, connue depuis 1301, a été cédée au XVIIIe par la famille du Parc à Madame de la Fruglaye, née Sophie de Caradeuc, fille de Louis René de Caradeuc de la Chalotais, procureur général du Parlement de Bretagne. L'ancien manoir fut remplacé en 1773 par le château actuel, qui devint la résidence de la famille de la Fruglaye. Le bâtiment, de plan rectangulaire et d'ordonnance classique, occupait le centre d'un domaine composé d'un jardin entouré d'un parc. L'ensemble a subi aux XIXe et XXe siècles des modifications, toiture du château, sculpture de son fronton, reconstruction des communs, d'une maison de style Directoire dans le bas du parc et d'une ferme modèle à l'autre extrémité du domaine. Ces ajouts importants n'altèrent cependant pas la perception que l'on a du domaine. .Éléments protégés MH : les façades et les toitures, la suite des pièces du rez-de-chaussée, le vestibule et son escalier, les façades et les toitures de la chapelle, des communs, de la maison du régisseur et de la ferme de Roz-ar- Prat, le colombier et la fontaine, le jardin avec ses terrasses, les ruines de la chapelle médiévale : inscription par arrêté du 19 novembre 1992.</p>
+<h4>Habitants / Familles</h4><p>Nec'Hoat; Famille La Barre de Nanteuil                Keroriouval;  M. A. de Montluc de la Rivière    Kerioch'Iou ; Famille de  Paul de Champagny       Keranroux; famille du Parc
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Quatre châteaux à Morlaix grav 1 de Napoléon, de Nec'Hoat  grav-3-4-5, Kéroriouval, de Keroch'iou grav 2-3  et de Kéranroux_6-7                                                                           Keroch'iou  GPS : 48° 36' 07" Nord, 3° 50' 39" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

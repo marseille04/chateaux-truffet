@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Simorre_Monbardon — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,64 +113,61 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_32.html">Gers</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_32.html">Gers</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_32.html" class="back-link">Retour au département 32 — Gers</a>
-  <div class="fiche">
-    <h2>Simorre_Monbardon</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>32 — Gers</td></tr>
-          <tr><td>Canton</td><td>Valde Save</td></tr>
-          <tr><td>Commune</td><td>Simorre</td></tr>
-          <tr><td>Type d'édifice</td><td>Abbaye</td></tr>
-          <tr><td>Période d'origine</td><td>XIV</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_32/32_Simorre_Monbardon_1.jpg" alt="Simorre_Monbardon" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Simorre_Monbardon_2.jpg" alt="Simorre_Monbardon" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Simorre_Monbardon_3.jpg" alt="Simorre_Monbardon" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Simorre_Monbardon_4.jpg" alt="Simorre_Monbardon" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Simorre_Monbardon_5.jpg" alt="Simorre_Monbardon" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Simorre_Monbardon_6.jpg" alt="Simorre_Monbardon" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Simorre_Monbardon_7.jpg" alt="Simorre_Monbardon" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Simorre_Monbardon_8.jpg" alt="Simorre_Monbardon" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Simorre_Monbardon_9.jpg" alt="Simorre_Monbardon" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_32.html">Retour au département 32 — Gers</a>
+<div class="fiche">
+<h2>Simorre_Monbardon</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Simorre_Monbardon" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_32/32_Simorre_Monbardon_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Simorre_Monbardon" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Simorre_Monbardon_1.jpg"/><img alt="Simorre_Monbardon" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Simorre_Monbardon_2.jpg"/><img alt="Simorre_Monbardon" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Simorre_Monbardon_3.jpg"/><img alt="Simorre_Monbardon" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Simorre_Monbardon_4.jpg"/><img alt="Simorre_Monbardon" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Simorre_Monbardon_5.jpg"/><img alt="Simorre_Monbardon" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Simorre_Monbardon_6.jpg"/><img alt="Simorre_Monbardon" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Simorre_Monbardon_7.jpg"/><img alt="Simorre_Monbardon" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Simorre_Monbardon_8.jpg"/><img alt="Simorre_Monbardon" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Simorre_Monbardon_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>32 — Gers</td></tr>
+<tr><td>Canton</td><td>Valde Save</td></tr>
+<tr><td>Commune</td><td>Simorre</td></tr>
+<tr><td>Type d'édifice</td><td>Abbaye</td></tr>
+<tr><td>Période d'origine</td><td>XIV</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>SIMORRE, dominant du haut de ses tours et créneaux, le joli village de Simorre et le pays d'Astarac, l'église abbatiale Notre-Dame fut édifiée au XIVe siècle, puis remaniée par Viollet-le-Duc au XIXe siècle. Agrémenté d'une tour-lanterne octogonale, ce bel édifice en brique, aux allures de forteresse, abrite des verrières des XIVe et XVe siècles, des stalles sculptées du XVe siècle, ainsi que, dans la sacristie, des peintures murales du XIVe siècle.
-<br>Autour de l'église fortifiée, rues et places pittoresques, bordées de maisons à colombages et à encorbellements, se succèdent au gré de la promenade.                                                                     MONBARDON château à la limite du dépatement à 10 kilomètre au sud de Simorre pas d'information historique dommage qu'il soit à l'abandon.                                                                        PELLEFIGUE, est remarquable par létendue et lancienneté de ses bâtiments et sa position sur un plateau élevé.</p>
-      <h4>Architecture</h4><p>L'abbaye, attestée dès 817, a été construite au VIe siècle sur l'emplacement d'un ancien oratoire élevé au Ve siècle par Saint-Cerats dont le tombeau se trouve dans la chapelle de Saintes. L'abbaye fut ravagée par les Sarrasins et par les Normands.  Fortifiée aux XIIe et XIVe siècles pour servir de refuge, remaniée au XIXe, labbatiale est unique en son genre. Aujourd'hui, village avec sa vieille halle centrale, ses maisons à colombages et à encorbellements, son foirail et ses placettes ombragées qui invitent à la visite, Simorre surprend et émerveille. La nef n'a que deux travées et demi, terminée par un mur de pierre. La quasi totalité de l'édifice est en brique rose. Dans le sacraire, qui sert actuellement de sacristie, ont été, lors de travaux de restauration, découvertes en 1964 de très belles peintures murales du XIVe siècle . On peut aujourd'hui y admirer de nombreux objets du culte, simples ou fastueux du XVIIe, XVIIIe siècle.
-<br>4 statues sont à admirer : piéta en bois du début VIIIe, piéta en pierre du VIIe, la statue de St Cérats du XVe et une croix de procession du XIVe siècle. Au XIXe siècle, Violet le Duc entreprend la restauration de l'édifice modifiant son aspect extérieur qui s'est transformé en église fortifiée. Des visites guidées sont proposées pendant la saison estivale.</p>
-      <h4>Habitants / Familles</h4><p>Seigneurs locaux
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Eglise fortifiée à Simorre, le château de Monbardon et de Pellefigue</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>SIMORRE, dominant du haut de ses tours et créneaux, le joli village de Simorre et le pays d'Astarac, l'église abbatiale Notre-Dame fut édifiée au XIVe siècle, puis remaniée par Viollet-le-Duc au XIXe siècle. Agrémenté d'une tour-lanterne octogonale, ce bel édifice en brique, aux allures de forteresse, abrite des verrières des XIVe et XVe siècles, des stalles sculptées du XVe siècle, ainsi que, dans la sacristie, des peintures murales du XIVe siècle.
+<br/>Autour de l'église fortifiée, rues et places pittoresques, bordées de maisons à colombages et à encorbellements, se succèdent au gré de la promenade.                                                                     MONBARDON château à la limite du dépatement à 10 kilomètre au sud de Simorre pas d'information historique dommage qu'il soit à l'abandon.                                                                        PELLEFIGUE, est remarquable par létendue et lancienneté de ses bâtiments et sa position sur un plateau élevé.</p>
+<h4>Architecture</h4><p>L'abbaye, attestée dès 817, a été construite au VIe siècle sur l'emplacement d'un ancien oratoire élevé au Ve siècle par Saint-Cerats dont le tombeau se trouve dans la chapelle de Saintes. L'abbaye fut ravagée par les Sarrasins et par les Normands.  Fortifiée aux XIIe et XIVe siècles pour servir de refuge, remaniée au XIXe, labbatiale est unique en son genre. Aujourd'hui, village avec sa vieille halle centrale, ses maisons à colombages et à encorbellements, son foirail et ses placettes ombragées qui invitent à la visite, Simorre surprend et émerveille. La nef n'a que deux travées et demi, terminée par un mur de pierre. La quasi totalité de l'édifice est en brique rose. Dans le sacraire, qui sert actuellement de sacristie, ont été, lors de travaux de restauration, découvertes en 1964 de très belles peintures murales du XIVe siècle . On peut aujourd'hui y admirer de nombreux objets du culte, simples ou fastueux du XVIIe, XVIIIe siècle.
+<br/>4 statues sont à admirer : piéta en bois du début VIIIe, piéta en pierre du VIIe, la statue de St Cérats du XVe et une croix de procession du XIVe siècle. Au XIXe siècle, Violet le Duc entreprend la restauration de l'édifice modifiant son aspect extérieur qui s'est transformé en église fortifiée. Des visites guidées sont proposées pendant la saison estivale.</p>
+<h4>Habitants / Familles</h4><p>Seigneurs locaux
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Eglise fortifiée à Simorre, le château de Monbardon et de Pellefigue</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

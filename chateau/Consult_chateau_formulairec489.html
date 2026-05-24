@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Parc_St_Lo — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,60 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_50.html">Manche</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_50.html">Manche</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_50.html" class="back-link">Retour au département 50 — Manche</a>
-  <div class="fiche">
-    <h2>Parc_St_Lo</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>50 — Manche</td></tr>
-          <tr><td>Canton</td><td>Saint-Lô-d</td></tr>
-          <tr><td>Commune</td><td>Saint-Lô-d</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_50/50_Parc_St_Lo_1.jpg" alt="Parc_St_Lo" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Parc_St_Lo_2.jpg" alt="Parc_St_Lo" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Parc_St_Lo_3.jpg" alt="Parc_St_Lo" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Parc_St_Lo_4.jpg" alt="Parc_St_Lo" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Parc_St_Lo_5.jpg" alt="Parc_St_Lo" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Parc_St_Lo_6.jpg" alt="Parc_St_Lo" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_50.html">Retour au département 50 — Manche</a>
+<div class="fiche">
+<h2>Parc_St_Lo</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Parc_St_Lo" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_50/50_Parc_St_Lo_1.jpg"/><div class="hero-count" id="hero-count">1 / 6</div></div><div class="photo-strip"><img alt="Parc_St_Lo" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Parc_St_Lo_1.jpg"/><img alt="Parc_St_Lo" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Parc_St_Lo_2.jpg"/><img alt="Parc_St_Lo" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Parc_St_Lo_3.jpg"/><img alt="Parc_St_Lo" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Parc_St_Lo_4.jpg"/><img alt="Parc_St_Lo" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Parc_St_Lo_5.jpg"/><img alt="Parc_St_Lo" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Parc_St_Lo_6.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>50 — Manche</td></tr>
+<tr><td>Canton</td><td>Saint-Lô-d</td></tr>
+<tr><td>Commune</td><td>Saint-Lô-d</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>PARC, le toponyme, le Parc suggère lexistence dun parc seigneurial à lépoque médiévale. Lactuel domaine du Parc dOurville, pour sa plus grande partie, était le Parc seigneurial du château dOlonde. Il en aurait été détaché pour constituer le domaine réservé dun nouveau fief noble crée au profit dun cadet de famille. Ce démembrement qui a pu avoir lieu entre 1205, année où Philippe-Auguste, nouveau maître de la Normandie, donna Olonde à son fidèle serviteur Richard dArgences et 1220, année où le registre des fiefs de Philippe-Auguste nous apprend que Guillaume dArgences tenait la quatrième partie dun fief de chevalier prés dOlonde. Le plus ancien aveu du roi pour le fief du Parc mentionne que son possesseur doit au roi le service, au château du Plessis, dun homme armé durant dix jours. Collibeaux de Criquebeuf rendit aveu au roi pour le Parc dOurville, le 14 novembre 1403. Il était membre de la célèbre famille dEstouteville. Henri V dAngleterre confisqua le fief du Parc et le donna à Jehan dArgouges à cause de la rébellion de Collibeaux de Criquebeuf. Le 31 août 1429, un accord passé entre Jean dArgouges et Thomas de Clamorgan fut confirmé à Vernon par loncle du roi Henry V dAngleterre, Jean, régent du royaume de France et duc de Bedford. Par cet accord, Jean dArgouges quitta, transporta et délaissa le fief du Parc à Thomas de Clamorgan, son beau-frère. En 1436, il fut maintenu dans la possession de ses biens propres par le roi de France Charles VII, mais tenu de restituer à leur anciens propriétaires les biens que les anglais lui avaient concédés. Cependant il était encore seigneur du Parc en 1438, année où il rendit aveu pour ce fief. En cette même année 1438, il est dit seigneur du Parc dans un document concernant les salines de Portbail.</p>
-      <h4>Architecture</h4><p>PARC, le fief du Parc fut restitué aux enfants de Collibeaux de Criquebeuf : Simon dEstouteville, seigneur de Criquebeuf, Chamelles, Missy, Brucourt, du Han, dAnneville et du Parc et Perrette dEstouteville, dame de Criquebeuf, Chamelles, Missy, Brucourt, du Han, dAnneville et du Parc. Perrette dEstouteville, dame du Parc et autres lieux, épousa Richard de la Rivière, seigneur de Gouvis. Plusieurs membres de cette famille se sont distingués dans les armées du roi de France pendant la guerre de Cent-Ans. Bertran de la Rivière, fils de Richard et de Perette dEstouteville, seigneur du Parc, Anneville, Criquebeuf, la Fère, Missy et Saint-Germain du Crioult, fut reconnu noble à Ourville (Saint-Lô dOurville) par Montfaut en 1463. Il épousa Jeanne de Briqueville, fille de Roger, seigneur de Laune. Leur fils, Jacques de la Rivière, seigneur du Parc et Anneville, épousa Marguerite du Mesnildot. François de la Rivière, seigneur du Parc (aveu du 15 avril 1514) qui produit sa généalogie le 14 juillet 1523 à Valognes. Le 4 Brumaire an VII (25 octobre1798) vente du Parc par Anne Eustache Rose Charlotte Osmond, veuve de M. le marquis de Sainte-Suzanne, demeurant à Golleville, à M. Jean François Coquoin, magistrat, demeurant à Bricquebec. (En réalité, le marquis avait émigré, ils divorcèrent pour les besoins de la cause et se remarièrent en 1802). Aujourd'hui c'est un ensemble architectural médiéval unique à découvrir : un ensemble défensif exceptionnel. 
-<br>Éléments protégés MH : le corps de logis principal avec son aile en retour, en totalité ; l'ensemble défensif à l'ouest du logis ; les façades et les toitures du pressoir et du moulin ; la chapelle, en totalité ; dans la basse-cour : les façades et les toitures de la grange, des communs ouest et des deux charretteries, ainsi que le porche ; les douves, le vivier et le jardin fossoyé : inscription par arrêté du 27 novembre 2000.</p>
-      <h4>Habitants / Familles</h4><p>Divers seigneurs
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Château du Parc à St-Lo d'Ourville Gps 49° 06' 41? N, 1° 06' 26? Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>PARC, le toponyme, le Parc suggère lexistence dun parc seigneurial à lépoque médiévale. Lactuel domaine du Parc dOurville, pour sa plus grande partie, était le Parc seigneurial du château dOlonde. Il en aurait été détaché pour constituer le domaine réservé dun nouveau fief noble crée au profit dun cadet de famille. Ce démembrement qui a pu avoir lieu entre 1205, année où Philippe-Auguste, nouveau maître de la Normandie, donna Olonde à son fidèle serviteur Richard dArgences et 1220, année où le registre des fiefs de Philippe-Auguste nous apprend que Guillaume dArgences tenait la quatrième partie dun fief de chevalier prés dOlonde. Le plus ancien aveu du roi pour le fief du Parc mentionne que son possesseur doit au roi le service, au château du Plessis, dun homme armé durant dix jours. Collibeaux de Criquebeuf rendit aveu au roi pour le Parc dOurville, le 14 novembre 1403. Il était membre de la célèbre famille dEstouteville. Henri V dAngleterre confisqua le fief du Parc et le donna à Jehan dArgouges à cause de la rébellion de Collibeaux de Criquebeuf. Le 31 août 1429, un accord passé entre Jean dArgouges et Thomas de Clamorgan fut confirmé à Vernon par loncle du roi Henry V dAngleterre, Jean, régent du royaume de France et duc de Bedford. Par cet accord, Jean dArgouges quitta, transporta et délaissa le fief du Parc à Thomas de Clamorgan, son beau-frère. En 1436, il fut maintenu dans la possession de ses biens propres par le roi de France Charles VII, mais tenu de restituer à leur anciens propriétaires les biens que les anglais lui avaient concédés. Cependant il était encore seigneur du Parc en 1438, année où il rendit aveu pour ce fief. En cette même année 1438, il est dit seigneur du Parc dans un document concernant les salines de Portbail.</p>
+<h4>Architecture</h4><p>PARC, le fief du Parc fut restitué aux enfants de Collibeaux de Criquebeuf : Simon dEstouteville, seigneur de Criquebeuf, Chamelles, Missy, Brucourt, du Han, dAnneville et du Parc et Perrette dEstouteville, dame de Criquebeuf, Chamelles, Missy, Brucourt, du Han, dAnneville et du Parc. Perrette dEstouteville, dame du Parc et autres lieux, épousa Richard de la Rivière, seigneur de Gouvis. Plusieurs membres de cette famille se sont distingués dans les armées du roi de France pendant la guerre de Cent-Ans. Bertran de la Rivière, fils de Richard et de Perette dEstouteville, seigneur du Parc, Anneville, Criquebeuf, la Fère, Missy et Saint-Germain du Crioult, fut reconnu noble à Ourville (Saint-Lô dOurville) par Montfaut en 1463. Il épousa Jeanne de Briqueville, fille de Roger, seigneur de Laune. Leur fils, Jacques de la Rivière, seigneur du Parc et Anneville, épousa Marguerite du Mesnildot. François de la Rivière, seigneur du Parc (aveu du 15 avril 1514) qui produit sa généalogie le 14 juillet 1523 à Valognes. Le 4 Brumaire an VII (25 octobre1798) vente du Parc par Anne Eustache Rose Charlotte Osmond, veuve de M. le marquis de Sainte-Suzanne, demeurant à Golleville, à M. Jean François Coquoin, magistrat, demeurant à Bricquebec. (En réalité, le marquis avait émigré, ils divorcèrent pour les besoins de la cause et se remarièrent en 1802). Aujourd'hui c'est un ensemble architectural médiéval unique à découvrir : un ensemble défensif exceptionnel. 
+<br/>Éléments protégés MH : le corps de logis principal avec son aile en retour, en totalité ; l'ensemble défensif à l'ouest du logis ; les façades et les toitures du pressoir et du moulin ; la chapelle, en totalité ; dans la basse-cour : les façades et les toitures de la grange, des communs ouest et des deux charretteries, ainsi que le porche ; les douves, le vivier et le jardin fossoyé : inscription par arrêté du 27 novembre 2000.</p>
+<h4>Habitants / Familles</h4><p>Divers seigneurs
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Château du Parc à St-Lo d'Ourville Gps 49° 06' 41? N, 1° 06' 26? Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

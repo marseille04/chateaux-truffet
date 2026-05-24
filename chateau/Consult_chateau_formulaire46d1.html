@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Chissey_Morvan — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,65 +113,64 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_71.html">Saône-et-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_71.html">Saône-et-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_71.html" class="back-link">Retour au département 71 — Saône-et-Loire</a>
-  <div class="fiche">
-    <h2>Chissey_Morvan</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>71 — Saône-et-Loire</td></tr>
-          <tr><td>Canton</td><td>Lucenay-L`Evêque</td></tr>
-          <tr><td>Commune</td><td>Chissey-en-Morvan</td></tr>
-          <tr><td>Type d'édifice</td><td>Maison forte</td></tr>
-          <tr><td>Période d'origine</td><td>XV</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_71/71_Chissey_Morvan_1.jpg" alt="Chissey_Morvan" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Chissey_Morvan_2.jpg" alt="Chissey_Morvan" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Chissey_Morvan_3.jpg" alt="Chissey_Morvan" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Chissey_Morvan_4.jpg" alt="Chissey_Morvan" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Chissey_Morvan_5.jpg" alt="Chissey_Morvan" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Chissey_Morvan_6.jpg" alt="Chissey_Morvan" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Chissey_Morvan_7.jpg" alt="Chissey_Morvan" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_71.html">Retour au département 71 — Saône-et-Loire</a>
+<div class="fiche">
+<h2>Chissey_Morvan</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Chissey_Morvan" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_71/71_Chissey_Morvan_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Chissey_Morvan" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Chissey_Morvan_1.jpg"/><img alt="Chissey_Morvan" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Chissey_Morvan_2.jpg"/><img alt="Chissey_Morvan" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Chissey_Morvan_3.jpg"/><img alt="Chissey_Morvan" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Chissey_Morvan_4.jpg"/><img alt="Chissey_Morvan" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Chissey_Morvan_5.jpg"/><img alt="Chissey_Morvan" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Chissey_Morvan_6.jpg"/><img alt="Chissey_Morvan" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Chissey_Morvan_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>71 — Saône-et-Loire</td></tr>
+<tr><td>Canton</td><td>Lucenay-L`Evêque</td></tr>
+<tr><td>Commune</td><td>Chissey-en-Morvan</td></tr>
+<tr><td>Type d'édifice</td><td>Maison forte</td></tr>
+<tr><td>Période d'origine</td><td>XV</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>CHISSEY, en 1250 baronnie de Hugues de Châtillon en Bazois dans cette famille jusqu'en 1385  à Hugues de Ternan dit de Chissey, en 1401 Adolphe de Chissey jusqu'en 1447 passa ernsuite à Michaut de Chaulgy et c'est en 1530  que Jacques de Chaulgy  fils de Claude qui fit construire le château et le vend à Claude de Crécy, revendu en 1558 à Claude Reynier de Montmoyen, son fils  Odinet de Montmoyen en hérite suite au décés de son père en 1591, ce dernier deux filles dont Chrétienne de Chissey mariée à Jean de Senailly-Damas, baron de Villers, et  Marie de Chissey, qui épouse Nicolas de Sercey, seigneur du Jeu. Le fief restera à Marie françoise de Sercey fille de Marie de Chissey qui en 1685 épouse Claude-Joseph de Fussey. Elle décède le 3 février 1744, au château d'Esbaugis.  François de Fussey, fils de Marie-Françoise de Sercey, seigneur du lieu du chef de sa femme Marie Nuguet reprend le fief en 1745. En 1777  Nicolas-Antoine-François-Xavier de Fussey fait limiter sa justice, du côté de Buy, il émigre pendant la Révolution  et meurt en exil.  Le château vendu comme bien national à Alexandre-Henri Hubinet et à Joseph-Alexandre Brochot. En 1815  Napoléon fait étape au château ou il passe la nuit du 16 mars 1815, à son retour de l'Île d'Elbe, afin de prendre contact avec les braves du Camp des Latois et d'aller décorer l'abbé Rasse au relais de poste de Pierre Écrite.                                                                                      Le Château de La Prée est un manoir du XVIIIe siècle situé sur la rive droite du Ternin, à l'ouest du bourg, possédant des tourelles. Ce fief était en 1404 à Andoche de Chissey, qui en fait aveu, il passera à la Maison du Buy.</p>
-      <h4>Architecture</h4><p>Chissey en Morvan, le château  avait quatre tours aux angles, chacune pourvue de deux meurtrières, était entouré d'un fossé large et profond, suivi d'un talus, cette architecture défensive, hérissée de mâchicoulis, en rendait l'accès difficile. Aujourd'hui la tour du Sud-Ouest n'existe plus, autrefois prolongé à l'ouest par le donjon et une tour, il ne subsiste du château fort initial que trois tours rondes, une massive tour carrée et deux corps de logis bâtis à angle droit, les fossés  alimentés comme le moulin par la rivière, ont été comblés, la construction la plus ancienne semble être la tour carrée, il a été réaménagé au XVIIIe siècle. En 1868 réfection de la charpente de la grosse tour carrée.                                       Dans la commune de Chissey en Morvan plusieurs châteaux, château de Buis, reconstruit en 1781
-<br>Château du Guidon, au lieu-dit les Goulots
-<br>Maison forte de La Mothe-Chissey, ou des Roquets, origine XVe siècle
-<br> Maison seigneuriale de Vaucheseuil
-<br> Maison seigneuriale de Souvert
-<br> Manoir de la Prée
-<br> Manoir de Vaulsery dit La Grande Maison.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Chaulgy
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Chissey, le vieux château, le Buis et le Guidon</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>CHISSEY, en 1250 baronnie de Hugues de Châtillon en Bazois dans cette famille jusqu'en 1385  à Hugues de Ternan dit de Chissey, en 1401 Adolphe de Chissey jusqu'en 1447 passa ernsuite à Michaut de Chaulgy et c'est en 1530  que Jacques de Chaulgy  fils de Claude qui fit construire le château et le vend à Claude de Crécy, revendu en 1558 à Claude Reynier de Montmoyen, son fils  Odinet de Montmoyen en hérite suite au décés de son père en 1591, ce dernier deux filles dont Chrétienne de Chissey mariée à Jean de Senailly-Damas, baron de Villers, et  Marie de Chissey, qui épouse Nicolas de Sercey, seigneur du Jeu. Le fief restera à Marie françoise de Sercey fille de Marie de Chissey qui en 1685 épouse Claude-Joseph de Fussey. Elle décède le 3 février 1744, au château d'Esbaugis.  François de Fussey, fils de Marie-Françoise de Sercey, seigneur du lieu du chef de sa femme Marie Nuguet reprend le fief en 1745. En 1777  Nicolas-Antoine-François-Xavier de Fussey fait limiter sa justice, du côté de Buy, il émigre pendant la Révolution  et meurt en exil.  Le château vendu comme bien national à Alexandre-Henri Hubinet et à Joseph-Alexandre Brochot. En 1815  Napoléon fait étape au château ou il passe la nuit du 16 mars 1815, à son retour de l'Île d'Elbe, afin de prendre contact avec les braves du Camp des Latois et d'aller décorer l'abbé Rasse au relais de poste de Pierre Écrite.                                                                                      Le Château de La Prée est un manoir du XVIIIe siècle situé sur la rive droite du Ternin, à l'ouest du bourg, possédant des tourelles. Ce fief était en 1404 à Andoche de Chissey, qui en fait aveu, il passera à la Maison du Buy.</p>
+<h4>Architecture</h4><p>Chissey en Morvan, le château  avait quatre tours aux angles, chacune pourvue de deux meurtrières, était entouré d'un fossé large et profond, suivi d'un talus, cette architecture défensive, hérissée de mâchicoulis, en rendait l'accès difficile. Aujourd'hui la tour du Sud-Ouest n'existe plus, autrefois prolongé à l'ouest par le donjon et une tour, il ne subsiste du château fort initial que trois tours rondes, une massive tour carrée et deux corps de logis bâtis à angle droit, les fossés  alimentés comme le moulin par la rivière, ont été comblés, la construction la plus ancienne semble être la tour carrée, il a été réaménagé au XVIIIe siècle. En 1868 réfection de la charpente de la grosse tour carrée.                                       Dans la commune de Chissey en Morvan plusieurs châteaux, château de Buis, reconstruit en 1781
+<br/>Château du Guidon, au lieu-dit les Goulots
+<br/>Maison forte de La Mothe-Chissey, ou des Roquets, origine XVe siècle
+<br/> Maison seigneuriale de Vaucheseuil
+<br/> Maison seigneuriale de Souvert
+<br/> Manoir de la Prée
+<br/> Manoir de Vaulsery dit La Grande Maison.</p>
+<h4>Habitants / Familles</h4><p>Famille de Chaulgy
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Chissey, le vieux château, le Buis et le Guidon</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

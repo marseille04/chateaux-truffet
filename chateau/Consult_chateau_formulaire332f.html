@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Pont_Aven — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_29.html">Finistère</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_29.html">Finistère</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_29.html" class="back-link">Retour au département 29 — Finistère</a>
-  <div class="fiche">
-    <h2>Pont_Aven</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>29 — Finistère</td></tr>
-          <tr><td>Canton</td><td>Moëlan-sur-Mer</td></tr>
-          <tr><td>Commune</td><td>Pont-Aven</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XII-XVII-XVIII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>47° 51' 50" Nord, 3° 46' 04" Ouest                                                                  Rustephan GPS : 47° 51' 31" Nord, 3° 46' 01" Ouest                                   Kerminaouët GPS : 47° 50' 45,01" Nord, 3° 48' 33,87" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_29/29_Pont_Aven_1.jpg" alt="Pont_Aven" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Pont_Aven_2.jpg" alt="Pont_Aven" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Pont_Aven_3.jpg" alt="Pont_Aven" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Pont_Aven_4.jpg" alt="Pont_Aven" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Pont_Aven_5.jpg" alt="Pont_Aven" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_29.html">Retour au département 29 — Finistère</a>
+<div class="fiche">
+<h2>Pont_Aven</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Pont_Aven" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_29/29_Pont_Aven_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Pont_Aven" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Pont_Aven_1.jpg"/><img alt="Pont_Aven" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Pont_Aven_2.jpg"/><img alt="Pont_Aven" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Pont_Aven_3.jpg"/><img alt="Pont_Aven" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Pont_Aven_4.jpg"/><img alt="Pont_Aven" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Pont_Aven_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>29 — Finistère</td></tr>
+<tr><td>Canton</td><td>Moëlan-sur-Mer</td></tr>
+<tr><td>Commune</td><td>Pont-Aven</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XII-XVII-XVIII</td></tr>
+<tr><td>Coordonnées GPS</td><td>47° 51' 50" Nord, 3° 46' 04" Ouest                                                                  Rustephan GPS : 47° 51' 31" Nord, 3° 46' 01" Ouest                                   Kerminaouët GPS : 47° 50' 45,01" Nord, 3° 48' 33,87" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>trois châteaux à Pont-Aven;  Kerangosquer, Plassis-Nizon et Rustephan.                                                                                                              KERANGOSQUER, ce hameau, datant probablement du XVIIIe siècle, est constitué de trois habitations et de leurs bâtiments d'exploitation, d'un puits et d'un four. Les bâtiments sont disposés autour d'une cour ouverte au sud-est et en partie délimitée par une clôture. La particularité de ces constructions est d'avoir conservé une toiture de chaume, malheureusement en mauvais état. On note aussi, en dehors des murs en granit, petit appareil ou pierre de taille autour des ouvertures, l'utilisation d'orthostats (technique de la pierre debout) pour délimiter une cour et pour former un appentis. Beau parc et jardin d'hiver.  Découvrez l'authenticité d'un manoir breton et profitez de son magnifique parc arboré, dominant la célèbre cité des peintres qui a accueilli entre autres Emile Bernard, Paul Sérusier, Xavier Grall et Paul Gauguin.
-<br>Éléments protégés MH : le puits : inscription par arrêté du 22 mars 1930. L'ensemble du domaine : les trois maisons d'habitation, les bâtiments d'exploitation et le four : inscription par arrêté du 4 février 1988.</p>
-      <h4>Architecture</h4><p>PLESSIS-NIZON  Situé sur les hauteurs de Pont-Aven, le château du Plessis, construit pour la famille Feydeau au début du XVIIe siècle, fut ensuite la demeure de la famille de la Villemarqué, propriétaire du Bois dAmour et de la chapelle de Trémalo. Il faut préciser qu'avant les peintres, ce sont les moulins et leur concentration qui ont fait la réputation de Pont Aven. En effet, en amont et en aval du pont principal séchelonnaient une quinzaine de moulins. Le moulin du Plessis qui tire son nom du manoir, situé au lieu-dit Mainguinis, est aujourd'hui démoli. Il était le fief de la famille du Plessis depuis 1426 (citée cette année-là lors d'une réformation de la noblesse de Bretagne). En 1690, la famille tombe en quenouille et l'héritière Marie-Anne, fille de Georges du Plessis, épousa Charles Feydeau de Saint-Rémy, chevalier de Malte. Cette famille tomba à son tour en quenouille en 1798, année où Marie-Ursule Feydeau de Saint-Rémy épousa le comte Pierre Hersart de La Villemarqué. Ils eurent 8 enfants dont le plus jeune fut Théodore Hersart de La Villemarqué, l'auteur du Barzaz Breiz.                                                                                                              RUSTEPHAN  vestiges;   le château aurait été construit, à l'origine, par Etienne, comte de Penthièvre, au XIIe siècle. Les vestiges actuels remontent à la reconstruction du XVe siècle. Pendant la Révolution l'ensemble a été vendu comme bien national, puis les pierres du château de Rustéphan ont servi à la construction des fermes des alentours. La tour d'angle contient un escalier ayant conservé son noyau intact. Cette tour aurait servi de modèle lors de la construction du château de Keriolet situé à Concarneau. A l'ouest, le pignon est flanqué d'une tourelle en cul de lampe de style Renaissance. Éléments protégés MH : le château de Rustéphan à Nizon (vestiges) : inscription par arrêté du 10 mai 1926.</p>
-      <h4>Habitants / Familles</h4><p>Keran; seigneur local                                                                  Plessis;   famille Feydeau                                                           Rustephan ;comte de Penthièvre
-<br>        "</p>
-      <h4>Divers</h4><p>trois châteaux à Pont-Aven;  Kerangosquer grav1-2-3, Plassis-Nizon grav-4 et                                                               Rustephan  grav 5                                                                                              GPS : 47° 51' 50" Nord, 3° 46' 04" Ouest                                                                  Rustephan GPS : 47° 51' 31" Nord, 3° 46' 01" Ouest                                   Kerminaouët GPS : 47° 50' 45,01" Nord, 3° 48' 33,87" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>trois châteaux à Pont-Aven;  Kerangosquer, Plassis-Nizon et Rustephan.                                                                                                              KERANGOSQUER, ce hameau, datant probablement du XVIIIe siècle, est constitué de trois habitations et de leurs bâtiments d'exploitation, d'un puits et d'un four. Les bâtiments sont disposés autour d'une cour ouverte au sud-est et en partie délimitée par une clôture. La particularité de ces constructions est d'avoir conservé une toiture de chaume, malheureusement en mauvais état. On note aussi, en dehors des murs en granit, petit appareil ou pierre de taille autour des ouvertures, l'utilisation d'orthostats (technique de la pierre debout) pour délimiter une cour et pour former un appentis. Beau parc et jardin d'hiver.  Découvrez l'authenticité d'un manoir breton et profitez de son magnifique parc arboré, dominant la célèbre cité des peintres qui a accueilli entre autres Emile Bernard, Paul Sérusier, Xavier Grall et Paul Gauguin.
+<br/>Éléments protégés MH : le puits : inscription par arrêté du 22 mars 1930. L'ensemble du domaine : les trois maisons d'habitation, les bâtiments d'exploitation et le four : inscription par arrêté du 4 février 1988.</p>
+<h4>Architecture</h4><p>PLESSIS-NIZON  Situé sur les hauteurs de Pont-Aven, le château du Plessis, construit pour la famille Feydeau au début du XVIIe siècle, fut ensuite la demeure de la famille de la Villemarqué, propriétaire du Bois dAmour et de la chapelle de Trémalo. Il faut préciser qu'avant les peintres, ce sont les moulins et leur concentration qui ont fait la réputation de Pont Aven. En effet, en amont et en aval du pont principal séchelonnaient une quinzaine de moulins. Le moulin du Plessis qui tire son nom du manoir, situé au lieu-dit Mainguinis, est aujourd'hui démoli. Il était le fief de la famille du Plessis depuis 1426 (citée cette année-là lors d'une réformation de la noblesse de Bretagne). En 1690, la famille tombe en quenouille et l'héritière Marie-Anne, fille de Georges du Plessis, épousa Charles Feydeau de Saint-Rémy, chevalier de Malte. Cette famille tomba à son tour en quenouille en 1798, année où Marie-Ursule Feydeau de Saint-Rémy épousa le comte Pierre Hersart de La Villemarqué. Ils eurent 8 enfants dont le plus jeune fut Théodore Hersart de La Villemarqué, l'auteur du Barzaz Breiz.                                                                                                              RUSTEPHAN  vestiges;   le château aurait été construit, à l'origine, par Etienne, comte de Penthièvre, au XIIe siècle. Les vestiges actuels remontent à la reconstruction du XVe siècle. Pendant la Révolution l'ensemble a été vendu comme bien national, puis les pierres du château de Rustéphan ont servi à la construction des fermes des alentours. La tour d'angle contient un escalier ayant conservé son noyau intact. Cette tour aurait servi de modèle lors de la construction du château de Keriolet situé à Concarneau. A l'ouest, le pignon est flanqué d'une tourelle en cul de lampe de style Renaissance. Éléments protégés MH : le château de Rustéphan à Nizon (vestiges) : inscription par arrêté du 10 mai 1926.</p>
+<h4>Habitants / Familles</h4><p>Keran; seigneur local                                                                  Plessis;   famille Feydeau                                                           Rustephan ;comte de Penthièvre
+<br/>        "</p>
+<h4>Divers</h4><p>trois châteaux à Pont-Aven;  Kerangosquer grav1-2-3, Plassis-Nizon grav-4 et                                                               Rustephan  grav 5                                                                                              GPS : 47° 51' 50" Nord, 3° 46' 04" Ouest                                                                  Rustephan GPS : 47° 51' 31" Nord, 3° 46' 01" Ouest                                   Kerminaouët GPS : 47° 50' 45,01" Nord, 3° 48' 33,87" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

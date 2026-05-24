@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Lamontgie — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,60 +113,61 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_63.html">Puy-de-Dôme</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_63.html">Puy-de-Dôme</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_63.html" class="back-link">Retour au département 63 — Puy-de-Dôme</a>
-  <div class="fiche">
-    <h2>Lamontgie</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>63 — Puy-de-Dôme</td></tr>
-          <tr><td>Canton</td><td>Jumeaux</td></tr>
-          <tr><td>Commune</td><td>Lamontgie</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_63/63_Lamontgie_1.jpg" alt="Lamontgie" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Lamontgie_2.jpg" alt="Lamontgie" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Lamontgie_3.jpg" alt="Lamontgie" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Lamontgie_4.jpg" alt="Lamontgie" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Lamontgie_5.jpg" alt="Lamontgie" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_63.html">Retour au département 63 — Puy-de-Dôme</a>
+<div class="fiche">
+<h2>Lamontgie</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Lamontgie" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_63/63_Lamontgie_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Lamontgie" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Lamontgie_1.jpg"/><img alt="Lamontgie" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Lamontgie_2.jpg"/><img alt="Lamontgie" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Lamontgie_3.jpg"/><img alt="Lamontgie" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Lamontgie_4.jpg"/><img alt="Lamontgie" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Lamontgie_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>63 — Puy-de-Dôme</td></tr>
+<tr><td>Canton</td><td>Jumeaux</td></tr>
+<tr><td>Commune</td><td>Lamontgie</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>LAMONTGIE, fort, ces fortifications ont été édifiées  à l'époque troublée des guerres de religion,  pour la conservation de leurs personnes, de leurs biens contre les troubles et ravages, à partir de 1589. Construites  dans l'urgence et sans autorisation seigneuriale, ce n'est que quelques années plus tard que le roi Henri IV leur permit de les conserver par lettre patente datée de Lyon, au mois de septembre 1595.                                                          CHATEAUNEUF;   à quelques kilomètres au nord le village,  en 1233, Guillaume et Etienne de Châteauneuf étaient les seigneurs du lieu. Ensuite (sans doute avant 1299) le fief passa aux de Maumont, puis vers 1325 aux de La Roche, seigneurs de Tournoël. En 1555, Jean de Châteauneuf, époux de Jeanne de Montmorin, étant décédé sans enfant, la seigneurie passa à leur neveu Jean de Montmorin, représentant d'une des plus grandes familles d'Auvergne, qui possédait déjà quelques droits à Châteauneuf. 
-<br>La famille de Montmorin possédait le château, conservera Châteauneuf jusqu'en 1760, date de sa vente (avec Saint-Gervais) à Marie-Louis de Gironde, gouverneur de l'Île-de-France, qui le revendit en 1767  à J.B. Thomas de Pange, trésorier général , ses filles et héritières cèderont Châteauneuf en 1784  à J. Chevarrier, qui sera guillotiné à Lyon en 1793. Le château actuel  a été totalement reconstruit par J.B. Thomas, marquis de Pange, acquéreur des fiefs de Châteauneuf et de Saint-Gervais en août 1767. 
-<br>POUGET Le 1er septembre 1469, Jean de Bourdeilles fait aveu de sa seigneurie du Pouget à Louis, bâtard de Bourbon. Avant 1669, Marie-Françoise de Bourdeilles apporte le château par mariage à la famille de Sévérac, de laquelle il passe ensuite dans celle des comtes de Simiane.</p>
-      <h4>Architecture</h4><p>Lamontgie a possédé un fort villageois à l'emplacement actuel du quartier du "fort". Ce fort représentait un rectangle régulier, de 80 m de long, du Nord au Sud, sur 50 m de large, d'Est en Ouest. Celui-ci était flanqué d'une tour à chacun de ses angles. Ces tours ont aujourd'hui toutes disparues, la plus imposante se situait sur la place du village et fut détruite en 1886 afin d'agrandir la place. La dernière d'entre elle fut démantelée au tout début du XXe siècle, suite à l'élargissement de la route menant au village du Terrail.   Le château fait face au hameau de La Mongie. Il est certain qu'au Xe siècle, une motte castrale existait déjà au sommet de la butte qui domine la Sioule, à proximité du pont de Bordas et du grand chemin menant de la terre d'Auvergne au Limousin. A la construction primitive succéda vers 1200 . De cet édifice qui avait certainement subi de profondes transformations, notamment au XVI° siècle,  rien ne subsiste.                                                 Châteauneuf les Bains   C'était donc une construction neuve lorsque éclata la Révolution. D'importantes modifications y furent réalisées par ses propriétaires du XIXe siècle, notamment par Eugène Talon, député du Puy-de-Dôme.                            
-<br> Château dit   Le Pouget situé près de l'église. D'une enceinte quadrangulaire, il subsiste un flanquement circulaire  d'angle à canonnières.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Etienne de Châteauneuf
-<br>        "</p>
-      <h4>Divers</h4><p>Fort de Lamontgie,château à châteauneuf les Bains  et château du Pouget.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>LAMONTGIE, fort, ces fortifications ont été édifiées  à l'époque troublée des guerres de religion,  pour la conservation de leurs personnes, de leurs biens contre les troubles et ravages, à partir de 1589. Construites  dans l'urgence et sans autorisation seigneuriale, ce n'est que quelques années plus tard que le roi Henri IV leur permit de les conserver par lettre patente datée de Lyon, au mois de septembre 1595.                                                          CHATEAUNEUF;   à quelques kilomètres au nord le village,  en 1233, Guillaume et Etienne de Châteauneuf étaient les seigneurs du lieu. Ensuite (sans doute avant 1299) le fief passa aux de Maumont, puis vers 1325 aux de La Roche, seigneurs de Tournoël. En 1555, Jean de Châteauneuf, époux de Jeanne de Montmorin, étant décédé sans enfant, la seigneurie passa à leur neveu Jean de Montmorin, représentant d'une des plus grandes familles d'Auvergne, qui possédait déjà quelques droits à Châteauneuf. 
+<br/>La famille de Montmorin possédait le château, conservera Châteauneuf jusqu'en 1760, date de sa vente (avec Saint-Gervais) à Marie-Louis de Gironde, gouverneur de l'Île-de-France, qui le revendit en 1767  à J.B. Thomas de Pange, trésorier général , ses filles et héritières cèderont Châteauneuf en 1784  à J. Chevarrier, qui sera guillotiné à Lyon en 1793. Le château actuel  a été totalement reconstruit par J.B. Thomas, marquis de Pange, acquéreur des fiefs de Châteauneuf et de Saint-Gervais en août 1767. 
+<br/>POUGET Le 1er septembre 1469, Jean de Bourdeilles fait aveu de sa seigneurie du Pouget à Louis, bâtard de Bourbon. Avant 1669, Marie-Françoise de Bourdeilles apporte le château par mariage à la famille de Sévérac, de laquelle il passe ensuite dans celle des comtes de Simiane.</p>
+<h4>Architecture</h4><p>Lamontgie a possédé un fort villageois à l'emplacement actuel du quartier du "fort". Ce fort représentait un rectangle régulier, de 80 m de long, du Nord au Sud, sur 50 m de large, d'Est en Ouest. Celui-ci était flanqué d'une tour à chacun de ses angles. Ces tours ont aujourd'hui toutes disparues, la plus imposante se situait sur la place du village et fut détruite en 1886 afin d'agrandir la place. La dernière d'entre elle fut démantelée au tout début du XXe siècle, suite à l'élargissement de la route menant au village du Terrail.   Le château fait face au hameau de La Mongie. Il est certain qu'au Xe siècle, une motte castrale existait déjà au sommet de la butte qui domine la Sioule, à proximité du pont de Bordas et du grand chemin menant de la terre d'Auvergne au Limousin. A la construction primitive succéda vers 1200 . De cet édifice qui avait certainement subi de profondes transformations, notamment au XVI° siècle,  rien ne subsiste.                                                 Châteauneuf les Bains   C'était donc une construction neuve lorsque éclata la Révolution. D'importantes modifications y furent réalisées par ses propriétaires du XIXe siècle, notamment par Eugène Talon, député du Puy-de-Dôme.                            
+<br/> Château dit   Le Pouget situé près de l'église. D'une enceinte quadrangulaire, il subsiste un flanquement circulaire  d'angle à canonnières.</p>
+<h4>Habitants / Familles</h4><p>Famille de Etienne de Châteauneuf
+<br/>        "</p>
+<h4>Divers</h4><p>Fort de Lamontgie,château à châteauneuf les Bains  et château du Pouget.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

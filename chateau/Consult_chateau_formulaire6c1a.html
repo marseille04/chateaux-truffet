@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Avoise — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,60 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_72.html">Sarthe</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_72.html">Sarthe</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_72.html" class="back-link">Retour au département 72 — Sarthe</a>
-  <div class="fiche">
-    <h2>Avoise</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>72 — Sarthe</td></tr>
-          <tr><td>Canton</td><td>Sablé-sur-Sarthe</td></tr>
-          <tr><td>Commune</td><td>Avoise</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVIII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>47° 52' 25" Nord, 0° 14' 07" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_72/72_Avoise_1.jpg" alt="Avoise" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Avoise_2.jpg" alt="Avoise" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Avoise_3.jpg" alt="Avoise" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Avoise_4.jpg" alt="Avoise" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Avoise_5.jpg" alt="Avoise" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Avoise_6.jpg" alt="Avoise" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Avoise_7.jpg" alt="Avoise" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_72.html">Retour au département 72 — Sarthe</a>
+<div class="fiche">
+<h2>Avoise</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Avoise" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_72/72_Avoise_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Avoise" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Avoise_1.jpg"/><img alt="Avoise" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Avoise_2.jpg"/><img alt="Avoise" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Avoise_3.jpg"/><img alt="Avoise" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Avoise_4.jpg"/><img alt="Avoise" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Avoise_5.jpg"/><img alt="Avoise" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Avoise_6.jpg"/><img alt="Avoise" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Avoise_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>72 — Sarthe</td></tr>
+<tr><td>Canton</td><td>Sablé-sur-Sarthe</td></tr>
+<tr><td>Commune</td><td>Avoise</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVIII</td></tr>
+<tr><td>Coordonnées GPS</td><td>47° 52' 25" Nord, 0° 14' 07" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Trois  châteaux à Avoise dont Dobert, Perrine  et St-Michel.  
-<br>  DOBERT,  resté dans la même famille depuis la fin du XVe siècle, son importance apparait  au XVIIIe siècle pris un aspect classique par l'initiative Alexandrine de Bastrard de Fontenay. Le village s'est développé en longueur, au pied d'un coteau sur la Sarthe, du XVe au XVIIIe siècle, à partir d'une motte du Xe au XIIIe siècle, au confluent de la Sarthe. A partir d'un édifice des XVe et XVIIe siècles, reconstruction du château au milieu du XVIIIe siècle. Quelques communs datent début du XIXe siècle. Une longue allée plantée dessert le château entre deux communs. Derrière le commun nord, se trouvent des bâtiments de ferme (colombier, grange, étable). Le château, de plan rectangulaire, est cantonné de tours rectangulaires étroites façade sur cour, et de deux ailes identiques façade sur jardin. La disposition interne du château a été habillée au XIXe siècle et seules subsistent quelques menuiseries du XVIIIe siècle. La chapelle  est construite ou remaniée vers 1851, date portée; logement agricole du XVIe ou XVIIe siècle ; remanié aux XVIIIe et XIXe siècles ; orangerie et noria datent du XVIIIe siècle; communs, moulin, colombier, parties agricoles sont construits avant 1828 et remaniés au XIXe siècle, date portée 1833 ; jardin paysager réalisé au XIXe siècle ; aqueduc remanié vers 1840, daté par source, puis au début du XXe siècle. , Madame Hélène du Peyroux, location chambres d'hôtes de charme.</p>
-      <h4>Architecture</h4><p>DOBERT  pour les façades et toitures du château et des communs, les douves, l'aqueduc avec son système d'irrigation et l'allée plantée qui l'accompagne depuis l'est. Le château fait l'objet d'une inscription depuis le 24 juillet 1989.                                                                                                      PERRINE, le manoir de la Perrine de Cry fut reconstruit après la guerre de Cent Ans et agrandi au XVIe siècle. Saisi pendant la Révolution, il fut réuni en 1829 au domaine du château de Dobert.  Le manoir de la Perrine de Cry, inscrit par arrêté le 22 novembre 1993   La Vieille Tour, édifice fortifié inscrit par arrêté le 6 janvier 1926.                                                                                                                                                       SAINT-MICHEL, le village s'est développé en longueur, au pied d'un coteau sur la Sarthe, du XVe au XVIIIe siècle, à partir d'une motte du Xe au XIIIe siècle, au confluent de la Sarthe et du ruisseau des deux fonds et autour de l'église construite au moyen âge. Château-fort construit au XIIe ou XIIIe siècle, détruit en 1370. Le 29 octobre 1439, par lettres du Roi René de Sicile, duc d'Anjou et comte du Maine, permission avait été donnée de rebâtir le château de Pescheseul avec fosses, ponts levis, bastions, boulevards, canons et autres armes à repousser et assaillir pour le service du Roi. Château avec échauguette, enceinte et douves reconstruit pour Jean de Champagne par Jean Masneret et René Guitton entre 1483 et 1549. Détruit partiellement puis reconstruit; élévations, toit polygonal pour Tessier de la motte par l'architecte Moutier vers 1833. Partiellement remanié pour la comtesse de Breuil par l'architecte Pascal Vérité en 1908. Jardin paysager réalisé par André Leroy vers 1833, chapelle Saint-Michel et corps de passage sculpté élevés vers 1882. Orangerie et serres bâties vers 1884. Échauguette couverte d'un toit conique. Tours sur les angles du Logis couvertes de toits coniques, logis partiellement couvert d'un toit polygonal, corps de passage couvert en pavillon, chapelle voûtée d'ogives.</p>
-      <h4>Habitants / Familles</h4><p>St-Michel Famille Jean de Champagne
-<br>        "</p>
-      <h4>Divers</h4><p>Deux châteaux à Avoise dont Dobert grav 1-à-4,  Perrine  grav-5_6 et St-Michel grav-7.                                                                                 Dobert GPS : 47° 52' 25" Nord, 0° 14' 07" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Trois  châteaux à Avoise dont Dobert, Perrine  et St-Michel.  
+<br/>  DOBERT,  resté dans la même famille depuis la fin du XVe siècle, son importance apparait  au XVIIIe siècle pris un aspect classique par l'initiative Alexandrine de Bastrard de Fontenay. Le village s'est développé en longueur, au pied d'un coteau sur la Sarthe, du XVe au XVIIIe siècle, à partir d'une motte du Xe au XIIIe siècle, au confluent de la Sarthe. A partir d'un édifice des XVe et XVIIe siècles, reconstruction du château au milieu du XVIIIe siècle. Quelques communs datent début du XIXe siècle. Une longue allée plantée dessert le château entre deux communs. Derrière le commun nord, se trouvent des bâtiments de ferme (colombier, grange, étable). Le château, de plan rectangulaire, est cantonné de tours rectangulaires étroites façade sur cour, et de deux ailes identiques façade sur jardin. La disposition interne du château a été habillée au XIXe siècle et seules subsistent quelques menuiseries du XVIIIe siècle. La chapelle  est construite ou remaniée vers 1851, date portée; logement agricole du XVIe ou XVIIe siècle ; remanié aux XVIIIe et XIXe siècles ; orangerie et noria datent du XVIIIe siècle; communs, moulin, colombier, parties agricoles sont construits avant 1828 et remaniés au XIXe siècle, date portée 1833 ; jardin paysager réalisé au XIXe siècle ; aqueduc remanié vers 1840, daté par source, puis au début du XXe siècle. , Madame Hélène du Peyroux, location chambres d'hôtes de charme.</p>
+<h4>Architecture</h4><p>DOBERT  pour les façades et toitures du château et des communs, les douves, l'aqueduc avec son système d'irrigation et l'allée plantée qui l'accompagne depuis l'est. Le château fait l'objet d'une inscription depuis le 24 juillet 1989.                                                                                                      PERRINE, le manoir de la Perrine de Cry fut reconstruit après la guerre de Cent Ans et agrandi au XVIe siècle. Saisi pendant la Révolution, il fut réuni en 1829 au domaine du château de Dobert.  Le manoir de la Perrine de Cry, inscrit par arrêté le 22 novembre 1993   La Vieille Tour, édifice fortifié inscrit par arrêté le 6 janvier 1926.                                                                                                                                                       SAINT-MICHEL, le village s'est développé en longueur, au pied d'un coteau sur la Sarthe, du XVe au XVIIIe siècle, à partir d'une motte du Xe au XIIIe siècle, au confluent de la Sarthe et du ruisseau des deux fonds et autour de l'église construite au moyen âge. Château-fort construit au XIIe ou XIIIe siècle, détruit en 1370. Le 29 octobre 1439, par lettres du Roi René de Sicile, duc d'Anjou et comte du Maine, permission avait été donnée de rebâtir le château de Pescheseul avec fosses, ponts levis, bastions, boulevards, canons et autres armes à repousser et assaillir pour le service du Roi. Château avec échauguette, enceinte et douves reconstruit pour Jean de Champagne par Jean Masneret et René Guitton entre 1483 et 1549. Détruit partiellement puis reconstruit; élévations, toit polygonal pour Tessier de la motte par l'architecte Moutier vers 1833. Partiellement remanié pour la comtesse de Breuil par l'architecte Pascal Vérité en 1908. Jardin paysager réalisé par André Leroy vers 1833, chapelle Saint-Michel et corps de passage sculpté élevés vers 1882. Orangerie et serres bâties vers 1884. Échauguette couverte d'un toit conique. Tours sur les angles du Logis couvertes de toits coniques, logis partiellement couvert d'un toit polygonal, corps de passage couvert en pavillon, chapelle voûtée d'ogives.</p>
+<h4>Habitants / Familles</h4><p>St-Michel Famille Jean de Champagne
+<br/>        "</p>
+<h4>Divers</h4><p>Deux châteaux à Avoise dont Dobert grav 1-à-4,  Perrine  grav-5_6 et St-Michel grav-7.                                                                                 Dobert GPS : 47° 52' 25" Nord, 0° 14' 07" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

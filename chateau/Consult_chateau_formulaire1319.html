@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Pierrelatte — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,61 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_26.html">Drôme</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_26.html">Drôme</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_26.html" class="back-link">Retour au département 26 — Drôme</a>
-  <div class="fiche">
-    <h2>Pierrelatte</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>26 — Drôme</td></tr>
-          <tr><td>Canton</td><td>Pierrelatte</td></tr>
-          <tr><td>Commune</td><td>Pierrelatte</td></tr>
-          <tr><td>Type d'édifice</td><td>Vestiges</td></tr>
-          <tr><td>Période d'origine</td><td>XII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_26/26_Pierrelatte_1.jpg" alt="Pierrelatte" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_26/26_Pierrelatte_2.jpg" alt="Pierrelatte" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_26/26_Pierrelatte_3.jpg" alt="Pierrelatte" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_26/26_Pierrelatte_4.jpg" alt="Pierrelatte" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_26/26_Pierrelatte_5.jpg" alt="Pierrelatte" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_26/26_Pierrelatte_6.jpg" alt="Pierrelatte" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_26/26_Pierrelatte_7.jpg" alt="Pierrelatte" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_26.html">Retour au département 26 — Drôme</a>
+<div class="fiche">
+<h2>Pierrelatte</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Pierrelatte" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_26/26_Pierrelatte_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Pierrelatte" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_26/26_Pierrelatte_1.jpg"/><img alt="Pierrelatte" class="" loading="lazy" onclick="setHero(this)" src="../image/image_26/26_Pierrelatte_2.jpg"/><img alt="Pierrelatte" class="" loading="lazy" onclick="setHero(this)" src="../image/image_26/26_Pierrelatte_3.jpg"/><img alt="Pierrelatte" class="" loading="lazy" onclick="setHero(this)" src="../image/image_26/26_Pierrelatte_4.jpg"/><img alt="Pierrelatte" class="" loading="lazy" onclick="setHero(this)" src="../image/image_26/26_Pierrelatte_5.jpg"/><img alt="Pierrelatte" class="" loading="lazy" onclick="setHero(this)" src="../image/image_26/26_Pierrelatte_6.jpg"/><img alt="Pierrelatte" class="" loading="lazy" onclick="setHero(this)" src="../image/image_26/26_Pierrelatte_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>26 — Drôme</td></tr>
+<tr><td>Canton</td><td>Pierrelatte</td></tr>
+<tr><td>Commune</td><td>Pierrelatte</td></tr>
+<tr><td>Type d'édifice</td><td>Vestiges</td></tr>
+<tr><td>Période d'origine</td><td>XII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>PIERRELATTE: Fief des comtes de Provence qui acquirent en 1156 et fut partagé entre plusieurs co-seignueurs  en 1211, les Pierrelatte, les Saint-Just, les saint-Pasteur, les Sérignan, Les Boucoirans, les Vétulus et l'évêque de Saint-Paul-Les-Trois-Châteaux.           En 1296, les Beaumonts et les Cornillan avaient remplacé les Boucoiran et les Vétulus. Enfin, en 1450, le Dauphin Louis XI, qui tenait des Barons de Montauban certains droits, acquit du Pape, des Audigier, des Moreton et des d'Eurre abandonna aux Crussol et à Gabriel de Bernes. En 1489, Pierrelatte fut encore viagèrement donné a Villeneuve puis vendu sans faculté de rachat, aux Galéas de Saint-Séverin  en 1523, deux ans après aux Raymond et  en 1543, aux Escolin des Aimars, ceux-ci se substituèrent, en 1602, la communauté de Pierrelatte elle-même, de cette communauté se rétrocéda, en 1653 ses droits seigneuriaux au prince de Conty, qui le vendit en 1783 aux comtes de Provence, le futur Louis XVIII, qui fut le dernier seigneur de Pierrelatte. En Juin 1832 le roi Louis-Philippe fit halte à Pierrelatte et fit un discours. Dans la commune la gentilhommière de  BEL; fut la propriété des Nicolay qui furent seigneurs de Bel, le fief vendu en 1426 par Jean de Brissac à Jean de Maroan, Jean Digoine achète le domaine, passa ensuite à leurs descendants les De-Vernaet les Plessis de Pouzillac, aujourd'hui à monsieur Morin descendant des Digoine.  
-<br>DALGONNE; construction de l'Empire dirigée par Monsieur Rambaud  dans un style Pompei, la propriété fut successivement celle du marquis de Boisset, du général Couston, toujours dans la famille.                      MEAS: La famille tient son nom d'une importante propriété qu'elle possédait sur la colline de Montjau, elle a tenu un rôle politique dans ce pays à chaque génération. Noël-Joseph Madier de Montjau fils de Charles Seigneurs des Méas ( 1754-1830 ) Né à Bourg St-Andéol avocat et conseillé du roi, premier consul de Bourg-St-Andéol, en 1789, député aux états généraux de 1789 et à l'assemblée  constituante, déporté comme royaliste au 18 Fructidor, membre des cinq cents, anoblie en 1814. Noël-Joseph-Paulin Madier de Montjau (1785-1865) fils du précédent né à Bourg-St-Andéol auditeur au conseil d'état conseiller à la cour de Nimes. En 1813 procureur général de Lyon après 1830 député de Largentiére; son fils fut Noël François-Alfred  Madier de Montjau (1814-1892) L'homme de la statue né à Nimes, avocat représentant le peuple en 1848 pour la Saône. Exilé en Belgique après le coup d'état de 1851 conseillé général et député de la Drôme en 1874 questeur à la chambre. Il passait au Méas le temps que lui laissaient les vacances parlementaires.  FAVEROLLES: Au XIe siècle fief de Guillaume Armard, la propriété  au XIIIe siècle  appartenait aux seigneurs de Pierrelatte descendant des Rois de France en  autre  Louis le Dauphin , le futur Roi Louis XI. 
-<br>De 1654 à 1758 à Stanislas Xavier Capet frère du Roi, futur Louis XVIII, en 1758 une partie vendu à Eymard  Baron de  Faveyrolles( préfet de corse sous l'empire) fait construire le château en 1827-8  pour sa femme dont le visage en médaillon orne la cheminée de la salle de réception.  Le domaine de Faveyrolles est partagé en deux parties; Eymard Caron vend la deuxième partie appelait les "blachettes" en 1796  au sieur Chalbet  médecin  à Paris. 
-<br>En 1833  Henriette Caron  qui n'était autre que la femme du  Baron Eymard racheta  les Blachettes  et l'appela  le petit Faveyrolles, le domaine reconstitué, Eymard Caron revendit le tout en 1844 au Rouveure Zacharie qui  le revendit au Broet demeurant à Paris. En 1953 les deux Châteaux et leur Parc furent acquis par un certain docteur André Doutard de paris qui en fit une maison de repos , mais qui ne dura pas. En 1961 le commissariat à l'énergie atomique devint propriétaire , et aujourd'hui le T.G.V. les a de nouveau séparés.  (information  par syndicat d'initiative).</p>
-      <h4>Architecture</h4><p>Du château de Pierrelatte il ne reste que le rocher qui servait d'appui à cette forteresse au centre de la ville construite sur accord de Louis XI  Propriété  du Dauphins, elle  fut détruite en partie de  1562 à 1577 par le barons des Adrets et  puis terminé en 1633 , car il était utilisé comme logement de la garnison d'un châtelain miséreux  et en 1648 une grande inondation détruit une partie des murailles de l'enceinte puis servit de carrière de pierres.                  Meas; gentilhommière, quadrangulaire à deux étages et attiques, sur corps de logis la partie centrale encadrée de pilastres à refend, est surmontée d'un fronton triangulaire de style classique  sur corps de logis, dépendances formant la cour d'honneur, bâtiment construit au XVIIe siècle</p>
-      <h4>Habitants / Familles</h4><p>Louis XVIII"</p>
-      <h4>Divers</h4><p>De la forteresse il ne reste qu'une partie de la tour ronde. la gentilhommière de  Bel, de Méas, de la Dalgone et château de Faverolles</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>PIERRELATTE: Fief des comtes de Provence qui acquirent en 1156 et fut partagé entre plusieurs co-seignueurs  en 1211, les Pierrelatte, les Saint-Just, les saint-Pasteur, les Sérignan, Les Boucoirans, les Vétulus et l'évêque de Saint-Paul-Les-Trois-Châteaux.           En 1296, les Beaumonts et les Cornillan avaient remplacé les Boucoiran et les Vétulus. Enfin, en 1450, le Dauphin Louis XI, qui tenait des Barons de Montauban certains droits, acquit du Pape, des Audigier, des Moreton et des d'Eurre abandonna aux Crussol et à Gabriel de Bernes. En 1489, Pierrelatte fut encore viagèrement donné a Villeneuve puis vendu sans faculté de rachat, aux Galéas de Saint-Séverin  en 1523, deux ans après aux Raymond et  en 1543, aux Escolin des Aimars, ceux-ci se substituèrent, en 1602, la communauté de Pierrelatte elle-même, de cette communauté se rétrocéda, en 1653 ses droits seigneuriaux au prince de Conty, qui le vendit en 1783 aux comtes de Provence, le futur Louis XVIII, qui fut le dernier seigneur de Pierrelatte. En Juin 1832 le roi Louis-Philippe fit halte à Pierrelatte et fit un discours. Dans la commune la gentilhommière de  BEL; fut la propriété des Nicolay qui furent seigneurs de Bel, le fief vendu en 1426 par Jean de Brissac à Jean de Maroan, Jean Digoine achète le domaine, passa ensuite à leurs descendants les De-Vernaet les Plessis de Pouzillac, aujourd'hui à monsieur Morin descendant des Digoine.  
+<br/>DALGONNE; construction de l'Empire dirigée par Monsieur Rambaud  dans un style Pompei, la propriété fut successivement celle du marquis de Boisset, du général Couston, toujours dans la famille.                      MEAS: La famille tient son nom d'une importante propriété qu'elle possédait sur la colline de Montjau, elle a tenu un rôle politique dans ce pays à chaque génération. Noël-Joseph Madier de Montjau fils de Charles Seigneurs des Méas ( 1754-1830 ) Né à Bourg St-Andéol avocat et conseillé du roi, premier consul de Bourg-St-Andéol, en 1789, député aux états généraux de 1789 et à l'assemblée  constituante, déporté comme royaliste au 18 Fructidor, membre des cinq cents, anoblie en 1814. Noël-Joseph-Paulin Madier de Montjau (1785-1865) fils du précédent né à Bourg-St-Andéol auditeur au conseil d'état conseiller à la cour de Nimes. En 1813 procureur général de Lyon après 1830 député de Largentiére; son fils fut Noël François-Alfred  Madier de Montjau (1814-1892) L'homme de la statue né à Nimes, avocat représentant le peuple en 1848 pour la Saône. Exilé en Belgique après le coup d'état de 1851 conseillé général et député de la Drôme en 1874 questeur à la chambre. Il passait au Méas le temps que lui laissaient les vacances parlementaires.  FAVEROLLES: Au XIe siècle fief de Guillaume Armard, la propriété  au XIIIe siècle  appartenait aux seigneurs de Pierrelatte descendant des Rois de France en  autre  Louis le Dauphin , le futur Roi Louis XI. 
+<br/>De 1654 à 1758 à Stanislas Xavier Capet frère du Roi, futur Louis XVIII, en 1758 une partie vendu à Eymard  Baron de  Faveyrolles( préfet de corse sous l'empire) fait construire le château en 1827-8  pour sa femme dont le visage en médaillon orne la cheminée de la salle de réception.  Le domaine de Faveyrolles est partagé en deux parties; Eymard Caron vend la deuxième partie appelait les "blachettes" en 1796  au sieur Chalbet  médecin  à Paris. 
+<br/>En 1833  Henriette Caron  qui n'était autre que la femme du  Baron Eymard racheta  les Blachettes  et l'appela  le petit Faveyrolles, le domaine reconstitué, Eymard Caron revendit le tout en 1844 au Rouveure Zacharie qui  le revendit au Broet demeurant à Paris. En 1953 les deux Châteaux et leur Parc furent acquis par un certain docteur André Doutard de paris qui en fit une maison de repos , mais qui ne dura pas. En 1961 le commissariat à l'énergie atomique devint propriétaire , et aujourd'hui le T.G.V. les a de nouveau séparés.  (information  par syndicat d'initiative).</p>
+<h4>Architecture</h4><p>Du château de Pierrelatte il ne reste que le rocher qui servait d'appui à cette forteresse au centre de la ville construite sur accord de Louis XI  Propriété  du Dauphins, elle  fut détruite en partie de  1562 à 1577 par le barons des Adrets et  puis terminé en 1633 , car il était utilisé comme logement de la garnison d'un châtelain miséreux  et en 1648 une grande inondation détruit une partie des murailles de l'enceinte puis servit de carrière de pierres.                  Meas; gentilhommière, quadrangulaire à deux étages et attiques, sur corps de logis la partie centrale encadrée de pilastres à refend, est surmontée d'un fronton triangulaire de style classique  sur corps de logis, dépendances formant la cour d'honneur, bâtiment construit au XVIIe siècle</p>
+<h4>Habitants / Familles</h4><p>Louis XVIII"</p>
+<h4>Divers</h4><p>De la forteresse il ne reste qu'une partie de la tour ronde. la gentilhommière de  Bel, de Méas, de la Dalgone et château de Faverolles</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

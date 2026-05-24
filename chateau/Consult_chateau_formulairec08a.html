@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Aigrepont — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,54 +113,57 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_03.html">Allier</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_03.html">Allier</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_03.html" class="back-link">Retour au département 03 — Allier</a>
-  <div class="fiche">
-    <h2>Aigrepont</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>03 — Allier</td></tr>
-          <tr><td>Canton</td><td>Moulins</td></tr>
-          <tr><td>Commune</td><td>Bressolles</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_03/03_Aigrepont_1.jpg" alt="Aigrepont" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Aigrepont_2.jpg" alt="Aigrepont" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Aigrepont_3.jpg" alt="Aigrepont" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_03.html">Retour au département 03 — Allier</a>
+<div class="fiche">
+<h2>Aigrepont</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Aigrepont" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_03/03_Aigrepont_1.jpg"/><div class="hero-count" id="hero-count">1 / 3</div></div><div class="photo-strip"><img alt="Aigrepont" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Aigrepont_1.jpg"/><img alt="Aigrepont" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Aigrepont_2.jpg"/><img alt="Aigrepont" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Aigrepont_3.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>03 — Allier</td></tr>
+<tr><td>Canton</td><td>Moulins</td></tr>
+<tr><td>Commune</td><td>Bressolles</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>AIGREPONT, appartenait, en 1442, à Jean de Pont, écuyer, et consistait en une motte et maison,  entourées de fossés. Ses enfants vendirent vers 1480 l'essentiel du fief   à Jean Daignet, conseiller et maître des comptes du duc de Bourbonnais. C'est en 1506 qu'apparut  pour la première fois le nom d'Aigrepont, qui appartenait alors à  Martin des Naulx, valet de chambre de la duchesse de Bourbon et greffier de l'élection de Clermont en Beauvais, qui avait épousé Anne, fille de Jean Daignet. Quand il mourut en 1519, ses enfants et leur tuteur, Nicolas Giraudeau  devaient encore plaider contre Jean de Pont, écuyer, à cause d'une vente litigieuse effectuée 40 ans auparavant.   Aigrepont fut achetée en 1587 par Gilbert Charbon, marchand moulinois, à Nicolas  Giraudeau  procureur  au présidial de Moulins, descendant du tuteur  des enfants Daignet. Mathieu Charbon  la revendit en  1631 à Jean Harel, conseiller du roi et fils d'un marchand moulinois lui-même prénommé Jean.   Jean Harel conseiller au présidial de Moulins et premier échevin. Gabriel Giraud, fils d'Elisabeth Harel, racheta les terres, ce docteur en théologie, chanoine de Notre-Dame de Moulins, jouissait d'une belle fortune. Vers 1680, il était official de Moulins pour le compte de l'évêque d'Autun.  Sa nièce et héritière avait épousé Jacques Vernin, lieutenant criminel et assesseur civil au présidial de Moulins, et maire de cette ville  de 1715 à 1717. Il acheta la charge de trésorier de France, fit bâtir une nouvelle chapelle en 1753. Ils avaient eu quatre enfants. Les deux filles, Marie Gervaise et Madeleine, qui habitaient Moulins, furent guillotinées à Paris le 12 décembre 1793.</p>
-      <h4>Architecture</h4><p>Aigrepont  édifice fortifié du   XIVe siècle,  vieille construction féodale située à l'entrée de la vallée, consistait en une motte et maison, entourées de fossés, sur le chemin de Vallières à Bressolles. Les ouvertures présentent une disposition particulière; une des parois est taillée perpendiculairement au mur, l'autre est oblique, la propriété construite dans le parc  par sa famille vers 1640, quEdith et sa famille vous accueillent dans leurs chambres dhôtes, elles  sont aménagées dans un bâtiment du XVIIe siècle.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Jean de Pont             Famille de Gabriel Giraud"</p>
-      <h4>Divers</h4><p>Le château d'Aigrepont, et le domaine d'Aigrepont chambres d'hôtes  de Mr. De Contenson</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>AIGREPONT, appartenait, en 1442, à Jean de Pont, écuyer, et consistait en une motte et maison,  entourées de fossés. Ses enfants vendirent vers 1480 l'essentiel du fief   à Jean Daignet, conseiller et maître des comptes du duc de Bourbonnais. C'est en 1506 qu'apparut  pour la première fois le nom d'Aigrepont, qui appartenait alors à  Martin des Naulx, valet de chambre de la duchesse de Bourbon et greffier de l'élection de Clermont en Beauvais, qui avait épousé Anne, fille de Jean Daignet. Quand il mourut en 1519, ses enfants et leur tuteur, Nicolas Giraudeau  devaient encore plaider contre Jean de Pont, écuyer, à cause d'une vente litigieuse effectuée 40 ans auparavant.   Aigrepont fut achetée en 1587 par Gilbert Charbon, marchand moulinois, à Nicolas  Giraudeau  procureur  au présidial de Moulins, descendant du tuteur  des enfants Daignet. Mathieu Charbon  la revendit en  1631 à Jean Harel, conseiller du roi et fils d'un marchand moulinois lui-même prénommé Jean.   Jean Harel conseiller au présidial de Moulins et premier échevin. Gabriel Giraud, fils d'Elisabeth Harel, racheta les terres, ce docteur en théologie, chanoine de Notre-Dame de Moulins, jouissait d'une belle fortune. Vers 1680, il était official de Moulins pour le compte de l'évêque d'Autun.  Sa nièce et héritière avait épousé Jacques Vernin, lieutenant criminel et assesseur civil au présidial de Moulins, et maire de cette ville  de 1715 à 1717. Il acheta la charge de trésorier de France, fit bâtir une nouvelle chapelle en 1753. Ils avaient eu quatre enfants. Les deux filles, Marie Gervaise et Madeleine, qui habitaient Moulins, furent guillotinées à Paris le 12 décembre 1793.</p>
+<h4>Architecture</h4><p>Aigrepont  édifice fortifié du   XIVe siècle,  vieille construction féodale située à l'entrée de la vallée, consistait en une motte et maison, entourées de fossés, sur le chemin de Vallières à Bressolles. Les ouvertures présentent une disposition particulière; une des parois est taillée perpendiculairement au mur, l'autre est oblique, la propriété construite dans le parc  par sa famille vers 1640, quEdith et sa famille vous accueillent dans leurs chambres dhôtes, elles  sont aménagées dans un bâtiment du XVIIe siècle.</p>
+<h4>Habitants / Familles</h4><p>Famille de Jean de Pont             Famille de Gabriel Giraud"</p>
+<h4>Divers</h4><p>Le château d'Aigrepont, et le domaine d'Aigrepont chambres d'hôtes  de Mr. De Contenson</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

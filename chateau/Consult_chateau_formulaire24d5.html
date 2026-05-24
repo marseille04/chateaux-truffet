@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Authie — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,53 +113,57 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_62.html">Pas-de-Calais</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_62.html">Pas-de-Calais</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_62.html" class="back-link">Retour au département 62 — Pas-de-Calais</a>
-  <div class="fiche">
-    <h2>Authie</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>62 — Pas-de-Calais</td></tr>
-          <tr><td>Canton</td><td>Berck</td></tr>
-          <tr><td>Commune</td><td>Conchil le Temple</td></tr>
-          <tr><td>Type d'édifice</td><td>Châteaux</td></tr>
-          <tr><td>Période d'origine</td><td>XVII-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_62/62_Authie_1.jpg" alt="Authie" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Authie_2.jpg" alt="Authie" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_62.html">Retour au département 62 — Pas-de-Calais</a>
+<div class="fiche">
+<h2>Authie</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Authie" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_62/62_Authie_1.jpg"/><div class="hero-count" id="hero-count">1 / 2</div></div><div class="photo-strip"><img alt="Authie" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Authie_1.jpg"/><img alt="Authie" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Authie_2.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>62 — Pas-de-Calais</td></tr>
+<tr><td>Canton</td><td>Berck</td></tr>
+<tr><td>Commune</td><td>Conchil le Temple</td></tr>
+<tr><td>Type d'édifice</td><td>Châteaux</td></tr>
+<tr><td>Période d'origine</td><td>XVII-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux châteaux dans cet article; Authie et le Pas-d'Authie.                        AUTHIE, un manoir a existé autrefois là où est construit le château actuel ; il a été démoli en 1850 et on a découvert un grés portant la date de 1311. L'édifice a toujours appartenu aux Moullart de Vilmarest, Le fief d'Authie existe déjà dans les années 800, il relève du monastère de Saint-Riquier. Il semble qu'Authie soit donné par Charlemagne au duc Angilbert, abbé de Saint-Riquier. Le premier château semble dater du IXe siècle. Après l'An 1000 la châtellenie d'Authie devient une possession du seigneur de la Ferté. Sa situation géographique explique l'importance stratégique du château d'Authie, détruit au XVIe siècle, en représailles par les huguenots, qui n'avaient pu se rendre maîtres de Doullens. Le château actuel ne sera reconstruit que sous le règne de Louis XV.  Le château du XIXe siècle aurait peut-être été construit par le même architecte que celui de Beaumerie-Saint-Martin; un effondrement serait intervenu en cours de travaux et on en aurait allégé la structure dans sa réalisation finale. Le matériau utilisé a été là brique faite avec l'argile jaunâtre du pays et cuite sur place. La façade principale n'est pas celle par laquelle on aborde le château, mais celle qui regarde vers le parc qu'encadrent deux bâtiments qui dessinent avec elle un plan en U. Celui de gauche est un jardin d'hiver qui a du être restauré après la deuxième Guerre; celui de droite est un bâtiment de service, sa longueur est équivalente à celle du jardin d'hiver. La façade du château présente un avant-corps précédé de colonnes doriques jumelées; celui-ci soutient le balcon de l'étage dont la balustrade a été garnie de pots à feu.</p>
-      <h4>Architecture</h4><p>PAS d'AUTHIE,  construit sur l'emplacement de l'ancien manoir-ferme du XVIIe siècle, pour Félix Moullart de Torcy, artiste peintre. Le parc est prévu sur l'ancienne basse cour dont la mare est préservée ainsi que le pigeonnier. Le gros oeuvre est achevé quand la construction s'effondre en 1851. Torcy fait appel à Félix Pauwels qui édifie une bâtisse rectangulaire, en briques jaunes sur un soubassement calcaire, sur l'arrière, deux ailes symétriques en retour dont l'une sert d'orangerie, encadrent la façade. La façade arrière présente un péristyle surmonté d'un balcon, au niveau de la toiture, une grande lucarne avec un vitrail éclaire la chapelle. Cette façade était conçue pour être la façade d'entrée avant que la ligne de chemin de fer Paris-Boulogne ne coupe l'accès de ce côté. Parc à l'anglaise et jardin à la française dans l'ancien potager clos de murs en craie encadrant un château ainsi que des communs.  Éléments protégés MH : les façades et les toitures, y compris le belvédère et son escalier d'accès ; au rez-de-chaussée le hall, le grand salon et la salle à manger avec leur décor. Les communs, le parc et ses clôtures, le pigeonnier situé dans le parc: inscription par arrêté du 19 avril 2006.</p>
-      <h4>Habitants / Familles</h4><p>Archi Beaumerie-Saint-Martin;                                  Famille de Félix Moullart de Torcy,"</p>
-      <h4>Divers</h4><p>Deux châteaux dans cet article; Authie-grav-1  et le Pas-d'Authie-grav-2.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux châteaux dans cet article; Authie et le Pas-d'Authie.                        AUTHIE, un manoir a existé autrefois là où est construit le château actuel ; il a été démoli en 1850 et on a découvert un grés portant la date de 1311. L'édifice a toujours appartenu aux Moullart de Vilmarest, Le fief d'Authie existe déjà dans les années 800, il relève du monastère de Saint-Riquier. Il semble qu'Authie soit donné par Charlemagne au duc Angilbert, abbé de Saint-Riquier. Le premier château semble dater du IXe siècle. Après l'An 1000 la châtellenie d'Authie devient une possession du seigneur de la Ferté. Sa situation géographique explique l'importance stratégique du château d'Authie, détruit au XVIe siècle, en représailles par les huguenots, qui n'avaient pu se rendre maîtres de Doullens. Le château actuel ne sera reconstruit que sous le règne de Louis XV.  Le château du XIXe siècle aurait peut-être été construit par le même architecte que celui de Beaumerie-Saint-Martin; un effondrement serait intervenu en cours de travaux et on en aurait allégé la structure dans sa réalisation finale. Le matériau utilisé a été là brique faite avec l'argile jaunâtre du pays et cuite sur place. La façade principale n'est pas celle par laquelle on aborde le château, mais celle qui regarde vers le parc qu'encadrent deux bâtiments qui dessinent avec elle un plan en U. Celui de gauche est un jardin d'hiver qui a du être restauré après la deuxième Guerre; celui de droite est un bâtiment de service, sa longueur est équivalente à celle du jardin d'hiver. La façade du château présente un avant-corps précédé de colonnes doriques jumelées; celui-ci soutient le balcon de l'étage dont la balustrade a été garnie de pots à feu.</p>
+<h4>Architecture</h4><p>PAS d'AUTHIE,  construit sur l'emplacement de l'ancien manoir-ferme du XVIIe siècle, pour Félix Moullart de Torcy, artiste peintre. Le parc est prévu sur l'ancienne basse cour dont la mare est préservée ainsi que le pigeonnier. Le gros oeuvre est achevé quand la construction s'effondre en 1851. Torcy fait appel à Félix Pauwels qui édifie une bâtisse rectangulaire, en briques jaunes sur un soubassement calcaire, sur l'arrière, deux ailes symétriques en retour dont l'une sert d'orangerie, encadrent la façade. La façade arrière présente un péristyle surmonté d'un balcon, au niveau de la toiture, une grande lucarne avec un vitrail éclaire la chapelle. Cette façade était conçue pour être la façade d'entrée avant que la ligne de chemin de fer Paris-Boulogne ne coupe l'accès de ce côté. Parc à l'anglaise et jardin à la française dans l'ancien potager clos de murs en craie encadrant un château ainsi que des communs.  Éléments protégés MH : les façades et les toitures, y compris le belvédère et son escalier d'accès ; au rez-de-chaussée le hall, le grand salon et la salle à manger avec leur décor. Les communs, le parc et ses clôtures, le pigeonnier situé dans le parc: inscription par arrêté du 19 avril 2006.</p>
+<h4>Habitants / Familles</h4><p>Archi Beaumerie-Saint-Martin;                                  Famille de Félix Moullart de Torcy,"</p>
+<h4>Divers</h4><p>Deux châteaux dans cet article; Authie-grav-1  et le Pas-d'Authie-grav-2.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

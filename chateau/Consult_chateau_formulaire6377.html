@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Maule_Agnou — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,56 +113,57 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_78.html">Yvelines</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_78.html">Yvelines</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_78.html" class="back-link">Retour au département 78 — Yvelines</a>
-  <div class="fiche">
-    <h2>Maule_Agnou</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>78 — Yvelines</td></tr>
-          <tr><td>Canton</td><td>Aubergenville</td></tr>
-          <tr><td>Commune</td><td>Maule</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI-XVII   XVIII-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_78/78_Maule_Agnou_1.jpg" alt="Maule_Agnou" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_78/78_Maule_Agnou_2.jpg" alt="Maule_Agnou" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_78/78_Maule_Agnou_3.jpg" alt="Maule_Agnou" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_78/78_Maule_Agnou_4.jpg" alt="Maule_Agnou" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_78/78_Maule_Agnou_5.jpg" alt="Maule_Agnou" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_78.html">Retour au département 78 — Yvelines</a>
+<div class="fiche">
+<h2>Maule_Agnou</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Maule_Agnou" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_78/78_Maule_Agnou_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Maule_Agnou" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Maule_Agnou_1.jpg"/><img alt="Maule_Agnou" class="" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Maule_Agnou_2.jpg"/><img alt="Maule_Agnou" class="" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Maule_Agnou_3.jpg"/><img alt="Maule_Agnou" class="" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Maule_Agnou_4.jpg"/><img alt="Maule_Agnou" class="" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Maule_Agnou_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>78 — Yvelines</td></tr>
+<tr><td>Canton</td><td>Aubergenville</td></tr>
+<tr><td>Commune</td><td>Maule</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI-XVII   XVIII-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>trois châteaux dans cet article; Agnou,  Buat et Rolanderie.                                               AGNOU, la construction du château d'Agnou a débuté dans la denière décennie du XVIe siècle, vers 1594. Il a fallu d'abord assainir et remblayer l'ancien marais du bout d'Agnou, en bordure de la Mauldre. Nicolas Harlay de Sancy, baron de Maule, avait mis sa fortune et ses talents au service du roi Henry IV. Son projet était ambitieux. Il voulait bâtir un immense quadrilatère flanqué de quatre tours rondes. Par son mariage avec Marie Moreau le 15 février 1575, Nicolas de Harlay fait l'acquisition de la terre de Grosbois en 1596 où il entreprend la construction d'un autre château en 1597, pouvant expliquer l'inachèvement d'Agnou. Les héritiers du baron et de sa femme Marie Moreau ne pourront conserver la propriété. Il sera vendu en 1638 à Claude de Bullion, surintendant des finances et garde des sceaux. A la Révolution, il appartiendra au marquis de Boisse qui devra s'éxiler. Les révolutionnaires mutileront le château dont les restes seront vendus en 1793 à Nicolas-François Fréret et finalement récupéré par le marquis de Boisse en 1812. Il appartient au XIXe siècle à la famille de Maule Plainval, et en 1876, aux Balagny. Transformé en hospice lors de la première guerre mondiale, occupé par la Wehrmacht durant la deuxième guerre mondiale, il sera abandonné dans les années 1960. Sauvé par ses nouveaux propriétaires dans les années 1970, il retrouve peu à peu son image du XVIe siècle. Éléments protégés MH : les façades et les toitures du château et de la tour aménagée en colombier : classement par arrêté du 31 juillet 1979.</p>
-      <h4>Architecture</h4><p>BUAT, construit en 1730, de style Louis XV, sur les vestiges d'une ancienne porte de la ville fortifiée de Maule, la porte du Buat, qui était la quatrième qui longeait la propriété de l'hostellerie du Dauphin. Le fief du Buat est offert au monastère en 1366, par Jacques du Buat, chanoine de Saint-Paul à Saint-Denis et, en échange, le prieur avait l'obligation de dire une messe de requiem dans l'église une fois par semaine. La propriété est cédée par les moines, en 1491, à Thomas Morise, manoeuvrier. En 1664, le domaine est transmis au Sieur Pernot par un bail emphytéotique de 60 ans. Cet homme était Grand valet de pied du roi sous Louis XIV. A sa mort, sa veuve hérita du fief. Le château, appelé à l'époque Maison Rouge, fut bâti par les enfants Pernot en 1730. Il se transmit successivement de génération en génération par les femmes de la famille. Au début du XXe siècle, l'une d'entre elles cède le château à une congrégation de religieuses bénédictines. Création en 1951 par la mère supérieure et M. Corcoral, d'un lycée agricole privé, le ministère de l'agriculture donnant son agrément.   accueille aujourd'hui un lycée agricole.                                                        ROLANDERIE, date  du XVIIIe siècle. Au XIXe siècle, Rudolph Meyer, un canadien est régisseur du château qui, d'ailleurs, prendra le nom d'une colonie dans la Saskatchewan. Henri Lorin, catholique français engagé au sein du catholicisme social, a vécu dans ce château qu'il acheta après son mariage en 1891.                                                                                    St VINCENT pas d'historique.</p>
-      <h4>Habitants / Familles</h4><p>Agnou; Nicolas Harlay de Sancy                             Buat ; Jacques du Buat                      Rolandière ; Rudolph Meyer"</p>
-      <h4>Divers</h4><p>Deux châteaux dans cet article; Agnou grav-1-2  et Buat gra v-3-4    et Rolanderie  grav 5                              gps 48° 54' 17? N, 1° 50' 50? E</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>trois châteaux dans cet article; Agnou,  Buat et Rolanderie.                                               AGNOU, la construction du château d'Agnou a débuté dans la denière décennie du XVIe siècle, vers 1594. Il a fallu d'abord assainir et remblayer l'ancien marais du bout d'Agnou, en bordure de la Mauldre. Nicolas Harlay de Sancy, baron de Maule, avait mis sa fortune et ses talents au service du roi Henry IV. Son projet était ambitieux. Il voulait bâtir un immense quadrilatère flanqué de quatre tours rondes. Par son mariage avec Marie Moreau le 15 février 1575, Nicolas de Harlay fait l'acquisition de la terre de Grosbois en 1596 où il entreprend la construction d'un autre château en 1597, pouvant expliquer l'inachèvement d'Agnou. Les héritiers du baron et de sa femme Marie Moreau ne pourront conserver la propriété. Il sera vendu en 1638 à Claude de Bullion, surintendant des finances et garde des sceaux. A la Révolution, il appartiendra au marquis de Boisse qui devra s'éxiler. Les révolutionnaires mutileront le château dont les restes seront vendus en 1793 à Nicolas-François Fréret et finalement récupéré par le marquis de Boisse en 1812. Il appartient au XIXe siècle à la famille de Maule Plainval, et en 1876, aux Balagny. Transformé en hospice lors de la première guerre mondiale, occupé par la Wehrmacht durant la deuxième guerre mondiale, il sera abandonné dans les années 1960. Sauvé par ses nouveaux propriétaires dans les années 1970, il retrouve peu à peu son image du XVIe siècle. Éléments protégés MH : les façades et les toitures du château et de la tour aménagée en colombier : classement par arrêté du 31 juillet 1979.</p>
+<h4>Architecture</h4><p>BUAT, construit en 1730, de style Louis XV, sur les vestiges d'une ancienne porte de la ville fortifiée de Maule, la porte du Buat, qui était la quatrième qui longeait la propriété de l'hostellerie du Dauphin. Le fief du Buat est offert au monastère en 1366, par Jacques du Buat, chanoine de Saint-Paul à Saint-Denis et, en échange, le prieur avait l'obligation de dire une messe de requiem dans l'église une fois par semaine. La propriété est cédée par les moines, en 1491, à Thomas Morise, manoeuvrier. En 1664, le domaine est transmis au Sieur Pernot par un bail emphytéotique de 60 ans. Cet homme était Grand valet de pied du roi sous Louis XIV. A sa mort, sa veuve hérita du fief. Le château, appelé à l'époque Maison Rouge, fut bâti par les enfants Pernot en 1730. Il se transmit successivement de génération en génération par les femmes de la famille. Au début du XXe siècle, l'une d'entre elles cède le château à une congrégation de religieuses bénédictines. Création en 1951 par la mère supérieure et M. Corcoral, d'un lycée agricole privé, le ministère de l'agriculture donnant son agrément.   accueille aujourd'hui un lycée agricole.                                                        ROLANDERIE, date  du XVIIIe siècle. Au XIXe siècle, Rudolph Meyer, un canadien est régisseur du château qui, d'ailleurs, prendra le nom d'une colonie dans la Saskatchewan. Henri Lorin, catholique français engagé au sein du catholicisme social, a vécu dans ce château qu'il acheta après son mariage en 1891.                                                                                    St VINCENT pas d'historique.</p>
+<h4>Habitants / Familles</h4><p>Agnou; Nicolas Harlay de Sancy                             Buat ; Jacques du Buat                      Rolandière ; Rudolph Meyer"</p>
+<h4>Divers</h4><p>Deux châteaux dans cet article; Agnou grav-1-2  et Buat gra v-3-4    et Rolanderie  grav 5                              gps 48° 54' 17? N, 1° 50' 50? E</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

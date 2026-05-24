@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Bourg_Archambault — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,59 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_86.html">Vienne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_86.html">Vienne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_86.html" class="back-link">Retour au département 86 — Vienne</a>
-  <div class="fiche">
-    <h2>Bourg_Archambault</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>86 — Vienne</td></tr>
-          <tr><td>Canton</td><td>Montmorillon</td></tr>
-          <tr><td>Commune</td><td>Bourg-Archambault</td></tr>
-          <tr><td>Type d'édifice</td><td>Forteresse</td></tr>
-          <tr><td>Période d'origine</td><td>XIII-XV</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_86/86_Bourg_Archambault_1.jpg" alt="Bourg_Archambault" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Bourg_Archambault_2.jpg" alt="Bourg_Archambault" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Bourg_Archambault_3.jpg" alt="Bourg_Archambault" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Bourg_Archambault_4.jpg" alt="Bourg_Archambault" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Bourg_Archambault_5.jpg" alt="Bourg_Archambault" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Bourg_Archambault_6.jpg" alt="Bourg_Archambault" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Bourg_Archambault_7.jpg" alt="Bourg_Archambault" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_86.html">Retour au département 86 — Vienne</a>
+<div class="fiche">
+<h2>Bourg_Archambault</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Bourg_Archambault" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_86/86_Bourg_Archambault_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Bourg_Archambault" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Bourg_Archambault_1.jpg"/><img alt="Bourg_Archambault" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Bourg_Archambault_2.jpg"/><img alt="Bourg_Archambault" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Bourg_Archambault_3.jpg"/><img alt="Bourg_Archambault" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Bourg_Archambault_4.jpg"/><img alt="Bourg_Archambault" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Bourg_Archambault_5.jpg"/><img alt="Bourg_Archambault" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Bourg_Archambault_6.jpg"/><img alt="Bourg_Archambault" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Bourg_Archambault_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>86 — Vienne</td></tr>
+<tr><td>Canton</td><td>Montmorillon</td></tr>
+<tr><td>Commune</td><td>Bourg-Archambault</td></tr>
+<tr><td>Type d'édifice</td><td>Forteresse</td></tr>
+<tr><td>Période d'origine</td><td>XIII-XV</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>A  5 kilomètres à l'Est à Brigueil la Chantre le château de Mareuil.                                                                                                                 BOURG-ARCHAMBAULT, est un château bâti à Bourg-Archambault,  les deux logis seront réunis par Pierre de Sacierges, évêque de Luçon, seigneur des lieux à partir de 1494. Un premier édifice du XIIIe siècle, aujourdhui rasé, a été remplacé par la forteresse actuelle à partir de 1478 grâce à Poncet de Rivière, chambellan de Louis XI. Au milieu du XIXe siècle, le château est acheté par la famille Augier de Crémiers qui fera restaurer lensemble et ajouter les trois tours de façade.                                                                                                                          MAREUIL, date du XVe siècle. Il a été restauré au XIXe siècle. C'est un ancien fief relevant de la baronnie de Montmorillon. Le château domine la vallée de l'Asse, comme l'ancienne forteresse de Peutro ou le château ruiné de Fleix. ces forteresses construites à la fin du Moyen Age sont un témoignage du climat d'insécurité lié à la position frontalière de Brigueil entre le Poitou anglais et la Berry français, à la guerre de Cent Ans et à la présence des Grandes Compagnies.   Aujourd'hui Chambres d'hôtes</p>
-      <h4>Architecture</h4><p>BOURG-ARCHAMBAULT, très bien conservé, est constitué de 2 parties: l'une médiévale et l'autre plus récente, entourées de douves. Le château est composé d'une enceinte flanquée de tours, d'un châtelet d'entrée et d'un logis très restauré, qui date du XIXe siècle. Le château de Bourg-Archambault actuel a été construit, pour Poncet de Rivière, Chambellan du roi de France Louis XI, sur l'emplacement d'un ancien édifice, rasé. Le château a été construit en 1478. L'enceinte, de plan trapézoïdal, occupe un terre-plein ceint de douves. Au Nord, le châtelet d'entrée était jadis protégé par un double pont-levis et une ligne de mâchicoulis. Aux quatre angles de l'enceinte, s'élève une tour pourvue de canonnières, élément militaire repérable aussi sur les deux tours du châtelet. Le système de défense est remarquable grâce à une enceinte élevée au XVe siècle et flanquée de six tours. Se dresse sur la façade sud, deux logis : l'un résidentiel situé à l'est, et l'autre, militaire, fut construit à l'ouest. Ce dernier communiquait par un pont-levis avec la Tour Sud-Ouest, isolée, qui servait de donjon, a été classé aux M.H. en 1986, pour ses parties anciennes, le reste a été classé, aux M.H. en 1927.                                                                                                        MAREUIL, Brigueil-le-Chantre est un ancien bourg fortifié dont subsistent deux portes du XIVe siècle et la base d'un donjon carré du XIIe siècle dont le haut s'est effondré au XVIIIe siècle.  Il est possible de voir les restes du château du XVIIe siècle avec une tour couverte de bardeaux. C'est une technique de couverture dont il ne subsiste que peu d'exemples.</p>
-      <h4>Habitants / Familles</h4><p>Famille Augier de Crémiers 
-<br>        "</p>
-      <h4>Divers</h4><p>Bourg Archambault; 46° 23' 00" Nord, 1°00' 13" Est                           Mareuil  grav-6-7</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>A  5 kilomètres à l'Est à Brigueil la Chantre le château de Mareuil.                                                                                                                 BOURG-ARCHAMBAULT, est un château bâti à Bourg-Archambault,  les deux logis seront réunis par Pierre de Sacierges, évêque de Luçon, seigneur des lieux à partir de 1494. Un premier édifice du XIIIe siècle, aujourdhui rasé, a été remplacé par la forteresse actuelle à partir de 1478 grâce à Poncet de Rivière, chambellan de Louis XI. Au milieu du XIXe siècle, le château est acheté par la famille Augier de Crémiers qui fera restaurer lensemble et ajouter les trois tours de façade.                                                                                                                          MAREUIL, date du XVe siècle. Il a été restauré au XIXe siècle. C'est un ancien fief relevant de la baronnie de Montmorillon. Le château domine la vallée de l'Asse, comme l'ancienne forteresse de Peutro ou le château ruiné de Fleix. ces forteresses construites à la fin du Moyen Age sont un témoignage du climat d'insécurité lié à la position frontalière de Brigueil entre le Poitou anglais et la Berry français, à la guerre de Cent Ans et à la présence des Grandes Compagnies.   Aujourd'hui Chambres d'hôtes</p>
+<h4>Architecture</h4><p>BOURG-ARCHAMBAULT, très bien conservé, est constitué de 2 parties: l'une médiévale et l'autre plus récente, entourées de douves. Le château est composé d'une enceinte flanquée de tours, d'un châtelet d'entrée et d'un logis très restauré, qui date du XIXe siècle. Le château de Bourg-Archambault actuel a été construit, pour Poncet de Rivière, Chambellan du roi de France Louis XI, sur l'emplacement d'un ancien édifice, rasé. Le château a été construit en 1478. L'enceinte, de plan trapézoïdal, occupe un terre-plein ceint de douves. Au Nord, le châtelet d'entrée était jadis protégé par un double pont-levis et une ligne de mâchicoulis. Aux quatre angles de l'enceinte, s'élève une tour pourvue de canonnières, élément militaire repérable aussi sur les deux tours du châtelet. Le système de défense est remarquable grâce à une enceinte élevée au XVe siècle et flanquée de six tours. Se dresse sur la façade sud, deux logis : l'un résidentiel situé à l'est, et l'autre, militaire, fut construit à l'ouest. Ce dernier communiquait par un pont-levis avec la Tour Sud-Ouest, isolée, qui servait de donjon, a été classé aux M.H. en 1986, pour ses parties anciennes, le reste a été classé, aux M.H. en 1927.                                                                                                        MAREUIL, Brigueil-le-Chantre est un ancien bourg fortifié dont subsistent deux portes du XIVe siècle et la base d'un donjon carré du XIIe siècle dont le haut s'est effondré au XVIIIe siècle.  Il est possible de voir les restes du château du XVIIe siècle avec une tour couverte de bardeaux. C'est une technique de couverture dont il ne subsiste que peu d'exemples.</p>
+<h4>Habitants / Familles</h4><p>Famille Augier de Crémiers 
+<br/>        "</p>
+<h4>Divers</h4><p>Bourg Archambault; 46° 23' 00" Nord, 1°00' 13" Est                           Mareuil  grav-6-7</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

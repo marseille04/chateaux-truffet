@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Parentignat — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,61 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_63.html">Puy-de-Dôme</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_63.html">Puy-de-Dôme</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_63.html" class="back-link">Retour au département 63 — Puy-de-Dôme</a>
-  <div class="fiche">
-    <h2>Parentignat</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>63 — Puy-de-Dôme</td></tr>
-          <tr><td>Canton</td><td>Issoire</td></tr>
-          <tr><td>Commune</td><td>Parentignat</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_63/63_Parentignat_1.jpg" alt="Parentignat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Parentignat_2.jpg" alt="Parentignat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Parentignat_3.jpg" alt="Parentignat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Parentignat_4.jpg" alt="Parentignat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Parentignat_5.jpg" alt="Parentignat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Parentignat_6.jpg" alt="Parentignat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Parentignat_7.jpg" alt="Parentignat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Parentignat_8.jpg" alt="Parentignat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Parentignat_9.jpg" alt="Parentignat" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_63.html">Retour au département 63 — Puy-de-Dôme</a>
+<div class="fiche">
+<h2>Parentignat</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Parentignat" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_63/63_Parentignat_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Parentignat" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Parentignat_1.jpg"/><img alt="Parentignat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Parentignat_2.jpg"/><img alt="Parentignat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Parentignat_3.jpg"/><img alt="Parentignat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Parentignat_4.jpg"/><img alt="Parentignat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Parentignat_5.jpg"/><img alt="Parentignat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Parentignat_6.jpg"/><img alt="Parentignat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Parentignat_7.jpg"/><img alt="Parentignat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Parentignat_8.jpg"/><img alt="Parentignat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Parentignat_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>63 — Puy-de-Dôme</td></tr>
+<tr><td>Canton</td><td>Issoire</td></tr>
+<tr><td>Commune</td><td>Parentignat</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Plusieurs châteaux à  PARENTIGNAT ,  déjà cité au XVIIIe siècle,  par la famille de Sommyière.  Maximilien de Sommyière, ses descendantes (quatre nièces) ne s'entendant pas, la maison reconstruite en 1682, suite à un incendie, achetée par Jean Antoine de Lastic, vicomte de Murat, prieur de Bredon en 1707 pour son neveu François II de Lastic  marquis de Sieujac et sa nièce Marie de la Roche Aymont. François de Lastic épousa Claude de St-Genis, et ils adoptèrent Georges de Lastic. En 1779  le comte  de Lastic, lieutenant général époux de Melle de Ménars  petite nièce de Colbert finit les remaniements jusqu'en 1782. est  resté dans la descendance, Vers 1960, pour leur  succéder à la tête de Parentignat. Georges de Lastic épousa Françoise Gouin.  Leur fils, Anne-François de Lastic, est  depuis le décès de Georges de Lastic en janvier 1988, le propriétaire actuel de Parentignat avec sa mère.                                                                                                        A deux kilomètres à l'Est à Varennes-sur-Usson le château de MAZEL.  En 1478, Chatard du Mazel, écuyer, est seigneur. En 1524, à Vidal du Mazel seigneur. En 1557, Antoine de Fredeville, prieur de Moissat et chanoine, Comte de Bnoude, fait donation de sa maison du Mazel près Usson.  Acquise par lui du seigneur de Pierrefitte en Limousin. Avant 1569, le fief   est acheté par Antoine Vigier de la Valette qui décède peu après. Avant 1628, à la mort de Christophe , il passe à Marguerite sa  nièce, mariée à   Jean des Maignoux. En 1628, leur   fille Anne l'apporte par   mariage à   Jean de Valadoux. En 1689. Pierre Hector de Damas, écuyer, est seigneur de Treydieux et du Mazel, il habite à Brioude. FOUILHOUSE  Vers 1320, appartient à Guillaume de Riom. Vers 1440, à  Aubert de Péchaud, qui a épousé Gaillarde de Riom. Son neveu Antoine de Sailhens  hérite avant 1450. Françoise de Sailhens  se marie avec Pierre de Malras, issu dune famille protestante anoblie par Henri IV. En 1675 un François de Malras est seigneur de Fouilhouse, bien quil ny habite pas. François de Lastic, seigneur de Parentignat, son beau-frère, lui achète le château en 1719, ce dernier est désormais une dépendance de Parentignat.</p>
-      <h4>Architecture</h4><p>Parentignat   C'était une maison forte simple quadrilatère flanqué aux angles de quatre tours. richement meublées de la province,  En quelques années, cette bâtisse fit place à un insolite château, au plan inspiré de Versailles où l'arkose blonde de Montpeyroux contraste avec les entourages de porte en pierre de Volvic et les toitures de petites tuiles rouges. En 1779, des travaux eurent lieu  pour terminer la façade   donnant sur le parc et remanier la disposition intérieure,   totalement épargné par la Révolution, on  y trouve encore une grande partie de son mobilier d'origine.                 Mazel, enceinte quadrangulaire à flanquements circulaires d'angle, il en reste un isolé et un autre à l'angle d'un logis de deux niveaux et un demi niveau de baies-créneaux. Des canonnières participent à la défense et les modénatures des baies conservées datent du XVIe siècle. Mais à l'intérieur, l'une des cheminées parait nettement plus ancienne.                                                             Fouilhouse   Maison-forte du XIVe siècle. Grand donjon rectangulaire de trois niveaux, aux angles arrondis. Tour semi-circulaire descalier sur un des grands côtés, un petit côté conserve des latrines.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Sommyière
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Parentignat de la Fouilhouse et du Mazel.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Plusieurs châteaux à  PARENTIGNAT ,  déjà cité au XVIIIe siècle,  par la famille de Sommyière.  Maximilien de Sommyière, ses descendantes (quatre nièces) ne s'entendant pas, la maison reconstruite en 1682, suite à un incendie, achetée par Jean Antoine de Lastic, vicomte de Murat, prieur de Bredon en 1707 pour son neveu François II de Lastic  marquis de Sieujac et sa nièce Marie de la Roche Aymont. François de Lastic épousa Claude de St-Genis, et ils adoptèrent Georges de Lastic. En 1779  le comte  de Lastic, lieutenant général époux de Melle de Ménars  petite nièce de Colbert finit les remaniements jusqu'en 1782. est  resté dans la descendance, Vers 1960, pour leur  succéder à la tête de Parentignat. Georges de Lastic épousa Françoise Gouin.  Leur fils, Anne-François de Lastic, est  depuis le décès de Georges de Lastic en janvier 1988, le propriétaire actuel de Parentignat avec sa mère.                                                                                                        A deux kilomètres à l'Est à Varennes-sur-Usson le château de MAZEL.  En 1478, Chatard du Mazel, écuyer, est seigneur. En 1524, à Vidal du Mazel seigneur. En 1557, Antoine de Fredeville, prieur de Moissat et chanoine, Comte de Bnoude, fait donation de sa maison du Mazel près Usson.  Acquise par lui du seigneur de Pierrefitte en Limousin. Avant 1569, le fief   est acheté par Antoine Vigier de la Valette qui décède peu après. Avant 1628, à la mort de Christophe , il passe à Marguerite sa  nièce, mariée à   Jean des Maignoux. En 1628, leur   fille Anne l'apporte par   mariage à   Jean de Valadoux. En 1689. Pierre Hector de Damas, écuyer, est seigneur de Treydieux et du Mazel, il habite à Brioude. FOUILHOUSE  Vers 1320, appartient à Guillaume de Riom. Vers 1440, à  Aubert de Péchaud, qui a épousé Gaillarde de Riom. Son neveu Antoine de Sailhens  hérite avant 1450. Françoise de Sailhens  se marie avec Pierre de Malras, issu dune famille protestante anoblie par Henri IV. En 1675 un François de Malras est seigneur de Fouilhouse, bien quil ny habite pas. François de Lastic, seigneur de Parentignat, son beau-frère, lui achète le château en 1719, ce dernier est désormais une dépendance de Parentignat.</p>
+<h4>Architecture</h4><p>Parentignat   C'était une maison forte simple quadrilatère flanqué aux angles de quatre tours. richement meublées de la province,  En quelques années, cette bâtisse fit place à un insolite château, au plan inspiré de Versailles où l'arkose blonde de Montpeyroux contraste avec les entourages de porte en pierre de Volvic et les toitures de petites tuiles rouges. En 1779, des travaux eurent lieu  pour terminer la façade   donnant sur le parc et remanier la disposition intérieure,   totalement épargné par la Révolution, on  y trouve encore une grande partie de son mobilier d'origine.                 Mazel, enceinte quadrangulaire à flanquements circulaires d'angle, il en reste un isolé et un autre à l'angle d'un logis de deux niveaux et un demi niveau de baies-créneaux. Des canonnières participent à la défense et les modénatures des baies conservées datent du XVIe siècle. Mais à l'intérieur, l'une des cheminées parait nettement plus ancienne.                                                             Fouilhouse   Maison-forte du XIVe siècle. Grand donjon rectangulaire de trois niveaux, aux angles arrondis. Tour semi-circulaire descalier sur un des grands côtés, un petit côté conserve des latrines.</p>
+<h4>Habitants / Familles</h4><p>Famille de Sommyière
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Parentignat de la Fouilhouse et du Mazel.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

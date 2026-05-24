@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Poligny_Vaux — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,57 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_39.html">Jura</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_39.html">Jura</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_39.html" class="back-link">Retour au département 39 — Jura</a>
-  <div class="fiche">
-    <h2>Poligny_Vaux</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>39 — Jura</td></tr>
-          <tr><td>Canton</td><td>Poligny</td></tr>
-          <tr><td>Commune</td><td>Poligny</td></tr>
-          <tr><td>Type d'édifice</td><td>Vestiges</td></tr>
-          <tr><td>Période d'origine</td><td>XIV</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_39/39_Poligny_Vaux_1.jpg" alt="Poligny_Vaux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_39/39_Poligny_Vaux_2.jpg" alt="Poligny_Vaux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_39/39_Poligny_Vaux_3.jpg" alt="Poligny_Vaux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_39/39_Poligny_Vaux_4.jpg" alt="Poligny_Vaux" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_39.html">Retour au département 39 — Jura</a>
+<div class="fiche">
+<h2>Poligny_Vaux</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Poligny_Vaux" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_39/39_Poligny_Vaux_1.jpg"/><div class="hero-count" id="hero-count">1 / 4</div></div><div class="photo-strip"><img alt="Poligny_Vaux" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_39/39_Poligny_Vaux_1.jpg"/><img alt="Poligny_Vaux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_39/39_Poligny_Vaux_2.jpg"/><img alt="Poligny_Vaux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_39/39_Poligny_Vaux_3.jpg"/><img alt="Poligny_Vaux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_39/39_Poligny_Vaux_4.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>39 — Jura</td></tr>
+<tr><td>Canton</td><td>Poligny</td></tr>
+<tr><td>Commune</td><td>Poligny</td></tr>
+<tr><td>Type d'édifice</td><td>Vestiges</td></tr>
+<tr><td>Période d'origine</td><td>XIV</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>POLIGNY;  le site devait être occupé par la tribu des Séquanes avant la conquête romaine Poligny appartient aux règnes successifs de Charles V, des Comtes de Bourgogne, la maison d'Autriche, la maison d'Espagne, et le royaume de France, après de nombreuses et sanglantes guerres, avec le traité de Nimègue.       GRIMONT fut établi sur un ancien temple dédié à Apollon Gryneus qui se dressait sur un piton rocheux, viendrait de la contraction de Grynei Mons : le Mont de Gryneus. Ayant résolu de faire de la ville de Poligny la principale place forte et le centre de son administration sur le pays, Louis XI fait fortifier la ville et le château par de grands travaux en 1481. Elle fut chef-lieu du district de Poligny de 1790 à 1795 et de larrondissement de Poligny de 1800 à 1926.
-<br> Château de Vaux sur Poligny  L'architecte bisontin Ducat fut chargé de la construction d'une demeure spacieuse sur les soubassements d'un  moulin, perpendiculairement à la vallée.  L'architecte paysagiste Brice Michel aménagea le parc, mettant en scène  le cours de la Glantine. Des communs et une ferme sont disposés le long de la route nationale depuis laquelle un portail  et une rue donnent accès à la propriété. Elle comporte aussi une chapelle funéraire sur le versant Sud. Le corps de logis conserve la distribution et les décors d'origine.</p>
-      <h4>Architecture</h4><p>Poligny;   remonte à lépoque romaine. En font foi deux superbes mosaïques dites "les Chambrettes du roi", trouvées en bordure de la nationale 5, tout près de la ville au XVIIIe siècle.            Grimont, aujourd'hui restent de ces fortifications quelques murs, la tour de la Sergenterie, le donjon Saint-Laurent et sa brique en forme de visage, et des meurtrières dans les murs des maisons de la grande rue, bien visible depuis les jardins de la rue de Longeville.         Vaux ; Ensemble complet bien conservé, ce château se distingue des demeures semblables de cette époque par l'aménagement exceptionnel d'un site de reculée caractéristique du Jura,  corps de logis rectangulaire à deux niveaux, donjon sur angle  et  fronton saillants.</p>
-      <h4>Habitants / Familles</h4><p>Comtes de Bourgogne
-<br>        "</p>
-      <h4>Divers</h4><p>Vestiges à Poligny du château Grimont, château de Vaux.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>POLIGNY;  le site devait être occupé par la tribu des Séquanes avant la conquête romaine Poligny appartient aux règnes successifs de Charles V, des Comtes de Bourgogne, la maison d'Autriche, la maison d'Espagne, et le royaume de France, après de nombreuses et sanglantes guerres, avec le traité de Nimègue.       GRIMONT fut établi sur un ancien temple dédié à Apollon Gryneus qui se dressait sur un piton rocheux, viendrait de la contraction de Grynei Mons : le Mont de Gryneus. Ayant résolu de faire de la ville de Poligny la principale place forte et le centre de son administration sur le pays, Louis XI fait fortifier la ville et le château par de grands travaux en 1481. Elle fut chef-lieu du district de Poligny de 1790 à 1795 et de larrondissement de Poligny de 1800 à 1926.
+<br/> Château de Vaux sur Poligny  L'architecte bisontin Ducat fut chargé de la construction d'une demeure spacieuse sur les soubassements d'un  moulin, perpendiculairement à la vallée.  L'architecte paysagiste Brice Michel aménagea le parc, mettant en scène  le cours de la Glantine. Des communs et une ferme sont disposés le long de la route nationale depuis laquelle un portail  et une rue donnent accès à la propriété. Elle comporte aussi une chapelle funéraire sur le versant Sud. Le corps de logis conserve la distribution et les décors d'origine.</p>
+<h4>Architecture</h4><p>Poligny;   remonte à lépoque romaine. En font foi deux superbes mosaïques dites "les Chambrettes du roi", trouvées en bordure de la nationale 5, tout près de la ville au XVIIIe siècle.            Grimont, aujourd'hui restent de ces fortifications quelques murs, la tour de la Sergenterie, le donjon Saint-Laurent et sa brique en forme de visage, et des meurtrières dans les murs des maisons de la grande rue, bien visible depuis les jardins de la rue de Longeville.         Vaux ; Ensemble complet bien conservé, ce château se distingue des demeures semblables de cette époque par l'aménagement exceptionnel d'un site de reculée caractéristique du Jura,  corps de logis rectangulaire à deux niveaux, donjon sur angle  et  fronton saillants.</p>
+<h4>Habitants / Familles</h4><p>Comtes de Bourgogne
+<br/>        "</p>
+<h4>Divers</h4><p>Vestiges à Poligny du château Grimont, château de Vaux.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

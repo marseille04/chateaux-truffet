@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Poyanne — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,56 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_40.html">Landes</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_40.html">Landes</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_40.html" class="back-link">Retour au département 40 — Landes</a>
-  <div class="fiche">
-    <h2>Poyanne</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>40 — Landes</td></tr>
-          <tr><td>Canton</td><td>Montfort en Chalosse</td></tr>
-          <tr><td>Commune</td><td>Poyanne</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_40/40_Poyanne_1.jpg" alt="Poyanne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_40/40_Poyanne_2.jpg" alt="Poyanne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_40/40_Poyanne_3.jpg" alt="Poyanne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_40/40_Poyanne_4.jpg" alt="Poyanne" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_40.html">Retour au département 40 — Landes</a>
+<div class="fiche">
+<h2>Poyanne</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Poyanne" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_40/40_Poyanne_1.jpg"/><div class="hero-count" id="hero-count">1 / 4</div></div><div class="photo-strip"><img alt="Poyanne" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_40/40_Poyanne_1.jpg"/><img alt="Poyanne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_40/40_Poyanne_2.jpg"/><img alt="Poyanne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_40/40_Poyanne_3.jpg"/><img alt="Poyanne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_40/40_Poyanne_4.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>40 — Landes</td></tr>
+<tr><td>Canton</td><td>Montfort en Chalosse</td></tr>
+<tr><td>Commune</td><td>Poyanne</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>POYANNE, un château féodal primitif avec motte, fossés et palissades, fut érigé, vers 1308, sans permission, non loin et menaçant le château de Saint-Geours, siège du bayle d'Auribat. En 1311, des enquêteurs anglais signalèrent cette usurpation dangereuse. Il ne sera reconnu et légitimé qu'en 1315, date à laquelle Edouard II d'Angleterre, duc d'Aquitaine, autorisa Bernard de Poyanne  descendant d'une famille connue depuis le XIe siècle à y édifier une maison forte en 1623 à 1628. Le château situé à lentrée du village de Poyanne est le témoignage de la puissance de la famille noble de Baylenx dont lorigine remonte au XIVe siècle, par lunion des Poudenx et des Baylenx, et dont lapogée se situe entre les XVIe et XVIIIe siècles. Pendant plusieurs générations, des guerres de religion à la fronde, de la guerre de sept ans à celle de trente ans, les Baylenx de Poyanne ont accumulé titres, charges et honneurs dans le pays de Lannes, en Béarn et à la cour de Versailles, en récompense de leur fidélité au pouvoir royal. Quatre barons puis marquis de Poyanne furent fait chevaliers de l'ordre du Saint-Esprit, l'ordre de chevalerie le plus prestigieux de l'ancien régime, par Henri IV, Louis XIII, Louis XIV, et Louis XV. Le château de Poyanne est classé aux M.H. depuis 1957. Il a été racheté par le département des Landes.</p>
-      <h4>Architecture</h4><p>POYANNE, sa construction date de la 1ère moitié du XVIIe siècle et fut achevée en 1624. En 1206, les seigneurs de Poyanne font construire une bastide sur l'emplacement, déjà choisi par les Romains, pour y établir un camp. Une demeure plus confortable remplaça l'ancienne forteresse au début du XVIIe siècle. Le bâtiment se décompose en cinq pavillons  juxtaposés, celui du centre en saillie sur les autres. Sa toiture est construite en forme de dôme surmonté par un belvédère. Des bandeaux soulignent les trois étages. La façade nord, par la déclivité du terrain, présente un étage de plus. Frontons et denticules ornent fenêtres et mansardes. Les deux pavillons ouest semblent postérieurs. Celui du centre et celui qui lui est mitoyen vers l'est semblent remonter à 1624. Le pavillon Est doit être antérieur à cette date, sans doute construit à l'emplacement de l'ancienne forteresse.</p>
-      <h4>Habitants / Familles</h4><p>Famille noble de Baylenx 
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Poyanne  43° 45' 26 nord, 0° 48' 53 ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>POYANNE, un château féodal primitif avec motte, fossés et palissades, fut érigé, vers 1308, sans permission, non loin et menaçant le château de Saint-Geours, siège du bayle d'Auribat. En 1311, des enquêteurs anglais signalèrent cette usurpation dangereuse. Il ne sera reconnu et légitimé qu'en 1315, date à laquelle Edouard II d'Angleterre, duc d'Aquitaine, autorisa Bernard de Poyanne  descendant d'une famille connue depuis le XIe siècle à y édifier une maison forte en 1623 à 1628. Le château situé à lentrée du village de Poyanne est le témoignage de la puissance de la famille noble de Baylenx dont lorigine remonte au XIVe siècle, par lunion des Poudenx et des Baylenx, et dont lapogée se situe entre les XVIe et XVIIIe siècles. Pendant plusieurs générations, des guerres de religion à la fronde, de la guerre de sept ans à celle de trente ans, les Baylenx de Poyanne ont accumulé titres, charges et honneurs dans le pays de Lannes, en Béarn et à la cour de Versailles, en récompense de leur fidélité au pouvoir royal. Quatre barons puis marquis de Poyanne furent fait chevaliers de l'ordre du Saint-Esprit, l'ordre de chevalerie le plus prestigieux de l'ancien régime, par Henri IV, Louis XIII, Louis XIV, et Louis XV. Le château de Poyanne est classé aux M.H. depuis 1957. Il a été racheté par le département des Landes.</p>
+<h4>Architecture</h4><p>POYANNE, sa construction date de la 1ère moitié du XVIIe siècle et fut achevée en 1624. En 1206, les seigneurs de Poyanne font construire une bastide sur l'emplacement, déjà choisi par les Romains, pour y établir un camp. Une demeure plus confortable remplaça l'ancienne forteresse au début du XVIIe siècle. Le bâtiment se décompose en cinq pavillons  juxtaposés, celui du centre en saillie sur les autres. Sa toiture est construite en forme de dôme surmonté par un belvédère. Des bandeaux soulignent les trois étages. La façade nord, par la déclivité du terrain, présente un étage de plus. Frontons et denticules ornent fenêtres et mansardes. Les deux pavillons ouest semblent postérieurs. Celui du centre et celui qui lui est mitoyen vers l'est semblent remonter à 1624. Le pavillon Est doit être antérieur à cette date, sans doute construit à l'emplacement de l'ancienne forteresse.</p>
+<h4>Habitants / Familles</h4><p>Famille noble de Baylenx 
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Poyanne  43° 45' 26 nord, 0° 48' 53 ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

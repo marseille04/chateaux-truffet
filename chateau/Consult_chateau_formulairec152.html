@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Lavaure — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,56 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_63.html">Puy-de-Dôme</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_63.html">Puy-de-Dôme</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_63.html" class="back-link">Retour au département 63 — Puy-de-Dôme</a>
-  <div class="fiche">
-    <h2>Lavaure</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>63 — Puy-de-Dôme</td></tr>
-          <tr><td>Canton</td><td>Lezoux</td></tr>
-          <tr><td>Commune</td><td>Neschers</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_63/63_Lavaure_1.jpg" alt="Lavaure" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Lavaure_2.jpg" alt="Lavaure" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Lavaure_3.jpg" alt="Lavaure" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Lavaure_4.jpg" alt="Lavaure" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_63.html">Retour au département 63 — Puy-de-Dôme</a>
+<div class="fiche">
+<h2>Lavaure</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Lavaure" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_63/63_Lavaure_1.jpg"/><div class="hero-count" id="hero-count">1 / 4</div></div><div class="photo-strip"><img alt="Lavaure" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Lavaure_1.jpg"/><img alt="Lavaure" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Lavaure_2.jpg"/><img alt="Lavaure" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Lavaure_3.jpg"/><img alt="Lavaure" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Lavaure_4.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>63 — Puy-de-Dôme</td></tr>
+<tr><td>Canton</td><td>Lezoux</td></tr>
+<tr><td>Commune</td><td>Neschers</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>LAVAURE,  Édifié en 1710 par Joaquim d'Estaing, évêque de Saint-Flour.                                                                         NESCHERS le premier manoir dit d'Artaud. En 1229 le roi de France restitue des seigneuries occupées par ses hommes à Guillaume, dauphin d'Auvergne, à la condition de raser les châteaux d'Aurière,  Neschers et Plauzat. En 1275,  Pierre de Neschers, écuyer, seigneur. En 1298 Guillaume de Neschers est seigneur, au début du XIVe siècle Neschers est une co-seigneurie, en 1308 Gaston Chambe de Murol et en 1310 Guillaume d'Usson ont des parts. En 1377  Marguerite de  Montespedon est dame de Neschers. Avant 1543, Jacques d'Artaud est seigneur dans la ville de Neschers. En 1551  le château est à son fils Artaud d'Apchon, capitaine du château de Creimps. En 1621, Jeanne d'Artaud le porte par mariage à Guyot de la Rochemonteix, puis   en 1624,  à Hugues de Faydit, en 1633 à Gabriel de Durat et vers 1640, à Jacques d'Estaing.</p>
-      <h4>Architecture</h4><p>Manoir d'Artaud  construit au XVe siècle,  dit des Artauds, â l'angle de la rue Pierre Fournel. Logis sous un crépi jaune accosté d'une tourelle polygonale d'escalier. La porte est sous tympan en tiers point.                                                                                  le château de Lavaure se compose d'un corps de bâtiment principal comportant un rez de chaussée,  un étage noble et un comble à la Mansart, et deux ailes de communs en retour d'équerre sur la cour d'honneur. La cour ainsi déterminée, est fermée par des douves sèches bordées d'une balustrade de pierre et s'ouvre par  une porte en fer forgé  ornée de volutes. Face au château se tient le  bassin  circulaire d'Adam et  d'Eve. Le groupe central y est traité à la manière baroque, avec les 2 personnages drapés disposés symétriquement,  et séparés par diverses plantes stylisées.  Dans le parc se tient la fontaine du Diable, sorte de mur   orné d'une palmette et encadré de deux pilastres cannelés, orné d'une figure grimaçante.  L'intérieur comprend quelques salles lambrissées. La cage d'escalier présente un plafond orné, en motif central d'un médaillon ovale entouré de guirlandes. Quatre atlantes semblent soutenir le plafond.</p>
-      <h4>Habitants / Familles</h4><p>Famille d'Artaud d'Apchon
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Lavaure et de Neschers dit d'Artaud.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>LAVAURE,  Édifié en 1710 par Joaquim d'Estaing, évêque de Saint-Flour.                                                                         NESCHERS le premier manoir dit d'Artaud. En 1229 le roi de France restitue des seigneuries occupées par ses hommes à Guillaume, dauphin d'Auvergne, à la condition de raser les châteaux d'Aurière,  Neschers et Plauzat. En 1275,  Pierre de Neschers, écuyer, seigneur. En 1298 Guillaume de Neschers est seigneur, au début du XIVe siècle Neschers est une co-seigneurie, en 1308 Gaston Chambe de Murol et en 1310 Guillaume d'Usson ont des parts. En 1377  Marguerite de  Montespedon est dame de Neschers. Avant 1543, Jacques d'Artaud est seigneur dans la ville de Neschers. En 1551  le château est à son fils Artaud d'Apchon, capitaine du château de Creimps. En 1621, Jeanne d'Artaud le porte par mariage à Guyot de la Rochemonteix, puis   en 1624,  à Hugues de Faydit, en 1633 à Gabriel de Durat et vers 1640, à Jacques d'Estaing.</p>
+<h4>Architecture</h4><p>Manoir d'Artaud  construit au XVe siècle,  dit des Artauds, â l'angle de la rue Pierre Fournel. Logis sous un crépi jaune accosté d'une tourelle polygonale d'escalier. La porte est sous tympan en tiers point.                                                                                  le château de Lavaure se compose d'un corps de bâtiment principal comportant un rez de chaussée,  un étage noble et un comble à la Mansart, et deux ailes de communs en retour d'équerre sur la cour d'honneur. La cour ainsi déterminée, est fermée par des douves sèches bordées d'une balustrade de pierre et s'ouvre par  une porte en fer forgé  ornée de volutes. Face au château se tient le  bassin  circulaire d'Adam et  d'Eve. Le groupe central y est traité à la manière baroque, avec les 2 personnages drapés disposés symétriquement,  et séparés par diverses plantes stylisées.  Dans le parc se tient la fontaine du Diable, sorte de mur   orné d'une palmette et encadré de deux pilastres cannelés, orné d'une figure grimaçante.  L'intérieur comprend quelques salles lambrissées. La cage d'escalier présente un plafond orné, en motif central d'un médaillon ovale entouré de guirlandes. Quatre atlantes semblent soutenir le plafond.</p>
+<h4>Habitants / Familles</h4><p>Famille d'Artaud d'Apchon
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Lavaure et de Neschers dit d'Artaud.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

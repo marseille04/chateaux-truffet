@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Liorac_Louyre — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,63 +113,61 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_24.html">Dordogne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_24.html">Dordogne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_24.html" class="back-link">Retour au département 24 — Dordogne</a>
-  <div class="fiche">
-    <h2>Liorac_Louyre</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>24 — Dordogne</td></tr>
-          <tr><td>Canton</td><td>Lalinde</td></tr>
-          <tr><td>Commune</td><td>Liorac-sur-Louyre</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI-XVII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>44° 53' 52" Nord, 0° 38' 44" Est.     Garaube  grav-3  GPS : 44° 53' 52" Nord, 0° 38' 4" Est. Carrieux  grav 1-2. Goreille grav-6. Ricardie grav 7. Laroque grav 8. Liorac grav 9.</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_24/24_Liorac_Louyre_1.jpg" alt="Liorac_Louyre" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Liorac_Louyre_2.jpg" alt="Liorac_Louyre" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Liorac_Louyre_3.jpg" alt="Liorac_Louyre" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Liorac_Louyre_4.jpg" alt="Liorac_Louyre" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Liorac_Louyre_5.jpg" alt="Liorac_Louyre" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Liorac_Louyre_6.jpg" alt="Liorac_Louyre" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Liorac_Louyre_7.jpg" alt="Liorac_Louyre" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Liorac_Louyre_8.jpg" alt="Liorac_Louyre" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Liorac_Louyre_9.jpg" alt="Liorac_Louyre" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_24.html">Retour au département 24 — Dordogne</a>
+<div class="fiche">
+<h2>Liorac_Louyre</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Liorac_Louyre" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_24/24_Liorac_Louyre_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Liorac_Louyre" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Liorac_Louyre_1.jpg"/><img alt="Liorac_Louyre" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Liorac_Louyre_2.jpg"/><img alt="Liorac_Louyre" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Liorac_Louyre_3.jpg"/><img alt="Liorac_Louyre" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Liorac_Louyre_4.jpg"/><img alt="Liorac_Louyre" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Liorac_Louyre_5.jpg"/><img alt="Liorac_Louyre" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Liorac_Louyre_6.jpg"/><img alt="Liorac_Louyre" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Liorac_Louyre_7.jpg"/><img alt="Liorac_Louyre" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Liorac_Louyre_8.jpg"/><img alt="Liorac_Louyre" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Liorac_Louyre_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>24 — Dordogne</td></tr>
+<tr><td>Canton</td><td>Lalinde</td></tr>
+<tr><td>Commune</td><td>Liorac-sur-Louyre</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI-XVII</td></tr>
+<tr><td>Coordonnées GPS</td><td>44° 53' 52" Nord, 0° 38' 44" Est.     Garaube  grav-3  GPS : 44° 53' 52" Nord, 0° 38' 4" Est. Carrieux  grav 1-2. Goreille grav-6. Ricardie grav 7. Laroque grav 8. Liorac grav 9.</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Liorac sur Louyre, château de Carrieux, XVIIe siècle, de Garraube, inscrit aux M.H.en 1992, de Genthial du XVIIe siècle, inscrit en 1948, de la Ricardie du XVIe et XIXe siècles, Vieille Roche du XIIe et XVIIe siècles, de la Roche,   manoir de Liorac du XVIIe siècle,  qui présente une tour carrée flanquée d'une tourelle.
-<br>CARRIEUX, bâtisse imposante d'un corps de logis à deux niveaux toit a deux pans accolé de deux pavillons carrés avec tourelles accolées plein cintre extérieurement, et une échauguette sur encorbellement  l'ensemble  recouvert de tuiles sur les retours en équerre sur l'arrière formant une cour avec pavillons en angles.
-<br>La-ROCQUE, chartreuse du XVIe siècle, de plan en T à deux niveaux sur soubassement et série de lucarnes sur comble d'un toit en croupe recouvert d'ardoise, pavillon en retour d'équerre, chambre d'hôte.               GARAUBE date du XVIIe siècle, La famille Valleton fut très présente à Liorac jusqu'au début du XXe siècle, cette famille s'est développée en de multiples branches qui ont habités en France et même à l'étranger. Pour distinguer les différentes lignées à Liorac, le nom de la terre était accolé au patronyme Valleton : on trouve ainsi les Valleton de Boissière, de Garraube, de la Tissanderie, de Carrieux et de la Roque. La continuité d'une branche était assurée par les nombreux fils et l'un d'eux conserve nom et terres. C'est Jean  Valleton de Boissière qui a faitconstruire vers 1650-1680 une partie du château actuel. Depuis, le château a été fortement remanié au XIXe et XXe siècles. En 1940, un incendie accidentel ravagea le château, ce qui nécessita d'importantes restaurations.</p>
-      <h4>Architecture</h4><p>CARRIEUX avec des tourelles ainsi que l'imposante église fortifiée. Sa nef est surmontée d'un refuge et son clocher était autrefois un véritable poste de garde.                                                                              GENTHIAL, date du XVIIe siècle le corps de logis couvert de tuiles et deux bâtiments perpendiculaires délimitent la cour fermée vue depuis le grand portail.   Placées aux angles de la façade Est  deux échauguettes carrées surmontées d'un lanternon. L'une des tourelles a été  construite au XVIIe siècle. Corps de logis régulier à haute toiture de tuile. La partie centrale fait un ressaut sur les deux façades. Puits couvert en pierre du XVIIe siècle. Plusieurs tonnes reposent sur une seule pierre. Contrastant avec le corps de logis, les deux tourelles sont couvertes d'ardoises qui forment d'harmonieux dessins.   GARRAUBE  Le corps de logis a été élargi côté cour et un monumental escalier en pierre a été ajouté côté jardin,et les communs ont été profondément modifiés. Le long bâtiment en diagonale a été démoli et remplacé par un ensemble importantde bâtiments adoptant un plan rectangulaire autour d'une seconde cour qui s'ouvre sur l'extérieur par deux portails. Un autre bâtiment composé de quatre ailes autour d'une cour fermée a été ajouté.</p>
-      <h4>Habitants / Familles</h4><p>Famille Valleton
-<br>        "</p>
-      <h4>Divers</h4><p>A  Liorac-sur-Louyre; Genthial  grav 4-5  GPS : 44° 53' 52" Nord, 0° 38' 44" Est.     Garaube  grav-3  GPS : 44° 53' 52" Nord, 0° 38' 4" Est. Carrieux  grav 1-2. Goreille grav-6. Ricardie grav 7. Laroque grav 8. Liorac grav 9.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Liorac sur Louyre, château de Carrieux, XVIIe siècle, de Garraube, inscrit aux M.H.en 1992, de Genthial du XVIIe siècle, inscrit en 1948, de la Ricardie du XVIe et XIXe siècles, Vieille Roche du XIIe et XVIIe siècles, de la Roche,   manoir de Liorac du XVIIe siècle,  qui présente une tour carrée flanquée d'une tourelle.
+<br/>CARRIEUX, bâtisse imposante d'un corps de logis à deux niveaux toit a deux pans accolé de deux pavillons carrés avec tourelles accolées plein cintre extérieurement, et une échauguette sur encorbellement  l'ensemble  recouvert de tuiles sur les retours en équerre sur l'arrière formant une cour avec pavillons en angles.
+<br/>La-ROCQUE, chartreuse du XVIe siècle, de plan en T à deux niveaux sur soubassement et série de lucarnes sur comble d'un toit en croupe recouvert d'ardoise, pavillon en retour d'équerre, chambre d'hôte.               GARAUBE date du XVIIe siècle, La famille Valleton fut très présente à Liorac jusqu'au début du XXe siècle, cette famille s'est développée en de multiples branches qui ont habités en France et même à l'étranger. Pour distinguer les différentes lignées à Liorac, le nom de la terre était accolé au patronyme Valleton : on trouve ainsi les Valleton de Boissière, de Garraube, de la Tissanderie, de Carrieux et de la Roque. La continuité d'une branche était assurée par les nombreux fils et l'un d'eux conserve nom et terres. C'est Jean  Valleton de Boissière qui a faitconstruire vers 1650-1680 une partie du château actuel. Depuis, le château a été fortement remanié au XIXe et XXe siècles. En 1940, un incendie accidentel ravagea le château, ce qui nécessita d'importantes restaurations.</p>
+<h4>Architecture</h4><p>CARRIEUX avec des tourelles ainsi que l'imposante église fortifiée. Sa nef est surmontée d'un refuge et son clocher était autrefois un véritable poste de garde.                                                                              GENTHIAL, date du XVIIe siècle le corps de logis couvert de tuiles et deux bâtiments perpendiculaires délimitent la cour fermée vue depuis le grand portail.   Placées aux angles de la façade Est  deux échauguettes carrées surmontées d'un lanternon. L'une des tourelles a été  construite au XVIIe siècle. Corps de logis régulier à haute toiture de tuile. La partie centrale fait un ressaut sur les deux façades. Puits couvert en pierre du XVIIe siècle. Plusieurs tonnes reposent sur une seule pierre. Contrastant avec le corps de logis, les deux tourelles sont couvertes d'ardoises qui forment d'harmonieux dessins.   GARRAUBE  Le corps de logis a été élargi côté cour et un monumental escalier en pierre a été ajouté côté jardin,et les communs ont été profondément modifiés. Le long bâtiment en diagonale a été démoli et remplacé par un ensemble importantde bâtiments adoptant un plan rectangulaire autour d'une seconde cour qui s'ouvre sur l'extérieur par deux portails. Un autre bâtiment composé de quatre ailes autour d'une cour fermée a été ajouté.</p>
+<h4>Habitants / Familles</h4><p>Famille Valleton
+<br/>        "</p>
+<h4>Divers</h4><p>A  Liorac-sur-Louyre; Genthial  grav 4-5  GPS : 44° 53' 52" Nord, 0° 38' 44" Est.     Garaube  grav-3  GPS : 44° 53' 52" Nord, 0° 38' 4" Est. Carrieux  grav 1-2. Goreille grav-6. Ricardie grav 7. Laroque grav 8. Liorac grav 9.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

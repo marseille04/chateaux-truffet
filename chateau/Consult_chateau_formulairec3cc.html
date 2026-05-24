@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Meung_sur_Loire — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,61 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_45.html">Loiret</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_45.html">Loiret</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_45.html" class="back-link">Retour au département 45 — Loiret</a>
-  <div class="fiche">
-    <h2>Meung_sur_Loire</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>45 — Loiret</td></tr>
-          <tr><td>Canton</td><td>Meung sur Loire</td></tr>
-          <tr><td>Commune</td><td>Meung sur Loire</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XII-XVIII-XIX-XX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_45/45_Meung_sur_Loire_1.jpg" alt="Meung_sur_Loire" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Meung_sur_Loire_2.jpg" alt="Meung_sur_Loire" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Meung_sur_Loire_3.jpg" alt="Meung_sur_Loire" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Meung_sur_Loire_4.jpg" alt="Meung_sur_Loire" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Meung_sur_Loire_5.jpg" alt="Meung_sur_Loire" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Meung_sur_Loire_6.jpg" alt="Meung_sur_Loire" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Meung_sur_Loire_7.jpg" alt="Meung_sur_Loire" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Meung_sur_Loire_8.jpg" alt="Meung_sur_Loire" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_45.html">Retour au département 45 — Loiret</a>
+<div class="fiche">
+<h2>Meung_sur_Loire</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Meung_sur_Loire" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_45/45_Meung_sur_Loire_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Meung_sur_Loire" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Meung_sur_Loire_1.jpg"/><img alt="Meung_sur_Loire" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Meung_sur_Loire_2.jpg"/><img alt="Meung_sur_Loire" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Meung_sur_Loire_3.jpg"/><img alt="Meung_sur_Loire" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Meung_sur_Loire_4.jpg"/><img alt="Meung_sur_Loire" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Meung_sur_Loire_5.jpg"/><img alt="Meung_sur_Loire" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Meung_sur_Loire_6.jpg"/><img alt="Meung_sur_Loire" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Meung_sur_Loire_7.jpg"/><img alt="Meung_sur_Loire" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Meung_sur_Loire_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>45 — Loiret</td></tr>
+<tr><td>Canton</td><td>Meung sur Loire</td></tr>
+<tr><td>Commune</td><td>Meung sur Loire</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XII-XVIII-XIX-XX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>A Meung  dans cet article, la Lilardière, Marais , Mouche  et Meung.                                                                                                   LILARDIERE, du XVIII-XXe siècle  était appelé les Lilas, demeure d'architecture classique est composée d'un corps de logis à cinq travées, à un étage carré et un étage de comble éclairé par de hautes lucarnes en pierre, élégamment coiffées de frontons cintrés et leurs piédroits sont ornés de moulures. Le bâtiment principal est prolongé de deux ailes en rez-de-chaussée, avec toits à la Mansart. Les chaînages et les encadrements des baies sont en pierre de taille, disposées en parpaings et boutisses. On peut voir dans le parc une pittoresque tour crénelée abritant le château d'eau, Le château Les Lilas, racheté en 1978, a été transformé en une maison de retraite médicalisée.  
-<br>MARAIS La seigneurie des Marais possédait dès le Moyen Âge le moulin  (construit vers 1064), puis au XVIe siècle, les moulins de Farou et de Pantin, sur les Mauves. Le premier seigneur connu des Marais est Euverte Hatte (qui fit construire à Orléans l'hôtel Euverte-Hatte, Centre Charles-Péguy). Le domaine resta dans la famille jusque vers 1670, époque à laquelle il passe à Claude Joly, chantre et chanoine de Notre-Dame de Paris. En 1712, la seigneurie échoit à Charles François d'Arsac. En 1769, elle appartient à Pierre Sinson de Sévestreville, seigneur de Bel Air. Il existait aux Marais un château féodal, dont restent deux grosses tours carrées. Au XVIIe siècle, une demeure de plaisance remplace le château, avec une chapelle consacrée en 1682 par Mgr de Coislin. La chapelle et la demeure sont toujours là dans un parc aménagé à la fin du XIXe siècle et traversé par la rivière les  deux Mauves.</p>
-      <h4>Architecture</h4><p>MEUNG sur LOIRE,  est la résidence des Evêques d'Orléans, seigneurs de Meung, qui furent maîtres d'ouvrage de toutes les campagnes de construction. Le premier château, adossé à la Collégiale a été construit pour Manassès de Garlande, évêque de 1146 à 1185. Manassès de Seignelay évêque de 1207 à 1221 fait construire à quelques mètres du château primitif un nouveau château. C'est un grand corps rectangulaire cantonné d'une tour à chaque angle, trois sont encore visibles, la quatrième a été noyée dans les adjonctions du XVIIIe siècle. Au début du XVIe siècle, le corps du XIIIe a été doublé et une tour d'entrée (l'emplacement du pont-levis est encore visible). On doit la façade du XVIIIe siècle, sur le parc, à Fleuriau d'Armonville (évêque de 1716 à 1733) qui fit dresser une nouvelle façade postérieure et commanda d'importants agrandissements, puis Louis Sextius de Jarente de la Bruyère, évêque de 1758 à 1788. Exilé à Meung en 1768 après la disgrâce de Choiseul, il fit ajouter la chapelle et le vestibule, dus sans doute à Louis François Trouard, grand maître actif à la Cathédrale d'Orléans de 1765 à 1773 et un pavillon de jardin (attribué à Louis-Denis Le Camus, architecte du duc de Choiseul à Chanteloup, près d'Amboise) classement par arrêté du 26 janvier 2004. Propriété de madame G. Douchement.                                                                       MOUCHE, du XVIIIe siècle, chambres d'hôtes de Jean-Jacques et Milène Perrody.</p>
-      <h4>Habitants / Familles</h4><p>Evêques d'Orléans
-<br>        "</p>
-      <h4>Divers</h4><p>A Meung sur loire , la Lilardière grav-1, Marais Grav-2 , Mouche grav-3-4  et Meung  grav-5-6-7  Mariau grav-8                                                 Mariau 47° 49' 45" nord, 1° 43' 52" est                                       Meung  47° 49' 24" nord, 1° 41' 39" est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>A Meung  dans cet article, la Lilardière, Marais , Mouche  et Meung.                                                                                                   LILARDIERE, du XVIII-XXe siècle  était appelé les Lilas, demeure d'architecture classique est composée d'un corps de logis à cinq travées, à un étage carré et un étage de comble éclairé par de hautes lucarnes en pierre, élégamment coiffées de frontons cintrés et leurs piédroits sont ornés de moulures. Le bâtiment principal est prolongé de deux ailes en rez-de-chaussée, avec toits à la Mansart. Les chaînages et les encadrements des baies sont en pierre de taille, disposées en parpaings et boutisses. On peut voir dans le parc une pittoresque tour crénelée abritant le château d'eau, Le château Les Lilas, racheté en 1978, a été transformé en une maison de retraite médicalisée.  
+<br/>MARAIS La seigneurie des Marais possédait dès le Moyen Âge le moulin  (construit vers 1064), puis au XVIe siècle, les moulins de Farou et de Pantin, sur les Mauves. Le premier seigneur connu des Marais est Euverte Hatte (qui fit construire à Orléans l'hôtel Euverte-Hatte, Centre Charles-Péguy). Le domaine resta dans la famille jusque vers 1670, époque à laquelle il passe à Claude Joly, chantre et chanoine de Notre-Dame de Paris. En 1712, la seigneurie échoit à Charles François d'Arsac. En 1769, elle appartient à Pierre Sinson de Sévestreville, seigneur de Bel Air. Il existait aux Marais un château féodal, dont restent deux grosses tours carrées. Au XVIIe siècle, une demeure de plaisance remplace le château, avec une chapelle consacrée en 1682 par Mgr de Coislin. La chapelle et la demeure sont toujours là dans un parc aménagé à la fin du XIXe siècle et traversé par la rivière les  deux Mauves.</p>
+<h4>Architecture</h4><p>MEUNG sur LOIRE,  est la résidence des Evêques d'Orléans, seigneurs de Meung, qui furent maîtres d'ouvrage de toutes les campagnes de construction. Le premier château, adossé à la Collégiale a été construit pour Manassès de Garlande, évêque de 1146 à 1185. Manassès de Seignelay évêque de 1207 à 1221 fait construire à quelques mètres du château primitif un nouveau château. C'est un grand corps rectangulaire cantonné d'une tour à chaque angle, trois sont encore visibles, la quatrième a été noyée dans les adjonctions du XVIIIe siècle. Au début du XVIe siècle, le corps du XIIIe a été doublé et une tour d'entrée (l'emplacement du pont-levis est encore visible). On doit la façade du XVIIIe siècle, sur le parc, à Fleuriau d'Armonville (évêque de 1716 à 1733) qui fit dresser une nouvelle façade postérieure et commanda d'importants agrandissements, puis Louis Sextius de Jarente de la Bruyère, évêque de 1758 à 1788. Exilé à Meung en 1768 après la disgrâce de Choiseul, il fit ajouter la chapelle et le vestibule, dus sans doute à Louis François Trouard, grand maître actif à la Cathédrale d'Orléans de 1765 à 1773 et un pavillon de jardin (attribué à Louis-Denis Le Camus, architecte du duc de Choiseul à Chanteloup, près d'Amboise) classement par arrêté du 26 janvier 2004. Propriété de madame G. Douchement.                                                                       MOUCHE, du XVIIIe siècle, chambres d'hôtes de Jean-Jacques et Milène Perrody.</p>
+<h4>Habitants / Familles</h4><p>Evêques d'Orléans
+<br/>        "</p>
+<h4>Divers</h4><p>A Meung sur loire , la Lilardière grav-1, Marais Grav-2 , Mouche grav-3-4  et Meung  grav-5-6-7  Mariau grav-8                                                 Mariau 47° 49' 45" nord, 1° 43' 52" est                                       Meung  47° 49' 24" nord, 1° 41' 39" est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

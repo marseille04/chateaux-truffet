@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Nazelles_Négron — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,62 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_37.html">Indre-et-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_37.html">Indre-et-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_37.html" class="back-link">Retour au département 37 — Indre-et-Loire</a>
-  <div class="fiche">
-    <h2>Nazelles_Négron</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
-          <tr><td>Canton</td><td>Amboise</td></tr>
-          <tr><td>Commune</td><td>Nazelles-Négron</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_37/37_Nazelles_N%c3%a9gron_1.jpg" alt="Nazelles_Négron" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Nazelles_N%c3%a9gron_2.jpg" alt="Nazelles_Négron" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Nazelles_N%c3%a9gron_3.jpg" alt="Nazelles_Négron" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Nazelles_N%c3%a9gron_4.jpg" alt="Nazelles_Négron" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Nazelles_N%c3%a9gron_5.jpg" alt="Nazelles_Négron" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Nazelles_N%c3%a9gron_6.jpg" alt="Nazelles_Négron" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Nazelles_N%c3%a9gron_7.jpg" alt="Nazelles_Négron" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Nazelles_N%c3%a9gron_8.jpg" alt="Nazelles_Négron" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Nazelles_N%c3%a9gron_9.jpg" alt="Nazelles_Négron" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_37.html">Retour au département 37 — Indre-et-Loire</a>
+<div class="fiche">
+<h2>Nazelles_Négron</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Nazelles_Négron" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_37/37_Nazelles_N%c3%a9gron_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Nazelles_Négron" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Nazelles_N%c3%a9gron_1.jpg"/><img alt="Nazelles_Négron" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Nazelles_N%c3%a9gron_2.jpg"/><img alt="Nazelles_Négron" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Nazelles_N%c3%a9gron_3.jpg"/><img alt="Nazelles_Négron" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Nazelles_N%c3%a9gron_4.jpg"/><img alt="Nazelles_Négron" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Nazelles_N%c3%a9gron_5.jpg"/><img alt="Nazelles_Négron" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Nazelles_N%c3%a9gron_6.jpg"/><img alt="Nazelles_Négron" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Nazelles_N%c3%a9gron_7.jpg"/><img alt="Nazelles_Négron" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Nazelles_N%c3%a9gron_8.jpg"/><img alt="Nazelles_Négron" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Nazelles_N%c3%a9gron_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
+<tr><td>Canton</td><td>Amboise</td></tr>
+<tr><td>Commune</td><td>Nazelles-Négron</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>trois châteaux à Nazelles-Negron dont celui de Nazelles, de la Huberdière est un ancien rendez-vous de chasse du XVIIe siècle , des Ormeaux et celui de Perreux.  A cinq kilomètres au sud-Est le château de Noizay.                                                        NAZELLES, au Ve siècle, Nazelles appartenait à Saint-Martin de Tours. Par la suite, il devint châtellenie relevant d'Azay le Rideau. En 1245, il devient la propriété d'un chevalier, Philippe de Nazelles. En 1520, Thomas Bohier, bâtisseur de Chenonceaux, en est propriétaire et édifie le logis seigneurial à cette époque. Primitivement, l'accès  se faisait par la porte nord en plein cintre, qui ouvrait sur une cour intérieure. L'escalier était à l'extérieur et il reste toujours le balcon en bois qui servait de palier. Au XVIIIe siècle, un chemin est réalisé devant la façade sud et un passage voûté, établi au rez-de-chaussée de l'édifice prolongé à l'est par un pavillon carré. En 1950, Mme Develle, propriétaire, racheta  les dépendances du château morcelé au XVIIIe siècle afin de lui rendre son unité originale. A sa mort, la propriété sera achetée par M. Richard, architecte, qui entreprit des travaux de rénovation intérieure et extérieure. Depuis 1999, les propriétaires actuels uvrent à sa sauvegarde, sa restauration et sa mise en valeur.</p>
-      <h4>Architecture</h4><p>NOIZAY, est un bel exemple d'un château-hôtel, membre des Relais & châteaux. Le château de Noizay est de style Renaissance. Sa construction date de 1520. Il a été entièrement rénové en 1989. Il fut le fief des protestants durant la conjuration d'Amboise en 1560. a servit de repaire à Castelneau l'un des conjurés d'Amboise Le château de Noizay possède un Jardin à la Française. Propriétaire la famille Léon André.                                                                      ORMEAUX, commence au XVIIe siècle avec le poète Paul Scarron, premier mari de la marquise de Maintenon. Il acquiert le domaine où subsiste une tour, dernier vestige de l'époque médiévale. C'est le comte Charles de Gaigneron de Marolles qui construit un siècle plus tard, en 1830, le château actuel des Ormeaux.                                                               PERREUX, construit au début du XVIIIe siècle, il est doté dun rez de chaussée troglodytique et dun réseau de passages souterrains qui sétend sous le parc. Il fut totalement remanié dans le style Louis XIII au XIXe siècle par François Valentin Thomas, collaborateur du baron Haussmann. Jardin avec terrasse en terre-plein et allée irrégulière. La composition d'ensemble est de qualité et rehaussée par la présence d'arbres exotiques et l'utilisation de la rocaille pour le décor des grottes artificielles, de l'aquarium et de la serre. Hôtel avec suites.</p>
-      <h4>Habitants / Familles</h4><p>Nazelles Famille de Mme Develle                                            Noizay;  famille Léon André,                                               Ormeaux; poète Paul Scarron,                                         Perreux;François Valentin Thomas,
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>à Nazelles-Negron dont celui de Nazelles grav-1, de la Huberdière grav-2   des ormeaux grav-4 et celui de Perreux grav-5-6,                                                                                                 Noizay grav-3.  Noizay  47° 22' 16" Nord et 0° 31' 01' Est                                                                                        Ormeaux 47° 25' 39? nord, 0° 55' 48? est    Source grav 7                          Valliere grav 8-9</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>trois châteaux à Nazelles-Negron dont celui de Nazelles, de la Huberdière est un ancien rendez-vous de chasse du XVIIe siècle , des Ormeaux et celui de Perreux.  A cinq kilomètres au sud-Est le château de Noizay.                                                        NAZELLES, au Ve siècle, Nazelles appartenait à Saint-Martin de Tours. Par la suite, il devint châtellenie relevant d'Azay le Rideau. En 1245, il devient la propriété d'un chevalier, Philippe de Nazelles. En 1520, Thomas Bohier, bâtisseur de Chenonceaux, en est propriétaire et édifie le logis seigneurial à cette époque. Primitivement, l'accès  se faisait par la porte nord en plein cintre, qui ouvrait sur une cour intérieure. L'escalier était à l'extérieur et il reste toujours le balcon en bois qui servait de palier. Au XVIIIe siècle, un chemin est réalisé devant la façade sud et un passage voûté, établi au rez-de-chaussée de l'édifice prolongé à l'est par un pavillon carré. En 1950, Mme Develle, propriétaire, racheta  les dépendances du château morcelé au XVIIIe siècle afin de lui rendre son unité originale. A sa mort, la propriété sera achetée par M. Richard, architecte, qui entreprit des travaux de rénovation intérieure et extérieure. Depuis 1999, les propriétaires actuels uvrent à sa sauvegarde, sa restauration et sa mise en valeur.</p>
+<h4>Architecture</h4><p>NOIZAY, est un bel exemple d'un château-hôtel, membre des Relais &amp; châteaux. Le château de Noizay est de style Renaissance. Sa construction date de 1520. Il a été entièrement rénové en 1989. Il fut le fief des protestants durant la conjuration d'Amboise en 1560. a servit de repaire à Castelneau l'un des conjurés d'Amboise Le château de Noizay possède un Jardin à la Française. Propriétaire la famille Léon André.                                                                      ORMEAUX, commence au XVIIe siècle avec le poète Paul Scarron, premier mari de la marquise de Maintenon. Il acquiert le domaine où subsiste une tour, dernier vestige de l'époque médiévale. C'est le comte Charles de Gaigneron de Marolles qui construit un siècle plus tard, en 1830, le château actuel des Ormeaux.                                                               PERREUX, construit au début du XVIIIe siècle, il est doté dun rez de chaussée troglodytique et dun réseau de passages souterrains qui sétend sous le parc. Il fut totalement remanié dans le style Louis XIII au XIXe siècle par François Valentin Thomas, collaborateur du baron Haussmann. Jardin avec terrasse en terre-plein et allée irrégulière. La composition d'ensemble est de qualité et rehaussée par la présence d'arbres exotiques et l'utilisation de la rocaille pour le décor des grottes artificielles, de l'aquarium et de la serre. Hôtel avec suites.</p>
+<h4>Habitants / Familles</h4><p>Nazelles Famille de Mme Develle                                            Noizay;  famille Léon André,                                               Ormeaux; poète Paul Scarron,                                         Perreux;François Valentin Thomas,
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>à Nazelles-Negron dont celui de Nazelles grav-1, de la Huberdière grav-2   des ormeaux grav-4 et celui de Perreux grav-5-6,                                                                                                 Noizay grav-3.  Noizay  47° 22' 16" Nord et 0° 31' 01' Est                                                                                        Ormeaux 47° 25' 39? nord, 0° 55' 48? est    Source grav 7                          Valliere grav 8-9</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

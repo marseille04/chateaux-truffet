@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Grabatoire — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,55 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_72.html">Sarthe</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_72.html">Sarthe</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_72.html" class="back-link">Retour au département 72 — Sarthe</a>
-  <div class="fiche">
-    <h2>Grabatoire</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>72 — Sarthe</td></tr>
-          <tr><td>Canton</td><td>Le Mans</td></tr>
-          <tr><td>Commune</td><td>Le Mans</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_72/72_Grabatoire_1.jpg" alt="Grabatoire" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Grabatoire_2.jpg" alt="Grabatoire" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Grabatoire_3.jpg" alt="Grabatoire" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_72.html">Retour au département 72 — Sarthe</a>
+<div class="fiche">
+<h2>Grabatoire</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Grabatoire" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_72/72_Grabatoire_1.jpg"/><div class="hero-count" id="hero-count">1 / 3</div></div><div class="photo-strip"><img alt="Grabatoire" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Grabatoire_1.jpg"/><img alt="Grabatoire" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Grabatoire_2.jpg"/><img alt="Grabatoire" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Grabatoire_3.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>72 — Sarthe</td></tr>
+<tr><td>Canton</td><td>Le Mans</td></tr>
+<tr><td>Commune</td><td>Le Mans</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>GRABATOIRE; des membres du Chapitre Saint-Julien du Mans,  dun ancien hôpital qui l'y aurait précédé, sa construction, étirée sur plus de vingt ans, pu enfin s'achever grâce à une transaction survenue le 30 décembre 1542 entre Anselme Taron  comme héritier de son oncle, le chanoine Jacques de Courthardy et le chapitre appelé à couvrir la grande majorité des frais, n'en acquit la pleine propriété que l'année suivante, sans y apporter les lucarnes prévues : celles-ci ne furent ajoutées qu'en 1906. Dès son achèvement cette maison coloniale, fut habité par le chanoine M. de Quincé. En 1562, après la mise à sac de la cathédrale par les protestants, y fut établi une salle capitulaire. En 1567, les greniers du bâtiment servirent à amasser le grain pour le ravitaillement de la ville. En 1572, ce fut au tour, Anselme Taron, de venir sy installer. Mais il fut vite remplacé par Étienne Roy qui y mourut en 1579. En 1585, la ville fut  le nouveau locataire du bâtiment. En 1612, le maréchal de Lavardin y reçut le jeune Louis XIII et sa mère Marie de Médicis, de passage dans la ville.  Durant cette période, le Grabatoire fut séparé en deux parties : le fond de la cour, habité par le chanoine Fay, et le pavillon du Grabatoire où demeure Jean-Charles de la Briffe-Ponsan. Le 13 août 1791, la partie occupée par le chanoine Fay fut vendue comme bien national  à un notaire du Mans, Guy-Jean-François Martigné. Le pavillon fut finalement acheté par le même notaire, le 7 novembre 1791, sans pour autant que ses locataires religieux en fussent chassés. Le 24 septembre 1794, il céda lédifice au chanoine Fay, qui en fit rapidement don en 1795 à François Lambert, un proche parent, ancien avocat au siège présidial.</p>
-      <h4>Architecture</h4><p>GRABATOIRE restait cependant un logis inachevé, les dissensions nées durant sa construction ayant empêché la réalisation des lucarnes[citation nécessaire]. Lorsque labbé Bruneau acquit lédifice en 1895, il fit ériger deux lucarnes à croisée et de petits clochetons à la naissance du toit de la grosse tourelle. En même temps, fut appuyé au grand pignon nord, un appentis terminé en terrasse[citation nécessaire]. L'ensemble fut restauré en 1906 et 1907 et les enduits anciens, dont ceux en fausse-coupe de pierre du XVIe siècle, malheureusement, furent remplacés par un rejointoiement "rustique" contraire à l'esprit origine de ce bel hôtel urbain. La restauration de 2014 a rétabli, sous la maîtrise duvre de l'Architecte du Patrimoine Laurent Cohin, sa vêture d'enduit conforme aux dispositions primitives. La maison est composée dun grand pavillon à deux étages, prolongé vers louest par une aile moins élevée et terminée par un pignon aux rampants assisés. En retour d'équerre vers le nord, un corps de bâtiment moins important, au toit moins élevé, possède aussi des pignons découverts aux rampants assisés. Deux tourelles polygonales renferment les escaliers desservant les étages de cette double habitation. La façade du pavillon est percée de trois fenêtres superposées. La même disposition règne sur la façade en retour sur la cour. Celle-ci possède cependant deux ouvertures latérales en plus, celle du 1er étage date de la fin du XVIe siècle, alors que celle du second est contemporaine des travaux de restauration au début du XXe siècle. À lorigine toutes les fenêtres étaient recoupées par des croisées en pierre. Toutes disparues au XVIIIe siècle à une époque où la lumière était particulièrement recherchée, ont été restituées lors des travaux du début du XXe siècle.</p>
-      <h4>Habitants / Familles</h4><p>le maréchal de Lavardin
-<br>        "</p>
-      <h4>Divers</h4><p>Au Mans château de Grabatoire.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>GRABATOIRE; des membres du Chapitre Saint-Julien du Mans,  dun ancien hôpital qui l'y aurait précédé, sa construction, étirée sur plus de vingt ans, pu enfin s'achever grâce à une transaction survenue le 30 décembre 1542 entre Anselme Taron  comme héritier de son oncle, le chanoine Jacques de Courthardy et le chapitre appelé à couvrir la grande majorité des frais, n'en acquit la pleine propriété que l'année suivante, sans y apporter les lucarnes prévues : celles-ci ne furent ajoutées qu'en 1906. Dès son achèvement cette maison coloniale, fut habité par le chanoine M. de Quincé. En 1562, après la mise à sac de la cathédrale par les protestants, y fut établi une salle capitulaire. En 1567, les greniers du bâtiment servirent à amasser le grain pour le ravitaillement de la ville. En 1572, ce fut au tour, Anselme Taron, de venir sy installer. Mais il fut vite remplacé par Étienne Roy qui y mourut en 1579. En 1585, la ville fut  le nouveau locataire du bâtiment. En 1612, le maréchal de Lavardin y reçut le jeune Louis XIII et sa mère Marie de Médicis, de passage dans la ville.  Durant cette période, le Grabatoire fut séparé en deux parties : le fond de la cour, habité par le chanoine Fay, et le pavillon du Grabatoire où demeure Jean-Charles de la Briffe-Ponsan. Le 13 août 1791, la partie occupée par le chanoine Fay fut vendue comme bien national  à un notaire du Mans, Guy-Jean-François Martigné. Le pavillon fut finalement acheté par le même notaire, le 7 novembre 1791, sans pour autant que ses locataires religieux en fussent chassés. Le 24 septembre 1794, il céda lédifice au chanoine Fay, qui en fit rapidement don en 1795 à François Lambert, un proche parent, ancien avocat au siège présidial.</p>
+<h4>Architecture</h4><p>GRABATOIRE restait cependant un logis inachevé, les dissensions nées durant sa construction ayant empêché la réalisation des lucarnes[citation nécessaire]. Lorsque labbé Bruneau acquit lédifice en 1895, il fit ériger deux lucarnes à croisée et de petits clochetons à la naissance du toit de la grosse tourelle. En même temps, fut appuyé au grand pignon nord, un appentis terminé en terrasse[citation nécessaire]. L'ensemble fut restauré en 1906 et 1907 et les enduits anciens, dont ceux en fausse-coupe de pierre du XVIe siècle, malheureusement, furent remplacés par un rejointoiement "rustique" contraire à l'esprit origine de ce bel hôtel urbain. La restauration de 2014 a rétabli, sous la maîtrise duvre de l'Architecte du Patrimoine Laurent Cohin, sa vêture d'enduit conforme aux dispositions primitives. La maison est composée dun grand pavillon à deux étages, prolongé vers louest par une aile moins élevée et terminée par un pignon aux rampants assisés. En retour d'équerre vers le nord, un corps de bâtiment moins important, au toit moins élevé, possède aussi des pignons découverts aux rampants assisés. Deux tourelles polygonales renferment les escaliers desservant les étages de cette double habitation. La façade du pavillon est percée de trois fenêtres superposées. La même disposition règne sur la façade en retour sur la cour. Celle-ci possède cependant deux ouvertures latérales en plus, celle du 1er étage date de la fin du XVIe siècle, alors que celle du second est contemporaine des travaux de restauration au début du XXe siècle. À lorigine toutes les fenêtres étaient recoupées par des croisées en pierre. Toutes disparues au XVIIIe siècle à une époque où la lumière était particulièrement recherchée, ont été restituées lors des travaux du début du XXe siècle.</p>
+<h4>Habitants / Familles</h4><p>le maréchal de Lavardin
+<br/>        "</p>
+<h4>Divers</h4><p>Au Mans château de Grabatoire.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

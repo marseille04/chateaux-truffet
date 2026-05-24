@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Maronnes — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,57 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_14.html">Calvados</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_14.html">Calvados</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_14.html" class="back-link">Retour au département 14 — Calvados</a>
-  <div class="fiche">
-    <h2>Maronnes</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>14 — Calvados</td></tr>
-          <tr><td>Canton</td><td>Courseulles-sur-Mer</td></tr>
-          <tr><td>Commune</td><td>Meuvaines</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII-XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_14/14_Maronnes_1.jpg" alt="Maronnes" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_14/14_Maronnes_2.jpg" alt="Maronnes" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_14/14_Maronnes_3.jpg" alt="Maronnes" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_14/14_Maronnes_4.jpg" alt="Maronnes" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_14/14_Maronnes_5.jpg" alt="Maronnes" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_14.html">Retour au département 14 — Calvados</a>
+<div class="fiche">
+<h2>Maronnes</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Maronnes" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_14/14_Maronnes_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Maronnes" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Maronnes_1.jpg"/><img alt="Maronnes" class="" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Maronnes_2.jpg"/><img alt="Maronnes" class="" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Maronnes_3.jpg"/><img alt="Maronnes" class="" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Maronnes_4.jpg"/><img alt="Maronnes" class="" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Maronnes_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>14 — Calvados</td></tr>
+<tr><td>Canton</td><td>Courseulles-sur-Mer</td></tr>
+<tr><td>Commune</td><td>Meuvaines</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII-XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>MARONNES, du XVIIIe siècle, au XIIIe siècle peuplé de riches propriétaires terriens  d'où les sept manoirs figurant sur le cadastre de 1809 dont quatre occupent encore la partie nord du bourg ; en 1390, première mention du havre d'Heurtault, petit port a l'embouchure de la Gronde qui connaît une activité intense au XVIe siècle ; il disparaît en 1676 entraînant le déclin progressif des hameaux du Marais et des Roquettes dont les dernières demeures ont été détruites pendant la guerre de 1940-1945 ; du hameau de Maronnes, qui était encore assez étendu en 1809 et dont la chapelle fut fermée à la Révolution, ne subsistent plus que quelques maisons et le château. Le fief de Maronnes dépendait au XVIIe siècle de celui de Meuvaines, de cette époque subsiste un corps de logement secondaire; logis reconstruit pour la famille de Grimouville, attribuable à Jacques Moussard architecte bayeusain (1747 sur la façade arrière), à la même époque édification du corps des remises et écuries, des douves et peut-être creusement du canal; au XIXe siècle, ce dernier est comblé, un nouveau corps de remise et d'écuries est construit, le corps de logement secondaire est remanié, le jardin transformé en parc paysager et les douves en étang; en 1924  le bâtiment en rez de chaussée accostant le logis au sud est est converti en pavillon d'un étage ; hangar ajouté en 1936 ou 1937 contre le mur extérieur du potager, deuxième hangar ajouté plus tard à l'intérieur de ce dernier.</p>
-      <h4>Architecture</h4><p>MEUVAINES,  du XVIIe siècle, château fort est mentionné à Meuvaines au XIVe siècle. Le château actuel a été bâti pour la famille de la Niepce, noblesse de robe à Caen : corps de logis portant la date 1669, corps de communs dit le petit château élevé au même moment; tout le domaine semble avoir alors été restructuré autour de la grande avenue axiale. Au XVIIIe siècle modification du logis pour la famille de la Rivière qui réalise l'élévation d'un étage et la reconstruction du perron. Travaux pour la famille de Savignac: communs en cours de transformation en 1809 d'après les matrices cadastrales, avec la surélévation du logement central d'un étage attique puis le remaniement complet des remises et écuries latérales, c'est probablement à ce moment qu'ils reçoivent l'enduit rouge qui leur vaudra l'appellation de petit château rouge; entre 1809 et 1834, quinconce planté devant l'entrée, cour d'honneur aménagée en jardin paysager et douves latérales comblées, la douve séparant le jardin de l'avenue simplifiée en hémicycle. Vers 1960 construction de deux pavillons en bordure de la douve d'entrée; la grille d'entrée a été installée en 1978; logis et anciens communs forment aujourd'hui deux propriétés différentes. Corps de logis : cuisine voûtée en sous-sol, escalier rampe sur rampe dans-oeuvre, façades nord et sud ordonnancées, fenêtres du sous-sol et du rez-de-chaussée à plate bande en bossage extradossée en escalier ; communs : corps central de logement à un étage carré plus un étage attique, corps latéraux contenant remises et écuries au rez-de-chaussée et logements à l'étage, escalier dans-oeuvre tournant à retours avec jour renforcé par des colonnes dans le corps latéral est, façades nord et sud ordonnancées.</p>
-      <h4>Habitants / Familles</h4><p>Maronnes, famille de Grimouville,                                                     Meuvaines famille de la Niepce
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Maronnes trav-1-2 à Meuvaines gps 49° 19' 41" nord, 0° 33' 55" ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>MARONNES, du XVIIIe siècle, au XIIIe siècle peuplé de riches propriétaires terriens  d'où les sept manoirs figurant sur le cadastre de 1809 dont quatre occupent encore la partie nord du bourg ; en 1390, première mention du havre d'Heurtault, petit port a l'embouchure de la Gronde qui connaît une activité intense au XVIe siècle ; il disparaît en 1676 entraînant le déclin progressif des hameaux du Marais et des Roquettes dont les dernières demeures ont été détruites pendant la guerre de 1940-1945 ; du hameau de Maronnes, qui était encore assez étendu en 1809 et dont la chapelle fut fermée à la Révolution, ne subsistent plus que quelques maisons et le château. Le fief de Maronnes dépendait au XVIIe siècle de celui de Meuvaines, de cette époque subsiste un corps de logement secondaire; logis reconstruit pour la famille de Grimouville, attribuable à Jacques Moussard architecte bayeusain (1747 sur la façade arrière), à la même époque édification du corps des remises et écuries, des douves et peut-être creusement du canal; au XIXe siècle, ce dernier est comblé, un nouveau corps de remise et d'écuries est construit, le corps de logement secondaire est remanié, le jardin transformé en parc paysager et les douves en étang; en 1924  le bâtiment en rez de chaussée accostant le logis au sud est est converti en pavillon d'un étage ; hangar ajouté en 1936 ou 1937 contre le mur extérieur du potager, deuxième hangar ajouté plus tard à l'intérieur de ce dernier.</p>
+<h4>Architecture</h4><p>MEUVAINES,  du XVIIe siècle, château fort est mentionné à Meuvaines au XIVe siècle. Le château actuel a été bâti pour la famille de la Niepce, noblesse de robe à Caen : corps de logis portant la date 1669, corps de communs dit le petit château élevé au même moment; tout le domaine semble avoir alors été restructuré autour de la grande avenue axiale. Au XVIIIe siècle modification du logis pour la famille de la Rivière qui réalise l'élévation d'un étage et la reconstruction du perron. Travaux pour la famille de Savignac: communs en cours de transformation en 1809 d'après les matrices cadastrales, avec la surélévation du logement central d'un étage attique puis le remaniement complet des remises et écuries latérales, c'est probablement à ce moment qu'ils reçoivent l'enduit rouge qui leur vaudra l'appellation de petit château rouge; entre 1809 et 1834, quinconce planté devant l'entrée, cour d'honneur aménagée en jardin paysager et douves latérales comblées, la douve séparant le jardin de l'avenue simplifiée en hémicycle. Vers 1960 construction de deux pavillons en bordure de la douve d'entrée; la grille d'entrée a été installée en 1978; logis et anciens communs forment aujourd'hui deux propriétés différentes. Corps de logis : cuisine voûtée en sous-sol, escalier rampe sur rampe dans-oeuvre, façades nord et sud ordonnancées, fenêtres du sous-sol et du rez-de-chaussée à plate bande en bossage extradossée en escalier ; communs : corps central de logement à un étage carré plus un étage attique, corps latéraux contenant remises et écuries au rez-de-chaussée et logements à l'étage, escalier dans-oeuvre tournant à retours avec jour renforcé par des colonnes dans le corps latéral est, façades nord et sud ordonnancées.</p>
+<h4>Habitants / Familles</h4><p>Maronnes, famille de Grimouville,                                                     Meuvaines famille de la Niepce
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Maronnes trav-1-2 à Meuvaines gps 49° 19' 41" nord, 0° 33' 55" ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

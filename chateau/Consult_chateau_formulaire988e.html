@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Crest_Creste — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,61 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_63.html">Puy-de-Dôme</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_63.html">Puy-de-Dôme</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_63.html" class="back-link">Retour au département 63 — Puy-de-Dôme</a>
-  <div class="fiche">
-    <h2>Crest_Creste</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>63 — Puy-de-Dôme</td></tr>
-          <tr><td>Canton</td><td>Veyre-Monton</td></tr>
-          <tr><td>Commune</td><td>Le Crest</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_63/63_Crest_Creste_1.jpg" alt="Crest_Creste" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Crest_Creste_2.jpg" alt="Crest_Creste" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Crest_Creste_3.jpg" alt="Crest_Creste" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Crest_Creste_4.jpg" alt="Crest_Creste" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Crest_Creste_5.jpg" alt="Crest_Creste" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Crest_Creste_6.jpg" alt="Crest_Creste" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Crest_Creste_7.jpg" alt="Crest_Creste" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Crest_Creste_8.jpg" alt="Crest_Creste" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_63.html">Retour au département 63 — Puy-de-Dôme</a>
+<div class="fiche">
+<h2>Crest_Creste</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Crest_Creste" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_63/63_Crest_Creste_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Crest_Creste" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Crest_Creste_1.jpg"/><img alt="Crest_Creste" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Crest_Creste_2.jpg"/><img alt="Crest_Creste" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Crest_Creste_3.jpg"/><img alt="Crest_Creste" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Crest_Creste_4.jpg"/><img alt="Crest_Creste" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Crest_Creste_5.jpg"/><img alt="Crest_Creste" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Crest_Creste_6.jpg"/><img alt="Crest_Creste" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Crest_Creste_7.jpg"/><img alt="Crest_Creste" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Crest_Creste_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>63 — Puy-de-Dôme</td></tr>
+<tr><td>Canton</td><td>Veyre-Monton</td></tr>
+<tr><td>Commune</td><td>Le Crest</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>CREST (le), en 980 est connu Aymuin, l'ancêtre de la famille, témoin d'une donation à Cluny par le vicomte de Clermont.   Vers 1017, son fils Elie est dit seigneur du château du Crest . En 1111, un autre Elie est chevalier de l'oppidum du Crest,  terme qui désigne une agglomération fortifiée,  un village est dès lors associé au château. En 1215 Helias du Crest fait hommage au dauphin pour son château. Dans la première moitié du XIIIe siècle le château est toujours à la famille éponyme, se transmettant le prénom Elie. En 1249, une partie du château est passée à un collatéral Robert de Lantoiol, qui se dit seigneur. En 1262 le comte dauphin Robert II fait hommage à Alphonse de Poitiers (frère de St Louis), apanagé de la "Terre d'Auvergne", pour le château tenu par les héritiers du Crest. Le Crest est alors devenu une co-seigneurie divisée en deux parts aux mains des gendres,  les Lantoiol, dont héritent  les Bussières, d'une part et les Saint Floret d'autre part. En 1278 est mentionnée la chapelle du château. En 1299, Géraud de Bussières  est seigneur de Châlus et co-seigneur du  Crest  pour moitié;  en 1303 et 1307 il est dit seigneur de Châlus, du Crest et de Saint-Agoulin. En 1452, Henri et Jean Bour sont châtelains et disposent d'une résidence  dans l'enceinte du château. La famille des seigneurs du Crest s'éteignit vers le milieu du XIIIe siècle.
-<br>Rien à voir  avec le château dans la commune du Creste  canton de Champeix qui au XIIe siècle, Durand de Crestes, seigneur attesté en 1199 au XIIIe siècle 1262, Robert, Dauphin d'Auvergne, rend foi-hommage au Prince Alphonse de Poitiers pour Crestes qu'il reconnut tenir de lui en arrière fief.  Au  XVIe siècle, seigneurie est à la famille d'Apchier, Baron puis marquis de Montbrun au XVII-XVIIIe siècle seigneurie à la famille de Bosredon, Sénéchal de Clermont en 1789 .</p>
-      <h4>Architecture</h4><p>Château-fort de Crest  ruiné situé sur une butte isolée dominant le village, tour cylindrique surmontée d'une cloche (c'est le flanquement d'une enceinte) et base d'une autre tour. Dès la première moitié du XIe siècle et jusque dans les années 1700, Le Crest était une place forte ceinte de trois puissants remparts successifs comme le montre le dessin de Guillaume Revel daté de 1450.  Ce village est bâti à l'extrémité de la Montagne de la Serre. Il est dominé par une tour, seul vestige d'une place forte, ceinte de trois puissants remparts successifs comme l'a montré le dessin de Guillaume Revel daté du XVe siècle. De la tour, on bénéficie d'un vaste panorama sur le plateau de Gergovie au nord, la vallée de l'Allier et le Livradois à l'est, le Massif du Sancy au sud, et la Chaîne des Puys à l'Ouest.                                                            Creste, forteresse dont je n'ai pas d'historique.</p>
-      <h4>Habitants / Familles</h4><p>Famille d'Helias du Crest
-<br>        "</p>
-      <h4>Divers</h4><p>Châteaufort de Crest avec sa tour de l'horloge et ses vestiges,  et sa forteresse de Creste.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>CREST (le), en 980 est connu Aymuin, l'ancêtre de la famille, témoin d'une donation à Cluny par le vicomte de Clermont.   Vers 1017, son fils Elie est dit seigneur du château du Crest . En 1111, un autre Elie est chevalier de l'oppidum du Crest,  terme qui désigne une agglomération fortifiée,  un village est dès lors associé au château. En 1215 Helias du Crest fait hommage au dauphin pour son château. Dans la première moitié du XIIIe siècle le château est toujours à la famille éponyme, se transmettant le prénom Elie. En 1249, une partie du château est passée à un collatéral Robert de Lantoiol, qui se dit seigneur. En 1262 le comte dauphin Robert II fait hommage à Alphonse de Poitiers (frère de St Louis), apanagé de la "Terre d'Auvergne", pour le château tenu par les héritiers du Crest. Le Crest est alors devenu une co-seigneurie divisée en deux parts aux mains des gendres,  les Lantoiol, dont héritent  les Bussières, d'une part et les Saint Floret d'autre part. En 1278 est mentionnée la chapelle du château. En 1299, Géraud de Bussières  est seigneur de Châlus et co-seigneur du  Crest  pour moitié;  en 1303 et 1307 il est dit seigneur de Châlus, du Crest et de Saint-Agoulin. En 1452, Henri et Jean Bour sont châtelains et disposent d'une résidence  dans l'enceinte du château. La famille des seigneurs du Crest s'éteignit vers le milieu du XIIIe siècle.
+<br/>Rien à voir  avec le château dans la commune du Creste  canton de Champeix qui au XIIe siècle, Durand de Crestes, seigneur attesté en 1199 au XIIIe siècle 1262, Robert, Dauphin d'Auvergne, rend foi-hommage au Prince Alphonse de Poitiers pour Crestes qu'il reconnut tenir de lui en arrière fief.  Au  XVIe siècle, seigneurie est à la famille d'Apchier, Baron puis marquis de Montbrun au XVII-XVIIIe siècle seigneurie à la famille de Bosredon, Sénéchal de Clermont en 1789 .</p>
+<h4>Architecture</h4><p>Château-fort de Crest  ruiné situé sur une butte isolée dominant le village, tour cylindrique surmontée d'une cloche (c'est le flanquement d'une enceinte) et base d'une autre tour. Dès la première moitié du XIe siècle et jusque dans les années 1700, Le Crest était une place forte ceinte de trois puissants remparts successifs comme le montre le dessin de Guillaume Revel daté de 1450.  Ce village est bâti à l'extrémité de la Montagne de la Serre. Il est dominé par une tour, seul vestige d'une place forte, ceinte de trois puissants remparts successifs comme l'a montré le dessin de Guillaume Revel daté du XVe siècle. De la tour, on bénéficie d'un vaste panorama sur le plateau de Gergovie au nord, la vallée de l'Allier et le Livradois à l'est, le Massif du Sancy au sud, et la Chaîne des Puys à l'Ouest.                                                            Creste, forteresse dont je n'ai pas d'historique.</p>
+<h4>Habitants / Familles</h4><p>Famille d'Helias du Crest
+<br/>        "</p>
+<h4>Divers</h4><p>Châteaufort de Crest avec sa tour de l'horloge et ses vestiges,  et sa forteresse de Creste.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

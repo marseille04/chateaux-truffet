@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Belvès — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,64 +113,62 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_24.html">Dordogne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_24.html">Dordogne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_24.html" class="back-link">Retour au département 24 — Dordogne</a>
-  <div class="fiche">
-    <h2>Belvès</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>24 — Dordogne</td></tr>
-          <tr><td>Canton</td><td>Belvès</td></tr>
-          <tr><td>Commune</td><td>Belvès</td></tr>
-          <tr><td>Type d'édifice</td><td>Patrimoine</td></tr>
-          <tr><td>Période d'origine</td><td>XI--XVI</td></tr>
-          <tr><td>Coordonnées GPS</td><td>44° 46' 34,3" Nord, 1° 00' 20,5" Est Garv 1-7-8-9,                                              Campagnac grav 2-3-4-5. Conti grav 6.</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_24/24_Belv%c3%a8s_1.jpg" alt="Belvès" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Belv%c3%a8s_2.jpg" alt="Belvès" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Belv%c3%a8s_3.jpg" alt="Belvès" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Belv%c3%a8s_4.jpg" alt="Belvès" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Belv%c3%a8s_5.jpg" alt="Belvès" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Belv%c3%a8s_6.jpg" alt="Belvès" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Belv%c3%a8s_7.jpg" alt="Belvès" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Belv%c3%a8s_8.jpg" alt="Belvès" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Belv%c3%a8s_9.jpg" alt="Belvès" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_24.html">Retour au département 24 — Dordogne</a>
+<div class="fiche">
+<h2>Belvès</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Belvès" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_24/24_Belv%c3%a8s_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Belvès" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Belv%c3%a8s_1.jpg"/><img alt="Belvès" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Belv%c3%a8s_2.jpg"/><img alt="Belvès" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Belv%c3%a8s_3.jpg"/><img alt="Belvès" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Belv%c3%a8s_4.jpg"/><img alt="Belvès" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Belv%c3%a8s_5.jpg"/><img alt="Belvès" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Belv%c3%a8s_6.jpg"/><img alt="Belvès" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Belv%c3%a8s_7.jpg"/><img alt="Belvès" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Belv%c3%a8s_8.jpg"/><img alt="Belvès" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Belv%c3%a8s_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>24 — Dordogne</td></tr>
+<tr><td>Canton</td><td>Belvès</td></tr>
+<tr><td>Commune</td><td>Belvès</td></tr>
+<tr><td>Type d'édifice</td><td>Patrimoine</td></tr>
+<tr><td>Période d'origine</td><td>XI--XVI</td></tr>
+<tr><td>Coordonnées GPS</td><td>44° 46' 34,3" Nord, 1° 00' 20,5" Est Garv 1-7-8-9,                                              Campagnac grav 2-3-4-5. Conti grav 6.</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>BELVES, les Duquesne, propriétaires du château, ont décidé de l'ouvrir au public sur une période très courte (20 août au 30 septembre) afin de faire découvrir la chambre des fresques datant du XVe siècle.  Le beffroi date du XIe siècle et a été surélevé d'un clocher au XVe siècle.  La tour de l'Archevêque était le lieu d'habitation du seigneur de Belvès Bertrand de Goth sacré pape Clément V en 1305.
-<br>La tour de l'Auditoire, ou de l'Auditeur, est un ancien donjon du XIe siècle. Celle-ci a été recouverte au XVIe siècle pour en faire un pigeonnier. La tour du Guet édifiée au XIIIe siècle.
-<br> PECH GAUDOU : ce manoir a été construit à partir du XIIe siècle et a été modifié du XIVe au XIXe siècle. Au XVIe siècle, il appartenait à la famille de Commarque qui a combattu du côté protestant. Henri de Navarre  a été reçu par Anet de Commarque en 1577.              CONTI, chartreuse de St-Germain de Belvés, cest à Conty quHenri Lasserre, journaliste de renom sous le Second Empire, écrit le livre Notre Dame de Lourdes, plus fort tirage littéraire de tout le XIXe siècle. Laissée à labandon en 1944, la chartreuse est occupée par des résistants qui y séquestrent le châtelain de Montfort, M. Mercier, avant de lexécuter sous prétexte de collaboration.                                                     CAMPAGNAC, à trois Km à l'ouest à St-Pardoux de Vielvic, Campagnac, sils ont avant tout cherché à créer un bâtiment fortifié, les fondateurs du château nont pas négligé son aspect esthétique. Cet édifice présente une architecture très élégante qui s'inscrit dans un beau cadre sylvestre: les logis en équerre sont soudés par une tour polygonale d'escalier remontant à la Renaissance et ils sont flanqués d'un donjon carré à mâchicoulis et d'une importante tour circulaire. Le château possède encore sa chapelle et une vieille tour du XIIe siècle qui fut un poste de surveillance des troupes anglaises sur la vallée de la Couze. C'était au XVIIe siècle le fief des Roux de Lusson. En 1760, ce repaire noble avait haute justice sur Bouillac,la Sauvetat et Vielvic</p>
-      <h4>Architecture</h4><p>BELVES construit au début du XIVe siècle, est agrandi au XIXe siècle avec ladjonction dune tour au sud et de pièces assurant la liaison avec le logis médiéval.  Cest à partir de cette période que le nouvel ensemble est nommé « château de Belvès ». Il est aussi connu sous le nom de « Hôtel de Commarque ».   C'est un ancien établissement templier. La construction du château date du XVIe siècle. Des peintures murales de la deuxième moitié du XVe siècle ont été découvertes en 2011. Cette maison date du XVIe siècle qui a, au rez-de-chaussée, quatre arcatures en arcs brisés, les fenêtres sont à meneaux moulurées et sculptées. Une Tour ronde se situe sur l'autre façade. Latrines ou bretèches extérieures. Sa restauration et sa porte date de la fin du XIXe siècle, est inscrit aux M.H. depuis le 6/12/1948. 
-<br>CONTI, la chartreuse, construite au XVIIIe siècle sur le haut dune colline, présente une façade de sept travées et des baies galbées encadrent la porte axiale qui inscrit son chambranle entre deux pilastres. Elle est bâtie dans la deuxième moitié du XVIIIe siècle par Xavier Lescure qui y meurt en 1822. Il laisse trois fils, Jean, Pierre et Jean-Étienne qui sont devenus respectivement maire de Saint-Germain, prêtre de Saint-Germain et garde dhonneur de la Dordogne. Elle est entourée dun jardin qui correspond à lidéal esthétique du XVIIIe siècle, composé de buis de cyprès ou encore de lauriers roses. Un petit vignoble y est ajouté au début du XXe siècle.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Commarque                                                  Famille de Xavier Lescure
-<br>        "</p>
-      <h4>Divers</h4><p>Patrimoine de Belvès GPS : 44° 46' 34,3" Nord, 1° 00' 20,5" Est Garv 1-7-8-9,                                              Campagnac grav 2-3-4-5. Conti grav 6.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>BELVES, les Duquesne, propriétaires du château, ont décidé de l'ouvrir au public sur une période très courte (20 août au 30 septembre) afin de faire découvrir la chambre des fresques datant du XVe siècle.  Le beffroi date du XIe siècle et a été surélevé d'un clocher au XVe siècle.  La tour de l'Archevêque était le lieu d'habitation du seigneur de Belvès Bertrand de Goth sacré pape Clément V en 1305.
+<br/>La tour de l'Auditoire, ou de l'Auditeur, est un ancien donjon du XIe siècle. Celle-ci a été recouverte au XVIe siècle pour en faire un pigeonnier. La tour du Guet édifiée au XIIIe siècle.
+<br/> PECH GAUDOU : ce manoir a été construit à partir du XIIe siècle et a été modifié du XIVe au XIXe siècle. Au XVIe siècle, il appartenait à la famille de Commarque qui a combattu du côté protestant. Henri de Navarre  a été reçu par Anet de Commarque en 1577.              CONTI, chartreuse de St-Germain de Belvés, cest à Conty quHenri Lasserre, journaliste de renom sous le Second Empire, écrit le livre Notre Dame de Lourdes, plus fort tirage littéraire de tout le XIXe siècle. Laissée à labandon en 1944, la chartreuse est occupée par des résistants qui y séquestrent le châtelain de Montfort, M. Mercier, avant de lexécuter sous prétexte de collaboration.                                                     CAMPAGNAC, à trois Km à l'ouest à St-Pardoux de Vielvic, Campagnac, sils ont avant tout cherché à créer un bâtiment fortifié, les fondateurs du château nont pas négligé son aspect esthétique. Cet édifice présente une architecture très élégante qui s'inscrit dans un beau cadre sylvestre: les logis en équerre sont soudés par une tour polygonale d'escalier remontant à la Renaissance et ils sont flanqués d'un donjon carré à mâchicoulis et d'une importante tour circulaire. Le château possède encore sa chapelle et une vieille tour du XIIe siècle qui fut un poste de surveillance des troupes anglaises sur la vallée de la Couze. C'était au XVIIe siècle le fief des Roux de Lusson. En 1760, ce repaire noble avait haute justice sur Bouillac,la Sauvetat et Vielvic</p>
+<h4>Architecture</h4><p>BELVES construit au début du XIVe siècle, est agrandi au XIXe siècle avec ladjonction dune tour au sud et de pièces assurant la liaison avec le logis médiéval.  Cest à partir de cette période que le nouvel ensemble est nommé « château de Belvès ». Il est aussi connu sous le nom de « Hôtel de Commarque ».   C'est un ancien établissement templier. La construction du château date du XVIe siècle. Des peintures murales de la deuxième moitié du XVe siècle ont été découvertes en 2011. Cette maison date du XVIe siècle qui a, au rez-de-chaussée, quatre arcatures en arcs brisés, les fenêtres sont à meneaux moulurées et sculptées. Une Tour ronde se situe sur l'autre façade. Latrines ou bretèches extérieures. Sa restauration et sa porte date de la fin du XIXe siècle, est inscrit aux M.H. depuis le 6/12/1948. 
+<br/>CONTI, la chartreuse, construite au XVIIIe siècle sur le haut dune colline, présente une façade de sept travées et des baies galbées encadrent la porte axiale qui inscrit son chambranle entre deux pilastres. Elle est bâtie dans la deuxième moitié du XVIIIe siècle par Xavier Lescure qui y meurt en 1822. Il laisse trois fils, Jean, Pierre et Jean-Étienne qui sont devenus respectivement maire de Saint-Germain, prêtre de Saint-Germain et garde dhonneur de la Dordogne. Elle est entourée dun jardin qui correspond à lidéal esthétique du XVIIIe siècle, composé de buis de cyprès ou encore de lauriers roses. Un petit vignoble y est ajouté au début du XXe siècle.</p>
+<h4>Habitants / Familles</h4><p>Famille de Commarque                                                  Famille de Xavier Lescure
+<br/>        "</p>
+<h4>Divers</h4><p>Patrimoine de Belvès GPS : 44° 46' 34,3" Nord, 1° 00' 20,5" Est Garv 1-7-8-9,                                              Campagnac grav 2-3-4-5. Conti grav 6.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

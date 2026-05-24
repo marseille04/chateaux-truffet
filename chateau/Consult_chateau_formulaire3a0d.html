@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Anglès_Tarn — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,62 +113,61 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_81.html">Tarn</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_81.html">Tarn</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_81.html" class="back-link">Retour au département 81 — Tarn</a>
-  <div class="fiche">
-    <h2>Anglès_Tarn</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>81 — Tarn</td></tr>
-          <tr><td>Canton</td><td>Anglès</td></tr>
-          <tr><td>Commune</td><td>Anglès_du_Tarn</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_81/81_Angles_Tarn_1.jpg" alt="Anglès_Tarn" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_81/81_Angles_Tarn_2.jpg" alt="Anglès_Tarn" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_81/81_Angles_Tarn_3.jpg" alt="Anglès_Tarn" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_81/81_Angles_Tarn_4.jpg" alt="Anglès_Tarn" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_81/81_Angles_Tarn_5.jpg" alt="Anglès_Tarn" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_81/81_Angles_Tarn_6.jpg" alt="Anglès_Tarn" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_81/81_Angles_Tarn_7.jpg" alt="Anglès_Tarn" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_81.html">Retour au département 81 — Tarn</a>
+<div class="fiche">
+<h2>Anglès_Tarn</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Anglès_Tarn" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_81/81_Angles_Tarn_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Anglès_Tarn" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Angles_Tarn_1.jpg"/><img alt="Anglès_Tarn" class="" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Angles_Tarn_2.jpg"/><img alt="Anglès_Tarn" class="" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Angles_Tarn_3.jpg"/><img alt="Anglès_Tarn" class="" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Angles_Tarn_4.jpg"/><img alt="Anglès_Tarn" class="" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Angles_Tarn_5.jpg"/><img alt="Anglès_Tarn" class="" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Angles_Tarn_6.jpg"/><img alt="Anglès_Tarn" class="" loading="lazy" onclick="setHero(this)" src="../image/image_81/81_Angles_Tarn_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>81 — Tarn</td></tr>
+<tr><td>Canton</td><td>Anglès</td></tr>
+<tr><td>Commune</td><td>Anglès_du_Tarn</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Plusieurs châteaux à Anglès du Tarn, de Boutaric, de Campan du XIe-XVIIe siècle (voir article ), de Cors, de Ginestous, de Larembergue, de Lasfaillades et de Redondet du XVI-XIXe siècle.                                 BOUTARIC; pas d'information historique.                     CORS, le domaine est une donation de madame Nonez-Lopez à une association qui s'occupe de l'enfance. Cette propriété est rentrée dans le patrimoine de l'AEP en 2000. Le projet se présente en trois volets sur 6 ans en faisant travailler les artisans locaux et en partenariat avec les collectivités locales. Le volet social avec l'organisation de séjour pour les enfants. Le second volet est la formation en partenariat avec le lycée forestier du haut Languedoc et le lycée du bois et de l'ameublement de Revel. Le troisième volet est touristique avec l'organisation de classe verte et de séminaires.                                                  GINESTOUS pas d'information historique. LAREMBERQUE en société de Jacques François pas d'autre information.                                                REDONDET   En 1567, le lieutenant du vicomte de Paulin, chef des protestants, était Jacques de La Roque, propriétaire du Redondet. Durant tout le XVIIIe siècle, on continue de rencontrer au Redondet, les La Roque, né en 1770, Paul de La Roque d'Oulès suivit les autres officiers de son régiment en émigration, tandis que son propre frère  Jean-Louis  se rangea aux côtés des républicains. En 1832, on trouve Paul de La Roque d'Oulès, qui en fait était rentré très vite de son émigration et avait vécu caché durant les heures sombres de la Terreur.                                            LASFAILLADES est un village qui a son chef-lieu au hameau du Bouisset. Là, se trouvent la mairie, le cimetière et l'église dédiée à Notre-Dame des Neiges devenue paroisse le 17 septembre 1877. répartis en plusieurs hameaux ou lieux-dits , la communauté dépendait de la sénéchaussée et du diocèse de Castres.A l'origine, la municipalité faisait partie du canton de Brassac mais en 1846, elle passe au canton d'Anglès. L'orthographe de la commune a évolué au fil des ans : Lasfaillades, Les Feuillades, Les Faillades pour ne conserver que la première appellation de nos jours. C'est le pays de la montagne, des forêts et de l'eau vive avec le lac des Saints-Peyres qui se trouve à proximité. La verdure et la fraîcheur mettent une note de calme et de bien-être.</p>
-      <h4>Architecture</h4><p>A Anglès l'ancienne porte de la ville dite le Portail Bas, construite au XVIIe siècle a été inscrite monument historique le 19 octobre 1927.
-<br>Le château de Campan dont la fondation date du XIe siècle. Il présente une façade sud embellie au XVIIe siècle. Il est inscrit au monument historique par arrêté du 17 mai 1961.                                                             Cors,  la réfection de la toiture du  XVIe siècle du château pour le mettre hors eau, le nettoyage des abords des bâtiments par les élèves du lycée forestier et la réhabilitation de l'ancienne bergerie en structure d'accueil, une salle commune, à l'étage les sanitaires et plus tard une salle de conférences et de projection. Les autres bâtiments seront presque tous conservés comme la maison du gardien qui accueillera par la suite un couple assurant l'entretien et le gardiennage du site. Cette façade se compose d'un pavillon central non saillant flanqué d'ailes latérales plus basses et à gauche de cette solide composition vient s'appuyer une imposante tour carrée de la même hauteur que le pavillon central. A gauche de cette tour  d'autres  corps de bâtiment. Bien qu'une grande partie des différents corps de logis du Redondet soit de fondation très ancienne, notamment la grosse tour carrée, il est évident qu'il a reçu des remaniements et trouvé son ordonnance régulière aux XVIIIe et XIXe siècles.</p>
-      <h4>Habitants / Familles</h4><p>Madame Nonez-Lopez                                          Famille de Paul de La Roque d'Oulès 
-<br>        
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>A Anglès, plusieurs châteaux, de Boutaric, de Campan , de Cors, de Ginestous, de Larembergue, de Lasfaillades et de Redondet.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Plusieurs châteaux à Anglès du Tarn, de Boutaric, de Campan du XIe-XVIIe siècle (voir article ), de Cors, de Ginestous, de Larembergue, de Lasfaillades et de Redondet du XVI-XIXe siècle.                                 BOUTARIC; pas d'information historique.                     CORS, le domaine est une donation de madame Nonez-Lopez à une association qui s'occupe de l'enfance. Cette propriété est rentrée dans le patrimoine de l'AEP en 2000. Le projet se présente en trois volets sur 6 ans en faisant travailler les artisans locaux et en partenariat avec les collectivités locales. Le volet social avec l'organisation de séjour pour les enfants. Le second volet est la formation en partenariat avec le lycée forestier du haut Languedoc et le lycée du bois et de l'ameublement de Revel. Le troisième volet est touristique avec l'organisation de classe verte et de séminaires.                                                  GINESTOUS pas d'information historique. LAREMBERQUE en société de Jacques François pas d'autre information.                                                REDONDET   En 1567, le lieutenant du vicomte de Paulin, chef des protestants, était Jacques de La Roque, propriétaire du Redondet. Durant tout le XVIIIe siècle, on continue de rencontrer au Redondet, les La Roque, né en 1770, Paul de La Roque d'Oulès suivit les autres officiers de son régiment en émigration, tandis que son propre frère  Jean-Louis  se rangea aux côtés des républicains. En 1832, on trouve Paul de La Roque d'Oulès, qui en fait était rentré très vite de son émigration et avait vécu caché durant les heures sombres de la Terreur.                                            LASFAILLADES est un village qui a son chef-lieu au hameau du Bouisset. Là, se trouvent la mairie, le cimetière et l'église dédiée à Notre-Dame des Neiges devenue paroisse le 17 septembre 1877. répartis en plusieurs hameaux ou lieux-dits , la communauté dépendait de la sénéchaussée et du diocèse de Castres.A l'origine, la municipalité faisait partie du canton de Brassac mais en 1846, elle passe au canton d'Anglès. L'orthographe de la commune a évolué au fil des ans : Lasfaillades, Les Feuillades, Les Faillades pour ne conserver que la première appellation de nos jours. C'est le pays de la montagne, des forêts et de l'eau vive avec le lac des Saints-Peyres qui se trouve à proximité. La verdure et la fraîcheur mettent une note de calme et de bien-être.</p>
+<h4>Architecture</h4><p>A Anglès l'ancienne porte de la ville dite le Portail Bas, construite au XVIIe siècle a été inscrite monument historique le 19 octobre 1927.
+<br/>Le château de Campan dont la fondation date du XIe siècle. Il présente une façade sud embellie au XVIIe siècle. Il est inscrit au monument historique par arrêté du 17 mai 1961.                                                             Cors,  la réfection de la toiture du  XVIe siècle du château pour le mettre hors eau, le nettoyage des abords des bâtiments par les élèves du lycée forestier et la réhabilitation de l'ancienne bergerie en structure d'accueil, une salle commune, à l'étage les sanitaires et plus tard une salle de conférences et de projection. Les autres bâtiments seront presque tous conservés comme la maison du gardien qui accueillera par la suite un couple assurant l'entretien et le gardiennage du site. Cette façade se compose d'un pavillon central non saillant flanqué d'ailes latérales plus basses et à gauche de cette solide composition vient s'appuyer une imposante tour carrée de la même hauteur que le pavillon central. A gauche de cette tour  d'autres  corps de bâtiment. Bien qu'une grande partie des différents corps de logis du Redondet soit de fondation très ancienne, notamment la grosse tour carrée, il est évident qu'il a reçu des remaniements et trouvé son ordonnance régulière aux XVIIIe et XIXe siècles.</p>
+<h4>Habitants / Familles</h4><p>Madame Nonez-Lopez                                          Famille de Paul de La Roque d'Oulès 
+<br/>
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>A Anglès, plusieurs châteaux, de Boutaric, de Campan , de Cors, de Ginestous, de Larembergue, de Lasfaillades et de Redondet.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

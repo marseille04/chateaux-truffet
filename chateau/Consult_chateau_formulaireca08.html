@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Broglie — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,53 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_27.html">Eure</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_27.html">Eure</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_27.html" class="back-link">Retour au département 27 — Eure</a>
-  <div class="fiche">
-    <h2>Broglie</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>27 — Eure</td></tr>
-          <tr><td>Canton</td><td>Breteuil</td></tr>
-          <tr><td>Commune</td><td>Broglie</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVIII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>49° 00' 31" Nord, 0° 31' 35" Est</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_27/27_Broglie_1.jpg" alt="Broglie" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_27.html">Retour au département 27 — Eure</a>
+<div class="fiche">
+<h2>Broglie</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Broglie" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_27/27_Broglie_1.jpg"/><div class="hero-count" id="hero-count">1 / 1</div></div><div class="photo-strip"><img alt="Broglie" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_27/27_Broglie_1.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>27 — Eure</td></tr>
+<tr><td>Canton</td><td>Breteuil</td></tr>
+<tr><td>Commune</td><td>Broglie</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVIII</td></tr>
+<tr><td>Coordonnées GPS</td><td>49° 00' 31" Nord, 0° 31' 35" Est</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>BROGLIE,  Il avait été attribué par Guillaume le Conquérant à l'un de ses compagnons d'armes, Henri II de Ferrières, qui avait pris une part active à la conquête de l'Angleterre. En 1071, délaissant le berceau ancestral de Ferrières-Saint-Hilaire, les premiers barons fossiers de Normandie, ainsi dénommés car ils avaient le droit d'ouvrir sur leurs terres des fosses à charbon et à minerai, s'installèrent à Chambrais. Le roi d'Angleterre, Jean sans Terre y résida en 1199 et à plusieurs reprises en 1203. Pendant la guerre de Cent ans, le château, qui était entre les mains des Anglais, fut repris à la fin du XIVe siècle, par les armées de Bertrand du Guesclin. Forcé de capituler une deuxième fois, en 1418, il fut libéré, 30 ans plus tard, par Jean d'Orléans, comte de Dunois, compagnon de Jeanne d'Arc. En 1589 les protestants et les ligueurs dévastèrent Chambrais ; le duc de Montpensier s'en empara en 1590. Par succession, la baronnie de Chambrais-Ferrières échut aux familles d'Arces, des Ursins et de Conflans. Elle fut acquise en 1653 par Charles Le comte de Nonant, frère du bâtisseur de Beaumesnil, et en 1682 par Simon Arnauld, marquis de Pomponne, ministre d'État sous Louis XIV, ami de la marquise de Sévigné. Simon Arnauld réaménagea le château féodal. Son fils, Nicolas Arnauld, vendit le domaine en 1716 à François Marie, comte de Broglie. Des perspectives de hêtres furent aménagées..</p>
-      <h4>Architecture</h4><p>BROGLIE, dominant la vallée, le château fut bâti sur les fondements d'une ancienne forteresse romaine, toujours propriété des Broglie, l'actuel château ne représente que la moitié de celui du XVIIIe siècle. Son pavillon d'entrée porte le nom de François Mérimée, intendant du maréchal de Broglie, grand père de l'écrivain et d'Augustin Fresnel. L'empereur Joseph II, en 1777, puis le futur tsar Paul 1er en 1782, vinrent à Broglie. Pillé et incendié sous la Révolution, il fut restauré vers 1820, par Victor de Broglie, qui aménagea les bibliothèques pour abriter les livres de Mme de Staël venus de Coppet. De nombreux ouvrages politiques et scientifiques furent ajoutés, l'ensemble constitue aujourd'hui une collection privée, unique en France, de soixante mille volumes. Éléments protégés MH : les façades et les toitures du château et des communs, le hall d'entrée, l'escalier avec sa cage et sa rampe, la chapelle, la bibliothèque des ministres, la bibliothèque de madame de Stael, le grand salon dit salon bleu, avec leur décor : inscription par arrêté du 25 février 1974.</p>
-      <h4>Habitants / Familles</h4><p>Famille de  Victor de Broglie
-<br>        "</p>
-      <h4>Divers</h4><p>Boglie     GPS : 49° 00' 31" Nord, 0° 31' 35" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>BROGLIE,  Il avait été attribué par Guillaume le Conquérant à l'un de ses compagnons d'armes, Henri II de Ferrières, qui avait pris une part active à la conquête de l'Angleterre. En 1071, délaissant le berceau ancestral de Ferrières-Saint-Hilaire, les premiers barons fossiers de Normandie, ainsi dénommés car ils avaient le droit d'ouvrir sur leurs terres des fosses à charbon et à minerai, s'installèrent à Chambrais. Le roi d'Angleterre, Jean sans Terre y résida en 1199 et à plusieurs reprises en 1203. Pendant la guerre de Cent ans, le château, qui était entre les mains des Anglais, fut repris à la fin du XIVe siècle, par les armées de Bertrand du Guesclin. Forcé de capituler une deuxième fois, en 1418, il fut libéré, 30 ans plus tard, par Jean d'Orléans, comte de Dunois, compagnon de Jeanne d'Arc. En 1589 les protestants et les ligueurs dévastèrent Chambrais ; le duc de Montpensier s'en empara en 1590. Par succession, la baronnie de Chambrais-Ferrières échut aux familles d'Arces, des Ursins et de Conflans. Elle fut acquise en 1653 par Charles Le comte de Nonant, frère du bâtisseur de Beaumesnil, et en 1682 par Simon Arnauld, marquis de Pomponne, ministre d'État sous Louis XIV, ami de la marquise de Sévigné. Simon Arnauld réaménagea le château féodal. Son fils, Nicolas Arnauld, vendit le domaine en 1716 à François Marie, comte de Broglie. Des perspectives de hêtres furent aménagées..</p>
+<h4>Architecture</h4><p>BROGLIE, dominant la vallée, le château fut bâti sur les fondements d'une ancienne forteresse romaine, toujours propriété des Broglie, l'actuel château ne représente que la moitié de celui du XVIIIe siècle. Son pavillon d'entrée porte le nom de François Mérimée, intendant du maréchal de Broglie, grand père de l'écrivain et d'Augustin Fresnel. L'empereur Joseph II, en 1777, puis le futur tsar Paul 1er en 1782, vinrent à Broglie. Pillé et incendié sous la Révolution, il fut restauré vers 1820, par Victor de Broglie, qui aménagea les bibliothèques pour abriter les livres de Mme de Staël venus de Coppet. De nombreux ouvrages politiques et scientifiques furent ajoutés, l'ensemble constitue aujourd'hui une collection privée, unique en France, de soixante mille volumes. Éléments protégés MH : les façades et les toitures du château et des communs, le hall d'entrée, l'escalier avec sa cage et sa rampe, la chapelle, la bibliothèque des ministres, la bibliothèque de madame de Stael, le grand salon dit salon bleu, avec leur décor : inscription par arrêté du 25 février 1974.</p>
+<h4>Habitants / Familles</h4><p>Famille de  Victor de Broglie
+<br/>        "</p>
+<h4>Divers</h4><p>Boglie     GPS : 49° 00' 31" Nord, 0° 31' 35" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

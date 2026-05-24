@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Montreuil_sur_mer — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_62.html">Pas-de-Calais</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_62.html">Pas-de-Calais</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_62.html" class="back-link">Retour au département 62 — Pas-de-Calais</a>
-  <div class="fiche">
-    <h2>Montreuil_sur_mer</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>62 — Pas-de-Calais</td></tr>
-          <tr><td>Canton</td><td>Berck</td></tr>
-          <tr><td>Commune</td><td>Montreuil sur mer</td></tr>
-          <tr><td>Type d'édifice</td><td>Vestiges  château</td></tr>
-          <tr><td>Période d'origine</td><td>XVIII-XX</td></tr>
-          <tr><td>Coordonnées GPS</td><td>50° 27' 53" Nord, 1° 45' 47" Est</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_62/62_Montreuil_sur_mer_1.jpg" alt="Montreuil_sur_mer" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Montreuil_sur_mer_2.jpg" alt="Montreuil_sur_mer" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Montreuil_sur_mer_3.jpg" alt="Montreuil_sur_mer" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Montreuil_sur_mer_4.jpg" alt="Montreuil_sur_mer" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Montreuil_sur_mer_5.jpg" alt="Montreuil_sur_mer" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Montreuil_sur_mer_6.jpg" alt="Montreuil_sur_mer" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Montreuil_sur_mer_7.jpg" alt="Montreuil_sur_mer" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_62.html">Retour au département 62 — Pas-de-Calais</a>
+<div class="fiche">
+<h2>Montreuil_sur_mer</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Montreuil_sur_mer" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_62/62_Montreuil_sur_mer_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Montreuil_sur_mer" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Montreuil_sur_mer_1.jpg"/><img alt="Montreuil_sur_mer" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Montreuil_sur_mer_2.jpg"/><img alt="Montreuil_sur_mer" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Montreuil_sur_mer_3.jpg"/><img alt="Montreuil_sur_mer" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Montreuil_sur_mer_4.jpg"/><img alt="Montreuil_sur_mer" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Montreuil_sur_mer_5.jpg"/><img alt="Montreuil_sur_mer" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Montreuil_sur_mer_6.jpg"/><img alt="Montreuil_sur_mer" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Montreuil_sur_mer_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>62 — Pas-de-Calais</td></tr>
+<tr><td>Canton</td><td>Berck</td></tr>
+<tr><td>Commune</td><td>Montreuil sur mer</td></tr>
+<tr><td>Type d'édifice</td><td>Vestiges  château</td></tr>
+<tr><td>Période d'origine</td><td>XVIII-XX</td></tr>
+<tr><td>Coordonnées GPS</td><td>50° 27' 53" Nord, 1° 45' 47" Est</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Trois châteaux dans cet article la Calotterie  la Citadelle de Montreuil et d'Hesmond.                                                                                                CALOTTERIE, situé en milieu rural, à l'écart du village, à flanc de coteau, dans un cadre magnifique; le château se détache sur un fond boisé. Ce château, construit au XXe siècle, a cherché à imiter le style du début du XVIIe siècle. L'édifice comprend un corps de bâtiment rectangulaire présentant un avant-corps central à trois pans coiffé d'une haute toiture pyramidale. Il a été réalisé en pierre et brique ; la première constitue les chaînages d'angle, les pilastres à refends séparant les travées, au nombre de deux, de part et d'autre de l'avant-corps, les cordons horizontaux courant au-dessous et au-dessus des fenêtres de l'étage supérieur, les encadrements de celles-ci et de leurs allèges, enfin la corniche; la brique ne constitue que le remplissage des cadres ainsi déterminés. Les cinq lucarnes ont été coiffées d'un fronton triangulaire. Sur la droite, une aile un peu plus basse et légèrement en retrait a été dotée d'une élévation à deux niveaux; de larges panneaux se sont trouvés ménagés entre les fenêtres traitées avec beaucoup plus de simplicité que celles du château.                                                                                         MONTREUIL, citadelle,  La place forte de Montreuil est née de la volonté de protéger la vallée de la Canche et le Hesdinois des incursions scandinaves. Son site stratégique lui valut d'être constamment adaptée à l'évolution des techniques militaires jusqu'au XVIIIe siècle. Le résultat est un site exceptionnel par son étendue et sa qualité. La Citadelle de Montreuil-sur-Mer est une citadelle royale pré-Vauban du XVIe siècle . Elle est construite sur les bases d'un château royal médiéval le chemin de ronde et tour encore visible et  Les ruines des remparts avaient fait l'objet d'un classement au titre des M.H. le 10 septembre 1913;  propriété de la ville.</p>
-      <h4>Architecture</h4><p>HESMOND, l'origine rendez vous de chasse a été construit à la fin du XVIIIe siècle pour Charles-Marie de Créquy, marquis d'Hesmond. On dit que, lorsque sa femme, née Marie-Anne-Thérèse-Félix du Muy, la célèbre marquise de Créquy, auteur de Mémoires, vit le château pour la première fois, elle l'aurait trouvé trop exiguë et mesquin. Son mari, qui ne partageait pas cet avis, fit alors graver l'inscription que l'on peut toujours lire sur une plaque de marbre à la façade avant : "Parva sed apta mihi"; la propriété appartient aujourd'hui au marquis de Bournonville. Précédée d'une entrée en hémicycle, la demeure dresse sa silhouette sur un fond boisé. Edifiée en pierre et brique, la pierre est disposée en harpe, traitée à refends aux angles. Le château est composé à l'arrière d'un étage supplémentaire, en raison d'une dénivellation du sol. A l'avant, la partie centrale, formée de trois travées, se distingue par l'étroitesse de leurs trumeaux. En façade postérieure, elle est en rotonde et présente, au deuxième niveau, des ouvertures plus grandes que celles du reste de l'édifice. Cette disparité tient au fait qu'à l'intérieur, le grand salon qui l'occupe n'est pas entresolé comme les autres pièces. Ce salon est l'élément le plus intéressant à la fois par ses dimensions et par ses dessus de portes sculptés qui sont d'une grande élégance. On notera aussi les nombreux carreaux en faïence aux dessins variés et la belle rampe d'escalier à balustres en bois découpé.</p>
-      <h4>Habitants / Familles</h4><p>Hesmond; Charles-Marie de Créquy,                             Citadelle ; Vauban"</p>
-      <h4>Divers</h4><p>Trois châteaux dans cet article la Calotterie grav 4-5 la Citadelle de Montreuil grav 1-2_3 et d'Hesmond grav-6-7.                      GPS : 50° 27' 53" Nord, 1° 45' 47" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Trois châteaux dans cet article la Calotterie  la Citadelle de Montreuil et d'Hesmond.                                                                                                CALOTTERIE, situé en milieu rural, à l'écart du village, à flanc de coteau, dans un cadre magnifique; le château se détache sur un fond boisé. Ce château, construit au XXe siècle, a cherché à imiter le style du début du XVIIe siècle. L'édifice comprend un corps de bâtiment rectangulaire présentant un avant-corps central à trois pans coiffé d'une haute toiture pyramidale. Il a été réalisé en pierre et brique ; la première constitue les chaînages d'angle, les pilastres à refends séparant les travées, au nombre de deux, de part et d'autre de l'avant-corps, les cordons horizontaux courant au-dessous et au-dessus des fenêtres de l'étage supérieur, les encadrements de celles-ci et de leurs allèges, enfin la corniche; la brique ne constitue que le remplissage des cadres ainsi déterminés. Les cinq lucarnes ont été coiffées d'un fronton triangulaire. Sur la droite, une aile un peu plus basse et légèrement en retrait a été dotée d'une élévation à deux niveaux; de larges panneaux se sont trouvés ménagés entre les fenêtres traitées avec beaucoup plus de simplicité que celles du château.                                                                                         MONTREUIL, citadelle,  La place forte de Montreuil est née de la volonté de protéger la vallée de la Canche et le Hesdinois des incursions scandinaves. Son site stratégique lui valut d'être constamment adaptée à l'évolution des techniques militaires jusqu'au XVIIIe siècle. Le résultat est un site exceptionnel par son étendue et sa qualité. La Citadelle de Montreuil-sur-Mer est une citadelle royale pré-Vauban du XVIe siècle . Elle est construite sur les bases d'un château royal médiéval le chemin de ronde et tour encore visible et  Les ruines des remparts avaient fait l'objet d'un classement au titre des M.H. le 10 septembre 1913;  propriété de la ville.</p>
+<h4>Architecture</h4><p>HESMOND, l'origine rendez vous de chasse a été construit à la fin du XVIIIe siècle pour Charles-Marie de Créquy, marquis d'Hesmond. On dit que, lorsque sa femme, née Marie-Anne-Thérèse-Félix du Muy, la célèbre marquise de Créquy, auteur de Mémoires, vit le château pour la première fois, elle l'aurait trouvé trop exiguë et mesquin. Son mari, qui ne partageait pas cet avis, fit alors graver l'inscription que l'on peut toujours lire sur une plaque de marbre à la façade avant : "Parva sed apta mihi"; la propriété appartient aujourd'hui au marquis de Bournonville. Précédée d'une entrée en hémicycle, la demeure dresse sa silhouette sur un fond boisé. Edifiée en pierre et brique, la pierre est disposée en harpe, traitée à refends aux angles. Le château est composé à l'arrière d'un étage supplémentaire, en raison d'une dénivellation du sol. A l'avant, la partie centrale, formée de trois travées, se distingue par l'étroitesse de leurs trumeaux. En façade postérieure, elle est en rotonde et présente, au deuxième niveau, des ouvertures plus grandes que celles du reste de l'édifice. Cette disparité tient au fait qu'à l'intérieur, le grand salon qui l'occupe n'est pas entresolé comme les autres pièces. Ce salon est l'élément le plus intéressant à la fois par ses dimensions et par ses dessus de portes sculptés qui sont d'une grande élégance. On notera aussi les nombreux carreaux en faïence aux dessins variés et la belle rampe d'escalier à balustres en bois découpé.</p>
+<h4>Habitants / Familles</h4><p>Hesmond; Charles-Marie de Créquy,                             Citadelle ; Vauban"</p>
+<h4>Divers</h4><p>Trois châteaux dans cet article la Calotterie grav 4-5 la Citadelle de Montreuil grav 1-2_3 et d'Hesmond grav-6-7.                      GPS : 50° 27' 53" Nord, 1° 45' 47" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

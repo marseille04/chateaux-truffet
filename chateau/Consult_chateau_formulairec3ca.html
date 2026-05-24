@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Rambouillet — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,54 +113,57 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_78.html">Yvelines</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_78.html">Yvelines</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_78.html" class="back-link">Retour au département 78 — Yvelines</a>
-  <div class="fiche">
-    <h2>Rambouillet</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>78 — Yvelines</td></tr>
-          <tr><td>Canton</td><td>Rambouillet</td></tr>
-          <tr><td>Commune</td><td>Rambouillet</td></tr>
-          <tr><td>Type d'édifice</td><td>Palais</td></tr>
-          <tr><td>Période d'origine</td><td>XIV</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_78/78_Rambouillet_1.jpg" alt="Rambouillet" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_78/78_Rambouillet_2.jpg" alt="Rambouillet" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_78/78_Rambouillet_3.jpg" alt="Rambouillet" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_78.html">Retour au département 78 — Yvelines</a>
+<div class="fiche">
+<h2>Rambouillet</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Rambouillet" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_78/78_Rambouillet_1.jpg"/><div class="hero-count" id="hero-count">1 / 3</div></div><div class="photo-strip"><img alt="Rambouillet" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Rambouillet_1.jpg"/><img alt="Rambouillet" class="" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Rambouillet_2.jpg"/><img alt="Rambouillet" class="" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Rambouillet_3.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>78 — Yvelines</td></tr>
+<tr><td>Canton</td><td>Rambouillet</td></tr>
+<tr><td>Commune</td><td>Rambouillet</td></tr>
+<tr><td>Type d'édifice</td><td>Palais</td></tr>
+<tr><td>Période d'origine</td><td>XIV</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>RAMBOUILLET,  en 1368 Jean Bernier, chevalier, conseiller et maître des requêtes de l'hôtel du roi, prévôt de Paris, achète à Girard de Tournebu un manoir qu'il fait transformer en 1374 en un véritable château fortifié et entouré de douves. Château de plan pentagonal irrégulier, avec un corps de logis triangulaire cantonné de tourelles, d'une tour, d'un châtelet d'entrée et d'une cour fermée de courtines, ces transformations doivent se comprendre au regard de l'ordonnance de Charles V du 19 juillet 1367 prescrivant d'armer les châteaux, c'est l'époque où le roi fait fortifier à Paris le Louvre et la Bastille. Dès 1384, Guillaume, fils de Jean Bernier, vend le château à Regnault d'Angennes, écuyer et 1er valet tranchant du roi. Il restera dans la famille d'Angennes pendant plus de trois siècles, jusqu'en 1699. Pendant la guerre de Cent Ans, le château fut pillé et incendié entre 1425 et 1428. Il fut restauré en 1484 par Jean II d'Angennes et son épouse. Jacques d'Angennes, capitaine des gardes du corps de François Ier, agrandit le domaine en achetant les terres d'Auffargis etde Poigny, la châtellenie des Essarts le Roi et divers terrains alentours constituant un beau domaine de chasse, grand amateur, François Ier vient souvent à Rambouillet. Il y meurt le 31 mars 1547, dans la chambre haute de la grosse tour qui a subsisté jusqu'à nos jours. En 1612, Louis XIII érige la terre en marquisat au profit de la famille d'Angennes, époque où Catherine de Vivonne, marquise de Rambouillet, épouse de Charles d'Angennes, tient salon dans son hôtel de Rambouillet à Paris. Leur fille Julie, épouse le duc de Montausier à qui elle apporte en dot le domaine, il l'agrandit et fait redessiner les jardins.</p>
-      <h4>Architecture</h4><p>RAMBOUILLET, à la suite du mariage de la deuxième fille de Julie d'Angennes le domaine passe au duc d'Uzès, mais il a des problèmes financiers et doit vendre le château en 1699 à l'un de ses créanciers, Joseph Fleuriau d'Armenonville. Louis-Alexandre de Bourbon, comte de Toulouse fils naturel légitimé de Louis XIV et de Madame de Montespan, amiral de France, souhaitant posséder un domaine de chasse aux environs de Paris, jette son dévolu sur Rambouillet. d'Armenonville est contraint de lui céder le domaine en 1706. Le comte de Toulouse va développer et embellir la propriété. Il fait construire de splendides écuries et des communs reliés au château par un souterrain. Une campagne de travaux a lieu de 1706 à 1709. Les façades sur cour sont homogénéisées et la cour est fermée par une grille semi-circulaire. Lorsqu'il quitte le conseil de Régence en 1722 le comte de Toulouse se retire à Rambouillet. Il lance de 1730 à 1736 une deuxième campagne de travaux sous la direction de l'architecte Desgots. Elle vise à doubler l'aile ouest par la création d'un appartement dit appartement d'assemblée. En dépit de l'importance du projet, l'intervention de Desgots est relativement discrète. Il fait déplacer la tourelle d'angle pour ne pas bouleverser l'équilibre du château. La principale originalité est un balcon courant sur la façade le long du nouvel appartement. Les aménagements intérieurs réalisés à la même époque sont d'un très grand luxe. Un bel ensemble de boiseries sculptées est réalisé par François Vassé, qui a travaillé également à l'hôtel de Toulouse, et Jacques Verberckt. À la mort du comte de Toulouse en 1737, l'édifice passe à son fils, le duc de Penthièvre qui fait embellir les jardins, développer le réseau de canaux pour constituer un ensemble d'îles, fait aménager 25 ha du parc à l'anglaise avec fabriques. La chaumière aux coquillages, l'ermitage, le pavillon chinois datent de 1770-1780.</p>
-      <h4>Habitants / Familles</h4><p>Famille d'Angennes"</p>
-      <h4>Divers</h4><p>câteau de Rambouillet</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>RAMBOUILLET,  en 1368 Jean Bernier, chevalier, conseiller et maître des requêtes de l'hôtel du roi, prévôt de Paris, achète à Girard de Tournebu un manoir qu'il fait transformer en 1374 en un véritable château fortifié et entouré de douves. Château de plan pentagonal irrégulier, avec un corps de logis triangulaire cantonné de tourelles, d'une tour, d'un châtelet d'entrée et d'une cour fermée de courtines, ces transformations doivent se comprendre au regard de l'ordonnance de Charles V du 19 juillet 1367 prescrivant d'armer les châteaux, c'est l'époque où le roi fait fortifier à Paris le Louvre et la Bastille. Dès 1384, Guillaume, fils de Jean Bernier, vend le château à Regnault d'Angennes, écuyer et 1er valet tranchant du roi. Il restera dans la famille d'Angennes pendant plus de trois siècles, jusqu'en 1699. Pendant la guerre de Cent Ans, le château fut pillé et incendié entre 1425 et 1428. Il fut restauré en 1484 par Jean II d'Angennes et son épouse. Jacques d'Angennes, capitaine des gardes du corps de François Ier, agrandit le domaine en achetant les terres d'Auffargis etde Poigny, la châtellenie des Essarts le Roi et divers terrains alentours constituant un beau domaine de chasse, grand amateur, François Ier vient souvent à Rambouillet. Il y meurt le 31 mars 1547, dans la chambre haute de la grosse tour qui a subsisté jusqu'à nos jours. En 1612, Louis XIII érige la terre en marquisat au profit de la famille d'Angennes, époque où Catherine de Vivonne, marquise de Rambouillet, épouse de Charles d'Angennes, tient salon dans son hôtel de Rambouillet à Paris. Leur fille Julie, épouse le duc de Montausier à qui elle apporte en dot le domaine, il l'agrandit et fait redessiner les jardins.</p>
+<h4>Architecture</h4><p>RAMBOUILLET, à la suite du mariage de la deuxième fille de Julie d'Angennes le domaine passe au duc d'Uzès, mais il a des problèmes financiers et doit vendre le château en 1699 à l'un de ses créanciers, Joseph Fleuriau d'Armenonville. Louis-Alexandre de Bourbon, comte de Toulouse fils naturel légitimé de Louis XIV et de Madame de Montespan, amiral de France, souhaitant posséder un domaine de chasse aux environs de Paris, jette son dévolu sur Rambouillet. d'Armenonville est contraint de lui céder le domaine en 1706. Le comte de Toulouse va développer et embellir la propriété. Il fait construire de splendides écuries et des communs reliés au château par un souterrain. Une campagne de travaux a lieu de 1706 à 1709. Les façades sur cour sont homogénéisées et la cour est fermée par une grille semi-circulaire. Lorsqu'il quitte le conseil de Régence en 1722 le comte de Toulouse se retire à Rambouillet. Il lance de 1730 à 1736 une deuxième campagne de travaux sous la direction de l'architecte Desgots. Elle vise à doubler l'aile ouest par la création d'un appartement dit appartement d'assemblée. En dépit de l'importance du projet, l'intervention de Desgots est relativement discrète. Il fait déplacer la tourelle d'angle pour ne pas bouleverser l'équilibre du château. La principale originalité est un balcon courant sur la façade le long du nouvel appartement. Les aménagements intérieurs réalisés à la même époque sont d'un très grand luxe. Un bel ensemble de boiseries sculptées est réalisé par François Vassé, qui a travaillé également à l'hôtel de Toulouse, et Jacques Verberckt. À la mort du comte de Toulouse en 1737, l'édifice passe à son fils, le duc de Penthièvre qui fait embellir les jardins, développer le réseau de canaux pour constituer un ensemble d'îles, fait aménager 25 ha du parc à l'anglaise avec fabriques. La chaumière aux coquillages, l'ermitage, le pavillon chinois datent de 1770-1780.</p>
+<h4>Habitants / Familles</h4><p>Famille d'Angennes"</p>
+<h4>Divers</h4><p>câteau de Rambouillet</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

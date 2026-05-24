@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Houdan — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,54 +113,57 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_78.html">Yvelines</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_78.html">Yvelines</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_78.html" class="back-link">Retour au département 78 — Yvelines</a>
-  <div class="fiche">
-    <h2>Houdan</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>78 — Yvelines</td></tr>
-          <tr><td>Canton</td><td>Bonnières-sur-Seine</td></tr>
-          <tr><td>Commune</td><td>Houdan</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XII-XVI</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_78/78_Houdan_1.jpg" alt="Houdan" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_78/78_Houdan_2.jpg" alt="Houdan" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_78/78_Houdan_3.jpg" alt="Houdan" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_78.html">Retour au département 78 — Yvelines</a>
+<div class="fiche">
+<h2>Houdan</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Houdan" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_78/78_Houdan_1.jpg"/><div class="hero-count" id="hero-count">1 / 3</div></div><div class="photo-strip"><img alt="Houdan" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Houdan_1.jpg"/><img alt="Houdan" class="" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Houdan_2.jpg"/><img alt="Houdan" class="" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Houdan_3.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>78 — Yvelines</td></tr>
+<tr><td>Canton</td><td>Bonnières-sur-Seine</td></tr>
+<tr><td>Commune</td><td>Houdan</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XII-XVI</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux châteaux dans cet article; Houdan et Maulette.                                              HOUDAN, le domaine de Houdan faisait partie du territoire de la famille des Montfort, vivant à une douzaine de kilomètres dans leur château de Montfort l'Amaury. Une lettre de Simon III de Montfort, comte d'Evreux, situe la construction du château et des deux églises de Hosdench (Houdan) sous le règne de son père Amaury III qui vécut de 1101 à 1137. Ce qui permet de dater la construction du donjon à  la fin du premier tiers du XIIe siècle. Il se présente sous la forme d'une tour cylindrique de 23 m de haut, à laquelle manque les créneaux (ceux-ci devaient probablement l'élever de 1 à 2 m supplémentaires). Les pierres furent utilisées pendant la Révolution française pour construire un autel de la liberté sur la place située devant la tour.  D'un diamétre d'environ 15 m au niveau du sol la tour est flanquée aux 4 points cardinaux de tourelles semi-circulaires d'un diamètre de 4,80 m. L'épaisseur des murs décroît de 3 m au niveau du sol jusqu'à 2,40 m au sommet.  En 1903, le donjon devient propriété de la ville de Houdan à la suite du legs de son dernier propriétaire privé, le docteur Aulet. <br>Éléments protégés MH : le donjon et ses quatre tourelles : classement par liste de 188.</p>
-      <h4>Architecture</h4><p>HOUDAN, le donjon de Houdan est constitué d'une tour légèrement ovale de 16 m de diamètre environ et de 25 m de hauteur avec des murs épais de 3,50 m, flanquée de quatre tourelles-contreforts en saillie dans les angles de même hauteur et de 4,80 m de diamètre. Ce plan sera repris vers 1140 à Ambleny.La tour comprend trois niveaux : un rez-de-chaussée et deux étages. Les planchers intérieurs et la toiture ont disparu. Un escalier aménagé dans l'épaisseur d'un mur permet d'accéder à l'étage noble situé au premier niveau. Ce-dernier s'éclaire par des baies à banquettes latérales.La porte d'accès se situait à 6 m du niveau du sol et donnait accès à un entresol.                                                                                        MAULETTE, construction du XVIe siècle à un étage, flanquée de deux tourelles d'angle et dont les communs sont utilisés comme ferme. accolé à d'Houdan, la famille Petau a été anoblie en Petau de Maulette par Louis XV, c'est cette famille qui a fait construire le manoir qui se trouve en face de l'église. Elle posséda plusieurs châteaux dans la région : la Mormaire et la Couarde entre autres, puis habita Montfort l'Amaury, dont une rue porte le nom de Petau de Maulette. L'édifice se compose d'un corps principal de plan rectangulaire et de deux tours, le bâtiment comprend un rez de chaussée et un étage carré.</p>
-      <h4>Habitants / Familles</h4><p>Houdan ; Famille des Montfort"</p>
-      <h4>Divers</h4><p>Deux châteaux dans cet article; Houdan grav 1-2 et Maulette grav 3.                       Houdan 48° 47' 22? N, 1° 35' 56? E</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux châteaux dans cet article; Houdan et Maulette.                                              HOUDAN, le domaine de Houdan faisait partie du territoire de la famille des Montfort, vivant à une douzaine de kilomètres dans leur château de Montfort l'Amaury. Une lettre de Simon III de Montfort, comte d'Evreux, situe la construction du château et des deux églises de Hosdench (Houdan) sous le règne de son père Amaury III qui vécut de 1101 à 1137. Ce qui permet de dater la construction du donjon à  la fin du premier tiers du XIIe siècle. Il se présente sous la forme d'une tour cylindrique de 23 m de haut, à laquelle manque les créneaux (ceux-ci devaient probablement l'élever de 1 à 2 m supplémentaires). Les pierres furent utilisées pendant la Révolution française pour construire un autel de la liberté sur la place située devant la tour.  D'un diamétre d'environ 15 m au niveau du sol la tour est flanquée aux 4 points cardinaux de tourelles semi-circulaires d'un diamètre de 4,80 m. L'épaisseur des murs décroît de 3 m au niveau du sol jusqu'à 2,40 m au sommet.  En 1903, le donjon devient propriété de la ville de Houdan à la suite du legs de son dernier propriétaire privé, le docteur Aulet. <br/>Éléments protégés MH : le donjon et ses quatre tourelles : classement par liste de 188.</p>
+<h4>Architecture</h4><p>HOUDAN, le donjon de Houdan est constitué d'une tour légèrement ovale de 16 m de diamètre environ et de 25 m de hauteur avec des murs épais de 3,50 m, flanquée de quatre tourelles-contreforts en saillie dans les angles de même hauteur et de 4,80 m de diamètre. Ce plan sera repris vers 1140 à Ambleny.La tour comprend trois niveaux : un rez-de-chaussée et deux étages. Les planchers intérieurs et la toiture ont disparu. Un escalier aménagé dans l'épaisseur d'un mur permet d'accéder à l'étage noble situé au premier niveau. Ce-dernier s'éclaire par des baies à banquettes latérales.La porte d'accès se situait à 6 m du niveau du sol et donnait accès à un entresol.                                                                                        MAULETTE, construction du XVIe siècle à un étage, flanquée de deux tourelles d'angle et dont les communs sont utilisés comme ferme. accolé à d'Houdan, la famille Petau a été anoblie en Petau de Maulette par Louis XV, c'est cette famille qui a fait construire le manoir qui se trouve en face de l'église. Elle posséda plusieurs châteaux dans la région : la Mormaire et la Couarde entre autres, puis habita Montfort l'Amaury, dont une rue porte le nom de Petau de Maulette. L'édifice se compose d'un corps principal de plan rectangulaire et de deux tours, le bâtiment comprend un rez de chaussée et un étage carré.</p>
+<h4>Habitants / Familles</h4><p>Houdan ; Famille des Montfort"</p>
+<h4>Divers</h4><p>Deux châteaux dans cet article; Houdan grav 1-2 et Maulette grav 3.                       Houdan 48° 47' 22? N, 1° 35' 56? E</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

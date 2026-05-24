@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Martragny — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,54 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_14.html">Calvados</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_14.html">Calvados</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_14.html" class="back-link">Retour au département 14 — Calvados</a>
-  <div class="fiche">
-    <h2>Martragny</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>14 — Calvados</td></tr>
-          <tr><td>Canton</td><td>Bretteville-l</td></tr>
-          <tr><td>Commune</td><td>Martragny</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_14/14_Martragny_1.jpg" alt="Martragny" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_14/14_Martragny_2.jpg" alt="Martragny" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_14.html">Retour au département 14 — Calvados</a>
+<div class="fiche">
+<h2>Martragny</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Martragny" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_14/14_Martragny_1.jpg"/><div class="hero-count" id="hero-count">1 / 2</div></div><div class="photo-strip"><img alt="Martragny" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Martragny_1.jpg"/><img alt="Martragny" class="" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Martragny_2.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>14 — Calvados</td></tr>
+<tr><td>Canton</td><td>Bretteville-l</td></tr>
+<tr><td>Commune</td><td>Martragny</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>MARTRAGNY, construit en 1747 par le marquis de Grangues,  en 1755  le domaine est cédé à Henri de Grimouville, en 1766  leur fille  Henriette par alliance avec Louis-François-Auguste de Cyresme chevalier de St-Louis  héritier de la seigneurie de Blainville sur mer,  le ménage aura  plusieurs enfants le fils  Charles-François (1770-1838) chevalier de Malte habite au château à l'époque de la Révolution, le domaine revient  à son neveu Gabriel époux d'Isabelle Ogier d'Ivry puis à leur fille Marie mariée en 1867   avec Rudolphe de Mons de Carantilly  en 1925  par obligation de droits de succession cède le domaine à un marchand de bien de Caen qui le dépouille, à la famille Livry-Leve Philippe, achète le château pour établir une de  leur fille cette dernière décède prématurément,  il cède le château à un ménage d'agriculteurs la famille Simonet. Utilisé comme hôpital de campagne en 1944 , en 1956 repris par la famille Buon et en 1971, le domaine acheté par la famille de Saint-Victor, qui a aménagé un camping international 4 étoiles dans le parc pour en assurer les frais d'entretien du château, en 1989  acquis par  la famille de Buretel de Chassey.</p>
-      <h4>Architecture</h4><p>MARTRAGNY,  se compose d'un corps central que prolongent deux pavillons bas coiffé de toits à la mansart, le corps central double en profondeur est coiffé d'un haut comble à forte pente. Sa façade postérieure donne sur le jardin  à six travées trois d'entre elles sont groupées sous un grand fronton  triangulaire  percé d'un oculus.  Après le débarquement allié en Normandie du 6 juin 1944, le château de Martragny, libéré le 6 juin au soir, a servi d'hôpital. Une grande croix rouge était placée sur le toit pour protéger le site des bombardements. Les blessés étaient soignés dans les pièces du château. Dans l'allée, les morts étaient enterrés provisoirement en attendant d'être transférés par la suite dans des cimetières militaires.</p>
-      <h4>Habitants / Familles</h4><p>Henri de Grimouville
-<br>        "</p>
-      <h4>Divers</h4><p>Martragny, gps 49° 15' 06" nord, 0° 35' 45" ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>MARTRAGNY, construit en 1747 par le marquis de Grangues,  en 1755  le domaine est cédé à Henri de Grimouville, en 1766  leur fille  Henriette par alliance avec Louis-François-Auguste de Cyresme chevalier de St-Louis  héritier de la seigneurie de Blainville sur mer,  le ménage aura  plusieurs enfants le fils  Charles-François (1770-1838) chevalier de Malte habite au château à l'époque de la Révolution, le domaine revient  à son neveu Gabriel époux d'Isabelle Ogier d'Ivry puis à leur fille Marie mariée en 1867   avec Rudolphe de Mons de Carantilly  en 1925  par obligation de droits de succession cède le domaine à un marchand de bien de Caen qui le dépouille, à la famille Livry-Leve Philippe, achète le château pour établir une de  leur fille cette dernière décède prématurément,  il cède le château à un ménage d'agriculteurs la famille Simonet. Utilisé comme hôpital de campagne en 1944 , en 1956 repris par la famille Buon et en 1971, le domaine acheté par la famille de Saint-Victor, qui a aménagé un camping international 4 étoiles dans le parc pour en assurer les frais d'entretien du château, en 1989  acquis par  la famille de Buretel de Chassey.</p>
+<h4>Architecture</h4><p>MARTRAGNY,  se compose d'un corps central que prolongent deux pavillons bas coiffé de toits à la mansart, le corps central double en profondeur est coiffé d'un haut comble à forte pente. Sa façade postérieure donne sur le jardin  à six travées trois d'entre elles sont groupées sous un grand fronton  triangulaire  percé d'un oculus.  Après le débarquement allié en Normandie du 6 juin 1944, le château de Martragny, libéré le 6 juin au soir, a servi d'hôpital. Une grande croix rouge était placée sur le toit pour protéger le site des bombardements. Les blessés étaient soignés dans les pièces du château. Dans l'allée, les morts étaient enterrés provisoirement en attendant d'être transférés par la suite dans des cimetières militaires.</p>
+<h4>Habitants / Familles</h4><p>Henri de Grimouville
+<br/>        "</p>
+<h4>Divers</h4><p>Martragny, gps 49° 15' 06" nord, 0° 35' 45" ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

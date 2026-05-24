@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Rivière_Mouzeuil — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,55 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_85.html">Vendée</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_85.html">Vendée</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_85.html" class="back-link">Retour au département 85 — Vendée</a>
-  <div class="fiche">
-    <h2>Rivière_Mouzeuil</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>85 — Vendée</td></tr>
-          <tr><td>Canton</td><td>Luçon</td></tr>
-          <tr><td>Commune</td><td>Mouzeuil_St_Martin</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_85/85_Rivi%c3%a8re_Mouzeuil_1.jpg" alt="Rivière_Mouzeuil" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Rivi%c3%a8re_Mouzeuil_2.jpg" alt="Rivière_Mouzeuil" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Rivi%c3%a8re_Mouzeuil_3.jpg" alt="Rivière_Mouzeuil" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_85.html">Retour au département 85 — Vendée</a>
+<div class="fiche">
+<h2>Rivière_Mouzeuil</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Rivière_Mouzeuil" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_85/85_Rivi%c3%a8re_Mouzeuil_1.jpg"/><div class="hero-count" id="hero-count">1 / 3</div></div><div class="photo-strip"><img alt="Rivière_Mouzeuil" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Rivi%c3%a8re_Mouzeuil_1.jpg"/><img alt="Rivière_Mouzeuil" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Rivi%c3%a8re_Mouzeuil_2.jpg"/><img alt="Rivière_Mouzeuil" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Rivi%c3%a8re_Mouzeuil_3.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>85 — Vendée</td></tr>
+<tr><td>Canton</td><td>Luçon</td></tr>
+<tr><td>Commune</td><td>Mouzeuil_St_Martin</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>RIVIERE,  Mouzeuil est mentionnée au XIe siècle dans une charte. Un château qui semble avoir appartenu à Hugues de Lusignan est incendié en 1010. Un prieuré construit vers 1050 est détruit par Geoffroy la GrandDent en 1232. À la création des évêchés de Maillezais et de Luçon, en 1317, Mouzeuil est rattachée à l'évêché de Maillezais et Saint-Martin-sous-Mouzeuil à celui de Luçon. La rivière la Corde sépare les deux villages.  Le prieuré est reconstruit au XVIe siècle et devient la résidence d'été de l'évêque de Maillezais, Geoffroy dEstissac. Saint-Martin-sous-Mouzeuil est créé comme commune en 1743 par ordonnance royale, détachée de Nalliers. Lors du rétablissement de l'évêché de Luçon en 1817, Mouzeuil lui est rattachée.  Mouzeuil s'est développé autour d'un prieuré établi dès le XIe siècle. Celui-ci est reconstruit au XVIe siècle quand Geoffroy d'Estissac, évêque de Maillezais, ancien évêché de Vendée, choisit Mouzeuil comme résidence d'été.</p>
-      <h4>Architecture</h4><p>RIVIERE, le château de la Rivière. Le roi Henri IV y séjourna en 1597 lors du siège de Fontenay-le-Comte. Parc découpé en espaces de styles différents (à la française, exotique, boisé, conception du château de plan rectangulaire à deux niveaux sur soubassement important lucarnes sur toit brisés,  pavillons d'entrée saillants avec escaliers et fronton triangulaire et tours rondes sur l'arrière de la bâtisse.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Geoffroy d'Estissac
-<br>        "</p>
-      <h4>Divers</h4><p>A st-Martin de Mouzeuil le château de R et de Saint-Martin iviere 46° 28' 01" nord, 0° 59' 01" ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>RIVIERE,  Mouzeuil est mentionnée au XIe siècle dans une charte. Un château qui semble avoir appartenu à Hugues de Lusignan est incendié en 1010. Un prieuré construit vers 1050 est détruit par Geoffroy la GrandDent en 1232. À la création des évêchés de Maillezais et de Luçon, en 1317, Mouzeuil est rattachée à l'évêché de Maillezais et Saint-Martin-sous-Mouzeuil à celui de Luçon. La rivière la Corde sépare les deux villages.  Le prieuré est reconstruit au XVIe siècle et devient la résidence d'été de l'évêque de Maillezais, Geoffroy dEstissac. Saint-Martin-sous-Mouzeuil est créé comme commune en 1743 par ordonnance royale, détachée de Nalliers. Lors du rétablissement de l'évêché de Luçon en 1817, Mouzeuil lui est rattachée.  Mouzeuil s'est développé autour d'un prieuré établi dès le XIe siècle. Celui-ci est reconstruit au XVIe siècle quand Geoffroy d'Estissac, évêque de Maillezais, ancien évêché de Vendée, choisit Mouzeuil comme résidence d'été.</p>
+<h4>Architecture</h4><p>RIVIERE, le château de la Rivière. Le roi Henri IV y séjourna en 1597 lors du siège de Fontenay-le-Comte. Parc découpé en espaces de styles différents (à la française, exotique, boisé, conception du château de plan rectangulaire à deux niveaux sur soubassement important lucarnes sur toit brisés,  pavillons d'entrée saillants avec escaliers et fronton triangulaire et tours rondes sur l'arrière de la bâtisse.</p>
+<h4>Habitants / Familles</h4><p>Famille de Geoffroy d'Estissac
+<br/>        "</p>
+<h4>Divers</h4><p>A st-Martin de Mouzeuil le château de R et de Saint-Martin iviere 46° 28' 01" nord, 0° 59' 01" ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

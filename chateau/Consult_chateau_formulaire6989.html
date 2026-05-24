@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Brissac_Villarel — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,62 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_34.html">Hérault</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_34.html">Hérault</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_34.html" class="back-link">Retour au département 34 — Hérault</a>
-  <div class="fiche">
-    <h2>Brissac_Villarel</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>34 — Hérault</td></tr>
-          <tr><td>Canton</td><td>Ganges</td></tr>
-          <tr><td>Commune</td><td>Ganges</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIV-XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_34/34_Brissac_Villarel_1.jpg" alt="Brissac_Villarel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Brissac_Villarel_2.jpg" alt="Brissac_Villarel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Brissac_Villarel_3.jpg" alt="Brissac_Villarel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Brissac_Villarel_4.jpg" alt="Brissac_Villarel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Brissac_Villarel_5.jpg" alt="Brissac_Villarel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Brissac_Villarel_6.jpg" alt="Brissac_Villarel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Brissac_Villarel_7.jpg" alt="Brissac_Villarel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Brissac_Villarel_8.jpg" alt="Brissac_Villarel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Brissac_Villarel_9.jpg" alt="Brissac_Villarel" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_34.html">Retour au département 34 — Hérault</a>
+<div class="fiche">
+<h2>Brissac_Villarel</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Brissac_Villarel" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_34/34_Brissac_Villarel_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Brissac_Villarel" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Brissac_Villarel_1.jpg"/><img alt="Brissac_Villarel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Brissac_Villarel_2.jpg"/><img alt="Brissac_Villarel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Brissac_Villarel_3.jpg"/><img alt="Brissac_Villarel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Brissac_Villarel_4.jpg"/><img alt="Brissac_Villarel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Brissac_Villarel_5.jpg"/><img alt="Brissac_Villarel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Brissac_Villarel_6.jpg"/><img alt="Brissac_Villarel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Brissac_Villarel_7.jpg"/><img alt="Brissac_Villarel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Brissac_Villarel_8.jpg"/><img alt="Brissac_Villarel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Brissac_Villarel_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>34 — Hérault</td></tr>
+<tr><td>Canton</td><td>Ganges</td></tr>
+<tr><td>Commune</td><td>Ganges</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIV-XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux châteaux à Brissac celui de Brissac du XI-XVIe siècle et celui de Villarel  du XIXe siècle                                                 BRISSAC, La construction du château de Brissac date du XIe siècle : cest en effet à cette époque que furent baties les  tours, appartenait aux seigneurs de Brissac, eux même vassaux du seigneur dAgonès. Première mention   en 1189, sous le nom de "Bisturris". En 1230, Brissac revient au comte Hugues de Rodez par mariage  avec Elizabeth fille de Raymond de Roquefeuil. Devenu possession des évêques de Maguelone au XIIIe siècle, le XVIIe siècle, verra la transformation du château en une demeure dhabitation : des étages sont construits sur   le logis dorigine, le parc voit le jour à cette époque. En 1904 le château est acheté par Henri de Rodez Benavent  et c'est en 1965 que débute la restauration du château.                                                            VILLAREL; en labsence du seigneur des lieux, le vieux Thibaut le Fou a célébré un mariage fort peu chrétien, selon les rituels druidiques interdits par la Sainte Église. Heureusement, le seigneur de Villarel est rentré de croisade. Les épousés ont tout de même prononcé leurs vux devant Méredwen et Kernunnos, déesses de la fertilité et Dieu cornu. Transformé en gîtes de France.</p>
-      <h4>Architecture</h4><p>Brissac,  du XIe siècle, agrandi au XIVe siècle : les tours sont surélevées, lenceinte est construite et le donjon est couronné. Corps de logis rectangulaire à trois niveaux flanqué de deux donjons un rectangulaire ayant perdu ses échauguettes et un carré tout deux crénelé  dépassant largement l'ensemble tour ronde à l'extérieur.                                                                                             Villarel, le château  a été construit au Second Empire vers 1860.
-<br>En face du château, la paroisse de Saint Etienne d'Issensac du XIIe siècle  et à ses pieds un pont gothique en dos d'âne forment un ensemble médiéval classé monument historique, château et ses anciens bâtiments de ferme, le corps de logis rectangulaire à deux niveaux  sur assise  à toiture en croupe flanqué dans les angles de belles échauguettes à toit en poivrières avec meurtrières et escalier d'accès sur façade principale.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Raymond de Roquefeuil
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Brissac et de Villarel à Ganges</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux châteaux à Brissac celui de Brissac du XI-XVIe siècle et celui de Villarel  du XIXe siècle                                                 BRISSAC, La construction du château de Brissac date du XIe siècle : cest en effet à cette époque que furent baties les  tours, appartenait aux seigneurs de Brissac, eux même vassaux du seigneur dAgonès. Première mention   en 1189, sous le nom de "Bisturris". En 1230, Brissac revient au comte Hugues de Rodez par mariage  avec Elizabeth fille de Raymond de Roquefeuil. Devenu possession des évêques de Maguelone au XIIIe siècle, le XVIIe siècle, verra la transformation du château en une demeure dhabitation : des étages sont construits sur   le logis dorigine, le parc voit le jour à cette époque. En 1904 le château est acheté par Henri de Rodez Benavent  et c'est en 1965 que débute la restauration du château.                                                            VILLAREL; en labsence du seigneur des lieux, le vieux Thibaut le Fou a célébré un mariage fort peu chrétien, selon les rituels druidiques interdits par la Sainte Église. Heureusement, le seigneur de Villarel est rentré de croisade. Les épousés ont tout de même prononcé leurs vux devant Méredwen et Kernunnos, déesses de la fertilité et Dieu cornu. Transformé en gîtes de France.</p>
+<h4>Architecture</h4><p>Brissac,  du XIe siècle, agrandi au XIVe siècle : les tours sont surélevées, lenceinte est construite et le donjon est couronné. Corps de logis rectangulaire à trois niveaux flanqué de deux donjons un rectangulaire ayant perdu ses échauguettes et un carré tout deux crénelé  dépassant largement l'ensemble tour ronde à l'extérieur.                                                                                             Villarel, le château  a été construit au Second Empire vers 1860.
+<br/>En face du château, la paroisse de Saint Etienne d'Issensac du XIIe siècle  et à ses pieds un pont gothique en dos d'âne forment un ensemble médiéval classé monument historique, château et ses anciens bâtiments de ferme, le corps de logis rectangulaire à deux niveaux  sur assise  à toiture en croupe flanqué dans les angles de belles échauguettes à toit en poivrières avec meurtrières et escalier d'accès sur façade principale.</p>
+<h4>Habitants / Familles</h4><p>Famille de Raymond de Roquefeuil
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Brissac et de Villarel à Ganges</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

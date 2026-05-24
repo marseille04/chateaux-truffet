@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Puy_du_Fou — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,61 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_85.html">Vendée</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_85.html">Vendée</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_85.html" class="back-link">Retour au département 85 — Vendée</a>
-  <div class="fiche">
-    <h2>Puy_du_Fou</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>85 — Vendée</td></tr>
-          <tr><td>Canton</td><td>Les Herbiers</td></tr>
-          <tr><td>Commune</td><td>Les Epesses</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_85/85_Puy_du_Fou_1.jpg" alt="Puy_du_Fou" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Puy_du_Fou_2.jpg" alt="Puy_du_Fou" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Puy_du_Fou_3.jpg" alt="Puy_du_Fou" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Puy_du_Fou_4.jpg" alt="Puy_du_Fou" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Puy_du_Fou_5.jpg" alt="Puy_du_Fou" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Puy_du_Fou_6.jpg" alt="Puy_du_Fou" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Puy_du_Fou_7.jpg" alt="Puy_du_Fou" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Puy_du_Fou_8.jpg" alt="Puy_du_Fou" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Puy_du_Fou_9.jpg" alt="Puy_du_Fou" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_85.html">Retour au département 85 — Vendée</a>
+<div class="fiche">
+<h2>Puy_du_Fou</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Puy_du_Fou" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_85/85_Puy_du_Fou_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Puy_du_Fou" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Puy_du_Fou_1.jpg"/><img alt="Puy_du_Fou" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Puy_du_Fou_2.jpg"/><img alt="Puy_du_Fou" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Puy_du_Fou_3.jpg"/><img alt="Puy_du_Fou" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Puy_du_Fou_4.jpg"/><img alt="Puy_du_Fou" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Puy_du_Fou_5.jpg"/><img alt="Puy_du_Fou" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Puy_du_Fou_6.jpg"/><img alt="Puy_du_Fou" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Puy_du_Fou_7.jpg"/><img alt="Puy_du_Fou" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Puy_du_Fou_8.jpg"/><img alt="Puy_du_Fou" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Puy_du_Fou_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>85 — Vendée</td></tr>
+<tr><td>Canton</td><td>Les Herbiers</td></tr>
+<tr><td>Commune</td><td>Les Epesses</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>PUY du FOU, les origines de la famille du Puy du Fou sont un peu incertaines, mais remonteraient à la fin du XIIe siècle. Renaud du Puy du Fou, seigneur, épouse avant 1197 Adelis de Thouars. Il serait le premier Puy du Fou connu. Il a au moins deux fils; Philippe continue la lignée, son frère Renaud épouse Eustachie de Monbail et serait donc seigneur de Monbail. Dans la lignée du Puy-du-Fou, Jehan devient seigneur de Bourneau en épousant Jacquette de la Ramée. Son fils Pierre, seigneur du Vernay, épouse Aliénor de Juch, dame de Chavagnes-les-Redoux et des Touches en 1469, sans postérité. François II du Puy du Fou, capitaine de Nantes, épouse en 1527  la fille du gouverneur, Catherine-Laval de Bois Dauphin, et lance la reconstruction de son château en 1547, à la mort de François II en 1458 son fils René futur gouverneur de la Rochelle puis sa veuve Catherine de la Rochefoucault poursuivent les travaux. Le château du Puy du Fou sera vendu en 1659 à Claude de Boyslève, les descendants  au XVIIIe siècle passe aux, la Forest d'Armaillé puis aux Marconnay et en 1791 acquis par le Marquis de Belboeuf.  En 1851 aux comte de Quénetain . En 1949 un notaire de Bressuire monsieur Savard  l'acquiert et depuis  1977, le conseil général de la Vendée racheta le château  et y créa, avec l'aide de l'État et dans l'esprit des projets muséographiques de Georges-Henri Rivière, en 1977 , au même moment un jeune homme, Philippe de Villiers, à la recherche dun lieu pour son spectacle historique.</p>
-      <h4>Architecture</h4><p>PUY du FOU, le château fort du XIIe siècle était d'assez petite superficie, il dessinait une enceinte presque hexagonale d'environ 30 m de diamètre, et flanquée de tours rondes à chaque angle, dont deux au Nord et deux petites au Sud. Un fossé sec encerclait le château, et un deuxième fossé encerclait à son tour le premier, et il était plus large, plus profond et relié à la rivière qui alimentait ce fossé pour former des douves en eau. Notamment avec une grosse tour ronde très près de l'entrée principale au Nord. Cette tour Nord-Est, qui servait de tour-maîtresse, fait environ 9 m de diamètre à l'extérieur, et à l'intérieur l'espace fait environ 3,10 m. Les murs ont une épaisseur moyenne de 3 m. Ce ne devait sûrement pas être un donjon résidence, l'espace intérieur étant trop petit pour être habitable. Ce devait être la tour la plus haute du château, et servit de tour de guet. Au Sud, il y avait deux petites tours rondes et probablement une poterne. A l'Est, se trouvait un tertre, peut être l'ancienne motte castrale. A l'intérieur, on voit quelques pans de mur peu épais, ils devaient appartenir à des bâtiments adossés aux remparts et encerclant la cour intérieure. Il devait y avoir un logis seigneurial, des cuisines, celliers, salle de réception, salles de justice. De plus, une chapelle castrale dédiée à Sainte-Marie-Madeleine était adossée au rempart. En 1794 partiellement incendié par les colonnes infernales des Turreau.  A été classé aux M.H. en 1974 et en 1986.</p>
-      <h4>Habitants / Familles</h4><p>Marquis de Belboeuf Famille de Philippe de Villiers
-<br>        "</p>
-      <h4>Divers</h4><p>Aux Espesses la citadelle et le château du Puy du Fou: 46° 53' 02" Nord, 0° 53' 56" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>PUY du FOU, les origines de la famille du Puy du Fou sont un peu incertaines, mais remonteraient à la fin du XIIe siècle. Renaud du Puy du Fou, seigneur, épouse avant 1197 Adelis de Thouars. Il serait le premier Puy du Fou connu. Il a au moins deux fils; Philippe continue la lignée, son frère Renaud épouse Eustachie de Monbail et serait donc seigneur de Monbail. Dans la lignée du Puy-du-Fou, Jehan devient seigneur de Bourneau en épousant Jacquette de la Ramée. Son fils Pierre, seigneur du Vernay, épouse Aliénor de Juch, dame de Chavagnes-les-Redoux et des Touches en 1469, sans postérité. François II du Puy du Fou, capitaine de Nantes, épouse en 1527  la fille du gouverneur, Catherine-Laval de Bois Dauphin, et lance la reconstruction de son château en 1547, à la mort de François II en 1458 son fils René futur gouverneur de la Rochelle puis sa veuve Catherine de la Rochefoucault poursuivent les travaux. Le château du Puy du Fou sera vendu en 1659 à Claude de Boyslève, les descendants  au XVIIIe siècle passe aux, la Forest d'Armaillé puis aux Marconnay et en 1791 acquis par le Marquis de Belboeuf.  En 1851 aux comte de Quénetain . En 1949 un notaire de Bressuire monsieur Savard  l'acquiert et depuis  1977, le conseil général de la Vendée racheta le château  et y créa, avec l'aide de l'État et dans l'esprit des projets muséographiques de Georges-Henri Rivière, en 1977 , au même moment un jeune homme, Philippe de Villiers, à la recherche dun lieu pour son spectacle historique.</p>
+<h4>Architecture</h4><p>PUY du FOU, le château fort du XIIe siècle était d'assez petite superficie, il dessinait une enceinte presque hexagonale d'environ 30 m de diamètre, et flanquée de tours rondes à chaque angle, dont deux au Nord et deux petites au Sud. Un fossé sec encerclait le château, et un deuxième fossé encerclait à son tour le premier, et il était plus large, plus profond et relié à la rivière qui alimentait ce fossé pour former des douves en eau. Notamment avec une grosse tour ronde très près de l'entrée principale au Nord. Cette tour Nord-Est, qui servait de tour-maîtresse, fait environ 9 m de diamètre à l'extérieur, et à l'intérieur l'espace fait environ 3,10 m. Les murs ont une épaisseur moyenne de 3 m. Ce ne devait sûrement pas être un donjon résidence, l'espace intérieur étant trop petit pour être habitable. Ce devait être la tour la plus haute du château, et servit de tour de guet. Au Sud, il y avait deux petites tours rondes et probablement une poterne. A l'Est, se trouvait un tertre, peut être l'ancienne motte castrale. A l'intérieur, on voit quelques pans de mur peu épais, ils devaient appartenir à des bâtiments adossés aux remparts et encerclant la cour intérieure. Il devait y avoir un logis seigneurial, des cuisines, celliers, salle de réception, salles de justice. De plus, une chapelle castrale dédiée à Sainte-Marie-Madeleine était adossée au rempart. En 1794 partiellement incendié par les colonnes infernales des Turreau.  A été classé aux M.H. en 1974 et en 1986.</p>
+<h4>Habitants / Familles</h4><p>Marquis de Belboeuf Famille de Philippe de Villiers
+<br/>        "</p>
+<h4>Divers</h4><p>Aux Espesses la citadelle et le château du Puy du Fou: 46° 53' 02" Nord, 0° 53' 56" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

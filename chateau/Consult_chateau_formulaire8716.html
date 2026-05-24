@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Caen_II — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,65 +113,63 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_14.html">Calvados</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_14.html">Calvados</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_14.html" class="back-link">Retour au département 14 — Calvados</a>
-  <div class="fiche">
-    <h2>Caen_II</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>14 — Calvados</td></tr>
-          <tr><td>Canton</td><td>Caen</td></tr>
-          <tr><td>Commune</td><td>Caen</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI-XVIII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>49° 08' 20,1" Nord, 0° 23' 28,3" Ouest                                        tour Leroy  grav-4 GPS : 49° 11' 03" Nord, 0° 21' 33" Ouest                                            Maltot  PS : 49° 07' 50,02" Nord, 0° 24' 48,72" Ouest                                       Cairon GPS : 49° 14' 20,41" Nord, 0° 27' 7,5" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_14/14_Caen_II_1.jpg" alt="Caen_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_14/14_Caen_II_2.jpg" alt="Caen_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_14/14_Caen_II_3.jpg" alt="Caen_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_14/14_Caen_II_4.jpg" alt="Caen_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_14/14_Caen_II_5.jpg" alt="Caen_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_14/14_Caen_II_6.jpg" alt="Caen_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_14/14_Caen_II_7.jpg" alt="Caen_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_14/14_Caen_II_8.jpg" alt="Caen_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_14/14_Caen_II_9.jpg" alt="Caen_II" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_14.html">Retour au département 14 — Calvados</a>
+<div class="fiche">
+<h2>Caen_II</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Caen_II" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_14/14_Caen_II_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Caen_II" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Caen_II_1.jpg"/><img alt="Caen_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Caen_II_2.jpg"/><img alt="Caen_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Caen_II_3.jpg"/><img alt="Caen_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Caen_II_4.jpg"/><img alt="Caen_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Caen_II_5.jpg"/><img alt="Caen_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Caen_II_6.jpg"/><img alt="Caen_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Caen_II_7.jpg"/><img alt="Caen_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Caen_II_8.jpg"/><img alt="Caen_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_14/14_Caen_II_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>14 — Calvados</td></tr>
+<tr><td>Canton</td><td>Caen</td></tr>
+<tr><td>Commune</td><td>Caen</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI-XVIII</td></tr>
+<tr><td>Coordonnées GPS</td><td>49° 08' 20,1" Nord, 0° 23' 28,3" Ouest                                        tour Leroy  grav-4 GPS : 49° 11' 03" Nord, 0° 21' 33" Ouest                                            Maltot  PS : 49° 07' 50,02" Nord, 0° 24' 48,72" Ouest                                       Cairon GPS : 49° 14' 20,41" Nord, 0° 27' 7,5" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Six châteaux cité à Caen dont Caen, Maltot, Rots, Bû,  Cairon, Fleury et Banneville.  Au sud-ouest à deux K.M  château de FLEURY sur Orne pas d'information historique. A cinq K.M. au sud ouest MALTOT date de 1740. Il a été bâti sur les plans de Philippe de la Guêpière, architecte du Roi Louis XV et de son Académie Royale d'Architecte. Le Château de Maltot est devenu un Centre de Formation.  ROTS au nord-ouest à deux K.M.   date du XIXe siècle de  Emmanuel Grandsire.                                                                      En banlieue à Anctioville le château de BÛ transformé en hôtel restaurant, les nouveaux châtelains, Se Ma et Andy Lee, sont coréens. Ils ont acquis la demeure en 2014, le château du Bû à Orbois, datant du XVIIIe siècle, a été occupé par les Allemands pendant la seconde guerre mondiale. Il a été partiellement détruit et racheté par M. Helleboid qui la restauré.                               
-<br>Tour  LEROY, mentionnée pour la première fois en 1497, a  été construite après la prise de Caen en 1346. Érigée non loin du château de Caen, elle faisait partie des fortifications de Bourg-le-Roi ; on y accédait depuis la muraille de la ville par un escalier extérieur. Elle était reliée par une chaîne à la tour aux Landais située sur la rive droite de l'Odon. Ce dispositif défendait l'entrée du port médiéval de Caen. Elle est transformée en maison d'habitations avant d'être utilisée comme prison pour les contrebandiers. La tour aux Landais a été détruite et, en 1860, la rivière a été recouverte. Le conseil municipal décide le 20 octobre 1879 de la conserver et de la restaurer. La restauration est effectuée par Gustave Auvray, architecte municipal.</p>
-      <h4>Architecture</h4><p>BANNEVILLE à quelques K.M à l'Est on retrouve sur ces terres des vestiges de loccupation humaine remontant presque à la préhistoire. Plus proche de nous lorigine du nom serait de lanthroponyme scandinave Biarn et du latin villa domaine, Située à la limite de la plaine de Caen et du Pays dAuge, Banneville-la-Campagne est une commune au territoire étendu. En 1828 les hameaux de Guillerville et de Manneville sont rattachés à Banneville lui donnant ses limites actuelles. Le château de Banneville, construit au XVIIIe siècle, est l'ancienne demeure du marquis de Banneville.                                                                                             
-<br>CAIRON, au nord de Caen a été construit au XVIe siècle et remanié au XIXe siècle. Pendant la deuxième Guerre mondiale, il servit d'hôpital, de résidence aux Allemands, puis aux Alliés. On peut encore y voir des trous d'hommes et des trous de chars, où les soldats se tapissaient pour éviter les éclats d'obus horizontaux. Il accueillit ensuite le Général de Gaulle.
-<br> Il est inscrit aux M.H. depuis le 13/04/1933. Le corps de logis, qui, date du XVIIIe siècle.  
-<br>TOUR LEROY  Légèrement endommagée pendant la bataille de Caen, elle a fait l'objet d'une seconde restauration dans le seconde partie du XXe siècle.  L'édifice est construit en pierre de Caen, matériau calcaire extrait du sous-sol de la ville. L'emprise au sol de la tour est de 79 m2. Elle comprend quatre niveaux : une salle basse, deux étages et une plateforme au sommet.</p>
-      <h4>Habitants / Familles</h4><p>Philippe de la Guêpière                                                                                          Se Ma et Andy Lee                                                                        marquis de Banneville 
-<br>        "</p>
-      <h4>Divers</h4><p>Six châteaux cité à Caen dont Caen, Maltot grav 1, Rots grav 4-5 Bû grav-2,  Cairon grav-4, Fleury grav 6 et Banneville grav-6-7-8                                                                                Fleury GPS : 49° 08' 20,1" Nord, 0° 23' 28,3" Ouest                                        tour Leroy  grav-4 GPS : 49° 11' 03" Nord, 0° 21' 33" Ouest                                            Maltot  PS : 49° 07' 50,02" Nord, 0° 24' 48,72" Ouest                                       Cairon GPS : 49° 14' 20,41" Nord, 0° 27' 7,5" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Six châteaux cité à Caen dont Caen, Maltot, Rots, Bû,  Cairon, Fleury et Banneville.  Au sud-ouest à deux K.M  château de FLEURY sur Orne pas d'information historique. A cinq K.M. au sud ouest MALTOT date de 1740. Il a été bâti sur les plans de Philippe de la Guêpière, architecte du Roi Louis XV et de son Académie Royale d'Architecte. Le Château de Maltot est devenu un Centre de Formation.  ROTS au nord-ouest à deux K.M.   date du XIXe siècle de  Emmanuel Grandsire.                                                                      En banlieue à Anctioville le château de BÛ transformé en hôtel restaurant, les nouveaux châtelains, Se Ma et Andy Lee, sont coréens. Ils ont acquis la demeure en 2014, le château du Bû à Orbois, datant du XVIIIe siècle, a été occupé par les Allemands pendant la seconde guerre mondiale. Il a été partiellement détruit et racheté par M. Helleboid qui la restauré.                               
+<br/>Tour  LEROY, mentionnée pour la première fois en 1497, a  été construite après la prise de Caen en 1346. Érigée non loin du château de Caen, elle faisait partie des fortifications de Bourg-le-Roi ; on y accédait depuis la muraille de la ville par un escalier extérieur. Elle était reliée par une chaîne à la tour aux Landais située sur la rive droite de l'Odon. Ce dispositif défendait l'entrée du port médiéval de Caen. Elle est transformée en maison d'habitations avant d'être utilisée comme prison pour les contrebandiers. La tour aux Landais a été détruite et, en 1860, la rivière a été recouverte. Le conseil municipal décide le 20 octobre 1879 de la conserver et de la restaurer. La restauration est effectuée par Gustave Auvray, architecte municipal.</p>
+<h4>Architecture</h4><p>BANNEVILLE à quelques K.M à l'Est on retrouve sur ces terres des vestiges de loccupation humaine remontant presque à la préhistoire. Plus proche de nous lorigine du nom serait de lanthroponyme scandinave Biarn et du latin villa domaine, Située à la limite de la plaine de Caen et du Pays dAuge, Banneville-la-Campagne est une commune au territoire étendu. En 1828 les hameaux de Guillerville et de Manneville sont rattachés à Banneville lui donnant ses limites actuelles. Le château de Banneville, construit au XVIIIe siècle, est l'ancienne demeure du marquis de Banneville.                                                                                             
+<br/>CAIRON, au nord de Caen a été construit au XVIe siècle et remanié au XIXe siècle. Pendant la deuxième Guerre mondiale, il servit d'hôpital, de résidence aux Allemands, puis aux Alliés. On peut encore y voir des trous d'hommes et des trous de chars, où les soldats se tapissaient pour éviter les éclats d'obus horizontaux. Il accueillit ensuite le Général de Gaulle.
+<br/> Il est inscrit aux M.H. depuis le 13/04/1933. Le corps de logis, qui, date du XVIIIe siècle.  
+<br/>TOUR LEROY  Légèrement endommagée pendant la bataille de Caen, elle a fait l'objet d'une seconde restauration dans le seconde partie du XXe siècle.  L'édifice est construit en pierre de Caen, matériau calcaire extrait du sous-sol de la ville. L'emprise au sol de la tour est de 79 m2. Elle comprend quatre niveaux : une salle basse, deux étages et une plateforme au sommet.</p>
+<h4>Habitants / Familles</h4><p>Philippe de la Guêpière                                                                                          Se Ma et Andy Lee                                                                        marquis de Banneville 
+<br/>        "</p>
+<h4>Divers</h4><p>Six châteaux cité à Caen dont Caen, Maltot grav 1, Rots grav 4-5 Bû grav-2,  Cairon grav-4, Fleury grav 6 et Banneville grav-6-7-8                                                                                Fleury GPS : 49° 08' 20,1" Nord, 0° 23' 28,3" Ouest                                        tour Leroy  grav-4 GPS : 49° 11' 03" Nord, 0° 21' 33" Ouest                                            Maltot  PS : 49° 07' 50,02" Nord, 0° 24' 48,72" Ouest                                       Cairon GPS : 49° 14' 20,41" Nord, 0° 27' 7,5" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

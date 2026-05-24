@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Romaneche_Thorens — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,65 +113,63 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_71.html">Saône-et-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_71.html">Saône-et-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_71.html" class="back-link">Retour au département 71 — Saône-et-Loire</a>
-  <div class="fiche">
-    <h2>Romaneche_Thorens</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>71 — Saône-et-Loire</td></tr>
-          <tr><td>Canton</td><td>La Chapelle-de-Guinchay</td></tr>
-          <tr><td>Commune</td><td>Romanèche-Thorens</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI-XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_71/71_Romaneche_Thorens_1.jpg" alt="Romaneche_Thorens" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Romaneche_Thorens_2.jpg" alt="Romaneche_Thorens" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Romaneche_Thorens_3.jpg" alt="Romaneche_Thorens" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Romaneche_Thorens_4.jpg" alt="Romaneche_Thorens" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Romaneche_Thorens_5.jpg" alt="Romaneche_Thorens" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Romaneche_Thorens_6.jpg" alt="Romaneche_Thorens" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Romaneche_Thorens_7.jpg" alt="Romaneche_Thorens" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Romaneche_Thorens_8.jpg" alt="Romaneche_Thorens" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_71.html">Retour au département 71 — Saône-et-Loire</a>
+<div class="fiche">
+<h2>Romaneche_Thorens</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Romaneche_Thorens" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_71/71_Romaneche_Thorens_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Romaneche_Thorens" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Romaneche_Thorens_1.jpg"/><img alt="Romaneche_Thorens" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Romaneche_Thorens_2.jpg"/><img alt="Romaneche_Thorens" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Romaneche_Thorens_3.jpg"/><img alt="Romaneche_Thorens" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Romaneche_Thorens_4.jpg"/><img alt="Romaneche_Thorens" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Romaneche_Thorens_5.jpg"/><img alt="Romaneche_Thorens" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Romaneche_Thorens_6.jpg"/><img alt="Romaneche_Thorens" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Romaneche_Thorens_7.jpg"/><img alt="Romaneche_Thorens" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Romaneche_Thorens_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>71 — Saône-et-Loire</td></tr>
+<tr><td>Canton</td><td>La Chapelle-de-Guinchay</td></tr>
+<tr><td>Commune</td><td>Romanèche-Thorens</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI-XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>TOUR-ROMANECHE, le château a été construit vers 1450 et à la fin du XVIe siècle devient possession de la famille de Chabeu, est vendue par Étienne de Rébé, mari de Françoise de Chabeu, à Claude de Noblet, elle passe ensuite, par mariage, aux Thibaut, qui relèvent le nom de Noblet.
-<br>En 1717 la propriété est vendue à Abel-Michel Chesnard et ses descendants fondent une chapelle en 1751. Le bien est vendu à un jeune suisse, Jean-Frédéric Schalleimer en 1791 puis acquis par Clément Carra vers 1840. En 1928 il appartient à Barmont et depuis les années 50 à la famille Veille.                 
-<br>GUIMARET; Les traces du château des Gimarets remontent au XVIle siècle, Le château a été édifié pour recevoir un notable en charge de la commune proche de Romanèche sur le lieu dit les Gimarets ou Gimarais à lemplacement dune villa romaine.
-<br>Suite à un incendie, le château est détruit en 1780. Monsieur Louis Chaumet, Procureur de la République à Mâcon, acquiert la propriété et reconstruit en 1810 une bâtisse bourgeoise dans le style romantique  Aujourd'hui viticole le domaine, appartient à la famille Boyer,  Eric Boyer  depuis 2007, qui le rénove et exploite les vignes attenantes à la propriété.
-<br>Dans la commune plusieurs châteaux dont celui du Moulin à Vent et de Jacques.                                                                                     Le château Portier, jusque là propriété de la famille Gaidon  a été repris par Denis Chastel-Sauzet en 2006.</p>
-      <h4>Architecture</h4><p>TOUR  Romanèche-Thorins, entouré sur trois côtés de fossés d'eau vive, restes d'une enceinte que précédait une basse cour, le château se compose d'un corps principal et de deux ailes en retour d'équerre, les deux angles extérieurs sont flanqués de deux tours rondes, le tout est couvert de toitures basses en tuiles creuses.
-<br>Guimaret  avait brûlé et à été reconstruit sous forme de grande maison bourgeoise, les traces du château  remontent au  XVIle siècle,  de forme carrée, située dans un parc dun hectare aux arbres centenaires, la bâtisse est orientée, face à son vignoble, vers le moulin-à-vent tout proche.sous le règne de Louis XIV. Cest lépoque des mousquetaires du roi, des jardins de Le Nôtre, du théâtre de Molière, de la musique de Lully et des peintures de Georges de la Tour, Rembrandt.                                                   Château Portier est une demeure bourgeoise édifiée en 1879 dans le prolongement des bâtisses âgées des XVIe et XVIIe siècles. Il est à limage des châteaux du Beaujolais, clos de mur, terrasses de platanes ombragées, tours bourguignonnes de tuiles vernissées, et de belles pièces de réception voluptueuses et richement décorées de stuf.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Chabeu
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Romanèche-Thorens, la Tout et de Guimaret</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>TOUR-ROMANECHE, le château a été construit vers 1450 et à la fin du XVIe siècle devient possession de la famille de Chabeu, est vendue par Étienne de Rébé, mari de Françoise de Chabeu, à Claude de Noblet, elle passe ensuite, par mariage, aux Thibaut, qui relèvent le nom de Noblet.
+<br/>En 1717 la propriété est vendue à Abel-Michel Chesnard et ses descendants fondent une chapelle en 1751. Le bien est vendu à un jeune suisse, Jean-Frédéric Schalleimer en 1791 puis acquis par Clément Carra vers 1840. En 1928 il appartient à Barmont et depuis les années 50 à la famille Veille.                 
+<br/>GUIMARET; Les traces du château des Gimarets remontent au XVIle siècle, Le château a été édifié pour recevoir un notable en charge de la commune proche de Romanèche sur le lieu dit les Gimarets ou Gimarais à lemplacement dune villa romaine.
+<br/>Suite à un incendie, le château est détruit en 1780. Monsieur Louis Chaumet, Procureur de la République à Mâcon, acquiert la propriété et reconstruit en 1810 une bâtisse bourgeoise dans le style romantique  Aujourd'hui viticole le domaine, appartient à la famille Boyer,  Eric Boyer  depuis 2007, qui le rénove et exploite les vignes attenantes à la propriété.
+<br/>Dans la commune plusieurs châteaux dont celui du Moulin à Vent et de Jacques.                                                                                     Le château Portier, jusque là propriété de la famille Gaidon  a été repris par Denis Chastel-Sauzet en 2006.</p>
+<h4>Architecture</h4><p>TOUR  Romanèche-Thorins, entouré sur trois côtés de fossés d'eau vive, restes d'une enceinte que précédait une basse cour, le château se compose d'un corps principal et de deux ailes en retour d'équerre, les deux angles extérieurs sont flanqués de deux tours rondes, le tout est couvert de toitures basses en tuiles creuses.
+<br/>Guimaret  avait brûlé et à été reconstruit sous forme de grande maison bourgeoise, les traces du château  remontent au  XVIle siècle,  de forme carrée, située dans un parc dun hectare aux arbres centenaires, la bâtisse est orientée, face à son vignoble, vers le moulin-à-vent tout proche.sous le règne de Louis XIV. Cest lépoque des mousquetaires du roi, des jardins de Le Nôtre, du théâtre de Molière, de la musique de Lully et des peintures de Georges de la Tour, Rembrandt.                                                   Château Portier est une demeure bourgeoise édifiée en 1879 dans le prolongement des bâtisses âgées des XVIe et XVIIe siècles. Il est à limage des châteaux du Beaujolais, clos de mur, terrasses de platanes ombragées, tours bourguignonnes de tuiles vernissées, et de belles pièces de réception voluptueuses et richement décorées de stuf.</p>
+<h4>Habitants / Familles</h4><p>Famille de Chabeu
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Romanèche-Thorens, la Tout et de Guimaret</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

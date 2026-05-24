@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Chilly — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,55 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_45.html">Loiret</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_45.html">Loiret</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_45.html" class="back-link">Retour au département 45 — Loiret</a>
-  <div class="fiche">
-    <h2>Chilly</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>45 — Loiret</td></tr>
-          <tr><td>Canton</td><td>La Ferté-Saint-Aubin</td></tr>
-          <tr><td>Commune</td><td>Marcilly en Villette</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_45/45_Chilly_1.jpg" alt="Chilly" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Chilly_2.jpg" alt="Chilly" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Chilly_3.jpg" alt="Chilly" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_45.html">Retour au département 45 — Loiret</a>
+<div class="fiche">
+<h2>Chilly</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Chilly" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_45/45_Chilly_1.jpg"/><div class="hero-count" id="hero-count">1 / 3</div></div><div class="photo-strip"><img alt="Chilly" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Chilly_1.jpg"/><img alt="Chilly" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Chilly_2.jpg"/><img alt="Chilly" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Chilly_3.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>45 — Loiret</td></tr>
+<tr><td>Canton</td><td>La Ferté-Saint-Aubin</td></tr>
+<tr><td>Commune</td><td>Marcilly en Villette</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>CHILLY, est moderne, premier seigneur connu est Hugues de Chilly vers 1150. Vers 1256, on trouve Eudes de Chilly, bourgeois d'Orléans. En 1306, Macé de Chilly devint chef des procureurs de la ville et obtint des lettres d'anoblissement. Son sceau (d'argent au lion de gueules) figure dans une sentence arbitrale rendue par lui au chapitre de Saint-Aignan. Son contre-sceau représente la plus ancienne figuration connue des armes de la ville d'Orléans. En 1295, il rendit foi et hommage à Jean Barat, seigneur de Cormes. Macé II de Chilly vivait vers 1350, son fils Macé III eut une fille, Guillemette qui porta la terre en dot à Guillaume Flamberge, avocat et échevin à Orléans en 1423. Chilly passa en 1480 à Claude Flamberge, puis à Jean Ill, conseiller et avocat du roi au bailliage d'Orléans, il mourut vers 1574 et sa fille Girarde porta cette terre dans la maison de Mareau. Hector II de Mareau était gentilhomme ordinaire du prince de Condé. Ses descendants  restèrent à Chilly jusqu'à la fin du XVIIe siècle. En 1665, Marguerite de Mareau avait porté la seigneurie à son deuxième époux Louis de Mailly. Leur fille Elisabeth, épousa en 1708 le marquis de Viefville, Capitaine de Frégate Légère du Roi. Leur fille Louise-Marguerite épousa le marquis de Thiboutot en 1730 et mourut l'année suivante en laissant une fille, Louise-Rose qui épousa Philippe de Saint Simon, marquis de Courtomer. Ils vendirent la propriété en 1754 à Augustin de Brezé. A sa mort en 1770, sa fille vendit le domaine en 1774 à Picquefeu de Longpré qui s'en défit en 1789.</p>
-      <h4>Architecture</h4><p>CHILLY  En 1806, le domaine fut acheté par Jean Baptiste Mallet qui ne tardera pas à prendre le nom de Mallet de Chilly, natif d'Amiens, après la Révolution se consacra entièrement à la mise en valeur des terres solognotes qui étaient presque toutes en friches, envahies par la bruyère. Sa tâche achevée et la terre de Chilly remise en état, il se retira à Orléans. En 1865, M. Bertrand acheta Chilly à la famille de La Tour du Pin, la propriété fut transmise à leur petite-fille, Mme Eugène Deschamps, et ses descendants la possèdent toujours.  Le château est constitué d'un corps de logis central sur soubassement à deux niveaux et lucarnes sur un toit trés pentu, accolé de deux pavillons à trois niveaux sur les flancs avec tourelles intermédiaires et tour carré sur le flanc ouest, lanternon sur le toit.</p>
-      <h4>Habitants / Familles</h4><p>Chilly;  Hugues de Chilly  et famille de La Tour du Pin
-<br>        "</p>
-      <h4>Divers</h4><p>A Marcilly en Vilette le château de Chilly                                     47° 47' 15" nord, 1° 58' 59"  est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>CHILLY, est moderne, premier seigneur connu est Hugues de Chilly vers 1150. Vers 1256, on trouve Eudes de Chilly, bourgeois d'Orléans. En 1306, Macé de Chilly devint chef des procureurs de la ville et obtint des lettres d'anoblissement. Son sceau (d'argent au lion de gueules) figure dans une sentence arbitrale rendue par lui au chapitre de Saint-Aignan. Son contre-sceau représente la plus ancienne figuration connue des armes de la ville d'Orléans. En 1295, il rendit foi et hommage à Jean Barat, seigneur de Cormes. Macé II de Chilly vivait vers 1350, son fils Macé III eut une fille, Guillemette qui porta la terre en dot à Guillaume Flamberge, avocat et échevin à Orléans en 1423. Chilly passa en 1480 à Claude Flamberge, puis à Jean Ill, conseiller et avocat du roi au bailliage d'Orléans, il mourut vers 1574 et sa fille Girarde porta cette terre dans la maison de Mareau. Hector II de Mareau était gentilhomme ordinaire du prince de Condé. Ses descendants  restèrent à Chilly jusqu'à la fin du XVIIe siècle. En 1665, Marguerite de Mareau avait porté la seigneurie à son deuxième époux Louis de Mailly. Leur fille Elisabeth, épousa en 1708 le marquis de Viefville, Capitaine de Frégate Légère du Roi. Leur fille Louise-Marguerite épousa le marquis de Thiboutot en 1730 et mourut l'année suivante en laissant une fille, Louise-Rose qui épousa Philippe de Saint Simon, marquis de Courtomer. Ils vendirent la propriété en 1754 à Augustin de Brezé. A sa mort en 1770, sa fille vendit le domaine en 1774 à Picquefeu de Longpré qui s'en défit en 1789.</p>
+<h4>Architecture</h4><p>CHILLY  En 1806, le domaine fut acheté par Jean Baptiste Mallet qui ne tardera pas à prendre le nom de Mallet de Chilly, natif d'Amiens, après la Révolution se consacra entièrement à la mise en valeur des terres solognotes qui étaient presque toutes en friches, envahies par la bruyère. Sa tâche achevée et la terre de Chilly remise en état, il se retira à Orléans. En 1865, M. Bertrand acheta Chilly à la famille de La Tour du Pin, la propriété fut transmise à leur petite-fille, Mme Eugène Deschamps, et ses descendants la possèdent toujours.  Le château est constitué d'un corps de logis central sur soubassement à deux niveaux et lucarnes sur un toit trés pentu, accolé de deux pavillons à trois niveaux sur les flancs avec tourelles intermédiaires et tour carré sur le flanc ouest, lanternon sur le toit.</p>
+<h4>Habitants / Familles</h4><p>Chilly;  Hugues de Chilly  et famille de La Tour du Pin
+<br/>        "</p>
+<h4>Divers</h4><p>A Marcilly en Vilette le château de Chilly                                     47° 47' 15" nord, 1° 58' 59"  est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

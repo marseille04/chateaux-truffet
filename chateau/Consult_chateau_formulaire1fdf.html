@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Plougasnou — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,61 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_29.html">Finistère</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_29.html">Finistère</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_29.html" class="back-link">Retour au département 29 — Finistère</a>
-  <div class="fiche">
-    <h2>Plougasnou</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>29 — Finistère</td></tr>
-          <tr><td>Canton</td><td>Plouigneau</td></tr>
-          <tr><td>Commune</td><td>Plougasnou</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>48° 42' 7,82" Nord, 3° 47' 44,46" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_29/29_Plougasnou_1.jpg" alt="Plougasnou" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Plougasnou_2.jpg" alt="Plougasnou" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Plougasnou_3.jpg" alt="Plougasnou" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Plougasnou_4.jpg" alt="Plougasnou" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Plougasnou_5.jpg" alt="Plougasnou" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Plougasnou_6.jpg" alt="Plougasnou" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Plougasnou_7.jpg" alt="Plougasnou" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Plougasnou_8.jpg" alt="Plougasnou" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_29.html">Retour au département 29 — Finistère</a>
+<div class="fiche">
+<h2>Plougasnou</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Plougasnou" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_29/29_Plougasnou_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Plougasnou" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Plougasnou_1.jpg"/><img alt="Plougasnou" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Plougasnou_2.jpg"/><img alt="Plougasnou" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Plougasnou_3.jpg"/><img alt="Plougasnou" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Plougasnou_4.jpg"/><img alt="Plougasnou" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Plougasnou_5.jpg"/><img alt="Plougasnou" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Plougasnou_6.jpg"/><img alt="Plougasnou" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Plougasnou_7.jpg"/><img alt="Plougasnou" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Plougasnou_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>29 — Finistère</td></tr>
+<tr><td>Canton</td><td>Plouigneau</td></tr>
+<tr><td>Commune</td><td>Plougasnou</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII</td></tr>
+<tr><td>Coordonnées GPS</td><td>48° 42' 7,82" Nord, 3° 47' 44,46" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>a Plougasnou; Six châteaux dans cet article; Cosquer; Traon-ar-Run, Ruffelic, Germeur, Ponplaincoat et  ST-Samson.                                                                             COSQUER, à l'entrée de l'allée menant au manoir se trouvait la chapelle Sainte-Anne. L'entrée de la cour est formée d'un porche, double arcade en granit, porte cavalière et porte piétonne. A ce portail est accolé un pigeonnier contenant des nids taillés dans la pierre. Le bâtiment principal se dresse au fond de la cour. Dans le bâtiment de droite, un puits a été creusé dans la muraille, sous une arcade saillante accompagnée de deux consoles de granit pour déposer les seaux, et d'une auge pour les animaux. A l'intérieur, le manoir conserve des cheminées aux manteaux de bois sculpté et un escalier de pierre.                                                                                                    RUFFELIC, date du XVIIe siècle. Il y a un puits. Le manoir  fut la résidence du Recteur de Plougasnou au XVIIIe siècle et celle de François Louis de Kermerchou, sieur de Lézénor, vers 1772.  Jacques Boudin de Tromelin de Lanuguy (1751-1798), Major de vaisseau, a donné son nom à l'île Tromelin, comme raconté par Irène Frain dans son roman Les Naufragés de l'île Tromelin. Le Manoir de Tromelin est inscrit au titre des M.H. depuis le 16/08.1971. Il existe 2 autres manoirs à découvrir à Plougasnou : Le Manoir du Cosquer,pas d'information ni image.                                                                         TRAON-AR-RUN,  vers 1400, un des cadets, Jean de Tréménec, avait épousé Tiphaine de Trémédern, héritière de Traon-ar-Run. Pillé par les espagnols durant les guerres de La Ligue, il est transformé en poste d'observation jusqu'en 1598. Le manoir de Traon-ar-Run était en 1762 la résidence de l'écuyer Guy-Julien de Tréménec de la Salle, puis est passé entre les mains des familles de Crechquérault et Gicquay de Preissac.</p>
-      <h4>Architecture</h4><p>GUERMEUR (vers 1620). Propriété, en 1624, de Guillaume du Poulmic, maire de Morlaix.                                                                                                                                                PONTPLAINCOAT, du XVIe siècle. Hervé, seigneur de Kersauson, époux de demoiselle Isabelle de Pontplaincouët, est signalé dans un acte du 14 janvier 1472 : Lettres de respit concédées au dict Hervé, escuyer sieur de Kersauson, et à demoiselle de Pontplaincouët, sa compagne, par le duc de Bretagne. Propriété de la famille Quelen (Guillaume de Quelen, puis de la famille Pastour de Kerjean (vers 1610, suite au mariage de Jeanne de Quelen avec Valentin Pastour de Kerjean). A la fin du XVIIIe siècle, le manoir est vendu à des religieuses de Kertanguy qui fondent en 1840 une école pour jeunes filles. Entre 1920 et 1940 Pontplaincoët est une école gérée par les Soeurs du Saint-Esprit de Lannion. Il s'agit aujourd'hui d'un centre de vacances qui appartient depuis 1970 à la Ville de Paris.
-<br> La mairie de Paris a mis en vente le manoir de Pontplaincoat depuis plusieurs mois et une nouvelle annonce immobilière vient de paraître tout récemment dans Le Figaro, confirme le maire de Plougasnou, Yvon Tanguy. J'ai mis en relation le vendeur et plusieurs promoteurs immobiliers. Sans succès pour l'instant».                                                                  SAINT-SAMSON  du XIXe siècle chambres d'hôtes de Franck et Florence.</p>
-      <h4>Habitants / Familles</h4><p>Ruffelic: François Louis de Kermerchou,               Pontplaincoat; Famille d'Hervé de Kersauson              Traon; Famille de Crechquérault
-<br>        "</p>
-      <h4>Divers</h4><p>Plougasnou; Six châteaux dans cet article; Cosquer Grav I-2-3; Traon-ar-Rungrav-5, Ruffelic Grav-6 ,  Sable grav-7 Germeur, Ponplaincoat  grav 4  et  ST-Samson grav-8 .                   GPS : 48° 42' 7,82" Nord, 3° 47' 44,46" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>a Plougasnou; Six châteaux dans cet article; Cosquer; Traon-ar-Run, Ruffelic, Germeur, Ponplaincoat et  ST-Samson.                                                                             COSQUER, à l'entrée de l'allée menant au manoir se trouvait la chapelle Sainte-Anne. L'entrée de la cour est formée d'un porche, double arcade en granit, porte cavalière et porte piétonne. A ce portail est accolé un pigeonnier contenant des nids taillés dans la pierre. Le bâtiment principal se dresse au fond de la cour. Dans le bâtiment de droite, un puits a été creusé dans la muraille, sous une arcade saillante accompagnée de deux consoles de granit pour déposer les seaux, et d'une auge pour les animaux. A l'intérieur, le manoir conserve des cheminées aux manteaux de bois sculpté et un escalier de pierre.                                                                                                    RUFFELIC, date du XVIIe siècle. Il y a un puits. Le manoir  fut la résidence du Recteur de Plougasnou au XVIIIe siècle et celle de François Louis de Kermerchou, sieur de Lézénor, vers 1772.  Jacques Boudin de Tromelin de Lanuguy (1751-1798), Major de vaisseau, a donné son nom à l'île Tromelin, comme raconté par Irène Frain dans son roman Les Naufragés de l'île Tromelin. Le Manoir de Tromelin est inscrit au titre des M.H. depuis le 16/08.1971. Il existe 2 autres manoirs à découvrir à Plougasnou : Le Manoir du Cosquer,pas d'information ni image.                                                                         TRAON-AR-RUN,  vers 1400, un des cadets, Jean de Tréménec, avait épousé Tiphaine de Trémédern, héritière de Traon-ar-Run. Pillé par les espagnols durant les guerres de La Ligue, il est transformé en poste d'observation jusqu'en 1598. Le manoir de Traon-ar-Run était en 1762 la résidence de l'écuyer Guy-Julien de Tréménec de la Salle, puis est passé entre les mains des familles de Crechquérault et Gicquay de Preissac.</p>
+<h4>Architecture</h4><p>GUERMEUR (vers 1620). Propriété, en 1624, de Guillaume du Poulmic, maire de Morlaix.                                                                                                                                                PONTPLAINCOAT, du XVIe siècle. Hervé, seigneur de Kersauson, époux de demoiselle Isabelle de Pontplaincouët, est signalé dans un acte du 14 janvier 1472 : Lettres de respit concédées au dict Hervé, escuyer sieur de Kersauson, et à demoiselle de Pontplaincouët, sa compagne, par le duc de Bretagne. Propriété de la famille Quelen (Guillaume de Quelen, puis de la famille Pastour de Kerjean (vers 1610, suite au mariage de Jeanne de Quelen avec Valentin Pastour de Kerjean). A la fin du XVIIIe siècle, le manoir est vendu à des religieuses de Kertanguy qui fondent en 1840 une école pour jeunes filles. Entre 1920 et 1940 Pontplaincoët est une école gérée par les Soeurs du Saint-Esprit de Lannion. Il s'agit aujourd'hui d'un centre de vacances qui appartient depuis 1970 à la Ville de Paris.
+<br/> La mairie de Paris a mis en vente le manoir de Pontplaincoat depuis plusieurs mois et une nouvelle annonce immobilière vient de paraître tout récemment dans Le Figaro, confirme le maire de Plougasnou, Yvon Tanguy. J'ai mis en relation le vendeur et plusieurs promoteurs immobiliers. Sans succès pour l'instant».                                                                  SAINT-SAMSON  du XIXe siècle chambres d'hôtes de Franck et Florence.</p>
+<h4>Habitants / Familles</h4><p>Ruffelic: François Louis de Kermerchou,               Pontplaincoat; Famille d'Hervé de Kersauson              Traon; Famille de Crechquérault
+<br/>        "</p>
+<h4>Divers</h4><p>Plougasnou; Six châteaux dans cet article; Cosquer Grav I-2-3; Traon-ar-Rungrav-5, Ruffelic Grav-6 ,  Sable grav-7 Germeur, Ponplaincoat  grav 4  et  ST-Samson grav-8 .                   GPS : 48° 42' 7,82" Nord, 3° 47' 44,46" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

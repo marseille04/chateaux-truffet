@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Ebihens — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_35.html">Ille-et-Vilaine</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_35.html">Ille-et-Vilaine</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_35.html" class="back-link">Retour au département 35 — Ille-et-Vilaine</a>
-  <div class="fiche">
-    <h2>Ebihens</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>35 — Ille-et-Vilaine</td></tr>
-          <tr><td>Canton</td><td>Saint-Malo</td></tr>
-          <tr><td>Commune</td><td>Iles des Ebihens</td></tr>
-          <tr><td>Type d'édifice</td><td>Tour</td></tr>
-          <tr><td>Période d'origine</td><td>XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_35/35_Ebihens_1.jpg" alt="Ebihens" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Ebihens_2.jpg" alt="Ebihens" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Ebihens_3.jpg" alt="Ebihens" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Ebihens_4.jpg" alt="Ebihens" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_35.html">Retour au département 35 — Ille-et-Vilaine</a>
+<div class="fiche">
+<h2>Ebihens</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Ebihens" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_35/35_Ebihens_1.jpg"/><div class="hero-count" id="hero-count">1 / 4</div></div><div class="photo-strip"><img alt="Ebihens" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Ebihens_1.jpg"/><img alt="Ebihens" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Ebihens_2.jpg"/><img alt="Ebihens" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Ebihens_3.jpg"/><img alt="Ebihens" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Ebihens_4.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>35 — Ille-et-Vilaine</td></tr>
+<tr><td>Canton</td><td>Saint-Malo</td></tr>
+<tr><td>Commune</td><td>Iles des Ebihens</td></tr>
+<tr><td>Type d'édifice</td><td>Tour</td></tr>
+<tr><td>Période d'origine</td><td>XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Tour VAUBAN  Située entre le cap Frehel qui comprend une tour fanal du XVIIe quelque peu similaire et la ville de Saint-Malo, la tour occupe un emplacement de choix destiné à couvrir la baie de la Fresnaye, alors particulièrement vulnérable à une descente voire un débarquement d'ampleur des Anglais et, plus largement, Saint-Malo.  le site est repéré par Vauban à l'occasion de l'attaque anglaise contre Saint-Malo de 1 693. En mai 1694, il propose la construction dune tour-réduit sur lîle intégrée à un vaste ensemble de batteries de côte et retranchements qui ne seront toutefois exécutés que très partiellement. Projet pour le dispositif de la garde de Saint-Malo et ses côtes, mai 1694, par Vauban : « Elle [l'île] est d'autant dangereuse que n'étant point gardée, 10 000 hommes y peuvent prendre terre sans empêchement dans le temps d'une marée de vive eau, et quand la mer est basse, marcher en bataille à la terre ferme par un espace de 150 toises de large qui assèche totalement et cela par des sables fermes comme un plancher.  La pierre de taille, le moellon, le sable et l'eau sont sur le lieu et sous la main. Il n'y manque que de la chaux qu'il  Monsieur de Pontbriand trouvera bien ». Propriété privée ainsi que l'ensemble de l'île, la tour est bien conservée mais elle n'est pas accessible à la visite. Lîle n'est accessible qu'à marée basse.</p>
-      <h4>Architecture</h4><p>Tour VAUBAN    l'accès à la porte de la tour est couvert par un modeste ravelin dont le mur d'enceinte comprend des créneaux de fusillade. Seul le ravelin était cerné par un fossé, peu large et peu profond, aujourd'hui comblé. Enfin, l'accès au ravelin était peut-être couvert par un pont-levis 
-<br>D'après un rapport de Garengeau du 29 septembre 1716 l'ensemble est en assez bon état excepté les dehors : « Est nécessaire de réparer les deux ponts levy, y refaire partie des assemblages qui sont pourris et les recouvrir de planches de chêne neuves, mettre les mailles qui manquent aux chaines, une serrure neuve, des crochets et huiller le reste des ferrures que la rouille mange » . D'après ce rapport du 30 juillet 1730, les ponts-levis avaient été brûlés par les Anglais et les fortifications se trouvaient plus ou moins à l'abandon. Le tour d'artillerie des  Ebihens en images. Batteries de côtes aux Ebihens Toutefois l'essentiel de la défense devait être constitué par trois batteries de côtes dont une seule, celle disposée sur la pointe nord-est, sera réalisée en 1756, au moment de la guerre de Sept Ans, sur ordre du duc d'Aiguillon. À cet effet, cette batterie de la pointe de Ebihens (un simple pierres sèches revêtues de gazon, aujourd'hui disparue) comprend deux pièces d'artillerie.
-<br>Armée de deux canons de 12 livres, elle croisait ses feux avec celle de Saint-Briac. La tour servait alors de corps de garde aux canonniers garde-côtes.</p>
-      <h4>Habitants / Familles</h4><p>Vauban et Monsieur de Pontbriand
-<br>        "</p>
-      <h4>Divers</h4><p>Au Iles des Ebihens le fort Vauban de  Ebihens                          Gps  46° 12' 18" nord, 6° 08' 35" est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Tour VAUBAN  Située entre le cap Frehel qui comprend une tour fanal du XVIIe quelque peu similaire et la ville de Saint-Malo, la tour occupe un emplacement de choix destiné à couvrir la baie de la Fresnaye, alors particulièrement vulnérable à une descente voire un débarquement d'ampleur des Anglais et, plus largement, Saint-Malo.  le site est repéré par Vauban à l'occasion de l'attaque anglaise contre Saint-Malo de 1 693. En mai 1694, il propose la construction dune tour-réduit sur lîle intégrée à un vaste ensemble de batteries de côte et retranchements qui ne seront toutefois exécutés que très partiellement. Projet pour le dispositif de la garde de Saint-Malo et ses côtes, mai 1694, par Vauban : « Elle [l'île] est d'autant dangereuse que n'étant point gardée, 10 000 hommes y peuvent prendre terre sans empêchement dans le temps d'une marée de vive eau, et quand la mer est basse, marcher en bataille à la terre ferme par un espace de 150 toises de large qui assèche totalement et cela par des sables fermes comme un plancher.  La pierre de taille, le moellon, le sable et l'eau sont sur le lieu et sous la main. Il n'y manque que de la chaux qu'il  Monsieur de Pontbriand trouvera bien ». Propriété privée ainsi que l'ensemble de l'île, la tour est bien conservée mais elle n'est pas accessible à la visite. Lîle n'est accessible qu'à marée basse.</p>
+<h4>Architecture</h4><p>Tour VAUBAN    l'accès à la porte de la tour est couvert par un modeste ravelin dont le mur d'enceinte comprend des créneaux de fusillade. Seul le ravelin était cerné par un fossé, peu large et peu profond, aujourd'hui comblé. Enfin, l'accès au ravelin était peut-être couvert par un pont-levis 
+<br/>D'après un rapport de Garengeau du 29 septembre 1716 l'ensemble est en assez bon état excepté les dehors : « Est nécessaire de réparer les deux ponts levy, y refaire partie des assemblages qui sont pourris et les recouvrir de planches de chêne neuves, mettre les mailles qui manquent aux chaines, une serrure neuve, des crochets et huiller le reste des ferrures que la rouille mange » . D'après ce rapport du 30 juillet 1730, les ponts-levis avaient été brûlés par les Anglais et les fortifications se trouvaient plus ou moins à l'abandon. Le tour d'artillerie des  Ebihens en images. Batteries de côtes aux Ebihens Toutefois l'essentiel de la défense devait être constitué par trois batteries de côtes dont une seule, celle disposée sur la pointe nord-est, sera réalisée en 1756, au moment de la guerre de Sept Ans, sur ordre du duc d'Aiguillon. À cet effet, cette batterie de la pointe de Ebihens (un simple pierres sèches revêtues de gazon, aujourd'hui disparue) comprend deux pièces d'artillerie.
+<br/>Armée de deux canons de 12 livres, elle croisait ses feux avec celle de Saint-Briac. La tour servait alors de corps de garde aux canonniers garde-côtes.</p>
+<h4>Habitants / Familles</h4><p>Vauban et Monsieur de Pontbriand
+<br/>        "</p>
+<h4>Divers</h4><p>Au Iles des Ebihens le fort Vauban de  Ebihens                          Gps  46° 12' 18" nord, 6° 08' 35" est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

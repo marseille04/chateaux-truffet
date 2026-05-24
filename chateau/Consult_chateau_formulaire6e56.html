@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Roche_Maurice — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,59 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_29.html">Finistère</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_29.html">Finistère</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_29.html" class="back-link">Retour au département 29 — Finistère</a>
-  <div class="fiche">
-    <h2>Roche_Maurice</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>29 — Finistère</td></tr>
-          <tr><td>Canton</td><td>Landerneau</td></tr>
-          <tr><td>Commune</td><td>La Roche Maurice</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVII-XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_29/29_Roche_Maurice_1.jpg" alt="Roche_Maurice" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Roche_Maurice_2.jpg" alt="Roche_Maurice" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Roche_Maurice_3.jpg" alt="Roche_Maurice" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Roche_Maurice_4.jpg" alt="Roche_Maurice" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_29/29_Roche_Maurice_5.jpg" alt="Roche_Maurice" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_29.html">Retour au département 29 — Finistère</a>
+<div class="fiche">
+<h2>Roche_Maurice</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Roche_Maurice" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_29/29_Roche_Maurice_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Roche_Maurice" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Roche_Maurice_1.jpg"/><img alt="Roche_Maurice" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Roche_Maurice_2.jpg"/><img alt="Roche_Maurice" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Roche_Maurice_3.jpg"/><img alt="Roche_Maurice" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Roche_Maurice_4.jpg"/><img alt="Roche_Maurice" class="" loading="lazy" onclick="setHero(this)" src="../image/image_29/29_Roche_Maurice_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>29 — Finistère</td></tr>
+<tr><td>Canton</td><td>Landerneau</td></tr>
+<tr><td>Commune</td><td>La Roche Maurice</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVII-XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>PPONTOIS Propriété successive des familles de Bauchesnes. Le Pontois (Guillaume Le Pontois époux de Catherine Mahieu, avant 1693, et René Le Pontois époux de Catherine Derrien en 1693-1708), Moucheron (au mariage de Sébastien de Moucheron avec Marguerite Le Pontois), Le Roy  du milieu du XVIIIe siècle, Parscau du Plessis (à partir du début du XIXe siècle, vers 1800), Audibert de Lavillasse  de 1831, suite à l'achat du domaine du Pontois par Joseph Marie François Etienne d'Audibert de Lavillasse, époux de Louise Denise Guymar de Coatidreux, le 12 février 1831,  Eugène Belin (1891 à 1895, à l'achat du domaine du Pontois à Stéphanie d'Audibert de Lavillasse le 28 janvier 1891), Gabriel Marie de Kermenguy (1895 à 1913, à l'achat du domaine du Pontois le 22 mai 1895), Yves Bernard (à partir de 1913, à l'achat du domaine du Pontois le 8 avril 1913). Le manoir actuel  est assez récent. Il a remplacé l'ancien du XVe siècle ou XVIe siècle qui appartint, avec sa chapelle Saint-Guillaume, à la famille du Pontois .                                                                KERRAOUL, le manoir de Keraoul ou Kerraoul ou Kernoual, propriété successive des familles Keraoul (Robert de Keraoul en 1426), Le Gac de Keraoul (du XVIe siècle au XVIII siècle), O'Croly (par succession de feu Christophe Ange Le Gac, sieur du Quistillic), Olliviere à l'achat du domaine de Keraoul par Joseph Marie Ollivier le 31 décembre 1802. C'est Yves Isidore Marie Ollivier qui fait construire le nouveau château sur l'emplacement de l'ancien manoir, vers 1871-1873. Le domaine de Keraoul est vendu ensuite à Ernest Robert (époux de de Louise Miorcec de Kerdanet) le 16 février 1876, puis à Fernand Aubert de Vincelles (époux de Marie-Thérèse de la Bintinaye) vers 1901, puis à Louis Berthelot (époux de Marie Hautin) vers 1922. Le domaine est depuis 1946 la propriété de l'Association Don Bosco .</p>
-      <h4>Architecture</h4><p>KERMADEC, ancien manoir de Kermadec (XIIIe siècle), où naquit vers le milieu du XIIIe siècle, Olivier Saladin, recteur de l'Université de Paris en 1348, puis évêque de Nantes, surnommé la Fleur des Prélats de son temps. Il se trouva à Avignon, lors de la canonisation de saint-Yves. Ce prélat était frère de Pigette Saladin, qui, porta, par mariage, la seigneurie de Kermadec à Hervé, fils d'Huon, sieur de Kerhuon, prévôt féodé héréditaire de la vicomté de léon. La manoir est reconstruit vers 1503 par Pierre Huon, sieur de Kermadec.
-<br>KERNEVEZ,ancien manoir de Kernevez (vers le milieu du XIXe siècle), propriété successive des familles d'Audibert de Lavillasse (vers 1861), Dieuleveult (en 1872, suite à la vente de Kernevez par Paul d'Audibert de Lavillasse, né en 1866 et décédé en 1906), Coatgoureden (en 1914, suite à la vente de Kernevez par Paul de Dieuleveult à Charles de Coatgoureden), Berthelot (de 1921 à 1995, suite à l'achat du domaine de Kernevez par Charles Alain Marie Berthelot frère de Louis Berthelot (qui achète Keraoul et époux d'Anne Louise Gaulard).</p>
-      <h4>Habitants / Familles</h4><p>Pontois ; Famille de Pontois                                              Kermadec  ;Famille de Saladin                                   Kernevez;   Famille d'Audibert de Lavillasse
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Quatre châteaux dans cet article sur la Roche-Maurice ; Pontois grav-4-5 , Kerraoul grav-1-2, Kermandec et Kernevez grav-3</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>PPONTOIS Propriété successive des familles de Bauchesnes. Le Pontois (Guillaume Le Pontois époux de Catherine Mahieu, avant 1693, et René Le Pontois époux de Catherine Derrien en 1693-1708), Moucheron (au mariage de Sébastien de Moucheron avec Marguerite Le Pontois), Le Roy  du milieu du XVIIIe siècle, Parscau du Plessis (à partir du début du XIXe siècle, vers 1800), Audibert de Lavillasse  de 1831, suite à l'achat du domaine du Pontois par Joseph Marie François Etienne d'Audibert de Lavillasse, époux de Louise Denise Guymar de Coatidreux, le 12 février 1831,  Eugène Belin (1891 à 1895, à l'achat du domaine du Pontois à Stéphanie d'Audibert de Lavillasse le 28 janvier 1891), Gabriel Marie de Kermenguy (1895 à 1913, à l'achat du domaine du Pontois le 22 mai 1895), Yves Bernard (à partir de 1913, à l'achat du domaine du Pontois le 8 avril 1913). Le manoir actuel  est assez récent. Il a remplacé l'ancien du XVe siècle ou XVIe siècle qui appartint, avec sa chapelle Saint-Guillaume, à la famille du Pontois .                                                                KERRAOUL, le manoir de Keraoul ou Kerraoul ou Kernoual, propriété successive des familles Keraoul (Robert de Keraoul en 1426), Le Gac de Keraoul (du XVIe siècle au XVIII siècle), O'Croly (par succession de feu Christophe Ange Le Gac, sieur du Quistillic), Olliviere à l'achat du domaine de Keraoul par Joseph Marie Ollivier le 31 décembre 1802. C'est Yves Isidore Marie Ollivier qui fait construire le nouveau château sur l'emplacement de l'ancien manoir, vers 1871-1873. Le domaine de Keraoul est vendu ensuite à Ernest Robert (époux de de Louise Miorcec de Kerdanet) le 16 février 1876, puis à Fernand Aubert de Vincelles (époux de Marie-Thérèse de la Bintinaye) vers 1901, puis à Louis Berthelot (époux de Marie Hautin) vers 1922. Le domaine est depuis 1946 la propriété de l'Association Don Bosco .</p>
+<h4>Architecture</h4><p>KERMADEC, ancien manoir de Kermadec (XIIIe siècle), où naquit vers le milieu du XIIIe siècle, Olivier Saladin, recteur de l'Université de Paris en 1348, puis évêque de Nantes, surnommé la Fleur des Prélats de son temps. Il se trouva à Avignon, lors de la canonisation de saint-Yves. Ce prélat était frère de Pigette Saladin, qui, porta, par mariage, la seigneurie de Kermadec à Hervé, fils d'Huon, sieur de Kerhuon, prévôt féodé héréditaire de la vicomté de léon. La manoir est reconstruit vers 1503 par Pierre Huon, sieur de Kermadec.
+<br/>KERNEVEZ,ancien manoir de Kernevez (vers le milieu du XIXe siècle), propriété successive des familles d'Audibert de Lavillasse (vers 1861), Dieuleveult (en 1872, suite à la vente de Kernevez par Paul d'Audibert de Lavillasse, né en 1866 et décédé en 1906), Coatgoureden (en 1914, suite à la vente de Kernevez par Paul de Dieuleveult à Charles de Coatgoureden), Berthelot (de 1921 à 1995, suite à l'achat du domaine de Kernevez par Charles Alain Marie Berthelot frère de Louis Berthelot (qui achète Keraoul et époux d'Anne Louise Gaulard).</p>
+<h4>Habitants / Familles</h4><p>Pontois ; Famille de Pontois                                              Kermadec  ;Famille de Saladin                                   Kernevez;   Famille d'Audibert de Lavillasse
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Quatre châteaux dans cet article sur la Roche-Maurice ; Pontois grav-4-5 , Kerraoul grav-1-2, Kermandec et Kernevez grav-3</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

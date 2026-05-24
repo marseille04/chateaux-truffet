@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Montaigu_Blin_II — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,57 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_03.html">Allier</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_03.html">Allier</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_03.html" class="back-link">Retour au département 03 — Allier</a>
-  <div class="fiche">
-    <h2>Montaigu_Blin_II</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>03 — Allier</td></tr>
-          <tr><td>Canton</td><td>Varennes-sur-Allier</td></tr>
-          <tr><td>Commune</td><td>Montaigu-le-Blin</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_03/03_Montaigu_Blin_II_1.jpg" alt="Montaigu_Blin_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Montaigu_Blin_II_2.jpg" alt="Montaigu_Blin_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Montaigu_Blin_II_3.jpg" alt="Montaigu_Blin_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Montaigu_Blin_II_4.jpg" alt="Montaigu_Blin_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Montaigu_Blin_II_5.jpg" alt="Montaigu_Blin_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Montaigu_Blin_II_6.jpg" alt="Montaigu_Blin_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Montaigu_Blin_II_7.jpg" alt="Montaigu_Blin_II" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_03.html">Retour au département 03 — Allier</a>
+<div class="fiche">
+<h2>Montaigu_Blin_II</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Montaigu_Blin_II" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_03/03_Montaigu_Blin_II_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Montaigu_Blin_II" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Montaigu_Blin_II_1.jpg"/><img alt="Montaigu_Blin_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Montaigu_Blin_II_2.jpg"/><img alt="Montaigu_Blin_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Montaigu_Blin_II_3.jpg"/><img alt="Montaigu_Blin_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Montaigu_Blin_II_4.jpg"/><img alt="Montaigu_Blin_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Montaigu_Blin_II_5.jpg"/><img alt="Montaigu_Blin_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Montaigu_Blin_II_6.jpg"/><img alt="Montaigu_Blin_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Montaigu_Blin_II_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>03 — Allier</td></tr>
+<tr><td>Canton</td><td>Varennes-sur-Allier</td></tr>
+<tr><td>Commune</td><td>Montaigu-le-Blin</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>BOULAIZE, cette construction du XVIIe siècle est le siège d'un fief qui semble avoir toujours été tenu par des capitaines ou officiers du château de Montaigu. En 1439, il est la propriété de Jean de la Boulaize, écuyer, capitaine de Montaigu. Au début du XVIIe siècle, il appartient à la famille Treille, dont une héritière, Madeleine, le portera par mariage en 1745 à Jean François Delaire. Leurs descendants le conserveront jusqu'au XXe siècle. La Boulaise : habitation dont les propriétaires sous le 1er empire prirent le nom de Delaire de la Boulaise au lieu de Delaire de Cambacérès (et ceci après avoir été fait baron d'empire).                         CIERNAT,construit, dans la deuxième moitié du XIXe siècle, un édifice moderne.                             FEJARD, au pied des remparts du château de Montaigu la famille Fréjard fit construire à lextrême fin du XIXe siècle  un château moderne  dinspiration néogothique, nous avons donné à cette maison le nom de château Mabru, bien  quelle semble navoir jamais porté de nom particulier.                     JAROUSSE,  Aubert de la Faige signale un plan ancien qui montre un édifice quadrangulaire, flanqué de quatre  tours circulaires, plus une carrée où était percée la porte d'entrée. Le bâtiment actuel consiste en un logis quadrangulaire  auquel est accolé une tour circulaire ancienne.        PONCENAT, au XIV siècle, par mariage, la famille Poncenat cède le château aux Boucé. Au XVIe siècle, le vieux château fort est en ruine. En 1568, François de Boucé, capitaine de Poncenat, perd la vie durant les guerres de religions. En 1632, la fille de François de Boucé vend le château à Balthazar Bayle. Il prend ainsi le titre de Baron de Poncenat. Au XVIIe siècle, le château est rebâti. En 1730, par mariage, le château est cédé à la famille de Maubranches. En 1745, le château est vendu à François Senetaire du Buysson, seigneur de Montaigu. Vers 1791, le député Philibert du Buysson de Douzon se retire dans son château de Poncenat. Vers 1792, les révolutionnaires séquestrent le citoyen Buysson de Douzon et pillent le château.</p>
-      <h4>Architecture</h4><p>Ciernat, un édifice moderne,  composé d'un logis quadrangulaire de trois niveaux surmonté d'un toit à croupe en ardoise, percé de lucarnes. La façade principale est augmentée au centre d'un avant-corps en saillie,  flanqué au troisième niveau, d'échauguettes en surplomb, le toit de cette tourelle se dresse haut au dessus du bâtiment. Le style néo-gothique de l'édifice est encore renforcé par les moulures qui souligne les linteaux des fenêtres du troisième niveau.                 Fejard,  un logis quadrangulaire étroit de trois niveaux, ouvert dun  toit à croupe en ardoise, percé de lucarnes, est encadré par 2 pans de ces pavillons sont perpendiculaires à celle du logis. Un escalier à 2 volées courbes, donnant accès  à une terrasse, est logé entre les pavillons. Laustérité de cette demeure  est cassée par ladjonction heureuse  dune tourelle polygonale en briques, en surplomb au milieu de la façade  de logis. Percée de fentes déclairage, couronnée dune corniche de pierres et surmontée dun toit en  ardoise, elle donne un peu délégance et castellise cette maison bourgeoise.               Poncenat, du XIIIe siècle , château fort. A la fin du XXe siècle, le château en ruine retrouve un nouveau propriétaire qui le reconstruit et l'aménage en habitation. Construit sur une motte naturelle terrassée, ruiné à la fin du XVIe siècle. Il fut rebâti au XVIIe siècle, pour être à nouveau pillé et démantelé après la Révolution, subsiste une tour semi-circulaire avec un  côté plat et quelques pans de mur, ainsi qu'une partie du porche d'entrée, sa porte charretière a perdu son arche, mais il a conservé  une porte piétonnière à fort bossage.                             Puydigon deux tours carrées l'une d elles présente des ouvertures à moulures prismatiques terminées par un arc en accolade.</p>
-      <h4>Habitants / Familles</h4><p>Famille Treille                     Famille Fréjard"</p>
-      <h4>Divers</h4><p>Château de Ciernat, de Féjard, de Poncenat, de Puydigon, de Morets et de Jarousse à Montaigu le Blin</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>BOULAIZE, cette construction du XVIIe siècle est le siège d'un fief qui semble avoir toujours été tenu par des capitaines ou officiers du château de Montaigu. En 1439, il est la propriété de Jean de la Boulaize, écuyer, capitaine de Montaigu. Au début du XVIIe siècle, il appartient à la famille Treille, dont une héritière, Madeleine, le portera par mariage en 1745 à Jean François Delaire. Leurs descendants le conserveront jusqu'au XXe siècle. La Boulaise : habitation dont les propriétaires sous le 1er empire prirent le nom de Delaire de la Boulaise au lieu de Delaire de Cambacérès (et ceci après avoir été fait baron d'empire).                         CIERNAT,construit, dans la deuxième moitié du XIXe siècle, un édifice moderne.                             FEJARD, au pied des remparts du château de Montaigu la famille Fréjard fit construire à lextrême fin du XIXe siècle  un château moderne  dinspiration néogothique, nous avons donné à cette maison le nom de château Mabru, bien  quelle semble navoir jamais porté de nom particulier.                     JAROUSSE,  Aubert de la Faige signale un plan ancien qui montre un édifice quadrangulaire, flanqué de quatre  tours circulaires, plus une carrée où était percée la porte d'entrée. Le bâtiment actuel consiste en un logis quadrangulaire  auquel est accolé une tour circulaire ancienne.        PONCENAT, au XIV siècle, par mariage, la famille Poncenat cède le château aux Boucé. Au XVIe siècle, le vieux château fort est en ruine. En 1568, François de Boucé, capitaine de Poncenat, perd la vie durant les guerres de religions. En 1632, la fille de François de Boucé vend le château à Balthazar Bayle. Il prend ainsi le titre de Baron de Poncenat. Au XVIIe siècle, le château est rebâti. En 1730, par mariage, le château est cédé à la famille de Maubranches. En 1745, le château est vendu à François Senetaire du Buysson, seigneur de Montaigu. Vers 1791, le député Philibert du Buysson de Douzon se retire dans son château de Poncenat. Vers 1792, les révolutionnaires séquestrent le citoyen Buysson de Douzon et pillent le château.</p>
+<h4>Architecture</h4><p>Ciernat, un édifice moderne,  composé d'un logis quadrangulaire de trois niveaux surmonté d'un toit à croupe en ardoise, percé de lucarnes. La façade principale est augmentée au centre d'un avant-corps en saillie,  flanqué au troisième niveau, d'échauguettes en surplomb, le toit de cette tourelle se dresse haut au dessus du bâtiment. Le style néo-gothique de l'édifice est encore renforcé par les moulures qui souligne les linteaux des fenêtres du troisième niveau.                 Fejard,  un logis quadrangulaire étroit de trois niveaux, ouvert dun  toit à croupe en ardoise, percé de lucarnes, est encadré par 2 pans de ces pavillons sont perpendiculaires à celle du logis. Un escalier à 2 volées courbes, donnant accès  à une terrasse, est logé entre les pavillons. Laustérité de cette demeure  est cassée par ladjonction heureuse  dune tourelle polygonale en briques, en surplomb au milieu de la façade  de logis. Percée de fentes déclairage, couronnée dune corniche de pierres et surmontée dun toit en  ardoise, elle donne un peu délégance et castellise cette maison bourgeoise.               Poncenat, du XIIIe siècle , château fort. A la fin du XXe siècle, le château en ruine retrouve un nouveau propriétaire qui le reconstruit et l'aménage en habitation. Construit sur une motte naturelle terrassée, ruiné à la fin du XVIe siècle. Il fut rebâti au XVIIe siècle, pour être à nouveau pillé et démantelé après la Révolution, subsiste une tour semi-circulaire avec un  côté plat et quelques pans de mur, ainsi qu'une partie du porche d'entrée, sa porte charretière a perdu son arche, mais il a conservé  une porte piétonnière à fort bossage.                             Puydigon deux tours carrées l'une d elles présente des ouvertures à moulures prismatiques terminées par un arc en accolade.</p>
+<h4>Habitants / Familles</h4><p>Famille Treille                     Famille Fréjard"</p>
+<h4>Divers</h4><p>Château de Ciernat, de Féjard, de Poncenat, de Puydigon, de Morets et de Jarousse à Montaigu le Blin</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

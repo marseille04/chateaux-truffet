@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Joué_les_Tours — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,62 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_37.html">Indre-et-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_37.html">Indre-et-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_37.html" class="back-link">Retour au département 37 — Indre-et-Loire</a>
-  <div class="fiche">
-    <h2>Joué_les_Tours</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
-          <tr><td>Canton</td><td>Joué les Tours</td></tr>
-          <tr><td>Commune</td><td>Joué lès Tours</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVI-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_37/37_Jou%c3%a9_les_Tours_1.jpg" alt="Joué_les_Tours" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Jou%c3%a9_les_Tours_2.jpg" alt="Joué_les_Tours" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Jou%c3%a9_les_Tours_3.jpg" alt="Joué_les_Tours" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Jou%c3%a9_les_Tours_4.jpg" alt="Joué_les_Tours" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Jou%c3%a9_les_Tours_5.jpg" alt="Joué_les_Tours" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Jou%c3%a9_les_Tours_6.jpg" alt="Joué_les_Tours" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Jou%c3%a9_les_Tours_7.jpg" alt="Joué_les_Tours" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Jou%c3%a9_les_Tours_8.jpg" alt="Joué_les_Tours" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Jou%c3%a9_les_Tours_9.jpg" alt="Joué_les_Tours" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_37.html">Retour au département 37 — Indre-et-Loire</a>
+<div class="fiche">
+<h2>Joué_les_Tours</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Joué_les_Tours" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_37/37_Jou%c3%a9_les_Tours_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Joué_les_Tours" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Jou%c3%a9_les_Tours_1.jpg"/><img alt="Joué_les_Tours" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Jou%c3%a9_les_Tours_2.jpg"/><img alt="Joué_les_Tours" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Jou%c3%a9_les_Tours_3.jpg"/><img alt="Joué_les_Tours" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Jou%c3%a9_les_Tours_4.jpg"/><img alt="Joué_les_Tours" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Jou%c3%a9_les_Tours_5.jpg"/><img alt="Joué_les_Tours" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Jou%c3%a9_les_Tours_6.jpg"/><img alt="Joué_les_Tours" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Jou%c3%a9_les_Tours_7.jpg"/><img alt="Joué_les_Tours" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Jou%c3%a9_les_Tours_8.jpg"/><img alt="Joué_les_Tours" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Jou%c3%a9_les_Tours_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
+<tr><td>Canton</td><td>Joué les Tours</td></tr>
+<tr><td>Commune</td><td>Joué lès Tours</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVI-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>cinq châteaux à Joué les Tours ; Beaulieu, Crouzillière , Epan, Bretonnière et Marbellière.    Il existe 18 châteaux et manoirs à Joué-les-Tours à découvrir. Les trois quarts sont privés.                                                                                                                 BEAULIEU, édifice construit au XVe siècle ; remanié dans le quatrième quart du XVIe siècle : portail, pigeonnier et lucarnes de la façade sud-ouest. Le château se compose de deux corps de bâtiment dont le principal est de plan carré, et l'autre de plan rectangulaire, perpendiculaire au premier bâtiment, les toits sont  à la mansard. Les appartements ont reçu, au XIXe siècle, une décoration. L'ancienne chapelle, dans la partie sud-ouest du château, a été convertie en salle-à-manger. Le château de Beaulieu dispose dun parc de trois hectares, comprenant de magnifiques jardins à la française. Cheminée du XVe siècle et du XVIIIe siècle à l'étage. En 1575, la maison noble appartient à Claude d'Espinay et Jeanne de Charge, vendu à Jeanne Coppin et Claude de Plaisance, sieur du Châtelier.                                                                                                        CROUZILLIERE, le fief relevait du Plessis-les-Tours au XVe siècle et, plus tard, du château de Tours. Le château a été en partie démoli en 1838. Du château détruit, subsiste deux tours au nord et au sud-ouest, et une autre qui se dressait au nord-est. Au rez-de-chaussée de la tour nord était aménagé un petit oratoire dont il reste des vestiges de peinture. Le pigeonnier, grosse tour cylindrique, encore visible en 1949, a aujourd'hui disparu. Le parc a été loti en 1974.</p>
-      <h4>Architecture</h4><p>BOUCHARDIERE   du XVIIe siècle possède  deux ailes en retour d'équerre . Son étage est éclairé par des lucarnes à fronton courbé. Au XVIIe siècle, il portait le nom du petit Ysermay.                                                                                                    CHAUMETTES du XIXe siècle  a été très remanié au début des années 2010, il a perdu son aile sud, le poète Saint-Jhon Perse y a séjourné en 1922, ce manoir fut la propriété de l'union des Gueules cassées  en 14-18.                                         CLOS  St-VICTOR, construit en 1890 pour le comte Sabran de Pontevés, c'est lui qui en 1966 donna ce nom à sa propriété de la Maucannière.                                                                                                                          EPAN, la constuction du château de l'Epan date du XIXe siècle. A remplacé un château construit en 1518 par Jacques de Beaume. C'est un château privé.                                                                             BRETONNIERE est un château bâti à Joué-les-Tours, dans le département de l'Indre-et-Loire, en région Centre-Val de Loire, en France. La construction du château des Bretonnières date du XIXe siècle. C'est un château privé, appartenant à la famille de la petite bourgeoisie.                                 MARBELLIERE  Le parc est doté d'une porte monumentale à l'ouest. Le petit château actuel a du être reconstruit à la fin du XVIIIe ou au début du XIXe siècle. La porte en plein cintre menant au parc est ouverte dans une architecture accostée de pilastres et d'ailerons, et amortie par un fronton courbe. Sous une grille d'imposte, soulignée par une traverse en fer à entrelacs, les deux vantaux se composent d'une grille dans leur deux tiers supérieurs, séparée par une traverse à entrelacs d'un panneau plein inférieur.</p>
-      <h4>Habitants / Familles</h4><p>Beaulieu, Famille de Claude d'Espinay
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>à Joué les Tours ; Beaulieu  grav 1-2.   47° 21' 45" nord, 0° 39' 38" Est, Chamettes grav-3, clos St Victor grav-4 -5 Crouzillière grav-7 , Epan grav-6, Bretonnière grav-8 et Marbellière grav 9. Crouzillière 47° 21' 05" Nord, 0° 39' 45" Est :   Bretonnières Epan : 47° 21' 05" Nord, 0° 39' 45" Est Marbelière 47° 21' 05" Nord, 0° 39' 45" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>cinq châteaux à Joué les Tours ; Beaulieu, Crouzillière , Epan, Bretonnière et Marbellière.    Il existe 18 châteaux et manoirs à Joué-les-Tours à découvrir. Les trois quarts sont privés.                                                                                                                 BEAULIEU, édifice construit au XVe siècle ; remanié dans le quatrième quart du XVIe siècle : portail, pigeonnier et lucarnes de la façade sud-ouest. Le château se compose de deux corps de bâtiment dont le principal est de plan carré, et l'autre de plan rectangulaire, perpendiculaire au premier bâtiment, les toits sont  à la mansard. Les appartements ont reçu, au XIXe siècle, une décoration. L'ancienne chapelle, dans la partie sud-ouest du château, a été convertie en salle-à-manger. Le château de Beaulieu dispose dun parc de trois hectares, comprenant de magnifiques jardins à la française. Cheminée du XVe siècle et du XVIIIe siècle à l'étage. En 1575, la maison noble appartient à Claude d'Espinay et Jeanne de Charge, vendu à Jeanne Coppin et Claude de Plaisance, sieur du Châtelier.                                                                                                        CROUZILLIERE, le fief relevait du Plessis-les-Tours au XVe siècle et, plus tard, du château de Tours. Le château a été en partie démoli en 1838. Du château détruit, subsiste deux tours au nord et au sud-ouest, et une autre qui se dressait au nord-est. Au rez-de-chaussée de la tour nord était aménagé un petit oratoire dont il reste des vestiges de peinture. Le pigeonnier, grosse tour cylindrique, encore visible en 1949, a aujourd'hui disparu. Le parc a été loti en 1974.</p>
+<h4>Architecture</h4><p>BOUCHARDIERE   du XVIIe siècle possède  deux ailes en retour d'équerre . Son étage est éclairé par des lucarnes à fronton courbé. Au XVIIe siècle, il portait le nom du petit Ysermay.                                                                                                    CHAUMETTES du XIXe siècle  a été très remanié au début des années 2010, il a perdu son aile sud, le poète Saint-Jhon Perse y a séjourné en 1922, ce manoir fut la propriété de l'union des Gueules cassées  en 14-18.                                         CLOS  St-VICTOR, construit en 1890 pour le comte Sabran de Pontevés, c'est lui qui en 1966 donna ce nom à sa propriété de la Maucannière.                                                                                                                          EPAN, la constuction du château de l'Epan date du XIXe siècle. A remplacé un château construit en 1518 par Jacques de Beaume. C'est un château privé.                                                                             BRETONNIERE est un château bâti à Joué-les-Tours, dans le département de l'Indre-et-Loire, en région Centre-Val de Loire, en France. La construction du château des Bretonnières date du XIXe siècle. C'est un château privé, appartenant à la famille de la petite bourgeoisie.                                 MARBELLIERE  Le parc est doté d'une porte monumentale à l'ouest. Le petit château actuel a du être reconstruit à la fin du XVIIIe ou au début du XIXe siècle. La porte en plein cintre menant au parc est ouverte dans une architecture accostée de pilastres et d'ailerons, et amortie par un fronton courbe. Sous une grille d'imposte, soulignée par une traverse en fer à entrelacs, les deux vantaux se composent d'une grille dans leur deux tiers supérieurs, séparée par une traverse à entrelacs d'un panneau plein inférieur.</p>
+<h4>Habitants / Familles</h4><p>Beaulieu, Famille de Claude d'Espinay
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>à Joué les Tours ; Beaulieu  grav 1-2.   47° 21' 45" nord, 0° 39' 38" Est, Chamettes grav-3, clos St Victor grav-4 -5 Crouzillière grav-7 , Epan grav-6, Bretonnière grav-8 et Marbellière grav 9. Crouzillière 47° 21' 05" Nord, 0° 39' 45" Est :   Bretonnières Epan : 47° 21' 05" Nord, 0° 39' 45" Est Marbelière 47° 21' 05" Nord, 0° 39' 45" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

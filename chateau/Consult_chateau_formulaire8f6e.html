@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Belval — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,53 +113,57 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_08.html">Ardennes</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_08.html">Ardennes</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_08.html" class="back-link">Retour au département 08 — Ardennes</a>
-  <div class="fiche">
-    <h2>Belval</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>08 — Ardennes</td></tr>
-          <tr><td>Canton</td><td>Vouziers</td></tr>
-          <tr><td>Commune</td><td>Belval-Bois des dames</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIII-XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_08/08_Belval_1.jpg" alt="Belval" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_08/08_Belval_2.jpg" alt="Belval" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_08.html">Retour au département 08 — Ardennes</a>
+<div class="fiche">
+<h2>Belval</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Belval" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_08/08_Belval_1.jpg"/><div class="hero-count" id="hero-count">1 / 2</div></div><div class="photo-strip"><img alt="Belval" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Belval_1.jpg"/><img alt="Belval" class="" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Belval_2.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>08 — Ardennes</td></tr>
+<tr><td>Canton</td><td>Vouziers</td></tr>
+<tr><td>Commune</td><td>Belval-Bois des dames</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIII-XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>BELVAL, une abbaye est fondée dans les années 1120 par des chanoines réguliers de saint Augustinnote, venus s'installer sur un fief de l'évêque de Verdun, Albéron de Chiny. Il s'agit d'un bâtiment de style roman qui privilégie les constructions massives avec des fenêtres étroites. Progressivement, le style gothique s'impose avec des constructions lumineuses et des voûtes en croisée d'ogives. Deux fois dévastée par les huguenots, la communauté ne se composait plus en 1622 que de deux chanoines, trois clercs et quatre novices. L'abbaye souffrait également de sa proximité avec la frontière, une frontière poreuse et propice aux incursions ennemies comme en 1636, où une partie des bâtiments furent brulés. Belval fut vendu comme bien national en 1791 et devint propriété de Basile Joseph Raux, maître de forges, fils de Nicolas Raux maître de forges lui aussi, fermier général des forges de Belval, pour le compte de l'abbaye, avant la Révolution de 1789. Basile Joseph Raux avait été également élu en 1789 député du Tiers État aux États généraux. Il avait acquis, lors de la vente, la ferme d'Elpèche précédemment exploitée par les religieux, le moulin, la ferme de l'abbatiale, la forge, quatre étangs, des prés, des arpents de vignes et un bois. Le domaine devenu désormais le château de Belval, demeura la propriété de la famille Raux jusqu'en 1848 puis passa à un maître de forges de Fumay, Eugène Mathys. La propriété, dotée d'une domesticité nombreuse, fut le cadre de réceptions et de chasses. Un archéologue, Roger Graffin, en fut ensuite le propriétaire et l'habita jusqu'en 1914.</p>
-      <h4>Architecture</h4><p>BELVAL, le domaine devenu désormais le château de Belval, demeura la propriété de la famille Raux jusqu'en 1848 puis passa à un maître de forges de Fumay, Eugène Mathys. La propriété, dotée d'une domesticité nombreuse, fut le cadre de réceptions et de chasses. Un archéologue, Roger Graffin, en fut ensuite le propriétaire et l'habita jusqu'en 1914.       <br>Éléments protégés MH : l'ancien logis  du XVIIIe siècle; la porterie; le bassin avec les deux statues; le logis XVIIe siècle; l'ancienne chapelle de Belval : inscription par arrêté du 4 novembre 1991. Le principal bâtiment, l'ancien logement , date du XVIIIe siècle. C'est une construction allongée en pierre et en brique, avec deux ailes en équerre. Le portail occidental, tourné vers l'étang, est caractérisé par un linteau élégant, orné de palmettes, encadré de pilastres ioniques, ce décor sculpté se prolongeant au premier étage. Une longue galerie aux belles voûtes occupe le rez-de-chaussée et se termine par un départ d'escalier de style Renaissance. 22 cellules de moine occupent le premier étage.<br>Le logis de l'abbé date du XVIIe siècle. Il reste aussi l'ancienne chapelle de Belval, rapetissée au fur et à mesure de l'enlèvement des matériaux pour des constructions locales, et un bassin orné de deux statues. Le tout a été inscrit monument historique le 4 novembre 1991.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Basile Joseph Raux"</p>
-      <h4>Divers</h4><p>Belval <br>49° 28' 37? nord, 5° 01' 01? est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>BELVAL, une abbaye est fondée dans les années 1120 par des chanoines réguliers de saint Augustinnote, venus s'installer sur un fief de l'évêque de Verdun, Albéron de Chiny. Il s'agit d'un bâtiment de style roman qui privilégie les constructions massives avec des fenêtres étroites. Progressivement, le style gothique s'impose avec des constructions lumineuses et des voûtes en croisée d'ogives. Deux fois dévastée par les huguenots, la communauté ne se composait plus en 1622 que de deux chanoines, trois clercs et quatre novices. L'abbaye souffrait également de sa proximité avec la frontière, une frontière poreuse et propice aux incursions ennemies comme en 1636, où une partie des bâtiments furent brulés. Belval fut vendu comme bien national en 1791 et devint propriété de Basile Joseph Raux, maître de forges, fils de Nicolas Raux maître de forges lui aussi, fermier général des forges de Belval, pour le compte de l'abbaye, avant la Révolution de 1789. Basile Joseph Raux avait été également élu en 1789 député du Tiers État aux États généraux. Il avait acquis, lors de la vente, la ferme d'Elpèche précédemment exploitée par les religieux, le moulin, la ferme de l'abbatiale, la forge, quatre étangs, des prés, des arpents de vignes et un bois. Le domaine devenu désormais le château de Belval, demeura la propriété de la famille Raux jusqu'en 1848 puis passa à un maître de forges de Fumay, Eugène Mathys. La propriété, dotée d'une domesticité nombreuse, fut le cadre de réceptions et de chasses. Un archéologue, Roger Graffin, en fut ensuite le propriétaire et l'habita jusqu'en 1914.</p>
+<h4>Architecture</h4><p>BELVAL, le domaine devenu désormais le château de Belval, demeura la propriété de la famille Raux jusqu'en 1848 puis passa à un maître de forges de Fumay, Eugène Mathys. La propriété, dotée d'une domesticité nombreuse, fut le cadre de réceptions et de chasses. Un archéologue, Roger Graffin, en fut ensuite le propriétaire et l'habita jusqu'en 1914.       <br/>Éléments protégés MH : l'ancien logis  du XVIIIe siècle; la porterie; le bassin avec les deux statues; le logis XVIIe siècle; l'ancienne chapelle de Belval : inscription par arrêté du 4 novembre 1991. Le principal bâtiment, l'ancien logement , date du XVIIIe siècle. C'est une construction allongée en pierre et en brique, avec deux ailes en équerre. Le portail occidental, tourné vers l'étang, est caractérisé par un linteau élégant, orné de palmettes, encadré de pilastres ioniques, ce décor sculpté se prolongeant au premier étage. Une longue galerie aux belles voûtes occupe le rez-de-chaussée et se termine par un départ d'escalier de style Renaissance. 22 cellules de moine occupent le premier étage.<br/>Le logis de l'abbé date du XVIIe siècle. Il reste aussi l'ancienne chapelle de Belval, rapetissée au fur et à mesure de l'enlèvement des matériaux pour des constructions locales, et un bassin orné de deux statues. Le tout a été inscrit monument historique le 4 novembre 1991.</p>
+<h4>Habitants / Familles</h4><p>Famille de Basile Joseph Raux"</p>
+<h4>Divers</h4><p>Belval <br/>49° 28' 37? nord, 5° 01' 01? est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

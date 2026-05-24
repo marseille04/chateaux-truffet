@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Thizay — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,56 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_37.html">Indre-et-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_37.html">Indre-et-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_37.html" class="back-link">Retour au département 37 — Indre-et-Loire</a>
-  <div class="fiche">
-    <h2>Thizay</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
-          <tr><td>Canton</td><td>Chinon</td></tr>
-          <tr><td>Commune</td><td>Thizay</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVI</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_37/37_Thizay_1.jpg" alt="Thizay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Thizay_2.jpg" alt="Thizay" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Thizay_3.jpg" alt="Thizay" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_37.html">Retour au département 37 — Indre-et-Loire</a>
+<div class="fiche">
+<h2>Thizay</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Thizay" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_37/37_Thizay_1.jpg"/><div class="hero-count" id="hero-count">1 / 3</div></div><div class="photo-strip"><img alt="Thizay" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Thizay_1.jpg"/><img alt="Thizay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Thizay_2.jpg"/><img alt="Thizay" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Thizay_3.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
+<tr><td>Canton</td><td>Chinon</td></tr>
+<tr><td>Commune</td><td>Thizay</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVI</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Trois châteaux  à Thizay celui de Frau, de Gaudrée et de Vaumenaise                                                                                                 FRAU, gentilhommière du XVIe siècle, composée d'un bâtiment rectangulaire précédé d'une dépendance. Une tourelle est flanquée, à l'ouest, de la façade méridionale donnant sur la cour. Plus loin, accolé et en saillie, se place un pavillon carré avec entablement à modillons, il est lui-même prolongé en arrière par une tour carrée bâtie sur un contrefort à pic, compensant le contrebas de la vallée. Une galerie était à l'origine posée sur un encorbellement et a été soutenue plus tard par trois arcades de la fin du XVIIe siècle. A l'est, se trouve une chapelle à clocher pignon. A l'intérieur du logis  un escalier droit, à l'italienne, marqué d'arcades jumelles.                                                                                                   VAUMENAISE, édifice du  XVe siècle et XVIe siècle, remanié et partiellement détruit ; corps de logis remanié au XVIIe siècle, puis remanié au XVIIIe siècle avec adjonction d'un pavillon ; cheminée datant du XVIIIe siècle; cellier dans le tuffeau, dépendances avec nombreux fours à pain juxtaposés. Vaumenaise est composé d'un étage carré, un escalier dans-oeuvre, le gros-oeuvre en calcaire; pierre de taille; moellon; enduit partiel. La propriété comprend un parc, un jardin, des communs, un colombier, un four à pain et un cellier.</p>
-      <h4>Architecture</h4><p>Grande GAUDREE, édifice construit aux XVe et XVIe siècles ; ancien fief devenu métairie au XVIIe siècle ; bâtiment ruiné en partie ; appartenait à la châtellenie de Chavigny à Lerné. Le château a conservé son logis flanqué d'une tour carrée. Le donjon est ruiné. Le pigeonnier de plan circulaire est surmonté d'un dôme en pierre et d'un lanternon ; il s'agit d'une ancienne tour défensive réaménagée, élévation à travées, deux étages carrés, escalier demi-hors-oeuvre ; escalier à vis sans jour ; escalier de distribution extérieur
-<br> calcaire ; moellon ; pierre de taille  toit à longs pans ; pignon découvert ; toit polygonal  en ardois.</p>
-      <h4>Habitants / Familles</h4><p>seigneurs locaux
-<br>        "</p>
-      <h4>Divers</h4><p>à Thizay celui de Frau grav-1, de Gaudrée grav-2-3et de Vaumenaise</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Trois châteaux  à Thizay celui de Frau, de Gaudrée et de Vaumenaise                                                                                                 FRAU, gentilhommière du XVIe siècle, composée d'un bâtiment rectangulaire précédé d'une dépendance. Une tourelle est flanquée, à l'ouest, de la façade méridionale donnant sur la cour. Plus loin, accolé et en saillie, se place un pavillon carré avec entablement à modillons, il est lui-même prolongé en arrière par une tour carrée bâtie sur un contrefort à pic, compensant le contrebas de la vallée. Une galerie était à l'origine posée sur un encorbellement et a été soutenue plus tard par trois arcades de la fin du XVIIe siècle. A l'est, se trouve une chapelle à clocher pignon. A l'intérieur du logis  un escalier droit, à l'italienne, marqué d'arcades jumelles.                                                                                                   VAUMENAISE, édifice du  XVe siècle et XVIe siècle, remanié et partiellement détruit ; corps de logis remanié au XVIIe siècle, puis remanié au XVIIIe siècle avec adjonction d'un pavillon ; cheminée datant du XVIIIe siècle; cellier dans le tuffeau, dépendances avec nombreux fours à pain juxtaposés. Vaumenaise est composé d'un étage carré, un escalier dans-oeuvre, le gros-oeuvre en calcaire; pierre de taille; moellon; enduit partiel. La propriété comprend un parc, un jardin, des communs, un colombier, un four à pain et un cellier.</p>
+<h4>Architecture</h4><p>Grande GAUDREE, édifice construit aux XVe et XVIe siècles ; ancien fief devenu métairie au XVIIe siècle ; bâtiment ruiné en partie ; appartenait à la châtellenie de Chavigny à Lerné. Le château a conservé son logis flanqué d'une tour carrée. Le donjon est ruiné. Le pigeonnier de plan circulaire est surmonté d'un dôme en pierre et d'un lanternon ; il s'agit d'une ancienne tour défensive réaménagée, élévation à travées, deux étages carrés, escalier demi-hors-oeuvre ; escalier à vis sans jour ; escalier de distribution extérieur
+<br/> calcaire ; moellon ; pierre de taille  toit à longs pans ; pignon découvert ; toit polygonal  en ardois.</p>
+<h4>Habitants / Familles</h4><p>seigneurs locaux
+<br/>        "</p>
+<h4>Divers</h4><p>à Thizay celui de Frau grav-1, de Gaudrée grav-2-3et de Vaumenaise</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

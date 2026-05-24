@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Duravel — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,65 +113,62 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_46.html">Lot</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_46.html">Lot</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_46.html" class="back-link">Retour au département 46 — Lot</a>
-  <div class="fiche">
-    <h2>Duravel</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>46 — Lot</td></tr>
-          <tr><td>Canton</td><td>Puy-L</td></tr>
-          <tr><td>Commune</td><td>Duravel</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_46/46_Duravel_1.jpg" alt="Duravel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Duravel_2.jpg" alt="Duravel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Duravel_3.jpg" alt="Duravel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Duravel_4.jpg" alt="Duravel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Duravel_5.jpg" alt="Duravel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Duravel_6.jpg" alt="Duravel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Duravel_7.jpg" alt="Duravel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Duravel_8.jpg" alt="Duravel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Duravel_9.jpg" alt="Duravel" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_46.html">Retour au département 46 — Lot</a>
+<div class="fiche">
+<h2>Duravel</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Duravel" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_46/46_Duravel_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Duravel" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Duravel_1.jpg"/><img alt="Duravel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Duravel_2.jpg"/><img alt="Duravel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Duravel_3.jpg"/><img alt="Duravel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Duravel_4.jpg"/><img alt="Duravel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Duravel_5.jpg"/><img alt="Duravel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Duravel_6.jpg"/><img alt="Duravel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Duravel_7.jpg"/><img alt="Duravel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Duravel_8.jpg"/><img alt="Duravel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Duravel_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>46 — Lot</td></tr>
+<tr><td>Canton</td><td>Puy-L</td></tr>
+<tr><td>Commune</td><td>Duravel</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>A Duravel le château de Boutier, de Gineste, de Grimard et  de Rouffiac .                                                                                                    BOUTIER,  le château de Boutier  est partiellement inscrit au titre des monuments historiques. Sa construction date de XVIIe siècle. Un peu avant 1596, la famille Boutier, riches commerçants protestants, acquirent du temporel du prieuré de Duravel plusieurs constructions pour y faire bâtir une nouvelle demeure. 
-<br> Le château Boutier a été inscrit aux M.H.depuis le 16 septembre 1991.                                                                                               GRIMARD, la famille qui a laissé son nom au château de Grimard apparaît à plusieurs reprises dans les archives du XIVe siècle, avec des biens situés principalement dans la paroisse de Cazes ; dans la première moitié du 14e siècle, un Pierre Grimard est qualifié de donzel. Les Grimard disparaissent peut-être pendant la guerre de Cent ans. En 1504, noble Aldete de Massaut et son fils Antoine Delort, de Cahors, dénombrent pour une maison noble à Duravel, ce qui ne permet pas d'y reconnaître le repaire, mais en 1530, Antoine de Lort est dit seigneur de Grimard : il a épousé en  1529 Marguerite de Pélagrue, d'une famille noble de l'Agenais, et il réside sur ses terres. Le château aurait été saccagé au XVIe siècle par les Lézergues d'Orgueil et les terres données en fief aux Dupuy ou aux Bonafous. Des de Lort de Grimard sont cependant connus du XVIe siècle.
-<br>GINESTE, au XVIe siècle, le domaine appartient à la famille de Boutier qui possède également le château du même nom dans le bourg de Duravel. Devenue au XVIIIe siècle la demeure de M. de Monlezun, aristocrate, ce dernier ayant émigré pendant la Révolution, la demeure sera vendue comme bien national  à M. Laguillelmie, fondé de pouvoir de Joseph de Monlezun. Ghislaine et Gérard Dega ont entrepris, en 2002, de restaurer cette magnifique propriété de 13 ha, sur un exceptionnel sous-sol, viticole de Ghislaine et Gérard Dega  et  logis de France                                                                                                        ROUFFIAC, propriété de monsieur Ducoum viticole  et  gîtes de France.</p>
-      <h4>Architecture</h4><p>Le château Boutier  est le résultat de cet assemblage à partir de la fin du XVIe siècle ou début du XVIIe siècle. Il a subi plusieurs modifications successives, en observant sur les façades, les ouvertures fermées et ouvertes pour faire de cet assemblage un ensemble cohérent avec un toit en pavillon. il est composé dun corps de logis organisé de part et dautre dune tour descalier centrale avec une aile en retour déquerre à l'ouest. Les murs de la tour ont été surélevés au XIXe siècle, Il souvre sur un grand jardin clos au sud par un mur situé au droit des anciens remparts de la ville.
-<br>La tour contient l'escalier qui dessert tous les étages du château.                 Grimard  Les vestiges du premier état de l'édifice peuvent dater de la fin du XIIIe siècle ou du XIVe siècle. Trois culots sculptés en remploi et une cheminée témoignent de travaux réalisés après la guerre de Cent ans, à la fin du XVe siècle. Une importante campagne de restructuration de l'édifice et peut-être d'agrandissement, à laquelle appartient l'escalier, est intervenue au milieu du XVIIe siècle.                                                                Gineste, cette charmante demeure lotoise, aux chais surmontés dun pigeonnier, a été construite sur lemplacement dun relais de chasse remontant à Richard Cur de Lion.                                                                               Rouffiac construit en 1971 dans un style grande bâtisse à deux niveaux avec pavillon saillant sur façade avant et arrière prolongé sur le flanc droit d'un pavillon à un niveau.</p>
-      <h4>Habitants / Familles</h4><p>Famille Boutier
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Boutier gravure 1 et 2, de Gineste gravure  3, 4 et 5,  de Grimard gravure 6 et 7 et Rouffiac gravure 8 et 9 à Duravel</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>A Duravel le château de Boutier, de Gineste, de Grimard et  de Rouffiac .                                                                                                    BOUTIER,  le château de Boutier  est partiellement inscrit au titre des monuments historiques. Sa construction date de XVIIe siècle. Un peu avant 1596, la famille Boutier, riches commerçants protestants, acquirent du temporel du prieuré de Duravel plusieurs constructions pour y faire bâtir une nouvelle demeure. 
+<br/> Le château Boutier a été inscrit aux M.H.depuis le 16 septembre 1991.                                                                                               GRIMARD, la famille qui a laissé son nom au château de Grimard apparaît à plusieurs reprises dans les archives du XIVe siècle, avec des biens situés principalement dans la paroisse de Cazes ; dans la première moitié du 14e siècle, un Pierre Grimard est qualifié de donzel. Les Grimard disparaissent peut-être pendant la guerre de Cent ans. En 1504, noble Aldete de Massaut et son fils Antoine Delort, de Cahors, dénombrent pour une maison noble à Duravel, ce qui ne permet pas d'y reconnaître le repaire, mais en 1530, Antoine de Lort est dit seigneur de Grimard : il a épousé en  1529 Marguerite de Pélagrue, d'une famille noble de l'Agenais, et il réside sur ses terres. Le château aurait été saccagé au XVIe siècle par les Lézergues d'Orgueil et les terres données en fief aux Dupuy ou aux Bonafous. Des de Lort de Grimard sont cependant connus du XVIe siècle.
+<br/>GINESTE, au XVIe siècle, le domaine appartient à la famille de Boutier qui possède également le château du même nom dans le bourg de Duravel. Devenue au XVIIIe siècle la demeure de M. de Monlezun, aristocrate, ce dernier ayant émigré pendant la Révolution, la demeure sera vendue comme bien national  à M. Laguillelmie, fondé de pouvoir de Joseph de Monlezun. Ghislaine et Gérard Dega ont entrepris, en 2002, de restaurer cette magnifique propriété de 13 ha, sur un exceptionnel sous-sol, viticole de Ghislaine et Gérard Dega  et  logis de France                                                                                                        ROUFFIAC, propriété de monsieur Ducoum viticole  et  gîtes de France.</p>
+<h4>Architecture</h4><p>Le château Boutier  est le résultat de cet assemblage à partir de la fin du XVIe siècle ou début du XVIIe siècle. Il a subi plusieurs modifications successives, en observant sur les façades, les ouvertures fermées et ouvertes pour faire de cet assemblage un ensemble cohérent avec un toit en pavillon. il est composé dun corps de logis organisé de part et dautre dune tour descalier centrale avec une aile en retour déquerre à l'ouest. Les murs de la tour ont été surélevés au XIXe siècle, Il souvre sur un grand jardin clos au sud par un mur situé au droit des anciens remparts de la ville.
+<br/>La tour contient l'escalier qui dessert tous les étages du château.                 Grimard  Les vestiges du premier état de l'édifice peuvent dater de la fin du XIIIe siècle ou du XIVe siècle. Trois culots sculptés en remploi et une cheminée témoignent de travaux réalisés après la guerre de Cent ans, à la fin du XVe siècle. Une importante campagne de restructuration de l'édifice et peut-être d'agrandissement, à laquelle appartient l'escalier, est intervenue au milieu du XVIIe siècle.                                                                Gineste, cette charmante demeure lotoise, aux chais surmontés dun pigeonnier, a été construite sur lemplacement dun relais de chasse remontant à Richard Cur de Lion.                                                                               Rouffiac construit en 1971 dans un style grande bâtisse à deux niveaux avec pavillon saillant sur façade avant et arrière prolongé sur le flanc droit d'un pavillon à un niveau.</p>
+<h4>Habitants / Familles</h4><p>Famille Boutier
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Boutier gravure 1 et 2, de Gineste gravure  3, 4 et 5,  de Grimard gravure 6 et 7 et Rouffiac gravure 8 et 9 à Duravel</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

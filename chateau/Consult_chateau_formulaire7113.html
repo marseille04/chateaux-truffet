@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Dinard — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,62 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_35.html">Ille-et-Vilaine</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_35.html">Ille-et-Vilaine</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_35.html" class="back-link">Retour au département 35 — Ille-et-Vilaine</a>
-  <div class="fiche">
-    <h2>Dinard</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>35 — Ille-et-Vilaine</td></tr>
-          <tr><td>Canton</td><td>Saint-Malo</td></tr>
-          <tr><td>Commune</td><td>Dinard</td></tr>
-          <tr><td>Type d'édifice</td><td>Dinard</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVII-XIX</td></tr>
-          <tr><td>Coordonnées GPS</td><td>48° 37' 57" Nord, 2° 03' 42" Ouest                                                         Villa Greystones GPS : 48° 37' 57" Nord, 2° 03' 42" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_35/35_Dinard_1.jpg" alt="Dinard" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Dinard_2.jpg" alt="Dinard" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Dinard_3.jpg" alt="Dinard" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Dinard_4.jpg" alt="Dinard" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Dinard_5.jpg" alt="Dinard" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Dinard_6.jpg" alt="Dinard" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Dinard_7.jpg" alt="Dinard" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Dinard_8.jpg" alt="Dinard" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Dinard_9.jpg" alt="Dinard" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_35.html">Retour au département 35 — Ille-et-Vilaine</a>
+<div class="fiche">
+<h2>Dinard</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Dinard" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_35/35_Dinard_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Dinard" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Dinard_1.jpg"/><img alt="Dinard" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Dinard_2.jpg"/><img alt="Dinard" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Dinard_3.jpg"/><img alt="Dinard" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Dinard_4.jpg"/><img alt="Dinard" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Dinard_5.jpg"/><img alt="Dinard" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Dinard_6.jpg"/><img alt="Dinard" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Dinard_7.jpg"/><img alt="Dinard" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Dinard_8.jpg"/><img alt="Dinard" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Dinard_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>35 — Ille-et-Vilaine</td></tr>
+<tr><td>Canton</td><td>Saint-Malo</td></tr>
+<tr><td>Commune</td><td>Dinard</td></tr>
+<tr><td>Type d'édifice</td><td>Dinard</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVII-XIX</td></tr>
+<tr><td>Coordonnées GPS</td><td>48° 37' 57" Nord, 2° 03' 42" Ouest                                                         Villa Greystones GPS : 48° 37' 57" Nord, 2° 03' 42" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Plusieurs  édifices à Dinard; le Prince-Noir,  villa Eugène et la Greystones et autres Vicomté, la Garde, le Port-Breton.                                       PRINCE-NOIR, la construction de la Maison du prince Noir date du XIVe siècle. Ses façades sont inscrites aux M.H. depuis le 1926. Elle appartient à un particulier.                                                                                                         VILLA-EUGENIE, la construction de la villa Eugénie date de 1868. La villa Eugénie à Dinard fut nommée ainsi en l'honneur de l'épouse de l'Empereur Napoléon III. Elle devait venir passer des vacances à Dinard et cette villa avait été construite pour la recevoir. Mais, elle n'est jamais venue. Ni la presse de l'époque ni les mémoires des contemporains n'évoquèrent les préparatifs de ce rendez-vous manqué. Les journaux du temps gardent en revanche la trace précise des déplacements du couple impérial au cours de l'été 1868 : Fontainebleau, Plombières, le Camp de Châlons et Biarritz sont les seuls lieux inscrits au programme. Construite par l'architecte Jean Pichot, la villa dinardaise baptisée Eugénie n'a donc d'impériale que le prénom de la souveraine. Elle rappelle un simple espoir dinardais: accueillir l'empereur et l'impératrice. Le préfet d'Ille-et-Vilaine Paul Féart ne l'a pas davantage fait construire puisqu'il a quitté le département dès 1864 pour prendre ses fonctions dans le Lot-et-Garonne où il décèdera, en 1867. La villa Eugénie appartiendra à Pierre Levasseur, qui la lèguera, à la ville de Dinard, à sa mort. La villa Eugénie sera un temps la Mairie de Dinard, la Bibliothèque municipale puis le Musée du site balnéaire jusqu'en 2004.</p>
-      <h4>Architecture</h4><p>VILLA GREYSTONES,  sa construction date de 1938 à 1950. L'architecte était Michel Roux-Spitz. La villa Greystones appartient à François Pinault, homme d'affaires. La célèbre villa de la pointe de la Malouine, à Dinard, était inscrite aux M.H. depuis 2014, soit le niveau supérieur de protection, depuis Février 2019.La villa Greystones, ses terrasses son jardin, ses allées, escaliers, garde-corps, pavillon hexagonal, son bassin, ses sculptures et éléments décoratifs ont été classés au titre des M.H, depuis le 9/02/2019. Lemblématique villa de François Pinault, situé boulevard de la Mer. Elle bénéficie désormais dune protection supérieure, le classement, plus haut niveau de protection. François Pinault avait racheté la villa Greystones en 2012 et a réalisé une restauration lui permettant de retrouver lessentiel de ses dispositions dorigine. Un classement aux monuments historiques permet de protéger des édifices mais aussi de bénéficier de subventions pour mener à bien des travaux. LÉtat peut participer financièrement à hauteur de 50 % du coût des travaux. Les propriétaires des monuments historiques peuvent également bénéficier "davantages fiscaux". Lentourage de François Pinault indique que les travaux de rénovation avaient été réalisés avant, à titre personnel et quil navait pas bénéficié de laide de lEtat.</p>
-      <h4>Habitants / Familles</h4><p>Villa Eugénie; Empereur Napoléon III, Greysthones; François Pinault
-<br>        "</p>
-      <h4>Divers</h4><p>plusieurs édifice à Dinard; le Prince-Noir grav-7, Deux -Rives-grav 8,  villa Eugènie grav 4 et la Greystones grav-6 et autres Vicomté grav-3, la Garde grav -5-, le Port-Breton grav-1-2, Enegal-grav-9.   GPS : 48° 37' 57" Nord, 2° 03' 42" Ouest                                                         Villa Greystones GPS : 48° 37' 57" Nord, 2° 03' 42" Ouest
-<br>prince GPS : 48° 37' 51,32" Nord, 2° 3' 9,91" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Plusieurs  édifices à Dinard; le Prince-Noir,  villa Eugène et la Greystones et autres Vicomté, la Garde, le Port-Breton.                                       PRINCE-NOIR, la construction de la Maison du prince Noir date du XIVe siècle. Ses façades sont inscrites aux M.H. depuis le 1926. Elle appartient à un particulier.                                                                                                         VILLA-EUGENIE, la construction de la villa Eugénie date de 1868. La villa Eugénie à Dinard fut nommée ainsi en l'honneur de l'épouse de l'Empereur Napoléon III. Elle devait venir passer des vacances à Dinard et cette villa avait été construite pour la recevoir. Mais, elle n'est jamais venue. Ni la presse de l'époque ni les mémoires des contemporains n'évoquèrent les préparatifs de ce rendez-vous manqué. Les journaux du temps gardent en revanche la trace précise des déplacements du couple impérial au cours de l'été 1868 : Fontainebleau, Plombières, le Camp de Châlons et Biarritz sont les seuls lieux inscrits au programme. Construite par l'architecte Jean Pichot, la villa dinardaise baptisée Eugénie n'a donc d'impériale que le prénom de la souveraine. Elle rappelle un simple espoir dinardais: accueillir l'empereur et l'impératrice. Le préfet d'Ille-et-Vilaine Paul Féart ne l'a pas davantage fait construire puisqu'il a quitté le département dès 1864 pour prendre ses fonctions dans le Lot-et-Garonne où il décèdera, en 1867. La villa Eugénie appartiendra à Pierre Levasseur, qui la lèguera, à la ville de Dinard, à sa mort. La villa Eugénie sera un temps la Mairie de Dinard, la Bibliothèque municipale puis le Musée du site balnéaire jusqu'en 2004.</p>
+<h4>Architecture</h4><p>VILLA GREYSTONES,  sa construction date de 1938 à 1950. L'architecte était Michel Roux-Spitz. La villa Greystones appartient à François Pinault, homme d'affaires. La célèbre villa de la pointe de la Malouine, à Dinard, était inscrite aux M.H. depuis 2014, soit le niveau supérieur de protection, depuis Février 2019.La villa Greystones, ses terrasses son jardin, ses allées, escaliers, garde-corps, pavillon hexagonal, son bassin, ses sculptures et éléments décoratifs ont été classés au titre des M.H, depuis le 9/02/2019. Lemblématique villa de François Pinault, situé boulevard de la Mer. Elle bénéficie désormais dune protection supérieure, le classement, plus haut niveau de protection. François Pinault avait racheté la villa Greystones en 2012 et a réalisé une restauration lui permettant de retrouver lessentiel de ses dispositions dorigine. Un classement aux monuments historiques permet de protéger des édifices mais aussi de bénéficier de subventions pour mener à bien des travaux. LÉtat peut participer financièrement à hauteur de 50 % du coût des travaux. Les propriétaires des monuments historiques peuvent également bénéficier "davantages fiscaux". Lentourage de François Pinault indique que les travaux de rénovation avaient été réalisés avant, à titre personnel et quil navait pas bénéficié de laide de lEtat.</p>
+<h4>Habitants / Familles</h4><p>Villa Eugénie; Empereur Napoléon III, Greysthones; François Pinault
+<br/>        "</p>
+<h4>Divers</h4><p>plusieurs édifice à Dinard; le Prince-Noir grav-7, Deux -Rives-grav 8,  villa Eugènie grav 4 et la Greystones grav-6 et autres Vicomté grav-3, la Garde grav -5-, le Port-Breton grav-1-2, Enegal-grav-9.   GPS : 48° 37' 57" Nord, 2° 03' 42" Ouest                                                         Villa Greystones GPS : 48° 37' 57" Nord, 2° 03' 42" Ouest
+<br/>prince GPS : 48° 37' 51,32" Nord, 2° 3' 9,91" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

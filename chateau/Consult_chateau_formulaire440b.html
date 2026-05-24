@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Coudray_Montpensier — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_37.html">Indre-et-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_37.html">Indre-et-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_37.html" class="back-link">Retour au département 37 — Indre-et-Loire</a>
-  <div class="fiche">
-    <h2>Coudray_Montpensier</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
-          <tr><td>Canton</td><td>Chinon</td></tr>
-          <tr><td>Commune</td><td>Seuilly</td></tr>
-          <tr><td>Type d'édifice</td><td>Forteresse</td></tr>
-          <tr><td>Période d'origine</td><td>XIV-XV</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_37/37_Coudray_Montpensier_1.jpg" alt="Coudray_Montpensier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Coudray_Montpensier_2.jpg" alt="Coudray_Montpensier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Coudray_Montpensier_3.jpg" alt="Coudray_Montpensier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Coudray_Montpensier_4.jpg" alt="Coudray_Montpensier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Coudray_Montpensier_5.jpg" alt="Coudray_Montpensier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_37/37_Coudray_Montpensier_6.jpg" alt="Coudray_Montpensier" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_37.html">Retour au département 37 — Indre-et-Loire</a>
+<div class="fiche">
+<h2>Coudray_Montpensier</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Coudray_Montpensier" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_37/37_Coudray_Montpensier_1.jpg"/><div class="hero-count" id="hero-count">1 / 6</div></div><div class="photo-strip"><img alt="Coudray_Montpensier" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Coudray_Montpensier_1.jpg"/><img alt="Coudray_Montpensier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Coudray_Montpensier_2.jpg"/><img alt="Coudray_Montpensier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Coudray_Montpensier_3.jpg"/><img alt="Coudray_Montpensier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Coudray_Montpensier_4.jpg"/><img alt="Coudray_Montpensier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Coudray_Montpensier_5.jpg"/><img alt="Coudray_Montpensier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_37/37_Coudray_Montpensier_6.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>37 — Indre-et-Loire</td></tr>
+<tr><td>Canton</td><td>Chinon</td></tr>
+<tr><td>Commune</td><td>Seuilly</td></tr>
+<tr><td>Type d'édifice</td><td>Forteresse</td></tr>
+<tr><td>Période d'origine</td><td>XIV-XV</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>COUDRAY-MONTPENSIER, aux mains des Marmande, édifié au XIVe siècle par Marie de Blois, veuve de Louis Ier d'Anjou qui céda le domaine en 1401 à Pierre et Louis de Bournan seigneur de Montpensier poursuivit les travaux. Après avoir réuni le domaine de Montpensier à celui du Coudray,  revint à son fils Louis qui le laissa à sa veuve Jeanne Sarrazin maîtresse  de Louis bâtard de Bourbon entreprend de nouveaux travaux en 1481. À sa mort en 1486, sa femme Jeanne de France poursuit les travaux d'embellissement du château du Coudray-Montpensier.  de 1545 à 1693 le domaine appartient à la famille d'Escoubleau qui passa ensuite aux Bouex, puis de 1714 à 1770 aux la Vallière et de 1770 à la fin du XIXe siècle aux la Motte Baracé;  Restauré,     à partir de 1912 par la comtesse   G. de Durfort,   et abrite aujourd'hui un centre de rééducation . Le château est inscrit à l'inventaire des M.H. depuis 1926.  Racheté par l'écrivain belge Maurice Maeterlinck vers 1916, il fut acquis en 1930 par l'avionneur Pierre-Georges Latécoère qui entreprit sa restauration en compagnie de l'architecte blésois, Henri Lafargue et le paysagiste Albert Laprade. Entièrement restauré, le château du Coudray-Montpensier est devenu un lieu d'hôtellerie, de restauration et de réception.</p>
-      <h4>Architecture</h4><p>COUDRAY-MONTPENSIER au milieu du XIIIe siècle, un premier logis fortifié été édifié au XIVe siècle Il est de style Médiéval.  Un donjon formé d'une tour, est mentionné dans les sources. Le château actuel a été édifié au XIVe siècle et  embelli au XVe siècle. Le château est composée de 3 corps de bâtiment, tous couverts de toits d'ardoises et disposés dans une cour quadrangulaire : l'aile Sud comprend le châtelet d'entrée. A l'Est, se trouve le logis principal. Au Nord, l'aile basse, accolée à la tour d'escalier, de plan polygonal adjacente au logis. Aux 3 angles, on trouve des tours différentes flanquées de contreforts et de chemin de ronde avec des mâchicoulis. Les tours Nord-Est et Nord-Ouest sont différentes par leur taille, le pont, les douves,  le pavillon médiéval appelé le pavillon Louis XIII, les communs, le pavillon d'entrée, ainsi que les jardins clos en terrasse, lancien verger et lallée dite de Seuilly sont classés sur la liste des M.H.  Le château du Coudray-Montpensier, où se déroule une partie de l'action des guerres, dans Gargantua et, où Jeanne d'Arc aurait résidé en 1429.    Au XVIIIe siècle, une série de bâtiments est ajoutée : les écuries, le puits, un autre bâtiment dans le prolongement des écuries, d'autres bâtiments détachés du château et les jardins. Au XVIIIe siècle, l'architecte Anjubault fit aménager les 3 terrasses du jardin au nord du château.</p>
-      <h4>Habitants / Familles</h4><p>Marie de Blois et  Louis de Bournan 
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Coudray-Montpensier  à Seuilly  47° 07' 34" Nord, 0° 10' 08" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>COUDRAY-MONTPENSIER, aux mains des Marmande, édifié au XIVe siècle par Marie de Blois, veuve de Louis Ier d'Anjou qui céda le domaine en 1401 à Pierre et Louis de Bournan seigneur de Montpensier poursuivit les travaux. Après avoir réuni le domaine de Montpensier à celui du Coudray,  revint à son fils Louis qui le laissa à sa veuve Jeanne Sarrazin maîtresse  de Louis bâtard de Bourbon entreprend de nouveaux travaux en 1481. À sa mort en 1486, sa femme Jeanne de France poursuit les travaux d'embellissement du château du Coudray-Montpensier.  de 1545 à 1693 le domaine appartient à la famille d'Escoubleau qui passa ensuite aux Bouex, puis de 1714 à 1770 aux la Vallière et de 1770 à la fin du XIXe siècle aux la Motte Baracé;  Restauré,     à partir de 1912 par la comtesse   G. de Durfort,   et abrite aujourd'hui un centre de rééducation . Le château est inscrit à l'inventaire des M.H. depuis 1926.  Racheté par l'écrivain belge Maurice Maeterlinck vers 1916, il fut acquis en 1930 par l'avionneur Pierre-Georges Latécoère qui entreprit sa restauration en compagnie de l'architecte blésois, Henri Lafargue et le paysagiste Albert Laprade. Entièrement restauré, le château du Coudray-Montpensier est devenu un lieu d'hôtellerie, de restauration et de réception.</p>
+<h4>Architecture</h4><p>COUDRAY-MONTPENSIER au milieu du XIIIe siècle, un premier logis fortifié été édifié au XIVe siècle Il est de style Médiéval.  Un donjon formé d'une tour, est mentionné dans les sources. Le château actuel a été édifié au XIVe siècle et  embelli au XVe siècle. Le château est composée de 3 corps de bâtiment, tous couverts de toits d'ardoises et disposés dans une cour quadrangulaire : l'aile Sud comprend le châtelet d'entrée. A l'Est, se trouve le logis principal. Au Nord, l'aile basse, accolée à la tour d'escalier, de plan polygonal adjacente au logis. Aux 3 angles, on trouve des tours différentes flanquées de contreforts et de chemin de ronde avec des mâchicoulis. Les tours Nord-Est et Nord-Ouest sont différentes par leur taille, le pont, les douves,  le pavillon médiéval appelé le pavillon Louis XIII, les communs, le pavillon d'entrée, ainsi que les jardins clos en terrasse, lancien verger et lallée dite de Seuilly sont classés sur la liste des M.H.  Le château du Coudray-Montpensier, où se déroule une partie de l'action des guerres, dans Gargantua et, où Jeanne d'Arc aurait résidé en 1429.    Au XVIIIe siècle, une série de bâtiments est ajoutée : les écuries, le puits, un autre bâtiment dans le prolongement des écuries, d'autres bâtiments détachés du château et les jardins. Au XVIIIe siècle, l'architecte Anjubault fit aménager les 3 terrasses du jardin au nord du château.</p>
+<h4>Habitants / Familles</h4><p>Marie de Blois et  Louis de Bournan 
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Coudray-Montpensier  à Seuilly  47° 07' 34" Nord, 0° 10' 08" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

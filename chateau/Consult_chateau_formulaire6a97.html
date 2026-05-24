@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Courpiere — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,66 +113,64 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_63.html">Puy-de-Dôme</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_63.html">Puy-de-Dôme</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_63.html" class="back-link">Retour au département 63 — Puy-de-Dôme</a>
-  <div class="fiche">
-    <h2>Courpiere</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>63 — Puy-de-Dôme</td></tr>
-          <tr><td>Canton</td><td>Courpière</td></tr>
-          <tr><td>Commune</td><td>Courpière</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIII-XV</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_63/63_Courpiere_1.jpg" alt="Courpiere" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Courpiere_2.jpg" alt="Courpiere" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Courpiere_3.jpg" alt="Courpiere" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Courpiere_4.jpg" alt="Courpiere" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Courpiere_5.jpg" alt="Courpiere" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Courpiere_6.jpg" alt="Courpiere" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Courpiere_7.jpg" alt="Courpiere" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Courpiere_8.jpg" alt="Courpiere" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_63.html">Retour au département 63 — Puy-de-Dôme</a>
+<div class="fiche">
+<h2>Courpiere</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Courpiere" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_63/63_Courpiere_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Courpiere" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Courpiere_1.jpg"/><img alt="Courpiere" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Courpiere_2.jpg"/><img alt="Courpiere" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Courpiere_3.jpg"/><img alt="Courpiere" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Courpiere_4.jpg"/><img alt="Courpiere" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Courpiere_5.jpg"/><img alt="Courpiere" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Courpiere_6.jpg"/><img alt="Courpiere" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Courpiere_7.jpg"/><img alt="Courpiere" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Courpiere_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>63 — Puy-de-Dôme</td></tr>
+<tr><td>Canton</td><td>Courpière</td></tr>
+<tr><td>Commune</td><td>Courpière</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIII-XV</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>COURPIERE plusieurs châteaux dans cette commune, les Barges (voir article).
-<br>BELIME  En 1289, Chatard Chaulet, damoiseau, est seigneur de Ravel, Salmeranges et Bélime, il passe une transaction   avec les habitants au sujet des corvées de charrois. Vers 1350, Philippe de Miremont, chevalier, est seigneur et en 1467, Claude de Miremont est seigneur de Bélime. En 1490, le fief est acheté par Guillaume de  Veyny, seigneur du Bouchet et bourgeois de Montferrand. Vers 1591, Benigne de Veyny d'Arbouze est marié à Anne de La Ronde. En 1617, après divers héritages et ventes,  le flef devient la propriété des La Barge. En 1689, le comte François-Christophe de la Barge est seigneur de Belime.  
-<br>LAUDAN, vers 1467 Pierre de Fontsauvage, écuyer, est seigneur. En 1591, la seigneurie est partagée entre la famille  de Lodant et celle de la Blanchisse. Le 26 juillet 1627, Blaise de Cistel épouse Anne de  Lodant. En 1666, leur fils  Charles de Cistel, baron de la Garde et de Chavannes. En 1710,  François de Lodant rachète la part  des Cistel. Sa veuve, Françoise d'Aurelle, donne la propriété réunie à son frère Pierre-Gabriel d'Aurelle de Champetières. Après 1767,  le Château passe à Blaise d'Aurelle, comte de Champetières. Il partage sa résidence entre son château de Domaize celui de la Baronnie près  de Courpière et celui de Bonnefille près de Riom.
-<br>RIOUX, l'origine de l'actuel château remonte au XVe siècle, mais il a sans doute été construit sur un édifice plus ancien, puisqu'un fief de Rioux aurait existé antérieurement, de style néo-gothique, il fut rebâti à l'identique par le comte Dupeyroux de Salmagne fin XIXe siècle en lieu et place d'un ancien château du XVIe siècle, ensuite il abrita plusieurs communautés religieuses dont les moines de Lérins, depuis il fut la propriété de plusieurs personnalités de la région, madame Geneviève Thevenet vous accueille toute l'année, transformé en hôtel restaurant.
-<br>Pas d'historique pour Foulhoux et de Tallades.</p>
-      <h4>Architecture</h4><p>Rioux, le château a   fait l'objet de plusieurs aménagements, des travaux semblent avoir été entrepris à la fin du XVIIIe siècle, comme en témoigne la construction d'une fontaine datée 1798, adossée au mur de clôture est de la  propriété. Le corps central  a peut-être  été remanié à cette époque, ou au début  du XIXe siècle. C'est dans le  premier quart du XIXe siècle  en tout cas, qu'est construite (ou reconstruite) l'aile sud,  la date 1822 est portée  sur le linteau de porte  situé au sud-ouest. Le château, encore debout dans la première moitié du XXe siècle, a été laissé à l'abandon et il est actuellement complètement ruiné. La tour d'escalier est en pierre de taille d'andésite jusqu'à la hauteur du premier étage,  le reste des murs du château est en moellons de basalte avec un enduit partiel.   Les parties les plus anciennes avant-corps nord et corps central, semblent avoir eu un étage carré et un étage en surcroît,  l'aile du XIXe siècle possède deux étages carrés et un étage en surcroît. Au milieu du XXe siècle, le corps central était couvert d'un toit à longs pans avec pignon couvert, l'avant-corps nord,   d'un toit en pavillon et l'aile sud d'un toit à croupes. 
-<br>Belime  Ce château (Tour-du-Maure ) fut construit au XVe siècle. C'est un donjon-logis rectangulaire de trois niveaux sur   une haute base talutée aveugle. A un angle, il est accosté d'une haute tour circulaire d'escalier. Logis et tour  sont couronnés de mâchicoulis  dont il reste les consoles à trois ressauts. La porte et une fenêtre de la tour ronde ainsi qu'une fenêtre haute du logis conservent des modénatures du XVe siècle. Laudan ou Lodan est situé à 3 km au sud ouest du bourg,  chemin s'embranchant au sud après Courtesserre. Enceinte quadrangulaire à flanquements circulaires d'angle, il en reste un  très taluté.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Claude de Miremont                                                         Famille de François de Lodant                                             
-<br>Comte Dupeyroux de Salmagne
-<br>        "</p>
-      <h4>Divers</h4><p>Château des Rioux,de Foulhoux, de Tallades, de Laudan et de Belime.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>COURPIERE plusieurs châteaux dans cette commune, les Barges (voir article).
+<br/>BELIME  En 1289, Chatard Chaulet, damoiseau, est seigneur de Ravel, Salmeranges et Bélime, il passe une transaction   avec les habitants au sujet des corvées de charrois. Vers 1350, Philippe de Miremont, chevalier, est seigneur et en 1467, Claude de Miremont est seigneur de Bélime. En 1490, le fief est acheté par Guillaume de  Veyny, seigneur du Bouchet et bourgeois de Montferrand. Vers 1591, Benigne de Veyny d'Arbouze est marié à Anne de La Ronde. En 1617, après divers héritages et ventes,  le flef devient la propriété des La Barge. En 1689, le comte François-Christophe de la Barge est seigneur de Belime.  
+<br/>LAUDAN, vers 1467 Pierre de Fontsauvage, écuyer, est seigneur. En 1591, la seigneurie est partagée entre la famille  de Lodant et celle de la Blanchisse. Le 26 juillet 1627, Blaise de Cistel épouse Anne de  Lodant. En 1666, leur fils  Charles de Cistel, baron de la Garde et de Chavannes. En 1710,  François de Lodant rachète la part  des Cistel. Sa veuve, Françoise d'Aurelle, donne la propriété réunie à son frère Pierre-Gabriel d'Aurelle de Champetières. Après 1767,  le Château passe à Blaise d'Aurelle, comte de Champetières. Il partage sa résidence entre son château de Domaize celui de la Baronnie près  de Courpière et celui de Bonnefille près de Riom.
+<br/>RIOUX, l'origine de l'actuel château remonte au XVe siècle, mais il a sans doute été construit sur un édifice plus ancien, puisqu'un fief de Rioux aurait existé antérieurement, de style néo-gothique, il fut rebâti à l'identique par le comte Dupeyroux de Salmagne fin XIXe siècle en lieu et place d'un ancien château du XVIe siècle, ensuite il abrita plusieurs communautés religieuses dont les moines de Lérins, depuis il fut la propriété de plusieurs personnalités de la région, madame Geneviève Thevenet vous accueille toute l'année, transformé en hôtel restaurant.
+<br/>Pas d'historique pour Foulhoux et de Tallades.</p>
+<h4>Architecture</h4><p>Rioux, le château a   fait l'objet de plusieurs aménagements, des travaux semblent avoir été entrepris à la fin du XVIIIe siècle, comme en témoigne la construction d'une fontaine datée 1798, adossée au mur de clôture est de la  propriété. Le corps central  a peut-être  été remanié à cette époque, ou au début  du XIXe siècle. C'est dans le  premier quart du XIXe siècle  en tout cas, qu'est construite (ou reconstruite) l'aile sud,  la date 1822 est portée  sur le linteau de porte  situé au sud-ouest. Le château, encore debout dans la première moitié du XXe siècle, a été laissé à l'abandon et il est actuellement complètement ruiné. La tour d'escalier est en pierre de taille d'andésite jusqu'à la hauteur du premier étage,  le reste des murs du château est en moellons de basalte avec un enduit partiel.   Les parties les plus anciennes avant-corps nord et corps central, semblent avoir eu un étage carré et un étage en surcroît,  l'aile du XIXe siècle possède deux étages carrés et un étage en surcroît. Au milieu du XXe siècle, le corps central était couvert d'un toit à longs pans avec pignon couvert, l'avant-corps nord,   d'un toit en pavillon et l'aile sud d'un toit à croupes. 
+<br/>Belime  Ce château (Tour-du-Maure ) fut construit au XVe siècle. C'est un donjon-logis rectangulaire de trois niveaux sur   une haute base talutée aveugle. A un angle, il est accosté d'une haute tour circulaire d'escalier. Logis et tour  sont couronnés de mâchicoulis  dont il reste les consoles à trois ressauts. La porte et une fenêtre de la tour ronde ainsi qu'une fenêtre haute du logis conservent des modénatures du XVe siècle. Laudan ou Lodan est situé à 3 km au sud ouest du bourg,  chemin s'embranchant au sud après Courtesserre. Enceinte quadrangulaire à flanquements circulaires d'angle, il en reste un  très taluté.</p>
+<h4>Habitants / Familles</h4><p>Famille de Claude de Miremont                                                         Famille de François de Lodant                                             
+<br/>Comte Dupeyroux de Salmagne
+<br/>        "</p>
+<h4>Divers</h4><p>Château des Rioux,de Foulhoux, de Tallades, de Laudan et de Belime.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

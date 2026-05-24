@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Landal — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,57 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_35.html">Ille-et-Vilaine</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_35.html">Ille-et-Vilaine</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_35.html" class="back-link">Retour au département 35 — Ille-et-Vilaine</a>
-  <div class="fiche">
-    <h2>Landal</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>35 — Ille-et-Vilaine</td></tr>
-          <tr><td>Canton</td><td>Dol-de-Bretagne</td></tr>
-          <tr><td>Commune</td><td>Broualan</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XII-XV-XVII-XIX</td></tr>
-          <tr><td>Coordonnées GPS</td><td>48° 29' 28" Nord, 1° 40' 31" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_35/35_Landal_1.jpg" alt="Landal" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Landal_2.jpg" alt="Landal" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Landal_3.jpg" alt="Landal" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Landal_4.jpg" alt="Landal" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Landal_5.jpg" alt="Landal" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_35.html">Retour au département 35 — Ille-et-Vilaine</a>
+<div class="fiche">
+<h2>Landal</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Landal" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_35/35_Landal_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Landal" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Landal_1.jpg"/><img alt="Landal" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Landal_2.jpg"/><img alt="Landal" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Landal_3.jpg"/><img alt="Landal" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Landal_4.jpg"/><img alt="Landal" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Landal_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>35 — Ille-et-Vilaine</td></tr>
+<tr><td>Canton</td><td>Dol-de-Bretagne</td></tr>
+<tr><td>Commune</td><td>Broualan</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XII-XV-XVII-XIX</td></tr>
+<tr><td>Coordonnées GPS</td><td>48° 29' 28" Nord, 1° 40' 31" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>LANDAL,  au XIe siècle son premier propriétaire fut Hamon de Montsorel qui édifie un fort en bois  et  en avait fait sa résidence seigneuriale. Après sa destruction au XIIe siècle le château sera reconstruit par Jean de Montsorel et son fils Guillaume, sa fille Mahaut l'apporte à son époux, Raoul d'Aubigné.  Veuve elle convole avant 1226 avec Jean Paisnel décède en 1228, le château passe  à son fils du premier mariage Raoul d'Aubigné,  au XIVe siècle   Mahaut d'Aubigné fille de Guillaume épouse Olivier de Montauban  qui reconstruisent le corps de logis. La seigneurie puis comté de Landal a appartenu à plusieurs grandes familles de la noblesse bretonne. Des Rohan le château passe  à la famille de Maure, puis au siècle suivant aux Rochecouart-Mortemart  Marie de Colbert veuve de  Louis de Mortemart, vend en 1697 à Joseph de France, suite à sa résistance lors de leur débarquement à Cancale, son propriétaire, Olivier Joseph de France, capitaine général des gardes côtes de Dol, a la veille de la Révolution passe par alliance à la famille du Beuil. Vendu en 1799 comme bien national, le château de Landal endommagé est racheté par au comte Louis du Breil (1844-1917) qui fait reconstruire le logis en 1850. Le château et son domaine de 350 Ha, a été racheté, par Maurice de Thomasson de Vaugoubert, en 1892.   De 2013 à 2015, après plus de 10 ans d'abandon et de vandalisme, le château de Landal est géré par la Famille Guyot  propriétaire des châteaux de la Ferté-Saint-Aubin, de Bridoire et de Saint-Brisson  qui l'ouvre, qu'en été, au public, avec l'aide de plusieurs bénévoles.</p>
-      <h4>Architecture</h4><p>LANDAL, cité dès le XIIe siècle,  la construction du château de Landal date du XIIe au XIXe siècle se composant à l'origine de quatre tours du XVe siècle dont deux existent encore en partie. Il comporte encore des éléments de deux tours du XVe siècle Il était entouré d'un mur d'enceinte surmonté d'un promenoir et de claires-voies en pierres de taille découpées et précédé d'un étang et de douves. Ce mur était percé d'une porte à pont-levis, et flanqué de cinq autres tours dont trois subsistent partiellement. En 1758, le château est incendié par les Anglais, le château de Landal est racheté par Louis de Breil qui fait reconstruire le logis en 1850 de style néo-gothique. Bien que d'aspect médiéval, le donjon est élevé au XIXe siècle.  Les anciennes lucarnes du donjon ont disparu au cours du XXe siècle. Éléments protégés MH : les façades et les toitures du château, des communs, de la chapelle et de la fuie : inscription par arrêté du 6 octobre 1981 Le château de Landal a été inscrit aux M.H depuis le 6/10/1981 pour ses façades et toitures, celles de ses communs, de sa chapelle et de sa fuie.</p>
-      <h4>Habitants / Familles</h4><p>Famille de  Raoul d'Aubigné                                                          Famille Guyot
-<br>        "</p>
-      <h4>Divers</h4><p>Landal GPS : 48° 29' 28" Nord, 1° 40' 31" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>LANDAL,  au XIe siècle son premier propriétaire fut Hamon de Montsorel qui édifie un fort en bois  et  en avait fait sa résidence seigneuriale. Après sa destruction au XIIe siècle le château sera reconstruit par Jean de Montsorel et son fils Guillaume, sa fille Mahaut l'apporte à son époux, Raoul d'Aubigné.  Veuve elle convole avant 1226 avec Jean Paisnel décède en 1228, le château passe  à son fils du premier mariage Raoul d'Aubigné,  au XIVe siècle   Mahaut d'Aubigné fille de Guillaume épouse Olivier de Montauban  qui reconstruisent le corps de logis. La seigneurie puis comté de Landal a appartenu à plusieurs grandes familles de la noblesse bretonne. Des Rohan le château passe  à la famille de Maure, puis au siècle suivant aux Rochecouart-Mortemart  Marie de Colbert veuve de  Louis de Mortemart, vend en 1697 à Joseph de France, suite à sa résistance lors de leur débarquement à Cancale, son propriétaire, Olivier Joseph de France, capitaine général des gardes côtes de Dol, a la veille de la Révolution passe par alliance à la famille du Beuil. Vendu en 1799 comme bien national, le château de Landal endommagé est racheté par au comte Louis du Breil (1844-1917) qui fait reconstruire le logis en 1850. Le château et son domaine de 350 Ha, a été racheté, par Maurice de Thomasson de Vaugoubert, en 1892.   De 2013 à 2015, après plus de 10 ans d'abandon et de vandalisme, le château de Landal est géré par la Famille Guyot  propriétaire des châteaux de la Ferté-Saint-Aubin, de Bridoire et de Saint-Brisson  qui l'ouvre, qu'en été, au public, avec l'aide de plusieurs bénévoles.</p>
+<h4>Architecture</h4><p>LANDAL, cité dès le XIIe siècle,  la construction du château de Landal date du XIIe au XIXe siècle se composant à l'origine de quatre tours du XVe siècle dont deux existent encore en partie. Il comporte encore des éléments de deux tours du XVe siècle Il était entouré d'un mur d'enceinte surmonté d'un promenoir et de claires-voies en pierres de taille découpées et précédé d'un étang et de douves. Ce mur était percé d'une porte à pont-levis, et flanqué de cinq autres tours dont trois subsistent partiellement. En 1758, le château est incendié par les Anglais, le château de Landal est racheté par Louis de Breil qui fait reconstruire le logis en 1850 de style néo-gothique. Bien que d'aspect médiéval, le donjon est élevé au XIXe siècle.  Les anciennes lucarnes du donjon ont disparu au cours du XXe siècle. Éléments protégés MH : les façades et les toitures du château, des communs, de la chapelle et de la fuie : inscription par arrêté du 6 octobre 1981 Le château de Landal a été inscrit aux M.H depuis le 6/10/1981 pour ses façades et toitures, celles de ses communs, de sa chapelle et de sa fuie.</p>
+<h4>Habitants / Familles</h4><p>Famille de  Raoul d'Aubigné                                                          Famille Guyot
+<br/>        "</p>
+<h4>Divers</h4><p>Landal GPS : 48° 29' 28" Nord, 1° 40' 31" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

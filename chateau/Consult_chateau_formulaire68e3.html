@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Allex — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,60 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_26.html">Drôme</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_26.html">Drôme</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_26.html" class="back-link">Retour au département 26 — Drôme</a>
-  <div class="fiche">
-    <h2>Allex</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>26 — Drôme</td></tr>
-          <tr><td>Canton</td><td>Crest</td></tr>
-          <tr><td>Commune</td><td>Allex</td></tr>
-          <tr><td>Type d'édifice</td><td>Vestiges</td></tr>
-          <tr><td>Période d'origine</td><td>XI</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_26/26_Allex_1.jpg" alt="Allex" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_26/26_Allex_2.jpg" alt="Allex" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_26/26_Allex_3.jpg" alt="Allex" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_26/26_Allex_4.jpg" alt="Allex" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_26/26_Allex_5.jpg" alt="Allex" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_26/26_Allex_6.jpg" alt="Allex" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_26/26_Allex_7.jpg" alt="Allex" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_26.html">Retour au département 26 — Drôme</a>
+<div class="fiche">
+<h2>Allex</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Allex" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_26/26_Allex_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Allex" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_26/26_Allex_1.jpg"/><img alt="Allex" class="" loading="lazy" onclick="setHero(this)" src="../image/image_26/26_Allex_2.jpg"/><img alt="Allex" class="" loading="lazy" onclick="setHero(this)" src="../image/image_26/26_Allex_3.jpg"/><img alt="Allex" class="" loading="lazy" onclick="setHero(this)" src="../image/image_26/26_Allex_4.jpg"/><img alt="Allex" class="" loading="lazy" onclick="setHero(this)" src="../image/image_26/26_Allex_5.jpg"/><img alt="Allex" class="" loading="lazy" onclick="setHero(this)" src="../image/image_26/26_Allex_6.jpg"/><img alt="Allex" class="" loading="lazy" onclick="setHero(this)" src="../image/image_26/26_Allex_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>26 — Drôme</td></tr>
+<tr><td>Canton</td><td>Crest</td></tr>
+<tr><td>Commune</td><td>Allex</td></tr>
+<tr><td>Type d'édifice</td><td>Vestiges</td></tr>
+<tr><td>Période d'origine</td><td>XI</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>ALLEX; les vestiges de la tour appelé aussi "la Tour Ronde". Les seigneurs connut étaient en 1291 les Vileris, en 1366 les Dalmas d'Eurre, en 1574  les Ban, en 1633 le Sieur de Prayet, en 1658 noble François de Vernet, sieur de la Vermenelle, en 1702 les Molaris et en 1771 les Bancel. Château "dit des missions"  reconstruit  au XVIIIe siècle  de style renaissance par le marquis de la Chaux  qui l'avait acheté en 1673 à Pierre Perranchon. Puis racheté en 1873 par Eugéne Bontoux  (polytechnicien).  Puis à Pierre  Girardon, collaborateur de Hyacinthe de Gaillard-Bancel         ISLE: Le domaine dans la plaine, déjà cité en 954, appartint à la famille de la Baume avant de passer aux  Rigaud de l'Isle, au début du XVIIe siècle  David Rigaud, riche marchand de Crest, (dont un neveu  siégea  avec la noblesse à Vizille  en 1786), C'est par Louise Marie, fille de Louis que le domaine passera aux Blancard de Loriol  (officier de la cavalerie Napoléonienne  et lieutenant Général sous Louis Philippe), passera à son fils Louis Guy qui aura aussi une carrière militaire, mais sans enfants, l'héritage ira au fils de sa soeur , Félicie Sophie, épouse de Pierre Girardon de Divajeu, les Girardon garderont le domaine jusqu'a l'achat de Monsieur Morize en 1970,  aujourd'hui domaine agricole.                        PERGAUD: Du XIXe siècle, ferme école de Pergaud, domaine qui appartenait alors au maire d'Allex Charles Bernard Thomé-Angélique de la Bretonniére, fut créé en Mars 1849, fut vendu au docteur Perrier, puis à la famille Salvignon et dernièrement acquit  par l'association   REGAIN.                            RAMIERES: Construit en 1840 dans un style Louis XIII par Hiacynthe de Gaillard de Bancel  ( 1849 1936) y habitèrent dés 1855, député de Tournon en 1899, il écrivit des ouvrages sur l'agriculture . Ses enfants créèrent les coopératives .   Le château aujourd'hui transformé en lycée agricole.</p>
-      <h4>Architecture</h4><p>Du château de la tour ronde sont du XIe siècle unique témoin du château vestige de la tour "pans de murs" au sommet du village.                                Du nouveau château reconstruit au XVIIIe siècle dit des "missions" de style renaissance, avec façade à corniche et une grande terrasse à balustres.      Isle; Construit au XVIIIe siècle , avec façade à fronton et deux tours  dont l'une servant de pigeonnier.             Pergaud:  de forme  quadrangulaire, deux étages, trois corps de logis en équerre flanqués de pavillons en angles, toit en tuiles restaurés et fenêtres renaissances.                        Ramières;  de style Louis XIII malgré son architecture du XIXe siècle, corps de logis rectangulaire flanqué de pavillons aux extrémités et pavillon saillant en façade plein cintre.</p>
-      <h4>Habitants / Familles</h4><p>Marquis de la Chaud Vileris"</p>
-      <h4>Divers</h4><p>Vestiges du château
-<br>Nouveau château st-Joseph               Domaine de l'Isle                      Château Pergaud
-<br>Château des Ramières</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>ALLEX; les vestiges de la tour appelé aussi "la Tour Ronde". Les seigneurs connut étaient en 1291 les Vileris, en 1366 les Dalmas d'Eurre, en 1574  les Ban, en 1633 le Sieur de Prayet, en 1658 noble François de Vernet, sieur de la Vermenelle, en 1702 les Molaris et en 1771 les Bancel. Château "dit des missions"  reconstruit  au XVIIIe siècle  de style renaissance par le marquis de la Chaux  qui l'avait acheté en 1673 à Pierre Perranchon. Puis racheté en 1873 par Eugéne Bontoux  (polytechnicien).  Puis à Pierre  Girardon, collaborateur de Hyacinthe de Gaillard-Bancel         ISLE: Le domaine dans la plaine, déjà cité en 954, appartint à la famille de la Baume avant de passer aux  Rigaud de l'Isle, au début du XVIIe siècle  David Rigaud, riche marchand de Crest, (dont un neveu  siégea  avec la noblesse à Vizille  en 1786), C'est par Louise Marie, fille de Louis que le domaine passera aux Blancard de Loriol  (officier de la cavalerie Napoléonienne  et lieutenant Général sous Louis Philippe), passera à son fils Louis Guy qui aura aussi une carrière militaire, mais sans enfants, l'héritage ira au fils de sa soeur , Félicie Sophie, épouse de Pierre Girardon de Divajeu, les Girardon garderont le domaine jusqu'a l'achat de Monsieur Morize en 1970,  aujourd'hui domaine agricole.                        PERGAUD: Du XIXe siècle, ferme école de Pergaud, domaine qui appartenait alors au maire d'Allex Charles Bernard Thomé-Angélique de la Bretonniére, fut créé en Mars 1849, fut vendu au docteur Perrier, puis à la famille Salvignon et dernièrement acquit  par l'association   REGAIN.                            RAMIERES: Construit en 1840 dans un style Louis XIII par Hiacynthe de Gaillard de Bancel  ( 1849 1936) y habitèrent dés 1855, député de Tournon en 1899, il écrivit des ouvrages sur l'agriculture . Ses enfants créèrent les coopératives .   Le château aujourd'hui transformé en lycée agricole.</p>
+<h4>Architecture</h4><p>Du château de la tour ronde sont du XIe siècle unique témoin du château vestige de la tour "pans de murs" au sommet du village.                                Du nouveau château reconstruit au XVIIIe siècle dit des "missions" de style renaissance, avec façade à corniche et une grande terrasse à balustres.      Isle; Construit au XVIIIe siècle , avec façade à fronton et deux tours  dont l'une servant de pigeonnier.             Pergaud:  de forme  quadrangulaire, deux étages, trois corps de logis en équerre flanqués de pavillons en angles, toit en tuiles restaurés et fenêtres renaissances.                        Ramières;  de style Louis XIII malgré son architecture du XIXe siècle, corps de logis rectangulaire flanqué de pavillons aux extrémités et pavillon saillant en façade plein cintre.</p>
+<h4>Habitants / Familles</h4><p>Marquis de la Chaud Vileris"</p>
+<h4>Divers</h4><p>Vestiges du château
+<br/>Nouveau château st-Joseph               Domaine de l'Isle                      Château Pergaud
+<br/>Château des Ramières</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Cerisy_Dangy — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,62 +113,64 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_50.html">Manche</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_50.html">Manche</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_50.html" class="back-link">Retour au département 50 — Manche</a>
-  <div class="fiche">
-    <h2>Cerisy_Dangy</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>50 — Manche</td></tr>
-          <tr><td>Canton</td><td>Quettreville-sur-Sienne</td></tr>
-          <tr><td>Commune</td><td>Cérisy la Salle</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII-XVIII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>49° 02' 42" Nord, 1° 13' 29" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_50/50_Cerisy_Dangy_1.jpg" alt="Cerisy_Dangy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Cerisy_Dangy_2.jpg" alt="Cerisy_Dangy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Cerisy_Dangy_3.jpg" alt="Cerisy_Dangy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Cerisy_Dangy_4.jpg" alt="Cerisy_Dangy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Cerisy_Dangy_5.jpg" alt="Cerisy_Dangy" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_50.html">Retour au département 50 — Manche</a>
+<div class="fiche">
+<h2>Cerisy_Dangy</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Cerisy_Dangy" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_50/50_Cerisy_Dangy_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Cerisy_Dangy" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Cerisy_Dangy_1.jpg"/><img alt="Cerisy_Dangy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Cerisy_Dangy_2.jpg"/><img alt="Cerisy_Dangy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Cerisy_Dangy_3.jpg"/><img alt="Cerisy_Dangy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Cerisy_Dangy_4.jpg"/><img alt="Cerisy_Dangy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Cerisy_Dangy_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>50 — Manche</td></tr>
+<tr><td>Canton</td><td>Quettreville-sur-Sienne</td></tr>
+<tr><td>Commune</td><td>Cérisy la Salle</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII-XVIII</td></tr>
+<tr><td>Coordonnées GPS</td><td>49° 02' 42" Nord, 1° 13' 29" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux châteaux à Cerisy, Cerisy la Salle et Dangy.                                     CERISY la SALLE , le château et la ferme ont été construits au début du XVIIe siècle  sa construction est attribuée à Jean Richier. À la Révolution, le dernier des Richier a émigré et le château a été déclaré "bien national". Acheté en 1819 par Joseph Savary, né à Notre-Dame-de-Cenilly, ancêtre des propriétaires actuels, il accueille depuis 1952 le centre culturel international.
-<br>Le site est classé M.H. "en raison de la qualité architecturale et de la grande cohérence de l'ensemble, en tant que haut lieu de la culture et de l'histoire, y compris celle de la pensée moderne".Le Centre culturel international de Cerisy poursuit une aventure familiale initiée en 1910 par Paul Desjardins avec les Décades de Pontigny en Bourgogne. Dirigé aujourd'hui par Edith Heurgon et Dominique Peyrou avec le concours de toute la famille, et d'une équipe efficace et dévouée. Les boiseries du XVIIIe siècle qui proviennent du logis abbatial de Pontigny, furent montées vers 1950 dans un salon du premier étage. Propriété de Mme Heurgon-Desjardins.</p>
-      <h4>Architecture</h4><p>DANGY à quelques K.M. à l'Est La construction du château de Dangy date du XVIIIe siècle. Louis-Julien Yon au XVIIIe siècle, fut le dernier seigneur de Dangy et de Saint-Hilaire.                                                                                             CERISY la SALLE, devenu un centre culturel international, sa construction date de 1605 et 1620, sous Louis XIII. Il accueille depuis 1952, de nombreux colloques, en cours d'année. Composé d'un bâtiment central flanqué de quartre pavillons et d'un escalier en saillie. Les communs comprennent une grange sur cave, une tour carrée servant de pigeonnier, une charretterie à trois arcades, une laiterie, des étables. A l'intérieur du château, on notera l'escalier monumental, les cheminées en granit de la grande salle, devenue bibliothèque et de l'ancienne cuisine, actuellement salle à manger, le plafond à poutres peintes de la bibliothèque en vogue sous Louis XIII, qui représentent notamment des cucurbitacées et le plafond d'un petit salon construit et peint probablement à la fin du XVIIe siècle. A l'intérieur du château, dans la grande salle, se trouve un décor peint représentant des légumes et des fleurs. Le château de Cerisy-la-Salle est devenu un Centre Culturel International ou des colloques ont lieu, chaque année. Leurs actes donnent souvent lieu à une publication. Le château de Cerisy-la-Salle est classé le 4/07/1995 aux M.H. L'Association des Amis de Pontigny-Cerisy, reconnue d'utilité publique en 1972, est actuellement présidée  par Jean-Baptiste de Foucauld, inspecteur général des finances honoraire.</p>
-      <h4>Habitants / Familles</h4><p>Jean Richier
-<br>        
-<br>        
-<br>        
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Deux châteaux à Cerisy, Cerisy la Salle grav-1-2-3 et Dangy grav-4-5.     Cerisy PS : 49° 10' 39" Nord, 0° 56' 12" Ouest                Dangy GPS : 49° 02' 42" Nord, 1° 13' 29" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux châteaux à Cerisy, Cerisy la Salle et Dangy.                                     CERISY la SALLE , le château et la ferme ont été construits au début du XVIIe siècle  sa construction est attribuée à Jean Richier. À la Révolution, le dernier des Richier a émigré et le château a été déclaré "bien national". Acheté en 1819 par Joseph Savary, né à Notre-Dame-de-Cenilly, ancêtre des propriétaires actuels, il accueille depuis 1952 le centre culturel international.
+<br/>Le site est classé M.H. "en raison de la qualité architecturale et de la grande cohérence de l'ensemble, en tant que haut lieu de la culture et de l'histoire, y compris celle de la pensée moderne".Le Centre culturel international de Cerisy poursuit une aventure familiale initiée en 1910 par Paul Desjardins avec les Décades de Pontigny en Bourgogne. Dirigé aujourd'hui par Edith Heurgon et Dominique Peyrou avec le concours de toute la famille, et d'une équipe efficace et dévouée. Les boiseries du XVIIIe siècle qui proviennent du logis abbatial de Pontigny, furent montées vers 1950 dans un salon du premier étage. Propriété de Mme Heurgon-Desjardins.</p>
+<h4>Architecture</h4><p>DANGY à quelques K.M. à l'Est La construction du château de Dangy date du XVIIIe siècle. Louis-Julien Yon au XVIIIe siècle, fut le dernier seigneur de Dangy et de Saint-Hilaire.                                                                                             CERISY la SALLE, devenu un centre culturel international, sa construction date de 1605 et 1620, sous Louis XIII. Il accueille depuis 1952, de nombreux colloques, en cours d'année. Composé d'un bâtiment central flanqué de quartre pavillons et d'un escalier en saillie. Les communs comprennent une grange sur cave, une tour carrée servant de pigeonnier, une charretterie à trois arcades, une laiterie, des étables. A l'intérieur du château, on notera l'escalier monumental, les cheminées en granit de la grande salle, devenue bibliothèque et de l'ancienne cuisine, actuellement salle à manger, le plafond à poutres peintes de la bibliothèque en vogue sous Louis XIII, qui représentent notamment des cucurbitacées et le plafond d'un petit salon construit et peint probablement à la fin du XVIIe siècle. A l'intérieur du château, dans la grande salle, se trouve un décor peint représentant des légumes et des fleurs. Le château de Cerisy-la-Salle est devenu un Centre Culturel International ou des colloques ont lieu, chaque année. Leurs actes donnent souvent lieu à une publication. Le château de Cerisy-la-Salle est classé le 4/07/1995 aux M.H. L'Association des Amis de Pontigny-Cerisy, reconnue d'utilité publique en 1972, est actuellement présidée  par Jean-Baptiste de Foucauld, inspecteur général des finances honoraire.</p>
+<h4>Habitants / Familles</h4><p>Jean Richier
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Deux châteaux à Cerisy, Cerisy la Salle grav-1-2-3 et Dangy grav-4-5.     Cerisy PS : 49° 10' 39" Nord, 0° 56' 12" Ouest                Dangy GPS : 49° 02' 42" Nord, 1° 13' 29" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

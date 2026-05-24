@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Paulhac — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,57 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_43.html">Haute-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_43.html">Haute-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_43.html" class="back-link">Retour au département 43 — Haute-Loire</a>
-  <div class="fiche">
-    <h2>Paulhac</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>43 — Haute-Loire</td></tr>
-          <tr><td>Canton</td><td>Brioude</td></tr>
-          <tr><td>Commune</td><td>Paulhac</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XII-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_43/43_Paulhac_1.jpg" alt="Paulhac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Paulhac_2.jpg" alt="Paulhac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Paulhac_3.jpg" alt="Paulhac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Paulhac_4.jpg" alt="Paulhac" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_43.html">Retour au département 43 — Haute-Loire</a>
+<div class="fiche">
+<h2>Paulhac</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Paulhac" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_43/43_Paulhac_1.jpg"/><div class="hero-count" id="hero-count">1 / 4</div></div><div class="photo-strip"><img alt="Paulhac" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Paulhac_1.jpg"/><img alt="Paulhac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Paulhac_2.jpg"/><img alt="Paulhac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Paulhac_3.jpg"/><img alt="Paulhac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Paulhac_4.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>43 — Haute-Loire</td></tr>
+<tr><td>Canton</td><td>Brioude</td></tr>
+<tr><td>Commune</td><td>Paulhac</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XII-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>PAULHAC, dès le XIIe siècle,  à la famille de Paulhac, Bertrand Ebrard, seigneur de Paulhac, passe à Hérald II de Paulhac chevalier,en 1259.  Smaragde de Paulhac Chabreugheol, passe par alliance, en 1312 à Pierre II Bompar, dit Bayard.  Catherine de Lastic,passe  par alliance en 1328, à Raymond de Monstuéjouls. Marie de Monstuéjouls, transmet par alliance, en 1350, à Bertrand de Rochefort. Dauphine de Rochefort d'Aurouze, toujours par alliance, en 1355, à Henri de Courcelles,  leur fils, Louis de Courcelles, chevalier, marié en 1387, avec Hélips d'Aurillac,  Louis III de Courcelles, marié, en 1461, avec Isabeau de Langeac.  Il mourut  en 1470, laissant le Breuil et Paulhac à sa femme qui épousa en 1472, Jehan d'Urfé, dit Paillard, et vendit, en 1473 la seigneurie de Paulhac à Roffet II de Balsac, chevalier, Passe à son fils, Roffet III de Balsac, mort sans postérité en 1489, laissant Paulhac à son oncle, Robert de Balsac,  marié en 1474, avec Annette de Castelnau. leur fils, Pierre de Balsac, marié, en 1499, avec Anne Mallet de Graville. Jeanne de Balsac, leur fille, dame de Paulhac, le porte par mariage, en 1582, à Claude d'Urfé. Louise d'Urfé passe par alliance en 1553, à Gaspard de Montmorin, Catherine de Montmorin, leur deuxième fille, dame de Paulhac, Balsac et Rilhac, par alliance, en 1580, à Gilbert de Saint-Aignan, Gilberte de Saint-Aignan, leur fille, les porte par alliance, en 1609, à Jacques de Brezons de Neyrebrousse, son fils héritier universel Charles-Jacques-Joseph de Cassagnes de Beaufort. son fils Claude-Jacques qui, en 1670, avait épousé Jeanne d'Aurelle de Colombines laissa Alexandre de Cassagnes de Beaufort, chevalier, marquis de Miramon, marié le en 1725, avec Esther de la Tour du Pin-Gouvernet, dont Jean-Gaspard de Cassagnes-Beaufort,  reste dans la famille de Cassagnes de Miramon jusquen lan 2001. Tous les hommes sont chevalier et seigneur de Paulhac et autres lieux non cités. A quelques kilomètre au sud le château de Chabreuges dont les seigneuries devait être identique.</p>
-      <h4>Architecture</h4><p>Paulhac  du Moyen-Âge  Un des plus beaux d'Auvergne, il est mentionné au Xe siècle. Sur un promontoire rocheux entouré d'un rempart, il domine tout le Brivadois à partir d'un donjon circulaire du XIIe ou XIIIe siècle, construction au XVe siècle d'un château articulé en deux ailes perpendiculaires. Aménagements et décors des XVIIe-XVIIIe siècles. Remaniement. A la fin du XIXe  pour rendre l'édifice plus confortable  tout en accentuant son caractère médiéval  par un style néo-gothique. Travaux effectués par l'architecte Honoré Vianne. 
-<br> Chabreuges, le château fut édifié au XIVe siècle ou XVe siècle , logis quadrangulaire  délimité par une courtine reliant un logis au sud flanqué de quatre tours d'angle et d'un avant-corps central,  tours rondes posées en diagonale du XIVe siècle, restauré au XIXe siècle,   un donjon circulaire au nord-ouest et   une autre tour circulaire au nord-est.</p>
-      <h4>Habitants / Familles</h4><p>Hérald II de Paulhac
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Paulhac.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>PAULHAC, dès le XIIe siècle,  à la famille de Paulhac, Bertrand Ebrard, seigneur de Paulhac, passe à Hérald II de Paulhac chevalier,en 1259.  Smaragde de Paulhac Chabreugheol, passe par alliance, en 1312 à Pierre II Bompar, dit Bayard.  Catherine de Lastic,passe  par alliance en 1328, à Raymond de Monstuéjouls. Marie de Monstuéjouls, transmet par alliance, en 1350, à Bertrand de Rochefort. Dauphine de Rochefort d'Aurouze, toujours par alliance, en 1355, à Henri de Courcelles,  leur fils, Louis de Courcelles, chevalier, marié en 1387, avec Hélips d'Aurillac,  Louis III de Courcelles, marié, en 1461, avec Isabeau de Langeac.  Il mourut  en 1470, laissant le Breuil et Paulhac à sa femme qui épousa en 1472, Jehan d'Urfé, dit Paillard, et vendit, en 1473 la seigneurie de Paulhac à Roffet II de Balsac, chevalier, Passe à son fils, Roffet III de Balsac, mort sans postérité en 1489, laissant Paulhac à son oncle, Robert de Balsac,  marié en 1474, avec Annette de Castelnau. leur fils, Pierre de Balsac, marié, en 1499, avec Anne Mallet de Graville. Jeanne de Balsac, leur fille, dame de Paulhac, le porte par mariage, en 1582, à Claude d'Urfé. Louise d'Urfé passe par alliance en 1553, à Gaspard de Montmorin, Catherine de Montmorin, leur deuxième fille, dame de Paulhac, Balsac et Rilhac, par alliance, en 1580, à Gilbert de Saint-Aignan, Gilberte de Saint-Aignan, leur fille, les porte par alliance, en 1609, à Jacques de Brezons de Neyrebrousse, son fils héritier universel Charles-Jacques-Joseph de Cassagnes de Beaufort. son fils Claude-Jacques qui, en 1670, avait épousé Jeanne d'Aurelle de Colombines laissa Alexandre de Cassagnes de Beaufort, chevalier, marquis de Miramon, marié le en 1725, avec Esther de la Tour du Pin-Gouvernet, dont Jean-Gaspard de Cassagnes-Beaufort,  reste dans la famille de Cassagnes de Miramon jusquen lan 2001. Tous les hommes sont chevalier et seigneur de Paulhac et autres lieux non cités. A quelques kilomètre au sud le château de Chabreuges dont les seigneuries devait être identique.</p>
+<h4>Architecture</h4><p>Paulhac  du Moyen-Âge  Un des plus beaux d'Auvergne, il est mentionné au Xe siècle. Sur un promontoire rocheux entouré d'un rempart, il domine tout le Brivadois à partir d'un donjon circulaire du XIIe ou XIIIe siècle, construction au XVe siècle d'un château articulé en deux ailes perpendiculaires. Aménagements et décors des XVIIe-XVIIIe siècles. Remaniement. A la fin du XIXe  pour rendre l'édifice plus confortable  tout en accentuant son caractère médiéval  par un style néo-gothique. Travaux effectués par l'architecte Honoré Vianne. 
+<br/> Chabreuges, le château fut édifié au XIVe siècle ou XVe siècle , logis quadrangulaire  délimité par une courtine reliant un logis au sud flanqué de quatre tours d'angle et d'un avant-corps central,  tours rondes posées en diagonale du XIVe siècle, restauré au XIXe siècle,   un donjon circulaire au nord-ouest et   une autre tour circulaire au nord-est.</p>
+<h4>Habitants / Familles</h4><p>Hérald II de Paulhac
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Paulhac.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

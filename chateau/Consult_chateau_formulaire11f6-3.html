@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Thurey_Vienne — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,55 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_86.html">Vienne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_86.html">Vienne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_86.html" class="back-link">Retour au département 86 — Vienne</a>
-  <div class="fiche">
-    <h2>Thurey_Vienne</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>86 — Vienne</td></tr>
-          <tr><td>Canton</td><td>Chatellerault</td></tr>
-          <tr><td>Commune</td><td>Thurey</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVII-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_86/86_Thurey_Vienne_1.jpg" alt="Thurey_Vienne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Thurey_Vienne_2.jpg" alt="Thurey_Vienne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Thurey_Vienne_3.jpg" alt="Thurey_Vienne" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_86.html">Retour au département 86 — Vienne</a>
+<div class="fiche">
+<h2>Thurey_Vienne</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Thurey_Vienne" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_86/86_Thurey_Vienne_1.jpg"/><div class="hero-count" id="hero-count">1 / 3</div></div><div class="photo-strip"><img alt="Thurey_Vienne" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Thurey_Vienne_1.jpg"/><img alt="Thurey_Vienne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Thurey_Vienne_2.jpg"/><img alt="Thurey_Vienne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Thurey_Vienne_3.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>86 — Vienne</td></tr>
+<tr><td>Canton</td><td>Chatellerault</td></tr>
+<tr><td>Commune</td><td>Thurey</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVII-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>A quelques kilomètres au nord-ouest ouest  à Sossais le chäteau de Bouchet.                                                                                         BARBELINIERE, le fief de la Barbelinière dépendait de la baronnie de Thuré. Jean de Marconnay fortifie le château à la fin du XVe siècle. C'est l'architecte Lubac qui remanie l'édifice sous le Second Empire en lui donnant des allures Renaissance. Au XVIIe siècle, le seigneur est Pierre Certany, écuyer et officier de finance. A la fin du XVIIIe siècle, Joseph Cadet devient propriétaire ; il est l'ancien munitionnaire du Roi à Montréal. Il achète la propriété  en 1766. Le pigeonnier date du XVIIe siècle et semble avoir connu quelques remaniements, cependant ses boulins sont conservés. A l'intérieur, sur une pierre qui semble être un remploi, est gravée la date : 1515. L'orangerie et la chapelle pourraient dater du XVIIIe siècle. Le logis actuel a conservé des murs d'origine mais il a été agrandi et ses élévations ont été reconstruites au XIXe siècle. Les arbres permettent de dater le parc du XIXe siècle.Château surplombant la commune de Thuré. Il est situé dans un parc où se trouvent un pigeonnier, une maison de gardien et un corps de ferme de plan en L. Le château se prolonge, sur sa façade nord est, par une orangerie et une chapelle. Les pavés de l'orangerie proviendraient de cales de navires et auraient servi à lester des bateaux. Les quatre tours d'angles sont plus élevées que la toiture du logis. Une cheminée d'influence italienne, classée MH, est située au rez-de-chaussée, dans la partie nord-ouest du château.</p>
-      <h4>Architecture</h4><p>BOUCHET, dans son parc paysager, Le Bouchet offre une belle unité dont on doit probablement attribuer sa construction à la famille Champigny Dupont au XIXe siècle. L'édifice présente un plan rectangulaire, cantonné à deux angles de tours polygonales en appareillage de brique et de pierre de taille. Il est couvert d'un toit en croupe en ardoise. La travée centrale comprend la porte d'entrée à décor sculpté et forme un avant-corps légèrement en saillie. Elle est surmontée d'un fronton triangulaire sculpté se terminant par une lucarne. De part et d'autre s'ouvrent deux travées de baies jumelées sur 2 niveaux séparés par un bandeau de pierre, chacune de ces travées étant surmontée d'une lucarne sur toit à fronton triangulaire                                                                                                GENAURAYE  Le terme Genauraye aurait ainsi évolué par la Genouroie en 1437 qui relevait du duché de Châtellerault; en 1483, la Genouraye ; en 1576, la Genoraye relevant de la cure de Thuré ; en 1763, la Genaurais, fief relevant du duché de Châtellerault. Le terme Genauraye viendrait de Juniperetum (de junipereus, genévrier). Le château de La Genauraye, situé sur la commune de Thuré, appartenait au début du XIXe siècle à M. et Mme Borreau. En 1896, le domaine a été racheté par la famille Bedel (acte reçu à l'époque par Maître Pichon, notaire à Châtellerault). Demeure de l'écrivain Maurice Bedel (1883-1954), prix Goncourt en 1927.</p>
-      <h4>Habitants / Familles</h4><p>Barbelinière; famille de Pierre Certany.                           Bouchet; famille Champigny Dupont.                                                Genauraye; M. et Mme Borreau
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Barbelinière grav 1 de Bouchet grav 2-3</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>A quelques kilomètres au nord-ouest ouest  à Sossais le chäteau de Bouchet.                                                                                         BARBELINIERE, le fief de la Barbelinière dépendait de la baronnie de Thuré. Jean de Marconnay fortifie le château à la fin du XVe siècle. C'est l'architecte Lubac qui remanie l'édifice sous le Second Empire en lui donnant des allures Renaissance. Au XVIIe siècle, le seigneur est Pierre Certany, écuyer et officier de finance. A la fin du XVIIIe siècle, Joseph Cadet devient propriétaire ; il est l'ancien munitionnaire du Roi à Montréal. Il achète la propriété  en 1766. Le pigeonnier date du XVIIe siècle et semble avoir connu quelques remaniements, cependant ses boulins sont conservés. A l'intérieur, sur une pierre qui semble être un remploi, est gravée la date : 1515. L'orangerie et la chapelle pourraient dater du XVIIIe siècle. Le logis actuel a conservé des murs d'origine mais il a été agrandi et ses élévations ont été reconstruites au XIXe siècle. Les arbres permettent de dater le parc du XIXe siècle.Château surplombant la commune de Thuré. Il est situé dans un parc où se trouvent un pigeonnier, une maison de gardien et un corps de ferme de plan en L. Le château se prolonge, sur sa façade nord est, par une orangerie et une chapelle. Les pavés de l'orangerie proviendraient de cales de navires et auraient servi à lester des bateaux. Les quatre tours d'angles sont plus élevées que la toiture du logis. Une cheminée d'influence italienne, classée MH, est située au rez-de-chaussée, dans la partie nord-ouest du château.</p>
+<h4>Architecture</h4><p>BOUCHET, dans son parc paysager, Le Bouchet offre une belle unité dont on doit probablement attribuer sa construction à la famille Champigny Dupont au XIXe siècle. L'édifice présente un plan rectangulaire, cantonné à deux angles de tours polygonales en appareillage de brique et de pierre de taille. Il est couvert d'un toit en croupe en ardoise. La travée centrale comprend la porte d'entrée à décor sculpté et forme un avant-corps légèrement en saillie. Elle est surmontée d'un fronton triangulaire sculpté se terminant par une lucarne. De part et d'autre s'ouvrent deux travées de baies jumelées sur 2 niveaux séparés par un bandeau de pierre, chacune de ces travées étant surmontée d'une lucarne sur toit à fronton triangulaire                                                                                                GENAURAYE  Le terme Genauraye aurait ainsi évolué par la Genouroie en 1437 qui relevait du duché de Châtellerault; en 1483, la Genouraye ; en 1576, la Genoraye relevant de la cure de Thuré ; en 1763, la Genaurais, fief relevant du duché de Châtellerault. Le terme Genauraye viendrait de Juniperetum (de junipereus, genévrier). Le château de La Genauraye, situé sur la commune de Thuré, appartenait au début du XIXe siècle à M. et Mme Borreau. En 1896, le domaine a été racheté par la famille Bedel (acte reçu à l'époque par Maître Pichon, notaire à Châtellerault). Demeure de l'écrivain Maurice Bedel (1883-1954), prix Goncourt en 1927.</p>
+<h4>Habitants / Familles</h4><p>Barbelinière; famille de Pierre Certany.                           Bouchet; famille Champigny Dupont.                                                Genauraye; M. et Mme Borreau
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Barbelinière grav 1 de Bouchet grav 2-3</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Montréal_Ballarin — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,67 +113,64 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_32.html">Gers</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_32.html">Gers</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_32.html" class="back-link">Retour au département 32 — Gers</a>
-  <div class="fiche">
-    <h2>Montréal_Ballarin</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>32 — Gers</td></tr>
-          <tr><td>Canton</td><td>Montréal du Gers</td></tr>
-          <tr><td>Commune</td><td>Montréal-du-Gers</td></tr>
-          <tr><td>Type d'édifice</td><td>Vestiges-Châteaux</td></tr>
-          <tr><td>Période d'origine</td><td>XIII-XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_32/32_Montreal_Ballarin_1.jpg" alt="Montréal_Ballarin" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Montreal_Ballarin_2.jpg" alt="Montréal_Ballarin" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Montreal_Ballarin_3.jpg" alt="Montréal_Ballarin" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Montreal_Ballarin_4.jpg" alt="Montréal_Ballarin" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Montreal_Ballarin_5.jpg" alt="Montréal_Ballarin" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Montreal_Ballarin_6.jpg" alt="Montréal_Ballarin" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Montreal_Ballarin_7.jpg" alt="Montréal_Ballarin" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Montreal_Ballarin_8.jpg" alt="Montréal_Ballarin" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Montreal_Ballarin_9.jpg" alt="Montréal_Ballarin" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_32.html">Retour au département 32 — Gers</a>
+<div class="fiche">
+<h2>Montréal_Ballarin</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Montréal_Ballarin" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_32/32_Montreal_Ballarin_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Montréal_Ballarin" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Montreal_Ballarin_1.jpg"/><img alt="Montréal_Ballarin" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Montreal_Ballarin_2.jpg"/><img alt="Montréal_Ballarin" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Montreal_Ballarin_3.jpg"/><img alt="Montréal_Ballarin" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Montreal_Ballarin_4.jpg"/><img alt="Montréal_Ballarin" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Montreal_Ballarin_5.jpg"/><img alt="Montréal_Ballarin" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Montreal_Ballarin_6.jpg"/><img alt="Montréal_Ballarin" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Montreal_Ballarin_7.jpg"/><img alt="Montréal_Ballarin" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Montreal_Ballarin_8.jpg"/><img alt="Montréal_Ballarin" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Montreal_Ballarin_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>32 — Gers</td></tr>
+<tr><td>Canton</td><td>Montréal du Gers</td></tr>
+<tr><td>Commune</td><td>Montréal-du-Gers</td></tr>
+<tr><td>Type d'édifice</td><td>Vestiges-Châteaux</td></tr>
+<tr><td>Période d'origine</td><td>XIII-XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>cinq châteaux à Montréal celui de Ballarin, de Montréal, de Maillac, de Pellehaut et de Pomiro.                                     BALLARIN,  vestiges du château, lhistoire est en partie celle de lune des branches de la maison de Galard, qui le posséda durant plusieurs siècles. Philippe Lauzun de la famille de Galard garde la possession de Balarin jusquen 1451 et la vend alors à  un bourgeois et marchand de Condom nommé Jean Mercier. Les Galard qui ont repris  Ballarin, curieusement, le revende à nouveau en 1464 à un Pierre Mercier, frère ou fils du premier, usant sans doute, de leur  droit de rachat, curieuse ironie du sort, le château de Ballarin revient aux Galard en 1611, après 147 ans aux mains de la famille Mercier et y reste jusquen 1770. Daprès Saint-Allais, qui en a dressé la généalogie, la branche des La Mazelière, qui vint sétablir en Guyenne vers la fin du XVIe siècle, descendait de la famille La Mazelière-Coetquen, une des plus anciennes de Bretagne. En 1850, le château est donné, par acte public à lordre des frères prémontrés qui élevèrent  une superbe maison religieuse destinée à former les missionnaires  à côté du château dorigine.
-<br>MAILLAC, exploitation agricole depuis 20 ans par  Jacques Bertholon.                                                                                     PELLEHAUT  le château de Pellehaut, bâti au XVIIIe siècle se situe dans la Ténarèze, en bordure du Bas-Armagnac,  propriété de la famille Béraut, installée à Montréal du Gers depuis 3 siècles, cette exploitation agricole est gérée de façon traditionnelle.</p>
-      <h4>Architecture</h4><p>Ballarin, sa construction est typique du château gascon de lépoque, quil sagisse de lappareil de ses murs, de la forme de ses meurtrières, du style de ses ouvertures ou du dispositif des mâchicoulis.  Tout porte en lui la marque de cette époque guerrière, où sur chaque tertre la Gascogne se hérissait de forteresses, où la force primait le droit, où partout se faisait impérieusement sentir le besoin de se défendre.                                                                           Maillac quadrilatère avec deux corps de logis à deux niveaux  toit à deux pans flanqué en angles de tours rondes en façades et tour ronde sur l'arrière, pavillon d'entrée   toit à quatre pans, les dépendances ferment la cour.                                                                          Château de Pomiro, datant du XVIe siècle, il fut autrefois un pavillon de chasse puis, il y a encore peu de temps, servit de résidence au marquis et à la marquise de Noé.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Galard                                                                          Famille Béraut
-<br>        
-<br>        
-<br>        
-<br>        
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Vestiges de Ballerin, châteaux de Maillac et de Pellehaut à Montréal</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>cinq châteaux à Montréal celui de Ballarin, de Montréal, de Maillac, de Pellehaut et de Pomiro.                                     BALLARIN,  vestiges du château, lhistoire est en partie celle de lune des branches de la maison de Galard, qui le posséda durant plusieurs siècles. Philippe Lauzun de la famille de Galard garde la possession de Balarin jusquen 1451 et la vend alors à  un bourgeois et marchand de Condom nommé Jean Mercier. Les Galard qui ont repris  Ballarin, curieusement, le revende à nouveau en 1464 à un Pierre Mercier, frère ou fils du premier, usant sans doute, de leur  droit de rachat, curieuse ironie du sort, le château de Ballarin revient aux Galard en 1611, après 147 ans aux mains de la famille Mercier et y reste jusquen 1770. Daprès Saint-Allais, qui en a dressé la généalogie, la branche des La Mazelière, qui vint sétablir en Guyenne vers la fin du XVIe siècle, descendait de la famille La Mazelière-Coetquen, une des plus anciennes de Bretagne. En 1850, le château est donné, par acte public à lordre des frères prémontrés qui élevèrent  une superbe maison religieuse destinée à former les missionnaires  à côté du château dorigine.
+<br/>MAILLAC, exploitation agricole depuis 20 ans par  Jacques Bertholon.                                                                                     PELLEHAUT  le château de Pellehaut, bâti au XVIIIe siècle se situe dans la Ténarèze, en bordure du Bas-Armagnac,  propriété de la famille Béraut, installée à Montréal du Gers depuis 3 siècles, cette exploitation agricole est gérée de façon traditionnelle.</p>
+<h4>Architecture</h4><p>Ballarin, sa construction est typique du château gascon de lépoque, quil sagisse de lappareil de ses murs, de la forme de ses meurtrières, du style de ses ouvertures ou du dispositif des mâchicoulis.  Tout porte en lui la marque de cette époque guerrière, où sur chaque tertre la Gascogne se hérissait de forteresses, où la force primait le droit, où partout se faisait impérieusement sentir le besoin de se défendre.                                                                           Maillac quadrilatère avec deux corps de logis à deux niveaux  toit à deux pans flanqué en angles de tours rondes en façades et tour ronde sur l'arrière, pavillon d'entrée   toit à quatre pans, les dépendances ferment la cour.                                                                          Château de Pomiro, datant du XVIe siècle, il fut autrefois un pavillon de chasse puis, il y a encore peu de temps, servit de résidence au marquis et à la marquise de Noé.</p>
+<h4>Habitants / Familles</h4><p>Famille de Galard                                                                          Famille Béraut
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Vestiges de Ballerin, châteaux de Maillac et de Pellehaut à Montréal</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

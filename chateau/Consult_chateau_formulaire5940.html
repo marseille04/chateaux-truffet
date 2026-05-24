@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Bazouges_sur_Loir — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,61 +113,65 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_72.html">Sarthe</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_72.html">Sarthe</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_72.html" class="back-link">Retour au département 72 — Sarthe</a>
-  <div class="fiche">
-    <h2>Bazouges_sur_Loir</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>72 — Sarthe</td></tr>
-          <tr><td>Canton</td><td>La Flèche</td></tr>
-          <tr><td>Commune</td><td>Bazouges sur le Loir</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>47° 40' 41,99" Nord, 0° 10' 54,01" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_72/72_Bazouges_sur_Loir_1.jpg" alt="Bazouges_sur_Loir" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Bazouges_sur_Loir_2.jpg" alt="Bazouges_sur_Loir" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Bazouges_sur_Loir_3.jpg" alt="Bazouges_sur_Loir" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_72.html">Retour au département 72 — Sarthe</a>
+<div class="fiche">
+<h2>Bazouges_sur_Loir</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Bazouges_sur_Loir" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_72/72_Bazouges_sur_Loir_1.jpg"/><div class="hero-count" id="hero-count">1 / 3</div></div><div class="photo-strip"><img alt="Bazouges_sur_Loir" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Bazouges_sur_Loir_1.jpg"/><img alt="Bazouges_sur_Loir" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Bazouges_sur_Loir_2.jpg"/><img alt="Bazouges_sur_Loir" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Bazouges_sur_Loir_3.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>72 — Sarthe</td></tr>
+<tr><td>Canton</td><td>La Flèche</td></tr>
+<tr><td>Commune</td><td>Bazouges sur le Loir</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVII</td></tr>
+<tr><td>Coordonnées GPS</td><td>47° 40' 41,99" Nord, 0° 10' 54,01" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux château à Bazouges dans cet article, Ambrières et Cailleret.                                                                        AMBRIERES, de fondation ancienne, le village de Bazouges s'est constitué autour de son église priorale fondée par l'abbaye Saint-Serge d'Angers. Il se trouve à la limite des anciens comtés du Maine et de l'Anjou, ce qui explique la présence d'un château fort, construit sur la rive droite du Loir. Les maisons datent pour l'essentiel des XVe, XVIIe, XVIIIe et XIXe siècles. Toutefois, le village a surtout connu une certaine ampleur à l'époque médiévale. Le château d'Ambrières fut entièrement remanié à partir du premier quart du XIXe siècle. Bâtie à flanc de coteau, la glacière dont la porte porte la date 1738, en constitue le seul vestige ancien. Le logis fut augmenté vers 1876 d'une aile orientale, époque à laquelle furent reconstruites les parties agricoles. Le logis est composé d'un corps principal couvert en croupe, à un étage carré et un étage de comble distribués par un escalier inscrit dans une tour dans oeuvre coiffée d'un toit polygonal. Ce corps est flanqué à l'ouest par un pavillon, également à un étage carré et un étage de comble et couvert en croupe. Il est flanqué à l'est par l'orangerie en rez-de-chaussée et couverte en croupe, la chapelle est couverte par un toit en croupe ronde. Les communs sont coiffés de toits à pignon couvert.</p>
-      <h4>Architecture</h4><p>CAILLEBERT, il ne s'est guère développé ensuite et fut supplanté par la ville de La Flèche. Seules modifications notables au XIXe siècle, la construction de la mairie, en lieu et place d'anciennes dépendances du presbytère, et la construction d'un pont en 1858, qui a entraîné l'abandon de l'ancien bac reliant les deux rives. Le château de Caillebert a été construit ou remanié au XVIIIe siècle. Le logis fut en grande partie remanié dans la première moitié du XIXe siècle. Le corps de dépendances fut probablement remanié vers le milieu du XIXe siècle. Le logis, à un étage carré et un étage de comble distribués par deux escaliers en charpente, se compose d'un corps principal recouvert par un toit en croupe, flanqué de deux ailes couvertes d'un toit en croupe brisée. Le corps de dépendances est également couvert par un toit en croupe.  élévation ordonnancée     à un étage carré ; étage de comble
-<br> escalier dans oeuvre ; escalier tournant à retours avec jour ; en charpente
-<br>gros oeuvre : calcaire ; grès ; silex ; appareil mixte ; moellon ; enduit  toit à longs pans ; croupe ; toit à longs pans brisés ; croupe  Couverture en ardoise.</p>
-      <h4>Habitants / Familles</h4><p>Seigneurs locaux
-<br>        
-<br>        
-<br>        
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Deux château à Bazouges Ambrières grav-1-2 et Cailleret grav 3-4.                                                                                            GPS : 47° 40' 41,99" Nord, 0° 10' 54,01" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux château à Bazouges dans cet article, Ambrières et Cailleret.                                                                        AMBRIERES, de fondation ancienne, le village de Bazouges s'est constitué autour de son église priorale fondée par l'abbaye Saint-Serge d'Angers. Il se trouve à la limite des anciens comtés du Maine et de l'Anjou, ce qui explique la présence d'un château fort, construit sur la rive droite du Loir. Les maisons datent pour l'essentiel des XVe, XVIIe, XVIIIe et XIXe siècles. Toutefois, le village a surtout connu une certaine ampleur à l'époque médiévale. Le château d'Ambrières fut entièrement remanié à partir du premier quart du XIXe siècle. Bâtie à flanc de coteau, la glacière dont la porte porte la date 1738, en constitue le seul vestige ancien. Le logis fut augmenté vers 1876 d'une aile orientale, époque à laquelle furent reconstruites les parties agricoles. Le logis est composé d'un corps principal couvert en croupe, à un étage carré et un étage de comble distribués par un escalier inscrit dans une tour dans oeuvre coiffée d'un toit polygonal. Ce corps est flanqué à l'ouest par un pavillon, également à un étage carré et un étage de comble et couvert en croupe. Il est flanqué à l'est par l'orangerie en rez-de-chaussée et couverte en croupe, la chapelle est couverte par un toit en croupe ronde. Les communs sont coiffés de toits à pignon couvert.</p>
+<h4>Architecture</h4><p>CAILLEBERT, il ne s'est guère développé ensuite et fut supplanté par la ville de La Flèche. Seules modifications notables au XIXe siècle, la construction de la mairie, en lieu et place d'anciennes dépendances du presbytère, et la construction d'un pont en 1858, qui a entraîné l'abandon de l'ancien bac reliant les deux rives. Le château de Caillebert a été construit ou remanié au XVIIIe siècle. Le logis fut en grande partie remanié dans la première moitié du XIXe siècle. Le corps de dépendances fut probablement remanié vers le milieu du XIXe siècle. Le logis, à un étage carré et un étage de comble distribués par deux escaliers en charpente, se compose d'un corps principal recouvert par un toit en croupe, flanqué de deux ailes couvertes d'un toit en croupe brisée. Le corps de dépendances est également couvert par un toit en croupe.  élévation ordonnancée     à un étage carré ; étage de comble
+<br/> escalier dans oeuvre ; escalier tournant à retours avec jour ; en charpente
+<br/>gros oeuvre : calcaire ; grès ; silex ; appareil mixte ; moellon ; enduit  toit à longs pans ; croupe ; toit à longs pans brisés ; croupe  Couverture en ardoise.</p>
+<h4>Habitants / Familles</h4><p>Seigneurs locaux
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Deux château à Bazouges Ambrières grav-1-2 et Cailleret grav 3-4.                                                                                            GPS : 47° 40' 41,99" Nord, 0° 10' 54,01" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

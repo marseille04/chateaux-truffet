@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Vieux_Mareuil — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,63 +113,61 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_24.html">Dordogne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_24.html">Dordogne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_24.html" class="back-link">Retour au département 24 — Dordogne</a>
-  <div class="fiche">
-    <h2>Vieux_Mareuil</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>24 — Dordogne</td></tr>
-          <tr><td>Canton</td><td>Mareuil</td></tr>
-          <tr><td>Commune</td><td>Vieux-Mareuil</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>45° 25' 56" Nord, 0° 30' 01" Est</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_24/24_Vieux_Mareuil_1.jpg" alt="Vieux_Mareuil" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Vieux_Mareuil_2.jpg" alt="Vieux_Mareuil" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Vieux_Mareuil_3.jpg" alt="Vieux_Mareuil" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Vieux_Mareuil_4.jpg" alt="Vieux_Mareuil" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Vieux_Mareuil_5.jpg" alt="Vieux_Mareuil" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Vieux_Mareuil_6.jpg" alt="Vieux_Mareuil" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Vieux_Mareuil_7.jpg" alt="Vieux_Mareuil" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Vieux_Mareuil_8.jpg" alt="Vieux_Mareuil" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Vieux_Mareuil_9.jpg" alt="Vieux_Mareuil" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_24.html">Retour au département 24 — Dordogne</a>
+<div class="fiche">
+<h2>Vieux_Mareuil</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Vieux_Mareuil" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_24/24_Vieux_Mareuil_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Vieux_Mareuil" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Vieux_Mareuil_1.jpg"/><img alt="Vieux_Mareuil" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Vieux_Mareuil_2.jpg"/><img alt="Vieux_Mareuil" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Vieux_Mareuil_3.jpg"/><img alt="Vieux_Mareuil" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Vieux_Mareuil_4.jpg"/><img alt="Vieux_Mareuil" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Vieux_Mareuil_5.jpg"/><img alt="Vieux_Mareuil" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Vieux_Mareuil_6.jpg"/><img alt="Vieux_Mareuil" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Vieux_Mareuil_7.jpg"/><img alt="Vieux_Mareuil" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Vieux_Mareuil_8.jpg"/><img alt="Vieux_Mareuil" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Vieux_Mareuil_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>24 — Dordogne</td></tr>
+<tr><td>Canton</td><td>Mareuil</td></tr>
+<tr><td>Commune</td><td>Vieux-Mareuil</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVII</td></tr>
+<tr><td>Coordonnées GPS</td><td>45° 25' 56" Nord, 0° 30' 01" Est</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>A Vieux-Mareuil, château transformé en hôtel, de Marafy du XVIIIe siècle, Chanet du XVIIe siècle, inscrit au titre des M.H.,  Fronsac du XVIIe siècle            VIEUX-MAREUIL, sous l'ancien régime,  appartient à la baronnie de Mareuil. Il n'a jamais constitué une seigneurie. En 1789, la baronnie de Mareuil appartient à la famille de Talleyrand. M. de Talleyrand y avait un droit de justice, délégué au juge des paroisses de la baronnie et percevait la moitié des dîmes. Le bénéfice de Vieux-Mareuil n'était pas important. 
-<br>CHANET, François Dubreuil, écuyer, sieur de Chanet. Avec Françoise de La Roussie de Bonreceuil, veuve, elle revient habiter le château de Bonreceuil où elle se remarie en 1641 avec Pierre Alabert de La Borie, conseiller du Roi. le fils de François, Jean Dubreuil, écuyer, sieur de Chanet qui épouse Thérèse Etourneau  qui lui donne François en 1654 et Françoise en 1658   dernier cité est Françoise de La Garde de Mirabel.  La lignée des Lacroze de Chanet,  ses filles avec « Jeanne de Lacroze, demoiselle de Chanet et Catherine de Lacroze, dame de Chanet qui épousent en 1713 et 1721 dans léglise de Vieux Mareuil respectivement Pierre Joseph de Froydefont, écuyer, seigneur des Farges et Léonard Durand (de Brantôme) avocat à la cour.   propriétaire en 1881 est madame Desmaisons .
-<br> MARAFY  Le château de Marafy est situé au curdune vaste forêt ponctuée de ruisseaux et détangs, c'est une remarquable demeure au style méridional. Elle est construite en pierre de taille au début du XVIIIe siècle. Le château mêle classicisme français et influences baroques, les façades sont animées par des jeux dombre et de lumière créés par des corniches, des pilastres, des bandeaux et décrochements. Lensemble est harmonieux et régulier. De nombreuses modifications intérieures ont été réalisées, notamment le grand escalier reconstruit au XIXe siècle.</p>
-      <h4>Architecture</h4><p>CHANET, un premier bâtiment, le logis nord, flanqué d'une tour d'escalier, fut édifié à la fin du XVe siècle ou au tout début du XVIe siècle. D'importants travaux d'agrandissement sont entrepris dans la seconde moitié du XVIe siècle ou au début du XVIIe siècle: creusement de fossés ; construction d'une tour carrée couronnée de  mâchicoulis, et d'un deuxième logis (aile sud) ; mise en place de bâtiments à l'est clôturant l'accès de la demeure ; organisation d'un jardin à l'Est. Après ces travaux, construction d'un gros pavillon reliant le logis nord à la tour carrée, et de l'aile Est couronnée d'une chapelle au décor peint. D'importantes destructions ont eu lieu après 1824.  CHAVEROCHE, sur l'emplacement d'un manoir médiéval dont on retrouve encore quelques vestiges, au nord ouest  offre deux ailes soudées à angle droit par une tour carrée; défenses et traces de courtines y apparaissent çà et là. Ce fut le fief de la famille de Morelon.                                                                           FRONSAC appartenait aux grand parents des époux Rouanet, famille Puyjarin et Alphonse et des Roches de Chassay Marie puis par succession des Rouanet les derniers propriétaire les Puyjarinet Aubi et Teissier Elisse</p>
-      <h4>Habitants / Familles</h4><p>famille deTalleyrand                                                        Chaveroche famille de Morelon.                         Fronsac Famille Puyjarinet
-<br>        "</p>
-      <h4>Divers</h4><p>a Vieux-Mareuil;  Chanet  grav  1à3,  Chaveroche grav 4 à 6, Fronsac Grav 7,  Marafy grav 8-9GPS : 45° 25' 56" Nord, 0° 30' 01" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>A Vieux-Mareuil, château transformé en hôtel, de Marafy du XVIIIe siècle, Chanet du XVIIe siècle, inscrit au titre des M.H.,  Fronsac du XVIIe siècle            VIEUX-MAREUIL, sous l'ancien régime,  appartient à la baronnie de Mareuil. Il n'a jamais constitué une seigneurie. En 1789, la baronnie de Mareuil appartient à la famille de Talleyrand. M. de Talleyrand y avait un droit de justice, délégué au juge des paroisses de la baronnie et percevait la moitié des dîmes. Le bénéfice de Vieux-Mareuil n'était pas important. 
+<br/>CHANET, François Dubreuil, écuyer, sieur de Chanet. Avec Françoise de La Roussie de Bonreceuil, veuve, elle revient habiter le château de Bonreceuil où elle se remarie en 1641 avec Pierre Alabert de La Borie, conseiller du Roi. le fils de François, Jean Dubreuil, écuyer, sieur de Chanet qui épouse Thérèse Etourneau  qui lui donne François en 1654 et Françoise en 1658   dernier cité est Françoise de La Garde de Mirabel.  La lignée des Lacroze de Chanet,  ses filles avec « Jeanne de Lacroze, demoiselle de Chanet et Catherine de Lacroze, dame de Chanet qui épousent en 1713 et 1721 dans léglise de Vieux Mareuil respectivement Pierre Joseph de Froydefont, écuyer, seigneur des Farges et Léonard Durand (de Brantôme) avocat à la cour.   propriétaire en 1881 est madame Desmaisons .
+<br/> MARAFY  Le château de Marafy est situé au curdune vaste forêt ponctuée de ruisseaux et détangs, c'est une remarquable demeure au style méridional. Elle est construite en pierre de taille au début du XVIIIe siècle. Le château mêle classicisme français et influences baroques, les façades sont animées par des jeux dombre et de lumière créés par des corniches, des pilastres, des bandeaux et décrochements. Lensemble est harmonieux et régulier. De nombreuses modifications intérieures ont été réalisées, notamment le grand escalier reconstruit au XIXe siècle.</p>
+<h4>Architecture</h4><p>CHANET, un premier bâtiment, le logis nord, flanqué d'une tour d'escalier, fut édifié à la fin du XVe siècle ou au tout début du XVIe siècle. D'importants travaux d'agrandissement sont entrepris dans la seconde moitié du XVIe siècle ou au début du XVIIe siècle: creusement de fossés ; construction d'une tour carrée couronnée de  mâchicoulis, et d'un deuxième logis (aile sud) ; mise en place de bâtiments à l'est clôturant l'accès de la demeure ; organisation d'un jardin à l'Est. Après ces travaux, construction d'un gros pavillon reliant le logis nord à la tour carrée, et de l'aile Est couronnée d'une chapelle au décor peint. D'importantes destructions ont eu lieu après 1824.  CHAVEROCHE, sur l'emplacement d'un manoir médiéval dont on retrouve encore quelques vestiges, au nord ouest  offre deux ailes soudées à angle droit par une tour carrée; défenses et traces de courtines y apparaissent çà et là. Ce fut le fief de la famille de Morelon.                                                                           FRONSAC appartenait aux grand parents des époux Rouanet, famille Puyjarin et Alphonse et des Roches de Chassay Marie puis par succession des Rouanet les derniers propriétaire les Puyjarinet Aubi et Teissier Elisse</p>
+<h4>Habitants / Familles</h4><p>famille deTalleyrand                                                        Chaveroche famille de Morelon.                         Fronsac Famille Puyjarinet
+<br/>        "</p>
+<h4>Divers</h4><p>a Vieux-Mareuil;  Chanet  grav  1à3,  Chaveroche grav 4 à 6, Fronsac Grav 7,  Marafy grav 8-9GPS : 45° 25' 56" Nord, 0° 30' 01" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

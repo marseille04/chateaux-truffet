@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Jayac — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,57 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_24.html">Dordogne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_24.html">Dordogne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_24.html" class="back-link">Retour au département 24 — Dordogne</a>
-  <div class="fiche">
-    <h2>Jayac</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>24 — Dordogne</td></tr>
-          <tr><td>Canton</td><td>Salignac-Eyvigues</td></tr>
-          <tr><td>Commune</td><td>Jayac</td></tr>
-          <tr><td>Type d'édifice</td><td>Donjon</td></tr>
-          <tr><td>Période d'origine</td><td>XII-XIV</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_24/24_Jayac_1.jpg" alt="Jayac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Jayac_2.jpg" alt="Jayac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Jayac_3.jpg" alt="Jayac" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_24.html">Retour au département 24 — Dordogne</a>
+<div class="fiche">
+<h2>Jayac</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Jayac" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_24/24_Jayac_1.jpg"/><div class="hero-count" id="hero-count">1 / 3</div></div><div class="photo-strip"><img alt="Jayac" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Jayac_1.jpg"/><img alt="Jayac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Jayac_2.jpg"/><img alt="Jayac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Jayac_3.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>24 — Dordogne</td></tr>
+<tr><td>Canton</td><td>Salignac-Eyvigues</td></tr>
+<tr><td>Commune</td><td>Jayac</td></tr>
+<tr><td>Type d'édifice</td><td>Donjon</td></tr>
+<tr><td>Période d'origine</td><td>XII-XIV</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>JAYAC,  ruines du donjon, en 1251 la vicomté est partagée entre Raymond VI de Turenne et sa sur Hélis, mariée à Rudel Hélie d'Aillac, sire de Bergerac, Gensac et Blaye. En 1338, Amélie du Val, petite fille de Pierre, se marie avec Armand de Guerre. En 1444, Catherine de Guerre, fille unique de Bernard de Guerre, seigneur de Jayac et co-seigneur d'Archignac se marie avec Jean III de Carbonnières. En 1480, Catherine de Guerre fait don du château de Jayac et de toutes ses dépendances à son fils Jean IV de Carbonnières. en 1590, Léonarde et Catherine de Carbonnières, filles de Charles de Carbonnières. En 1604, un membre d'une branche cadette de la famille , Jean-Charles , seigneur de Lacapelle-Biron, ce dernier participe au complot du duc de Bouillon. Le 24 février 1727, Isaac de Carbonnières, chevalier, seigneur de la Garrigue, fils d'Henri de Carbonnières, chevalier, seigneur de Saint-Chamassy, Jayac, Archignac et autres places et de Louise de la Porte, dame de Saint-Chamassy, se marie avec Marie-Anne de Courtioux, demoiselle de Peyrefumade. Au moment de la Révolution, la seigneurie est entièrement possédée par Louis, baron de Carbonnières, seigneur de Saint-Chamassy, Jayac et Archignac. Il a épousé en 1787 Madeleine Sclaffer de Laroque. Le fief est incendié en 1790. En 1792, Louis de Carbonnières émigre. Son épouse est arrêtée et mise en prison à Sarlat où elle donne naissance à une fille, Henriette. Les biens de Louis de Carbonnières sont saisis comme biens d'émigré. De retour en France, Louis ne peut récupérer qu'une petite partie de ses biens. Henriette de Carbonnières, héritière de Jayac, épouse en 1808 son cousin René-Henri-Charles de Carbonnières, de la branche des marquis de Saint-Brice en Limousin.</p>
-      <h4>Architecture</h4><p>JAYAC, incendié en 1790 courtine et tour circulaire près d'une demeure plus récente, le donjon carré haut de 15 mètres et de 7 mètres de côté, était déjà ruiné au XVIe siècle, un châtelet accolé d'une tour ronde fut construit dans l'enceinte des remparts. Elles lèguent la construction à leur frère, doyen de la cathédrale de Sarlat. Ce dernier réunit alors les deux tiers de la seigneurie de Jayac. En 1775, un abbé de Carbonnières envisage de faire réparer le château. Il n'y a eu que les réparations les plus urgentes. 
-<br>La seigneurie est tenue par des doyens et passe d'oncle à neveu. Le dernier, Louis de Carbonnières lègue les deux tiers qu'il possède à Henri de Carbonnières, seigneur de Mayac. 
-<br>  Le château de Jayac est resté dans la famille de Carbonnières jusqu'en 1875.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Carbonnières
-<br>        "</p>
-      <h4>Divers</h4><p>Vestiges de Jayac</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>JAYAC,  ruines du donjon, en 1251 la vicomté est partagée entre Raymond VI de Turenne et sa sur Hélis, mariée à Rudel Hélie d'Aillac, sire de Bergerac, Gensac et Blaye. En 1338, Amélie du Val, petite fille de Pierre, se marie avec Armand de Guerre. En 1444, Catherine de Guerre, fille unique de Bernard de Guerre, seigneur de Jayac et co-seigneur d'Archignac se marie avec Jean III de Carbonnières. En 1480, Catherine de Guerre fait don du château de Jayac et de toutes ses dépendances à son fils Jean IV de Carbonnières. en 1590, Léonarde et Catherine de Carbonnières, filles de Charles de Carbonnières. En 1604, un membre d'une branche cadette de la famille , Jean-Charles , seigneur de Lacapelle-Biron, ce dernier participe au complot du duc de Bouillon. Le 24 février 1727, Isaac de Carbonnières, chevalier, seigneur de la Garrigue, fils d'Henri de Carbonnières, chevalier, seigneur de Saint-Chamassy, Jayac, Archignac et autres places et de Louise de la Porte, dame de Saint-Chamassy, se marie avec Marie-Anne de Courtioux, demoiselle de Peyrefumade. Au moment de la Révolution, la seigneurie est entièrement possédée par Louis, baron de Carbonnières, seigneur de Saint-Chamassy, Jayac et Archignac. Il a épousé en 1787 Madeleine Sclaffer de Laroque. Le fief est incendié en 1790. En 1792, Louis de Carbonnières émigre. Son épouse est arrêtée et mise en prison à Sarlat où elle donne naissance à une fille, Henriette. Les biens de Louis de Carbonnières sont saisis comme biens d'émigré. De retour en France, Louis ne peut récupérer qu'une petite partie de ses biens. Henriette de Carbonnières, héritière de Jayac, épouse en 1808 son cousin René-Henri-Charles de Carbonnières, de la branche des marquis de Saint-Brice en Limousin.</p>
+<h4>Architecture</h4><p>JAYAC, incendié en 1790 courtine et tour circulaire près d'une demeure plus récente, le donjon carré haut de 15 mètres et de 7 mètres de côté, était déjà ruiné au XVIe siècle, un châtelet accolé d'une tour ronde fut construit dans l'enceinte des remparts. Elles lèguent la construction à leur frère, doyen de la cathédrale de Sarlat. Ce dernier réunit alors les deux tiers de la seigneurie de Jayac. En 1775, un abbé de Carbonnières envisage de faire réparer le château. Il n'y a eu que les réparations les plus urgentes. 
+<br/>La seigneurie est tenue par des doyens et passe d'oncle à neveu. Le dernier, Louis de Carbonnières lègue les deux tiers qu'il possède à Henri de Carbonnières, seigneur de Mayac. 
+<br/>  Le château de Jayac est resté dans la famille de Carbonnières jusqu'en 1875.</p>
+<h4>Habitants / Familles</h4><p>Famille de Carbonnières
+<br/>        "</p>
+<h4>Divers</h4><p>Vestiges de Jayac</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

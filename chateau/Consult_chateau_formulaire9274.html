@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Chatillon_Vendelais — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,61 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_35.html">Ille-et-Vilaine</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_35.html">Ille-et-Vilaine</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_35.html" class="back-link">Retour au département 35 — Ille-et-Vilaine</a>
-  <div class="fiche">
-    <h2>Chatillon_Vendelais</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>35 — Ille-et-Vilaine</td></tr>
-          <tr><td>Canton</td><td>Vitré</td></tr>
-          <tr><td>Commune</td><td>Châtillon-en-Vendelais</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVIXVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_35/35_Ch%c3%a2tillon_Vendelais_1.jpg" alt="Chatillon_Vendelais" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Ch%c3%a2tillon_Vendelais_2.jpg" alt="Chatillon_Vendelais" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Ch%c3%a2tillon_Vendelais_3.jpg" alt="Chatillon_Vendelais" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Ch%c3%a2tillon_Vendelais_4.jpg" alt="Chatillon_Vendelais" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Ch%c3%a2tillon_Vendelais_5.jpg" alt="Chatillon_Vendelais" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Ch%c3%a2tillon_Vendelais_6.jpg" alt="Chatillon_Vendelais" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Ch%c3%a2tillon_Vendelais_7.jpg" alt="Chatillon_Vendelais" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_35.html">Retour au département 35 — Ille-et-Vilaine</a>
+<div class="fiche">
+<h2>Chatillon_Vendelais</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Chatillon_Vendelais" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_35/35_Ch%c3%a2tillon_Vendelais_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Chatillon_Vendelais" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Ch%c3%a2tillon_Vendelais_1.jpg"/><img alt="Chatillon_Vendelais" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Ch%c3%a2tillon_Vendelais_2.jpg"/><img alt="Chatillon_Vendelais" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Ch%c3%a2tillon_Vendelais_3.jpg"/><img alt="Chatillon_Vendelais" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Ch%c3%a2tillon_Vendelais_4.jpg"/><img alt="Chatillon_Vendelais" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Ch%c3%a2tillon_Vendelais_5.jpg"/><img alt="Chatillon_Vendelais" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Ch%c3%a2tillon_Vendelais_6.jpg"/><img alt="Chatillon_Vendelais" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Ch%c3%a2tillon_Vendelais_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>35 — Ille-et-Vilaine</td></tr>
+<tr><td>Canton</td><td>Vitré</td></tr>
+<tr><td>Commune</td><td>Châtillon-en-Vendelais</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVIXVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Trois  châteaux à Chatillon en Verdelais ; la Hurdières, Masures et Rouxières.                                                                                                                                                                                                                 HURLIERES,  château fort construit avant 1045 par Main, seigneur de Fougères,  reconstruit au XIVe siècle et presque entièrement démoli en 1623 par Richelieu.  L'édifice fut propriété des familles la Fontaine à la fin du XVe siècle, Erbrée, seigneurs de La Chèze en 1578, de Volvire seigneurs de Saint-Brice vers 1628, Monneraye, seigneurs de Saint-Cyr en 1630, Martin, sieurs de La Morandaye en 1632, Pinczon, seigneurs des Monts en 1650, Geffrard, seigneurs du Plessis-Torcé, vers 1699.  Ses dernières ruines ont disparu vers 1885, époque où le château sert de carrière. L'église a été reconstruite à partir de 1898. L'actuel château des Hurlières est le résultat de trois campagnes successives à partir d'un manoir du milieu du XVe siècle appartenant à la famille de Lignière, augmenté d'un corps de bâtiment vers 1730 pour la famille de Goyon, puis d'un pavillon et d'un jardin d'hiver vers 1890 pour le comte de La Guérande. Le sol du jardin d'hiver est recouvert d'une mosaïque, probablement réalisée dans les ateliers d'Isidore Odorico, mosaïste à Rennes. Important pavillon rectangulaire construit à l'extrémité sud du corps de bâtiment ; double en profondeur ; avec tourelle de plan carré en saillie sur l'arrière faisant jonction avec le jardin d'hiver (mosaïque de style romain, marbre). Sous-sol sous l'ancien manoir ; jardin d'hiver en rez-de-chaussée.</p>
-      <h4>Architecture</h4><p>MASURES, ses dernières ruines ont disparu vers 1885, époque où le château sert de carrière.  Le château des Masures est le résultat d'un assemblage de bâtiments construits au XVIe et XVIIe siècles sur l'emplacement d'un édifice plus ancien et qui prennent l'allure d'une maison-forte (pavillon et douves). Agrandi en 1818 (date portée) : partie nord et deuxième étage du corps principal. Au milieu du XIXe siècle, cuisine, salon, décor intérieur et escaliers sont refaits.  Propriété successive des familles Bois-Béranger en 1449, Gennes en 1513, Hay en 1620, Martin, sieurs de la Morandaye vers 1651, et Charil, sieurs de la Rivière en 1653 et 1789. Le logis est construit sur une terrasse rectangulaire bordée de douves qui se transforment en étang à l'ouest.                                                                                                                               ROUXIERES  articler idem que Masure à controler Le château des Rouxières a été construit à la limite des XVIe et XVIIe siècles et restauré vers 1885 pour M. Méaulle. Quelques décors intérieurs ont été refaits dans la deuxième moitié du XVIIIe siècle (les cheminées et les lambris). En 1907, l'architecte rennais, Emmanuel Le Ray, reprend la construction pour M. Le Templier, avec l'ouverture de baies, en remployant des lucarnes, construction d'un bâtiment polygonal à l'extrémité de l'aile sud, construction de la tour d'escalier et réaménagement de la distribution et du décor intérieur, création du passage couvert vers le jardin. La chapelle, rendue au culte en 1714, aujourd'hui désaffectée.</p>
-      <h4>Habitants / Familles</h4><p>Hurlières; famille de Goyon                                                  masures; familles Bois-Béranger                                      Rouxières: Famille de     M. Méaulle
-<br>        
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Trois  châteaux à Chatillon en Verdelais ; la Hurdières grav-7, Masures grav de 1 à 4 et Rouxières grav-5 et Villandry grav-6                   Gps 48° 13' 33" nord, 1° 10' 39" ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Trois  châteaux à Chatillon en Verdelais ; la Hurdières, Masures et Rouxières.                                                                                                                                                                                                                 HURLIERES,  château fort construit avant 1045 par Main, seigneur de Fougères,  reconstruit au XIVe siècle et presque entièrement démoli en 1623 par Richelieu.  L'édifice fut propriété des familles la Fontaine à la fin du XVe siècle, Erbrée, seigneurs de La Chèze en 1578, de Volvire seigneurs de Saint-Brice vers 1628, Monneraye, seigneurs de Saint-Cyr en 1630, Martin, sieurs de La Morandaye en 1632, Pinczon, seigneurs des Monts en 1650, Geffrard, seigneurs du Plessis-Torcé, vers 1699.  Ses dernières ruines ont disparu vers 1885, époque où le château sert de carrière. L'église a été reconstruite à partir de 1898. L'actuel château des Hurlières est le résultat de trois campagnes successives à partir d'un manoir du milieu du XVe siècle appartenant à la famille de Lignière, augmenté d'un corps de bâtiment vers 1730 pour la famille de Goyon, puis d'un pavillon et d'un jardin d'hiver vers 1890 pour le comte de La Guérande. Le sol du jardin d'hiver est recouvert d'une mosaïque, probablement réalisée dans les ateliers d'Isidore Odorico, mosaïste à Rennes. Important pavillon rectangulaire construit à l'extrémité sud du corps de bâtiment ; double en profondeur ; avec tourelle de plan carré en saillie sur l'arrière faisant jonction avec le jardin d'hiver (mosaïque de style romain, marbre). Sous-sol sous l'ancien manoir ; jardin d'hiver en rez-de-chaussée.</p>
+<h4>Architecture</h4><p>MASURES, ses dernières ruines ont disparu vers 1885, époque où le château sert de carrière.  Le château des Masures est le résultat d'un assemblage de bâtiments construits au XVIe et XVIIe siècles sur l'emplacement d'un édifice plus ancien et qui prennent l'allure d'une maison-forte (pavillon et douves). Agrandi en 1818 (date portée) : partie nord et deuxième étage du corps principal. Au milieu du XIXe siècle, cuisine, salon, décor intérieur et escaliers sont refaits.  Propriété successive des familles Bois-Béranger en 1449, Gennes en 1513, Hay en 1620, Martin, sieurs de la Morandaye vers 1651, et Charil, sieurs de la Rivière en 1653 et 1789. Le logis est construit sur une terrasse rectangulaire bordée de douves qui se transforment en étang à l'ouest.                                                                                                                               ROUXIERES  articler idem que Masure à controler Le château des Rouxières a été construit à la limite des XVIe et XVIIe siècles et restauré vers 1885 pour M. Méaulle. Quelques décors intérieurs ont été refaits dans la deuxième moitié du XVIIIe siècle (les cheminées et les lambris). En 1907, l'architecte rennais, Emmanuel Le Ray, reprend la construction pour M. Le Templier, avec l'ouverture de baies, en remployant des lucarnes, construction d'un bâtiment polygonal à l'extrémité de l'aile sud, construction de la tour d'escalier et réaménagement de la distribution et du décor intérieur, création du passage couvert vers le jardin. La chapelle, rendue au culte en 1714, aujourd'hui désaffectée.</p>
+<h4>Habitants / Familles</h4><p>Hurlières; famille de Goyon                                                  masures; familles Bois-Béranger                                      Rouxières: Famille de     M. Méaulle
+<br/>
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Trois  châteaux à Chatillon en Verdelais ; la Hurdières grav-7, Masures grav de 1 à 4 et Rouxières grav-5 et Villandry grav-6                   Gps 48° 13' 33" nord, 1° 10' 39" ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

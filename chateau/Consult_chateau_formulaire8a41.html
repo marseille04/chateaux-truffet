@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Savigny_Faye — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,59 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_86.html">Vienne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_86.html">Vienne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_86.html" class="back-link">Retour au département 86 — Vienne</a>
-  <div class="fiche">
-    <h2>Savigny_Faye</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>86 — Vienne</td></tr>
-          <tr><td>Canton</td><td>Chasseneuil en Poitou</td></tr>
-          <tr><td>Commune</td><td>Savigny sous Faye</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_86/86_Savigny_Faye_1.jpg" alt="Savigny_Faye" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Savigny_Faye_2.jpg" alt="Savigny_Faye" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Savigny_Faye_3.jpg" alt="Savigny_Faye" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Savigny_Faye_4.jpg" alt="Savigny_Faye" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Savigny_Faye_5.jpg" alt="Savigny_Faye" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Savigny_Faye_6.jpg" alt="Savigny_Faye" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Savigny_Faye_7.jpg" alt="Savigny_Faye" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_86.html">Retour au département 86 — Vienne</a>
+<div class="fiche">
+<h2>Savigny_Faye</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Savigny_Faye" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_86/86_Savigny_Faye_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Savigny_Faye" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Savigny_Faye_1.jpg"/><img alt="Savigny_Faye" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Savigny_Faye_2.jpg"/><img alt="Savigny_Faye" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Savigny_Faye_3.jpg"/><img alt="Savigny_Faye" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Savigny_Faye_4.jpg"/><img alt="Savigny_Faye" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Savigny_Faye_5.jpg"/><img alt="Savigny_Faye" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Savigny_Faye_6.jpg"/><img alt="Savigny_Faye" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Savigny_Faye_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>86 — Vienne</td></tr>
+<tr><td>Canton</td><td>Chasseneuil en Poitou</td></tr>
+<tr><td>Commune</td><td>Savigny sous Faye</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Trois châteaux à Savigny celui de Savigny , de la Plaine et de Saires.                                                                                                                 PLAINE, la Plaine à Savigny sous Faye, la famille de Vaucelles possédait La Plaine en 1605, aujourd'hui c'est un château Louis Philippe qui s'offre au regard,                                                                                                                          SAIRES, à deux kilomètres au nord  Le fief de Saires relevait du château de Loudun. Il est connu au XIe siècle dans le cartulaire de Noyers.                                                                                                        SAVIGNY , relevait de l'archiprêtre de Faye-la-Vineuse, duché pairie de Richelieu. De 1830 à 1840, Moyse Emile de Cougny fait construire ce château dans le style Renaissance. La famille de Cougny restera à Savigny jusqu'en 1965, date à laquelle la propriété est vendue à des parisiens pour y passer leur retraite. Ils possèdent le château jusquen 1989, le revendant le 30 juin à des Anglais qui ont passé 15 années à le transformer en hôtel de luxe.                                                                                                                    SAVIGNY-LEVESCAUT, la chapelle du château de la Touche, consacrée en 1653,  montre le corps du manoir en arrière plan, desservi par une allée centrale qui traverse une large cour herbeuse au premier plan. La chapelle est située à gauche. À sa droite, on devine un bassin carré. Le parc arboré se situe à l'arrière du corps de logis et n'est pas visible sur la photo.</p>
-      <h4>Architecture</h4><p>PLAINE, composé d'un corps de logis rectangulaire à deux niveaux, couronné d'un toit à croupes en ardoise, il a été construit dans un esprit classique. Un pavillon flanqué d'une tourelle a été édifié en symétrie. Une corniche sur larges modillons cannelés court sur l'ensemble du bâtiment et donne une unité à l'ensemble. Chaque partie a des toitures indépendantes. Les bandeaux du rez-de-chaussée sont plus importants que ceux du premier étage. Des pilastres à refends marquent chacune des saillies de l'avant-corps et des pavillons latéraux. Des lucarnes à fronton pignon portent un arc trilobé ; l'apparition du gothique est assez curieuse. Tout de blanc, avec sa façade scindée, l'édifice apparaît comme un beau château, digne de réconcilier les amateurs avec le XIXe siècle.                                                                                                                   SAIRES, dans le bourg de Saires, on aperçoit un beau petit château, datant probablement du XVIIIe siècle, flanqué d'une tour polygonale à poivrière et d'une échauguette à dôme de pierre.                                                                                                                                              SAVIGNY, c'est une magnifique demeure de pierres blanches, le vaste corps de bâtiment cantonné aux angles de tours rondes au sud et carrées au nord. Une tour octogonale dominant l'ensemble, construite hors-uvre au nord, abrite l'escalier, est couronnée d'un chemin de ronde reposant sur mâchicoulis. Les tours sud sont surélevées d'un étage et couronnées d'une toiture conique. La façade principale aux fenêtres à meneau, aux linteaux néo-gothiques et aux lucarnes à frontons pignons, possède un avant corps en légère saillie. Deux tourelles en encorbellement reposent sur de gros contreforts.</p>
-      <h4>Habitants / Familles</h4><p>Plaine; famille de Vaucelles                                                     Savigny; famille de Cougny 
-<br>        "</p>
-      <h4>Divers</h4><p>Château de la Plaine grav 1 à 4, de la Saires grav-5, de Savigny-Levescault grav 7</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Trois châteaux à Savigny celui de Savigny , de la Plaine et de Saires.                                                                                                                 PLAINE, la Plaine à Savigny sous Faye, la famille de Vaucelles possédait La Plaine en 1605, aujourd'hui c'est un château Louis Philippe qui s'offre au regard,                                                                                                                          SAIRES, à deux kilomètres au nord  Le fief de Saires relevait du château de Loudun. Il est connu au XIe siècle dans le cartulaire de Noyers.                                                                                                        SAVIGNY , relevait de l'archiprêtre de Faye-la-Vineuse, duché pairie de Richelieu. De 1830 à 1840, Moyse Emile de Cougny fait construire ce château dans le style Renaissance. La famille de Cougny restera à Savigny jusqu'en 1965, date à laquelle la propriété est vendue à des parisiens pour y passer leur retraite. Ils possèdent le château jusquen 1989, le revendant le 30 juin à des Anglais qui ont passé 15 années à le transformer en hôtel de luxe.                                                                                                                    SAVIGNY-LEVESCAUT, la chapelle du château de la Touche, consacrée en 1653,  montre le corps du manoir en arrière plan, desservi par une allée centrale qui traverse une large cour herbeuse au premier plan. La chapelle est située à gauche. À sa droite, on devine un bassin carré. Le parc arboré se situe à l'arrière du corps de logis et n'est pas visible sur la photo.</p>
+<h4>Architecture</h4><p>PLAINE, composé d'un corps de logis rectangulaire à deux niveaux, couronné d'un toit à croupes en ardoise, il a été construit dans un esprit classique. Un pavillon flanqué d'une tourelle a été édifié en symétrie. Une corniche sur larges modillons cannelés court sur l'ensemble du bâtiment et donne une unité à l'ensemble. Chaque partie a des toitures indépendantes. Les bandeaux du rez-de-chaussée sont plus importants que ceux du premier étage. Des pilastres à refends marquent chacune des saillies de l'avant-corps et des pavillons latéraux. Des lucarnes à fronton pignon portent un arc trilobé ; l'apparition du gothique est assez curieuse. Tout de blanc, avec sa façade scindée, l'édifice apparaît comme un beau château, digne de réconcilier les amateurs avec le XIXe siècle.                                                                                                                   SAIRES, dans le bourg de Saires, on aperçoit un beau petit château, datant probablement du XVIIIe siècle, flanqué d'une tour polygonale à poivrière et d'une échauguette à dôme de pierre.                                                                                                                                              SAVIGNY, c'est une magnifique demeure de pierres blanches, le vaste corps de bâtiment cantonné aux angles de tours rondes au sud et carrées au nord. Une tour octogonale dominant l'ensemble, construite hors-uvre au nord, abrite l'escalier, est couronnée d'un chemin de ronde reposant sur mâchicoulis. Les tours sud sont surélevées d'un étage et couronnées d'une toiture conique. La façade principale aux fenêtres à meneau, aux linteaux néo-gothiques et aux lucarnes à frontons pignons, possède un avant corps en légère saillie. Deux tourelles en encorbellement reposent sur de gros contreforts.</p>
+<h4>Habitants / Familles</h4><p>Plaine; famille de Vaucelles                                                     Savigny; famille de Cougny 
+<br/>        "</p>
+<h4>Divers</h4><p>Château de la Plaine grav 1 à 4, de la Saires grav-5, de Savigny-Levescault grav 7</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

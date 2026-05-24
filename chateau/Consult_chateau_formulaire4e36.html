@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Aujols — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_46.html">Lot</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_46.html">Lot</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_46.html" class="back-link">Retour au département 46 — Lot</a>
-  <div class="fiche">
-    <h2>Aujols</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>46 — Lot</td></tr>
-          <tr><td>Canton</td><td>Castelnau-Montratier</td></tr>
-          <tr><td>Commune</td><td>Aujols</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_46/46_Aujols_1.jpg" alt="Aujols" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Aujols_2.jpg" alt="Aujols" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Aujols_3.jpg" alt="Aujols" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Aujols_4.jpg" alt="Aujols" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Aujols_5.jpg" alt="Aujols" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_46.html">Retour au département 46 — Lot</a>
+<div class="fiche">
+<h2>Aujols</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Aujols" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_46/46_Aujols_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Aujols" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Aujols_1.jpg"/><img alt="Aujols" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Aujols_2.jpg"/><img alt="Aujols" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Aujols_3.jpg"/><img alt="Aujols" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Aujols_4.jpg"/><img alt="Aujols" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Aujols_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>46 — Lot</td></tr>
+<tr><td>Canton</td><td>Castelnau-Montratier</td></tr>
+<tr><td>Commune</td><td>Aujols</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>AUJOLS, la seigneurie d'Aujols semble appartenir à la famille de Cardaillac dès le XIIIe siècle. En effet, en 1252, Bertrand de Cardaillac-Bioule hommageait au chapitre de Cahors pour divers fiefs de la contrée, dont, entre autres, celui dAujols. Il ne semble pas exister dautres seigneurs à Aujols que les Cardaillac : on voit dabord la branche principale de Bioule, puis le rameau de Saint Cirq et Cieurac faire hommage au chapitre de Cahors de nombreuses possessions quelle possède dans la région, notamment à Aujols. En 1543, Antoine de Cardaillac, seigneur de Peyre en Gevaudan, hommage pour Saint-Cirq, Cieurac, Concots et Aujols, au chapitre de Cahors. Son fils, Antoine II fait en 1598 un accord avec les habitants dAujols au sujet des aréages de la rente. La veuve de ce dernier, Antoinette de Paluels, vend aux consuls des rentes sur les paroisses dAujols et de Laburgade. Le château dAujols fut laissé par Bertrand II de Cardaillac-Bioule à sa veuve. En 1631, la moitié de la terre dAujols fut achetée par damoiselle de Vanis de noble Antoine de Fontanges, seigneur de Laroque des Arcs et Charles de Fontanges, seigneur de Saint-Hilaire. Il sagit de la partie de Flaujac et de Hauteserre. Cette partie passa aux Dadine de Hauteserre. La famille de la Popie de Saint-Cirq avait au XIVe siècle dans Aujols un fief de la Raymondie. Aujols avait ses consuls au nombre de trois.</p>
-      <h4>Architecture</h4><p>Le château d'Aujols sur lemplacement de lancien château des Cardaillac est attesté par le mur crénelé inscrit à lInventaire supplémentaire des Monuments Historiques, et qui se présente sous la forme dun mur surmonté de créneaux dont le caractère défensif est quelque peu contredit par la présence dune claire-voie ouvrant largement lédifice vers lextérieur. Il est de fait probable que cette élévation relève de plusieurs campagnes de travaux attestées notamment par les changements dappareil de maçonnerie.     La claire-voie, qui se distingue par un linteau plat, se compose dune série de quatre baies divisées par un meneau et alternant avec des trumeaux soigneusement appareillés. Les baies s'appuient sur un cordon mouluré et sont surmontées par un oculus orné dun remplage en forme de trèfle. On note la présence dune porte en tiers point et de jours moulurés. On saperçoit dautre part, que des constructions carrées, en saillie, jalonnent ces limites notamment au contact des passages. Il sagit peut-être de dispositifs défensifs associés à des portes. La forme dans son ensemble évoque un castrum mais nulle mention nest faite du castrum dAujols. Le château des Cardaillac est venu occuper une position stratégique dominant dune part la combe de la Valse et commandant dautre part lun des axes vitaux du département.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Cardaillac
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Châteaux d'Aujols</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>AUJOLS, la seigneurie d'Aujols semble appartenir à la famille de Cardaillac dès le XIIIe siècle. En effet, en 1252, Bertrand de Cardaillac-Bioule hommageait au chapitre de Cahors pour divers fiefs de la contrée, dont, entre autres, celui dAujols. Il ne semble pas exister dautres seigneurs à Aujols que les Cardaillac : on voit dabord la branche principale de Bioule, puis le rameau de Saint Cirq et Cieurac faire hommage au chapitre de Cahors de nombreuses possessions quelle possède dans la région, notamment à Aujols. En 1543, Antoine de Cardaillac, seigneur de Peyre en Gevaudan, hommage pour Saint-Cirq, Cieurac, Concots et Aujols, au chapitre de Cahors. Son fils, Antoine II fait en 1598 un accord avec les habitants dAujols au sujet des aréages de la rente. La veuve de ce dernier, Antoinette de Paluels, vend aux consuls des rentes sur les paroisses dAujols et de Laburgade. Le château dAujols fut laissé par Bertrand II de Cardaillac-Bioule à sa veuve. En 1631, la moitié de la terre dAujols fut achetée par damoiselle de Vanis de noble Antoine de Fontanges, seigneur de Laroque des Arcs et Charles de Fontanges, seigneur de Saint-Hilaire. Il sagit de la partie de Flaujac et de Hauteserre. Cette partie passa aux Dadine de Hauteserre. La famille de la Popie de Saint-Cirq avait au XIVe siècle dans Aujols un fief de la Raymondie. Aujols avait ses consuls au nombre de trois.</p>
+<h4>Architecture</h4><p>Le château d'Aujols sur lemplacement de lancien château des Cardaillac est attesté par le mur crénelé inscrit à lInventaire supplémentaire des Monuments Historiques, et qui se présente sous la forme dun mur surmonté de créneaux dont le caractère défensif est quelque peu contredit par la présence dune claire-voie ouvrant largement lédifice vers lextérieur. Il est de fait probable que cette élévation relève de plusieurs campagnes de travaux attestées notamment par les changements dappareil de maçonnerie.     La claire-voie, qui se distingue par un linteau plat, se compose dune série de quatre baies divisées par un meneau et alternant avec des trumeaux soigneusement appareillés. Les baies s'appuient sur un cordon mouluré et sont surmontées par un oculus orné dun remplage en forme de trèfle. On note la présence dune porte en tiers point et de jours moulurés. On saperçoit dautre part, que des constructions carrées, en saillie, jalonnent ces limites notamment au contact des passages. Il sagit peut-être de dispositifs défensifs associés à des portes. La forme dans son ensemble évoque un castrum mais nulle mention nest faite du castrum dAujols. Le château des Cardaillac est venu occuper une position stratégique dominant dune part la combe de la Valse et commandant dautre part lun des axes vitaux du département.</p>
+<h4>Habitants / Familles</h4><p>Famille de Cardaillac
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Châteaux d'Aujols</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

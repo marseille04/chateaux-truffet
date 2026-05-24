@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>St_Jory_Las_Bloux — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,59 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_24.html">Dordogne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_24.html">Dordogne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_24.html" class="back-link">Retour au département 24 — Dordogne</a>
-  <div class="fiche">
-    <h2>St_Jory_Las_Bloux</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>24 — Dordogne</td></tr>
-          <tr><td>Canton</td><td>Excideuil</td></tr>
-          <tr><td>Commune</td><td>Saint-Jory las Bloux</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XIX</td></tr>
-          <tr><td>Coordonnées GPS</td><td>45° 21' 47' Nord, 0° 58' 05" Est.</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_24/24_St_Jory_Las_Bloux_1.jpg" alt="St_Jory_Las_Bloux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_St_Jory_Las_Bloux_2.jpg" alt="St_Jory_Las_Bloux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_St_Jory_Las_Bloux_3.jpg" alt="St_Jory_Las_Bloux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_St_Jory_Las_Bloux_4.jpg" alt="St_Jory_Las_Bloux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_St_Jory_Las_Bloux_5.jpg" alt="St_Jory_Las_Bloux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_St_Jory_Las_Bloux_6.jpg" alt="St_Jory_Las_Bloux" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_St_Jory_Las_Bloux_7.jpg" alt="St_Jory_Las_Bloux" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_24.html">Retour au département 24 — Dordogne</a>
+<div class="fiche">
+<h2>St_Jory_Las_Bloux</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="St_Jory_Las_Bloux" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_24/24_St_Jory_Las_Bloux_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="St_Jory_Las_Bloux" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_St_Jory_Las_Bloux_1.jpg"/><img alt="St_Jory_Las_Bloux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_St_Jory_Las_Bloux_2.jpg"/><img alt="St_Jory_Las_Bloux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_St_Jory_Las_Bloux_3.jpg"/><img alt="St_Jory_Las_Bloux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_St_Jory_Las_Bloux_4.jpg"/><img alt="St_Jory_Las_Bloux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_St_Jory_Las_Bloux_5.jpg"/><img alt="St_Jory_Las_Bloux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_St_Jory_Las_Bloux_6.jpg"/><img alt="St_Jory_Las_Bloux" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_St_Jory_Las_Bloux_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>24 — Dordogne</td></tr>
+<tr><td>Canton</td><td>Excideuil</td></tr>
+<tr><td>Commune</td><td>Saint-Jory las Bloux</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XIX</td></tr>
+<tr><td>Coordonnées GPS</td><td>45° 21' 47' Nord, 0° 58' 05" Est.</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>LAUBERTIE,  du XIXe siècle, cétait une famille de basse extraction. Les premières informations disponibles partent de Jean De Las Escuras, seigneur de Leyssac dont un fils Pierre De Las Escuras, avocat au parlement de Bordeaux, procureur au siège royal de Thiviers en 1730. Il se marie en 1741 avec Léonarde de Larue, seigneur de la Flamenchie. En 1742, il acquiert les seigneuries de Lépine, de Lapouyade, de Beynac (Saint Saud) et devient en 1749 comte de palatin et chevalier de Saint Jean de Latran par décret du pape. Il eut quatre enfants et décéda le 2 février 1765. Par décret du pape Clément XIII, son fils cadet Jean Hélie De Las Escuras de Lépine, seigneur de Pouzol, écuyer, docteur en médecine, lieutenant général de police de Thiviers, est élevé à la dignité de comte palatin et chevalier de Saint Jean de Latran. Cette même distinction est accordé la même année à son frère aîné, Pierre Hélie De Las Escuras de Lestang, seigneur de la maison noble de Beynac, procureur du roi à Thiviers. Les autres frères fondèrent les branches de Pouzol et Lamarque. Jean Hélie De Las Escuras de Lépine est mentionné comme un des plus gros propriétaires sur la commune de Saint-Jory-las-Bloux et possesseur du domaine de Laubertie. Les Varailhas de 1666 à 1708.  Les Dussutour de 1677 à la fin du XVIIIe siècle.   Les Lambert de 1726 à 1807.  Les Lacotte de 1799 à 1867</p>
-      <h4>Architecture</h4><p>ST-JORY las BLOUX, la construction date du XIXe siècle. Le château attenant à l'église, mêle des éléments du XVe au XVIIIe siècle, sur des bases qui remontent au XIIIe siècle. Dans son roman, Le Moulin du Frau écrivit, en 1891 : Eugène Le Roy se sert du château de Saint-Jory-las-Bloux comme modèle pour le château de Puygolfier. Sur trois hectares, la partie Ouest du village de Saint-Jory-las-Bloux englobe le château, l'église, ainsi que leurs abords, c'est un site inscrit depuis 1944, pour son côté pittoresque.           LAUBERTIE, lélégant château de Laubertie XIX siécle de style néo classique, se situe en pleine campagne dans le Périgord blanc, entouré dun parc de 2 hectares et en bordure de champs et bois, il vous enchantera par son caractère et sa situation.  Un long bâtiments latéral, perpendiculaire à la route, mesurant 33m sur 14 m constituait un chai et une cuisine. Dans le prolongement de ce grand bâtiment, une construction sur deux niveaux qui constitue larrière du château actuel.</p>
-      <h4>Habitants / Familles</h4><p>Famille de  Jean De Las Escuras
-<br>        "</p>
-      <h4>Divers</h4><p>Saint-Jory las Bloux grav 1 5-6;  Chalais grav 2. St-Jory-Laubertie grav-3-4 -7 GPS : 45° 21' 47' Nord, 0° 58' 05" Est.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>LAUBERTIE,  du XIXe siècle, cétait une famille de basse extraction. Les premières informations disponibles partent de Jean De Las Escuras, seigneur de Leyssac dont un fils Pierre De Las Escuras, avocat au parlement de Bordeaux, procureur au siège royal de Thiviers en 1730. Il se marie en 1741 avec Léonarde de Larue, seigneur de la Flamenchie. En 1742, il acquiert les seigneuries de Lépine, de Lapouyade, de Beynac (Saint Saud) et devient en 1749 comte de palatin et chevalier de Saint Jean de Latran par décret du pape. Il eut quatre enfants et décéda le 2 février 1765. Par décret du pape Clément XIII, son fils cadet Jean Hélie De Las Escuras de Lépine, seigneur de Pouzol, écuyer, docteur en médecine, lieutenant général de police de Thiviers, est élevé à la dignité de comte palatin et chevalier de Saint Jean de Latran. Cette même distinction est accordé la même année à son frère aîné, Pierre Hélie De Las Escuras de Lestang, seigneur de la maison noble de Beynac, procureur du roi à Thiviers. Les autres frères fondèrent les branches de Pouzol et Lamarque. Jean Hélie De Las Escuras de Lépine est mentionné comme un des plus gros propriétaires sur la commune de Saint-Jory-las-Bloux et possesseur du domaine de Laubertie. Les Varailhas de 1666 à 1708.  Les Dussutour de 1677 à la fin du XVIIIe siècle.   Les Lambert de 1726 à 1807.  Les Lacotte de 1799 à 1867</p>
+<h4>Architecture</h4><p>ST-JORY las BLOUX, la construction date du XIXe siècle. Le château attenant à l'église, mêle des éléments du XVe au XVIIIe siècle, sur des bases qui remontent au XIIIe siècle. Dans son roman, Le Moulin du Frau écrivit, en 1891 : Eugène Le Roy se sert du château de Saint-Jory-las-Bloux comme modèle pour le château de Puygolfier. Sur trois hectares, la partie Ouest du village de Saint-Jory-las-Bloux englobe le château, l'église, ainsi que leurs abords, c'est un site inscrit depuis 1944, pour son côté pittoresque.           LAUBERTIE, lélégant château de Laubertie XIX siécle de style néo classique, se situe en pleine campagne dans le Périgord blanc, entouré dun parc de 2 hectares et en bordure de champs et bois, il vous enchantera par son caractère et sa situation.  Un long bâtiments latéral, perpendiculaire à la route, mesurant 33m sur 14 m constituait un chai et une cuisine. Dans le prolongement de ce grand bâtiment, une construction sur deux niveaux qui constitue larrière du château actuel.</p>
+<h4>Habitants / Familles</h4><p>Famille de  Jean De Las Escuras
+<br/>        "</p>
+<h4>Divers</h4><p>Saint-Jory las Bloux grav 1 5-6;  Chalais grav 2. St-Jory-Laubertie grav-3-4 -7 GPS : 45° 21' 47' Nord, 0° 58' 05" Est.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

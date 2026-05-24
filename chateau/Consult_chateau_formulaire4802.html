@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Busseol — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,60 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_63.html">Puy-de-Dôme</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_63.html">Puy-de-Dôme</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_63.html" class="back-link">Retour au département 63 — Puy-de-Dôme</a>
-  <div class="fiche">
-    <h2>Busseol</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>63 — Puy-de-Dôme</td></tr>
-          <tr><td>Canton</td><td>Vic-le-Comte</td></tr>
-          <tr><td>Commune</td><td>Busséol</td></tr>
-          <tr><td>Type d'édifice</td><td>Vestiges</td></tr>
-          <tr><td>Période d'origine</td><td>XII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_63/63_Busseol_1.jpg" alt="Busseol" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Busseol_2.jpg" alt="Busseol" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Busseol_3.jpg" alt="Busseol" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Busseol_4.jpg" alt="Busseol" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Busseol_5.jpg" alt="Busseol" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Busseol_6.jpg" alt="Busseol" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Busseol_7.jpg" alt="Busseol" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_63/63_Busseol_8.jpg" alt="Busseol" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_63.html">Retour au département 63 — Puy-de-Dôme</a>
+<div class="fiche">
+<h2>Busseol</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Busseol" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_63/63_Busseol_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Busseol" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Busseol_1.jpg"/><img alt="Busseol" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Busseol_2.jpg"/><img alt="Busseol" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Busseol_3.jpg"/><img alt="Busseol" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Busseol_4.jpg"/><img alt="Busseol" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Busseol_5.jpg"/><img alt="Busseol" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Busseol_6.jpg"/><img alt="Busseol" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Busseol_7.jpg"/><img alt="Busseol" class="" loading="lazy" onclick="setHero(this)" src="../image/image_63/63_Busseol_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>63 — Puy-de-Dôme</td></tr>
+<tr><td>Canton</td><td>Vic-le-Comte</td></tr>
+<tr><td>Commune</td><td>Busséol</td></tr>
+<tr><td>Type d'édifice</td><td>Vestiges</td></tr>
+<tr><td>Période d'origine</td><td>XII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>BUSSEOL, en 1170, fief de  Guillaume VIII comte d'Auvergne et vassal du roi d'Angleterre fait construire une fortification. Le château-fort appartint successivement, dès l'origine, aux comtes d'Auvergne, le Pape Alexandre III, Jean Stuart Prince d'Écosse, Blanche de Clermont petite-fille de St-Louis.  En 1229 Guillaume X fils de Guy II, obtient du roi Louis IX une partie de ses biens, dont la seigneurie de Busséol. En 1332 à la mort de son père, Guillaume II, Jeanne de Bouilogne devient comtesse d'Auvergne et dame de Busséol. Veuve de Philippe de Bourgogne, elle épouse en 1350 Jean, duc de Normandie futur roi de France "Jean II le Bon" le fief devient possession de la reine de France. En 1399 Jeanne II d'Auvergne épouse de Georges de la Trémoille. Busséol comme le comté d'Auvergne passe à la famille de la Tour. Jean Stuart, duc d'Albany époux d'Anne de la Tour y fera de nombreux séjours, à sa mort Catherine de Médicis hérite, comtesse d'Auvergne qui y séjourna avec son fils Charles IX en 1566 lors de son voyage en Auvergne. La reine Margot Marguerite de Valois héritière, releva du domaine royal. Il est ainsi considéré comme le plus historique de la province,  en 1589 le château subit des attaques des ligueurs, il est ensuite l'objet de dispute entre Charles d'Angoulême et la reine Margot qui l'offre  à Louis XIII en 1605. En 1654 Louis XIV vend le château à Gilbert Simon de Frèdeville et l'érige en comté, le château fut habité jusqu'à la  Révolution . En 1880  la famille de Vichy héritière des Mascon qui le possédait avant sa vente comme bien national, le cédèrent à des cultivateurs locaux qui le négligèrent. En 1970, les propriétaires actuels la famille Houlier l'ont transformé  en demeure habitable.</p>
-      <h4>Architecture</h4><p>Busséol se présente en masse primitive sur un rocher volcanique dominant la Limagne à 650 mètres d'altitude, exemple d'architecture militaire romane en Auvergne, a conservé son donjon roman. Cette construction du XIIe siècle a été oubliée des architectes après le XIVe siècle. il se compose d'une enceinte , cantonnée à deux de ses angles d'un donjon cylindrique et d'une tour de guet crénelée, à l'intérieur de la cour logis seigneurial et des bâtiments de dépendances,  Il a été remanié, consolidé, restauré et même remonté.   La courtine ensoleillée est très instructive, elle ne comporte aucune fente de tir, ni archère, ni bouche à feu. La courtine possède de belles fenêtres romanes et au sommet les ouvertures rectangulaires correspondent à l'ancien chemin de ronde. Au début du XVIIe siècle, Richelieu fait araser ou ordonne la destruction de nombreux châteaux fortifiés. Curieusement, Busséol échappe à ce "massacre" du patrimoine. Vers 1792, les habitants du château fuient devant les révolutionnaires.</p>
-      <h4>Habitants / Familles</h4><p>La reine Margot Marguerite de Valois 
-<br>        "</p>
-      <h4>Divers</h4><p>Forteresse de Busséol</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>BUSSEOL, en 1170, fief de  Guillaume VIII comte d'Auvergne et vassal du roi d'Angleterre fait construire une fortification. Le château-fort appartint successivement, dès l'origine, aux comtes d'Auvergne, le Pape Alexandre III, Jean Stuart Prince d'Écosse, Blanche de Clermont petite-fille de St-Louis.  En 1229 Guillaume X fils de Guy II, obtient du roi Louis IX une partie de ses biens, dont la seigneurie de Busséol. En 1332 à la mort de son père, Guillaume II, Jeanne de Bouilogne devient comtesse d'Auvergne et dame de Busséol. Veuve de Philippe de Bourgogne, elle épouse en 1350 Jean, duc de Normandie futur roi de France "Jean II le Bon" le fief devient possession de la reine de France. En 1399 Jeanne II d'Auvergne épouse de Georges de la Trémoille. Busséol comme le comté d'Auvergne passe à la famille de la Tour. Jean Stuart, duc d'Albany époux d'Anne de la Tour y fera de nombreux séjours, à sa mort Catherine de Médicis hérite, comtesse d'Auvergne qui y séjourna avec son fils Charles IX en 1566 lors de son voyage en Auvergne. La reine Margot Marguerite de Valois héritière, releva du domaine royal. Il est ainsi considéré comme le plus historique de la province,  en 1589 le château subit des attaques des ligueurs, il est ensuite l'objet de dispute entre Charles d'Angoulême et la reine Margot qui l'offre  à Louis XIII en 1605. En 1654 Louis XIV vend le château à Gilbert Simon de Frèdeville et l'érige en comté, le château fut habité jusqu'à la  Révolution . En 1880  la famille de Vichy héritière des Mascon qui le possédait avant sa vente comme bien national, le cédèrent à des cultivateurs locaux qui le négligèrent. En 1970, les propriétaires actuels la famille Houlier l'ont transformé  en demeure habitable.</p>
+<h4>Architecture</h4><p>Busséol se présente en masse primitive sur un rocher volcanique dominant la Limagne à 650 mètres d'altitude, exemple d'architecture militaire romane en Auvergne, a conservé son donjon roman. Cette construction du XIIe siècle a été oubliée des architectes après le XIVe siècle. il se compose d'une enceinte , cantonnée à deux de ses angles d'un donjon cylindrique et d'une tour de guet crénelée, à l'intérieur de la cour logis seigneurial et des bâtiments de dépendances,  Il a été remanié, consolidé, restauré et même remonté.   La courtine ensoleillée est très instructive, elle ne comporte aucune fente de tir, ni archère, ni bouche à feu. La courtine possède de belles fenêtres romanes et au sommet les ouvertures rectangulaires correspondent à l'ancien chemin de ronde. Au début du XVIIe siècle, Richelieu fait araser ou ordonne la destruction de nombreux châteaux fortifiés. Curieusement, Busséol échappe à ce "massacre" du patrimoine. Vers 1792, les habitants du château fuient devant les révolutionnaires.</p>
+<h4>Habitants / Familles</h4><p>La reine Margot Marguerite de Valois 
+<br/>        "</p>
+<h4>Divers</h4><p>Forteresse de Busséol</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

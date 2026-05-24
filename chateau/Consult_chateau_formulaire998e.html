@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Domeyrat — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,63 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_43.html">Haute-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_43.html">Haute-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_43.html" class="back-link">Retour au département 43 — Haute-Loire</a>
-  <div class="fiche">
-    <h2>Domeyrat</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>43 — Haute-Loire</td></tr>
-          <tr><td>Canton</td><td>Paulhaguet</td></tr>
-          <tr><td>Commune</td><td>Domeyrat</td></tr>
-          <tr><td>Type d'édifice</td><td>Forteresse</td></tr>
-          <tr><td>Période d'origine</td><td>XIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_43/43_Domeyrat_1.jpg" alt="Domeyrat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Domeyrat_2.jpg" alt="Domeyrat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Domeyrat_3.jpg" alt="Domeyrat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Domeyrat_4.jpg" alt="Domeyrat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Domeyrat_5.jpg" alt="Domeyrat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Domeyrat_6.jpg" alt="Domeyrat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Domeyrat_7.jpg" alt="Domeyrat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Domeyrat_8.jpg" alt="Domeyrat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Domeyrat_9.jpg" alt="Domeyrat" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_43.html">Retour au département 43 — Haute-Loire</a>
+<div class="fiche">
+<h2>Domeyrat</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Domeyrat" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_43/43_Domeyrat_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Domeyrat" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Domeyrat_1.jpg"/><img alt="Domeyrat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Domeyrat_2.jpg"/><img alt="Domeyrat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Domeyrat_3.jpg"/><img alt="Domeyrat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Domeyrat_4.jpg"/><img alt="Domeyrat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Domeyrat_5.jpg"/><img alt="Domeyrat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Domeyrat_6.jpg"/><img alt="Domeyrat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Domeyrat_7.jpg"/><img alt="Domeyrat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Domeyrat_8.jpg"/><img alt="Domeyrat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Domeyrat_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>43 — Haute-Loire</td></tr>
+<tr><td>Canton</td><td>Paulhaguet</td></tr>
+<tr><td>Commune</td><td>Domeyrat</td></tr>
+<tr><td>Type d'édifice</td><td>Forteresse</td></tr>
+<tr><td>Période d'origine</td><td>XIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>DOMEYRAT, chateau-fort cité en 1114, le fief appartenait aux vassaux d'Alphonse de Poitiers dressé entre 1250 et 1260 , Astorgius et son fils Bertrand de Papabeuf construisirent la forteresse. La famille des Papabeuf en reste propriétaire jusqu'en 1348, date à laquelle elle semble s'éteindre.  Pierre de Montaigut, mentionné en 1368, Catherine de Châteauneuf en 1375 avec Adhémar Jory, à qui elle cède alors la moitié de la terre lui appartenant.  Domeyrat revient ensuite à la famille de Langheac. sénéchal de la province, à qui l'on reconnaît le titre de seigneur de Domeyrat en 1387. De successions en successions, la famille de Langheac reste propriétaire jusqu'en 1619, date à laquelle s'éteint la dernière descendante Françoise de Langheac.  Par son mari, Domeyrat passe dans les biens de la famille de la Rochefoucauld. Après avoir agrandi le domaine, Françoise de Langheac et Jacques de la Rochefoucauld laissent Domeyrat à leur fils. D'abord co-seigneurie entre Charles-Ignace héritier du titre et François à qui revient la jouissance du fief et qui sera l'un des derniers seigneurs résidant au château. Son héritier, Henry de la Rochefoucauld, établi à Brassac,  grevé de dettes, il vend Domeyrat en 1656 à Christophe de Beaune. François-Marie et Louis François Marie Fargès en 1773. Le domaine est agrandi, bien qu'ils n'y résident pas.  Le château fut habité jusqu'en 1789. Après leur décès, en 1790 et 1792, les filles mineures héritent de Domeyrat. Le Conseil Général de la Haute-Loire l'a racheté  à différentes familles.
-<br>A quelques kilomètres nord-est le château de Vals le Châtel et au sud le château de St-Roch à Salzuit de  Bruno et Anne-Marie Promeyrat.</p>
-      <h4>Architecture</h4><p>Domeyrat est une forteresse carrée du XIVe siècle, domine le village  et les confluents de la Senouire et du Doulon dont la partie inférieure pourrait remonter au XIIe siècle. C'est un donjon-résidence de plan cantonné, constitué d'un donjon rectangulaire flanqué à chacun de ses angles d'une tour ronde. La seconde enceinte constituée de tours et de courtines a disparu. Les tours d'angle de cette haute forteresse carrée du XIVe siècle sont bien ébréchés, Il fut transformé en carrière sous la Révolution. On peut admirer la coupole décorée de fresques du XVIe siècle, ainsi que des peintures murales dans les tours nord-ouest et sud-ouest. Le Pont date des XVe et XVIe siècles. Deux des tours conservent des vestiges de peintures, l'une ornée de scènes de chasse, d'amours et d'arabesques du XVIe siècle, l'autre de scènes religieuses du début du XVIIe siècle.
-<br>SAINT-ROCH; ancienne bâtisse seigneuriale du XVIIIe siècle, il a été rénové avec des techniques et des matériaux respectueux de lenvironnement et de la santé. Il conserve cependant son caractère ancien auquel se marie admirablement le confort moderne.  Installée dans un écrin de verdure dominant la vallée, cette bâtisse du XVIIIe siècle fut construite sur les fondations remontant au Moyen-Age. Le château dispose dune terrasse avec vue remarquable ainsi quune magnifique cour en galets, un parc boisé et une chapelle.</p>
-      <h4>Habitants / Familles</h4><p>Bertrand de Papabeuf 
-<br>        "</p>
-      <h4>Divers</h4><p>Vestiges de Domeyrat, du château de St-Roch et de Vals le Chastel</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>DOMEYRAT, chateau-fort cité en 1114, le fief appartenait aux vassaux d'Alphonse de Poitiers dressé entre 1250 et 1260 , Astorgius et son fils Bertrand de Papabeuf construisirent la forteresse. La famille des Papabeuf en reste propriétaire jusqu'en 1348, date à laquelle elle semble s'éteindre.  Pierre de Montaigut, mentionné en 1368, Catherine de Châteauneuf en 1375 avec Adhémar Jory, à qui elle cède alors la moitié de la terre lui appartenant.  Domeyrat revient ensuite à la famille de Langheac. sénéchal de la province, à qui l'on reconnaît le titre de seigneur de Domeyrat en 1387. De successions en successions, la famille de Langheac reste propriétaire jusqu'en 1619, date à laquelle s'éteint la dernière descendante Françoise de Langheac.  Par son mari, Domeyrat passe dans les biens de la famille de la Rochefoucauld. Après avoir agrandi le domaine, Françoise de Langheac et Jacques de la Rochefoucauld laissent Domeyrat à leur fils. D'abord co-seigneurie entre Charles-Ignace héritier du titre et François à qui revient la jouissance du fief et qui sera l'un des derniers seigneurs résidant au château. Son héritier, Henry de la Rochefoucauld, établi à Brassac,  grevé de dettes, il vend Domeyrat en 1656 à Christophe de Beaune. François-Marie et Louis François Marie Fargès en 1773. Le domaine est agrandi, bien qu'ils n'y résident pas.  Le château fut habité jusqu'en 1789. Après leur décès, en 1790 et 1792, les filles mineures héritent de Domeyrat. Le Conseil Général de la Haute-Loire l'a racheté  à différentes familles.
+<br/>A quelques kilomètres nord-est le château de Vals le Châtel et au sud le château de St-Roch à Salzuit de  Bruno et Anne-Marie Promeyrat.</p>
+<h4>Architecture</h4><p>Domeyrat est une forteresse carrée du XIVe siècle, domine le village  et les confluents de la Senouire et du Doulon dont la partie inférieure pourrait remonter au XIIe siècle. C'est un donjon-résidence de plan cantonné, constitué d'un donjon rectangulaire flanqué à chacun de ses angles d'une tour ronde. La seconde enceinte constituée de tours et de courtines a disparu. Les tours d'angle de cette haute forteresse carrée du XIVe siècle sont bien ébréchés, Il fut transformé en carrière sous la Révolution. On peut admirer la coupole décorée de fresques du XVIe siècle, ainsi que des peintures murales dans les tours nord-ouest et sud-ouest. Le Pont date des XVe et XVIe siècles. Deux des tours conservent des vestiges de peintures, l'une ornée de scènes de chasse, d'amours et d'arabesques du XVIe siècle, l'autre de scènes religieuses du début du XVIIe siècle.
+<br/>SAINT-ROCH; ancienne bâtisse seigneuriale du XVIIIe siècle, il a été rénové avec des techniques et des matériaux respectueux de lenvironnement et de la santé. Il conserve cependant son caractère ancien auquel se marie admirablement le confort moderne.  Installée dans un écrin de verdure dominant la vallée, cette bâtisse du XVIIIe siècle fut construite sur les fondations remontant au Moyen-Age. Le château dispose dune terrasse avec vue remarquable ainsi quune magnifique cour en galets, un parc boisé et une chapelle.</p>
+<h4>Habitants / Familles</h4><p>Bertrand de Papabeuf 
+<br/>        "</p>
+<h4>Divers</h4><p>Vestiges de Domeyrat, du château de St-Roch et de Vals le Chastel</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

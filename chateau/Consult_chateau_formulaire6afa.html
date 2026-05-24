@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Chemilly — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,60 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_03.html">Allier</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_03.html">Allier</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_03.html" class="back-link">Retour au département 03 — Allier</a>
-  <div class="fiche">
-    <h2>Chemilly</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>03 — Allier</td></tr>
-          <tr><td>Canton</td><td>Souvigny</td></tr>
-          <tr><td>Commune</td><td>Chemilly</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_03/03_Chemilly_1.jpg" alt="Chemilly" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Chemilly_2.jpg" alt="Chemilly" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Chemilly_3.jpg" alt="Chemilly" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Chemilly_4.jpg" alt="Chemilly" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Chemilly_5.jpg" alt="Chemilly" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Chemilly_6.jpg" alt="Chemilly" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Chemilly_7.jpg" alt="Chemilly" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Chemilly_8.jpg" alt="Chemilly" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_03.html">Retour au département 03 — Allier</a>
+<div class="fiche">
+<h2>Chemilly</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Chemilly" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_03/03_Chemilly_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Chemilly" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Chemilly_1.jpg"/><img alt="Chemilly" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Chemilly_2.jpg"/><img alt="Chemilly" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Chemilly_3.jpg"/><img alt="Chemilly" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Chemilly_4.jpg"/><img alt="Chemilly" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Chemilly_5.jpg"/><img alt="Chemilly" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Chemilly_6.jpg"/><img alt="Chemilly" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Chemilly_7.jpg"/><img alt="Chemilly" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Chemilly_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>03 — Allier</td></tr>
+<tr><td>Canton</td><td>Souvigny</td></tr>
+<tr><td>Commune</td><td>Chemilly</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Plusieurs châteaux à Chemilly dont celui de Chemilly du XVIIe siècle avec tour, de Ramillons du XV-XIXe siècle avec grosse tour ronde, de Previa du XIXe siècle avec tour, de Soupaize classique, les Foucauds.                                 CHEMILLY, le château faisait partie du système défensif longeant la vallée supérieure de la Saône dès le  Moyen-Age. Le château a été très remanié depuis le XIIIe siècle.                            SOUPAIZE a été le siège d'une paroisse et probablement d'une seigneurie, car en 1100, dans un acte  de  restitution de biens ecclésiastiques, apparait un Gilbert Soupezio. Le seigneur du lieu a obtenu, l'autorisation de  fortifier sa demeure en 1475. L'écuyer Jehan du Boys, en 1503 reconnaît tenir en fief de la duchesse de Bourbon.en 1614, Pierre  Bardon et Marie Girard,  sa femme. En 1619 Pierre Bardon possédait également la seigneurie du Méage. Son fils, Jean, qualifié d'écuyer, était conseiller au présidial de Moulins. Philippe Bardon était sieur de Bellesme et des Moquets.   Le FOUCAUDS, en 1560, le "château et seigneurie des Foucaults" appartenaient au capitaine de Montcoquier, famille originaire   de Monétay, qui en resta très longtemps  propriétaire. en 1602, le sieur de Montcoquier, Renaud, chevalier, mourut à Bourbon Lancy. La  seigneurie fut  confiée à des fermiers. La famille de la Souche, après avoir vendu sa seigneurie de Saint-Augustin  aux Cadier,  s'installa aux Foucauds en 1733, monsieur l'abbé de la Souche de St-Augustin maria  messire Gilbert de la Souche, seigneur des Foucaux, mousquetaire du Roi, à mademoiselle d'Albon, à Paris, en la paroisse de St-Paul.  Lors du mariage, à Chemilly, de sa fille avec un comte,  le 24 septembre 1748,  il se prévalait  du titre de seigneur-marquis d'Abrest.</p>
-      <h4>Architecture</h4><p>Chemilly, aux Moquets  on peut voir une gentilhommière en forme de U avec une tour ronde en  façade du corps central, daté du XVIIe siècle. Les communs sont complétés d'un pigeonnier circulaire, surmonté d'un campanile.                  Foucauds est doté de deux tours, une grosse tour ronde et une seconde à canonnières en façade qui date du XIVe siècle, le reste est du XVIIe siècle; importants communs.                 Previa,  château  construction du début du XIXe siècle, dans le style classique. Un grand corps de bâtiment à rez-de-chaussée sur terrasse et niveau de comble, reçoit aux angles deux pavillons carrés en retour d'équerre, à toits à
-<br>quatre pans. Des lucarnes éclairent les combles et celles des pavillons sont surmontées d'un linteau triangulaire. Du côté du val d'Allier, la terrasse est bordée d'une longue rampe à balustres. La façade principale, flanquée d'une tour centrale, s'ouvre sur un joli parc arboré.                             Ramillons, il reste de l'ancienne seigneurie une grosse tour ronde, de la fin du Moyen-Age. Les bâtiments actuels logis et communs, sont de forme rectangulaire, relativement peu élevés. A l'un d'eux est adossée une chapelle seigneuriale. Un pavillon rectangulaire  à quatre niveaux est adossé à l'un des pignons. Il   se termine par un étage en forme d'oriol, largement ouvert sur l'extérieur.                              Soupaize, les bâtiments sont encore importants et distribués autour d'une cour fermée par des murs, des grilles et un portail tenu par des piliers de pierre. Le logis quadrangulaire est accosté d'une tour ronde à clocheton et une tour carrée en façade. Un joli porche à toit  impérial est intégré dans les communs.</p>
-      <h4>Habitants / Familles</h4><p>Fief de Gilbert Soupezio           Capitaine de Montcoquier"</p>
-      <h4>Divers</h4><p>Château des Foucauds,  de Previa, de Ramillons et de Soupaize à Chemilly.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Plusieurs châteaux à Chemilly dont celui de Chemilly du XVIIe siècle avec tour, de Ramillons du XV-XIXe siècle avec grosse tour ronde, de Previa du XIXe siècle avec tour, de Soupaize classique, les Foucauds.                                 CHEMILLY, le château faisait partie du système défensif longeant la vallée supérieure de la Saône dès le  Moyen-Age. Le château a été très remanié depuis le XIIIe siècle.                            SOUPAIZE a été le siège d'une paroisse et probablement d'une seigneurie, car en 1100, dans un acte  de  restitution de biens ecclésiastiques, apparait un Gilbert Soupezio. Le seigneur du lieu a obtenu, l'autorisation de  fortifier sa demeure en 1475. L'écuyer Jehan du Boys, en 1503 reconnaît tenir en fief de la duchesse de Bourbon.en 1614, Pierre  Bardon et Marie Girard,  sa femme. En 1619 Pierre Bardon possédait également la seigneurie du Méage. Son fils, Jean, qualifié d'écuyer, était conseiller au présidial de Moulins. Philippe Bardon était sieur de Bellesme et des Moquets.   Le FOUCAUDS, en 1560, le "château et seigneurie des Foucaults" appartenaient au capitaine de Montcoquier, famille originaire   de Monétay, qui en resta très longtemps  propriétaire. en 1602, le sieur de Montcoquier, Renaud, chevalier, mourut à Bourbon Lancy. La  seigneurie fut  confiée à des fermiers. La famille de la Souche, après avoir vendu sa seigneurie de Saint-Augustin  aux Cadier,  s'installa aux Foucauds en 1733, monsieur l'abbé de la Souche de St-Augustin maria  messire Gilbert de la Souche, seigneur des Foucaux, mousquetaire du Roi, à mademoiselle d'Albon, à Paris, en la paroisse de St-Paul.  Lors du mariage, à Chemilly, de sa fille avec un comte,  le 24 septembre 1748,  il se prévalait  du titre de seigneur-marquis d'Abrest.</p>
+<h4>Architecture</h4><p>Chemilly, aux Moquets  on peut voir une gentilhommière en forme de U avec une tour ronde en  façade du corps central, daté du XVIIe siècle. Les communs sont complétés d'un pigeonnier circulaire, surmonté d'un campanile.                  Foucauds est doté de deux tours, une grosse tour ronde et une seconde à canonnières en façade qui date du XIVe siècle, le reste est du XVIIe siècle; importants communs.                 Previa,  château  construction du début du XIXe siècle, dans le style classique. Un grand corps de bâtiment à rez-de-chaussée sur terrasse et niveau de comble, reçoit aux angles deux pavillons carrés en retour d'équerre, à toits à
+<br/>quatre pans. Des lucarnes éclairent les combles et celles des pavillons sont surmontées d'un linteau triangulaire. Du côté du val d'Allier, la terrasse est bordée d'une longue rampe à balustres. La façade principale, flanquée d'une tour centrale, s'ouvre sur un joli parc arboré.                             Ramillons, il reste de l'ancienne seigneurie une grosse tour ronde, de la fin du Moyen-Age. Les bâtiments actuels logis et communs, sont de forme rectangulaire, relativement peu élevés. A l'un d'eux est adossée une chapelle seigneuriale. Un pavillon rectangulaire  à quatre niveaux est adossé à l'un des pignons. Il   se termine par un étage en forme d'oriol, largement ouvert sur l'extérieur.                              Soupaize, les bâtiments sont encore importants et distribués autour d'une cour fermée par des murs, des grilles et un portail tenu par des piliers de pierre. Le logis quadrangulaire est accosté d'une tour ronde à clocheton et une tour carrée en façade. Un joli porche à toit  impérial est intégré dans les communs.</p>
+<h4>Habitants / Familles</h4><p>Fief de Gilbert Soupezio           Capitaine de Montcoquier"</p>
+<h4>Divers</h4><p>Château des Foucauds,  de Previa, de Ramillons et de Soupaize à Chemilly.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

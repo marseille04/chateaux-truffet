@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Baguer_Morvan — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,61 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_35.html">Ille-et-Vilaine</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_35.html">Ille-et-Vilaine</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_35.html" class="back-link">Retour au département 35 — Ille-et-Vilaine</a>
-  <div class="fiche">
-    <h2>Baguer_Morvan</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>35 — Ille-et-Vilaine</td></tr>
-          <tr><td>Canton</td><td>Dol-de-Bretagne</td></tr>
-          <tr><td>Commune</td><td>Baguer-Morvan</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVI-XVII-XIX-</td></tr>
-          <tr><td>Coordonnées GPS</td><td>48° 31' 30" Nord, 1° 46" 26" Ouest                                       Launay-Blot grav-1GPS : 48° 31' 30" Nord, 1° 46' 26" Ouest                                        Touraude GPS : 48° 31' 30" Nord, 1° 46' 26" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_35/35_Baguer_Morvan_1.jpg" alt="Baguer_Morvan" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Baguer_Morvan_2.jpg" alt="Baguer_Morvan" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Baguer_Morvan_3.jpg" alt="Baguer_Morvan" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Baguer_Morvan_4.jpg" alt="Baguer_Morvan" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Baguer_Morvan_5.jpg" alt="Baguer_Morvan" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Baguer_Morvan_6.jpg" alt="Baguer_Morvan" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Baguer_Morvan_7.jpg" alt="Baguer_Morvan" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Baguer_Morvan_8.jpg" alt="Baguer_Morvan" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_35.html">Retour au département 35 — Ille-et-Vilaine</a>
+<div class="fiche">
+<h2>Baguer_Morvan</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Baguer_Morvan" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_35/35_Baguer_Morvan_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Baguer_Morvan" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Baguer_Morvan_1.jpg"/><img alt="Baguer_Morvan" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Baguer_Morvan_2.jpg"/><img alt="Baguer_Morvan" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Baguer_Morvan_3.jpg"/><img alt="Baguer_Morvan" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Baguer_Morvan_4.jpg"/><img alt="Baguer_Morvan" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Baguer_Morvan_5.jpg"/><img alt="Baguer_Morvan" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Baguer_Morvan_6.jpg"/><img alt="Baguer_Morvan" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Baguer_Morvan_7.jpg"/><img alt="Baguer_Morvan" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Baguer_Morvan_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>35 — Ille-et-Vilaine</td></tr>
+<tr><td>Canton</td><td>Dol-de-Bretagne</td></tr>
+<tr><td>Commune</td><td>Baguer-Morvan</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVI-XVII-XIX-</td></tr>
+<tr><td>Coordonnées GPS</td><td>48° 31' 30" Nord, 1° 46" 26" Ouest                                       Launay-Blot grav-1GPS : 48° 31' 30" Nord, 1° 46' 26" Ouest                                        Touraude GPS : 48° 31' 30" Nord, 1° 46' 26" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Cinq châteaux à Baguer; Assis, Haute-Dibois, Beauregard, Launay-Blot et Touraude.                                                                                           ASSIS, date du XIXe siècle. Le château d'Assis a été édifié sur l'emplacement d'un ancien château de même nom. Il fut la propriété successive des familles Boutier ou Bouttier (en 1360 et en 1428), Le Scauff (en 1480), de Lestang (en 1513), Louis sieurs de Monteclert (en 1716), puis de la famille Locquet sieurs de la Chardonnière, en 1735. C'est devenu le Gite Ti Braz.                                                           HAUTE DIBOIS, construit à partir de 1894 par l'architecte rennais Jean Marie Laloy pour M. de Miniac. Les travaux se sont poursuivis jusqu'en 1897. Le château peut apparaître comme le premier d'une suite d'édifices réalisés par Jean Marie Laloy dans le style gothique flamboyant, l'hôtel le Chapelier (1898) à Rennes rue de Viarmes et le château de Kerriou en Gouézec (1906). Le château de la Haute Dibois, de plan massé, est composé d'un corps de logis augmenté de plusieurs corps et pavillons secondaires. La façade principale est animée d'une échauguette sur l'angle, une série de décrochements, une tourelle de plan carré hors-oeuvre abritant le porche d'entrée et par un escalier extérieur.  Le bâtiment comporte un rez-de-chaussée surélevé, un étage carré et un étage de comble. Maçonnerie en moellon de granite avec soubassement, bandeaux horizontaux, encadrements de baies, chaînes d'angle, corniche et lucarnes en pierre de taille.</p>
-      <h4>Architecture</h4><p>BEAUREGARD, date du XV au XVIe siècle, a été édifié par Guillaume Le Voyer, scholastique de Dol. On y aperçoit ses tours carrées. Il possédait jadis une chapelle privée et dédiée à Sainte-Barbe. François Le Lièvre, Seigneur de Beauregard, et Catherine Crosnier, sa femme, fondèrent cette chapelle le 10 octobre 1699 et s'en réservèrent la présentation. Le premier chapelain du château de Beauregard fut Jean-Baptiste Le Lièvre, décédé vers 1709. Il fut remplacé le 16 janvier 1710 par Jean Le Mardelé. Le dernier fut Julien Jouye, en 1789  (Pouillé de Rennes). La propriété de la Famille le Lièvre date du XVIIe siècle. 
-<br>LAUNAY-BLOT, sa construction appelée la Malouinière de Launay-Blot date du XVIIe siècle. Proche de Dol-de-Bretagne, le château de Launay-Blot est entouré d'un jardin privé, en bordure du canal. Le Manoir de Launay-Blot est la propriété de la Famille Boutier ou Bouttier en 1480 (Rolland Boutier) puis, en 1513, de la Famille Locquet, sieurs de la Chardonnière au milieu du XVIIe siècle. Il fut occupé par Michel Locquet durant la Révolution.                                                                                   TOURAUDE, le vieux manoir de Touraude, en 1513 à Amaury de la Moussaye, devint ensuite la propriété de la famille de Gouyon. Charles Gouyon, en 1652 et, Nicolas Gouyon, en 1682, furent ensuite les seigneurs de Touraude. A une époque reculée, une chapelle fut bâtie au coin du jardin du manoir, mais en 1723, il n'en restait plus que les ruines du pignon avec la porte et une fenêtre au-dessus, et en 1741 il ne s'y trouvait plus qu'un vieux chêne. Le seigneur de Touraude, qui avait acheté, en 1675, la terre de Beaufort, en Plerguer, fit, en 1723, desservir dans la chapelle de ce dernier manoir, toutes les messes fondées dans celle de Touraude. Le Manoir de la Touraude fut ensuite transmis, en 1513, à la famille de la Moussaye, puis en 1652, à la Famille de Gouyon.</p>
-      <h4>Habitants / Familles</h4><p>Assis;   Famille Boutier                                                           Haute Dibois Famille de M. de Miniac                    Beauregard; Famille le Lièvre                                          Launay-Blot.Famille Boutier                                                     Touraude; Famille de Gouyon
-<br>        "</p>
-      <h4>Divers</h4><p>Cinq châteaux à Baguer; Assis grav-2, Haute-Dibois Grav  5-6, Beauregard grav 3-4, Launay-Blot et Touraude grav-7. Halouze grav-8                                                           Beauregard GPS : 48° 31' 30" Nord, 1° 46" 26" Ouest                                       Launay-Blot grav-1GPS : 48° 31' 30" Nord, 1° 46' 26" Ouest                                        Touraude GPS : 48° 31' 30" Nord, 1° 46' 26" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Cinq châteaux à Baguer; Assis, Haute-Dibois, Beauregard, Launay-Blot et Touraude.                                                                                           ASSIS, date du XIXe siècle. Le château d'Assis a été édifié sur l'emplacement d'un ancien château de même nom. Il fut la propriété successive des familles Boutier ou Bouttier (en 1360 et en 1428), Le Scauff (en 1480), de Lestang (en 1513), Louis sieurs de Monteclert (en 1716), puis de la famille Locquet sieurs de la Chardonnière, en 1735. C'est devenu le Gite Ti Braz.                                                           HAUTE DIBOIS, construit à partir de 1894 par l'architecte rennais Jean Marie Laloy pour M. de Miniac. Les travaux se sont poursuivis jusqu'en 1897. Le château peut apparaître comme le premier d'une suite d'édifices réalisés par Jean Marie Laloy dans le style gothique flamboyant, l'hôtel le Chapelier (1898) à Rennes rue de Viarmes et le château de Kerriou en Gouézec (1906). Le château de la Haute Dibois, de plan massé, est composé d'un corps de logis augmenté de plusieurs corps et pavillons secondaires. La façade principale est animée d'une échauguette sur l'angle, une série de décrochements, une tourelle de plan carré hors-oeuvre abritant le porche d'entrée et par un escalier extérieur.  Le bâtiment comporte un rez-de-chaussée surélevé, un étage carré et un étage de comble. Maçonnerie en moellon de granite avec soubassement, bandeaux horizontaux, encadrements de baies, chaînes d'angle, corniche et lucarnes en pierre de taille.</p>
+<h4>Architecture</h4><p>BEAUREGARD, date du XV au XVIe siècle, a été édifié par Guillaume Le Voyer, scholastique de Dol. On y aperçoit ses tours carrées. Il possédait jadis une chapelle privée et dédiée à Sainte-Barbe. François Le Lièvre, Seigneur de Beauregard, et Catherine Crosnier, sa femme, fondèrent cette chapelle le 10 octobre 1699 et s'en réservèrent la présentation. Le premier chapelain du château de Beauregard fut Jean-Baptiste Le Lièvre, décédé vers 1709. Il fut remplacé le 16 janvier 1710 par Jean Le Mardelé. Le dernier fut Julien Jouye, en 1789  (Pouillé de Rennes). La propriété de la Famille le Lièvre date du XVIIe siècle. 
+<br/>LAUNAY-BLOT, sa construction appelée la Malouinière de Launay-Blot date du XVIIe siècle. Proche de Dol-de-Bretagne, le château de Launay-Blot est entouré d'un jardin privé, en bordure du canal. Le Manoir de Launay-Blot est la propriété de la Famille Boutier ou Bouttier en 1480 (Rolland Boutier) puis, en 1513, de la Famille Locquet, sieurs de la Chardonnière au milieu du XVIIe siècle. Il fut occupé par Michel Locquet durant la Révolution.                                                                                   TOURAUDE, le vieux manoir de Touraude, en 1513 à Amaury de la Moussaye, devint ensuite la propriété de la famille de Gouyon. Charles Gouyon, en 1652 et, Nicolas Gouyon, en 1682, furent ensuite les seigneurs de Touraude. A une époque reculée, une chapelle fut bâtie au coin du jardin du manoir, mais en 1723, il n'en restait plus que les ruines du pignon avec la porte et une fenêtre au-dessus, et en 1741 il ne s'y trouvait plus qu'un vieux chêne. Le seigneur de Touraude, qui avait acheté, en 1675, la terre de Beaufort, en Plerguer, fit, en 1723, desservir dans la chapelle de ce dernier manoir, toutes les messes fondées dans celle de Touraude. Le Manoir de la Touraude fut ensuite transmis, en 1513, à la famille de la Moussaye, puis en 1652, à la Famille de Gouyon.</p>
+<h4>Habitants / Familles</h4><p>Assis;   Famille Boutier                                                           Haute Dibois Famille de M. de Miniac                    Beauregard; Famille le Lièvre                                          Launay-Blot.Famille Boutier                                                     Touraude; Famille de Gouyon
+<br/>        "</p>
+<h4>Divers</h4><p>Cinq châteaux à Baguer; Assis grav-2, Haute-Dibois Grav  5-6, Beauregard grav 3-4, Launay-Blot et Touraude grav-7. Halouze grav-8                                                           Beauregard GPS : 48° 31' 30" Nord, 1° 46" 26" Ouest                                       Launay-Blot grav-1GPS : 48° 31' 30" Nord, 1° 46' 26" Ouest                                        Touraude GPS : 48° 31' 30" Nord, 1° 46' 26" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

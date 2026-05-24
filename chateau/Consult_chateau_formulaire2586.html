@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Hayes_du_Puits — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,57 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_50.html">Manche</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_50.html">Manche</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_50.html" class="back-link">Retour au département 50 — Manche</a>
-  <div class="fiche">
-    <h2>Hayes_du_Puits</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>50 — Manche</td></tr>
-          <tr><td>Canton</td><td>Créances</td></tr>
-          <tr><td>Commune</td><td>La Hayes du Puits</td></tr>
-          <tr><td>Type d'édifice</td><td>Forteresse-Vestiges</td></tr>
-          <tr><td>Période d'origine</td><td>XI-XIII-XV</td></tr>
-          <tr><td>Coordonnées GPS</td><td>49° 16' 51,2" Nord, 1° 39' 21,16" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_50/50_Hayes_du_Puits_1.jpg" alt="Hayes_du_Puits" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Hayes_du_Puits_2.jpg" alt="Hayes_du_Puits" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Hayes_du_Puits_3.jpg" alt="Hayes_du_Puits" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Hayes_du_Puits_4.jpg" alt="Hayes_du_Puits" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_50.html">Retour au département 50 — Manche</a>
+<div class="fiche">
+<h2>Hayes_du_Puits</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Hayes_du_Puits" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_50/50_Hayes_du_Puits_1.jpg"/><div class="hero-count" id="hero-count">1 / 4</div></div><div class="photo-strip"><img alt="Hayes_du_Puits" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Hayes_du_Puits_1.jpg"/><img alt="Hayes_du_Puits" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Hayes_du_Puits_2.jpg"/><img alt="Hayes_du_Puits" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Hayes_du_Puits_3.jpg"/><img alt="Hayes_du_Puits" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Hayes_du_Puits_4.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>50 — Manche</td></tr>
+<tr><td>Canton</td><td>Créances</td></tr>
+<tr><td>Commune</td><td>La Hayes du Puits</td></tr>
+<tr><td>Type d'édifice</td><td>Forteresse-Vestiges</td></tr>
+<tr><td>Période d'origine</td><td>XI-XIII-XV</td></tr>
+<tr><td>Coordonnées GPS</td><td>49° 16' 51,2" Nord, 1° 39' 21,16" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Trois châteaux dans cet article  la Hayes du Puits, et Surville.                                                                                           LA HAYES DU PUITS, le château fort de La Haye du Puits dont il ne reste que le donjon, édifié sur une motte féodale ou castrale aurait été construit au XIe siècle par Turstin Haldup, dorigine scandinave et baron de La Haye du Puits. Au XIIe siècle, la forteresse est le fief de Richard le La Haye dont l'épouse Mathilde de Vernon fonde l'abbaye de Blanchelande. La guerre de Cens Ans terminée, la baronnie changea de maître puisque l'on retrouve en 1491, Christophe de Cerisay, futur bailli du Cotentin, qui se porte acquéreur de La Haye du Puits. Le château a changé de nombreuses fois de propriétaire. Il a même appartenu aux pauvres du IXe arrondissement de Paris, qui lavaient reçu en legs en 1875. La partie Nord, la plus ancienne, fut rachetée par M. Dauvin dont un membre de la famille la léguée à Mlle Lecanu qui lhabite depuis 1947. Lautre partie, vendue à part, a été endommagée en 1944 et a subi des transformations. Elle appartient depuis  2005, à M. Bataille qui la aménagée en appartements. Seule la tour carrée a été restaurée avec un toit semblable à loriginal, la tour Renaissance a conservé son aspect initial. De l'important château il ne reste qu'un Pavillon carré accosté d'une tour polygonale. La baronnie de la Haye du Puits était aux mains d'Arthur de Magneville au XVIe siècle, puis aux Motteville et aux Caillebot de la Salle.
-<br> classement par liste de 1840.                                                                      DONJON HAYE, est l'un des plus anciens de La Manche (XIe siècle). Il est le seul vestige du château fort (et de ses douves) qui surplombait autrefois les environs.  Sur place, un panneau explicatif accompagne la découverte.</p>
-      <h4>Architecture</h4><p>La HAYE du PUITS, du XIe et XIIe siècles, était bâti sur une motte féodale d'une hauteur variant entre 6 et 7 mètres. Il n'en subsiste que des vestiges. La plupart des murailles se sont écroulées dès 1850. Le reste du château a également subi des destructions pendant la bataille de La Haye-du-Puits en 1944. Seul le donjon, remanié au XVe siècle, percement des baies et couronnement de mâchicoulis, est encore visible actuellement : c'est une tour carrée denviron 5 mètres de côté pour une hauteur totale de plus de 20 mètres à partir de la route. À lintérieur, l'escalier en colimaçon compte 72 marches. La tour de plan carré est percée d'une large porte en arc brisé. On y voit encore les fentes servant à la manuvre du pont-levis. Des arrachements de courtines présents sur les deux flancs de la tour laisse suggérer la chemise disparue. Nous serions donc en présence d'une motte fortifiée du type shell-Keep, type peu courant dans la région.Il reste par contre en face de la rue un « second château », ancien manoir, qui fut construit par Arthur de Magneville au début du XVIe siècle et remanié au XVIe?-?XVIIe siècle. L'ensemble fut construit de l'autre côté des douves et donne par sa composition une impression de « basse-cour ». L'édifice comporte plusieurs tours et une cave avec des voûtes. Une porte ouvragée permet d'accéder à la tourelle.   A dix K.M. à l'ouest à SURVILLE un château; petit village du littoral ouest du Cotentin est situé face aux îles anglo-normandes (Jersey et Guernesey).  Le château de Surville est en bord de mer, le long des dunes (havre de Surville) dans un site protégé.  Le château de Surville est loué pour fêter vos événements (mariages, baptêmes, séminaires, etc.).</p>
-      <h4>Habitants / Familles</h4><p>Haye; Christophe de Cerisay
-<br>        "</p>
-      <h4>Divers</h4><p>Trois châteaux dans cet article  la Hayes du Puits, le donjon et Surville.                                                                                     Surville  GPS: 49° 16' 51,2" Nord, 1° 39' 21,16" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Trois châteaux dans cet article  la Hayes du Puits, et Surville.                                                                                           LA HAYES DU PUITS, le château fort de La Haye du Puits dont il ne reste que le donjon, édifié sur une motte féodale ou castrale aurait été construit au XIe siècle par Turstin Haldup, dorigine scandinave et baron de La Haye du Puits. Au XIIe siècle, la forteresse est le fief de Richard le La Haye dont l'épouse Mathilde de Vernon fonde l'abbaye de Blanchelande. La guerre de Cens Ans terminée, la baronnie changea de maître puisque l'on retrouve en 1491, Christophe de Cerisay, futur bailli du Cotentin, qui se porte acquéreur de La Haye du Puits. Le château a changé de nombreuses fois de propriétaire. Il a même appartenu aux pauvres du IXe arrondissement de Paris, qui lavaient reçu en legs en 1875. La partie Nord, la plus ancienne, fut rachetée par M. Dauvin dont un membre de la famille la léguée à Mlle Lecanu qui lhabite depuis 1947. Lautre partie, vendue à part, a été endommagée en 1944 et a subi des transformations. Elle appartient depuis  2005, à M. Bataille qui la aménagée en appartements. Seule la tour carrée a été restaurée avec un toit semblable à loriginal, la tour Renaissance a conservé son aspect initial. De l'important château il ne reste qu'un Pavillon carré accosté d'une tour polygonale. La baronnie de la Haye du Puits était aux mains d'Arthur de Magneville au XVIe siècle, puis aux Motteville et aux Caillebot de la Salle.
+<br/> classement par liste de 1840.                                                                      DONJON HAYE, est l'un des plus anciens de La Manche (XIe siècle). Il est le seul vestige du château fort (et de ses douves) qui surplombait autrefois les environs.  Sur place, un panneau explicatif accompagne la découverte.</p>
+<h4>Architecture</h4><p>La HAYE du PUITS, du XIe et XIIe siècles, était bâti sur une motte féodale d'une hauteur variant entre 6 et 7 mètres. Il n'en subsiste que des vestiges. La plupart des murailles se sont écroulées dès 1850. Le reste du château a également subi des destructions pendant la bataille de La Haye-du-Puits en 1944. Seul le donjon, remanié au XVe siècle, percement des baies et couronnement de mâchicoulis, est encore visible actuellement : c'est une tour carrée denviron 5 mètres de côté pour une hauteur totale de plus de 20 mètres à partir de la route. À lintérieur, l'escalier en colimaçon compte 72 marches. La tour de plan carré est percée d'une large porte en arc brisé. On y voit encore les fentes servant à la manuvre du pont-levis. Des arrachements de courtines présents sur les deux flancs de la tour laisse suggérer la chemise disparue. Nous serions donc en présence d'une motte fortifiée du type shell-Keep, type peu courant dans la région.Il reste par contre en face de la rue un « second château », ancien manoir, qui fut construit par Arthur de Magneville au début du XVIe siècle et remanié au XVIe?-?XVIIe siècle. L'ensemble fut construit de l'autre côté des douves et donne par sa composition une impression de « basse-cour ». L'édifice comporte plusieurs tours et une cave avec des voûtes. Une porte ouvragée permet d'accéder à la tourelle.   A dix K.M. à l'ouest à SURVILLE un château; petit village du littoral ouest du Cotentin est situé face aux îles anglo-normandes (Jersey et Guernesey).  Le château de Surville est en bord de mer, le long des dunes (havre de Surville) dans un site protégé.  Le château de Surville est loué pour fêter vos événements (mariages, baptêmes, séminaires, etc.).</p>
+<h4>Habitants / Familles</h4><p>Haye; Christophe de Cerisay
+<br/>        "</p>
+<h4>Divers</h4><p>Trois châteaux dans cet article  la Hayes du Puits, le donjon et Surville.                                                                                     Surville  GPS: 49° 16' 51,2" Nord, 1° 39' 21,16" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

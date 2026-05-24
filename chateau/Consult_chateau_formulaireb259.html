@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Javerlhac — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,60 +113,62 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_24.html">Dordogne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_24.html">Dordogne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_24.html" class="back-link">Retour au département 24 — Dordogne</a>
-  <div class="fiche">
-    <h2>Javerlhac</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>24 — Dordogne</td></tr>
-          <tr><td>Canton</td><td>Nontron</td></tr>
-          <tr><td>Commune</td><td>Javerlhac et la chapelle st-Robrert</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVI</td></tr>
-          <tr><td>Coordonnées GPS</td><td>45° 34' 6,8" Nord, 0° 33' 33,5" Est                                       Puymoyer-  Le Logis  grav 3-4  GPS : 45° 34' 14" Nord, 0° 33' 41" Est</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_24/24_Javerlhac_1.jpg" alt="Javerlhac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Javerlhac_2.jpg" alt="Javerlhac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Javerlhac_3.jpg" alt="Javerlhac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Javerlhac_4.jpg" alt="Javerlhac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Javerlhac_5.jpg" alt="Javerlhac" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_24.html">Retour au département 24 — Dordogne</a>
+<div class="fiche">
+<h2>Javerlhac</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Javerlhac" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_24/24_Javerlhac_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Javerlhac" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Javerlhac_1.jpg"/><img alt="Javerlhac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Javerlhac_2.jpg"/><img alt="Javerlhac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Javerlhac_3.jpg"/><img alt="Javerlhac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Javerlhac_4.jpg"/><img alt="Javerlhac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Javerlhac_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>24 — Dordogne</td></tr>
+<tr><td>Canton</td><td>Nontron</td></tr>
+<tr><td>Commune</td><td>Javerlhac et la chapelle st-Robrert</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVI</td></tr>
+<tr><td>Coordonnées GPS</td><td>45° 34' 6,8" Nord, 0° 33' 33,5" Est                                       Puymoyer-  Le Logis  grav 3-4  GPS : 45° 34' 14" Nord, 0° 33' 41" Est</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Le manoir du Logis construit en 1882 à l'emplacement de l'ancienne maison de maître de la fin du XVe siècle.
-<br>JAVERLHAC, le premier seigneur du château de Javerlhac connu est Renout (1225), puis son fils Bernard Ramnulphi 1248, et Aymeric Vigier. Au cours de la guerre de cent ans, en 1369, le château est incendié par Edmond de Langley, comte de Cambridge. De cette première bâtisse restent certaines assisses basses des murs et de frustes ouvertures.  En 1499, Dauphin Pastoureau, receveur pour le vicomte de Limoges des cens et rentes de la châtellenie de Nontron, achète la seigneurie de Javerlhac et restaure le château. Louis de Rochechouart: plusieurs Louis sont connus, trois au XIVe siècle, un autre Louis vécut de 1550 à 1590. Jehan de Maulmont (au XVIe siècle, aussi propriétaire du château de Vieillecour (commune de Saint-Pierre-de-Frugie). Etant donné que Dauphin Pastoureau acheta le château en 1499, il s'agit probablement d'un de ses ancêtres. En 1507, Barthélemy Texier épouse Jeanne Pastourelle. La branche des Texier, marquis de Javerlhac, disparaîtra en 1821. Le fermier d'alors rachète le château qui devient successivement la propriété des Fompuy-Boulouneix, Mousnier-Lompré, et de nos jours Pelpel-Rochette.
-<br>PUYMOYER du XVIIe siècle, fief des Gaultier, des Bouneau et des Desmarets, le château reconstruit au XIXe siècle par les Desmarets batonnier à Paris, l'édifice  est flanqué de deux tours, l'une circulaire à toit pointu l'autre octogonale avec mâchicoulis et d'une tour en encorbellement.</p>
-      <h4>Architecture</h4><p>JAVERLHAC, la construction date du XVIe siècle. Il est inscrit aux M.H. depuis 1974 pour ses toitures et façades. le château actuel est une construction du XVIe siècle. une tour hexagonale et lescalier à vis restauré, la façade et les ouvertures Renaissance ainsi que la tour à mâchicoulis. A côté, se trouvent un pigeonnier et un moulin à eau, serant à la la fabrication d'huile de noix. Françoise de La Chassaigne (v. 1545 - v. 1602), fille d'un seigneur de Javerlhac, était l'épouse de Michel de Montaigne.
-<br>Le manoir du Logis est un manoir bâti à Javerlhac-et-la-Chapelle-Saint-Robert,  Il a été construit en 1882, sur l'emplacement de l'ancienne maison de maître, qui datait de la fin du XVe siècle.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Barthélemy Texier
-<br>        "</p>
-      <h4>Divers</h4><p>AJaverlhac et la chapelle st-Robert;      Javerlhac  grav 1-2-3 GPS : 45° 34' 6,8" Nord, 0° 33' 33,5" Est                                       Puymoyer-  Le Logis  grav 3-4  GPS : 45° 34' 14" Nord, 0° 33' 41" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Le manoir du Logis construit en 1882 à l'emplacement de l'ancienne maison de maître de la fin du XVe siècle.
+<br/>JAVERLHAC, le premier seigneur du château de Javerlhac connu est Renout (1225), puis son fils Bernard Ramnulphi 1248, et Aymeric Vigier. Au cours de la guerre de cent ans, en 1369, le château est incendié par Edmond de Langley, comte de Cambridge. De cette première bâtisse restent certaines assisses basses des murs et de frustes ouvertures.  En 1499, Dauphin Pastoureau, receveur pour le vicomte de Limoges des cens et rentes de la châtellenie de Nontron, achète la seigneurie de Javerlhac et restaure le château. Louis de Rochechouart: plusieurs Louis sont connus, trois au XIVe siècle, un autre Louis vécut de 1550 à 1590. Jehan de Maulmont (au XVIe siècle, aussi propriétaire du château de Vieillecour (commune de Saint-Pierre-de-Frugie). Etant donné que Dauphin Pastoureau acheta le château en 1499, il s'agit probablement d'un de ses ancêtres. En 1507, Barthélemy Texier épouse Jeanne Pastourelle. La branche des Texier, marquis de Javerlhac, disparaîtra en 1821. Le fermier d'alors rachète le château qui devient successivement la propriété des Fompuy-Boulouneix, Mousnier-Lompré, et de nos jours Pelpel-Rochette.
+<br/>PUYMOYER du XVIIe siècle, fief des Gaultier, des Bouneau et des Desmarets, le château reconstruit au XIXe siècle par les Desmarets batonnier à Paris, l'édifice  est flanqué de deux tours, l'une circulaire à toit pointu l'autre octogonale avec mâchicoulis et d'une tour en encorbellement.</p>
+<h4>Architecture</h4><p>JAVERLHAC, la construction date du XVIe siècle. Il est inscrit aux M.H. depuis 1974 pour ses toitures et façades. le château actuel est une construction du XVIe siècle. une tour hexagonale et lescalier à vis restauré, la façade et les ouvertures Renaissance ainsi que la tour à mâchicoulis. A côté, se trouvent un pigeonnier et un moulin à eau, serant à la la fabrication d'huile de noix. Françoise de La Chassaigne (v. 1545 - v. 1602), fille d'un seigneur de Javerlhac, était l'épouse de Michel de Montaigne.
+<br/>Le manoir du Logis est un manoir bâti à Javerlhac-et-la-Chapelle-Saint-Robert,  Il a été construit en 1882, sur l'emplacement de l'ancienne maison de maître, qui datait de la fin du XVe siècle.</p>
+<h4>Habitants / Familles</h4><p>Famille de Barthélemy Texier
+<br/>        "</p>
+<h4>Divers</h4><p>AJaverlhac et la chapelle st-Robert;      Javerlhac  grav 1-2-3 GPS : 45° 34' 6,8" Nord, 0° 33' 33,5" Est                                       Puymoyer-  Le Logis  grav 3-4  GPS : 45° 34' 14" Nord, 0° 33' 41" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

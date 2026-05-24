@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Ardon — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,56 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_45.html">Loiret</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_45.html">Loiret</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_45.html" class="back-link">Retour au département 45 — Loiret</a>
-  <div class="fiche">
-    <h2>Ardon</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>45 — Loiret</td></tr>
-          <tr><td>Canton</td><td>Ferté-Sain-Aubin</td></tr>
-          <tr><td>Commune</td><td>Ardon</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_45/45_Ardon_1.jpg" alt="Ardon" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Ardon_2.jpg" alt="Ardon" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Ardon_3.jpg" alt="Ardon" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Ardon_4.jpg" alt="Ardon" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_45.html">Retour au département 45 — Loiret</a>
+<div class="fiche">
+<h2>Ardon</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Ardon" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_45/45_Ardon_1.jpg"/><div class="hero-count" id="hero-count">1 / 4</div></div><div class="photo-strip"><img alt="Ardon" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Ardon_1.jpg"/><img alt="Ardon" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Ardon_2.jpg"/><img alt="Ardon" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Ardon_3.jpg"/><img alt="Ardon" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Ardon_4.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>45 — Loiret</td></tr>
+<tr><td>Canton</td><td>Ferté-Sain-Aubin</td></tr>
+<tr><td>Commune</td><td>Ardon</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Quatre châteaux dans cet article  Buglin, Madères, Renardière, Rousselière et Villiers.                                                                                                           ROUSSELIERE, dont il ne reste qu'une partie, est moins un château qu'un manoir qui appartint à M. Houël, architecte à Paris qui le reconstruisit et l'agrandit vers 1890. Il est lié au souvenir de Laréveillère Lepeaux, conventionnel, membre du Directoire, qui l'acheta le 13 messidor an XII, des époux Chauvet, alors qu'il habitait avec sa femme Céline à Paris. Le député arriva en septembre 1804 au château où il passa ses dernières années dans la disgrâce et l'oubli. M. Légier, député au conseil des Cinq-Cents, a également habité La Rousselière.                                                                     BUGLAIN, avant la Révolution, à une des branches de la famille d'Orléans. La seigneurie était annexée au duché du même nom, Madeleine d'Orléans devint, le 22 vendémiaire an XII, propriétaire au titre d'héritière de sa mère, Françoise de Troyes. Madeleine d'Orléans vendit ce domaine, le 25 août 1800, à Thomas-Philippe Lézier, conseiller à la cour d'Orléans, qui le laissa à son neveu, Germain-Nicolas, avocat à la susdite cour. C'est des héritiers de Germain-Nicolas qu'en 1852, M. Dominique Delafon l'acheta. Il mourut en juin 1890, à l'âge de 80 ans après une magistrature de 38 années à la mairie d'Ardon. Il laissait une veuve qui, âgée de 85 ans, habitait encore le château avec ses enfants.</p>
-      <h4>Architecture</h4><p>RENARDIERE,   deux tours rondes semblent monter la garde devant cette demeure du XIXe siècle, qui font à l'entrée comme un aspect terrible, mais que l'accueil dément aussitôt. Le bâtiment principal à deux étages carrés couvert d'ardoise, est prolongé de deux pavillons asymétriques, dont l'un est surhaussé d'un étage.                                                                                                                         VILLIERS, le château de Villiers a été construit vers 1885 pour la famille d'Aubrun en style néo-Louis XIII, selon la tradition largement répandue du château de chasse solognot. Il développe à l'est et à l'ouest ses deux façades en brique et pierre de taille, au centre desquelles un beau pavillon avancé et à trois pans élève sa toiture légère et majestueuse en même temps et sur les cheminées se détachent les chiffres des châtelains. Sur la façade nord est accolée une chapelle dont le toit plat à balustre fait terrasse aux fenêtres du premier étage.</p>
-      <h4>Habitants / Familles</h4><p>Rousselière, Famille Chauvet                             Buglain;Thomas-Philippe Lézier                                                    Villiers; famille d'Aubrun
-<br>        "</p>
-      <h4>Divers</h4><p>Quatre châteaux à Ardon;   Buglain grav-1, Madères grav-3, Renardière grav-2, Rousselière et Villiers-4.                                                                                Buglain  47° 45' 45" nord, 1° 52' 10" est                                         Madères     47° 43' 59" nord, 1° 53' 27" est                                   Renardière   47° 46' 25" nord, 1° 52' 39" est                                      Rousseliere-Buglain  47° 45' 52" nord, 1° 53' 07" est                                       Villiers 47° 47' 50" nord, 1° 53' 24" est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Quatre châteaux dans cet article  Buglin, Madères, Renardière, Rousselière et Villiers.                                                                                                           ROUSSELIERE, dont il ne reste qu'une partie, est moins un château qu'un manoir qui appartint à M. Houël, architecte à Paris qui le reconstruisit et l'agrandit vers 1890. Il est lié au souvenir de Laréveillère Lepeaux, conventionnel, membre du Directoire, qui l'acheta le 13 messidor an XII, des époux Chauvet, alors qu'il habitait avec sa femme Céline à Paris. Le député arriva en septembre 1804 au château où il passa ses dernières années dans la disgrâce et l'oubli. M. Légier, député au conseil des Cinq-Cents, a également habité La Rousselière.                                                                     BUGLAIN, avant la Révolution, à une des branches de la famille d'Orléans. La seigneurie était annexée au duché du même nom, Madeleine d'Orléans devint, le 22 vendémiaire an XII, propriétaire au titre d'héritière de sa mère, Françoise de Troyes. Madeleine d'Orléans vendit ce domaine, le 25 août 1800, à Thomas-Philippe Lézier, conseiller à la cour d'Orléans, qui le laissa à son neveu, Germain-Nicolas, avocat à la susdite cour. C'est des héritiers de Germain-Nicolas qu'en 1852, M. Dominique Delafon l'acheta. Il mourut en juin 1890, à l'âge de 80 ans après une magistrature de 38 années à la mairie d'Ardon. Il laissait une veuve qui, âgée de 85 ans, habitait encore le château avec ses enfants.</p>
+<h4>Architecture</h4><p>RENARDIERE,   deux tours rondes semblent monter la garde devant cette demeure du XIXe siècle, qui font à l'entrée comme un aspect terrible, mais que l'accueil dément aussitôt. Le bâtiment principal à deux étages carrés couvert d'ardoise, est prolongé de deux pavillons asymétriques, dont l'un est surhaussé d'un étage.                                                                                                                         VILLIERS, le château de Villiers a été construit vers 1885 pour la famille d'Aubrun en style néo-Louis XIII, selon la tradition largement répandue du château de chasse solognot. Il développe à l'est et à l'ouest ses deux façades en brique et pierre de taille, au centre desquelles un beau pavillon avancé et à trois pans élève sa toiture légère et majestueuse en même temps et sur les cheminées se détachent les chiffres des châtelains. Sur la façade nord est accolée une chapelle dont le toit plat à balustre fait terrasse aux fenêtres du premier étage.</p>
+<h4>Habitants / Familles</h4><p>Rousselière, Famille Chauvet                             Buglain;Thomas-Philippe Lézier                                                    Villiers; famille d'Aubrun
+<br/>        "</p>
+<h4>Divers</h4><p>Quatre châteaux à Ardon;   Buglain grav-1, Madères grav-3, Renardière grav-2, Rousselière et Villiers-4.                                                                                Buglain  47° 45' 45" nord, 1° 52' 10" est                                         Madères     47° 43' 59" nord, 1° 53' 27" est                                   Renardière   47° 46' 25" nord, 1° 52' 39" est                                      Rousseliere-Buglain  47° 45' 52" nord, 1° 53' 07" est                                       Villiers 47° 47' 50" nord, 1° 53' 24" est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

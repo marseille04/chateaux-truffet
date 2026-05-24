@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Béduer — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_46.html">Lot</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_46.html">Lot</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_46.html" class="back-link">Retour au département 46 — Lot</a>
-  <div class="fiche">
-    <h2>Béduer</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>46 — Lot</td></tr>
-          <tr><td>Canton</td><td>Figeac</td></tr>
-          <tr><td>Commune</td><td>Béduer</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIV</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_46/46_Beduer_1.jpg" alt="Béduer" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Beduer_2.jpg" alt="Béduer" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Beduer_3.jpg" alt="Béduer" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Beduer_4.jpg" alt="Béduer" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_46.html">Retour au département 46 — Lot</a>
+<div class="fiche">
+<h2>Béduer</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Béduer" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_46/46_Beduer_1.jpg"/><div class="hero-count" id="hero-count">1 / 4</div></div><div class="photo-strip"><img alt="Béduer" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Beduer_1.jpg"/><img alt="Béduer" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Beduer_2.jpg"/><img alt="Béduer" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Beduer_3.jpg"/><img alt="Béduer" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Beduer_4.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>46 — Lot</td></tr>
+<tr><td>Canton</td><td>Figeac</td></tr>
+<tr><td>Commune</td><td>Béduer</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIV</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>BEDUER, le fief de Béduer est aux Barasc depuis le Xe siècle et restera dans cette famille jusqu'au XVIe siècle. Le premier membre de la famille connu est Dieudonné Ier Barasc, né vers 1030, mort en 1085. Son fils Pierre Ier Barasc, né vers 1055, mort après 1096, il meurt en Terre Sainte. Pierre II Barasc, né vers 1080, père de Guiraud Barasc vers 1110. Dans cette  famille jusqu'en 1599. Après une série de conflits, la seigneurie de Béduer devient en 1594 la propriété de Jean de  Narbonès. Il s'était marié en 1568 avec Jeanne de Luzech. Après la mort de Jean de Narbonès, Jeanne de Luzech décédée en 1610, s'est remariée  avec Louis François de Lostanges , seigneur de Saint-Alvère, devient baron de Béduer,  Louis François de Lostanges se remarie en 1610 avec Jeanne de Marqueyssac de Saint-Pantaly, baronne de Bruzac. Leur fils, Jean Louis de Lostanges, comte de Béduer, marié à Françoise de Gourdon de Genouillac, puis François Louis de Lostanges, marquis de Béduer.  La famille de Lostanges est restée seigneur de Béduer jusqu'à la Révolution. Henri de Lostanges a été le dernier gouverneur et sénéchal du Quercy. Homme affable, il a évité la destruction du château. Les Lostanges résidant peu au château, ils le vendent en 1874 aux surs de la Sainte-Famille qui y ont ouvert une école pour les enfants du village. Ne pouvant assumer la charge financière, les moniales cédèrent le château aux Lostanges qui l'ont vendu en 1886 aux Colrat de Montrozier. Maurice Fenaille s'est marié en 1887 avec la plus jeune de la famille. Ayant fait fortune dans l'industrie pétrolière, il va consacrer une partie de sa fortune à sauver le château de Montal. Maurice Fenaille a acheté le château de Béduer à son beau-père en 1911 et a entrepris de le restaurer. À la mort de Maurice Fenaille, sa veuve vendit le château, en 1939, à une femme de lettres, Jeanne Loviton, mieux connue sous son nom de plume, Jean Voilier.</p>
-      <h4>Architecture</h4><p>Château médiéval de Béduer, il ne reste pas grand-chose : la tour arasée du XIIIe siècle est le vestige le plus considérable après l'une importante opération de rénovation menée au XVIIe siècle. Le donjon sans contreforts avait une hauteur de 60 m et n'a pu être sauvé à la Révolution qu'en diminuant sa hauteur d'une vingtaine de mètres. Il en subsiste le rez-de-chaussée qui n'avait aucune ouverture à l'origine, surmonté de deux salles. La première est percée de meurtrières, la seconde a une fenêtre ternée sous un arc de décharge. L'ensemble des logis a été modifié ou construit au XVIIe siècle. Ils entourent une cour ouvrant sur la vallée du Célé. La façade sud conserve les éléments les plus anciens de l'édifice, le donjon et l'ancien beffroi à droite de l'entrée. On accède à la cour par un portail qui porte les traces de l'ancien pont-levis. Au-dessus se trouvent des armoiries. À l'intérieur, on peut voir l'ancienne cuisine et la grande salle où se sont réunis, trois fois, les états généraux du Quercy au XIVe siècle avec une belle cheminée du XVe siècle sur laquelle sont sculptés les blasons de Dieudonné de Barasc et d'Antonia de Gimel, de son fils Dieudonné et de Claude de Balzac, son épouse. Le plafond de la salle est décoré de poutres polychromes. Le porche d'entrée est à bossage. Ce porche et les façades ainsi que la toiture du donjon ont été inscrits aux monuments historiques le 25 juillet 1973.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Barsac
-<br>        
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Béduer.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>BEDUER, le fief de Béduer est aux Barasc depuis le Xe siècle et restera dans cette famille jusqu'au XVIe siècle. Le premier membre de la famille connu est Dieudonné Ier Barasc, né vers 1030, mort en 1085. Son fils Pierre Ier Barasc, né vers 1055, mort après 1096, il meurt en Terre Sainte. Pierre II Barasc, né vers 1080, père de Guiraud Barasc vers 1110. Dans cette  famille jusqu'en 1599. Après une série de conflits, la seigneurie de Béduer devient en 1594 la propriété de Jean de  Narbonès. Il s'était marié en 1568 avec Jeanne de Luzech. Après la mort de Jean de Narbonès, Jeanne de Luzech décédée en 1610, s'est remariée  avec Louis François de Lostanges , seigneur de Saint-Alvère, devient baron de Béduer,  Louis François de Lostanges se remarie en 1610 avec Jeanne de Marqueyssac de Saint-Pantaly, baronne de Bruzac. Leur fils, Jean Louis de Lostanges, comte de Béduer, marié à Françoise de Gourdon de Genouillac, puis François Louis de Lostanges, marquis de Béduer.  La famille de Lostanges est restée seigneur de Béduer jusqu'à la Révolution. Henri de Lostanges a été le dernier gouverneur et sénéchal du Quercy. Homme affable, il a évité la destruction du château. Les Lostanges résidant peu au château, ils le vendent en 1874 aux surs de la Sainte-Famille qui y ont ouvert une école pour les enfants du village. Ne pouvant assumer la charge financière, les moniales cédèrent le château aux Lostanges qui l'ont vendu en 1886 aux Colrat de Montrozier. Maurice Fenaille s'est marié en 1887 avec la plus jeune de la famille. Ayant fait fortune dans l'industrie pétrolière, il va consacrer une partie de sa fortune à sauver le château de Montal. Maurice Fenaille a acheté le château de Béduer à son beau-père en 1911 et a entrepris de le restaurer. À la mort de Maurice Fenaille, sa veuve vendit le château, en 1939, à une femme de lettres, Jeanne Loviton, mieux connue sous son nom de plume, Jean Voilier.</p>
+<h4>Architecture</h4><p>Château médiéval de Béduer, il ne reste pas grand-chose : la tour arasée du XIIIe siècle est le vestige le plus considérable après l'une importante opération de rénovation menée au XVIIe siècle. Le donjon sans contreforts avait une hauteur de 60 m et n'a pu être sauvé à la Révolution qu'en diminuant sa hauteur d'une vingtaine de mètres. Il en subsiste le rez-de-chaussée qui n'avait aucune ouverture à l'origine, surmonté de deux salles. La première est percée de meurtrières, la seconde a une fenêtre ternée sous un arc de décharge. L'ensemble des logis a été modifié ou construit au XVIIe siècle. Ils entourent une cour ouvrant sur la vallée du Célé. La façade sud conserve les éléments les plus anciens de l'édifice, le donjon et l'ancien beffroi à droite de l'entrée. On accède à la cour par un portail qui porte les traces de l'ancien pont-levis. Au-dessus se trouvent des armoiries. À l'intérieur, on peut voir l'ancienne cuisine et la grande salle où se sont réunis, trois fois, les états généraux du Quercy au XIVe siècle avec une belle cheminée du XVe siècle sur laquelle sont sculptés les blasons de Dieudonné de Barasc et d'Antonia de Gimel, de son fils Dieudonné et de Claude de Balzac, son épouse. Le plafond de la salle est décoré de poutres polychromes. Le porche d'entrée est à bossage. Ce porche et les façades ainsi que la toiture du donjon ont été inscrits aux monuments historiques le 25 juillet 1973.</p>
+<h4>Habitants / Familles</h4><p>Famille de Barsac
+<br/>
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Béduer.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

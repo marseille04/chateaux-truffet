@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Air_sur_la_Lys — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,60 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_62.html">Pas-de-Calais</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_62.html">Pas-de-Calais</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_62.html" class="back-link">Retour au département 62 — Pas-de-Calais</a>
-  <div class="fiche">
-    <h2>Air_sur_la_Lys</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>62 — Pas-de-Calais</td></tr>
-          <tr><td>Canton</td><td>Air sur la Lys</td></tr>
-          <tr><td>Commune</td><td>Air sur la Lys</td></tr>
-          <tr><td>Type d'édifice</td><td>Châteaux</td></tr>
-          <tr><td>Période d'origine</td><td>XVII-XVIII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>50° 40' 38" Nord, 2° 20' 39" Est                                                     Besvre-grav-6 GPS : 50° 36' 45" Nord, 2° 21' 40" Est                                                                 hôtel de ville grav-1  GPS : 50° 38' 18" nord, 2° 23' 45" est</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_62/62_Air_sur_la_Lys_1.jpg" alt="Air_sur_la_Lys" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Air_sur_la_Lys_2.jpg" alt="Air_sur_la_Lys" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Air_sur_la_Lys_3.jpg" alt="Air_sur_la_Lys" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Air_sur_la_Lys_4.jpg" alt="Air_sur_la_Lys" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Air_sur_la_Lys_5.jpg" alt="Air_sur_la_Lys" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Air_sur_la_Lys_6.jpg" alt="Air_sur_la_Lys" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Air_sur_la_Lys_7.jpg" alt="Air_sur_la_Lys" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Air_sur_la_Lys_8.jpg" alt="Air_sur_la_Lys" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Air_sur_la_Lys_9.jpg" alt="Air_sur_la_Lys" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_62.html">Retour au département 62 — Pas-de-Calais</a>
+<div class="fiche">
+<h2>Air_sur_la_Lys</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Air_sur_la_Lys" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_62/62_Air_sur_la_Lys_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Air_sur_la_Lys" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Air_sur_la_Lys_1.jpg"/><img alt="Air_sur_la_Lys" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Air_sur_la_Lys_2.jpg"/><img alt="Air_sur_la_Lys" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Air_sur_la_Lys_3.jpg"/><img alt="Air_sur_la_Lys" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Air_sur_la_Lys_4.jpg"/><img alt="Air_sur_la_Lys" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Air_sur_la_Lys_5.jpg"/><img alt="Air_sur_la_Lys" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Air_sur_la_Lys_6.jpg"/><img alt="Air_sur_la_Lys" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Air_sur_la_Lys_7.jpg"/><img alt="Air_sur_la_Lys" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Air_sur_la_Lys_8.jpg"/><img alt="Air_sur_la_Lys" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Air_sur_la_Lys_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>62 — Pas-de-Calais</td></tr>
+<tr><td>Canton</td><td>Air sur la Lys</td></tr>
+<tr><td>Commune</td><td>Air sur la Lys</td></tr>
+<tr><td>Type d'édifice</td><td>Châteaux</td></tr>
+<tr><td>Période d'origine</td><td>XVII-XVIII</td></tr>
+<tr><td>Coordonnées GPS</td><td>50° 40' 38" Nord, 2° 20' 39" Est                                                     Besvre-grav-6 GPS : 50° 36' 45" Nord, 2° 21' 40" Est                                                                 hôtel de ville grav-1  GPS : 50° 38' 18" nord, 2° 23' 45" est</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>quatre châteaux dans cet article hôtel de ville de Air, Mazinheim, le manoir de Brève et la Morande.                                                                             AIR sur la Lys, la construction de l'hôtel de ville, fut intensément liée à la volonté du roi de France, Louis XIV, de voir la ville dédommagée, des dégâts du siège de 1710.                                                                                        MAZINGHEM  au sud à 10 K.M.  D'après la date qui figure sur le pigeonnier seigneurial formant l'angle des bâtiments de la ferme située à droite du château et celle qui a été inscrite sur la charpente de son comble, il a été construit en 1769 par Charles Le Vasseur de Bambecque, écuyer, seigneur de Mazinghem. Ses armes ornent le fronton de la lucarne centrale. Le château a été remanié et restauré au XIXe siècle, et comprend un corps de logis coiffé d'une haute toiture en croupe mais à deux pentes de chaque côté; deux ailes non saillantes flanquent celui-ci; des toitures en croupe plus basses les couvrent. A celle de droite, par rapport à la façade principale, est accolée une chapelle placée dans l'axe du château et terminée par un hémicycle à trois pans. A celle de gauche un bâtiment comprenant un étage servant jadis de cuisine. L'habitation est à deux niveaux; elle a été réalisée en brique, la pierre a été réservée à la seule travée centrale traitée en avant-corps légèrement saillant et là elle présente des refends continus. On la trouve aussi employée pour les pilastres à refends qui délimitent les ailes, les deux cordons horizontaux qui courent au-dessus des deux niveaux de fenêtres et les frontons des lucarnes. Le pigeonnier est de plan quadrangulaire en brique. Famille de Muzinghem.</p>
-      <h4>Architecture</h4><p>MORANDE, à 10 K.M au nord ouest à Roquetoire , le château a été construit pour le marquis de Lully au début du XVIIIe siècle puis acquis par Guillaume Marcotte, écuyer et secrétaire du roi qui prit le nom de seigneur de Roquetoire, ce sont toujours ses descendants qui en sont les propriétaires. Peu habité à partir de 1890, le château fut occupé par un état-major portugais durant le premier conflit mondial, puis loué à la baronne Dard dans les années 1920. Endommagé par les bombardements et les pillages de la seconde Guerre mondiale, l'édifice fut restauré en 1950 (le gros-uvre uniquement). Depuis plusieurs années, le descendant, M. Seydoux, a entrepris des travaux de restauration. Les matériaux utilisé pour construire le château de la Morande est la pierre blanche. Éléments protégés MH : les façades et les toitures et des écuries ; le salon de musique ; le grand salon et la salle à manger au rez-de-chaussée avec leur décor : inscription par arrêté du 25 mai 1976.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Charles Le Vasseur de Bambecque famille de Guillaume Marcotte                                 Famille de Muzinghem"</p>
-      <h4>Divers</h4><p>quatre château dans cet article hôtel de ville grav-1, Mazinheim grav-2, le manoir de Besvre crav-5-6, et la Morande grav-7 les jumelles-Grav-8. Le moulins, comte-grav-3-9                                                Morande GPS : 50° 40' 38" Nord, 2° 20' 39" Est                                                     Besvre-grav-6 GPS : 50° 36' 45" Nord, 2° 21' 40" Est                                                                 hôtel de ville grav-1  GPS : 50° 38' 18" nord, 2° 23' 45" est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>quatre châteaux dans cet article hôtel de ville de Air, Mazinheim, le manoir de Brève et la Morande.                                                                             AIR sur la Lys, la construction de l'hôtel de ville, fut intensément liée à la volonté du roi de France, Louis XIV, de voir la ville dédommagée, des dégâts du siège de 1710.                                                                                        MAZINGHEM  au sud à 10 K.M.  D'après la date qui figure sur le pigeonnier seigneurial formant l'angle des bâtiments de la ferme située à droite du château et celle qui a été inscrite sur la charpente de son comble, il a été construit en 1769 par Charles Le Vasseur de Bambecque, écuyer, seigneur de Mazinghem. Ses armes ornent le fronton de la lucarne centrale. Le château a été remanié et restauré au XIXe siècle, et comprend un corps de logis coiffé d'une haute toiture en croupe mais à deux pentes de chaque côté; deux ailes non saillantes flanquent celui-ci; des toitures en croupe plus basses les couvrent. A celle de droite, par rapport à la façade principale, est accolée une chapelle placée dans l'axe du château et terminée par un hémicycle à trois pans. A celle de gauche un bâtiment comprenant un étage servant jadis de cuisine. L'habitation est à deux niveaux; elle a été réalisée en brique, la pierre a été réservée à la seule travée centrale traitée en avant-corps légèrement saillant et là elle présente des refends continus. On la trouve aussi employée pour les pilastres à refends qui délimitent les ailes, les deux cordons horizontaux qui courent au-dessus des deux niveaux de fenêtres et les frontons des lucarnes. Le pigeonnier est de plan quadrangulaire en brique. Famille de Muzinghem.</p>
+<h4>Architecture</h4><p>MORANDE, à 10 K.M au nord ouest à Roquetoire , le château a été construit pour le marquis de Lully au début du XVIIIe siècle puis acquis par Guillaume Marcotte, écuyer et secrétaire du roi qui prit le nom de seigneur de Roquetoire, ce sont toujours ses descendants qui en sont les propriétaires. Peu habité à partir de 1890, le château fut occupé par un état-major portugais durant le premier conflit mondial, puis loué à la baronne Dard dans les années 1920. Endommagé par les bombardements et les pillages de la seconde Guerre mondiale, l'édifice fut restauré en 1950 (le gros-uvre uniquement). Depuis plusieurs années, le descendant, M. Seydoux, a entrepris des travaux de restauration. Les matériaux utilisé pour construire le château de la Morande est la pierre blanche. Éléments protégés MH : les façades et les toitures et des écuries ; le salon de musique ; le grand salon et la salle à manger au rez-de-chaussée avec leur décor : inscription par arrêté du 25 mai 1976.</p>
+<h4>Habitants / Familles</h4><p>Famille de Charles Le Vasseur de Bambecque famille de Guillaume Marcotte                                 Famille de Muzinghem"</p>
+<h4>Divers</h4><p>quatre château dans cet article hôtel de ville grav-1, Mazinheim grav-2, le manoir de Besvre crav-5-6, et la Morande grav-7 les jumelles-Grav-8. Le moulins, comte-grav-3-9                                                Morande GPS : 50° 40' 38" Nord, 2° 20' 39" Est                                                     Besvre-grav-6 GPS : 50° 36' 45" Nord, 2° 21' 40" Est                                                                 hôtel de ville grav-1  GPS : 50° 38' 18" nord, 2° 23' 45" est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

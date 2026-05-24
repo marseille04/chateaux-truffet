@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Souvigny — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,60 +113,57 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_03.html">Allier</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_03.html">Allier</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_03.html" class="back-link">Retour au département 03 — Allier</a>
-  <div class="fiche">
-    <h2>Souvigny</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>03 — Allier</td></tr>
-          <tr><td>Canton</td><td>Souvigny</td></tr>
-          <tr><td>Commune</td><td>Souvigny</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_03/03_Souvigny_1.jpg" alt="Souvigny" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Souvigny_2.jpg" alt="Souvigny" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Souvigny_3.jpg" alt="Souvigny" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Souvigny_4.jpg" alt="Souvigny" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Souvigny_5.jpg" alt="Souvigny" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Souvigny_6.jpg" alt="Souvigny" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Souvigny_7.jpg" alt="Souvigny" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Souvigny_8.jpg" alt="Souvigny" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Souvigny_9.jpg" alt="Souvigny" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_03.html">Retour au département 03 — Allier</a>
+<div class="fiche">
+<h2>Souvigny</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Souvigny" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_03/03_Souvigny_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Souvigny" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Souvigny_1.jpg"/><img alt="Souvigny" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Souvigny_2.jpg"/><img alt="Souvigny" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Souvigny_3.jpg"/><img alt="Souvigny" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Souvigny_4.jpg"/><img alt="Souvigny" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Souvigny_5.jpg"/><img alt="Souvigny" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Souvigny_6.jpg"/><img alt="Souvigny" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Souvigny_7.jpg"/><img alt="Souvigny" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Souvigny_8.jpg"/><img alt="Souvigny" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Souvigny_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>03 — Allier</td></tr>
+<tr><td>Canton</td><td>Souvigny</td></tr>
+<tr><td>Commune</td><td>Souvigny</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Sept châteaux à Souvigny , le château des Bourbons du XIVe siècle vestiges(Voir Article ), des Chaulets du XVIIIe siècle, de Chery du XVIe siècle, d'Embourg du XV-XIXe siècles  (Voir Article ), de Matray (Voir Article ) de Montaret du XIIIe siècle vestiges (Voir Article ) et de la Vivayre du XVIe siècle.                   SOUVIGNY, En lan 916, Aimard, premier ancêtre connu des Bourbons, fait don à labbé Bernon de Cluny de sa « villa » de Souvigny et de léglise qui sy trouve, consacrée à Saint-Pierre. Ainsi, une dizaine dannées après la fondation de labbaye de Cluny. Souvigny ne cessera daccroître son influence sur le Bourbonnais. Son église prieurale deviendra un centre de pèlerinage fréquenté au Moyen-Age, et la capitale spirituelle des Bourbons. Pendant plusieurs siècles, le rayonnement de Souvigny et la puissance des Bourbons vont se développer conjointement, permettant létablissement en Bourbonnais de nombreux prieurés et églises romanes.  CHAULETS, pas d'information historique. CHERY, dés 1271 un accord entre le prieuré de Souvigny et le seigneur de Bourbon mentionne l'appartenance à  Simon de Cherry, en 1300 le fief divisé entre Guillaume et son frère Bartholomé, sa soeur qui échangea sa part moyenant une propriété de même valeur. En 1500 c'est Gilbert de Cherry  écuyer qui en est  le seigneur  et en 1569 passe à Jean de Bigue écuyer.                            VIVAYRE, le premier  connu, en 1593, était Charles de Bigue, inhumé en 1598 en la "grand esglise des Moines". Le 25 décembre 1601, Hilaire de Bigue, dame de La Vivière, épousa Claude des Escures, sieur de  Pontcharault. La famille comptait  un second fils, illégitime, le "bâtard de La Vivère", Gilbert de Bigue, qui devint prieur de Chantenay. La propriété resta entre les mains de la famille des Escures, qui compta un chevalier de St-Jean de Jérusalem, Louis des Escures de la Vivère, décédé en 1691 à l'âge de 45 ans, et mentionné dès 1676 comme   chevalier de Malte  dans les registres paroissiaux de Noyant. Esmé des Escures, seigneur de la Vivère, qui lui succéda, mort en 1694, était également signalé comme seigneur de Franchesse dans un acte en 1676. Le dernier membre connu de la famille décéda à l'âge de 84 ans, en 1719, il s'agissait de Jean des Escures de la  Vivère. En 1735,   Reclesne de Lyonne, chevalier, seigneur de La Vivère, capitaine de cavalerie au Royal-Roussillon.</p>
-      <h4>Architecture</h4><p>Souvigny, est un ensemble architectural avec musée et jardin,  plus vaste réalisation romane du Bourbonnais, l'ensemble architectural comprend également des jardins à la Française et des granges médiévales qui abritent un musée. Saint-Mayeul, l'abbé de Cluny, fut enterré en 994 dans l'église originelle. La découverte de son tombeau a relancé des fouilles                        Chaulets, le château a été construit de 1780 à 1789 comprenant un long corps de logis, à rez-de-chaussée et niveau de comble de forme rectangulaire, couvert d'une toiture a pans coupes en pignons et des communs à l'est. Un avant corps central rompt la monotonie de la rigueur classique par sa surélévation à trois fenêtres et il-de-buf et son chaînage de pierres moulurées avec des encadrements de pierre. Les travaux des communs ont été arrêtés par la Révolution puis repris de 1800 à 1807. La cour d'entrée communique au nord avec le parc par un portail ouvert dont les pilastres sont surmontés de motifs sculptés en "pomme de pin".                     Chery, édifié au  XVIe siècle sur des constructions plus anciennes, modifié aux XVIIe et XVIIIe. A l'est, la partie la plus ancienne (fin XVe siècle) a  l'aspect d'un petit manoir, une tourelle d'escalier à vis en desservant les parties.  Aujourd'hui musée du prieuré, lhistoire des moines Clusiens et des Bourbons.</p>
-      <h4>Habitants / Familles</h4><p>Les ducs de Bourbons"</p>
-      <h4>Divers</h4><p>Château de Chaulets d'Embourg, des Vieux murs, de Vivayre et de Chery à Souvigny</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Sept châteaux à Souvigny , le château des Bourbons du XIVe siècle vestiges(Voir Article ), des Chaulets du XVIIIe siècle, de Chery du XVIe siècle, d'Embourg du XV-XIXe siècles  (Voir Article ), de Matray (Voir Article ) de Montaret du XIIIe siècle vestiges (Voir Article ) et de la Vivayre du XVIe siècle.                   SOUVIGNY, En lan 916, Aimard, premier ancêtre connu des Bourbons, fait don à labbé Bernon de Cluny de sa « villa » de Souvigny et de léglise qui sy trouve, consacrée à Saint-Pierre. Ainsi, une dizaine dannées après la fondation de labbaye de Cluny. Souvigny ne cessera daccroître son influence sur le Bourbonnais. Son église prieurale deviendra un centre de pèlerinage fréquenté au Moyen-Age, et la capitale spirituelle des Bourbons. Pendant plusieurs siècles, le rayonnement de Souvigny et la puissance des Bourbons vont se développer conjointement, permettant létablissement en Bourbonnais de nombreux prieurés et églises romanes.  CHAULETS, pas d'information historique. CHERY, dés 1271 un accord entre le prieuré de Souvigny et le seigneur de Bourbon mentionne l'appartenance à  Simon de Cherry, en 1300 le fief divisé entre Guillaume et son frère Bartholomé, sa soeur qui échangea sa part moyenant une propriété de même valeur. En 1500 c'est Gilbert de Cherry  écuyer qui en est  le seigneur  et en 1569 passe à Jean de Bigue écuyer.                            VIVAYRE, le premier  connu, en 1593, était Charles de Bigue, inhumé en 1598 en la "grand esglise des Moines". Le 25 décembre 1601, Hilaire de Bigue, dame de La Vivière, épousa Claude des Escures, sieur de  Pontcharault. La famille comptait  un second fils, illégitime, le "bâtard de La Vivère", Gilbert de Bigue, qui devint prieur de Chantenay. La propriété resta entre les mains de la famille des Escures, qui compta un chevalier de St-Jean de Jérusalem, Louis des Escures de la Vivère, décédé en 1691 à l'âge de 45 ans, et mentionné dès 1676 comme   chevalier de Malte  dans les registres paroissiaux de Noyant. Esmé des Escures, seigneur de la Vivère, qui lui succéda, mort en 1694, était également signalé comme seigneur de Franchesse dans un acte en 1676. Le dernier membre connu de la famille décéda à l'âge de 84 ans, en 1719, il s'agissait de Jean des Escures de la  Vivère. En 1735,   Reclesne de Lyonne, chevalier, seigneur de La Vivère, capitaine de cavalerie au Royal-Roussillon.</p>
+<h4>Architecture</h4><p>Souvigny, est un ensemble architectural avec musée et jardin,  plus vaste réalisation romane du Bourbonnais, l'ensemble architectural comprend également des jardins à la Française et des granges médiévales qui abritent un musée. Saint-Mayeul, l'abbé de Cluny, fut enterré en 994 dans l'église originelle. La découverte de son tombeau a relancé des fouilles                        Chaulets, le château a été construit de 1780 à 1789 comprenant un long corps de logis, à rez-de-chaussée et niveau de comble de forme rectangulaire, couvert d'une toiture a pans coupes en pignons et des communs à l'est. Un avant corps central rompt la monotonie de la rigueur classique par sa surélévation à trois fenêtres et il-de-buf et son chaînage de pierres moulurées avec des encadrements de pierre. Les travaux des communs ont été arrêtés par la Révolution puis repris de 1800 à 1807. La cour d'entrée communique au nord avec le parc par un portail ouvert dont les pilastres sont surmontés de motifs sculptés en "pomme de pin".                     Chery, édifié au  XVIe siècle sur des constructions plus anciennes, modifié aux XVIIe et XVIIIe. A l'est, la partie la plus ancienne (fin XVe siècle) a  l'aspect d'un petit manoir, une tourelle d'escalier à vis en desservant les parties.  Aujourd'hui musée du prieuré, lhistoire des moines Clusiens et des Bourbons.</p>
+<h4>Habitants / Familles</h4><p>Les ducs de Bourbons"</p>
+<h4>Divers</h4><p>Château de Chaulets d'Embourg, des Vieux murs, de Vivayre et de Chery à Souvigny</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

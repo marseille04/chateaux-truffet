@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Auch_Patrimoine — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,64 +113,61 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_32.html">Gers</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_32.html">Gers</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_32.html" class="back-link">Retour au département 32 — Gers</a>
-  <div class="fiche">
-    <h2>Auch_Patrimoine</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>32 — Gers</td></tr>
-          <tr><td>Canton</td><td>Auch</td></tr>
-          <tr><td>Commune</td><td>Auch</td></tr>
-          <tr><td>Type d'édifice</td><td>Palais</td></tr>
-          <tr><td>Période d'origine</td><td>XIV-XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_32/32_Auch_Patrimoine_1.jpg" alt="Auch_Patrimoine" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Auch_Patrimoine_2.jpg" alt="Auch_Patrimoine" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Auch_Patrimoine_3.jpg" alt="Auch_Patrimoine" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Auch_Patrimoine_4.jpg" alt="Auch_Patrimoine" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Auch_Patrimoine_5.jpg" alt="Auch_Patrimoine" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Auch_Patrimoine_6.jpg" alt="Auch_Patrimoine" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Auch_Patrimoine_7.jpg" alt="Auch_Patrimoine" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Auch_Patrimoine_8.jpg" alt="Auch_Patrimoine" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_32/32_Auch_Patrimoine_9.jpg" alt="Auch_Patrimoine" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_32.html">Retour au département 32 — Gers</a>
+<div class="fiche">
+<h2>Auch_Patrimoine</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Auch_Patrimoine" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_32/32_Auch_Patrimoine_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Auch_Patrimoine" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Auch_Patrimoine_1.jpg"/><img alt="Auch_Patrimoine" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Auch_Patrimoine_2.jpg"/><img alt="Auch_Patrimoine" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Auch_Patrimoine_3.jpg"/><img alt="Auch_Patrimoine" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Auch_Patrimoine_4.jpg"/><img alt="Auch_Patrimoine" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Auch_Patrimoine_5.jpg"/><img alt="Auch_Patrimoine" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Auch_Patrimoine_6.jpg"/><img alt="Auch_Patrimoine" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Auch_Patrimoine_7.jpg"/><img alt="Auch_Patrimoine" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Auch_Patrimoine_8.jpg"/><img alt="Auch_Patrimoine" class="" loading="lazy" onclick="setHero(this)" src="../image/image_32/32_Auch_Patrimoine_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>32 — Gers</td></tr>
+<tr><td>Canton</td><td>Auch</td></tr>
+<tr><td>Commune</td><td>Auch</td></tr>
+<tr><td>Type d'édifice</td><td>Palais</td></tr>
+<tr><td>Période d'origine</td><td>XIV-XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>AUCH,  le palais des archevêques aujourd'hui préfecture et  la Tour d'Armagnac et  la maison Fedel et d'Henry IV.                                                                PALAIS ARCHEVEQUE, le premier évêque d'Auch apparaît vers 1280.  L'archidiocèse d'Auch dégageait après Strasbourg, Paris et Cambrai le plus de revenus annuels, dus à une dîme importante. La nomination des archevêques d'Auch voyait de longues discussions entre le roi, le pape et les chanoines. L'archevêque d'Auch était jusqu'en 2002, et cela pendant de nombreux siècles, métropolitain d'une immense province ecclésiastique, jadis formée de la Gascogne et de la Navarre française et espagnole.               TOUR-ARMAGNAC  Au XIVe siècle, l'archevêque de Auch fait construire la tour et un bâtiment annexe. Sous l'Ancien Régime, la prison est transformée en salle d'archives épiscopales.  Après 1792, durant la Terreur, cette tour redevient une prison. En 1851, le 2 décembre, c'est le coup d'état de Louis Napoléon Bonaparte. Quelques temps après la tour garde quelques prisonniers. En 1945, la tour du "Sénéchal d'Armagnac" est classée aux Monuments Historiques.     Maison d'Henri IV, dans le centre historique, l'intérêt de cette maison à colombage réside dans le magnifique escalier de bois et de pierre que l'on aperçoit dans la cour intérieure.  Petite anecdote historique : Alors qu'il n'était qu'Henri de Navarre, le futur roi Henri IV a en effet séjourné en 1578 dans cette demeure en compagnie de Catherine de Médicis et de Marguerite de Valois, qui deviendra quelques temps plus tard la reine Margot.</p>
-      <h4>Architecture</h4><p>Tour d'Armagnac,  elle est accrochée à un bâtiment dont les fenêtres  ont des origines diverses.  Même en la contournant, en découvrant les autres faces, cette tour me semble énigmatique.  c'était la prison épiscopale, le dernier étage était une "vigie".   Une curieuse échauguette d'angle me fait penser à une tour-escalier desservant le dernier étage. Au sud-est de la cathédrale, la tour dArmagnac domine la ville avec ses 40 mètres de hauteur. Bâtie au XIVe siècle pour servir de prison, elle connut plusieurs fonctions : symbole des attributions judiciaires de l'archevêque au Moyen-Age, dépôt des archives du chapitre sous l'Ancien Régime, prison sous la Terreur gersoise et après le coup d'Etat du 2 décembre 1851.
-<br>PALAIS des Archevêques, la place Salinis porte le nom de larchevêque qui décida, avec le Préfet Féart, au XIXe siècle dabattre lancien cloître des chanoines pour créer un îlot de verdure. Un projet daménagement des parties basses de la tour dArmagnac permettra de valoriser sous peu le trésor de la cathédrale, à proximité de lescalier monumental.                    Maison Fedel   a un soubassement percé d'arcs en anse de panier et les murs sont en colombages de chêne garnis de briques rouges.  La maison d'Henri IV,  l'intérêt de cette maison à colombage réside dans le magnifique escalier de bois et de pierre que l'on aperçoit dans la cour intérieure.</p>
-      <h4>Habitants / Familles</h4><p>Archevêque d' Auch
-<br>        
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Le Palais des Archevêques, la tour d'Armagnac, la maison Fédel et d'Henri IV à Auch</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>AUCH,  le palais des archevêques aujourd'hui préfecture et  la Tour d'Armagnac et  la maison Fedel et d'Henry IV.                                                                PALAIS ARCHEVEQUE, le premier évêque d'Auch apparaît vers 1280.  L'archidiocèse d'Auch dégageait après Strasbourg, Paris et Cambrai le plus de revenus annuels, dus à une dîme importante. La nomination des archevêques d'Auch voyait de longues discussions entre le roi, le pape et les chanoines. L'archevêque d'Auch était jusqu'en 2002, et cela pendant de nombreux siècles, métropolitain d'une immense province ecclésiastique, jadis formée de la Gascogne et de la Navarre française et espagnole.               TOUR-ARMAGNAC  Au XIVe siècle, l'archevêque de Auch fait construire la tour et un bâtiment annexe. Sous l'Ancien Régime, la prison est transformée en salle d'archives épiscopales.  Après 1792, durant la Terreur, cette tour redevient une prison. En 1851, le 2 décembre, c'est le coup d'état de Louis Napoléon Bonaparte. Quelques temps après la tour garde quelques prisonniers. En 1945, la tour du "Sénéchal d'Armagnac" est classée aux Monuments Historiques.     Maison d'Henri IV, dans le centre historique, l'intérêt de cette maison à colombage réside dans le magnifique escalier de bois et de pierre que l'on aperçoit dans la cour intérieure.  Petite anecdote historique : Alors qu'il n'était qu'Henri de Navarre, le futur roi Henri IV a en effet séjourné en 1578 dans cette demeure en compagnie de Catherine de Médicis et de Marguerite de Valois, qui deviendra quelques temps plus tard la reine Margot.</p>
+<h4>Architecture</h4><p>Tour d'Armagnac,  elle est accrochée à un bâtiment dont les fenêtres  ont des origines diverses.  Même en la contournant, en découvrant les autres faces, cette tour me semble énigmatique.  c'était la prison épiscopale, le dernier étage était une "vigie".   Une curieuse échauguette d'angle me fait penser à une tour-escalier desservant le dernier étage. Au sud-est de la cathédrale, la tour dArmagnac domine la ville avec ses 40 mètres de hauteur. Bâtie au XIVe siècle pour servir de prison, elle connut plusieurs fonctions : symbole des attributions judiciaires de l'archevêque au Moyen-Age, dépôt des archives du chapitre sous l'Ancien Régime, prison sous la Terreur gersoise et après le coup d'Etat du 2 décembre 1851.
+<br/>PALAIS des Archevêques, la place Salinis porte le nom de larchevêque qui décida, avec le Préfet Féart, au XIXe siècle dabattre lancien cloître des chanoines pour créer un îlot de verdure. Un projet daménagement des parties basses de la tour dArmagnac permettra de valoriser sous peu le trésor de la cathédrale, à proximité de lescalier monumental.                    Maison Fedel   a un soubassement percé d'arcs en anse de panier et les murs sont en colombages de chêne garnis de briques rouges.  La maison d'Henri IV,  l'intérêt de cette maison à colombage réside dans le magnifique escalier de bois et de pierre que l'on aperçoit dans la cour intérieure.</p>
+<h4>Habitants / Familles</h4><p>Archevêque d' Auch
+<br/>
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Le Palais des Archevêques, la tour d'Armagnac, la maison Fédel et d'Henri IV à Auch</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

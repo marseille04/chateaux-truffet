@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Avranches — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,62 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_50.html">Manche</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_50.html">Manche</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_50.html" class="back-link">Retour au département 50 — Manche</a>
-  <div class="fiche">
-    <h2>Avranches</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>50 — Manche</td></tr>
-          <tr><td>Canton</td><td>Avranches</td></tr>
-          <tr><td>Commune</td><td>Avranches</td></tr>
-          <tr><td>Type d'édifice</td><td>Château; vestiges forteresse</td></tr>
-          <tr><td>Période d'origine</td><td>XI-XVII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>48° 41' 13,67" Nord, 1° 21' 41,57" Ouest      Apilly: 48°41'54.5"N 1°19'30.7" Ouest                                            Champ 48°40'45.9"N 1°17'24.2" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_50/50_Avranches_1.jpg" alt="Avranches" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Avranches_2.jpg" alt="Avranches" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Avranches_3.jpg" alt="Avranches" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Avranches_4.jpg" alt="Avranches" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Avranches_5.jpg" alt="Avranches" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Avranches_6.jpg" alt="Avranches" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Avranches_7.jpg" alt="Avranches" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Avranches_8.jpg" alt="Avranches" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_50/50_Avranches_9.jpg" alt="Avranches" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_50.html">Retour au département 50 — Manche</a>
+<div class="fiche">
+<h2>Avranches</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Avranches" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_50/50_Avranches_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Avranches" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Avranches_1.jpg"/><img alt="Avranches" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Avranches_2.jpg"/><img alt="Avranches" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Avranches_3.jpg"/><img alt="Avranches" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Avranches_4.jpg"/><img alt="Avranches" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Avranches_5.jpg"/><img alt="Avranches" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Avranches_6.jpg"/><img alt="Avranches" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Avranches_7.jpg"/><img alt="Avranches" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Avranches_8.jpg"/><img alt="Avranches" class="" loading="lazy" onclick="setHero(this)" src="../image/image_50/50_Avranches_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>50 — Manche</td></tr>
+<tr><td>Canton</td><td>Avranches</td></tr>
+<tr><td>Commune</td><td>Avranches</td></tr>
+<tr><td>Type d'édifice</td><td>Château; vestiges forteresse</td></tr>
+<tr><td>Période d'origine</td><td>XI-XVII</td></tr>
+<tr><td>Coordonnées GPS</td><td>48° 41' 13,67" Nord, 1° 21' 41,57" Ouest      Apilly: 48°41'54.5"N 1°19'30.7" Ouest                                            Champ 48°40'45.9"N 1°17'24.2" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>A Avranches vestiges de la forteresse,  le château d'Apilly,  le Champ du Genet  et de Vains.                                                                                              AVRANCHES, le château  a été construit vers 950 par Onfroi Le Dane, sur les vestiges de l'ancienne enceinte romaine. Situé sur un rocher, la forteresse pouvait surveiller la baie du Mont-Saint-Michel et les divers envahisseurs ne s'y trompèrent pas et l'occupèrent ; Celtes avec les Abrincates, Romains, Saxons, puis Francs. Une succession d'enceintes et de fossés y ont été ajoutés. Le donjon roman a malheureusement disparu au siècle dernier. Le haut de la courtine constitue une plate-forme au même niveau que la terrasse. Un schéma, réalisé par le chanoine Pigeon, montre de quelle manière le donjon et la courtine étaient reliés. A Avranches les vestiges et château du Champs du genet, il est impossible d'accéder à la terrasse depuis l'intérieur de la bâtisse. Des passages ont été obstrués après un affaissement du niveau supérieur de l'édifice, à une époque indéterminée. Aujourd'hui, au sommet d'un mur de courtine crénelé, on découvre un panorama sur la baie et la vallée de la Sée, au cur des différents quartiers Avranchinais.
-<br>APPILY  Le comte Jean-Baptiste du Quesnoy, seigneur d'Apilly, y meurt le 7 août 1768, à 69 ans. Hervé de Saint-Germain y réside au XIXe siècle. Arthur Gustave de Clinchamp, officier de cavalerie, commandant le 1er bataillon des mobiles de la Manche, s'y marie le 19 octobre 1863, avec Charlotte Saint-Germain du Houlme, et leur fille Geneviève de Clinchamp y naît le 17 novembre 1864.  La comtesse Edna de Clinchamp, née Lewis, y meurt le 29 août 1932, à 49 ans.En 1943, fuyant les bombardements sur Cherbourg, une centaine d'élèves de l'école du Sacré-Cur s'y réfugient, jusqu'à leur retour à Cherbourg en août 1944.</p>
-      <h4>Architecture</h4><p>DONJON d'AVRANCHES, aurait été construit au commencement du XIe siècle, lors de l'installation du premier comte, Robert d'Avranches, fils illégitime du Duc Richard Ier. Élevé sur les restes d'un castellum romain, il n'avait pas de fonction résidentielle, vu ses dimensions peu considérables (relevées par le chanoine Pigeon vers 1880-1890). Le donjon a été traversé, en 1848, par une rue nouvelle prolongeant la rue d'Office, devenue, aujourd'hui, la rue de la Belle-Andrine. Ce qu'il restait ce qui subsistait du donjon s'est effondré en 1883. Une courtine, située entre le donjon roman disparu et la Tour du Promenoir, ornée de créneaux au début du XXe siècle, est souvent présentée à tort comme l'ancien donjon. Éléments protégés MH : la tour située derrière l'Hôtel de Ville : inscription par arrêté du 14 mai 1937.                                                                                        A deux K.M au nord à St-Senier sous Avranches  le château D'APILLY,  le château est gravement endommagé en 1944 par un incendie accidentel provoqué par des occupants américains, après la libération. "et de CHAMP du GENET Chambres d'hôtes.                                                                                     A un K.M. au nord ouest à Vains VAINS, manoir, est une de ces demeure du XVIIe siècle, qui succédèrent aux forteresses du Moyen-Age. C'est une de ces habitations du seigneur devenu homme de cour, comme le manoir de la Champagne. Les tours ont disparu, et ont été remplacées par le pavillon carré au toit aigu et aplati. Le fossé est moins profond, le pont-levis a fait place au pont dormant, la meurtrière est devenue une fenêtre, la porte étroite, devenue porte d'honneur, s'est agrandie en s'exhaussant sur son perron. Cette transformation éclate dans l'équipement militaire du noble au XVIIe siècle. Vains a eu ses seigneurs, en 1197 le seigneur était Robert de Verni. Radulfus de Veim est souscrit à la charte de donation du Fougerai, en Bacilly, en 1186. A la fin du XIIIe siècle, Raoul de Théville, évêque d'Avranches, était seigneur de Vains. Éléments protégés MH : le logis ; la chapelle ; le bâtiment dit corps de garde : inscription par arrêté du 27 décembre 1994.</p>
-      <h4>Habitants / Familles</h4><p>Comte, Robert d'Avranches
-<br>        "</p>
-      <h4>Divers</h4><p>A Avranches  vestiges de la forteresse grav 1 à 5  le château d'Apilly grav 6, le Champ du Genet grav-7  et Vains grav 8-9                     Avranvches GPS : 48° 41' 13,67" Nord, 1° 21' 41,57" Ouest      Apilly: 48°41'54.5"N 1°19'30.7" Ouest                                            Champ 48°40'45.9"N 1°17'24.2" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>A Avranches vestiges de la forteresse,  le château d'Apilly,  le Champ du Genet  et de Vains.                                                                                              AVRANCHES, le château  a été construit vers 950 par Onfroi Le Dane, sur les vestiges de l'ancienne enceinte romaine. Situé sur un rocher, la forteresse pouvait surveiller la baie du Mont-Saint-Michel et les divers envahisseurs ne s'y trompèrent pas et l'occupèrent ; Celtes avec les Abrincates, Romains, Saxons, puis Francs. Une succession d'enceintes et de fossés y ont été ajoutés. Le donjon roman a malheureusement disparu au siècle dernier. Le haut de la courtine constitue une plate-forme au même niveau que la terrasse. Un schéma, réalisé par le chanoine Pigeon, montre de quelle manière le donjon et la courtine étaient reliés. A Avranches les vestiges et château du Champs du genet, il est impossible d'accéder à la terrasse depuis l'intérieur de la bâtisse. Des passages ont été obstrués après un affaissement du niveau supérieur de l'édifice, à une époque indéterminée. Aujourd'hui, au sommet d'un mur de courtine crénelé, on découvre un panorama sur la baie et la vallée de la Sée, au cur des différents quartiers Avranchinais.
+<br/>APPILY  Le comte Jean-Baptiste du Quesnoy, seigneur d'Apilly, y meurt le 7 août 1768, à 69 ans. Hervé de Saint-Germain y réside au XIXe siècle. Arthur Gustave de Clinchamp, officier de cavalerie, commandant le 1er bataillon des mobiles de la Manche, s'y marie le 19 octobre 1863, avec Charlotte Saint-Germain du Houlme, et leur fille Geneviève de Clinchamp y naît le 17 novembre 1864.  La comtesse Edna de Clinchamp, née Lewis, y meurt le 29 août 1932, à 49 ans.En 1943, fuyant les bombardements sur Cherbourg, une centaine d'élèves de l'école du Sacré-Cur s'y réfugient, jusqu'à leur retour à Cherbourg en août 1944.</p>
+<h4>Architecture</h4><p>DONJON d'AVRANCHES, aurait été construit au commencement du XIe siècle, lors de l'installation du premier comte, Robert d'Avranches, fils illégitime du Duc Richard Ier. Élevé sur les restes d'un castellum romain, il n'avait pas de fonction résidentielle, vu ses dimensions peu considérables (relevées par le chanoine Pigeon vers 1880-1890). Le donjon a été traversé, en 1848, par une rue nouvelle prolongeant la rue d'Office, devenue, aujourd'hui, la rue de la Belle-Andrine. Ce qu'il restait ce qui subsistait du donjon s'est effondré en 1883. Une courtine, située entre le donjon roman disparu et la Tour du Promenoir, ornée de créneaux au début du XXe siècle, est souvent présentée à tort comme l'ancien donjon. Éléments protégés MH : la tour située derrière l'Hôtel de Ville : inscription par arrêté du 14 mai 1937.                                                                                        A deux K.M au nord à St-Senier sous Avranches  le château D'APILLY,  le château est gravement endommagé en 1944 par un incendie accidentel provoqué par des occupants américains, après la libération. "et de CHAMP du GENET Chambres d'hôtes.                                                                                     A un K.M. au nord ouest à Vains VAINS, manoir, est une de ces demeure du XVIIe siècle, qui succédèrent aux forteresses du Moyen-Age. C'est une de ces habitations du seigneur devenu homme de cour, comme le manoir de la Champagne. Les tours ont disparu, et ont été remplacées par le pavillon carré au toit aigu et aplati. Le fossé est moins profond, le pont-levis a fait place au pont dormant, la meurtrière est devenue une fenêtre, la porte étroite, devenue porte d'honneur, s'est agrandie en s'exhaussant sur son perron. Cette transformation éclate dans l'équipement militaire du noble au XVIIe siècle. Vains a eu ses seigneurs, en 1197 le seigneur était Robert de Verni. Radulfus de Veim est souscrit à la charte de donation du Fougerai, en Bacilly, en 1186. A la fin du XIIIe siècle, Raoul de Théville, évêque d'Avranches, était seigneur de Vains. Éléments protégés MH : le logis ; la chapelle ; le bâtiment dit corps de garde : inscription par arrêté du 27 décembre 1994.</p>
+<h4>Habitants / Familles</h4><p>Comte, Robert d'Avranches
+<br/>        "</p>
+<h4>Divers</h4><p>A Avranches  vestiges de la forteresse grav 1 à 5  le château d'Apilly grav 6, le Champ du Genet grav-7  et Vains grav 8-9                     Avranvches GPS : 48° 41' 13,67" Nord, 1° 21' 41,57" Ouest      Apilly: 48°41'54.5"N 1°19'30.7" Ouest                                            Champ 48°40'45.9"N 1°17'24.2" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

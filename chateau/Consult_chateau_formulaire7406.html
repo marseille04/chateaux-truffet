@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Larroque_Toirac — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,63 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_46.html">Lot</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_46.html">Lot</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_46.html" class="back-link">Retour au département 46 — Lot</a>
-  <div class="fiche">
-    <h2>Larroque_Toirac</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>46 — Lot</td></tr>
-          <tr><td>Canton</td><td>Carjac</td></tr>
-          <tr><td>Commune</td><td>Larroque-Toirac</td></tr>
-          <tr><td>Type d'édifice</td><td>Forteresse</td></tr>
-          <tr><td>Période d'origine</td><td>XIII-XV</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_46/46_Larroque_Toirac_1.jpg" alt="Larroque_Toirac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Larroque_Toirac_2.jpg" alt="Larroque_Toirac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Larroque_Toirac_3.jpg" alt="Larroque_Toirac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Larroque_Toirac_4.jpg" alt="Larroque_Toirac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Larroque_Toirac_5.jpg" alt="Larroque_Toirac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Larroque_Toirac_6.jpg" alt="Larroque_Toirac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Larroque_Toirac_7.jpg" alt="Larroque_Toirac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Larroque_Toirac_8.jpg" alt="Larroque_Toirac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Larroque_Toirac_9.jpg" alt="Larroque_Toirac" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_46.html">Retour au département 46 — Lot</a>
+<div class="fiche">
+<h2>Larroque_Toirac</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Larroque_Toirac" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_46/46_Larroque_Toirac_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Larroque_Toirac" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Larroque_Toirac_1.jpg"/><img alt="Larroque_Toirac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Larroque_Toirac_2.jpg"/><img alt="Larroque_Toirac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Larroque_Toirac_3.jpg"/><img alt="Larroque_Toirac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Larroque_Toirac_4.jpg"/><img alt="Larroque_Toirac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Larroque_Toirac_5.jpg"/><img alt="Larroque_Toirac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Larroque_Toirac_6.jpg"/><img alt="Larroque_Toirac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Larroque_Toirac_7.jpg"/><img alt="Larroque_Toirac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Larroque_Toirac_8.jpg"/><img alt="Larroque_Toirac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Larroque_Toirac_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>46 — Lot</td></tr>
+<tr><td>Canton</td><td>Carjac</td></tr>
+<tr><td>Commune</td><td>Larroque-Toirac</td></tr>
+<tr><td>Type d'édifice</td><td>Forteresse</td></tr>
+<tr><td>Période d'origine</td><td>XIII-XV</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>LARROQUE-TOIRAC,  possession des Barasc, seigneurs de Montbrun, est mentionné en 1233 avant de passer pour moitié en 1320 à Pierre Duèze, frère de Jacques qui fut pape sous le nom de Jean XXII.  Dès le XIIIe siècle, le lieu servait aussi de résidence à une lignée de simples  chevaliers, les de La Roque, qui ne devinrent que plus tard co-seigneurs du  lieu. En 1333, les Duèze vendirent leurs droits aux Cardaillac-Brengues ; Bertrand  de La Roque  était alors co-seigneur et vassal des Montbrun.  Claude de La Roque fut à lorigine de la reconstruction du château à partir de 1467.  Un siècle plus tard, un revers de fortune conduisit son fils Bertrand à vendre les bâtiments, le domaine et la seigneurie à un bourgeois de Figeac, Pierre dHujols.  Cette famille, qui conserva la seigneurie jusquen 1732, fut à lorigine de la disparition dun bon nombre de dispositifs de défense. Raymond de Pontanier du Saulon ayant succédé à Jean Joseph dHujols, le fief fut acquis peu après, avant 1760, par Jean-Joseph Dufau de Villefranche de Rouergue. En 1793, les révolutionnaires sattaquèrent à la décoration intérieure du château, ainsi quau donjon pentagonal quils laissèrent en létat de ruine.  Jean-Joseph Dufau disparut vers 1810, et cest lun de ses descendants qui vendit le domaine en différents lots entre 1834 et 1840. En 1883, la bâtisse était partagée entre quatre propriétaires dont la commune, qui par la suite racheta
-<br>les trois autres lots afin dinstaller en ces lieux lécole des garçons, celle des filles ainsi que la mairie, comme logements pour les instituteurs. Jean Wagner- Autesserre, magistrat figeacois racheta le château en 1923 et, avec son épouse, se consacra à sa restauration jusquen 1969. Son fils, Pierre Wagner-Autesserre et son épouse perpétuent aujourdhui son uvre.  En 1946, le château est inscrit sur la liste complémentaire des monuments historiques avant d'être classé monument historique en 1995.</p>
-      <h4>Architecture</h4><p>Le château de Larroque-Toirac,  a été construit au XVe siècle, il a conservé dans sa partie médiévale tout son système défensif,  le renforcement de l'enceinte au XIVe siècle et le nouveau château au XVe siècle.  Les de La Roque édifièrent en premier un donjon pentagonal, dit à Cinq  Cayres à cinq côtés, dont les vestiges sont placés à lécart du château, à lEst, en contrebas des abris troglodytiques de la falaise qui furent les premiers habitats du site. Bâti en bel appareil de pierres calcaires, il sapparente au donjon du château de Roussillon à Saint-Pierre-Lafeuille et atteste une occupation de cet endroit  dès le milieu du XIIIe siècle. Ils mirent ensuite en chantier au cours du XIIIe siècle un logis (hospitium) en forme de tour. Lédifice, bâti en moellons calcaires, fut englobé dès le XIVe siècle dans différentes constructions et flanqué dune tour circulaire défendant lentrée du château grâce à ses meurtrières, sa chausse-trappe et les casemates abritant des arbalétriers. Le deuxième corps de bâtiment fut mis en chantier à partir de 1467 sur le côté Est, par les La Roque enrichis par des alliances avec des familles puissantes et riches de laristocratie locale. Une haute tour descalier à vis fut ainsi édifiée, afin de desservir un logis de plan rectangulaire établi sur 7 niveaux et cantonné au Sud-Est par une  tourelle de 40 m de haut comprenant 103 marches.  La demeure seigneuriale, où subsiste la cuisine d'origine, comporte de très belles cheminées du XVe siècle ainsi que des fresques du XVIe siècle. Les décorations sont datées de 1515 à 1531 et des aménagements ont été effectués au XVIIe siècle.</p>
-      <h4>Habitants / Familles</h4><p>Bertrand  de La Roque
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Larroque -Toirac</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>LARROQUE-TOIRAC,  possession des Barasc, seigneurs de Montbrun, est mentionné en 1233 avant de passer pour moitié en 1320 à Pierre Duèze, frère de Jacques qui fut pape sous le nom de Jean XXII.  Dès le XIIIe siècle, le lieu servait aussi de résidence à une lignée de simples  chevaliers, les de La Roque, qui ne devinrent que plus tard co-seigneurs du  lieu. En 1333, les Duèze vendirent leurs droits aux Cardaillac-Brengues ; Bertrand  de La Roque  était alors co-seigneur et vassal des Montbrun.  Claude de La Roque fut à lorigine de la reconstruction du château à partir de 1467.  Un siècle plus tard, un revers de fortune conduisit son fils Bertrand à vendre les bâtiments, le domaine et la seigneurie à un bourgeois de Figeac, Pierre dHujols.  Cette famille, qui conserva la seigneurie jusquen 1732, fut à lorigine de la disparition dun bon nombre de dispositifs de défense. Raymond de Pontanier du Saulon ayant succédé à Jean Joseph dHujols, le fief fut acquis peu après, avant 1760, par Jean-Joseph Dufau de Villefranche de Rouergue. En 1793, les révolutionnaires sattaquèrent à la décoration intérieure du château, ainsi quau donjon pentagonal quils laissèrent en létat de ruine.  Jean-Joseph Dufau disparut vers 1810, et cest lun de ses descendants qui vendit le domaine en différents lots entre 1834 et 1840. En 1883, la bâtisse était partagée entre quatre propriétaires dont la commune, qui par la suite racheta
+<br/>les trois autres lots afin dinstaller en ces lieux lécole des garçons, celle des filles ainsi que la mairie, comme logements pour les instituteurs. Jean Wagner- Autesserre, magistrat figeacois racheta le château en 1923 et, avec son épouse, se consacra à sa restauration jusquen 1969. Son fils, Pierre Wagner-Autesserre et son épouse perpétuent aujourdhui son uvre.  En 1946, le château est inscrit sur la liste complémentaire des monuments historiques avant d'être classé monument historique en 1995.</p>
+<h4>Architecture</h4><p>Le château de Larroque-Toirac,  a été construit au XVe siècle, il a conservé dans sa partie médiévale tout son système défensif,  le renforcement de l'enceinte au XIVe siècle et le nouveau château au XVe siècle.  Les de La Roque édifièrent en premier un donjon pentagonal, dit à Cinq  Cayres à cinq côtés, dont les vestiges sont placés à lécart du château, à lEst, en contrebas des abris troglodytiques de la falaise qui furent les premiers habitats du site. Bâti en bel appareil de pierres calcaires, il sapparente au donjon du château de Roussillon à Saint-Pierre-Lafeuille et atteste une occupation de cet endroit  dès le milieu du XIIIe siècle. Ils mirent ensuite en chantier au cours du XIIIe siècle un logis (hospitium) en forme de tour. Lédifice, bâti en moellons calcaires, fut englobé dès le XIVe siècle dans différentes constructions et flanqué dune tour circulaire défendant lentrée du château grâce à ses meurtrières, sa chausse-trappe et les casemates abritant des arbalétriers. Le deuxième corps de bâtiment fut mis en chantier à partir de 1467 sur le côté Est, par les La Roque enrichis par des alliances avec des familles puissantes et riches de laristocratie locale. Une haute tour descalier à vis fut ainsi édifiée, afin de desservir un logis de plan rectangulaire établi sur 7 niveaux et cantonné au Sud-Est par une  tourelle de 40 m de haut comprenant 103 marches.  La demeure seigneuriale, où subsiste la cuisine d'origine, comporte de très belles cheminées du XVe siècle ainsi que des fresques du XVIe siècle. Les décorations sont datées de 1515 à 1531 et des aménagements ont été effectués au XVIIe siècle.</p>
+<h4>Habitants / Familles</h4><p>Bertrand  de La Roque
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Larroque -Toirac</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

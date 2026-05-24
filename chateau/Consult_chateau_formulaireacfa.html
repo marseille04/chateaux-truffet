@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>St_Chaptes — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,59 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_30.html">Gard</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_30.html">Gard</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_30.html" class="back-link">Retour au département 30 — Gard</a>
-  <div class="fiche">
-    <h2>St_Chaptes</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>30 — Gard</td></tr>
-          <tr><td>Canton</td><td>Uzès</td></tr>
-          <tr><td>Commune</td><td>St-Chaptes</td></tr>
-          <tr><td>Type d'édifice</td><td>Tour Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIII-XVI</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_30/30_St_Chaptes_1.jpg" alt="St_Chaptes" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_St_Chaptes_2.jpg" alt="St_Chaptes" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_St_Chaptes_3.jpg" alt="St_Chaptes" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_St_Chaptes_4.jpg" alt="St_Chaptes" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_St_Chaptes_5.jpg" alt="St_Chaptes" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_St_Chaptes_6.jpg" alt="St_Chaptes" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_30/30_St_Chaptes_7.jpg" alt="St_Chaptes" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_30.html">Retour au département 30 — Gard</a>
+<div class="fiche">
+<h2>St_Chaptes</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="St_Chaptes" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_30/30_St_Chaptes_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="St_Chaptes" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_St_Chaptes_1.jpg"/><img alt="St_Chaptes" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_St_Chaptes_2.jpg"/><img alt="St_Chaptes" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_St_Chaptes_3.jpg"/><img alt="St_Chaptes" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_St_Chaptes_4.jpg"/><img alt="St_Chaptes" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_St_Chaptes_5.jpg"/><img alt="St_Chaptes" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_St_Chaptes_6.jpg"/><img alt="St_Chaptes" class="" loading="lazy" onclick="setHero(this)" src="../image/image_30/30_St_Chaptes_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>30 — Gard</td></tr>
+<tr><td>Canton</td><td>Uzès</td></tr>
+<tr><td>Commune</td><td>St-Chaptes</td></tr>
+<tr><td>Type d'édifice</td><td>Tour Château</td></tr>
+<tr><td>Période d'origine</td><td>XIII-XVI</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux châteaux à Saint-Chaptes, la Tour du XIIIe siècle, et le château de Saint-Chaptes                                                                          La TOUR, vers l'an 1212, est érigé une tour carrée appelée autrefois "Tour de Gatigne", mais dont l'origine exacte est inconnue, la partie la plus ancienne du château adossée à cette tour, aurait été une commanderie des Templiers. L'ensemble gardera son aspect primitif durant 5 siècles, il ne sera modernisé qu'au XVIIIe siècle pendant la période du Directoire, par les Chabaud-Latour. En 1306, ce château fut offert par Philippe le Bel à Guillaume de Nogaret et transmis à la fin du XVe siècle à la famille de Brueys, vendu en 1698 à Claude Lombard, bourgeois de Nîmes, puis cédé en 1764 au négociant André Chabaud, à la mort de son père Antoine Chabaud est fait baron, le 22 novembre 1817 et devient Antoine-Georges-François baron de Chabaud-Latour.  Après la Révolution, le nouveau propriétaire, le baron de Larcy, Roger Saubert de Larcy, propriétaire du château de la Tour à Saint-Chaptes à partir de 1835. le domaine échut aux  descendants du baron de Larcy à  son petit-fils Jacques marquis de Lordat depuis 1943.                                                                                                  ST-CHAPTES,   le bourg de Saint-Chaptes conserve une partie de son enceinte, dont le château  formait la défense Sud-Est. Il aurait été pillé en 1217. La famille du Caylar y est attestée dès 1274. Mais en 1306, Philippe le Bel les dessaisit de ce fief et l'attribue à Guillaume de Nogaret. La fille de Pierre du Caylar épouse Pierre de Brueys. Le château est alors agrandi. Suite à des difficultés financières, Louis XIV, conteste l'héritage de Nogaret, et, le 27 Juillet 1727, par arrêt parlementaire, l'adjuge à Claude Baguet, bourgeois de Nîmes et créancier d'Henri de Brueys. Un de ses descendants le revendra en 1803 à une comtesse de Brueys. Aujourd'hui propriétaire la famille Nègre.</p>
-      <h4>Architecture</h4><p>Tour du XIIIe siècle, remanié au XIXe siècle, la Tour a été couronnée par Viollet-Le-Duc, carrée crénelée et munie de bretèches. Elle y perdit son traditionnel toit de tuiles. Une galerie couverte, éclairée de fenêtres à meneaux, communique avec la partie "Directoire" en équerre. Surmontée d'une tourelle crénelée  munie de bretèches. reliée au sud-ouest à une galerie couverte éclairée de fenêtres à meneaux,  communiquant avec les  bâtiments  en équerre,  ces derniers comprennent un corps de logis central à trois fenêtres donnant au sud sur le parc et accolé de pavillons.                                                                                               St-Chaptes, les restes du rempart, remontant au XIVe siècle, comprennent deux tours, formant  l'entrée du château. Le rempart a été remonté au XIXe siècle ces deux tours rondes de diamètres inégaux, couronnées de tuiles et d'une génoise, encadrent le portail d'entrée. Elles ne mesurent que huit mètres de hauteur, ayant été écimées à la Révolution, en même temps que deux autres qui furent détruites. Il reste peu de traces du castel médiéval, englobé dans les bâtiments ultérieurs construits avec ses pierres en remploi. Seule quelques meurtrières. A l'intérieur de la cour, une tour ronde accolée au coin d'une aile plus haute, est datée de 1613. La porte Louis XIII, surmontée d'un fronton brisé, s'ouvre sur une belle cage d'escalier à quatre noyaux, avec des balustres de pierres à section carrée. Au premier étage se trouve le salon, où, après la "Paix d'Alais" (Alès), Louis XIII et le cardinal de Richelieu reçurent les délégués protestants et y séjournèrent du 29 juin au 2 juillet 1629. Cette pièce a gardé son plafond de poutres à la Française, alors que partout ailleurs le style "Empire" a prévalu.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Brueys                                                                               Famille du Caylar 
-<br>        "</p>
-      <h4>Divers</h4><p>Le château et la Tour de St-Chaptes</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux châteaux à Saint-Chaptes, la Tour du XIIIe siècle, et le château de Saint-Chaptes                                                                          La TOUR, vers l'an 1212, est érigé une tour carrée appelée autrefois "Tour de Gatigne", mais dont l'origine exacte est inconnue, la partie la plus ancienne du château adossée à cette tour, aurait été une commanderie des Templiers. L'ensemble gardera son aspect primitif durant 5 siècles, il ne sera modernisé qu'au XVIIIe siècle pendant la période du Directoire, par les Chabaud-Latour. En 1306, ce château fut offert par Philippe le Bel à Guillaume de Nogaret et transmis à la fin du XVe siècle à la famille de Brueys, vendu en 1698 à Claude Lombard, bourgeois de Nîmes, puis cédé en 1764 au négociant André Chabaud, à la mort de son père Antoine Chabaud est fait baron, le 22 novembre 1817 et devient Antoine-Georges-François baron de Chabaud-Latour.  Après la Révolution, le nouveau propriétaire, le baron de Larcy, Roger Saubert de Larcy, propriétaire du château de la Tour à Saint-Chaptes à partir de 1835. le domaine échut aux  descendants du baron de Larcy à  son petit-fils Jacques marquis de Lordat depuis 1943.                                                                                                  ST-CHAPTES,   le bourg de Saint-Chaptes conserve une partie de son enceinte, dont le château  formait la défense Sud-Est. Il aurait été pillé en 1217. La famille du Caylar y est attestée dès 1274. Mais en 1306, Philippe le Bel les dessaisit de ce fief et l'attribue à Guillaume de Nogaret. La fille de Pierre du Caylar épouse Pierre de Brueys. Le château est alors agrandi. Suite à des difficultés financières, Louis XIV, conteste l'héritage de Nogaret, et, le 27 Juillet 1727, par arrêt parlementaire, l'adjuge à Claude Baguet, bourgeois de Nîmes et créancier d'Henri de Brueys. Un de ses descendants le revendra en 1803 à une comtesse de Brueys. Aujourd'hui propriétaire la famille Nègre.</p>
+<h4>Architecture</h4><p>Tour du XIIIe siècle, remanié au XIXe siècle, la Tour a été couronnée par Viollet-Le-Duc, carrée crénelée et munie de bretèches. Elle y perdit son traditionnel toit de tuiles. Une galerie couverte, éclairée de fenêtres à meneaux, communique avec la partie "Directoire" en équerre. Surmontée d'une tourelle crénelée  munie de bretèches. reliée au sud-ouest à une galerie couverte éclairée de fenêtres à meneaux,  communiquant avec les  bâtiments  en équerre,  ces derniers comprennent un corps de logis central à trois fenêtres donnant au sud sur le parc et accolé de pavillons.                                                                                               St-Chaptes, les restes du rempart, remontant au XIVe siècle, comprennent deux tours, formant  l'entrée du château. Le rempart a été remonté au XIXe siècle ces deux tours rondes de diamètres inégaux, couronnées de tuiles et d'une génoise, encadrent le portail d'entrée. Elles ne mesurent que huit mètres de hauteur, ayant été écimées à la Révolution, en même temps que deux autres qui furent détruites. Il reste peu de traces du castel médiéval, englobé dans les bâtiments ultérieurs construits avec ses pierres en remploi. Seule quelques meurtrières. A l'intérieur de la cour, une tour ronde accolée au coin d'une aile plus haute, est datée de 1613. La porte Louis XIII, surmontée d'un fronton brisé, s'ouvre sur une belle cage d'escalier à quatre noyaux, avec des balustres de pierres à section carrée. Au premier étage se trouve le salon, où, après la "Paix d'Alais" (Alès), Louis XIII et le cardinal de Richelieu reçurent les délégués protestants et y séjournèrent du 29 juin au 2 juillet 1629. Cette pièce a gardé son plafond de poutres à la Française, alors que partout ailleurs le style "Empire" a prévalu.</p>
+<h4>Habitants / Familles</h4><p>Famille de Brueys                                                                               Famille du Caylar 
+<br/>        "</p>
+<h4>Divers</h4><p>Le château et la Tour de St-Chaptes</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

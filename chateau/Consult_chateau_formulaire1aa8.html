@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Vichy — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,64 +113,61 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_03.html">Allier</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_03.html">Allier</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_03.html" class="back-link">Retour au département 03 — Allier</a>
-  <div class="fiche">
-    <h2>Vichy</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>03 — Allier</td></tr>
-          <tr><td>Canton</td><td>Vichy</td></tr>
-          <tr><td>Commune</td><td>Vichy</td></tr>
-          <tr><td>Type d'édifice</td><td>Patrimoine</td></tr>
-          <tr><td>Période d'origine</td><td>XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_03/03_Vichy_1.jpg" alt="Vichy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Vichy_2.jpg" alt="Vichy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Vichy_3.jpg" alt="Vichy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Vichy_4.jpg" alt="Vichy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Vichy_5.jpg" alt="Vichy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Vichy_6.jpg" alt="Vichy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Vichy_7.jpg" alt="Vichy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Vichy_8.jpg" alt="Vichy" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Vichy_9.jpg" alt="Vichy" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_03.html">Retour au département 03 — Allier</a>
+<div class="fiche">
+<h2>Vichy</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Vichy" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_03/03_Vichy_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Vichy" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Vichy_1.jpg"/><img alt="Vichy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Vichy_2.jpg"/><img alt="Vichy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Vichy_3.jpg"/><img alt="Vichy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Vichy_4.jpg"/><img alt="Vichy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Vichy_5.jpg"/><img alt="Vichy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Vichy_6.jpg"/><img alt="Vichy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Vichy_7.jpg"/><img alt="Vichy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Vichy_8.jpg"/><img alt="Vichy" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Vichy_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>03 — Allier</td></tr>
+<tr><td>Canton</td><td>Vichy</td></tr>
+<tr><td>Commune</td><td>Vichy</td></tr>
+<tr><td>Type d'édifice</td><td>Patrimoine</td></tr>
+<tr><td>Période d'origine</td><td>XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Pludieurs châteaux à Vichy.  Le manoir Sévigné, Castel-Franc et les thermes. VICHY en  1344, le seigneur Jean II cède la châtellenie de Vichy au duc Pierre 1er de Bourbon. En 1374-1384, Louis II de Bourbon acquiert la dernière part du château de Vichy au cur de la ville fortifiée. Vichy est alors rattaché au Bourbonnais. En1410, Louis II édifie des fortifications et fonde le couvent des Célestins.
-<br>SEVIGNE, la marquise curiste en 1676 et 1677, qui popularisera la description des prises d'eaux et bains dans ses lettres. Les eaux de Vichy, la guérissant d'une fâcheuse paralysie des mains, lui permettent en effet de retrouver l'usage de sa brillante et précieuse plume. elle y fit construire un pavillon.
-<br>Les THERMES, en 1761 et 1762, Adélaïde et Victoire de France, filles de Louis XV viennent une première fois à Vichy, puis reviennent en 1785. L'établissement de bains leur paraît fort incommode avec ses abords boueux et insuffisant pour le grand nombre de curistes. À leur retour à Versailles, elles demandent à leur neveu Louis XVI de faire édifier des thermes plus spacieux et plus agréables, construits en 1787.
-<br>CASTEL-FRANC,  a pu être la résidence du prévôt de Vichy. Ce manoir a été édifié sur les anciens remparts de la ville à la fin du XVe siècle, il abritait sans doute le bailli en 1523 . La famille Gravier du Monceau, qui est devenue propriétaire des lieux, qui meurt le 29 novembre 1928 à presque 102 ans, il servira de musée à la Compagnie fermière pendant 47 ans, de 1937 à 1984. Il appartient depuis 1997 à la mairie de Vichy.  Le CASINO dorigine est construit par Charles Badger, larchitecte du Chalet de la Compagnie en 1857, dont il reste aujourdhui la Galerie Napoléon III) en 1858.   En  1799,   Letizia Bonaparte, mère de Napoléon, fait une cure en compagnie de son fils Louis. 1900-1901, le Casino est agrandi. Une salle dOpéra, de style art nouveau, est inaugurée en 1901. Lensemble est baptisé  Grand Casino  et accueille désormais tous les plus grands noms de la scène internationale. 1940-1944 : Vichy, capitale du pays, abrite tous les ministères et les services annexes dans ses hôtels et ses villas. 
-<br>Suite à l'armistice signé le 22 juin 1940, le gouvernement s'installe à Vichy.</p>
-      <h4>Architecture</h4><p>Vichy,1821 la duchesse dAngoulême, fidèle habituée de la station, pose la 1ère pierre du nouvel établissement Thermal qui conserve quelques installations de lancienne Maison du Roy. Peu à peu, le vieux Vichy fait place au Vichy moderne. En 1848, la porte de France, dernier vestige des anciennes fortifications, est démolie.         Castel-Franc, ce manoir a été édifié sur les anciens remparts de la ville à la fin du XVe siècle, le bâtiment a conservé des traces du XVe siècle,  dans son corps principal à combles élevés et dans une belle porte à pieds droits et linteaux moulurés. À partir du XVIe siècle d'importants travaux, adjonction d'un bâtiment supplémentaire et ouverture de nombreuses baies, dans le style Renaissance.  Aujourd'hui l'édifice est constitué d'un double corps de  bâtiment de forme rectangulaire à 3 niveaux, flanqué de deux tourelles carrées et  d'une petite tourelle ronde en poivrière sur culot mouluré. Au XIXe  siècle, le bâtiment a été utilisé comme hôtel de ville de 1801 à 1822. Actuellement, il abrite un musée de la ville.            Les thermes et son hippodrome donnent à Vichy un air charmant de  French Riviera  continentale, d'oasis hédoniste ayant bien digéré la fin de son âge d'or thermal.                                 Vichy, l'architecture antérieure au XIXe siècle se concentre dans la vieille ville avec quelques édifices à façades de pierre ou à pans de bois dans le quartier construit sur le rocher des Célestins. A partir de 1861, avec la naissance de la station thermale moderne, l'architecture se renouvelle et introduit une échelle différente avec des édifices de grande hauteur.</p>
-      <h4>Habitants / Familles</h4><p>Famille Gravier du Monceau"</p>
-      <h4>Divers</h4><p>Le pavillon de Mme Sévigné, le Castel-Franc, le Guerinets, le Chancelaire, le Casino,  les thermes, le châlet de l'empereur et l'hôtel de ville de Vichy.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Pludieurs châteaux à Vichy.  Le manoir Sévigné, Castel-Franc et les thermes. VICHY en  1344, le seigneur Jean II cède la châtellenie de Vichy au duc Pierre 1er de Bourbon. En 1374-1384, Louis II de Bourbon acquiert la dernière part du château de Vichy au cur de la ville fortifiée. Vichy est alors rattaché au Bourbonnais. En1410, Louis II édifie des fortifications et fonde le couvent des Célestins.
+<br/>SEVIGNE, la marquise curiste en 1676 et 1677, qui popularisera la description des prises d'eaux et bains dans ses lettres. Les eaux de Vichy, la guérissant d'une fâcheuse paralysie des mains, lui permettent en effet de retrouver l'usage de sa brillante et précieuse plume. elle y fit construire un pavillon.
+<br/>Les THERMES, en 1761 et 1762, Adélaïde et Victoire de France, filles de Louis XV viennent une première fois à Vichy, puis reviennent en 1785. L'établissement de bains leur paraît fort incommode avec ses abords boueux et insuffisant pour le grand nombre de curistes. À leur retour à Versailles, elles demandent à leur neveu Louis XVI de faire édifier des thermes plus spacieux et plus agréables, construits en 1787.
+<br/>CASTEL-FRANC,  a pu être la résidence du prévôt de Vichy. Ce manoir a été édifié sur les anciens remparts de la ville à la fin du XVe siècle, il abritait sans doute le bailli en 1523 . La famille Gravier du Monceau, qui est devenue propriétaire des lieux, qui meurt le 29 novembre 1928 à presque 102 ans, il servira de musée à la Compagnie fermière pendant 47 ans, de 1937 à 1984. Il appartient depuis 1997 à la mairie de Vichy.  Le CASINO dorigine est construit par Charles Badger, larchitecte du Chalet de la Compagnie en 1857, dont il reste aujourdhui la Galerie Napoléon III) en 1858.   En  1799,   Letizia Bonaparte, mère de Napoléon, fait une cure en compagnie de son fils Louis. 1900-1901, le Casino est agrandi. Une salle dOpéra, de style art nouveau, est inaugurée en 1901. Lensemble est baptisé  Grand Casino  et accueille désormais tous les plus grands noms de la scène internationale. 1940-1944 : Vichy, capitale du pays, abrite tous les ministères et les services annexes dans ses hôtels et ses villas. 
+<br/>Suite à l'armistice signé le 22 juin 1940, le gouvernement s'installe à Vichy.</p>
+<h4>Architecture</h4><p>Vichy,1821 la duchesse dAngoulême, fidèle habituée de la station, pose la 1ère pierre du nouvel établissement Thermal qui conserve quelques installations de lancienne Maison du Roy. Peu à peu, le vieux Vichy fait place au Vichy moderne. En 1848, la porte de France, dernier vestige des anciennes fortifications, est démolie.         Castel-Franc, ce manoir a été édifié sur les anciens remparts de la ville à la fin du XVe siècle, le bâtiment a conservé des traces du XVe siècle,  dans son corps principal à combles élevés et dans une belle porte à pieds droits et linteaux moulurés. À partir du XVIe siècle d'importants travaux, adjonction d'un bâtiment supplémentaire et ouverture de nombreuses baies, dans le style Renaissance.  Aujourd'hui l'édifice est constitué d'un double corps de  bâtiment de forme rectangulaire à 3 niveaux, flanqué de deux tourelles carrées et  d'une petite tourelle ronde en poivrière sur culot mouluré. Au XIXe  siècle, le bâtiment a été utilisé comme hôtel de ville de 1801 à 1822. Actuellement, il abrite un musée de la ville.            Les thermes et son hippodrome donnent à Vichy un air charmant de  French Riviera  continentale, d'oasis hédoniste ayant bien digéré la fin de son âge d'or thermal.                                 Vichy, l'architecture antérieure au XIXe siècle se concentre dans la vieille ville avec quelques édifices à façades de pierre ou à pans de bois dans le quartier construit sur le rocher des Célestins. A partir de 1861, avec la naissance de la station thermale moderne, l'architecture se renouvelle et introduit une échelle différente avec des édifices de grande hauteur.</p>
+<h4>Habitants / Familles</h4><p>Famille Gravier du Monceau"</p>
+<h4>Divers</h4><p>Le pavillon de Mme Sévigné, le Castel-Franc, le Guerinets, le Chancelaire, le Casino,  les thermes, le châlet de l'empereur et l'hôtel de ville de Vichy.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

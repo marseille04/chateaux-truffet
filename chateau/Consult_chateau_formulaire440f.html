@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Illiers_Combray — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,59 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_28.html">Eure-et-Loir</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_28.html">Eure-et-Loir</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_28.html" class="back-link">Retour au département 28 — Eure-et-Loir</a>
-  <div class="fiche">
-    <h2>Illiers_Combray</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>28 — Eure-et-Loir</td></tr>
-          <tr><td>Canton</td><td>Illiers-Combray</td></tr>
-          <tr><td>Commune</td><td>Illiers-Combray,</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVI-XVIII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>48° 17' 56,04" Nord, 1° 14' 31,92" Est  Mirougrain GPS : 48° 18' 37,58" Nord, 1° 13' 54,95" Est Roussainville GPS : 48° 18' 04" Nord, 1° 14' 54" Est                                                           Rouvray GPS : 48° 17' 56" Nord, 1° 14' 32" Est                     Sinettrie  GPS : 48° 18' 04" Nord, 1° 14' 54" Est</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_28/28_Illiers_Combray_1.jpg" alt="Illiers_Combray" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_28/28_Illiers_Combray_2.jpg" alt="Illiers_Combray" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_28/28_Illiers_Combray_3.jpg" alt="Illiers_Combray" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_28/28_Illiers_Combray_4.jpg" alt="Illiers_Combray" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_28/28_Illiers_Combray_5.jpg" alt="Illiers_Combray" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_28/28_Illiers_Combray_6.jpg" alt="Illiers_Combray" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_28/28_Illiers_Combray_7.jpg" alt="Illiers_Combray" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_28.html">Retour au département 28 — Eure-et-Loir</a>
+<div class="fiche">
+<h2>Illiers_Combray</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Illiers_Combray" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_28/28_Illiers_Combray_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Illiers_Combray" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_28/28_Illiers_Combray_1.jpg"/><img alt="Illiers_Combray" class="" loading="lazy" onclick="setHero(this)" src="../image/image_28/28_Illiers_Combray_2.jpg"/><img alt="Illiers_Combray" class="" loading="lazy" onclick="setHero(this)" src="../image/image_28/28_Illiers_Combray_3.jpg"/><img alt="Illiers_Combray" class="" loading="lazy" onclick="setHero(this)" src="../image/image_28/28_Illiers_Combray_4.jpg"/><img alt="Illiers_Combray" class="" loading="lazy" onclick="setHero(this)" src="../image/image_28/28_Illiers_Combray_5.jpg"/><img alt="Illiers_Combray" class="" loading="lazy" onclick="setHero(this)" src="../image/image_28/28_Illiers_Combray_6.jpg"/><img alt="Illiers_Combray" class="" loading="lazy" onclick="setHero(this)" src="../image/image_28/28_Illiers_Combray_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>28 — Eure-et-Loir</td></tr>
+<tr><td>Canton</td><td>Illiers-Combray</td></tr>
+<tr><td>Commune</td><td>Illiers-Combray,</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVI-XVIII</td></tr>
+<tr><td>Coordonnées GPS</td><td>48° 17' 56,04" Nord, 1° 14' 31,92" Est  Mirougrain GPS : 48° 18' 37,58" Nord, 1° 13' 54,95" Est Roussainville GPS : 48° 18' 04" Nord, 1° 14' 54" Est                                                           Rouvray GPS : 48° 17' 56" Nord, 1° 14' 32" Est                     Sinettrie  GPS : 48° 18' 04" Nord, 1° 14' 54" Est</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Cinq châteaux dans cet article; Illiers-Combray, Rouvray, Mirougrain, Roussainville et Sinetterie.                                                          ILLIERS COMBRAY,  un véritable château fort avec pont-levis, épaisses murailles, double enceinte, fossés et tours extérieures, fût construit au coeur dune boucle du Loir. Au XVe siècle, Florent dIlliers, compagnon darmes de Jeanne dArc et gouverneur de Châteaudun, le restaure et laménage. Le château finira plus tard par tomber à labandon puis démoli au fil du temps, notamment après la révolution où les islériens se servirent des pierres dans le but de construire quelques habitations. Le donjon quadrangulaire sera démoli en 1857. Il subsiste le pavillon d'entrée qui est épaulé par deux contreforts qui s'épaississent en talus à la partie inférieure. Le portail en arc brisé présente deux rangées de claveaux. Les fenêtres ont perdu leurs meneaux, mais la lucarne ouverte dans le toit a conservé son pignon dont les rempants sont ornés de sculptures. Éléments protégés MH : le pavillon d'entrée : inscription par arrêté du 22 mars 1930.                                                                  ROUVRAY,  l'ancien château de Rouvray date du XVIe siècle. Ce pavillon est épaulé par deux contreforts qui s'épaississent en talus à la partie inférieure. Le portail en arc brisé présente deux rangées de claveaux. Les fenêtres ont perdu leurs meneaux, mais la lucarne ouverte, dans le toit a conservé son pignon dont les rampants sont ornés de sculptures. Le château de Rouvray est inscrit aux M.H., partiellement, depuis le 22/03/1930.</p>
-      <h4>Architecture</h4><p>MIROUGRAIN,  date de 1886. C'est au manoir de Mirougrain que Marcel Proust faisait ses promenades favorites durant ses séjours à Illiers-Combray. Dans son enfance, le manoir était occupée par une poétesse, Mlle Joinville, qui inspirera le personnage de Mlle Vinteuil. Le lieu a inspiré Marcel Proust pour "Du côté de Guermantes". Le manoir de Mirougrain date du XVIIIe siècle. Sa façade Est fut transformée vers 1886. Des quartiers de roches y ont été plaqués et les fenêtres ont été agrémentées de linteaux en arc brisé.  Est inscrit aux M.H. depuis 1977.  Éléments protégés MH : les façades et les toitures du manoir : inscription par arrêté du 26 juillet 1977.                                                                                                                           ROUSSAINVILLE, il ne reste de l'ancien château d'Illiers, que son pavillon d'entrée, dont la construction date du XVIe siècle. Ce pavillon est épaulé par deux contreforts qui s'épaississent en talus à la partie inférieure. Le portail en arc brisé présente deux rangées de claveaux. Les fenêtres ont perdu leurs meneaux, mais la lucarne ouverte dans le toit a conservé son pignon. Les rempants sont ornés de sculptures.  Cet ancien château est inscrit aux M.H. depuis 1930.                                                                                                        SINETTERIE, le pavillon d'entrée de l'ancien château d'Illiers, date du XVIe siècle. Le pavillon est épaulé par deux contreforts qui s'épaississent en talus à la partie inférieure. Le portail en arc brisé présente deux rangées de claveaux. Les fenêtres ont perdu leurs meneaux, mais la lucarne ouverte dans le toit a conservé son pignon dont les rempants sont ornés de sculptures. Le château de la Sinetterie est inscrit aux M.H. depuis le 22/03/1930.</p>
-      <h4>Habitants / Familles</h4><p>Famille de  Marcel Proust
-<br>        "</p>
-      <h4>Divers</h4><p>Cinq châteaux dans cet article; Illiers-Combray grav1-2-3- 7, Rouvray grav 4, Mirougrain grav-6, Roussainville grav-5 et Sinetterie.                                                                                    Illiers  GPS : 48° 17' 56,04" Nord, 1° 14' 31,92" Est  Mirougrain GPS : 48° 18' 37,58" Nord, 1° 13' 54,95" Est Roussainville GPS : 48° 18' 04" Nord, 1° 14' 54" Est                                                           Rouvray GPS : 48° 17' 56" Nord, 1° 14' 32" Est                     Sinettrie  GPS : 48° 18' 04" Nord, 1° 14' 54" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Cinq châteaux dans cet article; Illiers-Combray, Rouvray, Mirougrain, Roussainville et Sinetterie.                                                          ILLIERS COMBRAY,  un véritable château fort avec pont-levis, épaisses murailles, double enceinte, fossés et tours extérieures, fût construit au coeur dune boucle du Loir. Au XVe siècle, Florent dIlliers, compagnon darmes de Jeanne dArc et gouverneur de Châteaudun, le restaure et laménage. Le château finira plus tard par tomber à labandon puis démoli au fil du temps, notamment après la révolution où les islériens se servirent des pierres dans le but de construire quelques habitations. Le donjon quadrangulaire sera démoli en 1857. Il subsiste le pavillon d'entrée qui est épaulé par deux contreforts qui s'épaississent en talus à la partie inférieure. Le portail en arc brisé présente deux rangées de claveaux. Les fenêtres ont perdu leurs meneaux, mais la lucarne ouverte dans le toit a conservé son pignon dont les rempants sont ornés de sculptures. Éléments protégés MH : le pavillon d'entrée : inscription par arrêté du 22 mars 1930.                                                                  ROUVRAY,  l'ancien château de Rouvray date du XVIe siècle. Ce pavillon est épaulé par deux contreforts qui s'épaississent en talus à la partie inférieure. Le portail en arc brisé présente deux rangées de claveaux. Les fenêtres ont perdu leurs meneaux, mais la lucarne ouverte, dans le toit a conservé son pignon dont les rampants sont ornés de sculptures. Le château de Rouvray est inscrit aux M.H., partiellement, depuis le 22/03/1930.</p>
+<h4>Architecture</h4><p>MIROUGRAIN,  date de 1886. C'est au manoir de Mirougrain que Marcel Proust faisait ses promenades favorites durant ses séjours à Illiers-Combray. Dans son enfance, le manoir était occupée par une poétesse, Mlle Joinville, qui inspirera le personnage de Mlle Vinteuil. Le lieu a inspiré Marcel Proust pour "Du côté de Guermantes". Le manoir de Mirougrain date du XVIIIe siècle. Sa façade Est fut transformée vers 1886. Des quartiers de roches y ont été plaqués et les fenêtres ont été agrémentées de linteaux en arc brisé.  Est inscrit aux M.H. depuis 1977.  Éléments protégés MH : les façades et les toitures du manoir : inscription par arrêté du 26 juillet 1977.                                                                                                                           ROUSSAINVILLE, il ne reste de l'ancien château d'Illiers, que son pavillon d'entrée, dont la construction date du XVIe siècle. Ce pavillon est épaulé par deux contreforts qui s'épaississent en talus à la partie inférieure. Le portail en arc brisé présente deux rangées de claveaux. Les fenêtres ont perdu leurs meneaux, mais la lucarne ouverte dans le toit a conservé son pignon. Les rempants sont ornés de sculptures.  Cet ancien château est inscrit aux M.H. depuis 1930.                                                                                                        SINETTERIE, le pavillon d'entrée de l'ancien château d'Illiers, date du XVIe siècle. Le pavillon est épaulé par deux contreforts qui s'épaississent en talus à la partie inférieure. Le portail en arc brisé présente deux rangées de claveaux. Les fenêtres ont perdu leurs meneaux, mais la lucarne ouverte dans le toit a conservé son pignon dont les rempants sont ornés de sculptures. Le château de la Sinetterie est inscrit aux M.H. depuis le 22/03/1930.</p>
+<h4>Habitants / Familles</h4><p>Famille de  Marcel Proust
+<br/>        "</p>
+<h4>Divers</h4><p>Cinq châteaux dans cet article; Illiers-Combray grav1-2-3- 7, Rouvray grav 4, Mirougrain grav-6, Roussainville grav-5 et Sinetterie.                                                                                    Illiers  GPS : 48° 17' 56,04" Nord, 1° 14' 31,92" Est  Mirougrain GPS : 48° 18' 37,58" Nord, 1° 13' 54,95" Est Roussainville GPS : 48° 18' 04" Nord, 1° 14' 54" Est                                                           Rouvray GPS : 48° 17' 56" Nord, 1° 14' 32" Est                     Sinettrie  GPS : 48° 18' 04" Nord, 1° 14' 54" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

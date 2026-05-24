@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Bertangles — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,54 +113,57 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_80.html">Somme</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_80.html">Somme</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_80.html" class="back-link">Retour au département 80 — Somme</a>
-  <div class="fiche">
-    <h2>Bertangles</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>80 — Somme</td></tr>
-          <tr><td>Canton</td><td>Amiens</td></tr>
-          <tr><td>Commune</td><td>Bertangles</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII-XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_80/80_Bertangles_1.jpg" alt="Bertangles" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_80/80_Bertangles_2.jpg" alt="Bertangles" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_80/80_Bertangles_3.jpg" alt="Bertangles" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_80.html">Retour au département 80 — Somme</a>
+<div class="fiche">
+<h2>Bertangles</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Bertangles" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_80/80_Bertangles_1.jpg"/><div class="hero-count" id="hero-count">1 / 3</div></div><div class="photo-strip"><img alt="Bertangles" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Bertangles_1.jpg"/><img alt="Bertangles" class="" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Bertangles_2.jpg"/><img alt="Bertangles" class="" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Bertangles_3.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>80 — Somme</td></tr>
+<tr><td>Canton</td><td>Amiens</td></tr>
+<tr><td>Commune</td><td>Bertangles</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII-XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>BERTANGLES, en 1611 date du mariage de Gabrielle de Glisy et de Jacques de Clermont-Tallard,  famille de Clermont-Tonnerre. Bertangles est construit autour de 1730, pour Louis-Joseph de Clermont-Tonnerre, comte de Thoury. Sa conception est attribuée à Germain Louis Boffrand, ingénieur-architecte. Il est reconstruit au début du XVIIe siècle au nord-est de l'ancien manoir, après sa destruction par les Espagnols en 1597, sans doute pour Jacques de Clermont-Tallard et Gabrielle de Glisy. La terre fut érigée en marquisat par Charles X en 1829, au profit d'Amédée Marie de Clermont-Tonnerre. Le domaine, toujours transmis par successions et mariages, n'a jamais été vendu. La demeure est complétée dans le deuxième quart du XIXe siècle, par de nouveaux communs et par des aménagements paysagers, un parc à l'anglaise signalé par A. Goze (1849) et par la pose d'un portail, acquis en 1847. La grille exécutée pour le marquis de Gouffier, par le serrurier Jean-Baptiste Veyren, établi à Corbie, était destinée au château d'Heilly. Endommagé par un incendie en août 1930, il ne conserve de son décor d'origine attribué à François Cressent, que l'escalier et sa rampe en fer forgé. Les pièces de réception et la bibliothèque ont été refaites à l'identique, de 1930 à 1934, par André Mailfert. L'aménagement du parc au milieu du XIXe siècle, d'une faisanderie et d'un enclos à chevreuils, et celui de la cour d'honneur reproduisent en partie l'aspect du XVIIIe siècle reconstitué d'après des documents authentiques par l'architecte-paysagiste Duchesne.  Le château orienté nord-ouest sud-est est implanté en retrait d'une cour d'honneur. Au nord-ouest, le parc est prolongé par une avenue qui traverse le bois de Bertangles.   Le corps de logis de plan allongé est formé d'un corps central à deux étages carrés et étage de comble prolongé par deux ailes basses à étage de comble couvertes de toits à pans brisés.</p>
-      <h4>Architecture</h4><p>BERTANGLES, construit en calcaire, appareillé en pierre de taille, il est couvert d'ardoises. Le corps central présente une élévation sur cour à sept travées, dont les trois travées centrales sont couronnées par un fronton triangulaire (côté cour) et par un fronton semi-circulaire (côté parc); il est flanqué de deux pavillons en saillie à deux travées. Les corps de bâtiment délimitent une cour fermée sur trois côtés. Un portail à porte charretière et porte piétonne en briques et calcaire appareillé en pierre de taille en constitue l'entrée. Au nord-est, un portail donne accès au château.  dont la façade nord sur la cour est en calcaire, appareillé en pierre de taille, située au sud de la ferme. Accolé au portail d'entrée, un bâtiment en rez-de-chaussée surélevé sur cave est construit en calcaire appareillé en pierre de taille et couvert de tuiles.  Des trois portes d'origine visibles en façade sud, les deux latérales ont été murées et la porte centrale a été agrandie. Un accès latéral ouvert dans un second temps a également été muré. A l'est, s'élève un corps de bâtiment en rez-de-chaussée surélevé, construit en briques sur solin de grès et couvert d'un toit à croupe en ardoises; il présente quatre grandes fenêtres en façade sur cour, l'une d'elle a été transformée en porte, et une porte en pignon à l'est. A l'ouest du portail, la conciergerie est construite en calcaire appareillé en pierre de taille; en rez-de-chaussée, elle est couverte d'un toit en double bâtière en ardoises. Ils sont construits en briques et couverts de toits à longs pans à demi-croupe avec aisseliers et épis de faîtage. Les façades présentent un décor polychrome en assises alternées. A l'ouest. Il est couvert en tuiles.</p>
-      <h4>Habitants / Familles</h4><p>Familles des Clermont-Tonnerre "</p>
-      <h4>Divers</h4><p>Bertangles: 49° 58' 21" Nord, 2° 18' 06" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>BERTANGLES, en 1611 date du mariage de Gabrielle de Glisy et de Jacques de Clermont-Tallard,  famille de Clermont-Tonnerre. Bertangles est construit autour de 1730, pour Louis-Joseph de Clermont-Tonnerre, comte de Thoury. Sa conception est attribuée à Germain Louis Boffrand, ingénieur-architecte. Il est reconstruit au début du XVIIe siècle au nord-est de l'ancien manoir, après sa destruction par les Espagnols en 1597, sans doute pour Jacques de Clermont-Tallard et Gabrielle de Glisy. La terre fut érigée en marquisat par Charles X en 1829, au profit d'Amédée Marie de Clermont-Tonnerre. Le domaine, toujours transmis par successions et mariages, n'a jamais été vendu. La demeure est complétée dans le deuxième quart du XIXe siècle, par de nouveaux communs et par des aménagements paysagers, un parc à l'anglaise signalé par A. Goze (1849) et par la pose d'un portail, acquis en 1847. La grille exécutée pour le marquis de Gouffier, par le serrurier Jean-Baptiste Veyren, établi à Corbie, était destinée au château d'Heilly. Endommagé par un incendie en août 1930, il ne conserve de son décor d'origine attribué à François Cressent, que l'escalier et sa rampe en fer forgé. Les pièces de réception et la bibliothèque ont été refaites à l'identique, de 1930 à 1934, par André Mailfert. L'aménagement du parc au milieu du XIXe siècle, d'une faisanderie et d'un enclos à chevreuils, et celui de la cour d'honneur reproduisent en partie l'aspect du XVIIIe siècle reconstitué d'après des documents authentiques par l'architecte-paysagiste Duchesne.  Le château orienté nord-ouest sud-est est implanté en retrait d'une cour d'honneur. Au nord-ouest, le parc est prolongé par une avenue qui traverse le bois de Bertangles.   Le corps de logis de plan allongé est formé d'un corps central à deux étages carrés et étage de comble prolongé par deux ailes basses à étage de comble couvertes de toits à pans brisés.</p>
+<h4>Architecture</h4><p>BERTANGLES, construit en calcaire, appareillé en pierre de taille, il est couvert d'ardoises. Le corps central présente une élévation sur cour à sept travées, dont les trois travées centrales sont couronnées par un fronton triangulaire (côté cour) et par un fronton semi-circulaire (côté parc); il est flanqué de deux pavillons en saillie à deux travées. Les corps de bâtiment délimitent une cour fermée sur trois côtés. Un portail à porte charretière et porte piétonne en briques et calcaire appareillé en pierre de taille en constitue l'entrée. Au nord-est, un portail donne accès au château.  dont la façade nord sur la cour est en calcaire, appareillé en pierre de taille, située au sud de la ferme. Accolé au portail d'entrée, un bâtiment en rez-de-chaussée surélevé sur cave est construit en calcaire appareillé en pierre de taille et couvert de tuiles.  Des trois portes d'origine visibles en façade sud, les deux latérales ont été murées et la porte centrale a été agrandie. Un accès latéral ouvert dans un second temps a également été muré. A l'est, s'élève un corps de bâtiment en rez-de-chaussée surélevé, construit en briques sur solin de grès et couvert d'un toit à croupe en ardoises; il présente quatre grandes fenêtres en façade sur cour, l'une d'elle a été transformée en porte, et une porte en pignon à l'est. A l'ouest du portail, la conciergerie est construite en calcaire appareillé en pierre de taille; en rez-de-chaussée, elle est couverte d'un toit en double bâtière en ardoises. Ils sont construits en briques et couverts de toits à longs pans à demi-croupe avec aisseliers et épis de faîtage. Les façades présentent un décor polychrome en assises alternées. A l'ouest. Il est couvert en tuiles.</p>
+<h4>Habitants / Familles</h4><p>Familles des Clermont-Tonnerre "</p>
+<h4>Divers</h4><p>Bertangles: 49° 58' 21" Nord, 2° 18' 06" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

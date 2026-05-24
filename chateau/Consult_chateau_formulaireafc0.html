@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Sandillon_II — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_45.html">Loiret</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_45.html">Loiret</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_45.html" class="back-link">Retour au département 45 — Loiret</a>
-  <div class="fiche">
-    <h2>Sandillon_II</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>45 — Loiret</td></tr>
-          <tr><td>Canton</td><td>Jargeau</td></tr>
-          <tr><td>Commune</td><td>Sandillon</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI-XVIII-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_45/45_Sandillon_II_1.jpg" alt="Sandillon_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Sandillon_II_2.jpg" alt="Sandillon_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Sandillon_II_3.jpg" alt="Sandillon_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Sandillon_II_4.jpg" alt="Sandillon_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Sandillon_II_5.jpg" alt="Sandillon_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Sandillon_II_6.jpg" alt="Sandillon_II" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_45.html">Retour au département 45 — Loiret</a>
+<div class="fiche">
+<h2>Sandillon_II</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Sandillon_II" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_45/45_Sandillon_II_1.jpg"/><div class="hero-count" id="hero-count">1 / 6</div></div><div class="photo-strip"><img alt="Sandillon_II" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Sandillon_II_1.jpg"/><img alt="Sandillon_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Sandillon_II_2.jpg"/><img alt="Sandillon_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Sandillon_II_3.jpg"/><img alt="Sandillon_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Sandillon_II_4.jpg"/><img alt="Sandillon_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Sandillon_II_5.jpg"/><img alt="Sandillon_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Sandillon_II_6.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>45 — Loiret</td></tr>
+<tr><td>Canton</td><td>Jargeau</td></tr>
+<tr><td>Commune</td><td>Sandillon</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI-XVIII-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Trois châteaux dans cet article; la Porte et Puchesse, du Gamereau des XVIe, XVIIe et XVIIIe siècles; de Puchesse datant du XIXe siècle.                                                                                                                 PORTE, a été édifié à partir de 1776 , la chapelle achevée en 1785, construction commanditée par Claude de Loynes d'Autroche, homme de lettres, agronome, qui le légua à sa nièce la comtesse d'Orléans, il était en 1910 la propriété de la Vicomtesse d'Orléans.                                                                                                                GAMEREAU, le corps de bâtiment nord date du XVIIe siècle (antérieur à 1665). Puis, au début du XVIIIe siècle, la rénovation du château est entreprise;  on ajoute un corps de bâtiment sud, composé d'un pavillon et d'une seule travée de corps central, sans toucher à l'ancien château construit plus d'un siècle auparavant. Première piérre posée par le sieur Pierre Sainson le Jeune le 30 septembre 1721".  En 1870, le domaine appartient à M. Marchand. Dans le parc on peut voir une ancienne glacière voûtée et un pigeonnier carré, couvert de tuiles plates, avec un randier en pierre.                                                                                                    PUCHESSE,  a appartenu au XVIIIe siècle aux Colas des Francs: en 1720, Robert Colas des Francs achète la terre et la seigneurie du Grand Puchesse au sieur Sergent qui la tenait depuis 1709 du sieur Boyet et de Mérouville. Sa fille Marie-Madeleine Colas des Francs dame de Puchesse épouse en 1723 Gabriel Baguenault qui devient ainsi seigneur de Puchesse.  Le château était en 1910 la propriété de M. Gustave Baguenault de Puchesse.</p>
-      <h4>Architecture</h4><p>La PORTE, cest en 1996 que les propriétaires actuels acquièrent le domaine. Le salon latéral, de style Louis XV, est orné de quatre dessus-de-porte en camaïeu bleu représentant des scènes galantes. Lambris exécuté après 1834. Le salon central, de style Empire, est orné de quatre dessus-de-porte en faible relief. L'ancienne salle à manger est ornée de quatre dessus-de-porte en terre cuite avec une niche sculptée en haut relief d'une femme versant de l'eau. La chapelle est couverte d'une voûte peinte d'un décor céleste. Les communs actuels, construits entre les deux guerres, remplacèrent ceux achevés en 1876   Le domaine de La Porte comprenant un château du XVIIIe siècle, une chapelle et un parc, est situé sur les communes de Sandillon et de Saint-Cyr-en-Val  classement par arrêté du 20 octobre 1995.                                                                                                                      PUCHESSE, le château actuel a été reconstruit au XIXe siècle, de style classique c'est une belle demeure à un étage carré et étage de combles éclairés de lucarnes en croupes, composée d'un corps de logis prolongé de deux ailes symétriques. Dans le parc, une petite chapelle dont l'acte de fondation est daté de 1640. Le parc abrite également de belles dépendances et une orangerie.</p>
-      <h4>Habitants / Familles</h4><p>Puchesse ; famille des Colas des Francs               Porte;Claude de Loynes d'Autroche
-<br>        "</p>
-      <h4>Divers</h4><p>Trois châteaux à Sandillon; la Porte grav-4 et Puchesse grav 5. de  du Gamereau grav-2-3,   Bruel grav-1   de Sculas grav-6                                                                                          La porte  47° 49' 11" nord, 2° 00' 15" est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Trois châteaux dans cet article; la Porte et Puchesse, du Gamereau des XVIe, XVIIe et XVIIIe siècles; de Puchesse datant du XIXe siècle.                                                                                                                 PORTE, a été édifié à partir de 1776 , la chapelle achevée en 1785, construction commanditée par Claude de Loynes d'Autroche, homme de lettres, agronome, qui le légua à sa nièce la comtesse d'Orléans, il était en 1910 la propriété de la Vicomtesse d'Orléans.                                                                                                                GAMEREAU, le corps de bâtiment nord date du XVIIe siècle (antérieur à 1665). Puis, au début du XVIIIe siècle, la rénovation du château est entreprise;  on ajoute un corps de bâtiment sud, composé d'un pavillon et d'une seule travée de corps central, sans toucher à l'ancien château construit plus d'un siècle auparavant. Première piérre posée par le sieur Pierre Sainson le Jeune le 30 septembre 1721".  En 1870, le domaine appartient à M. Marchand. Dans le parc on peut voir une ancienne glacière voûtée et un pigeonnier carré, couvert de tuiles plates, avec un randier en pierre.                                                                                                    PUCHESSE,  a appartenu au XVIIIe siècle aux Colas des Francs: en 1720, Robert Colas des Francs achète la terre et la seigneurie du Grand Puchesse au sieur Sergent qui la tenait depuis 1709 du sieur Boyet et de Mérouville. Sa fille Marie-Madeleine Colas des Francs dame de Puchesse épouse en 1723 Gabriel Baguenault qui devient ainsi seigneur de Puchesse.  Le château était en 1910 la propriété de M. Gustave Baguenault de Puchesse.</p>
+<h4>Architecture</h4><p>La PORTE, cest en 1996 que les propriétaires actuels acquièrent le domaine. Le salon latéral, de style Louis XV, est orné de quatre dessus-de-porte en camaïeu bleu représentant des scènes galantes. Lambris exécuté après 1834. Le salon central, de style Empire, est orné de quatre dessus-de-porte en faible relief. L'ancienne salle à manger est ornée de quatre dessus-de-porte en terre cuite avec une niche sculptée en haut relief d'une femme versant de l'eau. La chapelle est couverte d'une voûte peinte d'un décor céleste. Les communs actuels, construits entre les deux guerres, remplacèrent ceux achevés en 1876   Le domaine de La Porte comprenant un château du XVIIIe siècle, une chapelle et un parc, est situé sur les communes de Sandillon et de Saint-Cyr-en-Val  classement par arrêté du 20 octobre 1995.                                                                                                                      PUCHESSE, le château actuel a été reconstruit au XIXe siècle, de style classique c'est une belle demeure à un étage carré et étage de combles éclairés de lucarnes en croupes, composée d'un corps de logis prolongé de deux ailes symétriques. Dans le parc, une petite chapelle dont l'acte de fondation est daté de 1640. Le parc abrite également de belles dépendances et une orangerie.</p>
+<h4>Habitants / Familles</h4><p>Puchesse ; famille des Colas des Francs               Porte;Claude de Loynes d'Autroche
+<br/>        "</p>
+<h4>Divers</h4><p>Trois châteaux à Sandillon; la Porte grav-4 et Puchesse grav 5. de  du Gamereau grav-2-3,   Bruel grav-1   de Sculas grav-6                                                                                          La porte  47° 49' 11" nord, 2° 00' 15" est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Bouziès — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,61 +113,61 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_46.html">Lot</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_46.html">Lot</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_46.html" class="back-link">Retour au département 46 — Lot</a>
-  <div class="fiche">
-    <h2>Bouziès</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>46 — Lot</td></tr>
-          <tr><td>Canton</td><td>Cajarc</td></tr>
-          <tr><td>Commune</td><td>Bouziès</td></tr>
-          <tr><td>Type d'édifice</td><td>Château-vestiges</td></tr>
-          <tr><td>Période d'origine</td><td>XII-XV</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_46/46_Bouzies_1.jpg" alt="Bouziès" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Bouzies_2.jpg" alt="Bouziès" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Bouzies_3.jpg" alt="Bouziès" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Bouzies_4.jpg" alt="Bouziès" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Bouzies_5.jpg" alt="Bouziès" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Bouzies_6.jpg" alt="Bouziès" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_46.html">Retour au département 46 — Lot</a>
+<div class="fiche">
+<h2>Bouziès</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Bouziès" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_46/46_Bouzies_1.jpg"/><div class="hero-count" id="hero-count">1 / 6</div></div><div class="photo-strip"><img alt="Bouziès" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Bouzies_1.jpg"/><img alt="Bouziès" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Bouzies_2.jpg"/><img alt="Bouziès" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Bouzies_3.jpg"/><img alt="Bouziès" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Bouzies_4.jpg"/><img alt="Bouziès" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Bouzies_5.jpg"/><img alt="Bouziès" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Bouzies_6.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>46 — Lot</td></tr>
+<tr><td>Canton</td><td>Cajarc</td></tr>
+<tr><td>Commune</td><td>Bouziès</td></tr>
+<tr><td>Type d'édifice</td><td>Château-vestiges</td></tr>
+<tr><td>Période d'origine</td><td>XII-XV</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Trois châteaux à Bouziès celui de Bouziès , de Coduché et de Condat                                                                                             BOUZIES; des « châteaux des Anglais » il en existe plusieurs dans les rochers bordant le Lot entre Cahors et Figeac, ces fortifications troglodytiques existaient avant la guerre de 100 ans. Elles étaient des repères de brigands à la solde de lAnglais. Celle-ci a gardé le nom de château des Anglais, même si sa réalisation est datée du XIVe siècle.                                                                                                     CONDUCHE,  il y eut une famille de ce nom, en 1517, Forton de Conduché. De son fils Bertrand de Conduché, marié à Isabelle de Chaumette, naquit Françoise de Conduché qui épouse en 1523 Pierre de Rodorel, seigneur de Frayssinet et de Fargues. Il devait prendre le nom de Conduché. Pierre épouse en seconde noceFrançoise de Leigue. Les Rodorel seront encore seigneurs directs de Conduché au XVIIIe siècle : en 1672, ils achètent la haute justice à noble Pons de Bécave, seigneur de Sérignac et de Saint Cirq. Mais à leur tour, ils vendent la seigneurie de Conduché en 1776. En 1786, Pierre de Malleville est dit seigneur de Conduché et Bouziès.                                                                                                                                                                           CONDAT,  ce dernier appartenait peu avant 1452 à Pierre Cornavi, marchand de Cajarc,qui le louait à bail emphytéotique à noble Antoine de Saint-Géry, fils de Pons de Podio.  A la fin du Moyen-Âge, c'était une exploitation agricole noble appartenant à la famille de Saint-Géry. En 1503, lors du dénombrement, Antoine de Saint-Géry reconnaît posséder, entre autres, le fief de Condat. Puis le château est acquis, en 1776, par M. de Maleville. Eléments protégés MH : les façades et les toitures du château; l'escalier et le pigeonnier: inscription par arrêté du 14 mai 1987.</p>
-      <h4>Architecture</h4><p>Condat, ce château présente deux corps de bâtiment disposés en angle droit, de volumes différents. Daprès les baies qui percent le bâtiment, celui-ci aurait été construit à la fin  du XVe siècle ou au début du XVIe siècle. Cest un édifice complexe, composé au Nord-Est dun corps principal de plan rectangulaire, associé au Sud-Est à une partie en forme de tour. Un autre corps de bâtiment fut édifié peu de temps après, sur le flanc sud-est des deux entités précédentes.  Par la suite ou dans le même temps que la construction du corps sud-est, on éleva une cage descalier de plan rectangulaire intégrant le portail dentrée.  Il devait s'inscrire dans un ensemble plus important et plus ancien. Le rez de chaussée est occupé par des caves dont une est voûtée. A proximité se trouve un pigeonnier circulaire dépendant du château                                                                                                                      Condouché,  château sans caractère aujourd'hui, ce n'est qu'une fort grande et vieille demeure, avec des fenêtres à meneaux et une tour ronde. Il y avait, avant 1687, et peut-être aussi ensuite, une chapelle à Conduché. Dans un inventaire du XVIIIe siècle, on retrouve la permission de bénir la chapelle du château.                                                                                                                   SOULIAC   À proximité, la chapelle Notre-Dame du Roc-Troucat, le rocher troué, de 1850, en partie troglodytique, est un lieu de pélerinage annuel. Par le chemin en corniche, on longe les ruines d'un château, d'où l'on peut voir sur la rive opposée le château de Géniez du XVIe siècle, dressant sur une sorte d'isthme son logis à la Mansard et sa tour ronde.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Conduché                                                                 
-<br>Famille de Saint-Géry
-<br>        
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>A Bouziès  château dit des  Anglais gravure 1, de Condat gravure 2-3-4 et 5 Conduché gravure 6.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Trois châteaux à Bouziès celui de Bouziès , de Coduché et de Condat                                                                                             BOUZIES; des « châteaux des Anglais » il en existe plusieurs dans les rochers bordant le Lot entre Cahors et Figeac, ces fortifications troglodytiques existaient avant la guerre de 100 ans. Elles étaient des repères de brigands à la solde de lAnglais. Celle-ci a gardé le nom de château des Anglais, même si sa réalisation est datée du XIVe siècle.                                                                                                     CONDUCHE,  il y eut une famille de ce nom, en 1517, Forton de Conduché. De son fils Bertrand de Conduché, marié à Isabelle de Chaumette, naquit Françoise de Conduché qui épouse en 1523 Pierre de Rodorel, seigneur de Frayssinet et de Fargues. Il devait prendre le nom de Conduché. Pierre épouse en seconde noceFrançoise de Leigue. Les Rodorel seront encore seigneurs directs de Conduché au XVIIIe siècle : en 1672, ils achètent la haute justice à noble Pons de Bécave, seigneur de Sérignac et de Saint Cirq. Mais à leur tour, ils vendent la seigneurie de Conduché en 1776. En 1786, Pierre de Malleville est dit seigneur de Conduché et Bouziès.                                                                                                                                                                           CONDAT,  ce dernier appartenait peu avant 1452 à Pierre Cornavi, marchand de Cajarc,qui le louait à bail emphytéotique à noble Antoine de Saint-Géry, fils de Pons de Podio.  A la fin du Moyen-Âge, c'était une exploitation agricole noble appartenant à la famille de Saint-Géry. En 1503, lors du dénombrement, Antoine de Saint-Géry reconnaît posséder, entre autres, le fief de Condat. Puis le château est acquis, en 1776, par M. de Maleville. Eléments protégés MH : les façades et les toitures du château; l'escalier et le pigeonnier: inscription par arrêté du 14 mai 1987.</p>
+<h4>Architecture</h4><p>Condat, ce château présente deux corps de bâtiment disposés en angle droit, de volumes différents. Daprès les baies qui percent le bâtiment, celui-ci aurait été construit à la fin  du XVe siècle ou au début du XVIe siècle. Cest un édifice complexe, composé au Nord-Est dun corps principal de plan rectangulaire, associé au Sud-Est à une partie en forme de tour. Un autre corps de bâtiment fut édifié peu de temps après, sur le flanc sud-est des deux entités précédentes.  Par la suite ou dans le même temps que la construction du corps sud-est, on éleva une cage descalier de plan rectangulaire intégrant le portail dentrée.  Il devait s'inscrire dans un ensemble plus important et plus ancien. Le rez de chaussée est occupé par des caves dont une est voûtée. A proximité se trouve un pigeonnier circulaire dépendant du château                                                                                                                      Condouché,  château sans caractère aujourd'hui, ce n'est qu'une fort grande et vieille demeure, avec des fenêtres à meneaux et une tour ronde. Il y avait, avant 1687, et peut-être aussi ensuite, une chapelle à Conduché. Dans un inventaire du XVIIIe siècle, on retrouve la permission de bénir la chapelle du château.                                                                                                                   SOULIAC   À proximité, la chapelle Notre-Dame du Roc-Troucat, le rocher troué, de 1850, en partie troglodytique, est un lieu de pélerinage annuel. Par le chemin en corniche, on longe les ruines d'un château, d'où l'on peut voir sur la rive opposée le château de Géniez du XVIe siècle, dressant sur une sorte d'isthme son logis à la Mansard et sa tour ronde.</p>
+<h4>Habitants / Familles</h4><p>Famille de Conduché                                                                 
+<br/>Famille de Saint-Géry
+<br/>
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>A Bouziès  château dit des  Anglais gravure 1, de Condat gravure 2-3-4 et 5 Conduché gravure 6.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

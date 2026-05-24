@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Vivonne — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,61 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_86.html">Vienne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_86.html">Vienne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_86.html" class="back-link">Retour au département 86 — Vienne</a>
-  <div class="fiche">
-    <h2>Vivonne</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>86 — Vienne</td></tr>
-          <tr><td>Canton</td><td>Vivonne</td></tr>
-          <tr><td>Commune</td><td>Vivonne</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIV-XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_86/86_Vivonne_1.jpg" alt="Vivonne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Vivonne_2.jpg" alt="Vivonne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Vivonne_3.jpg" alt="Vivonne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Vivonne_4.jpg" alt="Vivonne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Vivonne_5.jpg" alt="Vivonne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Vivonne_6.jpg" alt="Vivonne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Vivonne_7.jpg" alt="Vivonne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Vivonne_8.jpg" alt="Vivonne" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_86/86_Vivonne_9.jpg" alt="Vivonne" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_86.html">Retour au département 86 — Vienne</a>
+<div class="fiche">
+<h2>Vivonne</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Vivonne" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_86/86_Vivonne_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Vivonne" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Vivonne_1.jpg"/><img alt="Vivonne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Vivonne_2.jpg"/><img alt="Vivonne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Vivonne_3.jpg"/><img alt="Vivonne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Vivonne_4.jpg"/><img alt="Vivonne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Vivonne_5.jpg"/><img alt="Vivonne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Vivonne_6.jpg"/><img alt="Vivonne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Vivonne_7.jpg"/><img alt="Vivonne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Vivonne_8.jpg"/><img alt="Vivonne" class="" loading="lazy" onclick="setHero(this)" src="../image/image_86/86_Vivonne_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>86 — Vienne</td></tr>
+<tr><td>Canton</td><td>Vivonne</td></tr>
+<tr><td>Commune</td><td>Vivonne</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIV-XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>A Vivonne le château de Carrelière,  Cercigny, de la Planche, de Bonnevaux, de Roquillon et de Varennes pas d'info pour ces deux derniers.                                                                                         CARRELIERE, le premier seigneur connu à La Carrelière au XVIIe siècle est Estienne Roger, écuyer. La propriété passera dans la famille Berland. Louis Berland, chevalier de l'ordre de Malte, et son épouse, Madeleine Tesnon, qui la lèguèrent en 1781, à Alexandre-Pierre Choquin de Sarzec, époux de Esther Aubineau d'Insay. A la Révolution, le domaine sera vendu comme bien national à Jacques Souchaud.                                                                                                    CERCIGNY, propriété mentionnée pour la première fois en 1303, associée à la famille de Rochechouart qui la conservera jusqu'au XVIIIe siècle. Le château, en partie détruit pendant la guerre de Cent Ans et les guerres de religion, ne fut plus habité jusqu'au XVIIe siècle, époque de la reconstruction d'une partie de la demeure. Au XVIIIe siècle, la propriété revient par alliance aux Frotier de La Coste-Messelière. Après la Révolution, le château passe dans les mains de plusieurs propriétaires. Enfin, en 1890 la famille Majou de La Debutrie en fait l'acquisition; elle l'habite encore aujourd'hui.                                                                                      PLANCHES, cette demeure seigneuriale a été construite par Pierre Régnier, maire de Poitiers en 1516, restaurée quatre siècles plus tard par la famille Aymer de La Chevalerie. Malgré son ascension sociale sous le règne de Louis XII, Pierre Régnier, docteur régent à la faculté de droit, limite ses ambitions.   Dans un second temps, son fils Louis, procède à l'allongement du logis,   augmenté d'une nouvelle salle.</p>
-      <h4>Architecture</h4><p>CARRELIERE, un plan rectangulaire, la façade est interrompue par une tour carrée demi hors uvre. Le bâtiment principal, à deux niveaux apparents et cinq travées d'ouvertures irrégulières, est doté d'une toiture à deux pans couverte d'ardoise. La tour carrée possède un niveau supplémentaire et pourvue d'un toit à croupes avec à son faîte un lanternon d'ardoise surmonté d'une girouette. A l'un des angles une autre tour carrée mais plus basse, avec toit arasé couvert de tuiles canales. A l'arrière, une petite échauguette en brique, posée sur culot, est coiffée d'un dôme couvert d'ardoise.                                                                                                                       CERCIGNY, l'édifice est composé d'un bâtiment central, ancien châtelet d'entrée du XIVe siècle et réaménagé au XIXe siècle et de trois ailes rectangulaires disposées bout à bout en arc de cercle. Ces ailes furent entièrement remodelées au XIXe siècle et XXe siècle. La chapelle N-D de la Consolation fut bénie le 28 octobre 1678. Le pigeonnier rond est considéré comme le plus grand de la Vienne (3300 boulins).                                                             PLANCHES,  limite ses ambitions à un corps de logis rectangulaire, simple en profondeur, divisé en deux par un mur de refend et plaqué contre une forte tour.  Les cheminées monumentales sont adaptées à l'ampleur des pièces. Les croisées de l'étage portent la marque de la première Renaissance. Élie, le cadet, fait construire à l'angle sud ouest une tour carrée ornée d'un petit cabinet en saillie accessible par une vis qui complète le système de circulation. L'échauguette à dôme n'est pas le seul ornement de ce pavillon dont la porte extérieure s'enrichit de pilastres classiques. Terrasses ouvertes sur le paysage, frondaisons et futaies dessinent le cadre de ce château de plaisance.</p>
-      <h4>Habitants / Familles</h4><p>Cercigny;  famille de Rochechouart 
-<br>        "</p>
-      <h4>Divers</h4><p>A Vivonne 46° 45' 22,68" Nord 0° 52' 26,76" Est, le château de Carelière grav 1,  Cercigny grav 2, de la Planche grav 3, de Badonières-7, de Roquillon grav-4  et de Varenne grav-5-6 Bretinières _9 Touche grav-8</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>A Vivonne le château de Carrelière,  Cercigny, de la Planche, de Bonnevaux, de Roquillon et de Varennes pas d'info pour ces deux derniers.                                                                                         CARRELIERE, le premier seigneur connu à La Carrelière au XVIIe siècle est Estienne Roger, écuyer. La propriété passera dans la famille Berland. Louis Berland, chevalier de l'ordre de Malte, et son épouse, Madeleine Tesnon, qui la lèguèrent en 1781, à Alexandre-Pierre Choquin de Sarzec, époux de Esther Aubineau d'Insay. A la Révolution, le domaine sera vendu comme bien national à Jacques Souchaud.                                                                                                    CERCIGNY, propriété mentionnée pour la première fois en 1303, associée à la famille de Rochechouart qui la conservera jusqu'au XVIIIe siècle. Le château, en partie détruit pendant la guerre de Cent Ans et les guerres de religion, ne fut plus habité jusqu'au XVIIe siècle, époque de la reconstruction d'une partie de la demeure. Au XVIIIe siècle, la propriété revient par alliance aux Frotier de La Coste-Messelière. Après la Révolution, le château passe dans les mains de plusieurs propriétaires. Enfin, en 1890 la famille Majou de La Debutrie en fait l'acquisition; elle l'habite encore aujourd'hui.                                                                                      PLANCHES, cette demeure seigneuriale a été construite par Pierre Régnier, maire de Poitiers en 1516, restaurée quatre siècles plus tard par la famille Aymer de La Chevalerie. Malgré son ascension sociale sous le règne de Louis XII, Pierre Régnier, docteur régent à la faculté de droit, limite ses ambitions.   Dans un second temps, son fils Louis, procède à l'allongement du logis,   augmenté d'une nouvelle salle.</p>
+<h4>Architecture</h4><p>CARRELIERE, un plan rectangulaire, la façade est interrompue par une tour carrée demi hors uvre. Le bâtiment principal, à deux niveaux apparents et cinq travées d'ouvertures irrégulières, est doté d'une toiture à deux pans couverte d'ardoise. La tour carrée possède un niveau supplémentaire et pourvue d'un toit à croupes avec à son faîte un lanternon d'ardoise surmonté d'une girouette. A l'un des angles une autre tour carrée mais plus basse, avec toit arasé couvert de tuiles canales. A l'arrière, une petite échauguette en brique, posée sur culot, est coiffée d'un dôme couvert d'ardoise.                                                                                                                       CERCIGNY, l'édifice est composé d'un bâtiment central, ancien châtelet d'entrée du XIVe siècle et réaménagé au XIXe siècle et de trois ailes rectangulaires disposées bout à bout en arc de cercle. Ces ailes furent entièrement remodelées au XIXe siècle et XXe siècle. La chapelle N-D de la Consolation fut bénie le 28 octobre 1678. Le pigeonnier rond est considéré comme le plus grand de la Vienne (3300 boulins).                                                             PLANCHES,  limite ses ambitions à un corps de logis rectangulaire, simple en profondeur, divisé en deux par un mur de refend et plaqué contre une forte tour.  Les cheminées monumentales sont adaptées à l'ampleur des pièces. Les croisées de l'étage portent la marque de la première Renaissance. Élie, le cadet, fait construire à l'angle sud ouest une tour carrée ornée d'un petit cabinet en saillie accessible par une vis qui complète le système de circulation. L'échauguette à dôme n'est pas le seul ornement de ce pavillon dont la porte extérieure s'enrichit de pilastres classiques. Terrasses ouvertes sur le paysage, frondaisons et futaies dessinent le cadre de ce château de plaisance.</p>
+<h4>Habitants / Familles</h4><p>Cercigny;  famille de Rochechouart 
+<br/>        "</p>
+<h4>Divers</h4><p>A Vivonne 46° 45' 22,68" Nord 0° 52' 26,76" Est, le château de Carelière grav 1,  Cercigny grav 2, de la Planche grav 3, de Badonières-7, de Roquillon grav-4  et de Varenne grav-5-6 Bretinières _9 Touche grav-8</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

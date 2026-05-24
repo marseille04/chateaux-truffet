@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Chalouze — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,55 +113,57 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_03.html">Allier</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_03.html">Allier</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_03.html" class="back-link">Retour au département 03 — Allier</a>
-  <div class="fiche">
-    <h2>Chalouze</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>03 — Allier</td></tr>
-          <tr><td>Canton</td><td>Ebreuil</td></tr>
-          <tr><td>Commune</td><td>Lalizolle</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_03/03_Chalouze_1.jpg" alt="Chalouze" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Chalouze_2.jpg" alt="Chalouze" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Chalouze_3.jpg" alt="Chalouze" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Chalouze_4.jpg" alt="Chalouze" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_03.html">Retour au département 03 — Allier</a>
+<div class="fiche">
+<h2>Chalouze</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Chalouze" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_03/03_Chalouze_1.jpg"/><div class="hero-count" id="hero-count">1 / 4</div></div><div class="photo-strip"><img alt="Chalouze" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Chalouze_1.jpg"/><img alt="Chalouze" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Chalouze_2.jpg"/><img alt="Chalouze" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Chalouze_3.jpg"/><img alt="Chalouze" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Chalouze_4.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>03 — Allier</td></tr>
+<tr><td>Canton</td><td>Ebreuil</td></tr>
+<tr><td>Commune</td><td>Lalizolle</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux châteaux à Lalizolle;  Chalouze du XIXe siècle style féodal et Nades du XVIIe siècle.                    CHALOUZE, il a été construit à l'emplacement d'un château plus ancien, dont le propriétaire, "sieur de Chalouze" est signalé en 1664.  Au milieu du XIXe siècle, le Duc de Morny, demi-frère de I 'empereur Napoléon III chamboula la vie de Lalizolle. Il possédait une immense propriété sur Lalizolle et une ferme sur Nades. Il fit construire un château, un corps de ferme dans un immense parc. Cet homme modifia les comportements et améliora la qualité de vie en ouvrant des routes, et offrant du travail, en créant des entreprises (moulin de l'Etang Roux). Le Duc de Morny créa l'Hôtel de la Poste, appelé Tournebride, réservé au personnel d'accompagnement des visiteurs de marque du château, et fut la demeure du célèbre professeur Alajouanine.                 NADES a été au XVIIe siècle un lieu de villégiature de madame de La Fayette. Il fut racheté en 1854 par le duc de Morny,  celui-ci le fit reconstruire et le dota d'une ferme-modèle, qui subsiste dans l'actuel parc. Il y reçut fastueusement Jacques Offenbach, Ludovic Halévy, Alphonse Daudet, qui séjournèrent et chassèrent sur les 2 000 ha du domaine. La ferme-modèle témoigne de l'implication du duc de Morny pour favoriser de nouvelles techniques agricoles, mais aussi pour promouvoir les bienfaits de l'Empire auprès du monde paysan, électorat important à cette époque. Il est aujourd'hui considérablement ruiné.  Voilà comment l'auteur de La Princesse de Clèves décrivait dans ses correspondances la maison qui porte aujourd'hui son nom. Désormais Henry et Marie Dechambre sont propriétaires des lieux.</p>
-      <h4>Architecture</h4><p>Chalouze, l' actuel château du XIXe siècle remplaça un château médiéval, qui, aujourd'hui, est surmonté d'un donjon à échauguettes d'angles, La terre devait être dans la dépendance des seigneurs voisins du Châtelard ou de Veauce. Le corps de logis de plan barlong à deux niveaux et niveau de comble reçoit deux ailes en retour d'équerre en forme  de pavillons. Il est agrémenté en avant corps d'une tour carrée prise en oeuvre au centre de la façade recouverte d'un toit élancé en pavillon  et surmonté  de paratonnerres  et frises de faitage. Elle est anglée  de deux fines et longues échauguettes. Ce château, avec sa tour centrale chapeauté de son toit en tuiles de châtaignier, a été restauré avec beaucoup de goût ainsi que ses abords et bâtiments d'élevage.                  Nades corps de logis  du XIXe siècle à deux niveaux avec pavillons en saillit aux extrémités.</p>
-      <h4>Habitants / Familles</h4><p>célèbre professeur Alajouanine Henry et Marie Dechambre"</p>
-      <h4>Divers</h4><p>Château de Chalouze et de Nades.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux châteaux à Lalizolle;  Chalouze du XIXe siècle style féodal et Nades du XVIIe siècle.                    CHALOUZE, il a été construit à l'emplacement d'un château plus ancien, dont le propriétaire, "sieur de Chalouze" est signalé en 1664.  Au milieu du XIXe siècle, le Duc de Morny, demi-frère de I 'empereur Napoléon III chamboula la vie de Lalizolle. Il possédait une immense propriété sur Lalizolle et une ferme sur Nades. Il fit construire un château, un corps de ferme dans un immense parc. Cet homme modifia les comportements et améliora la qualité de vie en ouvrant des routes, et offrant du travail, en créant des entreprises (moulin de l'Etang Roux). Le Duc de Morny créa l'Hôtel de la Poste, appelé Tournebride, réservé au personnel d'accompagnement des visiteurs de marque du château, et fut la demeure du célèbre professeur Alajouanine.                 NADES a été au XVIIe siècle un lieu de villégiature de madame de La Fayette. Il fut racheté en 1854 par le duc de Morny,  celui-ci le fit reconstruire et le dota d'une ferme-modèle, qui subsiste dans l'actuel parc. Il y reçut fastueusement Jacques Offenbach, Ludovic Halévy, Alphonse Daudet, qui séjournèrent et chassèrent sur les 2 000 ha du domaine. La ferme-modèle témoigne de l'implication du duc de Morny pour favoriser de nouvelles techniques agricoles, mais aussi pour promouvoir les bienfaits de l'Empire auprès du monde paysan, électorat important à cette époque. Il est aujourd'hui considérablement ruiné.  Voilà comment l'auteur de La Princesse de Clèves décrivait dans ses correspondances la maison qui porte aujourd'hui son nom. Désormais Henry et Marie Dechambre sont propriétaires des lieux.</p>
+<h4>Architecture</h4><p>Chalouze, l' actuel château du XIXe siècle remplaça un château médiéval, qui, aujourd'hui, est surmonté d'un donjon à échauguettes d'angles, La terre devait être dans la dépendance des seigneurs voisins du Châtelard ou de Veauce. Le corps de logis de plan barlong à deux niveaux et niveau de comble reçoit deux ailes en retour d'équerre en forme  de pavillons. Il est agrémenté en avant corps d'une tour carrée prise en oeuvre au centre de la façade recouverte d'un toit élancé en pavillon  et surmonté  de paratonnerres  et frises de faitage. Elle est anglée  de deux fines et longues échauguettes. Ce château, avec sa tour centrale chapeauté de son toit en tuiles de châtaignier, a été restauré avec beaucoup de goût ainsi que ses abords et bâtiments d'élevage.                  Nades corps de logis  du XIXe siècle à deux niveaux avec pavillons en saillit aux extrémités.</p>
+<h4>Habitants / Familles</h4><p>célèbre professeur Alajouanine Henry et Marie Dechambre"</p>
+<h4>Divers</h4><p>Château de Chalouze et de Nades.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

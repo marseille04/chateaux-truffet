@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Beaufort(34) — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,54 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_34.html">Hérault</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_34.html">Hérault</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_34.html" class="back-link">Retour au département 34 — Hérault</a>
-  <div class="fiche">
-    <h2>Beaufort(34)</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>34 — Hérault</td></tr>
-          <tr><td>Canton</td><td>Olonzac</td></tr>
-          <tr><td>Commune</td><td>Beaufort</td></tr>
-          <tr><td>Type d'édifice</td><td>château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_34/34_Beaufort(34)_1.jpg" alt="Beaufort(34)" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_34/34_Beaufort(34)_2.jpg" alt="Beaufort(34)" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_34.html">Retour au département 34 — Hérault</a>
+<div class="fiche">
+<h2>Beaufort(34)</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Beaufort(34)" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_34/34_Beaufort(34)_1.jpg"/><div class="hero-count" id="hero-count">1 / 2</div></div><div class="photo-strip"><img alt="Beaufort(34)" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Beaufort(34)_1.jpg"/><img alt="Beaufort(34)" class="" loading="lazy" onclick="setHero(this)" src="../image/image_34/34_Beaufort(34)_2.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>34 — Hérault</td></tr>
+<tr><td>Canton</td><td>Olonzac</td></tr>
+<tr><td>Commune</td><td>Beaufort</td></tr>
+<tr><td>Type d'édifice</td><td>château</td></tr>
+<tr><td>Période d'origine</td><td>XVI-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>BEAUFORT le pittoresque village est entouré de vignes avec un château dominant. Le village s'est développé au XIXe siècle grâce à lextraction de lignite dans les mines de la Serre, aujourd'hui fermées. Le seigneur Isarn, ayant participé à la défense de la cité de Minerve, est dépossédé de son château en 1210 durant la Croisade des Albigeois. C'est Lambert de Thury qui s'y installe en 1234. Le bourg eut à souffrir des guerres de religion en 1590.  En 1711 et 1712, Pierre et Claude Amieu sont élus capitouls de Toulouse, c'est à dire consuls de la ville; cette fonction est anoblissante, et modifie définitivement le statut social de la famille.  Jean, fils aîné de Claude obtint, en 1716, l'office de Président des Trésoriers de France à Montauban avec son père, il achète plusieurs seigneuries : Blagnac, près de Toulouse, Monbrun, dans le Volvestre et Beaufort dans le Minervois. Claude Amieu s'intitule dès lors baron de Blagnac. Ses fils et leurs descendances prennent les noms d'Amieu de Blagnac, Amieu de Monbrun et Amieu de Beaufort.   Beaufort, modeste seigneurie du diocèse de Saint-Pons, François d'Amieu de Beaufort, fils de Claude est en terrain de connaissance : Joseph, son frère est curé de la paroisse d'Olonzac, petit bourg à proximité. Il s'allie, en 1731, à Marie Vitalis de Latour, d'une famille d'Olonzac. Son fils aussi prénommé François, Mousquetaire du roi, capitaine de dragons, chevalier de Saint-Louis épouse, en 1777, sa cousine Catherine Elisabeth Vitalis de Latour. Il n'a pas d'enfant et adopte en 1818 François Saint-Maurice, dont la naissance est mystérieuse.  Ce dernier épouse en 1818  Marie Claire Sahuc. La famille s'est éteinte en la personne de leur fils François-Achille, contraint de vendre le domaine de Beaufort au milieu du XIXe siècle. Le patronyme a été relevé par la descendance féminine, sous le nom  de Moulins d'Amieu de Beaufort.   Aujourd'hui le château  est une société  dirigé par Pierre Passerieux.</p>
-      <h4>Architecture</h4><p>Les seigneurs de Beaufort sont cités dans les chartes des XIe et XIIe siècles. Ils furent dépossédés après la guerre albigeoise. Le château est à trois corps de bâtiment disposés en U autour d'une large terrasse qui regarde au sud. L'aile sud-ouest paraît avoir été rajouté au XVIIIe siècle sur le corps principal, plus ancien mais largement remanié à cette époque. A l'origine, l'édifice semble avoir été composé d'un corps de bâtiment en retour d'équerre, formé du corps principal et de l'aile sud-est. Il était flanqué, aux angles de la façade nord, par deux tours . La tour nord-ouest a été en partie englobée dans l'aile sud-ouest. A l'intérieur, la distribution des étages est assurée par un escalier à volées droites, placé dans l'axe du corps principal. En façade, la cage d'escalier se manifeste par un surcroît qui interrompt la toiture du corps de bâtiment. L'ensemble constitué par les façades et toitures du château, le grand escalier avec sa cage.</p>
-      <h4>Habitants / Familles</h4><p>Famille Amieu
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Beaufort</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>BEAUFORT le pittoresque village est entouré de vignes avec un château dominant. Le village s'est développé au XIXe siècle grâce à lextraction de lignite dans les mines de la Serre, aujourd'hui fermées. Le seigneur Isarn, ayant participé à la défense de la cité de Minerve, est dépossédé de son château en 1210 durant la Croisade des Albigeois. C'est Lambert de Thury qui s'y installe en 1234. Le bourg eut à souffrir des guerres de religion en 1590.  En 1711 et 1712, Pierre et Claude Amieu sont élus capitouls de Toulouse, c'est à dire consuls de la ville; cette fonction est anoblissante, et modifie définitivement le statut social de la famille.  Jean, fils aîné de Claude obtint, en 1716, l'office de Président des Trésoriers de France à Montauban avec son père, il achète plusieurs seigneuries : Blagnac, près de Toulouse, Monbrun, dans le Volvestre et Beaufort dans le Minervois. Claude Amieu s'intitule dès lors baron de Blagnac. Ses fils et leurs descendances prennent les noms d'Amieu de Blagnac, Amieu de Monbrun et Amieu de Beaufort.   Beaufort, modeste seigneurie du diocèse de Saint-Pons, François d'Amieu de Beaufort, fils de Claude est en terrain de connaissance : Joseph, son frère est curé de la paroisse d'Olonzac, petit bourg à proximité. Il s'allie, en 1731, à Marie Vitalis de Latour, d'une famille d'Olonzac. Son fils aussi prénommé François, Mousquetaire du roi, capitaine de dragons, chevalier de Saint-Louis épouse, en 1777, sa cousine Catherine Elisabeth Vitalis de Latour. Il n'a pas d'enfant et adopte en 1818 François Saint-Maurice, dont la naissance est mystérieuse.  Ce dernier épouse en 1818  Marie Claire Sahuc. La famille s'est éteinte en la personne de leur fils François-Achille, contraint de vendre le domaine de Beaufort au milieu du XIXe siècle. Le patronyme a été relevé par la descendance féminine, sous le nom  de Moulins d'Amieu de Beaufort.   Aujourd'hui le château  est une société  dirigé par Pierre Passerieux.</p>
+<h4>Architecture</h4><p>Les seigneurs de Beaufort sont cités dans les chartes des XIe et XIIe siècles. Ils furent dépossédés après la guerre albigeoise. Le château est à trois corps de bâtiment disposés en U autour d'une large terrasse qui regarde au sud. L'aile sud-ouest paraît avoir été rajouté au XVIIIe siècle sur le corps principal, plus ancien mais largement remanié à cette époque. A l'origine, l'édifice semble avoir été composé d'un corps de bâtiment en retour d'équerre, formé du corps principal et de l'aile sud-est. Il était flanqué, aux angles de la façade nord, par deux tours . La tour nord-ouest a été en partie englobée dans l'aile sud-ouest. A l'intérieur, la distribution des étages est assurée par un escalier à volées droites, placé dans l'axe du corps principal. En façade, la cage d'escalier se manifeste par un surcroît qui interrompt la toiture du corps de bâtiment. L'ensemble constitué par les façades et toitures du château, le grand escalier avec sa cage.</p>
+<h4>Habitants / Familles</h4><p>Famille Amieu
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Beaufort</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

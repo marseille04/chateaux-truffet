@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Boismont — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,53 +113,57 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_80.html">Somme</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_80.html">Somme</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_80.html" class="back-link">Retour au département 80 — Somme</a>
-  <div class="fiche">
-    <h2>Boismont</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>80 — Somme</td></tr>
-          <tr><td>Canton</td><td>Abbeville</td></tr>
-          <tr><td>Commune</td><td>Boismont</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_80/80_Boismont_1.jpg" alt="Boismont" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_80/80_Boismont_2.jpg" alt="Boismont" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_80.html">Retour au département 80 — Somme</a>
+<div class="fiche">
+<h2>Boismont</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Boismont" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_80/80_Boismont_1.jpg"/><div class="hero-count" id="hero-count">1 / 2</div></div><div class="photo-strip"><img alt="Boismont" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Boismont_1.jpg"/><img alt="Boismont" class="" loading="lazy" onclick="setHero(this)" src="../image/image_80/80_Boismont_2.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>80 — Somme</td></tr>
+<tr><td>Canton</td><td>Abbeville</td></tr>
+<tr><td>Commune</td><td>Boismont</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>BOISMONT,  Philippe Gardin fait construire le corps principal du château en 1737, comme l'indiquait la présence de quatre pierres de l'attique de la façade portant la date de 1737. La bâtisse consistait à l'origine  d'un corps de logis rectangulaire, connu par un dessin de Gillard (1860). Philippe Gardin ne fit que remanier le château qui aurait été l'oeuvre de Daniel de Boubers; d'après Seydoux, la façade est proche de celle des châteaux de Huppy et Frucourt du XVIIe siècle. A l'est du château se trouvait le jardin d'agrément, constitué au XVIIe siècle, jouxté au potager situé au nord. Le bois était un parc aménagé. La propriétaire actuelle possède le plan terrier du château, indiquant la forme du parc ainsi que la présence de chemins d'accès entourant la ferme. C'est par Anne Barbe du Gardin, sa fille, que Boismont passe à Pierre Wulfran Briet, écuyer, seigneur de Rainvillers, le 2 janvier 1725. Vers 1760, Marie-Charlotte Pappin de Caumesnil, fait ajouter un avant-corps central à la façade sur parc avant de faire aménager le salon dont le décor rappelle celui du château de Bagatelle. Vers 1875, Louis de Rainvillers entreprend d'importants travaux: réfection du pignon nord, construction du bâtiment de la cuisine au nord et réaménagement du rez-de-chaussée. Le salon, situé dans l'axe du soleil, bénéficiait ainsi d'une forte exposition à la lumière. Le corps principal, long de sept travées, possédait en son centre, sur la façade postérieure, un élément en saillie de trois travées de long. Le toit à longs pans brisés et croupe recevait un comble à surcroît éclairé de plusieurs lucarnes. Le château actuel, construit à l'emplacement de l'ancien, étant la propriété de M. de Lauzon et de son épouse, née Briet de Rainvillers.</p>
-      <h4>Architecture</h4><p>BOISMONT  Le corps central était flanqué au sud d'un long bâtiment bas dans lequel était située la chapelle (aménagée au sud par le fils de Louis de Rainvillers, Bernard, en 1908 et au nord, d'un petit pavillon de trois travées de long, de même style que le corps central. D'après la propriétaire, la tour contenant la cage d'escalier en façade aurait été ajoutée en 1908. Au début du XXe siècle. La grille d'entrée se trouvait à l'origine face au château à 50 mètres de la façade. Elle est aujourd'hui située à l'entrée du chemin qui mène aux communs. A proximité de ceux-ci, il existe encore un colombier du XVIIIe siècle de plan carré et à la toiture en pavillon. Le mur du parc est démoli par un obus lors de la première guerre mondiale, très près de la maison. En avril 1948, le château est partiellement détruit par un incendie, qui touche la chapelle et que le décor Louis XVI. Il ne reste aujourd'hui qu'une partie de l'édifice du XVIIIe siècle, complété au milieu du XXe siècle. D'après le plan terrier du XIXe siècle, la ferme située à l'est de la propriété et qui dépend du château, était plus étendue qu'aujourd'hui et formait un rectangle à cour fermée, une mare et un pigeonnier en occupaient l'espace central. Le logis semble avoir été construit entre 1860 et 1880. Certains bâtiments ont été détruits à l'ouest. Les écuries, agrandies vers 1875, le bâtiment sur rue (XVIIIe siècle) ainsi que le colombier (également XVIIIe siècle) ont échappé à l'incendie de 1948. En mai 1940, Louis de Rainvillers proposa d'abriter les haras de Compiègne dans la ferme du château. Les étalons de la station d'Abbeville s'installèrent à Boismont. Dans la cour, est conservée une grande auge de pierre portant un écu écartelé (ou à la croix cantonnée): de chaque côté de la croix, les lettres PAM forment monogramme. Ce sont les armes des Anquier ou Anguier, famille de Saint-Valéry.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Marie-Charlotte Pappin de Caumesnil,"</p>
-      <h4>Divers</h4><p>château de Boismont à Abbeville  gps 50° 09' 12? nord, 1° 41' 10? est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>BOISMONT,  Philippe Gardin fait construire le corps principal du château en 1737, comme l'indiquait la présence de quatre pierres de l'attique de la façade portant la date de 1737. La bâtisse consistait à l'origine  d'un corps de logis rectangulaire, connu par un dessin de Gillard (1860). Philippe Gardin ne fit que remanier le château qui aurait été l'oeuvre de Daniel de Boubers; d'après Seydoux, la façade est proche de celle des châteaux de Huppy et Frucourt du XVIIe siècle. A l'est du château se trouvait le jardin d'agrément, constitué au XVIIe siècle, jouxté au potager situé au nord. Le bois était un parc aménagé. La propriétaire actuelle possède le plan terrier du château, indiquant la forme du parc ainsi que la présence de chemins d'accès entourant la ferme. C'est par Anne Barbe du Gardin, sa fille, que Boismont passe à Pierre Wulfran Briet, écuyer, seigneur de Rainvillers, le 2 janvier 1725. Vers 1760, Marie-Charlotte Pappin de Caumesnil, fait ajouter un avant-corps central à la façade sur parc avant de faire aménager le salon dont le décor rappelle celui du château de Bagatelle. Vers 1875, Louis de Rainvillers entreprend d'importants travaux: réfection du pignon nord, construction du bâtiment de la cuisine au nord et réaménagement du rez-de-chaussée. Le salon, situé dans l'axe du soleil, bénéficiait ainsi d'une forte exposition à la lumière. Le corps principal, long de sept travées, possédait en son centre, sur la façade postérieure, un élément en saillie de trois travées de long. Le toit à longs pans brisés et croupe recevait un comble à surcroît éclairé de plusieurs lucarnes. Le château actuel, construit à l'emplacement de l'ancien, étant la propriété de M. de Lauzon et de son épouse, née Briet de Rainvillers.</p>
+<h4>Architecture</h4><p>BOISMONT  Le corps central était flanqué au sud d'un long bâtiment bas dans lequel était située la chapelle (aménagée au sud par le fils de Louis de Rainvillers, Bernard, en 1908 et au nord, d'un petit pavillon de trois travées de long, de même style que le corps central. D'après la propriétaire, la tour contenant la cage d'escalier en façade aurait été ajoutée en 1908. Au début du XXe siècle. La grille d'entrée se trouvait à l'origine face au château à 50 mètres de la façade. Elle est aujourd'hui située à l'entrée du chemin qui mène aux communs. A proximité de ceux-ci, il existe encore un colombier du XVIIIe siècle de plan carré et à la toiture en pavillon. Le mur du parc est démoli par un obus lors de la première guerre mondiale, très près de la maison. En avril 1948, le château est partiellement détruit par un incendie, qui touche la chapelle et que le décor Louis XVI. Il ne reste aujourd'hui qu'une partie de l'édifice du XVIIIe siècle, complété au milieu du XXe siècle. D'après le plan terrier du XIXe siècle, la ferme située à l'est de la propriété et qui dépend du château, était plus étendue qu'aujourd'hui et formait un rectangle à cour fermée, une mare et un pigeonnier en occupaient l'espace central. Le logis semble avoir été construit entre 1860 et 1880. Certains bâtiments ont été détruits à l'ouest. Les écuries, agrandies vers 1875, le bâtiment sur rue (XVIIIe siècle) ainsi que le colombier (également XVIIIe siècle) ont échappé à l'incendie de 1948. En mai 1940, Louis de Rainvillers proposa d'abriter les haras de Compiègne dans la ferme du château. Les étalons de la station d'Abbeville s'installèrent à Boismont. Dans la cour, est conservée une grande auge de pierre portant un écu écartelé (ou à la croix cantonnée): de chaque côté de la croix, les lettres PAM forment monogramme. Ce sont les armes des Anquier ou Anguier, famille de Saint-Valéry.</p>
+<h4>Habitants / Familles</h4><p>Famille de Marie-Charlotte Pappin de Caumesnil,"</p>
+<h4>Divers</h4><p>château de Boismont à Abbeville  gps 50° 09' 12? nord, 1° 41' 10? est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

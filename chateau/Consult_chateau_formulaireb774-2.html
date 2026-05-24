@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Lisle — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_24.html">Dordogne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_24.html">Dordogne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_24.html" class="back-link">Retour au département 24 — Dordogne</a>
-  <div class="fiche">
-    <h2>Lisle</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>24 — Dordogne</td></tr>
-          <tr><td>Canton</td><td>Brantôme</td></tr>
-          <tr><td>Commune</td><td>Lisle</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI-XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_24/24_Lisle_1.jpg" alt="Lisle" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Lisle_2.jpg" alt="Lisle" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Lisle_3.jpg" alt="Lisle" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Lisle_4.jpg" alt="Lisle" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Lisle_5.jpg" alt="Lisle" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_24.html">Retour au département 24 — Dordogne</a>
+<div class="fiche">
+<h2>Lisle</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Lisle" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_24/24_Lisle_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Lisle" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Lisle_1.jpg"/><img alt="Lisle" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Lisle_2.jpg"/><img alt="Lisle" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Lisle_3.jpg"/><img alt="Lisle" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Lisle_4.jpg"/><img alt="Lisle" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Lisle_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>24 — Dordogne</td></tr>
+<tr><td>Canton</td><td>Brantôme</td></tr>
+<tr><td>Commune</td><td>Lisle</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI-XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux châteaux à Lisle château-Bas du XVIe siècle, château-Haut, de style Renaissance construit au XVIe siècle sur les vestiges d'un précédent château fort remontant au XIIe siècle ; il est partiellement inscrit aux M.H. depuis 1942 pour un escalier monumental en pierre. Le manoir de la Peyzie, ancienne habitation de la famille de Labrousse de la Peyzie du XIXe siècle, le manoir de la Rochette, ancienne propriété de la famille de Fumel et de la famille Linard du XVIIIe siècle.
-<br>LISLE aussi appelé, le petit Versaille de l'Isle, ce magnifique château à été construit  en 1696 par Charles de Chandelieu, un officier de l'armée française, cette ancienne demeure fut dans un premier temps habitée par la famille Chandieu, jusqu'à la fin du XVIIIe siècle. Durant le XIXe siècle, résida d'abord François Louis Roulet de Neuchâtel puis fut transmis par mariage aux Cornaz de Montet Cudrefin. En 1876, la commune de l'Isle rachète le château et le restaure. Aujourd'hui, le bâtiment accueille des locaux communaux, des logements et des classes d'écoles.    CHATEAU Haut, ce fief avait pour propriétaire la famille des Saint-Astier, et passa aux Preyssac de Léonce, puis aux Bertin, et enfin au XVIIIe siècle,aux Fargeot qui le possèdent encore.</p>
-      <h4>Architecture</h4><p>LISLE  présente un plan en U, avec corps de logis principal et deux ailes en retour d'équerre délimitant une cour d'honneur. Le corps central abrite les anciens salons et appartements seigneuriaux, et les ailes les services et locaux secondaires. Il fut le premier monument régional dont l'architecture provient du classicisme, est un monument riche en anecdotes. Tirée de l'époque du classicisme, née en france vers 1700, cette bâtisse ressemble fortement au courant architectural à l'époque où fut construit le château de Versaille.  Depuis 1941, l'édifice est classé comme M.H.                                                                                  CHATEAU-BAS  de plan carré à deux niveaux  et à toit brisé.                                                                  CHATEAU-HAUT  Au XIIIe siècle, des remparts sont construits qui enclosent la ville en une bastide. Au siècle suivant, la cession de Lisle à  lautorité directe du roi de France, Philippe Le Bel, accorde à la ville, notamment par lautorisation de foires et de marchés réguliers. Cest au XVIe siècle, pendant les guerres de Religion, que la ville assiégée qui résiste et veut rester fidèle au roi catholique perd une grande partie de ses fortifications.  Corps de logis rectangulaire à deux niveaux   sur soubassement accolé en prolongement de chaque côté de dépendances avec terrasses.      PEYZIE manoir de plan rectangulaire à cinq travées  avec pavillon saillant central plein cintre  avec lucarne sur comble du troisième niveau sur un toit en croupe.</p>
-      <h4>Habitants / Familles</h4><p>Peyzie  famille de Labrousse                               Rochette famille de Fumel                                               Lisle Charles de Chandelieu
-<br>        "</p>
-      <h4>Divers</h4><p>A Lisle château Bas grav 1-et 5, Château Haut grav 2-3. Peyzie grav 4</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux châteaux à Lisle château-Bas du XVIe siècle, château-Haut, de style Renaissance construit au XVIe siècle sur les vestiges d'un précédent château fort remontant au XIIe siècle ; il est partiellement inscrit aux M.H. depuis 1942 pour un escalier monumental en pierre. Le manoir de la Peyzie, ancienne habitation de la famille de Labrousse de la Peyzie du XIXe siècle, le manoir de la Rochette, ancienne propriété de la famille de Fumel et de la famille Linard du XVIIIe siècle.
+<br/>LISLE aussi appelé, le petit Versaille de l'Isle, ce magnifique château à été construit  en 1696 par Charles de Chandelieu, un officier de l'armée française, cette ancienne demeure fut dans un premier temps habitée par la famille Chandieu, jusqu'à la fin du XVIIIe siècle. Durant le XIXe siècle, résida d'abord François Louis Roulet de Neuchâtel puis fut transmis par mariage aux Cornaz de Montet Cudrefin. En 1876, la commune de l'Isle rachète le château et le restaure. Aujourd'hui, le bâtiment accueille des locaux communaux, des logements et des classes d'écoles.    CHATEAU Haut, ce fief avait pour propriétaire la famille des Saint-Astier, et passa aux Preyssac de Léonce, puis aux Bertin, et enfin au XVIIIe siècle,aux Fargeot qui le possèdent encore.</p>
+<h4>Architecture</h4><p>LISLE  présente un plan en U, avec corps de logis principal et deux ailes en retour d'équerre délimitant une cour d'honneur. Le corps central abrite les anciens salons et appartements seigneuriaux, et les ailes les services et locaux secondaires. Il fut le premier monument régional dont l'architecture provient du classicisme, est un monument riche en anecdotes. Tirée de l'époque du classicisme, née en france vers 1700, cette bâtisse ressemble fortement au courant architectural à l'époque où fut construit le château de Versaille.  Depuis 1941, l'édifice est classé comme M.H.                                                                                  CHATEAU-BAS  de plan carré à deux niveaux  et à toit brisé.                                                                  CHATEAU-HAUT  Au XIIIe siècle, des remparts sont construits qui enclosent la ville en une bastide. Au siècle suivant, la cession de Lisle à  lautorité directe du roi de France, Philippe Le Bel, accorde à la ville, notamment par lautorisation de foires et de marchés réguliers. Cest au XVIe siècle, pendant les guerres de Religion, que la ville assiégée qui résiste et veut rester fidèle au roi catholique perd une grande partie de ses fortifications.  Corps de logis rectangulaire à deux niveaux   sur soubassement accolé en prolongement de chaque côté de dépendances avec terrasses.      PEYZIE manoir de plan rectangulaire à cinq travées  avec pavillon saillant central plein cintre  avec lucarne sur comble du troisième niveau sur un toit en croupe.</p>
+<h4>Habitants / Familles</h4><p>Peyzie  famille de Labrousse                               Rochette famille de Fumel                                               Lisle Charles de Chandelieu
+<br/>        "</p>
+<h4>Divers</h4><p>A Lisle château Bas grav 1-et 5, Château Haut grav 2-3. Peyzie grav 4</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

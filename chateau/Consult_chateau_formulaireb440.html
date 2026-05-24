@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Pannonie — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_46.html">Lot</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_46.html">Lot</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_46.html" class="back-link">Retour au département 46 — Lot</a>
-  <div class="fiche">
-    <h2>Pannonie</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>46 — Lot</td></tr>
-          <tr><td>Canton</td><td>Gramat</td></tr>
-          <tr><td>Commune</td><td>Couzou</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII-XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_46/46_Pannonie_1.jpg" alt="Pannonie" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Pannonie_2.jpg" alt="Pannonie" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Pannonie_3.jpg" alt="Pannonie" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Pannonie_4.jpg" alt="Pannonie" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_46/46_Pannonie_5.jpg" alt="Pannonie" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_46.html">Retour au département 46 — Lot</a>
+<div class="fiche">
+<h2>Pannonie</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Pannonie" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_46/46_Pannonie_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Pannonie" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Pannonie_1.jpg"/><img alt="Pannonie" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Pannonie_2.jpg"/><img alt="Pannonie" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Pannonie_3.jpg"/><img alt="Pannonie" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Pannonie_4.jpg"/><img alt="Pannonie" class="" loading="lazy" onclick="setHero(this)" src="../image/image_46/46_Pannonie_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>46 — Lot</td></tr>
+<tr><td>Canton</td><td>Gramat</td></tr>
+<tr><td>Commune</td><td>Couzou</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII-XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>PANNONIE, en 1183, lorsque le prince Plantagenêt Henri le Jeune, second fils d'Henri au Court Mantel, vint piller Rocamadour avant de mourir à Martel. Cette famille de Saint-Cyr se réfugia chez leur suzerain, seigneur de Thégra; et c'est dans ce fief que le jeune  Hugues naquit. D'abord poussé vers une carrière ecclésiastique, il préféra poursuivre une vie de troubadour qui fit sa renommée.  Au cours du XIIIe siècle, l'abbaye d'Obazine  restructura son organisation autour de Rocamadour. En plus de ces granges aux Alix, elle fit bâtir celle de La Pannonie.  Le XIVe siècle voit le causse de Gramat se dépeupler peu à peu. Les mauvaises récoltes ont causé des famines, facilitant les épidémies comme la peste noire. En outre, cette zone frontalière avec l'aquitaine anglaise n'est pas épargnée par les aléas de la guerre de Cent Ans, et  les pillages. Après la guerre, l'abbé d'Obazine préféra  louer ses domaines. La plupart furent choisis par de riches bourgeois qui construisirent là des repaires, sortes de petits châteaux fortifiés. Ce furent les Lagrange, marchands de Rocamadour et propriétaires du château de la Caretta, qui commandèrent la construction du premier château de la Pannonie. Les travaux ont duré de la seconde moitié du XVe siècle jusqu'au début du XVIe siècle. Les de Lagrange gardèrent leur seigneurie jusqu'au XVIIe siècle, où ils durent la vendre pour éponger leurs dettes. Leurs successeurs, les Vidal de Lapize, transformèrent leur château de façon spectaculaire. Ce chantier fut l'un des plus importants du XVIIIe siècle dans le Lot. Des plans, des croquis venus de Paris inspirèrent l'architecture classique avec fronton central, ainsi que les formes du mobilier de "style Louis XV", et les gypseries de style rocaille. Heureux dans leur agréable château de La Pannonie, les Vidal de Lapize eurent à souffrir de la période révolutionnaire. Ce sont les filles du seigneur qui réussirent à racheter le château, alors que leur père et leurs frères aînés étaient émigrés. Elles bénéficièrent du soutien matériel et humain de leurs fermiers qui protégèrent le domaine durant leur absence; et bien que sérieusement appauvrie, cette famille parvint à maintenir son bien en état. D'autres travaux d'embellissement et de restauration à la fin du XIXe siècle</p>
-      <h4>Architecture</h4><p>À la fin du XIXe siècle, Charles de La Pannonie, apporta quelques modifications au château et au parc, faisant notamment installer trois bassins et une grille d'entrée.  D'abord une grange monastique servant au défrichement et à la mise en valeur du causse de Gramat au Moyen-Age, et prieuré, les bâtiments sont détruits au cours de la guerre de Cent ans. Ensuite, les nouveaux censitaires élèvent un repaire qui ne semble pas avoir conservé de trace des constructions cisterciennes du XIIIe siècle. Au XVIe siècle, les guerres de Religion entraînent la construction de tours canonnières et les murs furent percés de chambres de tir pour les couleuvrines. Au XVIIe siècle, le château se composait du repaire du XVe siècle et de deux ailes perpendiculaires, au nord et au sud. Au XVIIIe siècle, une aile ouest est édifiée perpendiculairement aux deux autres, et l'aile nord est détruite. L'intérieur conserve un salon au décor du XIXe siècle, ainsi que du mobilier ayant appartenu au maréchal Soult.</p>
-      <h4>Habitants / Familles</h4><p>Charles de La Pannonie
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Château de la Pannonie à Couzou</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>PANNONIE, en 1183, lorsque le prince Plantagenêt Henri le Jeune, second fils d'Henri au Court Mantel, vint piller Rocamadour avant de mourir à Martel. Cette famille de Saint-Cyr se réfugia chez leur suzerain, seigneur de Thégra; et c'est dans ce fief que le jeune  Hugues naquit. D'abord poussé vers une carrière ecclésiastique, il préféra poursuivre une vie de troubadour qui fit sa renommée.  Au cours du XIIIe siècle, l'abbaye d'Obazine  restructura son organisation autour de Rocamadour. En plus de ces granges aux Alix, elle fit bâtir celle de La Pannonie.  Le XIVe siècle voit le causse de Gramat se dépeupler peu à peu. Les mauvaises récoltes ont causé des famines, facilitant les épidémies comme la peste noire. En outre, cette zone frontalière avec l'aquitaine anglaise n'est pas épargnée par les aléas de la guerre de Cent Ans, et  les pillages. Après la guerre, l'abbé d'Obazine préféra  louer ses domaines. La plupart furent choisis par de riches bourgeois qui construisirent là des repaires, sortes de petits châteaux fortifiés. Ce furent les Lagrange, marchands de Rocamadour et propriétaires du château de la Caretta, qui commandèrent la construction du premier château de la Pannonie. Les travaux ont duré de la seconde moitié du XVe siècle jusqu'au début du XVIe siècle. Les de Lagrange gardèrent leur seigneurie jusqu'au XVIIe siècle, où ils durent la vendre pour éponger leurs dettes. Leurs successeurs, les Vidal de Lapize, transformèrent leur château de façon spectaculaire. Ce chantier fut l'un des plus importants du XVIIIe siècle dans le Lot. Des plans, des croquis venus de Paris inspirèrent l'architecture classique avec fronton central, ainsi que les formes du mobilier de "style Louis XV", et les gypseries de style rocaille. Heureux dans leur agréable château de La Pannonie, les Vidal de Lapize eurent à souffrir de la période révolutionnaire. Ce sont les filles du seigneur qui réussirent à racheter le château, alors que leur père et leurs frères aînés étaient émigrés. Elles bénéficièrent du soutien matériel et humain de leurs fermiers qui protégèrent le domaine durant leur absence; et bien que sérieusement appauvrie, cette famille parvint à maintenir son bien en état. D'autres travaux d'embellissement et de restauration à la fin du XIXe siècle</p>
+<h4>Architecture</h4><p>À la fin du XIXe siècle, Charles de La Pannonie, apporta quelques modifications au château et au parc, faisant notamment installer trois bassins et une grille d'entrée.  D'abord une grange monastique servant au défrichement et à la mise en valeur du causse de Gramat au Moyen-Age, et prieuré, les bâtiments sont détruits au cours de la guerre de Cent ans. Ensuite, les nouveaux censitaires élèvent un repaire qui ne semble pas avoir conservé de trace des constructions cisterciennes du XIIIe siècle. Au XVIe siècle, les guerres de Religion entraînent la construction de tours canonnières et les murs furent percés de chambres de tir pour les couleuvrines. Au XVIIe siècle, le château se composait du repaire du XVe siècle et de deux ailes perpendiculaires, au nord et au sud. Au XVIIIe siècle, une aile ouest est édifiée perpendiculairement aux deux autres, et l'aile nord est détruite. L'intérieur conserve un salon au décor du XIXe siècle, ainsi que du mobilier ayant appartenu au maréchal Soult.</p>
+<h4>Habitants / Familles</h4><p>Charles de La Pannonie
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Château de la Pannonie à Couzou</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

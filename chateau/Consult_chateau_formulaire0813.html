@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Launay_Quéro — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,57 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_35.html">Ille-et-Vilaine</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_35.html">Ille-et-Vilaine</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_35.html" class="back-link">Retour au département 35 — Ille-et-Vilaine</a>
-  <div class="fiche">
-    <h2>Launay_Quéro</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>35 — Ille-et-Vilaine</td></tr>
-          <tr><td>Canton</td><td>Rennes</td></tr>
-          <tr><td>Commune</td><td>Breteil</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_35/35_Launay_Qu%c3%a9ro_1.jpg" alt="Launay_Quéro" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Launay_Qu%c3%a9ro_2.jpg" alt="Launay_Quéro" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Launay_Qu%c3%a9ro_3.jpg" alt="Launay_Quéro" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Launay_Qu%c3%a9ro_4.jpg" alt="Launay_Quéro" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Launay_Qu%c3%a9ro_5.jpg" alt="Launay_Quéro" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_35.html">Retour au département 35 — Ille-et-Vilaine</a>
+<div class="fiche">
+<h2>Launay_Quéro</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Launay_Quéro" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_35/35_Launay_Qu%c3%a9ro_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Launay_Quéro" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Launay_Qu%c3%a9ro_1.jpg"/><img alt="Launay_Quéro" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Launay_Qu%c3%a9ro_2.jpg"/><img alt="Launay_Quéro" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Launay_Qu%c3%a9ro_3.jpg"/><img alt="Launay_Quéro" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Launay_Qu%c3%a9ro_4.jpg"/><img alt="Launay_Quéro" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Launay_Qu%c3%a9ro_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>35 — Ille-et-Vilaine</td></tr>
+<tr><td>Canton</td><td>Rennes</td></tr>
+<tr><td>Commune</td><td>Breteil</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>LAUNAY-QUERO, ce lieu aurait été occupé par une motte féodale, il existait un ancien manoir à cet emplacement. En effet, d'après les registres de réformations, le propriétaire des lieux dans la première moitié du XVe siècle est Allain Rosel. La famille de Rosel possède également le manoir de Villeneuve, dans le bourg de Breteil. En 1513, le manoir appartient à Jan Quéro qui laisse son nom au lieu par la suite. L'ancien manoir a été remplacé par une construction moderne au début du XIXe siècle. Ce château est un bâtiment difficile à interpréter car il a connu de nombreuses transformations successives. En effet, le plan du bâtiment est assez complexe. Il pouvait s'agir d'un ancien bâtiment en L, reconstruit au XIXe siècle. Ainsi, à l'intérieur, se côtoient des cheminées anciennes et des cheminées contemporaines de la construction, c'est-à-dire du début du XIXe siècle. D'autre part, les entourages de baie du château semblent être en tuffeau, bien que l'enduit ne permette pas de l'affirmer avec certitude. D'autres bâtiments accompagnent le château, en effet, au nord, il existe une construction qui paraît être une remise à carrosses ou charrettes. Cette remise est adossée à un bâtiment ancien remanié.</p>
-      <h4>Architecture</h4><p>LAUNAY-QUERO, il existe une tour quadrangulaire en terre au nord-ouest du château. La fonction de cette tour est difficile à identifier. Il existe une unique porte d'accès en plein cintre ainsi qu'une ouverture haute. Il semble qu'il existait un escalier à l'intérieur. Il s'agissait peut-être d'une tour de guet ou bien d'une tour destinée aux usages de la chasse. Cette tour date  de la fin du XVIIIe siècle, en effet, elle figure sur le cadastre ancien, achevé en 1845.ce château est élevé en moellon de poudingue et couvert d'ardoise. Il possède deux façades, l'une à l'est, l'autre au sud. Ces deux façades sont divisées en travées. Ainsi, la façade Est, est divisée en six travées. Sur cette façade, il existe deux frontons triangulaires en tuffeau, percés de deux demi-oculi. Cette façade possède un toit en croupe avec des épis de faîtage. La façade sud est, quant à elle, percée de cinq travées. Le toit en croupe possède trois lucarnes à frontons triangulaires en tuffeau. Ces lucarnes sont décorées de volutes. Cette façade est précédée d'un dallage en schiste pourpre. Les pièces de l'étage de ce château sont lambrissées. D'autre part, la cour, située à l'Est du bâtiment, est fermée par des murs de clôture. Un portail donne accès à cette cour. Des douves précèdent encore ce portail. Au nord, il existe un bâtiment en moellon de poudingue qui possède des ouvertures à encadrements de brique, avec clés de tuffeau. A l'ouest du château, sur une île formée par les douves, existe la tombe de l'un des propriétaires du lieu ainsi qu'un obélisque en granit. De plus, au nord-ouest du château, se trouve également une tour quadrangulaire en terre. Par ailleurs, l'Institut Rural d'Éducation et d'Orientation s'est installé dans ce château en 1968.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Quéro
-<br>        "</p>
-      <h4>Divers</h4><p>A Breteil le château  de Launay-Quéro                                    Gps 48° 08' 46" nord, 1° 53' 50" ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>LAUNAY-QUERO, ce lieu aurait été occupé par une motte féodale, il existait un ancien manoir à cet emplacement. En effet, d'après les registres de réformations, le propriétaire des lieux dans la première moitié du XVe siècle est Allain Rosel. La famille de Rosel possède également le manoir de Villeneuve, dans le bourg de Breteil. En 1513, le manoir appartient à Jan Quéro qui laisse son nom au lieu par la suite. L'ancien manoir a été remplacé par une construction moderne au début du XIXe siècle. Ce château est un bâtiment difficile à interpréter car il a connu de nombreuses transformations successives. En effet, le plan du bâtiment est assez complexe. Il pouvait s'agir d'un ancien bâtiment en L, reconstruit au XIXe siècle. Ainsi, à l'intérieur, se côtoient des cheminées anciennes et des cheminées contemporaines de la construction, c'est-à-dire du début du XIXe siècle. D'autre part, les entourages de baie du château semblent être en tuffeau, bien que l'enduit ne permette pas de l'affirmer avec certitude. D'autres bâtiments accompagnent le château, en effet, au nord, il existe une construction qui paraît être une remise à carrosses ou charrettes. Cette remise est adossée à un bâtiment ancien remanié.</p>
+<h4>Architecture</h4><p>LAUNAY-QUERO, il existe une tour quadrangulaire en terre au nord-ouest du château. La fonction de cette tour est difficile à identifier. Il existe une unique porte d'accès en plein cintre ainsi qu'une ouverture haute. Il semble qu'il existait un escalier à l'intérieur. Il s'agissait peut-être d'une tour de guet ou bien d'une tour destinée aux usages de la chasse. Cette tour date  de la fin du XVIIIe siècle, en effet, elle figure sur le cadastre ancien, achevé en 1845.ce château est élevé en moellon de poudingue et couvert d'ardoise. Il possède deux façades, l'une à l'est, l'autre au sud. Ces deux façades sont divisées en travées. Ainsi, la façade Est, est divisée en six travées. Sur cette façade, il existe deux frontons triangulaires en tuffeau, percés de deux demi-oculi. Cette façade possède un toit en croupe avec des épis de faîtage. La façade sud est, quant à elle, percée de cinq travées. Le toit en croupe possède trois lucarnes à frontons triangulaires en tuffeau. Ces lucarnes sont décorées de volutes. Cette façade est précédée d'un dallage en schiste pourpre. Les pièces de l'étage de ce château sont lambrissées. D'autre part, la cour, située à l'Est du bâtiment, est fermée par des murs de clôture. Un portail donne accès à cette cour. Des douves précèdent encore ce portail. Au nord, il existe un bâtiment en moellon de poudingue qui possède des ouvertures à encadrements de brique, avec clés de tuffeau. A l'ouest du château, sur une île formée par les douves, existe la tombe de l'un des propriétaires du lieu ainsi qu'un obélisque en granit. De plus, au nord-ouest du château, se trouve également une tour quadrangulaire en terre. Par ailleurs, l'Institut Rural d'Éducation et d'Orientation s'est installé dans ce château en 1968.</p>
+<h4>Habitants / Familles</h4><p>Famille de Quéro
+<br/>        "</p>
+<h4>Divers</h4><p>A Breteil le château  de Launay-Quéro                                    Gps 48° 08' 46" nord, 1° 53' 50" ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

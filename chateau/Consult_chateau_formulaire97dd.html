@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Montlucon_II — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,59 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_03.html">Allier</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_03.html">Allier</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_03.html" class="back-link">Retour au département 03 — Allier</a>
-  <div class="fiche">
-    <h2>Montlucon_II</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>03 — Allier</td></tr>
-          <tr><td>Canton</td><td>Montluçon</td></tr>
-          <tr><td>Commune</td><td>Montlucon</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_03/03_Montlucon_II_1.jpg" alt="Montlucon_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Montlucon_II_2.jpg" alt="Montlucon_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Montlucon_II_3.jpg" alt="Montlucon_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Montlucon_II_4.jpg" alt="Montlucon_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Montlucon_II_5.jpg" alt="Montlucon_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Montlucon_II_6.jpg" alt="Montlucon_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Montlucon_II_7.jpg" alt="Montlucon_II" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_03.html">Retour au département 03 — Allier</a>
+<div class="fiche">
+<h2>Montlucon_II</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Montlucon_II" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_03/03_Montlucon_II_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Montlucon_II" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Montlucon_II_1.jpg"/><img alt="Montlucon_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Montlucon_II_2.jpg"/><img alt="Montlucon_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Montlucon_II_3.jpg"/><img alt="Montlucon_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Montlucon_II_4.jpg"/><img alt="Montlucon_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Montlucon_II_5.jpg"/><img alt="Montlucon_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Montlucon_II_6.jpg"/><img alt="Montlucon_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Montlucon_II_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>03 — Allier</td></tr>
+<tr><td>Canton</td><td>Montluçon</td></tr>
+<tr><td>Commune</td><td>Montlucon</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Plusieurs châteaux à Montlucon, du Bien-Assis du XVe siècle avec tour carrée(voir article), des  ducs de Bourbon ( voir article), des Etourneaux du XVe siècle , de la Louvière (voir article avec Bien-Assis) et de Saint-Jean  du XVe siècle transformé en restaurant. Autres châteaux dont je n'ai pas d'information historique, château de l'Argentières, de Bisseret, de Goutières le Château, de Magnoux, manoir en Teillet-Argenty, de Mazeri,  le château de Moulins.   ETOURNEAUX,  château construit au XVe siècle par le duc Jean II de Bourbon qui en fit don à l'un de ses enfants illégitimes en 1484. De plan rectangulaire, la maison forte comprend, à chacun de ses deux niveaux, deux grandes salles ayant conservé  leur cheminée à hotte, flanquant la façade ouest,  une tour, cantonnée d'une tourelle,  sert de cage à l'escalier en colimaçon. Au sud, un appentis voûté à rez-de-chaussée servait autrefois de chapelle.  La façade sur rue, à l'est, bouche à feu  et de deux archères. L'intérieur présente un fragment de peinture murale  dans la pièce nord du rez-de-chaussée.                      SAINT-JEAN -Entre-Les-Vignes, comme on le désignait jadis, fut jusqu'à la Révolution un établissement de la Commanderie des Chevaliers de l'Ordre de Malte, de Saint-Jean de Jérusalem, origine de son nom. Transformé en hostellerie en 1925,le domaine château Saint-Jean est un hôtel 4 étoiles membre des Châteaux et Hôtels collection, avec un restaurant abrité dans une chapelle romane du XIIe siècle. La cuisine du chef Thierry Douault et de son équipe repose sur une gastronomie à base de produits régionaux.</p>
-      <h4>Architecture</h4><p>Etourneaux,  maison forte    XVe siècle, de plan rectangulaire, la maison forte comprend, à chacun de ses deux niveaux, deux grandes salles ayant conservé leur cheminée à hotte. Flanquant la façade ouest, une tour carrée, cantonnée d'une tourelle, sert de cage à l'escalier en colimaçon. Au sud, un appentis voûté à rez-de-chaussée servait autrefois de chapelle. La façade sur rue, à l'est, est percée de fenêtres moulurées et repose sur un soubassement taluté percé d'une bouche à feu et de deux archères. L'intérieur présente un fragment de peinture murale dans la pièce nord du rez-de-chaussée. 
-<br>Saint-Jean, blottie dans les frondaisons d'un parc verdoyant et centenaire, orné de magnifiques arbres séculaires, notre demeure est située à Montluçon, au centre de la France, entre la rivière le Cher et le grand chemin de l'Auvergne. Saint-Jean-Entre-Les-Vignes, comme on le désignait jadis, fut jusqu'à la Révolution un établissement de la commanderie des chevaliers de l'Ordre de Malte, de Saint-Jean de Jérusalem, origine de son nom. Transformé en hostellerie en 1925.</p>
-      <h4>Habitants / Familles</h4><p>Seigneurs locaux"</p>
-      <h4>Divers</h4><p>Château de St-Jean, des Etourneaux, de l'Argentière, de Bisseret, de  Magnoux,  de Mazeri, des Goutières à Montluçon.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Plusieurs châteaux à Montlucon, du Bien-Assis du XVe siècle avec tour carrée(voir article), des  ducs de Bourbon ( voir article), des Etourneaux du XVe siècle , de la Louvière (voir article avec Bien-Assis) et de Saint-Jean  du XVe siècle transformé en restaurant. Autres châteaux dont je n'ai pas d'information historique, château de l'Argentières, de Bisseret, de Goutières le Château, de Magnoux, manoir en Teillet-Argenty, de Mazeri,  le château de Moulins.   ETOURNEAUX,  château construit au XVe siècle par le duc Jean II de Bourbon qui en fit don à l'un de ses enfants illégitimes en 1484. De plan rectangulaire, la maison forte comprend, à chacun de ses deux niveaux, deux grandes salles ayant conservé  leur cheminée à hotte, flanquant la façade ouest,  une tour, cantonnée d'une tourelle,  sert de cage à l'escalier en colimaçon. Au sud, un appentis voûté à rez-de-chaussée servait autrefois de chapelle.  La façade sur rue, à l'est, bouche à feu  et de deux archères. L'intérieur présente un fragment de peinture murale  dans la pièce nord du rez-de-chaussée.                      SAINT-JEAN -Entre-Les-Vignes, comme on le désignait jadis, fut jusqu'à la Révolution un établissement de la Commanderie des Chevaliers de l'Ordre de Malte, de Saint-Jean de Jérusalem, origine de son nom. Transformé en hostellerie en 1925,le domaine château Saint-Jean est un hôtel 4 étoiles membre des Châteaux et Hôtels collection, avec un restaurant abrité dans une chapelle romane du XIIe siècle. La cuisine du chef Thierry Douault et de son équipe repose sur une gastronomie à base de produits régionaux.</p>
+<h4>Architecture</h4><p>Etourneaux,  maison forte    XVe siècle, de plan rectangulaire, la maison forte comprend, à chacun de ses deux niveaux, deux grandes salles ayant conservé leur cheminée à hotte. Flanquant la façade ouest, une tour carrée, cantonnée d'une tourelle, sert de cage à l'escalier en colimaçon. Au sud, un appentis voûté à rez-de-chaussée servait autrefois de chapelle. La façade sur rue, à l'est, est percée de fenêtres moulurées et repose sur un soubassement taluté percé d'une bouche à feu et de deux archères. L'intérieur présente un fragment de peinture murale dans la pièce nord du rez-de-chaussée. 
+<br/>Saint-Jean, blottie dans les frondaisons d'un parc verdoyant et centenaire, orné de magnifiques arbres séculaires, notre demeure est située à Montluçon, au centre de la France, entre la rivière le Cher et le grand chemin de l'Auvergne. Saint-Jean-Entre-Les-Vignes, comme on le désignait jadis, fut jusqu'à la Révolution un établissement de la commanderie des chevaliers de l'Ordre de Malte, de Saint-Jean de Jérusalem, origine de son nom. Transformé en hostellerie en 1925.</p>
+<h4>Habitants / Familles</h4><p>Seigneurs locaux"</p>
+<h4>Divers</h4><p>Château de St-Jean, des Etourneaux, de l'Argentière, de Bisseret, de  Magnoux,  de Mazeri, des Goutières à Montluçon.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

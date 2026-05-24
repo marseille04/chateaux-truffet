@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Douzillac — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,63 +113,61 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_24.html">Dordogne</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_24.html">Dordogne</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_24.html" class="back-link">Retour au département 24 — Dordogne</a>
-  <div class="fiche">
-    <h2>Douzillac</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>24 — Dordogne</td></tr>
-          <tr><td>Canton</td><td>Neuvic</td></tr>
-          <tr><td>Commune</td><td>Douzillac</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XI-XVI</td></tr>
-          <tr><td>Coordonnées GPS</td><td>45° 05' 09" Nord et 0° 25' 33" Est.   Mauriac grav de1 à 5 GPS : 45° 5' 20,2" Nord et 0° 25' 56,1" Est.   Valay grav 9 GPS : 45° 05' 09" Nord, 0° 25' 10" Est.</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_24/24_Douzillac_1.jpg" alt="Douzillac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Douzillac_2.jpg" alt="Douzillac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Douzillac_3.jpg" alt="Douzillac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Douzillac_4.jpg" alt="Douzillac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Douzillac_5.jpg" alt="Douzillac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Douzillac_6.jpg" alt="Douzillac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Douzillac_7.jpg" alt="Douzillac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Douzillac_8.jpg" alt="Douzillac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_24/24_Douzillac_9.jpg" alt="Douzillac" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_24.html">Retour au département 24 — Dordogne</a>
+<div class="fiche">
+<h2>Douzillac</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Douzillac" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_24/24_Douzillac_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Douzillac" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Douzillac_1.jpg"/><img alt="Douzillac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Douzillac_2.jpg"/><img alt="Douzillac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Douzillac_3.jpg"/><img alt="Douzillac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Douzillac_4.jpg"/><img alt="Douzillac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Douzillac_5.jpg"/><img alt="Douzillac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Douzillac_6.jpg"/><img alt="Douzillac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Douzillac_7.jpg"/><img alt="Douzillac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Douzillac_8.jpg"/><img alt="Douzillac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_24/24_Douzillac_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>24 — Dordogne</td></tr>
+<tr><td>Canton</td><td>Neuvic</td></tr>
+<tr><td>Commune</td><td>Douzillac</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XI-XVI</td></tr>
+<tr><td>Coordonnées GPS</td><td>45° 05' 09" Nord et 0° 25' 33" Est.   Mauriac grav de1 à 5 GPS : 45° 5' 20,2" Nord et 0° 25' 56,1" Est.   Valay grav 9 GPS : 45° 05' 09" Nord, 0° 25' 10" Est.</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>A Douzillac; le château de Mauriac fut construit au XIe siècle.  Château des Chauvaux, chartreuse de Fontpeyre, repaire de Néautouneix, manoir des Rieux, Castel de Valay.                                                    MAURIAC, bâti aux XVe et XVIe siècles, succède à un manoir médiéval, lui-même établi à l'emplacement d'une ancienne demeure gallo-romaine. De retour d'Italie, Montaigne fit halte au château en 1581. En 1730, un autre visiteur, le chevalier de Lagrange Chancel. En 1652, Mauriac nest pas une place forte importante et a été épargné par Balthazar. Ironie de lhistoire le 25 mai 1704 Gabriel de Talleyrand, comte de Grignols, seigneur de Beauséjour se mariera avec Margueritte de Taillefer, dame de Mauriac, et deviendra ainsi seigneur de Mauriac. fut vendu après la Révolution comme bien national. Le propriétaire actuel a consacré un demi-siècle à redonner tout son charme exquis à cette demeure de qualité, il appartient aujourdhui à monsieur Dumoncel.
-<br> CHAUVAUX, par alliance plusieurs familles se succèdent aux Chauvaux : Dessagnes, Aubertie puis Aubertie de Labrousse, Savy, Vermeil de Conchard. Cest Franck Vermeil de Conchard qui donnera au château son aspect actuel  Pierre Savy (le père de Jules), né en 1781, était avocat. Dans le fabuleux tourbillon politique que fut le XIXe siècle, il engagea une carrière politique. Élu conseiller général à partir de 1845, il se fit également élire député de la Dordogne à lassemblée constituante de 1848. Il mourra à Chantérac en 1871.</p>
-      <h4>Architecture</h4><p>CHAUVEAUX, est flanqué de deux tours octogonales et pourvu dune toiture à la Mansart ; à la fin du XIXe siècle, le capitaine légionnaire Philippe Maine, héros du combat de Camérone au Mexique, y finit ses jours. Il est dailleurs inhumé au cimetière de Douzillac.           MAURIAC, du XVe siècle, établi sur des substructures du XIIe siècle. Le corps de logis rectangulaire à toit aigu est flanqué de deux grosses tours rondes  coiffés en cône  et chemin de ronde à mâchicoulis. La tour carrée qui accostait la façade à l'ouest, a disparu à la Révolution ainsi que l'enceinte aux huit tours circulaires, le donjon et la chapelle. La face ouest conserve un important fragment du chemin de ronde sur mâchicoulis. C'est une propriété privée où est autorisée la visite des jardins et de la terrasse. Le château est situé en bordure orientale d'un parc où demeurent deux tours d'angle au sud-ouest et au nord-ouest. On accède au domaine par un châtelet d'entrée en partie détruit, côtés Est et sud. Le château est inscrit au titre des M.H. le 12 octobre 1948,
-<br>Castel VALEY, de plan rectangulaire à deux niveaux pavillon d'entrée saillant avec fronton triangulaire  toit en croupe recouvert d'ardoises.</p>
-      <h4>Habitants / Familles</h4><p>Mauriac Gabriel de Talleyrand,                           Chauvaux Franck Vermeil de Conchard
-<br>        "</p>
-      <h4>Divers</h4><p>Chauvaux  grav de6 - 8 GPS : 45° 05' 09" Nord et 0° 25' 33" Est.   Mauriac grav de1 à 5 GPS : 45° 5' 20,2" Nord et 0° 25' 56,1" Est.   Valay grav 9 GPS : 45° 05' 09" Nord, 0° 25' 10" Est.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>A Douzillac; le château de Mauriac fut construit au XIe siècle.  Château des Chauvaux, chartreuse de Fontpeyre, repaire de Néautouneix, manoir des Rieux, Castel de Valay.                                                    MAURIAC, bâti aux XVe et XVIe siècles, succède à un manoir médiéval, lui-même établi à l'emplacement d'une ancienne demeure gallo-romaine. De retour d'Italie, Montaigne fit halte au château en 1581. En 1730, un autre visiteur, le chevalier de Lagrange Chancel. En 1652, Mauriac nest pas une place forte importante et a été épargné par Balthazar. Ironie de lhistoire le 25 mai 1704 Gabriel de Talleyrand, comte de Grignols, seigneur de Beauséjour se mariera avec Margueritte de Taillefer, dame de Mauriac, et deviendra ainsi seigneur de Mauriac. fut vendu après la Révolution comme bien national. Le propriétaire actuel a consacré un demi-siècle à redonner tout son charme exquis à cette demeure de qualité, il appartient aujourdhui à monsieur Dumoncel.
+<br/> CHAUVAUX, par alliance plusieurs familles se succèdent aux Chauvaux : Dessagnes, Aubertie puis Aubertie de Labrousse, Savy, Vermeil de Conchard. Cest Franck Vermeil de Conchard qui donnera au château son aspect actuel  Pierre Savy (le père de Jules), né en 1781, était avocat. Dans le fabuleux tourbillon politique que fut le XIXe siècle, il engagea une carrière politique. Élu conseiller général à partir de 1845, il se fit également élire député de la Dordogne à lassemblée constituante de 1848. Il mourra à Chantérac en 1871.</p>
+<h4>Architecture</h4><p>CHAUVEAUX, est flanqué de deux tours octogonales et pourvu dune toiture à la Mansart ; à la fin du XIXe siècle, le capitaine légionnaire Philippe Maine, héros du combat de Camérone au Mexique, y finit ses jours. Il est dailleurs inhumé au cimetière de Douzillac.           MAURIAC, du XVe siècle, établi sur des substructures du XIIe siècle. Le corps de logis rectangulaire à toit aigu est flanqué de deux grosses tours rondes  coiffés en cône  et chemin de ronde à mâchicoulis. La tour carrée qui accostait la façade à l'ouest, a disparu à la Révolution ainsi que l'enceinte aux huit tours circulaires, le donjon et la chapelle. La face ouest conserve un important fragment du chemin de ronde sur mâchicoulis. C'est une propriété privée où est autorisée la visite des jardins et de la terrasse. Le château est situé en bordure orientale d'un parc où demeurent deux tours d'angle au sud-ouest et au nord-ouest. On accède au domaine par un châtelet d'entrée en partie détruit, côtés Est et sud. Le château est inscrit au titre des M.H. le 12 octobre 1948,
+<br/>Castel VALEY, de plan rectangulaire à deux niveaux pavillon d'entrée saillant avec fronton triangulaire  toit en croupe recouvert d'ardoises.</p>
+<h4>Habitants / Familles</h4><p>Mauriac Gabriel de Talleyrand,                           Chauvaux Franck Vermeil de Conchard
+<br/>        "</p>
+<h4>Divers</h4><p>Chauvaux  grav de6 - 8 GPS : 45° 05' 09" Nord et 0° 25' 33" Est.   Mauriac grav de1 à 5 GPS : 45° 5' 20,2" Nord et 0° 25' 56,1" Est.   Valay grav 9 GPS : 45° 05' 09" Nord, 0° 25' 10" Est.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

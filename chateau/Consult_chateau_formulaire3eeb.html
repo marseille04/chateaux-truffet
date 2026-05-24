@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Huisseau_Mauves — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,59 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_45.html">Loiret</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_45.html">Loiret</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_45.html" class="back-link">Retour au département 45 — Loiret</a>
-  <div class="fiche">
-    <h2>Huisseau_Mauves</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>45 — Loiret</td></tr>
-          <tr><td>Canton</td><td>Meung-sur-Loire</td></tr>
-          <tr><td>Commune</td><td>Huisseau sur Mauves</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XII-XVIII-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_45/45_Huisseau_Mauves_1.jpg" alt="Huisseau_Mauves" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Huisseau_Mauves_2.jpg" alt="Huisseau_Mauves" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Huisseau_Mauves_3.jpg" alt="Huisseau_Mauves" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Huisseau_Mauves_4.jpg" alt="Huisseau_Mauves" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Huisseau_Mauves_5.jpg" alt="Huisseau_Mauves" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Huisseau_Mauves_6.jpg" alt="Huisseau_Mauves" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Huisseau_Mauves_7.jpg" alt="Huisseau_Mauves" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_45.html">Retour au département 45 — Loiret</a>
+<div class="fiche">
+<h2>Huisseau_Mauves</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Huisseau_Mauves" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_45/45_Huisseau_Mauves_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Huisseau_Mauves" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Huisseau_Mauves_1.jpg"/><img alt="Huisseau_Mauves" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Huisseau_Mauves_2.jpg"/><img alt="Huisseau_Mauves" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Huisseau_Mauves_3.jpg"/><img alt="Huisseau_Mauves" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Huisseau_Mauves_4.jpg"/><img alt="Huisseau_Mauves" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Huisseau_Mauves_5.jpg"/><img alt="Huisseau_Mauves" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Huisseau_Mauves_6.jpg"/><img alt="Huisseau_Mauves" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Huisseau_Mauves_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>45 — Loiret</td></tr>
+<tr><td>Canton</td><td>Meung-sur-Loire</td></tr>
+<tr><td>Commune</td><td>Huisseau sur Mauves</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XII-XVIII-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux châteaux dans cet article; Huisseau et Pré le Fort.                            HUISSEAU   le château fort, simple fortin de bois, fut remplacé au Xe siècle par un château-fort qui est à l'origine du village de Huisseau sur Mauves. Il est construit à l'époque pour protéger les terres cultivées et les paysans des pillards de la forêt toute proche. La seigneurie de Huisseau sur Mauves avait droit de haute, moyenne et basse justice. La terre de Huisseau n'a jamais quitté la lignée de ses fondateurs depuis 1160. Jeanne d'Arc  y fait une halte le 18 juin 1429. Inscription par arrêté du 14 octobre 1970. Appartient au comte de Robien.                                                         PRE le FORT, les premiers seigneurs connus au XIIIe siècle sont les de Beaugency, dont le pouvoir était exercé par le bailli. On trouve ensuite une série de seigneurs de différentes familles : les Vivier, les Canaye, les Rabault, puis les de Jussac. En 1704, André de Flacourt est le nouveau propriétaire. Sa fille Angélique, veuve en 1777, cède la terre de Pré le Fort à son fils Joseph de Thiville, qui émigre en 1792 à Londres et ses biens sont confisqués. En 1843, le château est adjugé au comte Edmond Bigot de la Touanne. En 1858, sa fille en hérite et se marie à Édouard de Beauregard. Son petit-fils, le baron Alain d'Alairac d'Aigremont le cède en 1898 aux religieuses de Saint-Vincent de Paul de Stains, qui y établirent une colonie de vacances. En 1961, les surs vendront la propriété à Charles Cordier, industriel.</p>
-      <h4>Architecture</h4><p>HUISSEAU, aujourd'hui, la poterne médiévale donne accès au château comprenant deux bâtiments en équerre, flanqués de trois tours rondes du côté externe, qui donnent à l'intérieur sur un magnifique jardin. L'entrée du château s'ouvre entre deux tourelles encadrant le porche. Le château lui-même, entouré de douves, a été restauré au XVIIIe siècle. Il se compose de deux bâtiments en équerre avec un puits dans la cour intérieure, autrefois fermée par un bâtiment supplémentaire dont il reste les assises d'une quatrième tour. Une tour voûtée avec une oubliette et deux cheminées dans les sous-sol dateraient du XIIe siècle. Une grille en fer forgé provenant de la cathédrale de Meaux ferme la cour intérieure. L'intérieur du château, restauré au XIXe siècle par la famille Bizemont, possède des cheminées monumentales et des plafonds à caissons                                                                             PRE le FORT, niché au milieu de son parc, l'actuel château de Pré le Fort est une construction du XIXe siècle, remaniée et reconstruite au cours des années 1864 et 1865 par le comte Edmond de La Touanne, lieutenant de vaisseau. Mais le domaine a une origine plus ancienne. Les propriétaires successifs ont redonné une jeunesse à cette maison qui en avait besoin.</p>
-      <h4>Habitants / Familles</h4><p>Huisseau; famille Bizemont                                                                               Pre le fort; comte Edmond de La Touanne
-<br>        "</p>
-      <h4>Divers</h4><p>A Huisseau sur Mauves, deux châteaux; Huisseau grav 1 à 5 et Pré le Fort.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux châteaux dans cet article; Huisseau et Pré le Fort.                            HUISSEAU   le château fort, simple fortin de bois, fut remplacé au Xe siècle par un château-fort qui est à l'origine du village de Huisseau sur Mauves. Il est construit à l'époque pour protéger les terres cultivées et les paysans des pillards de la forêt toute proche. La seigneurie de Huisseau sur Mauves avait droit de haute, moyenne et basse justice. La terre de Huisseau n'a jamais quitté la lignée de ses fondateurs depuis 1160. Jeanne d'Arc  y fait une halte le 18 juin 1429. Inscription par arrêté du 14 octobre 1970. Appartient au comte de Robien.                                                         PRE le FORT, les premiers seigneurs connus au XIIIe siècle sont les de Beaugency, dont le pouvoir était exercé par le bailli. On trouve ensuite une série de seigneurs de différentes familles : les Vivier, les Canaye, les Rabault, puis les de Jussac. En 1704, André de Flacourt est le nouveau propriétaire. Sa fille Angélique, veuve en 1777, cède la terre de Pré le Fort à son fils Joseph de Thiville, qui émigre en 1792 à Londres et ses biens sont confisqués. En 1843, le château est adjugé au comte Edmond Bigot de la Touanne. En 1858, sa fille en hérite et se marie à Édouard de Beauregard. Son petit-fils, le baron Alain d'Alairac d'Aigremont le cède en 1898 aux religieuses de Saint-Vincent de Paul de Stains, qui y établirent une colonie de vacances. En 1961, les surs vendront la propriété à Charles Cordier, industriel.</p>
+<h4>Architecture</h4><p>HUISSEAU, aujourd'hui, la poterne médiévale donne accès au château comprenant deux bâtiments en équerre, flanqués de trois tours rondes du côté externe, qui donnent à l'intérieur sur un magnifique jardin. L'entrée du château s'ouvre entre deux tourelles encadrant le porche. Le château lui-même, entouré de douves, a été restauré au XVIIIe siècle. Il se compose de deux bâtiments en équerre avec un puits dans la cour intérieure, autrefois fermée par un bâtiment supplémentaire dont il reste les assises d'une quatrième tour. Une tour voûtée avec une oubliette et deux cheminées dans les sous-sol dateraient du XIIe siècle. Une grille en fer forgé provenant de la cathédrale de Meaux ferme la cour intérieure. L'intérieur du château, restauré au XIXe siècle par la famille Bizemont, possède des cheminées monumentales et des plafonds à caissons                                                                             PRE le FORT, niché au milieu de son parc, l'actuel château de Pré le Fort est une construction du XIXe siècle, remaniée et reconstruite au cours des années 1864 et 1865 par le comte Edmond de La Touanne, lieutenant de vaisseau. Mais le domaine a une origine plus ancienne. Les propriétaires successifs ont redonné une jeunesse à cette maison qui en avait besoin.</p>
+<h4>Habitants / Familles</h4><p>Huisseau; famille Bizemont                                                                               Pre le fort; comte Edmond de La Touanne
+<br/>        "</p>
+<h4>Divers</h4><p>A Huisseau sur Mauves, deux châteaux; Huisseau grav 1 à 5 et Pré le Fort.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

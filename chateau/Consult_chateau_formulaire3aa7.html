@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Borie_Chenereilles — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,59 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_43.html">Haute-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_43.html">Haute-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_43.html" class="back-link">Retour au département 43 — Haute-Loire</a>
-  <div class="fiche">
-    <h2>Borie_Chenereilles</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>43 — Haute-Loire</td></tr>
-          <tr><td>Canton</td><td>Yssingeaux</td></tr>
-          <tr><td>Commune</td><td>Chénereilles</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_43/43_Borie_Chenereilles_1.jpg" alt="Borie_Chenereilles" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Borie_Chenereilles_2.jpg" alt="Borie_Chenereilles" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Borie_Chenereilles_3.jpg" alt="Borie_Chenereilles" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Borie_Chenereilles_4.jpg" alt="Borie_Chenereilles" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Borie_Chenereilles_5.jpg" alt="Borie_Chenereilles" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Borie_Chenereilles_6.jpg" alt="Borie_Chenereilles" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_43.html">Retour au département 43 — Haute-Loire</a>
+<div class="fiche">
+<h2>Borie_Chenereilles</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Borie_Chenereilles" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_43/43_Borie_Chenereilles_1.jpg"/><div class="hero-count" id="hero-count">1 / 6</div></div><div class="photo-strip"><img alt="Borie_Chenereilles" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Borie_Chenereilles_1.jpg"/><img alt="Borie_Chenereilles" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Borie_Chenereilles_2.jpg"/><img alt="Borie_Chenereilles" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Borie_Chenereilles_3.jpg"/><img alt="Borie_Chenereilles" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Borie_Chenereilles_4.jpg"/><img alt="Borie_Chenereilles" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Borie_Chenereilles_5.jpg"/><img alt="Borie_Chenereilles" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Borie_Chenereilles_6.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>43 — Haute-Loire</td></tr>
+<tr><td>Canton</td><td>Yssingeaux</td></tr>
+<tr><td>Commune</td><td>Chénereilles</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>BORIE à Chenereilles, château dont l'origine remonte à la fin du XIVe ou au début du XVe siècle fondé par Jean de Bourbon évêque du Puy. Il a été transformé au XIXe siècle  avec l'ajout d'ailes. La première mention écrite apparaît entre 1360 et 1410 : Amé Vert, seigneur de Chenereilles et  bailli de Forez  est autorisé par  Louis II de Bourbon à fortifier son château, si ce seigneur peut le fortifier c'est qu'il existait déjà à cette date une maison forte. Au XVe siècle les St-Germain sont seigneurs de Chenereilles. En 1732 Claude Vital Groseillier, conseiller au parlement fait agrandir la demeure en y ajoutant deux ailes à l'est, supprime les fossés et construit également une terrasse. En 1903, Jean-Pierre-Alexis Beyssac , historien , puis la famille d'Assier de  Boisredon se succèdent dans cette demeure. 
-<br>BORIE (la), construite en 1603 ou naissait Jean-André de Véron de la Borie , compagnon de Rochambeau. A dix kilomètres prés du barrage de Lavalette reste d'une maison forte du Fomental du XVe siècle et à cinq cent mètres au sud la maison forte de Treslemont.</p>
-      <h4>Architecture</h4><p>La Borie, petite construction militaire remanié aux XVe et XVIe siècles mais qui doit avoir des origines plus anciennes. Cette maison forte a été édifiée après la guerre de Cent ans, contre les Anglais et Routiers qui ravagèrent la région. Le plan présente un corps de bâtiment carré flanqué d'une tour massive servant d'escalier, de protection et de guet, lui-même protégé aux angles par des bretèches avec mâchicoulis, sont conservées autour du donjon et de la tourelle une série d'échauguettes.                           Maison forte de la Borie édifiée au XIIIe siècle et typique dans le Velay,  a été modifiée dans ses percements au XVe siècle puis à diverses autres époques. De plan presque carré, l'édifice est flanqué d'une grosse  tour ronde et   prolongé par une  aile de communs.  L'intérieur a conservé son caractère avec des décors quasiment complets salle à manger, salon Louis XV.</p>
-      <h4>Habitants / Familles</h4><p>Seigneurs de Chénereilles
-<br>        "</p>
-      <h4>Divers</h4><p>Château de la Borie à Chenereilles</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>BORIE à Chenereilles, château dont l'origine remonte à la fin du XIVe ou au début du XVe siècle fondé par Jean de Bourbon évêque du Puy. Il a été transformé au XIXe siècle  avec l'ajout d'ailes. La première mention écrite apparaît entre 1360 et 1410 : Amé Vert, seigneur de Chenereilles et  bailli de Forez  est autorisé par  Louis II de Bourbon à fortifier son château, si ce seigneur peut le fortifier c'est qu'il existait déjà à cette date une maison forte. Au XVe siècle les St-Germain sont seigneurs de Chenereilles. En 1732 Claude Vital Groseillier, conseiller au parlement fait agrandir la demeure en y ajoutant deux ailes à l'est, supprime les fossés et construit également une terrasse. En 1903, Jean-Pierre-Alexis Beyssac , historien , puis la famille d'Assier de  Boisredon se succèdent dans cette demeure. 
+<br/>BORIE (la), construite en 1603 ou naissait Jean-André de Véron de la Borie , compagnon de Rochambeau. A dix kilomètres prés du barrage de Lavalette reste d'une maison forte du Fomental du XVe siècle et à cinq cent mètres au sud la maison forte de Treslemont.</p>
+<h4>Architecture</h4><p>La Borie, petite construction militaire remanié aux XVe et XVIe siècles mais qui doit avoir des origines plus anciennes. Cette maison forte a été édifiée après la guerre de Cent ans, contre les Anglais et Routiers qui ravagèrent la région. Le plan présente un corps de bâtiment carré flanqué d'une tour massive servant d'escalier, de protection et de guet, lui-même protégé aux angles par des bretèches avec mâchicoulis, sont conservées autour du donjon et de la tourelle une série d'échauguettes.                           Maison forte de la Borie édifiée au XIIIe siècle et typique dans le Velay,  a été modifiée dans ses percements au XVe siècle puis à diverses autres époques. De plan presque carré, l'édifice est flanqué d'une grosse  tour ronde et   prolongé par une  aile de communs.  L'intérieur a conservé son caractère avec des décors quasiment complets salle à manger, salon Louis XV.</p>
+<h4>Habitants / Familles</h4><p>Seigneurs de Chénereilles
+<br/>        "</p>
+<h4>Divers</h4><p>Château de la Borie à Chenereilles</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

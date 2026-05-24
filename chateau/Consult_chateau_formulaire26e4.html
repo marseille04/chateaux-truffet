@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Porcien — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,54 +113,57 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_08.html">Ardennes</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_08.html">Ardennes</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_08.html" class="back-link">Retour au département 08 — Ardennes</a>
-  <div class="fiche">
-    <h2>Porcien</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>08 — Ardennes</td></tr>
-          <tr><td>Canton</td><td>Château_Porcien</td></tr>
-          <tr><td>Commune</td><td>Wignoncourt</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVI</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_08/08_Porcien_1.jpg" alt="Porcien" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_08/08_Porcien_2.jpg" alt="Porcien" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_08/08_Porcien_3.jpg" alt="Porcien" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_08.html">Retour au département 08 — Ardennes</a>
+<div class="fiche">
+<h2>Porcien</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Porcien" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_08/08_Porcien_1.jpg"/><div class="hero-count" id="hero-count">1 / 3</div></div><div class="photo-strip"><img alt="Porcien" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Porcien_1.jpg"/><img alt="Porcien" class="" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Porcien_2.jpg"/><img alt="Porcien" class="" loading="lazy" onclick="setHero(this)" src="../image/image_08/08_Porcien_3.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>08 — Ardennes</td></tr>
+<tr><td>Canton</td><td>Château_Porcien</td></tr>
+<tr><td>Commune</td><td>Wignoncourt</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVI</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>PORCIEN, en 1243, Nicolas de Rumigny (1190/1257) et son épouse, Isabeau de Boves de Coucy (1192/1265) cèdent le moulin de Juisse à Jean Pain de Soile, prévôt de château-Porcien.<br>En 1650, lors de la Fronde, la ville se rend après un siège à Henri de la Tour dAuvergne dit Turenne (1611/1675). Elle est reprise au printemps 1654 par larmée royale française.  En 1608 : le Porcien est vendu à Charles Ier Gonzague de Mantoue (1580/1637), duc de Nevers et de Rethel et passe ainsi à la maison de Gonzague ;<br>En 1659 : il passe à Jules Raymond Mazarini (1602/1661 portrait de droite) cardinal de Mazarin ; Puis : en 1661 il entre dans la Famille de La Porte de La Meilleraye ;  en 1738 dans la maison de Durfort ; en 1781 dans la maison d'Aumont de Rochebaron.  Le titre séteint en 1826 avec Louise Félicité d'Aumont de Rochebaron (1759/1826) duchesse de Rethel-Mazarin, épouse en 1777 de Charles-Anne de Grimaldi, prince Honoré IV de Monaco (1758/1819). Il est relevé en 1826 par la maison Grimaldi, souverains de Monaco descendants du cardinal de Mazarin, et est toujours porté de nos jours par Albert II de Monaco (1958), prince souverain de Monaco, duc de Mazarin et prince de château-Porcien entre autres.  Les 9 et 10 juin 1940, les Allemands traversent la ville après avoir franchi lAisne, malgré une forte résistance de larmée française.</p>
-      <h4>Architecture</h4><p>PORCIEN, maison forte avec porte du XVIe siècle et Le château-fort, ruiné en 1347 par les anglais, est reconstruit par Antoine de Croÿ dit le grand (1385/1475) au XVe siècle.<br>Ses ruines servent à la reconstruction des habitations de la ville après les incendies.</p>
-      <h4>Habitants / Familles</h4><p>Henri de la Tour dAuvergne"</p>
-      <h4>Divers</h4><p>Maison forte grav2                                         Latitude: 49° 31' 46'' Nord<br>Longitude: 04° 14' 45'' Est<br>Mairie grav-3</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>PORCIEN, en 1243, Nicolas de Rumigny (1190/1257) et son épouse, Isabeau de Boves de Coucy (1192/1265) cèdent le moulin de Juisse à Jean Pain de Soile, prévôt de château-Porcien.<br/>En 1650, lors de la Fronde, la ville se rend après un siège à Henri de la Tour dAuvergne dit Turenne (1611/1675). Elle est reprise au printemps 1654 par larmée royale française.  En 1608 : le Porcien est vendu à Charles Ier Gonzague de Mantoue (1580/1637), duc de Nevers et de Rethel et passe ainsi à la maison de Gonzague ;<br/>En 1659 : il passe à Jules Raymond Mazarini (1602/1661 portrait de droite) cardinal de Mazarin ; Puis : en 1661 il entre dans la Famille de La Porte de La Meilleraye ;  en 1738 dans la maison de Durfort ; en 1781 dans la maison d'Aumont de Rochebaron.  Le titre séteint en 1826 avec Louise Félicité d'Aumont de Rochebaron (1759/1826) duchesse de Rethel-Mazarin, épouse en 1777 de Charles-Anne de Grimaldi, prince Honoré IV de Monaco (1758/1819). Il est relevé en 1826 par la maison Grimaldi, souverains de Monaco descendants du cardinal de Mazarin, et est toujours porté de nos jours par Albert II de Monaco (1958), prince souverain de Monaco, duc de Mazarin et prince de château-Porcien entre autres.  Les 9 et 10 juin 1940, les Allemands traversent la ville après avoir franchi lAisne, malgré une forte résistance de larmée française.</p>
+<h4>Architecture</h4><p>PORCIEN, maison forte avec porte du XVIe siècle et Le château-fort, ruiné en 1347 par les anglais, est reconstruit par Antoine de Croÿ dit le grand (1385/1475) au XVe siècle.<br/>Ses ruines servent à la reconstruction des habitations de la ville après les incendies.</p>
+<h4>Habitants / Familles</h4><p>Henri de la Tour dAuvergne"</p>
+<h4>Divers</h4><p>Maison forte grav2                                         Latitude: 49° 31' 46'' Nord<br/>Longitude: 04° 14' 45'' Est<br/>Mairie grav-3</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

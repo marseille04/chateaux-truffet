@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Boussac — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,55 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_03.html">Allier</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_03.html">Allier</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_03.html" class="back-link">Retour au département 03 — Allier</a>
-  <div class="fiche">
-    <h2>Boussac</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>03 — Allier</td></tr>
-          <tr><td>Canton</td><td>Chantelle</td></tr>
-          <tr><td>Commune</td><td>Target</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_03/03_Boussac_1.jpg" alt="Boussac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Boussac_2.jpg" alt="Boussac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Boussac_3.jpg" alt="Boussac" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Boussac_4.jpg" alt="Boussac" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_03.html">Retour au département 03 — Allier</a>
+<div class="fiche">
+<h2>Boussac</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Boussac" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_03/03_Boussac_1.jpg"/><div class="hero-count" id="hero-count">1 / 4</div></div><div class="photo-strip"><img alt="Boussac" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Boussac_1.jpg"/><img alt="Boussac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Boussac_2.jpg"/><img alt="Boussac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Boussac_3.jpg"/><img alt="Boussac" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Boussac_4.jpg"/></div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>03 — Allier</td></tr>
+<tr><td>Canton</td><td>Chantelle</td></tr>
+<tr><td>Commune</td><td>Target</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>BOUSSAC, le premier seigneur de Boussac n'apparait qu'en 1653, lorsque Alexandre Rousseau lieutenant général de la prévôté de Moulins, marié à Françoise Guillomier, porte le titre de seigneur de Boussat, et aussi celui de seigneur de Verzun, seigneurie proche. La famille Lapelin succéda aux Rousseau sur la terre de Boussac, dès la seconde moitié du XVIIe siècle et en resta propriétaire jusqu'au début  du XVIIIe siècle ou nous voyons le vicomte de la Ferronnays, Pierre Jacques Ferron, devenir le nouveau Seigneur de Boussac. Ce n'est qu'en 1816 que la terre passa, par alliance d'une fille du vicomte de la Ferronnays, à Gérard Antoine Louis de Champflour comte, une de leurs filles  épousa le comte de Charbonnel de Betz et en 1856, la fille de ce dernier épousa Aymar-Alfred  marquis de Longueil  grand-père du propriétaire actuel qui, aujourd'hui encore, possède cette belle demeure  de Boussac. Transformé en chambres d'hôtes. Dans la commune de Target le château de Verzun transformé en hôtel restaurant.</p>
-      <h4>Architecture</h4><p>le château primitif de Boussac, de plan barlong, flanqué aux angles de quatre tours rondes tallutées, était entouré  de large fossés pleins d'eau  que l'on franchissait au moyen d'un pont-levis. Il avait été édifié au XIIIe siècle. Au XVe siècle, les tours et les murs d'enceinte reçoivent quelques canonnières pour les tirs de   flanquement, en direction des douves, alors que le corps de logis s'ouvre des fenêtres  au niveau des combles. Les siècles suivants  ont contribué aux transformations de cet ancien château-fort en  une demeure confortable.  Le style Renaissance du XVIe siècle a laissé son empreinte sur la façade, alors que le XVIIe siècle transformait radicalement l'ensemble en ouvrant sur le parc et donnant au château l'allure d'une construction  de style Louis XIII.  L'accès au château est guidée  par une allée  seigneuriale, bordée d'arbres  centenaires. Le pont-levis a été remplacé par un pont dormant sur les douves, la cour s'ouvre sur le bâtiment. Une belle tour porche centrale abrite l'entrée principale. Elle est marquée, au fronton de l'ouverture en plein cintre, des armes des de Longueil, "d'azur à trois roses d'argent en chef d'or, chargé de trois roses de gueules"  Cette tour d'entrée est d'un bel effet, percée de deux baies, l'une à traverse, l'autre à meneaux; elle est recouverte d'un toit en dôme à 4 pans et bords relevés et surmontée d'un joli lanterneau coiffé à l'identique.   Une petite tourelle d'escalier de forme carrée, accolée à la tour porche, dessert les deux étages du bâtiment, malgré l'ancienneté des lieux.</p>
-      <h4>Habitants / Familles</h4><p>Famille d'Alexandre Rousseau "</p>
-      <h4>Divers</h4><p>Le château de Boussac, de Verzun à Target</p>
-    </div>
-  </div>
+
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>BOUSSAC, le premier seigneur de Boussac n'apparait qu'en 1653, lorsque Alexandre Rousseau lieutenant général de la prévôté de Moulins, marié à Françoise Guillomier, porte le titre de seigneur de Boussat, et aussi celui de seigneur de Verzun, seigneurie proche. La famille Lapelin succéda aux Rousseau sur la terre de Boussac, dès la seconde moitié du XVIIe siècle et en resta propriétaire jusqu'au début  du XVIIIe siècle ou nous voyons le vicomte de la Ferronnays, Pierre Jacques Ferron, devenir le nouveau Seigneur de Boussac. Ce n'est qu'en 1816 que la terre passa, par alliance d'une fille du vicomte de la Ferronnays, à Gérard Antoine Louis de Champflour comte, une de leurs filles  épousa le comte de Charbonnel de Betz et en 1856, la fille de ce dernier épousa Aymar-Alfred  marquis de Longueil  grand-père du propriétaire actuel qui, aujourd'hui encore, possède cette belle demeure  de Boussac. Transformé en chambres d'hôtes. Dans la commune de Target le château de Verzun transformé en hôtel restaurant.</p>
+<h4>Architecture</h4><p>le château primitif de Boussac, de plan barlong, flanqué aux angles de quatre tours rondes tallutées, était entouré  de large fossés pleins d'eau  que l'on franchissait au moyen d'un pont-levis. Il avait été édifié au XIIIe siècle. Au XVe siècle, les tours et les murs d'enceinte reçoivent quelques canonnières pour les tirs de   flanquement, en direction des douves, alors que le corps de logis s'ouvre des fenêtres  au niveau des combles. Les siècles suivants  ont contribué aux transformations de cet ancien château-fort en  une demeure confortable.  Le style Renaissance du XVIe siècle a laissé son empreinte sur la façade, alors que le XVIIe siècle transformait radicalement l'ensemble en ouvrant sur le parc et donnant au château l'allure d'une construction  de style Louis XIII.  L'accès au château est guidée  par une allée  seigneuriale, bordée d'arbres  centenaires. Le pont-levis a été remplacé par un pont dormant sur les douves, la cour s'ouvre sur le bâtiment. Une belle tour porche centrale abrite l'entrée principale. Elle est marquée, au fronton de l'ouverture en plein cintre, des armes des de Longueil, "d'azur à trois roses d'argent en chef d'or, chargé de trois roses de gueules"  Cette tour d'entrée est d'un bel effet, percée de deux baies, l'une à traverse, l'autre à meneaux; elle est recouverte d'un toit en dôme à 4 pans et bords relevés et surmontée d'un joli lanterneau coiffé à l'identique.   Une petite tourelle d'escalier de forme carrée, accolée à la tour porche, dessert les deux étages du bâtiment, malgré l'ancienneté des lieux.</p>
+<h4>Habitants / Familles</h4><p>Famille d'Alexandre Rousseau "</p>
+<h4>Divers</h4><p>Le château de Boussac, de Verzun à Target</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

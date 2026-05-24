@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Clémenceau — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,55 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_85.html">Vendée</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_85.html">Vendée</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_85.html" class="back-link">Retour au département 85 — Vendée</a>
-  <div class="fiche">
-    <h2>Clémenceau</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>85 — Vendée</td></tr>
-          <tr><td>Canton</td><td>La réorthe</td></tr>
-          <tr><td>Commune</td><td>Saint-Vincent</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_85/85_Cl%c3%a9menceau_1.jpg" alt="Clémenceau" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Cl%c3%a9menceau_2.jpg" alt="Clémenceau" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_85/85_Cl%c3%a9menceau_3.jpg" alt="Clémenceau" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_85.html">Retour au département 85 — Vendée</a>
+<div class="fiche">
+<h2>Clémenceau</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Clémenceau" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_85/85_Cl%c3%a9menceau_1.jpg"/><div class="hero-count" id="hero-count">1 / 3</div></div><div class="photo-strip"><img alt="Clémenceau" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Cl%c3%a9menceau_1.jpg"/><img alt="Clémenceau" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Cl%c3%a9menceau_2.jpg"/><img alt="Clémenceau" class="" loading="lazy" onclick="setHero(this)" src="../image/image_85/85_Cl%c3%a9menceau_3.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>85 — Vendée</td></tr>
+<tr><td>Canton</td><td>La réorthe</td></tr>
+<tr><td>Commune</td><td>Saint-Vincent</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>CLEMENCEAU, cette maison de cinq pièces a été louée au colonel Luce de Trémont par Clemenceau après sa défaite à l'élection présidentielle de janvier 1920, moyennant un loyer symbolique d'un franc  et prévoyant dy séjourner 6 mois par an à la belle saison. Retiré de la vie politique sur ses terres vendéennes dans ce qu'il appelle sa « bicoque de Bélebat », son « château horizontal » ou sa « cabane de paysan », il y vit de façon fort simple (à l'exception de sa Rolls conduite par son chauffeur), entouré de sa cuisinière et de son homme de service. Il adjoint à cette modeste maison un garage, un kiosque « pour l'heure du café, du thé et autres ébats », ainsi qu'une pièce vitrée aux murs extérieurement recouverts de brandes et qui fait office de salon. Après sa mort qui survint en 1929, son fils Michel Clemenceau la cède à l'État en 1932. Elle est gérée par le centre des monuments nationaux.                                                      COLOMBIER, ancien château de la famille Clémenceau.</p>
-      <h4>Architecture</h4><p>CLEMENCEAU, la maison est restée en l'état depuis la mort du « Tigre » avec son mobilier, ses souvenirs et ses objets personnels, notamment ses nombreux cadeaux diplomatiques témoignant de son japonisme : dans son jardin des petits arbustes, un mât arborant des koinoboris, des kakemonos, deux petits renards en bronze porte-bonheur à l'entrée de sa chambre (tels ceux du temple d'Inari) et qu'il a surnommé ironiquement « Pasteur » et « Rothschild », des estampes japonaises, des porte-bouquets muraux dans les deux chambres dami. Y figurent également une horloge dont les aiguilles sont arrêtées à 1 h 45 du matin, l'heure de sa mort le 24 novembre 1929 ; dans le couloir la bibliothèque qui contient 1 500 livres ; dans son salon servant de fumoir, le rocking-chair, larmoire-cadeau des habitants de Saint-Vincent-sur-Jard, le tapis marocain offert par le maréchal Lyautey ; dans sa chambre la petite bibliothèque tournante de son père vénéré, la plume d'oie avec laquelle il écrit des poèmes à son dernier amour, Marguerite Baldensperger, les pistolets évoquant lamateur de duel, son lit surélevé afin de toujours voir locéan, trois figures de Bouddha ou encore ses trophées de chasse, notamment une gueule de crocodile, des cornes d'antilopes et la peau de tigre blanc qui recouvre son lit (clin d'il pour l'homme que le peuple appelait « Le Tigre »), un trophée rapporté d'un safari au Bengale par Clemenceau.La maison, transformée en musée qui a reçu le label Maisons des Illustres en 2011.</p>
-      <h4>Habitants / Familles</h4><p>Clémenceau
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Clémenceau et du Colombier  à  Saint-Vincent</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>CLEMENCEAU, cette maison de cinq pièces a été louée au colonel Luce de Trémont par Clemenceau après sa défaite à l'élection présidentielle de janvier 1920, moyennant un loyer symbolique d'un franc  et prévoyant dy séjourner 6 mois par an à la belle saison. Retiré de la vie politique sur ses terres vendéennes dans ce qu'il appelle sa « bicoque de Bélebat », son « château horizontal » ou sa « cabane de paysan », il y vit de façon fort simple (à l'exception de sa Rolls conduite par son chauffeur), entouré de sa cuisinière et de son homme de service. Il adjoint à cette modeste maison un garage, un kiosque « pour l'heure du café, du thé et autres ébats », ainsi qu'une pièce vitrée aux murs extérieurement recouverts de brandes et qui fait office de salon. Après sa mort qui survint en 1929, son fils Michel Clemenceau la cède à l'État en 1932. Elle est gérée par le centre des monuments nationaux.                                                      COLOMBIER, ancien château de la famille Clémenceau.</p>
+<h4>Architecture</h4><p>CLEMENCEAU, la maison est restée en l'état depuis la mort du « Tigre » avec son mobilier, ses souvenirs et ses objets personnels, notamment ses nombreux cadeaux diplomatiques témoignant de son japonisme : dans son jardin des petits arbustes, un mât arborant des koinoboris, des kakemonos, deux petits renards en bronze porte-bonheur à l'entrée de sa chambre (tels ceux du temple d'Inari) et qu'il a surnommé ironiquement « Pasteur » et « Rothschild », des estampes japonaises, des porte-bouquets muraux dans les deux chambres dami. Y figurent également une horloge dont les aiguilles sont arrêtées à 1 h 45 du matin, l'heure de sa mort le 24 novembre 1929 ; dans le couloir la bibliothèque qui contient 1 500 livres ; dans son salon servant de fumoir, le rocking-chair, larmoire-cadeau des habitants de Saint-Vincent-sur-Jard, le tapis marocain offert par le maréchal Lyautey ; dans sa chambre la petite bibliothèque tournante de son père vénéré, la plume d'oie avec laquelle il écrit des poèmes à son dernier amour, Marguerite Baldensperger, les pistolets évoquant lamateur de duel, son lit surélevé afin de toujours voir locéan, trois figures de Bouddha ou encore ses trophées de chasse, notamment une gueule de crocodile, des cornes d'antilopes et la peau de tigre blanc qui recouvre son lit (clin d'il pour l'homme que le peuple appelait « Le Tigre »), un trophée rapporté d'un safari au Bengale par Clemenceau.La maison, transformée en musée qui a reçu le label Maisons des Illustres en 2011.</p>
+<h4>Habitants / Familles</h4><p>Clémenceau
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Clémenceau et du Colombier  à  Saint-Vincent</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

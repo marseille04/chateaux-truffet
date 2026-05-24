@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Monthorin — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,54 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_35.html">Ille-et-Vilaine</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_35.html">Ille-et-Vilaine</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_35.html" class="back-link">Retour au département 35 — Ille-et-Vilaine</a>
-  <div class="fiche">
-    <h2>Monthorin</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>35 — Ille-et-Vilaine</td></tr>
-          <tr><td>Canton</td><td>Fougères</td></tr>
-          <tr><td>Commune</td><td>Louvigné-du-Désert</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_35/35_Monthorin_1.jpg" alt="Monthorin" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_35/35_Monthorin_2.jpg" alt="Monthorin" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_35.html">Retour au département 35 — Ille-et-Vilaine</a>
+<div class="fiche">
+<h2>Monthorin</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Monthorin" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_35/35_Monthorin_1.jpg"/><div class="hero-count" id="hero-count">1 / 2</div></div><div class="photo-strip"><img alt="Monthorin" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Monthorin_1.jpg"/><img alt="Monthorin" class="" loading="lazy" onclick="setHero(this)" src="../image/image_35/35_Monthorin_2.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>35 — Ille-et-Vilaine</td></tr>
+<tr><td>Canton</td><td>Fougères</td></tr>
+<tr><td>Commune</td><td>Louvigné-du-Désert</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>MONTHORIN, dépendant de la baronnie de Fougères, le château de Monthorin a été construit par Gilles Ruellan, seigneur du Tiercent, au XVIIe siècle sur l'emplacement de l'ancien manoir. Acquis sous le Premier Empire par le général de la Riboisière, le château est agrandi par l'adjonction de deux ailes en retour d'équerre flanquées de tourelles polygonales, et l'intérieur fut entièrement remanié. Le jardin et le parc sont alors aménagés. Orain écrit que le château de Monthorin, ancien manoir seigneurial, est construit en brique et en granit, dans le style Louis XIII'. Honoré de la Riboisière, également enterré dans la chapelle au XIXe siècle, était ancien député, pair de France, sénateur et président du Conseil Général d'Ille-et-Vilaine. Quant aux parties agricoles, elles portent pour l'une d'entre elle la date 1885. Une usine de bonneterie est créée en 1920 à Wizernes par Caroline Lesaffre. En 1964, afin d'élargir sa clientèle, une succursale vient s'implanter à Louvigné-du-Désert, sur le site du château de Monthorin, qui fut également un ancien couvent. Le château abrite alors une partie des bureaux, le logis patronal et le stockage des matières premières. Les ateliers de l'usine sont installés dans les anciennes écuries, avant un agrandissement avec la construction d'un nouvel ensemble plus récent à l'arrière du site.</p>
-      <h4>Architecture</h4><p>MONTHORIN De plan rectangulaire, le château est de style Louis XIII. Il est élevé dans les même matériaux que les bâtiments de dépendance : en brique avec encadrements des baies, bandeaux, chaînes d'angles et motifs en pierre. Il présente un plan en U formé d'un corps de bâtiment longitudinal flanqué d'un avant-corps central et encadré de deux ailes en retour d'équerre avec tour carrée demi-hors-oeuvre dans l'angle, couverte d'un toit en pavillon. A un étage carré et un étage de comble percé d'oculi, ce château est couvert d'un toit à croupes en ardoises. L'ensemble est situé dans un cadre verdoyant. L'entrée, marquée par un grand portail en fer forgé encadré de deux piliers en granite, est flanquée de la conciergerie, petit bâtiment de plan centré polygonal, construit en brique avec chaînes d'angles et encadrements des baies en pierres de taille en granite. Les différents pans du bâtiment sont percés alternativement de portes-fenêtres et d'oculi. La conciergerie, à un étage de comble, est couverte d'un toit à l'impériale en ardoise posée en écaille. Un fronton curviligne, supporté par deux colonnes, surmonte la porte d'entrée. Les ateliers de fabrication, anciennes écuries, se situent dans un très long bâtiment construit en brique et composé de trois corps au même droit. Ce bâtiment présente un rez-de-chaussée et un étage de comble couvert d'un toit à longs pans en ardoise. Les chaînes d'angles, les encadrements des baies, un cordon régnant sur l'ensemble de la façade, ainsi que le niveau de soubassement sont en pierre de taille en granite gris. Le corps de bâtiment central, percé d'arcades, est flanqué de deux corps latéraux percés chacun d'un triplet : une porte en plein cintre encadrée de fenêtres (également en plein cintre) surmontées d'une plate-bande.inscription par arrêté du 19 novembre 1992.</p>
-      <h4>Habitants / Familles</h4><p>général de la Riboisière
-<br>        "</p>
-      <h4>Divers</h4><p>A Louvigné-du-Désert le château de Montthorin,                                  gps 48° 28' 57" nord, 1° 07' 23" ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>MONTHORIN, dépendant de la baronnie de Fougères, le château de Monthorin a été construit par Gilles Ruellan, seigneur du Tiercent, au XVIIe siècle sur l'emplacement de l'ancien manoir. Acquis sous le Premier Empire par le général de la Riboisière, le château est agrandi par l'adjonction de deux ailes en retour d'équerre flanquées de tourelles polygonales, et l'intérieur fut entièrement remanié. Le jardin et le parc sont alors aménagés. Orain écrit que le château de Monthorin, ancien manoir seigneurial, est construit en brique et en granit, dans le style Louis XIII'. Honoré de la Riboisière, également enterré dans la chapelle au XIXe siècle, était ancien député, pair de France, sénateur et président du Conseil Général d'Ille-et-Vilaine. Quant aux parties agricoles, elles portent pour l'une d'entre elle la date 1885. Une usine de bonneterie est créée en 1920 à Wizernes par Caroline Lesaffre. En 1964, afin d'élargir sa clientèle, une succursale vient s'implanter à Louvigné-du-Désert, sur le site du château de Monthorin, qui fut également un ancien couvent. Le château abrite alors une partie des bureaux, le logis patronal et le stockage des matières premières. Les ateliers de l'usine sont installés dans les anciennes écuries, avant un agrandissement avec la construction d'un nouvel ensemble plus récent à l'arrière du site.</p>
+<h4>Architecture</h4><p>MONTHORIN De plan rectangulaire, le château est de style Louis XIII. Il est élevé dans les même matériaux que les bâtiments de dépendance : en brique avec encadrements des baies, bandeaux, chaînes d'angles et motifs en pierre. Il présente un plan en U formé d'un corps de bâtiment longitudinal flanqué d'un avant-corps central et encadré de deux ailes en retour d'équerre avec tour carrée demi-hors-oeuvre dans l'angle, couverte d'un toit en pavillon. A un étage carré et un étage de comble percé d'oculi, ce château est couvert d'un toit à croupes en ardoises. L'ensemble est situé dans un cadre verdoyant. L'entrée, marquée par un grand portail en fer forgé encadré de deux piliers en granite, est flanquée de la conciergerie, petit bâtiment de plan centré polygonal, construit en brique avec chaînes d'angles et encadrements des baies en pierres de taille en granite. Les différents pans du bâtiment sont percés alternativement de portes-fenêtres et d'oculi. La conciergerie, à un étage de comble, est couverte d'un toit à l'impériale en ardoise posée en écaille. Un fronton curviligne, supporté par deux colonnes, surmonte la porte d'entrée. Les ateliers de fabrication, anciennes écuries, se situent dans un très long bâtiment construit en brique et composé de trois corps au même droit. Ce bâtiment présente un rez-de-chaussée et un étage de comble couvert d'un toit à longs pans en ardoise. Les chaînes d'angles, les encadrements des baies, un cordon régnant sur l'ensemble de la façade, ainsi que le niveau de soubassement sont en pierre de taille en granite gris. Le corps de bâtiment central, percé d'arcades, est flanqué de deux corps latéraux percés chacun d'un triplet : une porte en plein cintre encadrée de fenêtres (également en plein cintre) surmontées d'une plate-bande.inscription par arrêté du 19 novembre 1992.</p>
+<h4>Habitants / Familles</h4><p>général de la Riboisière
+<br/>        "</p>
+<h4>Divers</h4><p>A Louvigné-du-Désert le château de Montthorin,                                  gps 48° 28' 57" nord, 1° 07' 23" ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

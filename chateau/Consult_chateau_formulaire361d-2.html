@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Versailles_II — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,59 +113,57 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_78.html">Yvelines</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_78.html">Yvelines</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_78.html" class="back-link">Retour au département 78 — Yvelines</a>
-  <div class="fiche">
-    <h2>Versailles_II</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>78 — Yvelines</td></tr>
-          <tr><td>Canton</td><td>Versailles</td></tr>
-          <tr><td>Commune</td><td>Versailles</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVI-XVII-XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_78/78_Versailles_II_1.jpg" alt="Versailles_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_78/78_Versailles_II_2.jpg" alt="Versailles_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_78/78_Versailles_II_3.jpg" alt="Versailles_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_78/78_Versailles_II_4.jpg" alt="Versailles_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_78/78_Versailles_II_5.jpg" alt="Versailles_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_78/78_Versailles_II_6.jpg" alt="Versailles_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_78/78_Versailles_II_7.jpg" alt="Versailles_II" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_78/78_Versailles_II_8.jpg" alt="Versailles_II" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_78.html">Retour au département 78 — Yvelines</a>
+<div class="fiche">
+<h2>Versailles_II</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Versailles_II" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_78/78_Versailles_II_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Versailles_II" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Versailles_II_1.jpg"/><img alt="Versailles_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Versailles_II_2.jpg"/><img alt="Versailles_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Versailles_II_3.jpg"/><img alt="Versailles_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Versailles_II_4.jpg"/><img alt="Versailles_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Versailles_II_5.jpg"/><img alt="Versailles_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Versailles_II_6.jpg"/><img alt="Versailles_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Versailles_II_7.jpg"/><img alt="Versailles_II" class="" loading="lazy" onclick="setHero(this)" src="../image/image_78/78_Versailles_II_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>78 — Yvelines</td></tr>
+<tr><td>Canton</td><td>Versailles</td></tr>
+<tr><td>Commune</td><td>Versailles</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVI-XVII-XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Trois châteaux dans cet article; Hélisabeth,  pavillon de la Comtesse de Provence et Richaud, pavillon du Barry et le Petit Trianon.                                                                                   HELISABETH  Domaine de Madame Elisabeth à Versailles doit son nom à son ancienne propriétaire, Madame Elisabeth, sur du roi Louis XVI. La Maison ainsi que le parc de 8 hectares qui lentoure furent acquis en 1983 par le conseil départemental des Yvelines. Longtemps resté méconnu du public, le domaine est aujourdhui un lieu dédié à la nature, aux arts et à la culture.  Le domaine de Madame Elisabeth fut constitué dans les années 1770 par le prince et la princesse de Rohan-Guéméné. La propriété fut acquise par Louis XVI lors de la faillite du couple. Le roi fera don du domaine à sa jeune sur Madame Elisabeth, en 1783.  Remanié au XIXe siècle dans l'esprit d'un jardin romantique anglais, le parc a gardé son état d'esprit premier : Le 19 août 1983, le département des Yvelines, se porte acquéreur du domaine. La demeure va faire l'objet d'un programme complet de restauration, et suite à la tempête de 1999 qui a détruit ou endommagé de nombreux arbres, le conseil départemental des Yvelines va en outre entreprendre une campagne de replantation et de mise en valeur du site. Le parc accueille régulièrement des animations  ainsi que des uvres d'art contemporain créant un lien indispensable entre l'histoire et la modernité. Il fait enfin partie, des lieux de pique-nique préférés des Yvelinois à la belle saison.</p>
-      <h4>Architecture</h4><p>PAVILLON -COMTESSE -PROVENCE,   le pavillon de musique de madame ou pavillon de musique de la comtesse de Provence est un bâtiment, il est construit en 1784 par larchitecte Jean-François Chalgrin pour la comtesse, femme de monsieur, frère du roi Louis XVI et futur roi Louis XVIII. Il faisait partie d'un vaste domaine, morcelé depuis, auquel appartenait également le pavillon madame, qui fait partie depuis 1913 du lycée privé Sainte-Geneviève,  il est acheté par la famille du bijoutier Mellerio qui le fait agrandir en 1820, par l'architecte Jean-Jacques-Marie Huvé.  Puis, après plusieurs mutations, cette partie du domaine est adjugée à Alfred Chauchard, fondateur des grands magasins du Louvre. En 1902, celui-ci fait don du terrain à une société immobilière qui y crée 105 lots et qui les attribue aux employés les plus méritants de son entreprise. Au milieu de ce lotissement, dit parc Chauchard, subsiste le pavillon de musique.                                                                            RICHAUD, lespace Richaud du XVIIIe siècle, dédié à laccueil des expositions, propose une grande diversité de manifestations. Chaque exposition temporaire bénéficie dune programmation culturelle spécifique, est acheté par la famille du bijoutier Mellerio qui le fait agrandir en 1820, par l'architecte Jean-Jacques-Marie Huvé. Ses différents espaces répartis sur deux niveaux permettent de nombreuses combinaisons au service de la création comme de la valorisation du patrimoine. Dans cette perspective, lespace Richaud propose désormais une offre de visites guidées sur lhistoire et larchitecture du bâtiment, grace à l'obstination du maire  de Versailles François Mazières  fait racheté l'hôpital par la ville, propriété de l'état.</p>
-      <h4>Habitants / Familles</h4><p>Madame Elisabeth,       la comtesse de provence                           famille de Mellerio                   "</p>
-      <h4>Divers</h4><p>Trois châteaux dans cet article; Hélisabeth grav-3 ,  pavillon de la Comtesse de Provrncegrav-8 et Richaud grav-7, Ferme de marie grav-1 , pavillon du Barry grav 4-5 et le Petit Trianon grav_6.  Hotel de ville grav-2</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Trois châteaux dans cet article; Hélisabeth,  pavillon de la Comtesse de Provence et Richaud, pavillon du Barry et le Petit Trianon.                                                                                   HELISABETH  Domaine de Madame Elisabeth à Versailles doit son nom à son ancienne propriétaire, Madame Elisabeth, sur du roi Louis XVI. La Maison ainsi que le parc de 8 hectares qui lentoure furent acquis en 1983 par le conseil départemental des Yvelines. Longtemps resté méconnu du public, le domaine est aujourdhui un lieu dédié à la nature, aux arts et à la culture.  Le domaine de Madame Elisabeth fut constitué dans les années 1770 par le prince et la princesse de Rohan-Guéméné. La propriété fut acquise par Louis XVI lors de la faillite du couple. Le roi fera don du domaine à sa jeune sur Madame Elisabeth, en 1783.  Remanié au XIXe siècle dans l'esprit d'un jardin romantique anglais, le parc a gardé son état d'esprit premier : Le 19 août 1983, le département des Yvelines, se porte acquéreur du domaine. La demeure va faire l'objet d'un programme complet de restauration, et suite à la tempête de 1999 qui a détruit ou endommagé de nombreux arbres, le conseil départemental des Yvelines va en outre entreprendre une campagne de replantation et de mise en valeur du site. Le parc accueille régulièrement des animations  ainsi que des uvres d'art contemporain créant un lien indispensable entre l'histoire et la modernité. Il fait enfin partie, des lieux de pique-nique préférés des Yvelinois à la belle saison.</p>
+<h4>Architecture</h4><p>PAVILLON -COMTESSE -PROVENCE,   le pavillon de musique de madame ou pavillon de musique de la comtesse de Provence est un bâtiment, il est construit en 1784 par larchitecte Jean-François Chalgrin pour la comtesse, femme de monsieur, frère du roi Louis XVI et futur roi Louis XVIII. Il faisait partie d'un vaste domaine, morcelé depuis, auquel appartenait également le pavillon madame, qui fait partie depuis 1913 du lycée privé Sainte-Geneviève,  il est acheté par la famille du bijoutier Mellerio qui le fait agrandir en 1820, par l'architecte Jean-Jacques-Marie Huvé.  Puis, après plusieurs mutations, cette partie du domaine est adjugée à Alfred Chauchard, fondateur des grands magasins du Louvre. En 1902, celui-ci fait don du terrain à une société immobilière qui y crée 105 lots et qui les attribue aux employés les plus méritants de son entreprise. Au milieu de ce lotissement, dit parc Chauchard, subsiste le pavillon de musique.                                                                            RICHAUD, lespace Richaud du XVIIIe siècle, dédié à laccueil des expositions, propose une grande diversité de manifestations. Chaque exposition temporaire bénéficie dune programmation culturelle spécifique, est acheté par la famille du bijoutier Mellerio qui le fait agrandir en 1820, par l'architecte Jean-Jacques-Marie Huvé. Ses différents espaces répartis sur deux niveaux permettent de nombreuses combinaisons au service de la création comme de la valorisation du patrimoine. Dans cette perspective, lespace Richaud propose désormais une offre de visites guidées sur lhistoire et larchitecture du bâtiment, grace à l'obstination du maire  de Versailles François Mazières  fait racheté l'hôpital par la ville, propriété de l'état.</p>
+<h4>Habitants / Familles</h4><p>Madame Elisabeth,       la comtesse de provence                           famille de Mellerio                   "</p>
+<h4>Divers</h4><p>Trois châteaux dans cet article; Hélisabeth grav-3 ,  pavillon de la Comtesse de Provrncegrav-8 et Richaud grav-7, Ferme de marie grav-1 , pavillon du Barry grav 4-5 et le Petit Trianon grav_6.  Hotel de ville grav-2</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

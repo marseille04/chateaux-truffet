@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Montcavrel — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,54 +113,57 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_62.html">Pas-de-Calais</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_62.html">Pas-de-Calais</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_62.html" class="back-link">Retour au département 62 — Pas-de-Calais</a>
-  <div class="fiche">
-    <h2>Montcavrel</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>62 — Pas-de-Calais</td></tr>
-          <tr><td>Canton</td><td>Lumbres</td></tr>
-          <tr><td>Commune</td><td>Alette</td></tr>
-          <tr><td>Type d'édifice</td><td>Châteaux</td></tr>
-          <tr><td>Période d'origine</td><td>XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_62/62_Montcavrel_1.jpg" alt="Montcavrel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Montcavrel_2.jpg" alt="Montcavrel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_62/62_Montcavrel_3.jpg" alt="Montcavrel" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_62.html">Retour au département 62 — Pas-de-Calais</a>
+<div class="fiche">
+<h2>Montcavrel</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Montcavrel" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_62/62_Montcavrel_1.jpg"/><div class="hero-count" id="hero-count">1 / 3</div></div><div class="photo-strip"><img alt="Montcavrel" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Montcavrel_1.jpg"/><img alt="Montcavrel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Montcavrel_2.jpg"/><img alt="Montcavrel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Montcavrel_3.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>62 — Pas-de-Calais</td></tr>
+<tr><td>Canton</td><td>Lumbres</td></tr>
+<tr><td>Commune</td><td>Alette</td></tr>
+<tr><td>Type d'édifice</td><td>Châteaux</td></tr>
+<tr><td>Période d'origine</td><td>XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux châteaux dans cet article;, Montcavrel et Montechor.                                               MONTCAVREL, c'est en 1071 un seigneur de Montcavrel. Au XVe siècle La seigneurie passa à Aymon de Monchy qui relevera les ruines dues aux dévastations anglaises; ce qui reste du château date pour l'essentiel de cette campagne de reconstruction. Comme beaucoup de châteaux de la région, celui de Montcavrel souffrit beaucoup des guerres des XVe et XVIe siècles. A l'exemple de ses prédécesseurs, Antoine de Monchy répara les dégâts qui lui furent infligé, il fit disparaître les éléments de fortification qui étaient devenus inutiles, c'est alors que l'ancienne porte avec sa barbacane disparut et un nouvel accès fut aménagé au sud de l'enceinte de la baille; le donjon fut conservé, mais ses étages furent reliés par des escaliers, et des fenêtres y furent percées, un nouveau corps de bâtiment fut édifié sur le revers du mur séparant le château de sa basse cour. Il est regrettable que le vandalisme des XIXe et XXe siècles ait privé le château de l'essentiel de son intérêt, il serait souhaitable que des mesures soient prises pour que ses courtines demeurent debout. En 1690 le marquisat passe au beau frère de jean de Monchy Louis-Charles de Mailly. En 1795 l'ensemble est acquis par le fils du fermier du château Antoine Bourdelle dont les descendants feront construire en 1842 le corps de logis actuel. le domaine sous la monarchie de juillet le siège d'une des bergeries nationnales créées par le roi Louis Philippe de 1862 à 1931, à appartenu à la famille Minet. Les ruines ne se visitent pas, mais on peut voir les fossés, les courtines de la basse cour, de la porte méridionale et les restes des bâtiments.</p>
-      <h4>Architecture</h4><p>MONTECHOR, serait un lieu-dit dont l'origine se situerait à l'époque gallo romaine; ce nom dériverait de Monsquerculum, ce qui signifierait mont planté de chênes. Au Moyen-Age, Montéchor fut un fief qui dépendait du château de Montcavrel; à la fin du XVe siècle, Jean III de Monchy fut obligé d'en arrenter les terres. En 1739, la ferme fut achetée par Louis Sta, notaire à Desvres, qui se fit appeler sieur de Montéchor. En 1787 Charles Robert Poultier, notaire Royal au bailliage de Montreuil, épousa Anne Sta; il se fit appeler Poultier de Montéchor, et vers 1800, il devint sous-préfet de Montreuil. C'est lui qui fit édifier le château attenant à la ferme. En même temps, il aménagea un beau parc planté de cèdres et autres essences exotiques. Depuis, l'édifice s'est transmis par héritage dans cette famille; il appartient aujourd'hui à Mme née Poultier et M.G. Broutier Dumoulin, qui exploitent la ferme attenante, le château a été occupé de 1938 à 1957 par les pères assomptionnistes. Très sobre de lignes et très simple dans sa décoration, le château est construit en pierre du pays que l'on a malheureusement recouvert à une époque relativement récente d'un enduit peint.</p>
-      <h4>Habitants / Familles</h4><p>Famille  de Antoine Bourdelle                     Famille deCharles Robert Poultier,        "</p>
-      <h4>Divers</h4><p>Trois châteaux dans cet article; Hérembault grav-2, Montcavrel grav_1 et Montechor grav-3</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux châteaux dans cet article;, Montcavrel et Montechor.                                               MONTCAVREL, c'est en 1071 un seigneur de Montcavrel. Au XVe siècle La seigneurie passa à Aymon de Monchy qui relevera les ruines dues aux dévastations anglaises; ce qui reste du château date pour l'essentiel de cette campagne de reconstruction. Comme beaucoup de châteaux de la région, celui de Montcavrel souffrit beaucoup des guerres des XVe et XVIe siècles. A l'exemple de ses prédécesseurs, Antoine de Monchy répara les dégâts qui lui furent infligé, il fit disparaître les éléments de fortification qui étaient devenus inutiles, c'est alors que l'ancienne porte avec sa barbacane disparut et un nouvel accès fut aménagé au sud de l'enceinte de la baille; le donjon fut conservé, mais ses étages furent reliés par des escaliers, et des fenêtres y furent percées, un nouveau corps de bâtiment fut édifié sur le revers du mur séparant le château de sa basse cour. Il est regrettable que le vandalisme des XIXe et XXe siècles ait privé le château de l'essentiel de son intérêt, il serait souhaitable que des mesures soient prises pour que ses courtines demeurent debout. En 1690 le marquisat passe au beau frère de jean de Monchy Louis-Charles de Mailly. En 1795 l'ensemble est acquis par le fils du fermier du château Antoine Bourdelle dont les descendants feront construire en 1842 le corps de logis actuel. le domaine sous la monarchie de juillet le siège d'une des bergeries nationnales créées par le roi Louis Philippe de 1862 à 1931, à appartenu à la famille Minet. Les ruines ne se visitent pas, mais on peut voir les fossés, les courtines de la basse cour, de la porte méridionale et les restes des bâtiments.</p>
+<h4>Architecture</h4><p>MONTECHOR, serait un lieu-dit dont l'origine se situerait à l'époque gallo romaine; ce nom dériverait de Monsquerculum, ce qui signifierait mont planté de chênes. Au Moyen-Age, Montéchor fut un fief qui dépendait du château de Montcavrel; à la fin du XVe siècle, Jean III de Monchy fut obligé d'en arrenter les terres. En 1739, la ferme fut achetée par Louis Sta, notaire à Desvres, qui se fit appeler sieur de Montéchor. En 1787 Charles Robert Poultier, notaire Royal au bailliage de Montreuil, épousa Anne Sta; il se fit appeler Poultier de Montéchor, et vers 1800, il devint sous-préfet de Montreuil. C'est lui qui fit édifier le château attenant à la ferme. En même temps, il aménagea un beau parc planté de cèdres et autres essences exotiques. Depuis, l'édifice s'est transmis par héritage dans cette famille; il appartient aujourd'hui à Mme née Poultier et M.G. Broutier Dumoulin, qui exploitent la ferme attenante, le château a été occupé de 1938 à 1957 par les pères assomptionnistes. Très sobre de lignes et très simple dans sa décoration, le château est construit en pierre du pays que l'on a malheureusement recouvert à une époque relativement récente d'un enduit peint.</p>
+<h4>Habitants / Familles</h4><p>Famille  de Antoine Bourdelle                     Famille deCharles Robert Poultier,        "</p>
+<h4>Divers</h4><p>Trois châteaux dans cet article; Hérembault grav-2, Montcavrel grav_1 et Montechor grav-3</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

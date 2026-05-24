@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Raynand_Poezat — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,53 +113,57 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_03.html">Allier</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_03.html">Allier</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_03.html" class="back-link">Retour au département 03 — Allier</a>
-  <div class="fiche">
-    <h2>Raynand_Poezat</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>03 — Allier</td></tr>
-          <tr><td>Canton</td><td>Gannat</td></tr>
-          <tr><td>Commune</td><td>Poézat</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_03/03_Raynand_Poezat_1.jpg" alt="Raynand_Poezat" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_Raynand_Poezat_2.jpg" alt="Raynand_Poezat" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_03.html">Retour au département 03 — Allier</a>
+<div class="fiche">
+<h2>Raynand_Poezat</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Raynand_Poezat" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_03/03_Raynand_Poezat_1.jpg"/><div class="hero-count" id="hero-count">1 / 2</div></div><div class="photo-strip"><img alt="Raynand_Poezat" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Raynand_Poezat_1.jpg"/><img alt="Raynand_Poezat" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_Raynand_Poezat_2.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>03 — Allier</td></tr>
+<tr><td>Canton</td><td>Gannat</td></tr>
+<tr><td>Commune</td><td>Poézat</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>RAYNAND,la famille Raynaud  semble avoir, dès l'origine, possédé la seigneurie de Raynand et  l'avoir conservée  jusqu'au XVIe siècle. Les Raynaud  sont  dans la région dès 1351 et l'aveu que fait en 1503 à la duchesse de Bourbon, Isabeau Aysbépine de sa Mothe de Regnant, a dû être fait au nom d'une veuve d'un membre de la famille Raynaud. Avant la  Révolution, Raynand était la propriété d'une famille Filhastre qui portait le titre de sieur de Raynand.  Aujourd'hui, l'ancienne maison forte et une partie des terres appartiennent à la famille Faure. Transformé aujourd'hui en chambres d'hôtes.</p>
-      <h4>Architecture</h4><p>Cette maison forte de Raynand du XVe siècle avait une enceinte, protégée par fossés et pont-levis, enfermant une vaste   cour carrée. Le bâtiment principal est construit sur le mur nord, avec une aile en retour d'équerre sur le mur Est.    Une grosse tour ronde, crénelée et percée de meurtrières, était accolée à l'angle nord-est. Aujourd'hui à moitié rasée, elle est recouverte  d'un toit à une seule pente, incliné côté cour. Le corps de logis à un niveau surélevé    sur caves et  niveau de comble, était agrémenté  d'une galerie à auvent, côté cour. Dans  cette construction un  peu massive, le XVIe siècle a apporté quelques aménagements, par de larges baies à meneaux et une belle cheminée monumentale, dans la salle principale. L'accès de la cour est commandé par un pigeonnier-porche  de plan carré, recouvert  d'un toit en pavillon surmonté d'un lanternon.  Au XIXe siècle, un nouveau château  est installé, à proximité de la maison forte, dans un joli parc ombragé. Il est composé   d'un bâtiment central à deux niveaux et niveau de comble, orné d'un avant-corps en forme de tour carrée de  trois niveaux et lucarne sur un toit en pavillon élancé avec paratonnerre et frise, l'aile accolée à l'est en retour d'équerre et couverte d'un toit élancé, est flanquée d'une petite tourelle en poivrière, à culot mouluré et toit conique en flèche.</p>
-      <h4>Habitants / Familles</h4><p>Famille Raynaud"</p>
-      <h4>Divers</h4><p>Château de Poézat</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>RAYNAND,la famille Raynaud  semble avoir, dès l'origine, possédé la seigneurie de Raynand et  l'avoir conservée  jusqu'au XVIe siècle. Les Raynaud  sont  dans la région dès 1351 et l'aveu que fait en 1503 à la duchesse de Bourbon, Isabeau Aysbépine de sa Mothe de Regnant, a dû être fait au nom d'une veuve d'un membre de la famille Raynaud. Avant la  Révolution, Raynand était la propriété d'une famille Filhastre qui portait le titre de sieur de Raynand.  Aujourd'hui, l'ancienne maison forte et une partie des terres appartiennent à la famille Faure. Transformé aujourd'hui en chambres d'hôtes.</p>
+<h4>Architecture</h4><p>Cette maison forte de Raynand du XVe siècle avait une enceinte, protégée par fossés et pont-levis, enfermant une vaste   cour carrée. Le bâtiment principal est construit sur le mur nord, avec une aile en retour d'équerre sur le mur Est.    Une grosse tour ronde, crénelée et percée de meurtrières, était accolée à l'angle nord-est. Aujourd'hui à moitié rasée, elle est recouverte  d'un toit à une seule pente, incliné côté cour. Le corps de logis à un niveau surélevé    sur caves et  niveau de comble, était agrémenté  d'une galerie à auvent, côté cour. Dans  cette construction un  peu massive, le XVIe siècle a apporté quelques aménagements, par de larges baies à meneaux et une belle cheminée monumentale, dans la salle principale. L'accès de la cour est commandé par un pigeonnier-porche  de plan carré, recouvert  d'un toit en pavillon surmonté d'un lanternon.  Au XIXe siècle, un nouveau château  est installé, à proximité de la maison forte, dans un joli parc ombragé. Il est composé   d'un bâtiment central à deux niveaux et niveau de comble, orné d'un avant-corps en forme de tour carrée de  trois niveaux et lucarne sur un toit en pavillon élancé avec paratonnerre et frise, l'aile accolée à l'est en retour d'équerre et couverte d'un toit élancé, est flanquée d'une petite tourelle en poivrière, à culot mouluré et toit conique en flèche.</p>
+<h4>Habitants / Familles</h4><p>Famille Raynaud"</p>
+<h4>Divers</h4><p>Château de Poézat</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

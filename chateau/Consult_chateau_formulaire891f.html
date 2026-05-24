@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Berze_le_Chatel — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,60 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_71.html">Saône-et-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_71.html">Saône-et-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_71.html" class="back-link">Retour au département 71 — Saône-et-Loire</a>
-  <div class="fiche">
-    <h2>Berze_le_Chatel</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>71 — Saône-et-Loire</td></tr>
-          <tr><td>Canton</td><td>Cluny</td></tr>
-          <tr><td>Commune</td><td>Berze-le-Chatel</td></tr>
-          <tr><td>Type d'édifice</td><td>Forteresse</td></tr>
-          <tr><td>Période d'origine</td><td>XIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_71/71_Berze_le_Chatel_1.jpg" alt="Berze_le_Chatel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Berze_le_Chatel_2.jpg" alt="Berze_le_Chatel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Berze_le_Chatel_3.jpg" alt="Berze_le_Chatel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Berze_le_Chatel_4.jpg" alt="Berze_le_Chatel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Berze_le_Chatel_5.jpg" alt="Berze_le_Chatel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Berze_le_Chatel_6.jpg" alt="Berze_le_Chatel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Berze_le_Chatel_7.jpg" alt="Berze_le_Chatel" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_71/71_Berze_le_Chatel_8.jpg" alt="Berze_le_Chatel" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_71.html">Retour au département 71 — Saône-et-Loire</a>
+<div class="fiche">
+<h2>Berze_le_Chatel</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Berze_le_Chatel" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_71/71_Berze_le_Chatel_1.jpg"/><div class="hero-count" id="hero-count">1 / 8</div></div><div class="photo-strip"><img alt="Berze_le_Chatel" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Berze_le_Chatel_1.jpg"/><img alt="Berze_le_Chatel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Berze_le_Chatel_2.jpg"/><img alt="Berze_le_Chatel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Berze_le_Chatel_3.jpg"/><img alt="Berze_le_Chatel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Berze_le_Chatel_4.jpg"/><img alt="Berze_le_Chatel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Berze_le_Chatel_5.jpg"/><img alt="Berze_le_Chatel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Berze_le_Chatel_6.jpg"/><img alt="Berze_le_Chatel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Berze_le_Chatel_7.jpg"/><img alt="Berze_le_Chatel" class="" loading="lazy" onclick="setHero(this)" src="../image/image_71/71_Berze_le_Chatel_8.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>71 — Saône-et-Loire</td></tr>
+<tr><td>Canton</td><td>Cluny</td></tr>
+<tr><td>Commune</td><td>Berze-le-Chatel</td></tr>
+<tr><td>Type d'édifice</td><td>Forteresse</td></tr>
+<tr><td>Période d'origine</td><td>XIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>BERZE-ville Le prieuré, dépendance de l'abbaye de Cluny, fut créé sous l'impulsion d'Hugues de Semur, saint abbé de Cluny de 1049 à 1109. La construction attenante dite « château des moines » date du XVIe siècle, soit environ un siècle avant le départ des moines chassés par la Révolution. En 1791, la chapelle est transformée en habitation. Classée monument historique dès 1893, mise en vente et menacée, elle est rachetée en 1947 par miss Joans Evans.            BERZE-le CHATEL; La seigneurie de Berzé attestée en 911 par les écrits de Cluny, elle est tenue par Geoffroy de  Berzé. Au XIIe siècle, le dernier des Berzé, Gauthier légue son fief à son beau-père Arthaud de Sampiero qui le transmet à sa fille qui a  épousé  Roland Bressentis, leur fils de ces derniers, Hugues relève le nom de Berzé, cette famille s'éteindra en 1320, puis passa au XIVe siècle par alliance à Jean de Frolois, à Jean de Thil connétable de Bourgogne, en 1350 à Edouard de Beaujeu et à Jacques de Savoie prince de Morée. Au XVe siècle, la guerre civile entre les Armagnacs et les Bourguignons, la forteresse fut occupée par Pierre de Beauffremont  puis par les Armagnacs en 1420 et le perdirent peu de temps après, le duc Philippe le Bon le transmet à son écuyer  en 1453 à Macé de Rochebaron, dont le fils  Antoine épousa une bâtarde du duc, les Rochebaron capitulèrent en 1591 et en 1600 érigé en comté par Heni IV qui le transmettra à l'héritier et neveu de Françoise de Rochebaron, Antoine duc d'Aumont gouverneur en Bourbonnais et maréchal de France qui ne l'habita pas, neveu héritier de Rochebaron vend en 1713 à Alexandre-Antoine Michon de Pierreclos qui  gardera  le comté jusqu'à la Révolution, et racheté par Michon de Pierreclos en 1802 qui s'en sépare passa au marquis de Maubou puis acquit en 1817 par monsieur Antonin Gérentet bisaïeul du comte Thy de Milly qui entreprend la reconstruction suite aux dégâts de la Révolution (pillé et incendié) et restera dans cette famille par le comte Thy de Milly.                                Dans la commune le château de Roche-Coche.</p>
-      <h4>Architecture</h4><p>Berzé; face à la Roche de Solutré domine la vallée de la petite Gosne importante forteresse médiévale du XIIIe siècle, la plus conservé  de la Bourgogne a su conserver treize tours dont deux donjons et ses trois enceintes consécutives dont la plus anciennes l'hexagonale remonte au temps carolingiens, la plus proches cinq tours  percées d'archères canonnières qui englobe aujourd'hui jardins vergers potagers, l'ensemble des tours du XIIIe siècle plus une du XIe siècle deux tours carrées appelée Montgirard du XVe siècle aux extrémité du corps de Logis. Au XVe siècle renforcement des défenses châtelet de la  porte fortifié avec pont-levis aujourd'hui supprimé et les fossés remblayés,  du château possède deux corps de logis en équerre autour d'une cour avec une tour.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Geoffroy de  Berzé                                                  Famille de Pierre de Beauffremont
-<br>        "</p>
-      <h4>Divers</h4><p>Forteresse de Berzé  et de Roche-Coche</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>BERZE-ville Le prieuré, dépendance de l'abbaye de Cluny, fut créé sous l'impulsion d'Hugues de Semur, saint abbé de Cluny de 1049 à 1109. La construction attenante dite « château des moines » date du XVIe siècle, soit environ un siècle avant le départ des moines chassés par la Révolution. En 1791, la chapelle est transformée en habitation. Classée monument historique dès 1893, mise en vente et menacée, elle est rachetée en 1947 par miss Joans Evans.            BERZE-le CHATEL; La seigneurie de Berzé attestée en 911 par les écrits de Cluny, elle est tenue par Geoffroy de  Berzé. Au XIIe siècle, le dernier des Berzé, Gauthier légue son fief à son beau-père Arthaud de Sampiero qui le transmet à sa fille qui a  épousé  Roland Bressentis, leur fils de ces derniers, Hugues relève le nom de Berzé, cette famille s'éteindra en 1320, puis passa au XIVe siècle par alliance à Jean de Frolois, à Jean de Thil connétable de Bourgogne, en 1350 à Edouard de Beaujeu et à Jacques de Savoie prince de Morée. Au XVe siècle, la guerre civile entre les Armagnacs et les Bourguignons, la forteresse fut occupée par Pierre de Beauffremont  puis par les Armagnacs en 1420 et le perdirent peu de temps après, le duc Philippe le Bon le transmet à son écuyer  en 1453 à Macé de Rochebaron, dont le fils  Antoine épousa une bâtarde du duc, les Rochebaron capitulèrent en 1591 et en 1600 érigé en comté par Heni IV qui le transmettra à l'héritier et neveu de Françoise de Rochebaron, Antoine duc d'Aumont gouverneur en Bourbonnais et maréchal de France qui ne l'habita pas, neveu héritier de Rochebaron vend en 1713 à Alexandre-Antoine Michon de Pierreclos qui  gardera  le comté jusqu'à la Révolution, et racheté par Michon de Pierreclos en 1802 qui s'en sépare passa au marquis de Maubou puis acquit en 1817 par monsieur Antonin Gérentet bisaïeul du comte Thy de Milly qui entreprend la reconstruction suite aux dégâts de la Révolution (pillé et incendié) et restera dans cette famille par le comte Thy de Milly.                                Dans la commune le château de Roche-Coche.</p>
+<h4>Architecture</h4><p>Berzé; face à la Roche de Solutré domine la vallée de la petite Gosne importante forteresse médiévale du XIIIe siècle, la plus conservé  de la Bourgogne a su conserver treize tours dont deux donjons et ses trois enceintes consécutives dont la plus anciennes l'hexagonale remonte au temps carolingiens, la plus proches cinq tours  percées d'archères canonnières qui englobe aujourd'hui jardins vergers potagers, l'ensemble des tours du XIIIe siècle plus une du XIe siècle deux tours carrées appelée Montgirard du XVe siècle aux extrémité du corps de Logis. Au XVe siècle renforcement des défenses châtelet de la  porte fortifié avec pont-levis aujourd'hui supprimé et les fossés remblayés,  du château possède deux corps de logis en équerre autour d'une cour avec une tour.</p>
+<h4>Habitants / Familles</h4><p>Famille de Geoffroy de  Berzé                                                  Famille de Pierre de Beauffremont
+<br/>        "</p>
+<h4>Divers</h4><p>Forteresse de Berzé  et de Roche-Coche</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

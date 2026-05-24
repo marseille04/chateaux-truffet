@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Mayét — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,57 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_72.html">Sarthe</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_72.html">Sarthe</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_72.html" class="back-link">Retour au département 72 — Sarthe</a>
-  <div class="fiche">
-    <h2>Mayét</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>72 — Sarthe</td></tr>
-          <tr><td>Canton</td><td>Le Lude</td></tr>
-          <tr><td>Commune</td><td>Mayet</td></tr>
-          <tr><td>Type d'édifice</td><td>Forteresse</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XVIII</td></tr>
-          <tr><td>Coordonnées GPS</td><td>47° 45' 31,24" Nord et 0° 17' 28,48" Est                                                Mangé  grav-3_4                                                                                     GPS : 47° 43' 30,57" Nord, 0° 18' 42,45" Est</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_72/72_May%c3%a9t_1.jpg" alt="Mayét" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_May%c3%a9t_2.jpg" alt="Mayét" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_May%c3%a9t_3.jpg" alt="Mayét" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_May%c3%a9t_4.jpg" alt="Mayét" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_72.html">Retour au département 72 — Sarthe</a>
+<div class="fiche">
+<h2>Mayét</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Mayét" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_72/72_May%c3%a9t_1.jpg"/><div class="hero-count" id="hero-count">1 / 4</div></div><div class="photo-strip"><img alt="Mayét" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_May%c3%a9t_1.jpg"/><img alt="Mayét" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_May%c3%a9t_2.jpg"/><img alt="Mayét" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_May%c3%a9t_3.jpg"/><img alt="Mayét" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_May%c3%a9t_4.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>72 — Sarthe</td></tr>
+<tr><td>Canton</td><td>Le Lude</td></tr>
+<tr><td>Commune</td><td>Mayet</td></tr>
+<tr><td>Type d'édifice</td><td>Forteresse</td></tr>
+<tr><td>Période d'origine</td><td>XV-XVIII</td></tr>
+<tr><td>Coordonnées GPS</td><td>47° 45' 31,24" Nord et 0° 17' 28,48" Est                                                Mangé  grav-3_4                                                                                     GPS : 47° 43' 30,57" Nord, 0° 18' 42,45" Est</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux châteaux à Mayet le fort des Salles et le château de Mayet.                                                                                          FORT des SALLES,  le vieux château du Fort des Salles dresse toujours sa haute et élégante silhouette du XVe siècle près de la sortie orientale du bourg de Mayet. Les murs avec tous leurs redents de défense plus ou moins étroits et élancés sont encore intacts; mais les pièces intérieures, l'escalier, les toitures sont en grandes ruines, hélas ! et semblent abandonnés à tous les maraudeurs comme à tous les vents. Mais sa haute stature dressée au-dessus des vieilles douves envahies de végétation nous reste bien sympathique; ses tourelles, ses traces de pont-levis, ses mâchicoulis nous demeurent un important témoignage des châteaux fortifiés de la fin du Moyen-Age. Forteresse bâtie fin XIVe siècle. Donjon du Moyen-Âge qui remplaça le château-fort détruit pendant la guerre de Cent Ans, la base tronquée de l'ancienne tour primitive étant encore visible à hauteur du premier étage, sur les murs de pierre blanche, restes du dispositif de défense, mâchicoulis et brèche latérale. Escalier hélicoïdal avec inscriptions 1603. L'édifice est délaissé au XVIe siècle et finit par être ruiné. Un nouveau château est construit au XVIIIe siècle. Le corps de bâtiment, qui s'apparente à une demeure bourgeoise, est flanqué d'une tour couronnée d'une balustrade aveugle. Propriété de la noblesse locale jusqu'en 1879, il tomba dans des mains roturières et se dégrada lentement. Le nom de Salles provient probablement du saxon sali, dont le sens ancien signifie construction formée d'une grande pièce. En effet, le donjon comporte trois étages abritant chacun une pièce, il est le dernier Fort vestige d'un fort relativement important à l'époque médiévale, il était entouré de douves et équipé d'un pont-levis. Éléments protégés MH : la tour du château : inscription par arrêté du 23 mai 1927. La poterne : classement par arrêté du 21 décembre 1984.</p>
-      <h4>Architecture</h4><p>A quatre kilomètres au sud Est  à Verneuil le Chétif le château de MANGE  . La construction  date des XIe et XIXe siècles. Le château du Mangé a été restauré, entièrement. Il est devenu un gite de séjour.                                                                    MAYET   Le château de Mayet, siège d'une ancienne châtellenie se trouve à 1.200 mètres à l'est du centre du bourg, dans un petit vallon et près d'un étang ; il devait, très anciennement, se trouver sur la hauteur au nord de ce vallon, au village de Saint-Nicolas : en effet, la motte féodale se devine encore auprès de l' ancienne chapelle désaffectée ; le château dut être ruiné sous Charles VI ou Charles VII ; ses dépendances, halles, prisons, justice existaient encore en 1775, à ce village de Saint-Nicolas ; on y voyait aussi les logements des officiers de justice. Le château actuel de Mayet occupe la place du château et du Fort-des-Salles ; ce fut une habitation de grande importance, le fort des Salles, qui, aux mains d'Hélie de La Flèche, eut à subir dès juillet 1099 un siège de Guillaume Le Roux, roi d'Angleterre, qui ne put s'en emparer. Les premiers seigneurs de Mayet appartient à la Maison de Château-du-Loir, puis aux comtes du Maine, aux Plantagenet. Guillaume des Roches leur succéda, et sa descendance, dont, au XIVe siècle, les comtes de Dreux.</p>
-      <h4>Habitants / Familles</h4><p>Seigneurs des Salles                                                                       Mayet; Guillaume des Roches 
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Fort la salles grav 1-2                                                                     GPS : 47° 45' 31,24" Nord et 0° 17' 28,48" Est                                                Mangé  grav-3_4                                                                                     GPS : 47° 43' 30,57" Nord, 0° 18' 42,45" Est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux châteaux à Mayet le fort des Salles et le château de Mayet.                                                                                          FORT des SALLES,  le vieux château du Fort des Salles dresse toujours sa haute et élégante silhouette du XVe siècle près de la sortie orientale du bourg de Mayet. Les murs avec tous leurs redents de défense plus ou moins étroits et élancés sont encore intacts; mais les pièces intérieures, l'escalier, les toitures sont en grandes ruines, hélas ! et semblent abandonnés à tous les maraudeurs comme à tous les vents. Mais sa haute stature dressée au-dessus des vieilles douves envahies de végétation nous reste bien sympathique; ses tourelles, ses traces de pont-levis, ses mâchicoulis nous demeurent un important témoignage des châteaux fortifiés de la fin du Moyen-Age. Forteresse bâtie fin XIVe siècle. Donjon du Moyen-Âge qui remplaça le château-fort détruit pendant la guerre de Cent Ans, la base tronquée de l'ancienne tour primitive étant encore visible à hauteur du premier étage, sur les murs de pierre blanche, restes du dispositif de défense, mâchicoulis et brèche latérale. Escalier hélicoïdal avec inscriptions 1603. L'édifice est délaissé au XVIe siècle et finit par être ruiné. Un nouveau château est construit au XVIIIe siècle. Le corps de bâtiment, qui s'apparente à une demeure bourgeoise, est flanqué d'une tour couronnée d'une balustrade aveugle. Propriété de la noblesse locale jusqu'en 1879, il tomba dans des mains roturières et se dégrada lentement. Le nom de Salles provient probablement du saxon sali, dont le sens ancien signifie construction formée d'une grande pièce. En effet, le donjon comporte trois étages abritant chacun une pièce, il est le dernier Fort vestige d'un fort relativement important à l'époque médiévale, il était entouré de douves et équipé d'un pont-levis. Éléments protégés MH : la tour du château : inscription par arrêté du 23 mai 1927. La poterne : classement par arrêté du 21 décembre 1984.</p>
+<h4>Architecture</h4><p>A quatre kilomètres au sud Est  à Verneuil le Chétif le château de MANGE  . La construction  date des XIe et XIXe siècles. Le château du Mangé a été restauré, entièrement. Il est devenu un gite de séjour.                                                                    MAYET   Le château de Mayet, siège d'une ancienne châtellenie se trouve à 1.200 mètres à l'est du centre du bourg, dans un petit vallon et près d'un étang ; il devait, très anciennement, se trouver sur la hauteur au nord de ce vallon, au village de Saint-Nicolas : en effet, la motte féodale se devine encore auprès de l' ancienne chapelle désaffectée ; le château dut être ruiné sous Charles VI ou Charles VII ; ses dépendances, halles, prisons, justice existaient encore en 1775, à ce village de Saint-Nicolas ; on y voyait aussi les logements des officiers de justice. Le château actuel de Mayet occupe la place du château et du Fort-des-Salles ; ce fut une habitation de grande importance, le fort des Salles, qui, aux mains d'Hélie de La Flèche, eut à subir dès juillet 1099 un siège de Guillaume Le Roux, roi d'Angleterre, qui ne put s'en emparer. Les premiers seigneurs de Mayet appartient à la Maison de Château-du-Loir, puis aux comtes du Maine, aux Plantagenet. Guillaume des Roches leur succéda, et sa descendance, dont, au XIVe siècle, les comtes de Dreux.</p>
+<h4>Habitants / Familles</h4><p>Seigneurs des Salles                                                                       Mayet; Guillaume des Roches 
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Fort la salles grav 1-2                                                                     GPS : 47° 45' 31,24" Nord et 0° 17' 28,48" Est                                                Mangé  grav-3_4                                                                                     GPS : 47° 43' 30,57" Nord, 0° 18' 42,45" Est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

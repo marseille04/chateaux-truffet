@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Fresnay_Sarthe — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,60 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_72.html">Sarthe</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_72.html">Sarthe</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_72.html" class="back-link">Retour au département 72 — Sarthe</a>
-  <div class="fiche">
-    <h2>Fresnay_Sarthe</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>72 — Sarthe</td></tr>
-          <tr><td>Canton</td><td>Sillé-le-Guillaume</td></tr>
-          <tr><td>Commune</td><td>Fresnay sur Sarthe</td></tr>
-          <tr><td>Type d'édifice</td><td>Vestige-Château</td></tr>
-          <tr><td>Période d'origine</td><td>IX-XV-XVI</td></tr>
-          <tr><td>Coordonnées GPS</td><td>48° 16' 54" Nord et 0° 01' 04" Est                                                                     Echenay GPS : 48° 19' 18" Nord, 0° 00' 23" Ouest</td></tr>
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_72/72_Fresnay_Sarthe_1.jpg" alt="Fresnay_Sarthe" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Fresnay_Sarthe_2.jpg" alt="Fresnay_Sarthe" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Fresnay_Sarthe_3.jpg" alt="Fresnay_Sarthe" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Fresnay_Sarthe_4.jpg" alt="Fresnay_Sarthe" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Fresnay_Sarthe_5.jpg" alt="Fresnay_Sarthe" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Fresnay_Sarthe_6.jpg" alt="Fresnay_Sarthe" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_72/72_Fresnay_Sarthe_7.jpg" alt="Fresnay_Sarthe" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_72.html">Retour au département 72 — Sarthe</a>
+<div class="fiche">
+<h2>Fresnay_Sarthe</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Fresnay_Sarthe" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_72/72_Fresnay_Sarthe_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Fresnay_Sarthe" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Fresnay_Sarthe_1.jpg"/><img alt="Fresnay_Sarthe" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Fresnay_Sarthe_2.jpg"/><img alt="Fresnay_Sarthe" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Fresnay_Sarthe_3.jpg"/><img alt="Fresnay_Sarthe" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Fresnay_Sarthe_4.jpg"/><img alt="Fresnay_Sarthe" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Fresnay_Sarthe_5.jpg"/><img alt="Fresnay_Sarthe" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Fresnay_Sarthe_6.jpg"/><img alt="Fresnay_Sarthe" class="" loading="lazy" onclick="setHero(this)" src="../image/image_72/72_Fresnay_Sarthe_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>72 — Sarthe</td></tr>
+<tr><td>Canton</td><td>Sillé-le-Guillaume</td></tr>
+<tr><td>Commune</td><td>Fresnay sur Sarthe</td></tr>
+<tr><td>Type d'édifice</td><td>Vestige-Château</td></tr>
+<tr><td>Période d'origine</td><td>IX-XV-XVI</td></tr>
+<tr><td>Coordonnées GPS</td><td>48° 16' 54" Nord et 0° 01' 04" Est                                                                     Echenay GPS : 48° 19' 18" Nord, 0° 00' 23" Ouest</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Trois châteaux à Fresnay sur Sarthe dont Fresney, Echenay et Cerisay.                                                                                                                     FRESNEY, au XIe siècle  à la famille de Beaumont seigneur de Fresnay en 1356 les anglais s'emparent de la forteresse, Hugues II de Beaumont se retire dans son château de Sainte Suzanne et reprendra possession de Fresnay en 1360 mais sera reprit par les anglais  jusqu'en 1450   repris par jean II duc d'Alençon et par le connétable de Richemont, le duché de Beaumont de Françoise d'Alençon épouse de Charles de Bourbon duc de Vendôme et la première titulaire en 1543. Antoine de Beaumont époux de Jeanne  d'Albret, reine de Navarre. En 1589 René de  de Saint-Denis de Hertré s'empare du château au nom d'henri IV, en 1592 recevra pour prix de ses services la baronnie de Fresnay réunie en 1607 avec l'ensemble du duché de Beaumont au domaine de la Couronne, le château tombe progressivement en ruine, la porte d'entée abrite aujourd'hui un musée de Coiffes cette  porte  fortifié  permet d'accéder à la ville.</p>
-      <h4>Architecture</h4><p>FRESNEY, enceinte du IXe siècle, des éléments y subsistant tels la porte, les traces du donjon sur le mur nord (appareillage de pierres de chevrons), l'ancien grenier à sel qui abrite actuellement la salle Georges Durans, les restes de deux tours de guet sur la partie nord, les bases de la salle des gardes sur la proue du rocher, une petite poterne murée qui donnait accès au pont, la chapelle Saint-Nicolas au sud et une porte à herse sous le chemin de ronde. La poterne constitue la partie la mieux conservée de l'ancienne forteresse, formée de deux tours rondes flanquées de meurtrières réunies par un bâtiment qui abritait la herse et la machinerie du pont-levis dans les tours d'entrée. lLe donjon rectangulaire était une salle, un corps de logis plus élevé que les autres bâtiments et les murs plus épais. Le château a servi de prison puis de logement des gardes et abrite le musée des coiffes. Ses oubliettes au rez-de-chaussée peuvent être visitées en même temps que le musée des coiffes.Éléments protégés MH : le château de Fresnay : inscription par arrêté du 9 décembre 1926.                                                                                                    A cinq kilomètres au nord à Assé la Boisne le château  d'Echenay.   ECHENAY, la construction du manoir date du XVe et XVIe siècle. Le manoir de l'Echenay est inscrit aux M.H. depuis 1969,  et le château   CERISAY,  a été construit au Moyen-Âge, de larges ouvertures sont percées à la Renaissance dans le bâtiment d'origine et modification de la charpente afin de créer des toitures élancées. Une nouvelle chapelle réalisée par l'architecte Vérité, remplace au XIXe siècle celle d'origine. Seuls subsistent de la période médiévale les douves, une tour sur la façade nord, la salle des gardes, en cave voûtée avec un cachot, un escalier à vis ainsi qu'une poterne d'entrée avec son pont-levis.</p>
-      <h4>Habitants / Familles</h4><p>Fresnay; famille de Beaumont
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>Trois châteaux à Fresnay sur Sarthe dont Fresney grav 1-2-3, Echenay  grav -4 et Cerisay grav-6.                                                                       GPS : 48° 16' 54" Nord et 0° 01' 04" Est                                                                     Echenay GPS : 48° 19' 18" Nord, 0° 00' 23" Ouest</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Trois châteaux à Fresnay sur Sarthe dont Fresney, Echenay et Cerisay.                                                                                                                     FRESNEY, au XIe siècle  à la famille de Beaumont seigneur de Fresnay en 1356 les anglais s'emparent de la forteresse, Hugues II de Beaumont se retire dans son château de Sainte Suzanne et reprendra possession de Fresnay en 1360 mais sera reprit par les anglais  jusqu'en 1450   repris par jean II duc d'Alençon et par le connétable de Richemont, le duché de Beaumont de Françoise d'Alençon épouse de Charles de Bourbon duc de Vendôme et la première titulaire en 1543. Antoine de Beaumont époux de Jeanne  d'Albret, reine de Navarre. En 1589 René de  de Saint-Denis de Hertré s'empare du château au nom d'henri IV, en 1592 recevra pour prix de ses services la baronnie de Fresnay réunie en 1607 avec l'ensemble du duché de Beaumont au domaine de la Couronne, le château tombe progressivement en ruine, la porte d'entée abrite aujourd'hui un musée de Coiffes cette  porte  fortifié  permet d'accéder à la ville.</p>
+<h4>Architecture</h4><p>FRESNEY, enceinte du IXe siècle, des éléments y subsistant tels la porte, les traces du donjon sur le mur nord (appareillage de pierres de chevrons), l'ancien grenier à sel qui abrite actuellement la salle Georges Durans, les restes de deux tours de guet sur la partie nord, les bases de la salle des gardes sur la proue du rocher, une petite poterne murée qui donnait accès au pont, la chapelle Saint-Nicolas au sud et une porte à herse sous le chemin de ronde. La poterne constitue la partie la mieux conservée de l'ancienne forteresse, formée de deux tours rondes flanquées de meurtrières réunies par un bâtiment qui abritait la herse et la machinerie du pont-levis dans les tours d'entrée. lLe donjon rectangulaire était une salle, un corps de logis plus élevé que les autres bâtiments et les murs plus épais. Le château a servi de prison puis de logement des gardes et abrite le musée des coiffes. Ses oubliettes au rez-de-chaussée peuvent être visitées en même temps que le musée des coiffes.Éléments protégés MH : le château de Fresnay : inscription par arrêté du 9 décembre 1926.                                                                                                    A cinq kilomètres au nord à Assé la Boisne le château  d'Echenay.   ECHENAY, la construction du manoir date du XVe et XVIe siècle. Le manoir de l'Echenay est inscrit aux M.H. depuis 1969,  et le château   CERISAY,  a été construit au Moyen-Âge, de larges ouvertures sont percées à la Renaissance dans le bâtiment d'origine et modification de la charpente afin de créer des toitures élancées. Une nouvelle chapelle réalisée par l'architecte Vérité, remplace au XIXe siècle celle d'origine. Seuls subsistent de la période médiévale les douves, une tour sur la façade nord, la salle des gardes, en cave voûtée avec un cachot, un escalier à vis ainsi qu'une poterne d'entrée avec son pont-levis.</p>
+<h4>Habitants / Familles</h4><p>Fresnay; famille de Beaumont
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>Trois châteaux à Fresnay sur Sarthe dont Fresney grav 1-2-3, Echenay  grav -4 et Cerisay grav-6.                                                                       GPS : 48° 16' 54" Nord et 0° 01' 04" Est                                                                     Echenay GPS : 48° 19' 18" Nord, 0° 00' 23" Ouest</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

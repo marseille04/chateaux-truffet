@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Saugues — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,58 +113,59 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_43.html">Haute-Loire</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_43.html">Haute-Loire</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_43.html" class="back-link">Retour au département 43 — Haute-Loire</a>
-  <div class="fiche">
-    <h2>Saugues</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>43 — Haute-Loire</td></tr>
-          <tr><td>Canton</td><td>Saugues</td></tr>
-          <tr><td>Commune</td><td>Saugues</td></tr>
-          <tr><td>Type d'édifice</td><td>Tour</td></tr>
-          <tr><td>Période d'origine</td><td>XIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_43/43_Saugues_1.jpg" alt="Saugues" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Saugues_2.jpg" alt="Saugues" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Saugues_3.jpg" alt="Saugues" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Saugues_4.jpg" alt="Saugues" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_43/43_Saugues_5.jpg" alt="Saugues" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_43.html">Retour au département 43 — Haute-Loire</a>
+<div class="fiche">
+<h2>Saugues</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Saugues" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_43/43_Saugues_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="Saugues" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Saugues_1.jpg"/><img alt="Saugues" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Saugues_2.jpg"/><img alt="Saugues" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Saugues_3.jpg"/><img alt="Saugues" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Saugues_4.jpg"/><img alt="Saugues" class="" loading="lazy" onclick="setHero(this)" src="../image/image_43/43_Saugues_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>43 — Haute-Loire</td></tr>
+<tr><td>Canton</td><td>Saugues</td></tr>
+<tr><td>Commune</td><td>Saugues</td></tr>
+<tr><td>Type d'édifice</td><td>Tour</td></tr>
+<tr><td>Période d'origine</td><td>XIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>SAUGUES, chef-duvre darchitecture militaire de la fin du XIIe siècle, la tour dite des Anglais fut restaurée et aménagée à linitiative de Lucien Gires dans les années 70.Ancienne place forte du Gévaudan, elle s'est développée dès le XIIe siècle sous l'autorité des évêques de Mende et des seigneurs de Mercur.  Du sommet de la tour, au-delà des trois couleuvrines en bronze, un magnifique panorama sur le pays de la bête du Gévaudan.                                 CHANALEILLES et sa région était au Moyen-Age le siège d'une seigneurie qui a donné son nom à l'une des plus anciennes et illustres familles du Vivarais, la famille de Chanaleilles, maison d'origine chevaleresque, qui remonte à Guillaume III de Chanaleilles, qui vivait vers 1228. Cette famille a fourni des chevaliers Bannerets, des capitaines d'hommes d'armes, des officiers de terre et de mer, des lieutenants de roi de province, et des sénéchaux de noblesse. En 1422, Pierre de Chanaleilles aida, comme seigneur Banneret, le dauphin Charles, avant qu'il  devienne Charles VII, pendant que ce jeune prince était retiré au pays du Velay. Après être monté sur le trône, ce monarque remercia Pierre de Chanaleilles, par une lettre clause, des services qu'il lui avait rendus, et le reçut chevalier. Ce même Pierre de Chanaleilles fut le premier bailli d'épée installé au nom du roi de France en Vivarais et Valentinois. Dès le début du XIVe siècle, les seigneurs de la maison de Chanaleilles se qualifiaient, dans leurs actes, de  nobles et puissants.                                                                      Dans la commune  Châteaux privés de Servières, Beauregard, Ombret (article), Les Salettes.</p>
-      <h4>Architecture</h4><p>La Tour devrait son nom au siège subi en 1362 pour en déloger des routiers partisans des Anglais. Un chevalier anglais, mort en 1380, repose dans une tombe gothique du cimetière. Elle abrite aujourd'hui un musée de la Forêt et offre un beau panorama depuis son sommet. Tour du Moyen-Age du début XIIIe siècle. Elle constituait le donjon du château ravagé en 1788. Grandes toiles de Lucien Gires sur la forêt, les métiers et les travaux des champs d'autrefois. De la terrasse, vue sur la Margeride, pays des aventures de la Bête du Gévaudan. Riche en vieilles maisons, Saugues, dont la spécialité était le tournage des "esclops", (les sabots de bois) est dominée par la Tour dite "des Anglais", un donjon carré du XIIIe siècle.
-<br> Une étude d'histoire architecturale, avec analyse archéologique du bâti, a été publiée par Christian Corvisier.                               SERVIERES Le castrum de Servières est mentionné en 1250. La maison forte date du XIIIe siècle, et a conservé son logis donjon et sa basse cour assez peu remaniés. L'édifice est formé d'un bâtiment rectangulaire de trois niveaux  flanqué, du côté de l'escarpement, de deux tours.  Il est protégé à l'opposé, par une enceinte formée de bâtiments   d'époques variées qui paraissent reprendre le plan d'origine. Les percements datent du XVe siècle. Intérieurement   la disposition ancienne subsiste au rez-de-chaussée avec   des belles salles voûtées. Les étages ont été subdivisés  au XVIIIe siècle et les pièces ont reçu un décor rustique (plafond à la française, papiers peints et lambris peint).</p>
-      <h4>Habitants / Familles</h4><p>Pierre de Chanaleilles
-<br>        "</p>
-      <h4>Divers</h4><p>Tour des Anglais et le château de Chanaleilles et de Servières.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>SAUGUES, chef-duvre darchitecture militaire de la fin du XIIe siècle, la tour dite des Anglais fut restaurée et aménagée à linitiative de Lucien Gires dans les années 70.Ancienne place forte du Gévaudan, elle s'est développée dès le XIIe siècle sous l'autorité des évêques de Mende et des seigneurs de Mercur.  Du sommet de la tour, au-delà des trois couleuvrines en bronze, un magnifique panorama sur le pays de la bête du Gévaudan.                                 CHANALEILLES et sa région était au Moyen-Age le siège d'une seigneurie qui a donné son nom à l'une des plus anciennes et illustres familles du Vivarais, la famille de Chanaleilles, maison d'origine chevaleresque, qui remonte à Guillaume III de Chanaleilles, qui vivait vers 1228. Cette famille a fourni des chevaliers Bannerets, des capitaines d'hommes d'armes, des officiers de terre et de mer, des lieutenants de roi de province, et des sénéchaux de noblesse. En 1422, Pierre de Chanaleilles aida, comme seigneur Banneret, le dauphin Charles, avant qu'il  devienne Charles VII, pendant que ce jeune prince était retiré au pays du Velay. Après être monté sur le trône, ce monarque remercia Pierre de Chanaleilles, par une lettre clause, des services qu'il lui avait rendus, et le reçut chevalier. Ce même Pierre de Chanaleilles fut le premier bailli d'épée installé au nom du roi de France en Vivarais et Valentinois. Dès le début du XIVe siècle, les seigneurs de la maison de Chanaleilles se qualifiaient, dans leurs actes, de  nobles et puissants.                                                                      Dans la commune  Châteaux privés de Servières, Beauregard, Ombret (article), Les Salettes.</p>
+<h4>Architecture</h4><p>La Tour devrait son nom au siège subi en 1362 pour en déloger des routiers partisans des Anglais. Un chevalier anglais, mort en 1380, repose dans une tombe gothique du cimetière. Elle abrite aujourd'hui un musée de la Forêt et offre un beau panorama depuis son sommet. Tour du Moyen-Age du début XIIIe siècle. Elle constituait le donjon du château ravagé en 1788. Grandes toiles de Lucien Gires sur la forêt, les métiers et les travaux des champs d'autrefois. De la terrasse, vue sur la Margeride, pays des aventures de la Bête du Gévaudan. Riche en vieilles maisons, Saugues, dont la spécialité était le tournage des "esclops", (les sabots de bois) est dominée par la Tour dite "des Anglais", un donjon carré du XIIIe siècle.
+<br/> Une étude d'histoire architecturale, avec analyse archéologique du bâti, a été publiée par Christian Corvisier.                               SERVIERES Le castrum de Servières est mentionné en 1250. La maison forte date du XIIIe siècle, et a conservé son logis donjon et sa basse cour assez peu remaniés. L'édifice est formé d'un bâtiment rectangulaire de trois niveaux  flanqué, du côté de l'escarpement, de deux tours.  Il est protégé à l'opposé, par une enceinte formée de bâtiments   d'époques variées qui paraissent reprendre le plan d'origine. Les percements datent du XVe siècle. Intérieurement   la disposition ancienne subsiste au rez-de-chaussée avec   des belles salles voûtées. Les étages ont été subdivisés  au XVIIIe siècle et les pièces ont reçu un décor rustique (plafond à la française, papiers peints et lambris peint).</p>
+<h4>Habitants / Familles</h4><p>Pierre de Chanaleilles
+<br/>        "</p>
+<h4>Divers</h4><p>Tour des Anglais et le château de Chanaleilles et de Servières.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Uzos — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,54 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_64.html">Pyrénées-Atlantiques</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_64.html">Pyrénées-Atlantiques</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_64.html" class="back-link">Retour au département 64 — Pyrénées-Atlantiques</a>
-  <div class="fiche">
-    <h2>Uzos</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>64 — Pyrénées-Atlantiques</td></tr>
-          <tr><td>Canton</td><td>Nay</td></tr>
-          <tr><td>Commune</td><td>Uzos</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XIII-XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_64/64_Uzos_1.jpg" alt="Uzos" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_64/64_Uzos_2.jpg" alt="Uzos" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_64.html">Retour au département 64 — Pyrénées-Atlantiques</a>
+<div class="fiche">
+<h2>Uzos</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Uzos" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_64/64_Uzos_1.jpg"/><div class="hero-count" id="hero-count">1 / 2</div></div><div class="photo-strip"><img alt="Uzos" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_64/64_Uzos_1.jpg"/><img alt="Uzos" class="" loading="lazy" onclick="setHero(this)" src="../image/image_64/64_Uzos_2.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>64 — Pyrénées-Atlantiques</td></tr>
+<tr><td>Canton</td><td>Nay</td></tr>
+<tr><td>Commune</td><td>Uzos</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XIII-XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>A Uzos deux châteaux celui de Chazal et de la Motte.                                                                          CHAZAL, il porte le nom de son premier propriétaire, le général Chazal. Lédifice serait à lorigine un don de lempereur Napoléon III de 1851 à 1870 au général Chazal. Celui-ci aurait lui-même choisi lemplacement du château pendant une promenade avec lempereur à Pau, sur le boulevard des Pyrénées. Le promeneur qui emprunte cette artère peut en effet contempler au loin le spectacle de la chaîne des Pyrénées.                    LA MOTTE D'UZOS, le petit château des seigneurs Uzos est bâti vers 1200 sur une motte denviron deux mètres de haut.  La seigneurie est longtemps restée entre les mains de la famille de Loyard dont le membre le plus célèbre fut Cyprien, vicaire général archidiacre de lévêché dElne et conseiller au parlement.</p>
-      <h4>Architecture</h4><p>CHAZAL  installé sur les coteaux à proximité du village dUzos, le château de Chazal est un splendide édifice dagrément, depuis la vallée, on peut apercevoir dans la verdure environnante les tourelles du château de Chazal et ses toitures, qui individualisent les différentes parties de la construction.                         UZOS, le château de la Motte  occupé dès lépoque gallo-romaine, le site dUzos na cependant pas livré de vestiges de cette période. Uzos  possède un patrimoine architectural de valeur datant du XIXe siècle était alors délimitée par une palissade circulaire et permettait de se protéger. Très restauré, lédifice ancien se présente comme une maison forte rectangulaire munie dun petit donjon carré à lun de ses angles. Le corps de logis carré, couvert dun toit en tuiles à quatre pentes, comporte deux étages. Au rez-de-chaussée, deux baies étroites et allongées correspondent à danciennes archères modifiées. La pièce principale dhabitation se trouvait au premier étage où deux petites fenêtres géminées en plein cintre dorigine ont été conservées (angle sud-est). Lensemble du château sur motte dUzos est construit en pierres et galets du gave qui ont assuré par leur solidité sa conservation.                                                château de Taillefer disparu après la guerre.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Loyard                                                   Général Chazal
-<br>        "</p>
-      <h4>Divers</h4><p>Château de Chazal grav 1 et de la Motte d'Uzos grav 2</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>A Uzos deux châteaux celui de Chazal et de la Motte.                                                                          CHAZAL, il porte le nom de son premier propriétaire, le général Chazal. Lédifice serait à lorigine un don de lempereur Napoléon III de 1851 à 1870 au général Chazal. Celui-ci aurait lui-même choisi lemplacement du château pendant une promenade avec lempereur à Pau, sur le boulevard des Pyrénées. Le promeneur qui emprunte cette artère peut en effet contempler au loin le spectacle de la chaîne des Pyrénées.                    LA MOTTE D'UZOS, le petit château des seigneurs Uzos est bâti vers 1200 sur une motte denviron deux mètres de haut.  La seigneurie est longtemps restée entre les mains de la famille de Loyard dont le membre le plus célèbre fut Cyprien, vicaire général archidiacre de lévêché dElne et conseiller au parlement.</p>
+<h4>Architecture</h4><p>CHAZAL  installé sur les coteaux à proximité du village dUzos, le château de Chazal est un splendide édifice dagrément, depuis la vallée, on peut apercevoir dans la verdure environnante les tourelles du château de Chazal et ses toitures, qui individualisent les différentes parties de la construction.                         UZOS, le château de la Motte  occupé dès lépoque gallo-romaine, le site dUzos na cependant pas livré de vestiges de cette période. Uzos  possède un patrimoine architectural de valeur datant du XIXe siècle était alors délimitée par une palissade circulaire et permettait de se protéger. Très restauré, lédifice ancien se présente comme une maison forte rectangulaire munie dun petit donjon carré à lun de ses angles. Le corps de logis carré, couvert dun toit en tuiles à quatre pentes, comporte deux étages. Au rez-de-chaussée, deux baies étroites et allongées correspondent à danciennes archères modifiées. La pièce principale dhabitation se trouvait au premier étage où deux petites fenêtres géminées en plein cintre dorigine ont été conservées (angle sud-est). Lensemble du château sur motte dUzos est construit en pierres et galets du gave qui ont assuré par leur solidité sa conservation.                                                château de Taillefer disparu après la guerre.</p>
+<h4>Habitants / Familles</h4><p>Famille de Loyard                                                   Général Chazal
+<br/>        "</p>
+<h4>Divers</h4><p>Château de Chazal grav 1 et de la Motte d'Uzos grav 2</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

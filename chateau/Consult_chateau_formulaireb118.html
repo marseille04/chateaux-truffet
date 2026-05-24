@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Vitry_aux_Loges — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,63 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_45.html">Loiret</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_45.html">Loiret</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_45.html" class="back-link">Retour au département 45 — Loiret</a>
-  <div class="fiche">
-    <h2>Vitry_aux_Loges</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>45 — Loiret</td></tr>
-          <tr><td>Canton</td><td>Châteauneuf-sur-Loire</td></tr>
-          <tr><td>Commune</td><td>Vitry-aux-Loges</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XV-XIX-XX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_45/45_Vitry_aux_Loges_1.jpg" alt="Vitry_aux_Loges" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Vitry_aux_Loges_2.jpg" alt="Vitry_aux_Loges" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Vitry_aux_Loges_3.jpg" alt="Vitry_aux_Loges" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Vitry_aux_Loges_4.jpg" alt="Vitry_aux_Loges" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Vitry_aux_Loges_5.jpg" alt="Vitry_aux_Loges" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Vitry_aux_Loges_6.jpg" alt="Vitry_aux_Loges" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Vitry_aux_Loges_7.jpg" alt="Vitry_aux_Loges" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Vitry_aux_Loges_8.jpg" alt="Vitry_aux_Loges" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Vitry_aux_Loges_9.jpg" alt="Vitry_aux_Loges" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_45.html">Retour au département 45 — Loiret</a>
+<div class="fiche">
+<h2>Vitry_aux_Loges</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Vitry_aux_Loges" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_45/45_Vitry_aux_Loges_1.jpg"/><div class="hero-count" id="hero-count">1 / 9</div></div><div class="photo-strip"><img alt="Vitry_aux_Loges" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Vitry_aux_Loges_1.jpg"/><img alt="Vitry_aux_Loges" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Vitry_aux_Loges_2.jpg"/><img alt="Vitry_aux_Loges" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Vitry_aux_Loges_3.jpg"/><img alt="Vitry_aux_Loges" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Vitry_aux_Loges_4.jpg"/><img alt="Vitry_aux_Loges" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Vitry_aux_Loges_5.jpg"/><img alt="Vitry_aux_Loges" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Vitry_aux_Loges_6.jpg"/><img alt="Vitry_aux_Loges" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Vitry_aux_Loges_7.jpg"/><img alt="Vitry_aux_Loges" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Vitry_aux_Loges_8.jpg"/><img alt="Vitry_aux_Loges" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Vitry_aux_Loges_9.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>45 — Loiret</td></tr>
+<tr><td>Canton</td><td>Châteauneuf-sur-Loire</td></tr>
+<tr><td>Commune</td><td>Vitry-aux-Loges</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XV-XIX-XX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Deux château dans cet article; la Motte, Plessis et Vaux.                            MOTTE, du XIXe siècle, au creux de la vallée, près du canal d'Orléans, le château de La Motte fut reconstruit en 1866 sur les bases d'un vieux château-fort. Au XVIIe siècle, le propriétaire est Abraham Nouël, seigneur de Saint Denis, le château de la Motte appartenait au début du XVIIIe siècle à Jacques d'Estrades, seigneur de la Motte Vitry, conseiller du Roy, contrôleur provincial de l'artillerie. De cet ancien château, les quatre tours d'angles et la façade postérieure ont été conservées et dans le parc le colombier. Aujourd'hui c'est une agréable demeure dont l'entrée est ornée de deux tours.                                                                   VAUX;  du XVe siècle,de plan quadrangulaire, fut édifié au XVe siècle. Il est constitué de quatre corps de logis qui encadrent une grande cour d'honneur. Le corps principal du château est de plain pied, et la partie gauche, qui aurait été bâtie après la guerre de Cent Ans, repose sur quatre belles caves. Le château a conservé trois tours cylindriques d'origine. La cour d'honneur est entièrement close à l'est par les remparts et à l'ouest par les douves qui traversent une partie du terrain, c'est le témoin le mieux conservé de l'architecture ancienne et de la présence seigneuriale à Vitry. Il conservera son pont-levis jusqu'au XVIIe siècle,  transformé en chambre d'hôtes.</p>
-      <h4>Architecture</h4><p>PLESSIS du XIV -XXe siècle,  il comprend une longue bâtisse terminée à chaque extrémité par une tourelle. Il a été récemment restauré avec un goût parfait par Jacques d'Estrades. Le lieu remonte aux temps les plus reculés et, depuis Pépin le Bref, Robert le Pieux, Louis Le Débonnaire, Louis VI, et de nombreux rois séjournèrent à cet endroit qui commandait la forêt d'Orléans ou forêt des Loges. Au XIVe siècle, la prévôté de Vitry fut transformée en châtellenie et releva du duché d'Orléans dont la forêt prit le nom. Cette forêt fut ravagée par les Anglais en 1346, puis en 1428. Le château du Plessis appartenait au XVIIe siècle à M. de la Vrillère, puis il passa aux Picot, barons de Dampierre, aux de Ferrières, aux d'Estrades et de Chauvelin. Pendant la Révolution il appartenait à M Barbot. Parmi les autres seigneurs de Vitry au XVIe siècle, on note Pierre de Hanelles, Philippe et Jean de Bridiers et la famille de Ruzé au XVIIIe siècle.</p>
-      <h4>Habitants / Familles</h4><p>Motte; Jacques d'Estrades                                                             Plessis; M. de la Vrillère
-<br>        
-<br>        
-<br>        "</p>
-      <h4>Divers</h4><p>A Vitry-aux-Loges château de la Motte grav de1 à 5 Plessis grav-7-8-9, vaux grav-6.</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Deux château dans cet article; la Motte, Plessis et Vaux.                            MOTTE, du XIXe siècle, au creux de la vallée, près du canal d'Orléans, le château de La Motte fut reconstruit en 1866 sur les bases d'un vieux château-fort. Au XVIIe siècle, le propriétaire est Abraham Nouël, seigneur de Saint Denis, le château de la Motte appartenait au début du XVIIIe siècle à Jacques d'Estrades, seigneur de la Motte Vitry, conseiller du Roy, contrôleur provincial de l'artillerie. De cet ancien château, les quatre tours d'angles et la façade postérieure ont été conservées et dans le parc le colombier. Aujourd'hui c'est une agréable demeure dont l'entrée est ornée de deux tours.                                                                   VAUX;  du XVe siècle,de plan quadrangulaire, fut édifié au XVe siècle. Il est constitué de quatre corps de logis qui encadrent une grande cour d'honneur. Le corps principal du château est de plain pied, et la partie gauche, qui aurait été bâtie après la guerre de Cent Ans, repose sur quatre belles caves. Le château a conservé trois tours cylindriques d'origine. La cour d'honneur est entièrement close à l'est par les remparts et à l'ouest par les douves qui traversent une partie du terrain, c'est le témoin le mieux conservé de l'architecture ancienne et de la présence seigneuriale à Vitry. Il conservera son pont-levis jusqu'au XVIIe siècle,  transformé en chambre d'hôtes.</p>
+<h4>Architecture</h4><p>PLESSIS du XIV -XXe siècle,  il comprend une longue bâtisse terminée à chaque extrémité par une tourelle. Il a été récemment restauré avec un goût parfait par Jacques d'Estrades. Le lieu remonte aux temps les plus reculés et, depuis Pépin le Bref, Robert le Pieux, Louis Le Débonnaire, Louis VI, et de nombreux rois séjournèrent à cet endroit qui commandait la forêt d'Orléans ou forêt des Loges. Au XIVe siècle, la prévôté de Vitry fut transformée en châtellenie et releva du duché d'Orléans dont la forêt prit le nom. Cette forêt fut ravagée par les Anglais en 1346, puis en 1428. Le château du Plessis appartenait au XVIIe siècle à M. de la Vrillère, puis il passa aux Picot, barons de Dampierre, aux de Ferrières, aux d'Estrades et de Chauvelin. Pendant la Révolution il appartenait à M Barbot. Parmi les autres seigneurs de Vitry au XVIe siècle, on note Pierre de Hanelles, Philippe et Jean de Bridiers et la famille de Ruzé au XVIIIe siècle.</p>
+<h4>Habitants / Familles</h4><p>Motte; Jacques d'Estrades                                                             Plessis; M. de la Vrillère
+<br/>
+<br/>
+<br/>        "</p>
+<h4>Divers</h4><p>A Vitry-aux-Loges château de la Motte grav de1 à 5 Plessis grav-7-8-9, vaux grav-6.</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

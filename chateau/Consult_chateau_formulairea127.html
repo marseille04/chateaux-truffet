@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Caucherie — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,52 +113,57 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_62.html">Pas-de-Calais</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_62.html">Pas-de-Calais</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_62.html" class="back-link">Retour au département 62 — Pas-de-Calais</a>
-  <div class="fiche">
-    <h2>Caucherie</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>62 — Pas-de-Calais</td></tr>
-          <tr><td>Canton</td><td>Boulogne-sur-Mer</td></tr>
-          <tr><td>Commune</td><td>St-Martin de Boulogne</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_62/62_Caucherie_1.jpg" alt="Caucherie" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_62.html">Retour au département 62 — Pas-de-Calais</a>
+<div class="fiche">
+<h2>Caucherie</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Caucherie" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_62/62_Caucherie_1.jpg"/><div class="hero-count" id="hero-count">1 / 1</div></div><div class="photo-strip"><img alt="Caucherie" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_62/62_Caucherie_1.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>62 — Pas-de-Calais</td></tr>
+<tr><td>Canton</td><td>Boulogne-sur-Mer</td></tr>
+<tr><td>Commune</td><td>St-Martin de Boulogne</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>CAUCHERIE  à l'origine, La Caucherie n'était pas une terre seigneuriale, mais une ferme nommée La Guillebeudrie. En 1550, celle-ci était tenue à cens de l'abbaye Notre-Dame de Boulogne par Engrand Beaufilz. La maison ayant été détruite par les Anglais, Beaufilz remit la terre aux mains de l'abbé. La Guillebeudrie passa alors entre diverses mains dont celles de François Hibon, échevin de la ville de Boulogne. Ce serait le duc d'Aumont, gouverneur du Boulonnais, qui lui aurait donné le nom "la Caucherie". En 1677, la propriété revint à son troisième fils. Jacques Abot de Bazinghen, seigneurie qu'il avait acquise et dont il prit le nom. Celui-ci fut procureur du roi en la maîtrise des eaux et forêts du Boulonnais. Il transforma la demeure héritée de son père en lui adjoignant un corps de logis à étage et une chapelle à dôme faisait aile de retour sur la cour, elle comportait une sacristie et une tribune. En 1705, les travaux débutèrent mais ils n'étaient pas finis en 1716, date de la mort de Jacques Abot. Auparavant, celui-ci avait voulu se faire aménager un jardin à la française. En 1698 au cours d'un voyage à Paris, il s'était entretenu de son projet avec André Le Nôtre, dans ses plans, le paysagiste dut tenir compte de ce qui avait déjà été réalisé : En 1716, la propriété revint au neveu de Jacques Abot, François Abot de Bourgneuf. Celui-ci fut inspecteur des troupes boulonnaises; en 1705, il avait épousé sa cousine Marie Gabrielle Le Roy de Lozembrune. Il poursuivit la construction du château, mais ayant perdu cent mille livres dans une banqueroute, il fut obligé en 1720 de le louer à divers locataires. En 1898, la propriété a été rachetée par Robert de Rosny, père du baron Jean de Rosny, polytechnicien et ancien officier, l'actuel propriétaire son petit fils François, habite la Caucherie et en héritera.</p>
-      <h4>Architecture</h4><p>CAUCHERIE en dépit de son aspect général, ce château est une uvre qui a été réalisée au XIXe siècle. La grande unité de l'ensemble en fournit la preuve ; les baux de location du XVIIIe siècle ne peuvent s'appliquer à cette demeure. On remarque également que les armoiries supportées par deux lions qui figurent au fronton du côté cour ne sont pas celles des Abot, mais celles de l'amiral Vattier, colonel des marins de la Garde Impériale, L'édifice comprend un long corps de logis que prolongent à chacune de ses extrémités deux ailes saillantes tant du côté cour que du côté jardin, mais c'est le jardin qui donne à ce château tout son intérêt. Il est incontestable que même si l'âge puis la mort l'ont empêché de venir sur place, André Le Nôtre a fourni des plans, des idées pour sa réalisation. Le jardin comprend une partie haute qui s'étend en longueur en face du château et une partie basse latérale qui forme un rectangle situé à 5 m en contrebas de la première. Le jardin d'en haut est dominé par la terrasse du château qui était ornée de vases en faïence. L'allée médiane mène à un grand bassin cylindrique doté d'un jet d'eau. Au delà du bassin règne une seconde terrasse qui domine un deuxième niveau de jardin. Si le jardin d'en bas a perdu ses dispositions originelles, celui d'en haut a conservé l'essentiel des siennes. Des pelouses ont remplacé les broderies ; les ifs taillés en figures, les murailles ont disparu. La terrasse du fond, ses deux tourelles, la cascade ont fait place à deux obélisques de marbre portant l'emblème du Roi Soleil.</p>
-      <h4>Habitants / Familles</h4><p>Famille de Jacques Abot de Bazinghen"</p>
-      <h4>Divers</h4><p>Château de la Caucherie à St-Martin de Boulogne</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>CAUCHERIE  à l'origine, La Caucherie n'était pas une terre seigneuriale, mais une ferme nommée La Guillebeudrie. En 1550, celle-ci était tenue à cens de l'abbaye Notre-Dame de Boulogne par Engrand Beaufilz. La maison ayant été détruite par les Anglais, Beaufilz remit la terre aux mains de l'abbé. La Guillebeudrie passa alors entre diverses mains dont celles de François Hibon, échevin de la ville de Boulogne. Ce serait le duc d'Aumont, gouverneur du Boulonnais, qui lui aurait donné le nom "la Caucherie". En 1677, la propriété revint à son troisième fils. Jacques Abot de Bazinghen, seigneurie qu'il avait acquise et dont il prit le nom. Celui-ci fut procureur du roi en la maîtrise des eaux et forêts du Boulonnais. Il transforma la demeure héritée de son père en lui adjoignant un corps de logis à étage et une chapelle à dôme faisait aile de retour sur la cour, elle comportait une sacristie et une tribune. En 1705, les travaux débutèrent mais ils n'étaient pas finis en 1716, date de la mort de Jacques Abot. Auparavant, celui-ci avait voulu se faire aménager un jardin à la française. En 1698 au cours d'un voyage à Paris, il s'était entretenu de son projet avec André Le Nôtre, dans ses plans, le paysagiste dut tenir compte de ce qui avait déjà été réalisé : En 1716, la propriété revint au neveu de Jacques Abot, François Abot de Bourgneuf. Celui-ci fut inspecteur des troupes boulonnaises; en 1705, il avait épousé sa cousine Marie Gabrielle Le Roy de Lozembrune. Il poursuivit la construction du château, mais ayant perdu cent mille livres dans une banqueroute, il fut obligé en 1720 de le louer à divers locataires. En 1898, la propriété a été rachetée par Robert de Rosny, père du baron Jean de Rosny, polytechnicien et ancien officier, l'actuel propriétaire son petit fils François, habite la Caucherie et en héritera.</p>
+<h4>Architecture</h4><p>CAUCHERIE en dépit de son aspect général, ce château est une uvre qui a été réalisée au XIXe siècle. La grande unité de l'ensemble en fournit la preuve ; les baux de location du XVIIIe siècle ne peuvent s'appliquer à cette demeure. On remarque également que les armoiries supportées par deux lions qui figurent au fronton du côté cour ne sont pas celles des Abot, mais celles de l'amiral Vattier, colonel des marins de la Garde Impériale, L'édifice comprend un long corps de logis que prolongent à chacune de ses extrémités deux ailes saillantes tant du côté cour que du côté jardin, mais c'est le jardin qui donne à ce château tout son intérêt. Il est incontestable que même si l'âge puis la mort l'ont empêché de venir sur place, André Le Nôtre a fourni des plans, des idées pour sa réalisation. Le jardin comprend une partie haute qui s'étend en longueur en face du château et une partie basse latérale qui forme un rectangle situé à 5 m en contrebas de la première. Le jardin d'en haut est dominé par la terrasse du château qui était ornée de vases en faïence. L'allée médiane mène à un grand bassin cylindrique doté d'un jet d'eau. Au delà du bassin règne une seconde terrasse qui domine un deuxième niveau de jardin. Si le jardin d'en bas a perdu ses dispositions originelles, celui d'en haut a conservé l'essentiel des siennes. Des pelouses ont remplacé les broderies ; les ifs taillés en figures, les murailles ont disparu. La terrasse du fond, ses deux tourelles, la cascade ont fait place à deux obélisques de marbre portant l'emblème du Roi Soleil.</p>
+<h4>Habitants / Familles</h4><p>Famille de Jacques Abot de Bazinghen"</p>
+<h4>Divers</h4><p>Château de la Caucherie à St-Martin de Boulogne</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>St_Hilaire_Allier — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,59 +113,60 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_03.html">Allier</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_03.html">Allier</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_03.html" class="back-link">Retour au département 03 — Allier</a>
-  <div class="fiche">
-    <h2>St_Hilaire_Allier</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>03 — Allier</td></tr>
-          <tr><td>Canton</td><td>Bourbon-l`Archambault</td></tr>
-          <tr><td>Commune</td><td>St-Hilaire</td></tr>
-          <tr><td>Type d'édifice</td><td>Château</td></tr>
-          <tr><td>Période d'origine</td><td>XVIII</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_03/03_St_Hilaire_Allier_1.jpg" alt="St_Hilaire_Allier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_St_Hilaire_Allier_2.jpg" alt="St_Hilaire_Allier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_St_Hilaire_Allier_3.jpg" alt="St_Hilaire_Allier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_St_Hilaire_Allier_4.jpg" alt="St_Hilaire_Allier" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_03/03_St_Hilaire_Allier_5.jpg" alt="St_Hilaire_Allier" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_03.html">Retour au département 03 — Allier</a>
+<div class="fiche">
+<h2>St_Hilaire_Allier</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="St_Hilaire_Allier" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_03/03_St_Hilaire_Allier_1.jpg"/><div class="hero-count" id="hero-count">1 / 5</div></div><div class="photo-strip"><img alt="St_Hilaire_Allier" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_St_Hilaire_Allier_1.jpg"/><img alt="St_Hilaire_Allier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_St_Hilaire_Allier_2.jpg"/><img alt="St_Hilaire_Allier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_St_Hilaire_Allier_3.jpg"/><img alt="St_Hilaire_Allier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_St_Hilaire_Allier_4.jpg"/><img alt="St_Hilaire_Allier" class="" loading="lazy" onclick="setHero(this)" src="../image/image_03/03_St_Hilaire_Allier_5.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>03 — Allier</td></tr>
+<tr><td>Canton</td><td>Bourbon-l`Archambault</td></tr>
+<tr><td>Commune</td><td>St-Hilaire</td></tr>
+<tr><td>Type d'édifice</td><td>Château</td></tr>
+<tr><td>Période d'origine</td><td>XVIII</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Trois châteaux à St-Hilaire dont celui de St-Hilaire du XVIIIe siècle, de Maltaverne du XIXe siècle, et de la Verpillière du XVIIIe siècle;  autres châteaux de Clavières, des Carterons (2 tours) et des Troches.                   St-HILAIRE, au XIIe siècle la paroisse fut le siège d'une commanderie de l'ordre de Saint-Jean-de-Jérusalem. Au XVe siècle, une autre commanderie d'hospitaliers  s'est installée à quelques kilomètres du bourg, au monastère de Beauchassin. Le premier seigneur de Saint-Hilaire de la fin du XIVe siècle est issu de la famille de Saint-Aignan possédant le château du Pleix à Ygrandeau au Moyen-Age,  est une étape obligée entre Bourbon l'Archambault et Le Montet.  Au XIVe siècle, les 1er seigneurs, les Seguin, sont établis à Maltaverne et deviennent rapidement seigneurs de Saint-Hilaire, vassaux des ducs de Bourbon. Au XIXe siècle, les descendants cèdent le bâtiment au Baron de la Rochetaillée, acquéreur des biens des Saint-Hilaire. 
-<br>MALTAVERNE,  semble avoir été une des résidences primitives des seigneurs de Saint Aubin, ou ils possédaient une forteresse, pour contrôler l'accès au bourg. Au XVIIe siècle, les seigneurs quittent Maltaverne pour un manoir construit au milieu du bourg Il est probable qu'à la fin du Moyen-Age, ils conservèrent les droits seigneuriaux du fief et abandonnèrent la place forte qui tomba en ruines. Au XIXe siècle, la terre de Maltaverne fut achetée par un roturier, qui fit construire une maison dans le style des maisons fortes.  Au XIXe siècle, les descendants cèdent le bâtiment au Baron de la Rochetaillée, acquéreur des biens des Saint-Hilaire. 
-<br>VERPILLIERE pas d'information historique.</p>
-      <h4>Architecture</h4><p>Saint-Hilaire fut une ancienne ville close et bourg fortifié au Moyen-Age, doté d'un château féodal en ruines dès le XVIe siècle. La résidence de sa descendance fut le château-fort de Maltaverne jusqu'à la fin du XVIIe siècle. Comme Buxières-les-Mines, Saint-Hilaire a vécu l'essor industriel grace aux mines de charbon de son sous-sol.   Le château du XVIIIe siècle, construit à l'emplacement du château médiéval, forme un U.  Le château possède encore sa porte d'entrée composée d'un passage piéton et un accès pour les attelages. La clef de l'arc est cernée de claveaux représentant des têtes grinçantes de style Renaissance.
-<br>Maltaverne du XIXe siècle, implanté sur l'ancienne forteresse des seigneurs de Saint-Hilaire défendant la route accédant au bourg, cette grande demeure bourgeoise est de plan rectangulaire. La partie centrale est encadrée de 2 pavillons dont l'entrée est abritée par un porche. C'est un grand corps de logis à deux niveaux et niveau de comble, à ouvertures symétriques par rapport à l'entrée. Une tour carrée, prise en oeuvre  en façade, à fronton et toit  à quatre pans, permet l'accès  au bâtiment, par une arcade en plein cintre. Le château du XVIIIe siècle, construit à l'emplacement du château médiéval, forme un U. Le château possède encore sa porte d'entrée composée d'un passage piéton ainsi qu'un accès pour les attelages. La clef de l'arc est cernée de claveaux représentant des têtes grinçantes de style Renaissance.</p>
-      <h4>Habitants / Familles</h4><p>Baron de la Rochetaillée"</p>
-      <h4>Divers</h4><p>Château de Saint-Hilaire, de Malataverne, de Verpillières et de Clavières</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Trois châteaux à St-Hilaire dont celui de St-Hilaire du XVIIIe siècle, de Maltaverne du XIXe siècle, et de la Verpillière du XVIIIe siècle;  autres châteaux de Clavières, des Carterons (2 tours) et des Troches.                   St-HILAIRE, au XIIe siècle la paroisse fut le siège d'une commanderie de l'ordre de Saint-Jean-de-Jérusalem. Au XVe siècle, une autre commanderie d'hospitaliers  s'est installée à quelques kilomètres du bourg, au monastère de Beauchassin. Le premier seigneur de Saint-Hilaire de la fin du XIVe siècle est issu de la famille de Saint-Aignan possédant le château du Pleix à Ygrandeau au Moyen-Age,  est une étape obligée entre Bourbon l'Archambault et Le Montet.  Au XIVe siècle, les 1er seigneurs, les Seguin, sont établis à Maltaverne et deviennent rapidement seigneurs de Saint-Hilaire, vassaux des ducs de Bourbon. Au XIXe siècle, les descendants cèdent le bâtiment au Baron de la Rochetaillée, acquéreur des biens des Saint-Hilaire. 
+<br/>MALTAVERNE,  semble avoir été une des résidences primitives des seigneurs de Saint Aubin, ou ils possédaient une forteresse, pour contrôler l'accès au bourg. Au XVIIe siècle, les seigneurs quittent Maltaverne pour un manoir construit au milieu du bourg Il est probable qu'à la fin du Moyen-Age, ils conservèrent les droits seigneuriaux du fief et abandonnèrent la place forte qui tomba en ruines. Au XIXe siècle, la terre de Maltaverne fut achetée par un roturier, qui fit construire une maison dans le style des maisons fortes.  Au XIXe siècle, les descendants cèdent le bâtiment au Baron de la Rochetaillée, acquéreur des biens des Saint-Hilaire. 
+<br/>VERPILLIERE pas d'information historique.</p>
+<h4>Architecture</h4><p>Saint-Hilaire fut une ancienne ville close et bourg fortifié au Moyen-Age, doté d'un château féodal en ruines dès le XVIe siècle. La résidence de sa descendance fut le château-fort de Maltaverne jusqu'à la fin du XVIIe siècle. Comme Buxières-les-Mines, Saint-Hilaire a vécu l'essor industriel grace aux mines de charbon de son sous-sol.   Le château du XVIIIe siècle, construit à l'emplacement du château médiéval, forme un U.  Le château possède encore sa porte d'entrée composée d'un passage piéton et un accès pour les attelages. La clef de l'arc est cernée de claveaux représentant des têtes grinçantes de style Renaissance.
+<br/>Maltaverne du XIXe siècle, implanté sur l'ancienne forteresse des seigneurs de Saint-Hilaire défendant la route accédant au bourg, cette grande demeure bourgeoise est de plan rectangulaire. La partie centrale est encadrée de 2 pavillons dont l'entrée est abritée par un porche. C'est un grand corps de logis à deux niveaux et niveau de comble, à ouvertures symétriques par rapport à l'entrée. Une tour carrée, prise en oeuvre  en façade, à fronton et toit  à quatre pans, permet l'accès  au bâtiment, par une arcade en plein cintre. Le château du XVIIIe siècle, construit à l'emplacement du château médiéval, forme un U. Le château possède encore sa porte d'entrée composée d'un passage piéton ainsi qu'un accès pour les attelages. La clef de l'arc est cernée de claveaux représentant des têtes grinçantes de style Renaissance.</p>
+<h4>Habitants / Familles</h4><p>Baron de la Rochetaillée"</p>
+<h4>Divers</h4><p>Château de Saint-Hilaire, de Malataverne, de Verpillières et de Clavières</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>

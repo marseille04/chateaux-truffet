@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Dampierre_Burly — Châteaux de France</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +57,7 @@ nav a:hover { color: #fff; }
          padding: 30px; margin: 20px 0; }
 .fiche h2 { font-size: 1.8em; color: #3d1f0d; border-bottom: 2px solid #c8a96a;
             padding-bottom: 10px; margin-bottom: 20px; }
-.fiche-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.fiche-grid { display:grid; grid-template-columns: 1fr; gap: 20px; }
 @media(max-width:700px){ .fiche-grid { grid-template-columns:1fr; } }
 .fiche-info table { width:100%; border-collapse: collapse; }
 .fiche-info td { padding: 7px 10px; border-bottom: 1px solid #f0e0c0; font-size: 0.9em; }
@@ -64,9 +65,22 @@ nav a:hover { color: #fff; }
 .fiche-text { margin-top: 20px; }
 .fiche-text h4 { color: #7a4010; margin: 16px 0 6px; font-size: 1em; border-left: 3px solid #c8a96a; padding-left: 8px; }
 .fiche-text p  { font-size: 0.9em; line-height: 1.7; color: #444; }
-.photos { display:flex; flex-wrap:wrap; gap:10px; margin-top: 20px; }
-.photos img { max-height:240px; max-width:340px; border-radius:4px;
-              border: 1px solid #d4b896; object-fit:cover; cursor:pointer; }
+/* Galerie hero */
+.photo-hero { margin: 20px 0; background: #1a0f0a; border-radius: 10px; overflow: hidden; }
+.hero-wrap { position: relative; width: 100%; height: 520px; overflow: hidden; }
+.hero-main { width: 100%; height: 100%; object-fit: cover; object-position: center top;
+             display: block; cursor: zoom-in; transition: transform .3s ease; }
+.hero-main:hover { transform: scale(1.02); }
+.hero-count { position: absolute; bottom: 12px; right: 16px; background: rgba(0,0,0,.55);
+              color: #fff; font-size: 0.8em; padding: 4px 10px; border-radius: 20px; }
+.photo-strip { display: flex; gap: 6px; padding: 10px; overflow-x: auto;
+               background: #2c1810; scrollbar-width: thin; scrollbar-color: #8b4513 #2c1810; }
+.photo-strip img { height: 80px; width: 120px; object-fit: cover; border-radius: 4px;
+                   border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+                   transition: border-color .2s, opacity .2s; opacity: .75; }
+.photo-strip img.active, .photo-strip img:hover { border-color: #d4a96a; opacity: 1; }
+.no-photo { display: flex; align-items: center; justify-content: center; height: 220px;
+            background: #e8dcc8; border-radius: 8px; color: #a08060; font-size: 3em; margin: 20px 0; }
 
 /* Lightbox */
 #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
@@ -99,59 +113,58 @@ footer { text-align:center; padding:30px; color:#888; font-size:0.8em;
 </head>
 <body>
 <header>
-  <div>
-    <h1>🏰 Châteaux de France</h1>
-    <p>Recensement Jean-Claude Truffet</p>
-  </div>
+<div>
+<h1>🏰 Châteaux de France</h1>
+<p>Recensement Jean-Claude Truffet</p>
+</div>
 </header>
 <nav>
-  <a href="../index.html">Accueil</a>
-  <a href="../dept/dept_45.html">Loiret</a>
+<a href="../index.html">Accueil</a>
+<a href="../dept/dept_45.html">Loiret</a>
 </nav>
 <div class="container">
-  <a href="../dept/dept_45.html" class="back-link">Retour au département 45 — Loiret</a>
-  <div class="fiche">
-    <h2>Dampierre_Burly</h2>
-    <div class="fiche-grid">
-      <div class="fiche-info">
-        <table>
-          <tr><td>Département</td><td>45 — Loiret</td></tr>
-          <tr><td>Canton</td><td>Ouzouer-sur-Loire</td></tr>
-          <tr><td>Commune</td><td>Dampierre-en-Burly</td></tr>
-          <tr><td>Type d'édifice</td><td>Forteresse</td></tr>
-          <tr><td>Période d'origine</td><td>XVII-XIX</td></tr>
-          
-        </table>
-      </div>
-      <div>
-        <div class="photos"><img src="../image/image_45/45_Dampierre_Burly_1.jpg" alt="Dampierre_Burly" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Dampierre_Burly_2.jpg" alt="Dampierre_Burly" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Dampierre_Burly_3.jpg" alt="Dampierre_Burly" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Dampierre_Burly_4.jpg" alt="Dampierre_Burly" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Dampierre_Burly_5.jpg" alt="Dampierre_Burly" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Dampierre_Burly_6.jpg" alt="Dampierre_Burly" onclick="openLightbox(this.src)" loading="lazy">
-<img src="../image/image_45/45_Dampierre_Burly_7.jpg" alt="Dampierre_Burly" onclick="openLightbox(this.src)" loading="lazy">
+<a class="back-link" href="../dept/dept_45.html">Retour au département 45 — Loiret</a>
+<div class="fiche">
+<h2>Dampierre_Burly</h2>
+<div class="photo-hero"><div class="hero-wrap"><img alt="Dampierre_Burly" class="hero-main" id="hero-main" loading="eager" onclick="openLightbox(this.src)" src="../image/image_45/45_Dampierre_Burly_1.jpg"/><div class="hero-count" id="hero-count">1 / 7</div></div><div class="photo-strip"><img alt="Dampierre_Burly" class="active" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Dampierre_Burly_1.jpg"/><img alt="Dampierre_Burly" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Dampierre_Burly_2.jpg"/><img alt="Dampierre_Burly" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Dampierre_Burly_3.jpg"/><img alt="Dampierre_Burly" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Dampierre_Burly_4.jpg"/><img alt="Dampierre_Burly" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Dampierre_Burly_5.jpg"/><img alt="Dampierre_Burly" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Dampierre_Burly_6.jpg"/><img alt="Dampierre_Burly" class="" loading="lazy" onclick="setHero(this)" src="../image/image_45/45_Dampierre_Burly_7.jpg"/></div></div><div class="photo-hero"><div class="no-photo">🏰</div></div><div class="fiche-grid">
+<div class="fiche-info">
+<table>
+<tr><td>Département</td><td>45 — Loiret</td></tr>
+<tr><td>Canton</td><td>Ouzouer-sur-Loire</td></tr>
+<tr><td>Commune</td><td>Dampierre-en-Burly</td></tr>
+<tr><td>Type d'édifice</td><td>Forteresse</td></tr>
+<tr><td>Période d'origine</td><td>XVII-XIX</td></tr>
+</table>
 </div>
-      </div>
-    </div>
-    <div class="fiche-text">
-      <h4>Histoire</h4><p>Trois châteaux dans cet article; Dampierre, Marchais-Creux, Noues st-Ythier et Verdier,  pas d'info pour Noues.                            DAMPIERRE , Au XVIIIe siècle, la seigneurie passa à Feydeau de Marville, puis fut  détruite à la Révolution. En 1826 M.de Behague, agronome, s'y installa et créa un domaine de 2.000 hectares. Il y mourut en 1884 à 80 ans. Il ne reste du château que le pavillon de l'horloge du XVIIe siècle qui sert d'entrée. Il appartient à M. de Ganay. Dans ce même pays, il faut aussi signaler le manoir de Marchais-Creux. Ses jardins, dit-on, avaient été dessinés par Le Nôtre. Un colombier du XVIe siècle témoigne de l'ancienneté du domaine. Mais la demeure elle-même date du XVIe siècle. Elle fut habitée pendant des siècles par les Rancourt, puis les Adhémar. Le corps présente une façade principale en pierre et une façade postérieure en pierre et briques sans décoration.  Au rez-de-chaussée, passage voûté en briques, en berceau avec arcs en pierre et pénétrations latérales en lunettes.  L'ensemble n'a pas été remanié. Inscription au M.H. par arrêté du 6 mars 1928.                                                                                      VERDIER, a été construit par Maxime du Verdier de la Sorinière. Appartenant à une noble famille angevine qui avait payé un lourd tribut aux guerres vendéennes, né en 1813 à Chemillé dans le Maine et Loire, il est devenu dampierrois par son mariage en 1842 avec Adélaïde de Rancourt, héritière d'une partie du domaine du Marchais -Creux. C'est sur les terres de son épouse qu'il fait élever le château, après leur mariage. Il a été maire de Dampierre de 1846 à 1876. Deux ailes en ressaut sur la façade ont été ajoutées au XXIe siècle par les propriétaires actuels.</p>
-      <h4>Architecture</h4><p>NOUES ST YTHIER, construction de taille modeste ne datant guère que de la fin du XIXe siècle puisque construite entre 1872 et 1879  pour Gabriel Placide de Rancourt-Mimerand, est néanmoins un beau spécimen de l'architecture en style Renaissance, brique et pierre.  Le château est constitué de deux bâtiments en T dont l'un est flanqué, des deux côtés d'une de ses extrémités, d'une tour polygonale à pans coupés et d'une tour circulaire en poivrière.                                                                                MARCHAIS-CREUX, un robuste colombier du XVIe siècle, à gauche de la grille d'accès, portant un blason au fronton de sa porte d'entrée, atteste de l'ancienneté du domaine dont la demeure date pratiquement de la même époque. Le "Marchais-Creux" , qui donne son nom au lieu, a  pour origine une motte féodale. En 1471, Edmond Gilidor est propriétaire des lieux. Vers 1518 Jean Ier de Villiers est seigneur de Marchais-Creux. Jean III de Villiers est grand maître des forêts de France. Mais c'est  Jean IV de Villiers, bailli de Gien en 1655, qui fit élever le château Renaissance dont une partie est encore visible. En 1691, la propriété est vendue par adjudication à Louis de Rancourt, ils  sont jusqu'à la Révolution des financiers et des officiers comptables. À la mort d'Edme de Rancourt, en 1835, le domaine est partagé entre ses trois filles. L'une d'elles, Marie-Caroline épouse de Carré de Bray, conserve Marchais-Creux. Son fils, Louis Carré de Bray est maire de Dampierre de 1876 à 1884. Des transformations sont entreprises dans le château et les bâtiments annexes dans la seconde moitié du XIXe siècle.</p>
-      <h4>Habitants / Familles</h4><p>Dampierre; famille de Cugnac                                             Verdier; Maxime du Verdier de la Sorinière                             Noues ;Gabriel Placide de Rancourt-Mimerand                            Marchais; Louis de Rancourt
-<br>        "</p>
-      <h4>Divers</h4><p>Trois châteaux a Dampierre en Burly; Dampierre grav1-2-3 et Marchais-Creux grav-4 Noues grav-5 et Verdier.    grav 6   buisson grav-7                                                                         Dampierre 47° 45' 35" nord, 2° 30' 55" est</p>
-    </div>
-  </div>
+</div>
+<div class="fiche-text">
+<h4>Histoire</h4><p>Trois châteaux dans cet article; Dampierre, Marchais-Creux, Noues st-Ythier et Verdier,  pas d'info pour Noues.                            DAMPIERRE , Au XVIIIe siècle, la seigneurie passa à Feydeau de Marville, puis fut  détruite à la Révolution. En 1826 M.de Behague, agronome, s'y installa et créa un domaine de 2.000 hectares. Il y mourut en 1884 à 80 ans. Il ne reste du château que le pavillon de l'horloge du XVIIe siècle qui sert d'entrée. Il appartient à M. de Ganay. Dans ce même pays, il faut aussi signaler le manoir de Marchais-Creux. Ses jardins, dit-on, avaient été dessinés par Le Nôtre. Un colombier du XVIe siècle témoigne de l'ancienneté du domaine. Mais la demeure elle-même date du XVIe siècle. Elle fut habitée pendant des siècles par les Rancourt, puis les Adhémar. Le corps présente une façade principale en pierre et une façade postérieure en pierre et briques sans décoration.  Au rez-de-chaussée, passage voûté en briques, en berceau avec arcs en pierre et pénétrations latérales en lunettes.  L'ensemble n'a pas été remanié. Inscription au M.H. par arrêté du 6 mars 1928.                                                                                      VERDIER, a été construit par Maxime du Verdier de la Sorinière. Appartenant à une noble famille angevine qui avait payé un lourd tribut aux guerres vendéennes, né en 1813 à Chemillé dans le Maine et Loire, il est devenu dampierrois par son mariage en 1842 avec Adélaïde de Rancourt, héritière d'une partie du domaine du Marchais -Creux. C'est sur les terres de son épouse qu'il fait élever le château, après leur mariage. Il a été maire de Dampierre de 1846 à 1876. Deux ailes en ressaut sur la façade ont été ajoutées au XXIe siècle par les propriétaires actuels.</p>
+<h4>Architecture</h4><p>NOUES ST YTHIER, construction de taille modeste ne datant guère que de la fin du XIXe siècle puisque construite entre 1872 et 1879  pour Gabriel Placide de Rancourt-Mimerand, est néanmoins un beau spécimen de l'architecture en style Renaissance, brique et pierre.  Le château est constitué de deux bâtiments en T dont l'un est flanqué, des deux côtés d'une de ses extrémités, d'une tour polygonale à pans coupés et d'une tour circulaire en poivrière.                                                                                MARCHAIS-CREUX, un robuste colombier du XVIe siècle, à gauche de la grille d'accès, portant un blason au fronton de sa porte d'entrée, atteste de l'ancienneté du domaine dont la demeure date pratiquement de la même époque. Le "Marchais-Creux" , qui donne son nom au lieu, a  pour origine une motte féodale. En 1471, Edmond Gilidor est propriétaire des lieux. Vers 1518 Jean Ier de Villiers est seigneur de Marchais-Creux. Jean III de Villiers est grand maître des forêts de France. Mais c'est  Jean IV de Villiers, bailli de Gien en 1655, qui fit élever le château Renaissance dont une partie est encore visible. En 1691, la propriété est vendue par adjudication à Louis de Rancourt, ils  sont jusqu'à la Révolution des financiers et des officiers comptables. À la mort d'Edme de Rancourt, en 1835, le domaine est partagé entre ses trois filles. L'une d'elles, Marie-Caroline épouse de Carré de Bray, conserve Marchais-Creux. Son fils, Louis Carré de Bray est maire de Dampierre de 1876 à 1884. Des transformations sont entreprises dans le château et les bâtiments annexes dans la seconde moitié du XIXe siècle.</p>
+<h4>Habitants / Familles</h4><p>Dampierre; famille de Cugnac                                             Verdier; Maxime du Verdier de la Sorinière                             Noues ;Gabriel Placide de Rancourt-Mimerand                            Marchais; Louis de Rancourt
+<br/>        "</p>
+<h4>Divers</h4><p>Trois châteaux a Dampierre en Burly; Dampierre grav1-2-3 et Marchais-Creux grav-4 Noues grav-5 et Verdier.    grav 6   buisson grav-7                                                                         Dampierre 47° 45' 35" nord, 2° 30' 55" est</p>
+</div>
+</div>
 </div>
 <footer>Site créé à partir du recensement de Jean-Claude Truffet — jctruffet.com</footer>
 <div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="">
+<span id="lightbox-close" onclick="closeLightbox()">✕</span>
+<img alt="" id="lightbox-img" src=""/>
 </div>
 <script>
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+function setHero(el, totalCount) {
+  document.getElementById('hero-main').src = el.src;
+  document.querySelectorAll('.photo-strip img').forEach(function(i){ i.classList.remove('active'); });
+  el.classList.add('active');
+  // update counter
+  var imgs = document.querySelectorAll('.photo-strip img');
+  var idx = Array.prototype.indexOf.call(imgs, el) + 1;
+  var ctr = document.getElementById('hero-count');
+  if (ctr) ctr.textContent = idx + ' / ' + imgs.length;
+}
 </script>
 </body>
 </html>
